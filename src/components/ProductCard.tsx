@@ -108,7 +108,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
               <PriceTag product={product} hideOldPrice={!isDeal} />
             )}
           </div>
-          <div className="mt-auto flex gap-2">
+          {/* MOBILE: stacked full-width buttons (side-by-side wrapped
+              awkwardly in the narrow 2-col grid); md: side-by-side as before. */}
+          <div className="mt-auto flex flex-col gap-2 md:flex-row">
             {/* Add to Cart → cart context + toast; works for every product
                 (unpurchasable ones get an explanatory toast from the store). */}
             <button

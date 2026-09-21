@@ -83,7 +83,8 @@ const ShopTeaser: React.FC = () => {
                       <PriceTag product={product} hideOldPrice />
                     )}
                   </div>
-                  <div className="flex gap-2">
+                  {/* MOBILE: stacked full-width buttons; md: side-by-side. */}
+                  <div className="flex flex-col gap-2 md:flex-row">
                     {/* Add to Cart → cart context + toast; works for every
                         product (unpurchasable ones get an explanatory toast). */}
                     <button

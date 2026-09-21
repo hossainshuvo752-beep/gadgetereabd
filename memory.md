@@ -439,3 +439,8 @@ Rule: After completing any task and confirming no build/compile errors (tsc --no
 - BUG: main category row (All Products/Mobile/Tablet/PC/…) stacked one button per line on mobile. Root cause: ScrollHint's scroll container had `flex-nowrap` but NO `flex` (display:flex) — a block container, so children stacked. Subcategory row looked fine only because its children were inline-block buttons.
 - Fix: one class in the shared component — `flex flex-nowrap items-center` — repairs all consumers (CategoryNav Row 1 + Row 2, blog chips, Testimonials) at once. Plus `snap-x snap-proximity` + `[&>*]:snap-start` swipe snapping (md:snap-none on desktop); Testimonials' duplicate `snap-mandatory` removed to avoid a CSS conflict.
 - Rule: when adding horizontal-scroll rows, always build on ScrollHint (it owns display:flex, no-wrap, snap, fade+chevron indicator) — never hand-roll `overflow-x-auto` rows.
+
+## Task Log — 2026-09-22 (Product card buttons stacked vertically on mobile)
+
+- ProductCard + ShopTeaser button rows changed to `flex flex-col gap-2 md:flex-row`: mobile stacks Add to Cart (top) above Buy Now/Pre-Order/Coming Soon (below), each full card width, single-line text; desktop keeps the original side-by-side row.
+- Note: children keep `flex-1` — in column direction the container is content-sized so heights stay natural; cross-axis stretch gives full width automatically.
