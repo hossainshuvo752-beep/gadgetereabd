@@ -82,7 +82,9 @@ const Testimonials: React.FC = () => {
   return (
     <section className="py-12 bg-bg-light">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-center text-text-heading mb-2">
+        {/* MOBILE: text-2xl keeps the heading on ONE line (text-3xl wraps
+            on ~360px screens); md: restores the larger desktop size. */}
+        <h2 className="text-2xl md:text-3xl font-bold text-center text-text-heading mb-2">
           What Our Customers Say
         </h2>
         <p className="text-center text-text-body mb-8">

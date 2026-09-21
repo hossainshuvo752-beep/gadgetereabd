@@ -459,3 +459,8 @@ Rule: After completing any task and confirming no build/compile errors (tsc --no
 ## Task Log — 2026-09-22 (Bottom nav "Category" relabeled "Shop")
 
 - MobileBottomNav item label changed Category → Shop; same LayoutGrid icon, same /shop link, active-highlight logic unchanged. User-visible text only.
+
+## Task Log — 2026-09-22 (Newsletter banner mobile overflow + Testimonials heading one-line)
+
+- NewsletterBanner: container already had px-4 — the real culprit was the form's min-width (~330px input+button row) overflowing the padding on small phones. Fixed like the popup: stacked full-width form below sm (input over button), side-by-side sm+ capped max-w-md. Padding now visibly effective.
+- Testimonials heading: text-2xl md:text-3xl — single line on ~360px screens; desktop size unchanged.

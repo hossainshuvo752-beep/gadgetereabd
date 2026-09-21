@@ -11,15 +11,19 @@ const NewsletterBanner: React.FC = () => {
           Subscribe for exclusive reviews, new arrivals and tech tips
         </p>
         <div className="flex flex-col items-center">
-          <form className="flex items-center gap-0">
+          {/* MOBILE: stacked full-width form — the side-by-side row's min-width
+              (~330px from input placeholder + button) overflowed the px-4
+              container on small phones, making the input touch the screen
+              edge. SM+: original side-by-side row, capped at max-w-md. */}
+          <form className="flex flex-col sm:flex-row items-stretch sm:items-center w-full max-w-md">
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 h-12 rounded-l-lg border border-text-heading/10 bg-text-on-dark px-4 text-text-heading placeholder-text-body focus:outline-none focus:ring-2 focus:ring-accent"
+              className="h-12 w-full rounded-lg sm:rounded-l-lg sm:rounded-r-none border border-text-heading/10 bg-text-on-dark px-4 text-text-heading placeholder-text-body focus:outline-none focus:ring-2 focus:ring-accent"
             />
             <button
               type="submit"
-              className="h-12 rounded-r-lg bg-accent px-6 text-text-on-dark font-medium hover:bg-accent-hover"
+              className="h-12 w-full sm:w-auto rounded-lg sm:rounded-l-none sm:rounded-r-none sm:rounded-r-lg bg-accent px-6 text-text-on-dark font-medium hover:bg-accent-hover mt-2 sm:mt-0"
             >
               Subscribe
             </button>
