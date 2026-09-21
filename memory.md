@@ -515,3 +515,8 @@ This applies on both mobile and desktop. Any new blog card component or section 
 - Fix everywhere: `hidden md:line-clamp-2 ...` — hidden owns mobile (<md), md:line-clamp-2 owns display+clamp at md+. Applied to ArticleCard, homepage Latest Posts, category route, BuyingGuideHighlight, Hero.
 - VERIFIED AGAINST REAL BUILD OUTPUT (not just grep of source): `next build` succeeded; rendered .next/server/app/blog.html shows the new classes; compiled CSS contains `line-clamp-2{display:-webkit-box;...}` natively (Tailwind 4 — no plugin needed) and the md: variant is emitted.
 - Lesson: display-manipulating classes (line-clamp, truncate, flex-*) must not be paired with competing display utilities on the same element+property; grep of source can't catch cascade conflicts — build-output checks can.
+
+## Task Log — 2026-09-22 (VERIFIED at build level: /blog has title+description clamps)
+
+- User reported /blog titles unclamped. Build-output verification disproved it: prerendered blog.html carries the clamp title class on all 6 cards and hidden md:line-clamp-2 excerpts; zero old md:block+excerpt patterns. /blog uses the same shared ArticleCard as homepage (single component, no variants).
+- No code change. If the live /blog still shows unclamped titles, it's deploy timing or per-route browser cache — hard refresh, not code.
