@@ -444,3 +444,8 @@ Rule: After completing any task and confirming no build/compile errors (tsc --no
 
 - ProductCard + ShopTeaser button rows changed to `flex flex-col gap-2 md:flex-row`: mobile stacks Add to Cart (top) above Buy Now/Pre-Order/Coming Soon (below), each full card width, single-line text; desktop keeps the original side-by-side row.
 - Note: children keep `flex-1` — in column direction the container is content-sized so heights stay natural; cross-axis stretch gives full width automatically.
+
+## Task Log — 2026-09-22 (Footer: Shop/Support/Account side-by-side on mobile)
+
+- Footer grid restructured: `grid-cols-3 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr]`. Brand block spans all 3 mobile columns (`col-span-3 md:col-span-1`); Shop | Support | Account now sit side-by-side in one row on mobile (gadgeterea-style), not stacked.
+- Mobile type compacted for the 3-up row: headers `text-sm md:text-lg`, links `text-xs` + `space-y-2`; md: restores the previous sizes exactly. Desktop layouts (md 2x2, lg 2fr_1fr_1fr_1fr) unchanged.
