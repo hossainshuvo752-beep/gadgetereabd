@@ -37,8 +37,8 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
           </h2>
 
           {/* Excerpt — hidden on mobile (compact hero: image, badge, title,
-              meta only); shown from md up as before. */}
-          <p className="hidden md:block text-text-body leading-relaxed">
+              meta only); desktop shows it clamped to 2 lines like the cards. */}
+          <p className="hidden md:block text-text-body leading-relaxed line-clamp-2">
             {post.excerpt}
           </p>
 

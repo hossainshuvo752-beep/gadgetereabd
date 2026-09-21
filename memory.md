@@ -499,3 +499,7 @@ This applies on both mobile and desktop. Any new blog card component or section 
 ## Task Log — 2026-09-22 (CONFIRMED: mobile blog cards excerpt-hidden + titles line-clamp-2)
 
 - Verification pass, no code changes: excerpts `hidden md:block` on all 5 card surfaces (mobile-hidden); titles use unprefixed line-clamp-2 (all breakpoints); zero `md:line-clamp` desktop-only clamps exist. Mobile blog cards = image, badge, 2-line title, 2-line PostMeta.
+
+## Task Log — 2026-09-22 (Hero excerpt was the unclamped description — fixed)
+
+- User report "descriptions still >2 lines on desktop" traced to the Hero excerpt: it had hidden md:block but NO line-clamp (left unclamped when cards were clamped). All grid-card excerpts already had line-clamp-2 on the correct element (no overrides — verified). Hero now line-clamp-2 too; grep shows every excerpt render site carries the clamp.
