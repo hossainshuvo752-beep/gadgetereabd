@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- TechBD favicon: dark navy square + orange bolt (site brand palette) -->
+  <rect width="64" height="64" rx="14" fill="#0A0F1E"/>
+  <path d="M36 8 L18 36 L30 36 L26 56 L46 26 L33 26 Z" fill="#F97316"/>
+</svg>
