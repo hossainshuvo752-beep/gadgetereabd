@@ -480,3 +480,8 @@ Rule: Every blog post card (anywhere on the site — current or future sections)
 - Line 1: circular avatar icon with author initial + author name + bullet separator (•)
 - Line 2: publish date + bullet separator (•) + read time
 This applies on both mobile and desktop. Any new blog card component or section built in the future must follow this same format by default — do not revert to a plain single-line or 3-line meta format.
+
+### Amendment to the auto-commit rule (after 2026-09-22 incident)
+
+- Process note: commit 21d1cf4 briefly shipped a category-page syntax error because the commit was chained with `;` after the typecheck instead of `&&` — tsc failed but the chain continued. Fixed in the next commit; the site was broken only between the two pushes (~1 min).
+- Standing process correction: the verify→commit→push chain MUST use `&&` (tsc failure blocks the commit), never `;`. JSX comments must never sit in expression position (`: (`) — always inside JSX children. This is the second occurrence of the same mistake; both were caught by tsc.

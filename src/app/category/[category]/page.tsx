@@ -19,8 +19,8 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
             No posts found in the {category} category.
           </p>
         ) : (
-          {/* Same compact card treatment as ArticleCard/blog listing */}
           <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-3">
+            {/* Same compact card treatment as ArticleCard/blog listing */}
             {filteredPosts.map((post) => (
               <Link key={post.id} href={`/posts/${post.id}`}>
                 <div className="bg-text-on-dark border border-text-heading/10 rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-300">
