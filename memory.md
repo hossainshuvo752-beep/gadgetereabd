@@ -508,3 +508,10 @@ This applies on both mobile and desktop. Any new blog card component or section 
 
 - Mobile tightening: button-to-button gap 8px → 6px (gap-1.5), price-to-buttons margin 16px → 12px (mb-3), both in ProductCard + ShopTeaser. Structure/order/text/colors untouched.
 - Internal py-2 deliberately KEPT: buttons are 36px tall today (8px padding ×2 + 20px text line); reducing padding would break the ~40px comfortable tap-target floor the user also set. The two demands conflict geometrically; spacing (−10px per card) delivered the compaction instead.
+
+## Task Log — 2026-09-22 (ROOT CAUSE: md:block was overriding line-clamp-2 on desktop descriptions)
+
+- The descriptions' line-clamp-2 was always on the right element, but pairing it with md:block created a display-property cascade fight: line-clamp-2 sets display:-webkit-box, md:block set display:block at md+ and WON — silently disabling the clamp on desktop (4-5 line excerpts) while titles (no display class) clamped fine.
+- Fix everywhere: `hidden md:line-clamp-2 ...` — hidden owns mobile (<md), md:line-clamp-2 owns display+clamp at md+. Applied to ArticleCard, homepage Latest Posts, category route, BuyingGuideHighlight, Hero.
+- VERIFIED AGAINST REAL BUILD OUTPUT (not just grep of source): `next build` succeeded; rendered .next/server/app/blog.html shows the new classes; compiled CSS contains `line-clamp-2{display:-webkit-box;...}` natively (Tailwind 4 — no plugin needed) and the md: variant is emitted.
+- Lesson: display-manipulating classes (line-clamp, truncate, flex-*) must not be paired with competing display utilities on the same element+property; grep of source can't catch cascade conflicts — build-output checks can.

@@ -28,7 +28,10 @@ const ArticleCard: React.FC<{ post: Post }> = ({ post }) => {
           </h3>
           {/* Excerpt — hidden on mobile (compact 2-col cards), shown on
               desktop exactly as before */}
-          <p className="hidden md:block text-text-body leading-relaxed mb-4 line-clamp-2">
+          {/* md:line-clamp-2 OWNS display at md+ — pairing unprefixed
+              line-clamp-2 with md:block let display:block win the cascade
+              and disabled the clamp on desktop (4-5 line descriptions). */}
+          <p className="hidden md:line-clamp-2 text-text-body leading-relaxed mb-4">
             {post.excerpt}
           </p>
           {/* Two-line meta (avatar+author / date•readTime) — shared PostMeta */}

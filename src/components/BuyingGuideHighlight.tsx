@@ -42,7 +42,7 @@ const BuyingGuideHighlight: React.FC = () => {
                 <h3 className="text-sm md:text-xl font-bold text-text-heading mb-3 line-clamp-2">
                   {guide.title}
                 </h3>
-                <p className="hidden md:block text-text-body mb-4 line-clamp-2">
+                <p className="hidden md:line-clamp-2 text-text-body mb-4">
                   {guide.description}
                 </p>
                 <a href="#" className="text-accent hover:text-accent-hover underline font-medium text-sm md:text-base">
