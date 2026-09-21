@@ -40,12 +40,12 @@ export default function CategoryNav({
           DESKTOP (md+): unchanged wrap behavior, no indicator. */}
       <ScrollHint
         ariaLabel="Product categories"
-        className="md:flex-wrap md:overflow-visible items-center gap-2 -mx-4 px-4 md:mx-0 md:px-0"
+        className="md:flex-wrap md:overflow-visible items-center gap-2 md:gap-1.5 -mx-4 px-4 md:mx-0 md:px-0"
       >
         {/* All Products — clears both filters (and hides Row 2) */}
         <button
           onClick={() => onSelect(null, null)}
-          className={`shrink-0 whitespace-nowrap px-2.5 py-1.5 text-xs md:px-3.5 md:py-2 md:text-sm font-medium rounded-md border transition-colors duration-200 ${
+          className={`shrink-0 whitespace-nowrap px-2.5 py-1.5 text-xs md:px-3 md:py-1.5 md:text-[13px] font-medium rounded-md border transition-colors duration-200 ${
             selectedTop === null
               ? 'bg-accent border-accent text-text-on-dark'
               : 'bg-transparent border-text-heading/20 text-text-heading hover:border-accent hover:text-accent'
@@ -61,7 +61,7 @@ export default function CategoryNav({
             <div key={cat.name} className="relative group shrink-0">
               <button
                 onClick={() => onSelect(cat.name, null)}
-                className={`shrink-0 inline-flex items-center px-2.5 py-1.5 text-xs md:px-3.5 md:py-2 md:text-sm font-medium rounded-md border transition-colors duration-200 whitespace-nowrap ${
+                className={`shrink-0 inline-flex items-center px-2.5 py-1.5 text-xs md:px-3 md:py-1.5 md:text-[13px] font-medium rounded-md border transition-colors duration-200 whitespace-nowrap ${
                   isTopSelected
                     ? 'bg-accent border-accent text-text-on-dark'
                     : containsSelection
@@ -71,7 +71,7 @@ export default function CategoryNav({
               >
                 {cat.name}
                 <svg
-                  className="ml-1.5 w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180"
+                  className="ml-1.5 w-3.5 h-3.5 md:ml-1 md:w-3 md:h-3 transition-transform duration-200 group-hover:rotate-180"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth={2}

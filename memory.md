@@ -485,3 +485,8 @@ This applies on both mobile and desktop. Any new blog card component or section 
 
 - Process note: commit 21d1cf4 briefly shipped a category-page syntax error because the commit was chained with `;` after the typecheck instead of `&&` — tsc failed but the chain continued. Fixed in the next commit; the site was broken only between the two pushes (~1 min).
 - Standing process correction: the verify→commit→push chain MUST use `&&` (tsc failure blocks the commit), never `;`. JSX comments must never sit in expression position (`: (`) — always inside JSX children. This is the second occurrence of the same mistake; both were caught by tsc.
+
+## Task Log — 2026-09-22 (Desktop category row: all 10 chips on one line)
+
+- CategoryNav desktop sizing tightened (mobile untouched): chips md:px-3 md:py-1.5 md:text-[13px], chevron md:w-3 h-3 ml-1, row gap md:gap-1.5. Total ≈1120px vs ~1216px available at 1280px viewport → one line at 1280–1920 (the target range). 1024–1279 (lg band) still wraps as before — acceptable band, and the scroll-fallback there would clip hover dropdowns (they live inside the row), so wrap is the right behavior below xl.
+- Applied once in the shared component — covers /shop, /quick-look, /new-arrivals, /deals.
