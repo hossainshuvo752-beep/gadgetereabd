@@ -520,3 +520,7 @@ This applies on both mobile and desktop. Any new blog card component or section 
 
 - User reported /blog titles unclamped. Build-output verification disproved it: prerendered blog.html carries the clamp title class on all 6 cards and hidden md:line-clamp-2 excerpts; zero old md:block+excerpt patterns. /blog uses the same shared ArticleCard as homepage (single component, no variants).
 - No code change. If the live /blog still shows unclamped titles, it's deploy timing or per-route browser cache — hard refresh, not code.
+
+## Task Log — 2026-09-22 (Contact page: removed "no phone/address" disclaimer line)
+
+- Deleted the placeholder disclaimer paragraph from the contact info card. Nothing else touched.

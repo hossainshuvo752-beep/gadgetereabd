@@ -198,10 +198,6 @@ export default function ContactPage() {
               </p>
             </div>
 
-            <p className="text-xs text-text-body">
-              No phone number or office address yet — we&apos;ll add them once our business
-              details are final.
-            </p>
           </div>
         </div>
       </div>
