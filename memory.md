@@ -495,3 +495,7 @@ This applies on both mobile and desktop. Any new blog card component or section 
 
 - Titles were already line-clamp-2 everywhere; changed the three line-clamp-3 excerpts (ArticleCard, homepage Latest Posts, category route) to line-clamp-2, and clamped the Hero title to 2 lines. Buying Guides already line-clamp-2. /shop has no blog cards (grep-verified).
 - Rule: blog-card titles AND descriptions clamp at 2 lines (line-clamp-2) on every surface, so grid rows stay equal height.
+
+## Task Log — 2026-09-22 (CONFIRMED: mobile blog cards excerpt-hidden + titles line-clamp-2)
+
+- Verification pass, no code changes: excerpts `hidden md:block` on all 5 card surfaces (mobile-hidden); titles use unprefixed line-clamp-2 (all breakpoints); zero `md:line-clamp` desktop-only clamps exist. Mobile blog cards = image, badge, 2-line title, 2-line PostMeta.
