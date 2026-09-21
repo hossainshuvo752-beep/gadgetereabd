@@ -91,7 +91,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
           {/* Price — mobile shows the deal presentation (current + struck old
               price) whenever a real discount exists; desktop keeps PriceTag
               exactly as each page renders it today. */}
-          <div className="mb-4">
+          {/* Price — mb-3 on mobile (was mb-4): tighter above the button group */}
+          <div className="mb-3 md:mb-4">
             {hasDeal && !isDeal ? (
               <>
                 <div className="md:hidden">
@@ -110,7 +111,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </div>
           {/* MOBILE: stacked full-width buttons (side-by-side wrapped
               awkwardly in the narrow 2-col grid); md: side-by-side as before. */}
-          <div className="mt-auto flex flex-col gap-2 md:flex-row">
+          {/* MOBILE: stacked; gap-1.5 (was gap-2) tightens between buttons.
+              Button py-2 KEPT: reducing it would drop height to 32px, below
+              the ~40px tap-target floor (36px text+padding today). */}
+          <div className="mt-auto flex flex-col gap-1.5 md:gap-2 md:flex-row">
             {/* Add to Cart → cart context + toast; works for every product
                 (unpurchasable ones get an explanatory toast from the store). */}
             <button

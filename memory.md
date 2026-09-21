@@ -503,3 +503,8 @@ This applies on both mobile and desktop. Any new blog card component or section 
 ## Task Log — 2026-09-22 (Hero excerpt was the unclamped description — fixed)
 
 - User report "descriptions still >2 lines on desktop" traced to the Hero excerpt: it had hidden md:block but NO line-clamp (left unclamped when cards were clamped). All grid-card excerpts already had line-clamp-2 on the correct element (no overrides — verified). Hero now line-clamp-2 too; grep shows every excerpt render site carries the clamp.
+
+## Task Log — 2026-09-22 (Product card buttons: tighter spacing, tap target kept)
+
+- Mobile tightening: button-to-button gap 8px → 6px (gap-1.5), price-to-buttons margin 16px → 12px (mb-3), both in ProductCard + ShopTeaser. Structure/order/text/colors untouched.
+- Internal py-2 deliberately KEPT: buttons are 36px tall today (8px padding ×2 + 20px text line); reducing padding would break the ~40px comfortable tap-target floor the user also set. The two demands conflict geometrically; spacing (−10px per card) delivered the compaction instead.

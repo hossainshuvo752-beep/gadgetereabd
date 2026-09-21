@@ -64,7 +64,8 @@ const ShopTeaser: React.FC = () => {
                   <h3 className="text-lg font-bold text-text-heading mb-3 line-clamp-2">
                     {product.title}
                   </h3>
-                  <div className="mb-4">
+                  {/* mb-3 on mobile (was mb-4): tighter above the button group */}
+                  <div className="mb-3 md:mb-4">
                     {/* Mobile: current price + struck old price when on deal
                         (desktop keeps the plain PriceTag it has always had). */}
                     {hasDeal(product) ? (
@@ -84,7 +85,8 @@ const ShopTeaser: React.FC = () => {
                     )}
                   </div>
                   {/* MOBILE: stacked full-width buttons; md: side-by-side. */}
-                  <div className="flex flex-col gap-2 md:flex-row">
+                  {/* gap-1.5 on mobile (was gap-2) — between stacked buttons */}
+                  <div className="flex flex-col gap-1.5 md:gap-2 md:flex-row">
                     {/* Add to Cart → cart context + toast; works for every
                         product (unpurchasable ones get an explanatory toast). */}
                     <button
