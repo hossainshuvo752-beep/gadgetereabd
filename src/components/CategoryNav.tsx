@@ -1,6 +1,7 @@
 'use client';
 
 import { categoryTree, getSubCategories } from '@/lib/categories';
+import ScrollHint from './ScrollHint';
 
 type CategoryNavProps = {
   selectedTop: string | null;
@@ -14,9 +15,12 @@ type CategoryNavProps = {
  * - Desktop: hovering (or keyboard-focusing) a category reveals a dropdown
  *   of its sub-categories. Clicking the category name selects the whole
  *   category; clicking a sub-item narrows to that sub-category.
- * - Touch/mobile: hover isn't available, so selecting a category also
- *   reveals a sub-category chip row directly below the nav — every
- *   sub-category stays one tap away without hover.
+ * - Touch/mobile: hover isn't available, so selecting a category reveals a
+ *   SECOND ROW below the nav (this file's Row 2) with that category's
+ *   sub-category chips — every sub-category stays one tap away without
+ *   hover. "All Products" clears the selection and Row 2 disappears.
+ * - Both rows are horizontally swipeable on mobile with a fade + chevron
+ *   scroll indicator (ScrollHint) that vanishes once scrolled to the end.
  * - Text-only: no product counts, no result meta line (established
  *   listing-page pattern).
  * Data comes from the single category tree in src/lib/categories.ts.
@@ -30,12 +34,18 @@ export default function CategoryNav({
     // mb-6 gives breathing room between the nav (and its sub-category
     // chips) and the product grid on every page that renders this bar.
     <div className="mb-6">
-      {/* Horizontal category bar — wraps to multiple lines when needed */}
-      <nav aria-label="Product categories" className="flex flex-wrap items-center gap-2">
-        {/* All Products — clears both filters */}
+      {/* ROW 1 — main categories.
+          MOBILE: one line, horizontally swipeable (no wrap, smaller chips,
+          hidden scrollbar) with the fade + chevron scroll indicator.
+          DESKTOP (md+): unchanged wrap behavior, no indicator. */}
+      <ScrollHint
+        ariaLabel="Product categories"
+        className="md:flex-wrap md:overflow-visible items-center gap-2 -mx-4 px-4 md:mx-0 md:px-0"
+      >
+        {/* All Products — clears both filters (and hides Row 2) */}
         <button
           onClick={() => onSelect(null, null)}
-          className={`px-3.5 py-2 text-sm font-medium rounded-md border transition-colors duration-200 ${
+          className={`shrink-0 whitespace-nowrap px-2.5 py-1.5 text-xs md:px-3.5 md:py-2 md:text-sm font-medium rounded-md border transition-colors duration-200 ${
             selectedTop === null
               ? 'bg-accent border-accent text-text-on-dark'
               : 'bg-transparent border-text-heading/20 text-text-heading hover:border-accent hover:text-accent'
@@ -48,10 +58,10 @@ export default function CategoryNav({
           const isTopSelected = selectedTop === cat.name && selectedSub === null;
           const containsSelection = selectedTop === cat.name;
           return (
-            <div key={cat.name} className="relative group">
+            <div key={cat.name} className="relative group shrink-0">
               <button
                 onClick={() => onSelect(cat.name, null)}
-                className={`inline-flex items-center px-3.5 py-2 text-sm font-medium rounded-md border transition-colors duration-200 ${
+                className={`shrink-0 inline-flex items-center px-2.5 py-1.5 text-xs md:px-3.5 md:py-2 md:text-sm font-medium rounded-md border transition-colors duration-200 whitespace-nowrap ${
                   isTopSelected
                     ? 'bg-accent border-accent text-text-on-dark'
                     : containsSelection
@@ -72,7 +82,10 @@ export default function CategoryNav({
                 </svg>
               </button>
 
-              {/* Hover/focus dropdown of sub-categories.
+              {/* Hover/focus dropdown of sub-categories — DESKTOP ONLY
+                  (hidden md:block): mobile taps use the sub-category chip
+                  row below, and a focus-revealed dropdown here would be
+                  clipped by the mobile scroll row's overflow-x anyway.
                   pt-1.5 bridges the gap so the pointer stays inside the group.
                   Max-height = min(32rem, 80vh): tall enough that ALL current
                   sub-lists (up to 15 Mobile brands ≈ 496px) fit on screen
@@ -82,7 +95,7 @@ export default function CategoryNav({
                   grows past the cap. No JS wheel handlers; no
                   overscroll-behavior override, so any scrolling chains to the
                   page natively. hide-scrollbar keeps it clean. */}
-              <div className="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-150 absolute left-0 top-full pt-1.5 z-30">
+              <div className="hidden md:block invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-150 absolute left-0 top-full pt-1.5 z-30">
                 <div className="min-w-52 max-h-[min(32rem,80vh)] overflow-y-auto hide-scrollbar bg-text-on-dark border border-text-heading/10 rounded-lg shadow-lg py-2">
                   {cat.subs.map((sub) => {
                     const isSubSelected =
@@ -106,15 +119,21 @@ export default function CategoryNav({
             </div>
           );
         })}
-      </nav>
+      </ScrollHint>
 
-      {/* Touch-friendly sub-category chips — appear once a category is
-          selected, keeping subs reachable without hover on mobile. */}
+      {/* ROW 2 — sub-categories of the selected category. Empty/hidden
+          while "All Products" is selected. Populates on tap (mobile) or
+          click (desktop); MOBILE: same swipeable one-line treatment with
+          the fade + chevron indicator. DESKTOP: unchanged wrap layout. */}
       {selectedTop !== null && (
-        <div className="mt-3 flex flex-wrap items-center gap-2">
+        <ScrollHint
+          ariaLabel={`${selectedTop} sub-categories`}
+          wrapperClassName="mt-3"
+          className="md:flex-wrap md:overflow-visible items-center gap-2 -mx-4 px-4 md:mx-0 md:px-0"
+        >
           <button
             onClick={() => onSelect(selectedTop, null)}
-            className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-colors duration-200 ${
+            className={`shrink-0 whitespace-nowrap px-3 py-1.5 text-xs font-medium rounded-full border transition-colors duration-200 ${
               selectedSub === null
                 ? 'bg-accent/10 border-accent text-accent-hover'
                 : 'bg-transparent border-text-heading/20 text-text-body hover:border-accent hover:text-accent'
@@ -128,7 +147,7 @@ export default function CategoryNav({
               <button
                 key={sub}
                 onClick={() => onSelect(selectedTop, sub)}
-                className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-colors duration-200 ${
+                className={`shrink-0 whitespace-nowrap px-3 py-1.5 text-xs font-medium rounded-full border transition-colors duration-200 ${
                   isSubSelected
                     ? 'bg-accent/10 border-accent text-accent-hover'
                     : 'bg-transparent border-text-heading/20 text-text-body hover:border-accent hover:text-accent'
@@ -138,7 +157,7 @@ export default function CategoryNav({
               </button>
             );
           })}
-        </div>
+        </ScrollHint>
       )}
     </div>
   );

@@ -69,27 +69,29 @@ export default function QuickLookPage() {
               </button>
             </div>
           ) : (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-3">
+              {/* MOBILE: 2 columns, compact cards (release date + processor
+                  lines hidden md:block). DESKTOP: unchanged. */}
               {filtered.map((product) => (
                 <Link
                   key={product.id}
                   href={`/quick-look/${slugify(product.title)}`}
                   className="group bg-text-on-dark border border-text-heading/10 rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-300 flex flex-col"
                 >
-                  <div className="h-48 bg-bg-dark-secondary/10 flex items-center justify-center relative">
+                  <div className="h-36 md:h-48 bg-bg-dark-secondary/10 flex items-center justify-center relative">
                     <span className="text-text-body text-sm">{product.imageAlt}</span>
                     <span className="absolute top-2 left-2 px-2.5 py-0.5 text-xs font-semibold bg-accent/10 text-accent-hover rounded-full">
                       {product.specSheet.basicInfo.brand}
                     </span>
                   </div>
-                  <div className="p-4 flex flex-col flex-1">
-                    <h3 className="text-base font-bold text-text-heading mb-2 group-hover:text-accent transition-colors">
+                  <div className="p-3 md:p-4 flex flex-col flex-1">
+                    <h3 className="text-sm md:text-base font-bold text-text-heading mb-2 group-hover:text-accent transition-colors line-clamp-2">
                       {product.title}
                     </h3>
-                    <p className="text-xs text-text-body mb-2">
+                    <p className="hidden md:block text-xs text-text-body mb-2">
                       Released {product.specSheet.basicInfo.releaseDate}
                     </p>
-                    <p className="text-sm text-text-body mb-3 line-clamp-2">
+                    <p className="hidden md:block text-sm text-text-body mb-3 line-clamp-2">
                       {product.specSheet.performance.processor}
                     </p>
                     {/* Confirmed vs estimated price with source tooltip */}
@@ -99,12 +101,12 @@ export default function QuickLookPage() {
                           <PriceTag product={product} hideOldPrice />
                         </span>
                       ) : (
-                        <span className="text-text-body italic text-sm">
+                        <span className="text-text-body italic text-xs md:text-sm">
                           Coming Soon / Price Unavailable in Bangladesh
                         </span>
                       )}
                     </div>
-                    <span className="mt-auto inline-flex items-center justify-center px-3 py-2 border border-accent text-accent rounded-md group-hover:bg-accent/10 transition-colors text-sm font-medium">
+                    <span className="mt-auto inline-flex items-center justify-center px-3 py-2 border border-accent text-accent rounded-md group-hover:bg-accent/10 transition-colors text-xs md:text-sm font-medium">
                       View Full Specs →
                     </span>
                   </div>

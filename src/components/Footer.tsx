@@ -42,10 +42,11 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Shop */}
+          {/* Shop — MOBILE: slightly smaller header + tighter link rhythm
+              (gadgeterea-style compact footer); md: restores desktop exactly. */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-text-on-dark">Shop</h3>
-            <ul className="space-y-3 text-text-on-dark/70">
+            <h3 className="text-base md:text-lg font-semibold text-text-on-dark">Shop</h3>
+            <ul className="space-y-2.5 md:space-y-3 text-sm md:text-base text-text-on-dark/70">
               <li><Link href="/new-arrivals" className="hover:text-accent">New Arrivals</Link></li>
               <li><Link href="/deals" className="hover:text-accent">Deals</Link></li>
               <li><Link href="/shop" className="hover:text-accent">All Products</Link></li>
@@ -54,8 +55,8 @@ const Footer: React.FC = () => {
 
           {/* Support */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-text-on-dark">Support</h3>
-            <ul className="space-y-3 text-text-on-dark/70">
+            <h3 className="text-base md:text-lg font-semibold text-text-on-dark">Support</h3>
+            <ul className="space-y-2.5 md:space-y-3 text-sm md:text-base text-text-on-dark/70">
               <li><Link href="/blog" className="hover:text-accent">Blog</Link></li>
               <li><Link href="/about" className="hover:text-accent">About Us</Link></li>
               <li><Link href="/contact" className="hover:text-accent">Contact</Link></li>
@@ -66,8 +67,8 @@ const Footer: React.FC = () => {
           {/* Account — all four are real routes now (/account, /login and
               /register are placeholder pages; /cart is the full demo cart) */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-text-on-dark">Account</h3>
-            <ul className="space-y-3 text-text-on-dark/70">
+            <h3 className="text-base md:text-lg font-semibold text-text-on-dark">Account</h3>
+            <ul className="space-y-2.5 md:space-y-3 text-sm md:text-base text-text-on-dark/70">
               <li><Link href="/account" className="hover:text-accent">My Account</Link></li>
               <li><Link href="/login" className="hover:text-accent">Login</Link></li>
               <li><Link href="/register" className="hover:text-accent">Register</Link></li>
@@ -76,7 +77,9 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="mt-10 pt-8 border-t border-text-on-dark/10 text-center text-text-on-dark/60 text-sm">
+        {/* MOBILE: slimmer divider spacing + smaller legal text; md:
+            restores the desktop rhythm exactly. */}
+        <div className="mt-8 pt-6 md:mt-10 md:pt-8 border-t border-text-on-dark/10 text-center text-text-on-dark/60 text-xs md:text-sm">
           {/* Legal links + copyright on one line; flex-wrap drops the row to a
               second centered line on narrow screens instead of overflowing. */}
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2">

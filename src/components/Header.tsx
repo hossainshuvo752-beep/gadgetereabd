@@ -208,9 +208,12 @@ const Header: React.FC = () => {
       {/* Mobile slide-in menu — mobile only (md:hidden), overlay drawer.
           Desktop is untouched: this whole block is hidden at md+ and the
           desktop nav bar above never renders it. */}
+      {/* visibility flips immediately on open, but waits 300ms on close
+          (delay-300) so the panel's slide-out and backdrop fade-out can
+          finish before the drawer is hidden. */}
       <div
-        className={`md:hidden fixed inset-0 z-[90] ${
-          isMenuOpen ? 'visible' : 'invisible pointer-events-none'
+        className={`md:hidden fixed inset-0 z-[90] transition-[visibility] ${
+          isMenuOpen ? 'visible' : 'invisible pointer-events-none delay-300'
         }`}
         aria-hidden={!isMenuOpen}
       >

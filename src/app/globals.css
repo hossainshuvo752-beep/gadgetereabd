@@ -32,6 +32,7 @@
   --color-text-on-dark: #ffffff; /* primary text on dark backgrounds */
   --color-text-heading: #0f172a; /* headings + strong text on light */
   --color-text-body: #64748b; /* body / secondary text on light */
+  --color-danger: #dc2626; /* error text, error borders, SALE badges */
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, Arial, sans-serif;
@@ -39,6 +40,18 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Horizontal-overflow safety net: anything wider than the viewport gets
+   clipped instead of widening the document (which made mobile browsers
+   zoom out — white gutter at the right, fixed bottom bar looking shifted).
+   `clip` is used instead of `hidden` ON PURPOSE: `overflow-x: hidden` on
+   html/body creates a scroll container and breaks position:sticky
+   descendants (the sticky Header), while `clip` does not. Browsers without
+   clip support simply ignore this rule. */
+html,
+body {
+  overflow-x: clip;
 }
 
 body {

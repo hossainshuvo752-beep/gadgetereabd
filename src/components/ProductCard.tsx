@@ -81,8 +81,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
               {product.title}
             </Link>
           </h3>
+          {/* Release year (New Arrivals) — hidden on mobile so the compact
+              2-col cards stay short; desktop unchanged */}
           {showReleasedYear && (
-            <p className="text-xs text-text-body mb-2">
+            <p className="hidden md:block text-xs text-text-body mb-2">
               Released {product.specSheet.basicInfo.releaseDate}
             </p>
           )}

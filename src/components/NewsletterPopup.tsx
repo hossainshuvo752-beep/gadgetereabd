@@ -14,6 +14,10 @@ const NewsletterPopup: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  // Inline validation error ("Please enter your email address." when empty,
+  // a friendly message for malformed addresses) — replaces the browser's
+  // native required/email tooltip, which overlapped the privacy text.
+  const [error, setError] = useState<string | null>(null);
 
   // Show the popup 15s after landing on a mounted page, unless the user
   // has already subscribed. No "shown/dismissed" tracking of any kind.
@@ -34,9 +38,18 @@ const NewsletterPopup: React.FC = () => {
     setIsOpen(false);
   };
 
-  // Actual subscribe: persist permanently and close.
+  // Actual subscribe: validate inline (no native tooltip), persist and close.
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const value = email.trim();
+    if (value === '') {
+      setError('Please enter your email address.');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/i.test(value)) {
+      setError('Please enter a valid email address.');
+      return;
+    }
     localStorage.setItem(SUBSCRIBED_KEY, 'true');
     setSubmitted(true);
     setTimeout(() => setIsOpen(false), 1200);
@@ -77,22 +90,43 @@ const NewsletterPopup: React.FC = () => {
           </p>
         ) : (
           <>
-            <form className="flex" onSubmit={handleSubmit}>
+            {/* MOBILE: input + button stack vertically (side-by-side pushed
+                Subscribe past the popup edge on narrow screens). SM+: the
+                original side-by-side row. noValidate disables the browser's
+                native tooltip — validation is inline below the input. */}
+            <form
+              noValidate
+              onSubmit={handleSubmit}
+              className="flex flex-col sm:flex-row gap-3 sm:gap-0"
+            >
               <input
                 type="email"
-                required
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  if (error) setError(null); // clear as soon as the user types
+                }}
                 placeholder="Enter your email"
-                className="flex-1 h-12 rounded-l-lg border border-text-heading/10 bg-text-on-dark px-4 text-text-heading placeholder-text-body focus:outline-none focus:ring-2 focus:ring-accent"
+                className={`h-12 w-full rounded-lg sm:rounded-l-lg sm:rounded-r-none border px-4 text-text-heading placeholder-text-body focus:outline-none focus:ring-2 ${
+                  error
+                    ? 'border-danger ring-1 ring-danger'
+                    : 'border-text-heading/10 focus:ring-accent'
+                }`}
               />
               <button
                 type="submit"
-                className="h-12 rounded-r-lg bg-accent px-6 text-text-on-dark font-medium hover:bg-accent-hover"
+                className="h-12 w-full sm:w-auto rounded-lg sm:rounded-l-none sm:rounded-r-lg bg-accent px-6 text-text-on-dark font-medium hover:bg-accent-hover"
               >
                 Subscribe
               </button>
             </form>
+            {/* Inline validation error — styled to the site tokens, sits
+                cleanly above the privacy line instead of a native tooltip. */}
+            {error && (
+              <p className="mt-2 text-sm text-danger" role="alert">
+                {error}
+              </p>
+            )}
             <p className="mt-2 text-center text-text-body text-sm">
               We respect your privacy. Unsubscribe anytime.
             </p>

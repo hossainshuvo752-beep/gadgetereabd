@@ -11,6 +11,10 @@ import { useCart } from '@/context/CartContext';
  * icon-over-label layout; the item matching the current route highlights in
  * the accent color. Uses safe-area insets so it clears iPhone home bars.
  *
+ * transform-gpu (translateZ(0)) promotes the bar to its own compositing
+ * layer — the standard fix for fixed bars flickering or vanishing mid-scroll
+ * on mobile browsers when they share a GPU layer with page content.
+ *
  * IMPORTANT pairing: the layout adds matching bottom padding to <main> and
  * the Footer on mobile so this bar never covers page content. If you change
  * the bar's height classes here, mirror them in layout.tsx / Footer.tsx.
@@ -29,7 +33,7 @@ const MobileBottomNav: React.FC = () => {
   return (
     <nav
       aria-label="Mobile navigation"
-      className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-bg-dark border-t border-text-on-dark/10"
+      className="md:hidden fixed bottom-0 left-0 right-0 w-full z-40 bg-bg-dark border-t border-text-on-dark/10 transform-gpu"
       style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
     >
       <div className="grid grid-cols-4">

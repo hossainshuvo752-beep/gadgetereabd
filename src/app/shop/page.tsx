@@ -65,7 +65,9 @@ export default function ShopPage() {
             </button>
           </div>
         ) : (
-          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+          <div className="grid grid-cols-2 gap-3 md:gap-6 md:grid-cols-3 xl:grid-cols-4">
+            {/* MOBILE: 2 columns (cards go compact on small screens).
+                DESKTOP: unchanged. */}
             {filtered.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
