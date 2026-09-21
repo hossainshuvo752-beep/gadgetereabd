@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import MobileBottomNav from "@/components/MobileBottomNav";
 import { CartProvider } from "@/context/CartContext";
 
 const inter = Inter({
@@ -26,8 +27,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Cart store wraps the whole app (Header badge, cards, /cart, checkout) */}
         <CartProvider>
           <Header />
-          <main className="flex-1">{children}</main>
+          {/* Mobile-only bottom clearance so the fixed bottom nav bar
+              (hidden at md+) never covers page content — desktop keeps
+              its exact current spacing. */}
+          <main className="flex-1 pb-16 md:pb-0">{children}</main>
           <Footer />
+          {/* Fixed bottom nav bar — mobile only (md:hidden inside) */}
+          <MobileBottomNav />
         </CartProvider>
       </body>
     </html>

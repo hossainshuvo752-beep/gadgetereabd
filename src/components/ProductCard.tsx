@@ -9,30 +9,44 @@ import PriceTag from './PriceTag';
 
 type ProductCardProps = {
   product: Product;
-  /** Show discount badge + struck-through old price when the product is on deal */
+  /** Show the struck-through old price on DESKTOP (Deals page passes true;
+   *  other pages keep the desktop card exactly as before). Mobile always
+   *  gets the full deal presentation (badges + strike) when a discount
+   *  actually exists. */
   showDiscount?: boolean;
   /** Show the release year in the card meta */
   showReleasedYear?: boolean;
 };
 
 /**
- * Shared product card used by the New Arrivals and Deals pages.
- * Same visual design as the Shop / ShopTeaser cards, built on the
- * color tokens from globals.css.
+ * Shared product card used by the Shop, New Arrivals and Deals pages.
+ * Same visual design as the ShopTeaser cards, built on the color tokens
+ * from globals.css.
+ *
+ * Mobile-only enhancements (all wrapped in md:hidden so desktop never
+ * changes): SALE badge (top-left, red/orange), discount-percentage badge
+ * (top-right, gold), and the struck-through old price next to the current
+ * price. A star-rating row is intentionally omitted — the Product type has
+ * no rating/review data yet; add it here (e.g. "★★★★★ 4.6 (1721)") when
+ * real rating data lands on products.
  */
 const ProductCard: React.FC<ProductCardProps> = ({
   product,
-  showDiscount = false,
+  showDiscount = true,
   showReleasedYear = false,
 }) => {
   const { addToCart, notify } = useCart();
 
-  const isDeal =
-    showDiscount &&
+  // A genuine discount exists whenever oldPrice > price — shown on mobile
+  // regardless of the desktop-only showDiscount flag (which only controls
+  // the desktop strike-through, keeping desktop layouts unchanged).
+  const hasDeal =
     product.price !== null &&
     product.oldPrice !== null &&
     product.oldPrice > product.price;
-  const discountPct = isDeal
+  // Desktop strike-through follows the caller's showDiscount choice.
+  const isDeal = showDiscount && hasDeal;
+  const discountPct = hasDeal
     ? Math.round((1 - product.price! / product.oldPrice!) * 100)
     : 0;
 
@@ -40,8 +54,19 @@ const ProductCard: React.FC<ProductCardProps> = ({
     <>
       <div className="bg-text-on-dark border border-text-heading/10 rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-300 flex flex-col">
         <div className="h-40 bg-bg-dark-secondary/10 flex items-center justify-center relative">
+          {/* Mobile-only deal badges (desktop card is untouched) */}
+          {hasDeal && (
+            <>
+              <span className="md:hidden absolute top-2 left-2 px-2 py-0.5 text-xs font-bold text-text-on-dark bg-red-600 rounded">
+                SALE
+              </span>
+              <span className="md:hidden absolute top-2 right-2 px-2 py-0.5 text-xs font-bold text-bg-dark bg-yellow-400 rounded">
+                -{discountPct}%
+              </span>
+            </>
+          )}
           {isDeal && (
-            <span className="absolute top-2 left-2 px-2 py-0.5 text-xs font-semibold bg-accent text-text-on-dark rounded-full">
+            <span className="hidden md:inline-flex absolute top-2 left-2 px-2 py-0.5 text-xs font-semibold bg-accent text-text-on-dark rounded-full">
               -{discountPct}%
             </span>
           )}
@@ -61,9 +86,25 @@ const ProductCard: React.FC<ProductCardProps> = ({
               Released {product.specSheet.basicInfo.releaseDate}
             </p>
           )}
-          {/* Struck old price only on the Deals page (hideOldPrice otherwise) */}
+          {/* Price — mobile shows the deal presentation (current + struck old
+              price) whenever a real discount exists; desktop keeps PriceTag
+              exactly as each page renders it today. */}
           <div className="mb-4">
-            <PriceTag product={product} hideOldPrice={!isDeal} />
+            {hasDeal && !isDeal ? (
+              <>
+                <div className="md:hidden">
+                  <PriceTag product={product} hideOldPrice />
+                  <span className="ml-1.5 text-sm text-text-body line-through">
+                    ৳{product.oldPrice!.toLocaleString()}
+                  </span>
+                </div>
+                <div className="hidden md:block">
+                  <PriceTag product={product} hideOldPrice />
+                </div>
+              </>
+            ) : (
+              <PriceTag product={product} hideOldPrice={!isDeal} />
+            )}
           </div>
           <div className="mt-auto flex gap-2">
             {/* Add to Cart → cart context + toast; works for every product

@@ -34,7 +34,9 @@ const WhyTrustUs: React.FC = () => {
         <h2 className="text-2xl font-bold text-text-heading mb-6 text-center">
           Why Trust TechBD
         </h2>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Mobile: 2x2 card grid (reference-style); sm+ keeps the previous
+            2-col / lg 4-col desktop layout unchanged. */}
+        <div className="grid grid-cols-2 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {trustPoints.map((point) => (
             <div key={point.id} className="flex flex-col items-center text-center p-4 bg-text-on-dark rounded-lg shadow hover:shadow-md transition-shadow duration-300">
               <div className="mb-4 text-2xl">

@@ -13,6 +13,14 @@ const trendingProducts: Product[] = [...products].sort(
   (a, b) => b.views - a.views
 );
 
+// Same honest-deal math as ProductCard: a genuine discount exists whenever
+// oldPrice > price. Used for the mobile-only SALE / -% badges and the
+// struck-through old price (desktop cards are untouched).
+const hasDeal = (p: Product) =>
+  p.price !== null && p.oldPrice !== null && p.oldPrice > p.price;
+const discountPct = (p: Product) =>
+  Math.round((1 - p.price! / p.oldPrice!) * 100);
+
 const ShopTeaser: React.FC = () => {
   const { addToCart, notify } = useCart();
 
@@ -35,6 +43,18 @@ const ShopTeaser: React.FC = () => {
                 className="flex-shrink-0 w-72 bg-text-on-dark border border-text-heading/10 rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-300"
               >
                 <div className="relative h-40 bg-bg-dark-secondary/10 flex items-center justify-center">
+                  {/* Mobile-only deal badges (desktop card is untouched);
+                      no star-rating row — Product has no rating data yet. */}
+                  {hasDeal(product) && (
+                    <>
+                      <span className="md:hidden absolute top-2 left-2 px-2 py-0.5 text-xs font-bold text-text-on-dark bg-red-600 rounded">
+                        SALE
+                      </span>
+                      <span className="md:hidden absolute top-2 right-2 px-2 py-0.5 text-xs font-bold text-bg-dark bg-yellow-400 rounded">
+                        -{discountPct(product)}%
+                      </span>
+                    </>
+                  )}
                   <span className="text-text-body text-sm">{product.imageAlt}</span>
                 </div>
                 <div className="p-4">
@@ -45,7 +65,23 @@ const ShopTeaser: React.FC = () => {
                     {product.title}
                   </h3>
                   <div className="mb-4">
-                    <PriceTag product={product} hideOldPrice />
+                    {/* Mobile: current price + struck old price when on deal
+                        (desktop keeps the plain PriceTag it has always had). */}
+                    {hasDeal(product) ? (
+                      <>
+                        <div className="md:hidden">
+                          <PriceTag product={product} hideOldPrice />
+                          <span className="ml-1.5 text-sm text-text-body line-through">
+                            ৳{product.oldPrice!.toLocaleString()}
+                          </span>
+                        </div>
+                        <div className="hidden md:block">
+                          <PriceTag product={product} hideOldPrice />
+                        </div>
+                      </>
+                    ) : (
+                      <PriceTag product={product} hideOldPrice />
+                    )}
                   </div>
                   <div className="flex gap-2">
                     {/* Add to Cart → cart context + toast; works for every

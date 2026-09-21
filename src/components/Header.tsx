@@ -2,6 +2,26 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import {
+  X,
+  Search,
+  Home,
+  Newspaper,
+  ShoppingBag,
+  Flame,
+  Sparkles,
+  Info,
+  Phone,
+  User,
+  Eye,
+} from 'lucide-react';
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaWhatsapp,
+  FaYoutube,
+  FaPinterest,
+} from 'react-icons/fa';
 import { posts } from '@/lib/posts';
 import { products } from '@/lib/products';
 import { useCart } from '@/context/CartContext';
@@ -16,6 +36,33 @@ const NAV_LINKS = [
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ];
+
+// Mobile drawer navigation — grouped like the reference mobile menu
+// (gadgeterea-style), same order as the desktop nav. Desktop keeps using
+// NAV_LINKS above, untouched.
+const MOBILE_MENU_ITEMS = [
+  { href: '/', label: 'Home', icon: Home },
+  { href: '/blog', label: 'Blog', icon: Newspaper },
+  { href: '/quick-look', label: 'Quick Look', icon: Eye },
+  { href: '/shop', label: 'Shop', icon: ShoppingBag },
+  { href: '/deals', label: 'Deals', icon: Flame },
+  { href: '/new-arrivals', label: 'New Arrivals', icon: Sparkles },
+] as const;
+
+const MOBILE_COMPANY_ITEMS = [
+  { href: '/about', label: 'About', icon: Info },
+  { href: '/contact', label: 'Contact', icon: Phone },
+] as const;
+
+// Placeholder hrefs for now — same as the Footer's social icons
+// (real profile URLs get added at launch).
+const SOCIAL_LINKS = [
+  { label: 'Facebook', icon: FaFacebookF },
+  { label: 'Instagram', icon: FaInstagram },
+  { label: 'WhatsApp', icon: FaWhatsapp },
+  { label: 'YouTube', icon: FaYoutube },
+  { label: 'Pinterest', icon: FaPinterest },
+] as const;
 
 // No-match fallback for search: the first few catalog products (newest
 // flagships) under "You might be interested in" — all currently Coming Soon,
@@ -53,6 +100,13 @@ const Header: React.FC = () => {
 
   const closeSearch = () => {
     setIsSearchOpen(false);
+    setQuery('');
+  };
+
+  // Drawer close: also clears any in-drawer search text so the next open
+  // starts fresh on the menu list.
+  const closeMenu = () => {
+    setIsMenuOpen(false);
     setQuery('');
   };
 
@@ -138,8 +192,9 @@ const Header: React.FC = () => {
           {/* Mobile Menu Button (Hamburger) */}
           <div className="md:hidden">
             <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label="Toggle menu"
+              onClick={() => setIsMenuOpen(true)}
+              aria-label="Open menu"
+              aria-expanded={isMenuOpen}
               className="text-text-on-dark hover:text-accent"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -150,24 +205,172 @@ const Header: React.FC = () => {
         </div>
       </header>
 
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-bg-dark">
-          <nav className="pt-2 pb-3 space-y-1">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="block px-3 py-2 text-base font-medium text-text-on-dark hover:text-accent"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      )}
+      {/* Mobile slide-in menu — mobile only (md:hidden), overlay drawer.
+          Desktop is untouched: this whole block is hidden at md+ and the
+          desktop nav bar above never renders it. */}
+      <div
+        className={`md:hidden fixed inset-0 z-[90] ${
+          isMenuOpen ? 'visible' : 'invisible pointer-events-none'
+        }`}
+        aria-hidden={!isMenuOpen}
+      >
+        {/* Dimmed backdrop — tap to close */}
+        <div
+          onClick={closeMenu}
+          className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${
+            isMenuOpen ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
 
-      {/* Mobile Search */}
+        {/* Slide-in panel: search on top, MENU + COMPANY link groups,
+            socials, and a full-width Login/Register button at the bottom. */}
+        <aside
+          role="dialog"
+          aria-modal="true"
+          aria-label="Site menu"
+          className={`absolute inset-y-0 left-0 w-[85%] max-w-xs bg-bg-dark overflow-y-auto flex flex-col transform transition-transform duration-300 ease-in-out ${
+            isMenuOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}
+        >
+          {/* Panel header: brand + X close (top-right corner) */}
+          <div className="flex items-center justify-between px-4 py-3 border-b border-text-on-dark/10">
+            <Link href="/" onClick={closeMenu} className="text-xl font-bold text-text-on-dark">
+              TechBD
+            </Link>
+            <button
+              onClick={closeMenu}
+              aria-label="Close menu"
+              className="text-text-on-dark/70 hover:text-text-on-dark"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+
+          <div className="flex-1 px-4 py-4">
+            {/* Search input — very top of the panel. Shares the same live
+                results data as the desktop header search. */}
+            <div className="relative mb-5">
+              <input
+                type="text"
+                placeholder="Search products..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                className="w-full pl-10 pr-4 py-2.5 border border-accent/40 rounded-full bg-bg-dark-secondary placeholder-text-on-dark/70 text-text-on-dark text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+              />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-text-on-dark/60" />
+            </div>
+
+            {/* Live search results inside the drawer (articles + products) */}
+            {q !== '' && (postResults.length > 0 || displayProducts.length > 0) && (
+              <div className="mb-5 space-y-1 rounded-md border border-text-on-dark/10 p-2">
+                {postResults.length > 0 && (
+                  <div>
+                    <p className="px-2 pb-1 text-xs font-semibold uppercase tracking-wider text-text-on-dark/50">
+                      Articles
+                    </p>
+                    {postResults.map((post) => (
+                      <Link
+                        key={post.id}
+                        href={`/posts/${post.id}`}
+                        onClick={closeMenu}
+                        className="block px-2 py-1.5 text-sm text-text-on-dark/70 hover:text-text-on-dark rounded"
+                      >
+                        {post.title}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+                {displayProducts.length > 0 && (
+                  <div>
+                    <p className="px-2 pb-1 text-xs font-semibold uppercase tracking-wider text-text-on-dark/50">
+                      {showFallback ? 'You might be interested in' : 'Products'}
+                    </p>
+                    {displayProducts.map((product) => (
+                      <Link
+                        key={product.id}
+                        href={`/shop/${product.id}`}
+                        onClick={closeMenu}
+                        className="flex items-center justify-between gap-3 px-2 py-1.5 text-sm text-text-on-dark/70 hover:text-text-on-dark rounded"
+                      >
+                        <span>{product.title}</span>
+                        <span className="shrink-0 text-xs text-accent">
+                          {product.price === null
+                            ? 'Coming Soon'
+                            : product.priceEstimated
+                              ? `Est. ৳${product.price.toLocaleString()}`
+                              : `৳${product.price.toLocaleString()}`}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* MENU section */}
+            <p className="text-xs font-semibold uppercase tracking-wider text-text-on-dark/50 mb-2">
+              Menu
+            </p>
+            <nav className="space-y-1 mb-6">
+              {MOBILE_MENU_ITEMS.map(({ href, label, icon: Icon }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  onClick={closeMenu}
+                  className="flex items-center gap-3 px-2 py-2.5 rounded-md text-text-on-dark hover:bg-text-on-dark/10 hover:text-accent transition-colors"
+                >
+                  <Icon className="w-5 h-5 shrink-0" />
+                  <span className="text-base font-medium">{label}</span>
+                </Link>
+              ))}
+            </nav>
+
+            {/* COMPANY section */}
+            <p className="text-xs font-semibold uppercase tracking-wider text-text-on-dark/50 mb-2">
+              Company
+            </p>
+            <nav className="space-y-1">
+              {MOBILE_COMPANY_ITEMS.map(({ href, label, icon: Icon }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  onClick={closeMenu}
+                  className="flex items-center gap-3 px-2 py-2.5 rounded-md text-text-on-dark hover:bg-text-on-dark/10 hover:text-accent transition-colors"
+                >
+                  <Icon className="w-5 h-5 shrink-0" />
+                  <span className="text-base font-medium">{label}</span>
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          {/* Bottom block: socials + full-width Login/Register */}
+          <div className="px-4 pb-6 pt-2">
+            <div className="flex justify-center gap-3 mb-4">
+              {SOCIAL_LINKS.map(({ label, icon: Icon }) => (
+                <a
+                  key={label}
+                  href="#"
+                  aria-label={label}
+                  className="flex items-center justify-center w-9 h-9 rounded-full bg-bg-dark-secondary hover:bg-bg-dark-secondary/70"
+                >
+                  <Icon className="w-4 h-4 text-text-on-dark" />
+                </a>
+              ))}
+            </div>
+            <Link
+              href="/login"
+              onClick={closeMenu}
+              className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-accent text-text-on-dark font-medium rounded-md hover:bg-accent-hover transition-colors"
+            >
+              <User className="w-5 h-5" />
+              Login / Register
+            </Link>
+          </div>
+        </aside>
+      </div>
+
+      {/* Mobile Search (desktop-width overlay under the header) */}
       {isSearchOpen && (
         <div className="hidden md:block">
           <div className="pt-2 pb-3">

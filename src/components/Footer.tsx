@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-bg-dark py-12">
+    <footer className="bg-bg-dark pt-12 pb-24 md:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Responsive: 1 column on mobile, 2x2 on md, and on lg a GadgetErea-style
             ratio — brand column widest (2fr), Shop/Support/Account equal (1fr each) */}
