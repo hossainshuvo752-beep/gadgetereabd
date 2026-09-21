@@ -455,3 +455,7 @@ Rule: After completing any task and confirming no build/compile errors (tsc --no
 - Hero: excerpt `hidden md:block` — mobile hero = image, badge, title, meta, CTA only.
 - Latest Posts (page.tsx), Trending Now, Popular Buying Guides: mobile `grid-cols-2 gap-3` compact cards sharing ArticleCard's metrics (h-36 md:h-48 image, p-3 md:p-5, text-sm md:text-xl line-clamp-2 title, [11px] md:text-xs meta, excerpt hidden md:block); desktop grids byte-identical.
 - Rule: homepage post/guide cards MUST share ArticleCard's mobile compact metrics — keep sections visually identical when changing one.
+
+## Task Log — 2026-09-22 (Bottom nav "Category" relabeled "Shop")
+
+- MobileBottomNav item label changed Category → Shop; same LayoutGrid icon, same /shop link, active-highlight logic unchanged. User-visible text only.

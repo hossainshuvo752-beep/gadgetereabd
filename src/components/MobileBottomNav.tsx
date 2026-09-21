@@ -21,7 +21,7 @@ import { useCart } from '@/context/CartContext';
  */
 const ITEMS = [
   { href: '/', label: 'Home', icon: Home },
-  { href: '/shop', label: 'Category', icon: LayoutGrid },
+  { href: '/shop', label: 'Shop', icon: LayoutGrid },
   { href: '/deals', label: 'Offer', icon: Tag },
   { href: '/cart', label: 'Cart', icon: ShoppingCart },
 ] as const;
@@ -39,7 +39,7 @@ const MobileBottomNav: React.FC = () => {
       <div className="grid grid-cols-4">
         {ITEMS.map(({ href, label, icon: Icon }) => {
           // Exact match on "/" so every other page doesn't highlight Home;
-          // prefix match elsewhere so /shop/1 still highlights Category.
+          // prefix match elsewhere so /shop/1 still highlights Shop.
           const active =
             href === '/' ? pathname === '/' : pathname.startsWith(href);
 
