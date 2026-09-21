@@ -412,3 +412,11 @@ KNOWN GAPS (honest status): cart/checkout/confirmation demo items are hardcoded 
 - User feedback: max-h-64 cut off Mobile's 15-brand list. Dropdown panel max-height changed `max-h-64` → **`max-h-[min(32rem,80vh)]`**: 32rem (512px) fits ALL current sub-lists (15 brands ≈ 496px incl. padding) with zero scrolling, while the 80vh half keeps the dropdown inside the viewport on short screens (satisfies the not-cut-off-below-fold requirement).
 - `overflow-y-auto` + `hide-scrollbar` KEPT in code as the automatic safety net — if a category list ever grows past the cap, scrolling kicks in with no code change. Still zero JS wheel handlers and zero overscroll-behavior overrides (native chaining intact).
 - Verified: panel re-read, overflow-y-auto grep hit present, `npx tsc --noEmit` → TSC_CLEAN. Dev server not run.
+
+## Task Log — 2026-09-21 (Site metadata + favicon → live deploy)
+
+- Site is LIVE at https://gadgetereabd.vercel.app/ (pushed via jibonhossain752-ctrl collaborator credential; repo hossainshuvo752-beep/gadgetereabd).
+- Fixed the leftover "Create Next App" metadata: `src/app/layout.tsx` metadata export now sets title "TechBD — Bangladesh's Trusted Guide to Gadgets, Reviews & Buying Guides" with a `title.template` ("%s | TechBD") so pages with their own metadata inherit the brand suffix automatically, plus the site description ("Honest gadget reviews, buying guides, and tech news for Bangladesh. No sponsorships, no bias — just real reviews you can trust.").
+- Replaced the create-next-app scaffold favicon with a TechBD-branded `src/app/icon.svg` (navy rounded square + orange bolt, matching site palette). App Router serves it automatically; scaffold `favicon.ico` removed.
+- Committed `0032c27` ("Set TechBD site metadata and branded favicon") and pushed; Vercel auto-redeployed.
+- Verified LIVE: browser tab shows the TechBD title, meta description matches, and `<link rel="icon" href="/icon.svg..." type="image/svg+xml">` is served. `npx tsc --noEmit` → TSC_CLEAN before commit.
