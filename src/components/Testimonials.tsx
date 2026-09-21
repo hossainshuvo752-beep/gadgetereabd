@@ -95,7 +95,7 @@ const Testimonials: React.FC = () => {
             true screen edges while cards align with the section padding.
             DESKTOP (sm+): exact original grid — sm:grid-cols-2 → lg:grid-cols-3,
             overflow and snapping disabled. */}
-        <div className="-mx-4 px-4 sm:mx-0 sm:px-0 flex flex-nowrap gap-4 sm:grid sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:snap-none hide-scrollbar">
+        <div className="-mx-4 px-4 sm:mx-0 sm:px-0 flex flex-nowrap gap-4 sm:grid sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 overflow-x-auto sm:overflow-visible hide-scrollbar">
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.id}

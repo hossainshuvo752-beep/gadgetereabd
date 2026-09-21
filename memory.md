@@ -433,3 +433,9 @@ Rule: After completing any task and confirming no build/compile errors (tsc --no
 - **Horizontal overflow safety net**: `html, body { overflow-x: clip }` — clip NOT hidden, because overflow-x: hidden on body breaks position:sticky (the sticky Header). Root cause of the white gutter + shifted bottom nav on mobile.
 - **MobileBottomNav hardening**: explicit `left-0 right-0 w-full` anchoring + `transform-gpu` GPU-layer promotion (fixes fixed-bar vanish mid-scroll on mobile). Category->/shop, Offer->/deals verified; pb-16 clearance lives only in layout.tsx main (global).
 - `npx tsc --noEmit` -> TSC_CLEAN before commit.
+
+## Task Log — 2026-09-22 (ScrollHint missing display:flex — main category row stacked vertically)
+
+- BUG: main category row (All Products/Mobile/Tablet/PC/…) stacked one button per line on mobile. Root cause: ScrollHint's scroll container had `flex-nowrap` but NO `flex` (display:flex) — a block container, so children stacked. Subcategory row looked fine only because its children were inline-block buttons.
+- Fix: one class in the shared component — `flex flex-nowrap items-center` — repairs all consumers (CategoryNav Row 1 + Row 2, blog chips, Testimonials) at once. Plus `snap-x snap-proximity` + `[&>*]:snap-start` swipe snapping (md:snap-none on desktop); Testimonials' duplicate `snap-mandatory` removed to avoid a CSS conflict.
+- Rule: when adding horizontal-scroll rows, always build on ScrollHint (it owns display:flex, no-wrap, snap, fade+chevron indicator) — never hand-roll `overflow-x-auto` rows.

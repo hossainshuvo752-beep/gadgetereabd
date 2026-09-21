@@ -76,7 +76,11 @@ export default function ScrollHint({
         role="region"
         aria-label={ariaLabel}
         onScroll={update}
-        className={`flex-nowrap overflow-x-auto hide-scrollbar ${className}`}
+        /* flex IS the fix: without display:flex the row renders as a block
+           (children stack vertically). flex-nowrap alone only sets wrap
+           behavior. snap-x + child snap-start gives smooth swipe alignment;
+           disabled at md+ where rows wrap instead of scrolling. */
+        className={`flex flex-nowrap items-center overflow-x-auto hide-scrollbar snap-x snap-proximity [&>*]:snap-start md:snap-none ${className}`}
       >
         {children}
       </div>
