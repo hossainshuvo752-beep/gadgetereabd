@@ -35,8 +35,9 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
             {post.title}
           </h2>
 
-          {/* Excerpt */}
-          <p className="text-text-body leading-relaxed">
+          {/* Excerpt — hidden on mobile (compact hero: image, badge, title,
+              meta only); shown from md up as before. */}
+          <p className="hidden md:block text-text-body leading-relaxed">
             {post.excerpt}
           </p>
 

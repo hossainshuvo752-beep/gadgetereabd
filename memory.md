@@ -449,3 +449,9 @@ Rule: After completing any task and confirming no build/compile errors (tsc --no
 
 - Footer grid restructured: `grid-cols-3 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr]`. Brand block spans all 3 mobile columns (`col-span-3 md:col-span-1`); Shop | Support | Account now sit side-by-side in one row on mobile (gadgeterea-style), not stacked.
 - Mobile type compacted for the 3-up row: headers `text-sm md:text-lg`, links `text-xs` + `space-y-2`; md: restores the previous sizes exactly. Desktop layouts (md 2x2, lg 2fr_1fr_1fr_1fr) unchanged.
+
+## Task Log — 2026-09-22 (Homepage mobile: compact 2-col post sections + hero excerpt hidden)
+
+- Hero: excerpt `hidden md:block` — mobile hero = image, badge, title, meta, CTA only.
+- Latest Posts (page.tsx), Trending Now, Popular Buying Guides: mobile `grid-cols-2 gap-3` compact cards sharing ArticleCard's metrics (h-36 md:h-48 image, p-3 md:p-5, text-sm md:text-xl line-clamp-2 title, [11px] md:text-xs meta, excerpt hidden md:block); desktop grids byte-identical.
+- Rule: homepage post/guide cards MUST share ArticleCard's mobile compact metrics — keep sections visually identical when changing one.

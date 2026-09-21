@@ -29,24 +29,26 @@ export default function Home() {
           <h2 className="text-2xl font-bold text-text-heading mb-6">
             Latest Posts
           </h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {/* MOBILE: 2-col grid of compact title-only cards (same treatment
+              as the /blog page). DESKTOP: unchanged 2→3 column grid. */}
+          <div className="grid grid-cols-2 gap-3 md:gap-6 md:grid-cols-2 lg:grid-cols-3">
             {latestPosts.map((post) => (
               <Link key={post.id} href={`/posts/${post.id}`}>
                 <div className="bg-text-on-dark border border-text-heading/10 rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-300 h-full">
-                  <div className="h-48 bg-bg-dark-secondary/10 flex items-center justify-center">
+                  <div className="h-36 md:h-48 bg-bg-dark-secondary/10 flex items-center justify-center">
                     <span className="text-text-body text-sm">{post.imageAlt}</span>
                   </div>
-                  <div className="p-5">
+                  <div className="p-3 md:p-5">
                     <span className="inline-flex items-center px-2.5 py-0.5 text-xs font-semibold bg-accent text-text-on-dark rounded-full mb-3">
                       {post.category}
                     </span>
-                    <h3 className="text-xl font-bold text-text-heading mb-3 line-clamp-2">
+                    <h3 className="text-sm md:text-xl font-bold text-text-heading mb-3 line-clamp-2">
                       {post.title}
                     </h3>
-                    <p className="text-text-body leading-relaxed mb-4 line-clamp-3">
+                    <p className="hidden md:block text-text-body leading-relaxed mb-4 line-clamp-3">
                       {post.excerpt}
                     </p>
-                    <div className="flex items-center text-xs text-text-body">
+                    <div className="flex items-center text-[11px] md:text-xs text-text-body">
                       <span>By TechBD Team</span>
                       <span className="mx-2">•</span>
                       <span>{post.date}</span>

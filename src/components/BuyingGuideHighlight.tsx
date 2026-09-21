@@ -29,20 +29,23 @@ const BuyingGuideHighlight: React.FC = () => {
         <h2 className="text-2xl font-bold text-text-heading mb-6 text-center">
           Popular Buying Guides
         </h2>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* MOBILE: 2-col compact grid, same card sizing as Latest Posts /
+            Trending Now (h-36 image, p-3, text-sm title, no description).
+            DESKTOP: unchanged. */}
+        <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-3">
           {guides.map((guide) => (
             <div key={guide.id} className="bg-text-on-dark rounded-lg overflow-hidden shadow hover:shadow-md transition-shadow duration-300">
-              <div className="h-48 w-full bg-bg-dark-secondary/10 flex items-center justify-center">
+              <div className="h-36 md:h-48 w-full bg-bg-dark-secondary/10 flex items-center justify-center">
                 <span className="text-text-body text-sm">{guide.imageAlt}</span>
               </div>
-              <div className="p-5">
-                <h3 className="text-xl font-bold text-text-heading mb-3">
+              <div className="p-3 md:p-5">
+                <h3 className="text-sm md:text-xl font-bold text-text-heading mb-3 line-clamp-2">
                   {guide.title}
                 </h3>
-                <p className="text-text-body mb-4 line-clamp-2">
+                <p className="hidden md:block text-text-body mb-4 line-clamp-2">
                   {guide.description}
                 </p>
-                <a href="#" className="text-accent hover:text-accent-hover underline font-medium">
+                <a href="#" className="text-accent hover:text-accent-hover underline font-medium text-sm md:text-base">
                   Read Guide →
                 </a>
               </div>
