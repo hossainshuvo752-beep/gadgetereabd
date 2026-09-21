@@ -3,6 +3,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { posts } from '@/lib/posts';
 import NewsletterPopup from '@/components/NewsletterPopup';
+import PostMeta from '@/components/PostMeta';
 
 /**
  * Blog article detail page (/posts/[id]). Imports the single shared posts
@@ -60,13 +61,8 @@ export default async function PostsPage({ params }: Props) {
             </span>
             <h1 className="text-3xl font-bold text-text-heading">{post.title}</h1>
           </div>
-          <div className="flex items-center text-sm text-text-body">
-            <span>By {post.author}</span>
-            <span className="mx-2">•</span>
-            <span>{post.date}</span>
-            <span className="mx-2">•</span>
-            <span>{post.readTime}</span>
-          </div>
+          {/* Two-line meta (avatar+author / date•readTime) — detail page size */}
+          <PostMeta author={post.author} date={post.date} readTime={post.readTime} className="text-sm" />
         </div>
 
         {/* Article Content */}

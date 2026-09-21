@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { posts } from '@/lib/posts';
+import PostMeta from '@/components/PostMeta';
 import Hero from '@/components/Hero';
 import ShopTeaser from '@/components/ShopTeaser';
 import TrendingPosts from '@/components/TrendingPosts';
@@ -48,13 +49,8 @@ export default function Home() {
                     <p className="hidden md:block text-text-body leading-relaxed mb-4 line-clamp-3">
                       {post.excerpt}
                     </p>
-                    <div className="flex items-center text-[11px] md:text-xs text-text-body">
-                      <span>By TechBD Team</span>
-                      <span className="mx-2">•</span>
-                      <span>{post.date}</span>
-                      <span className="mx-2">•</span>
-                      <span>{post.readTime}</span>
-                    </div>
+                    {/* Two-line meta (avatar+author / date•readTime) */}
+                    <PostMeta date={post.date} readTime={post.readTime} />
                   </div>
                 </div>
               </Link>

@@ -1,4 +1,5 @@
 import React from 'react';
+import PostMeta from './PostMeta';
 
 interface HeroProps {
   post: {
@@ -41,14 +42,9 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
             {post.excerpt}
           </p>
 
-          {/* Meta Info */}
-          <div className="flex items-center text-xs text-text-body">
-            <span>By TechBD Team</span>
-            <span className="mx-2">•</span>
-            <span>{post.date}</span>
-            <span className="mx-2">•</span>
-            <span>{post.readTime}</span>
-          </div>
+          {/* Meta Info — same two-line pattern as the cards (avatar+author,
+              then date•readTime); slightly larger on the featured post. */}
+          <PostMeta date={post.date} readTime={post.readTime} className="text-xs" />
 
           {/* Button */}
           <a

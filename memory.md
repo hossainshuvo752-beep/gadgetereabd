@@ -464,3 +464,10 @@ Rule: After completing any task and confirming no build/compile errors (tsc --no
 
 - NewsletterBanner: container already had px-4 — the real culprit was the form's min-width (~330px input+button row) overflowing the padding on small phones. Fixed like the popup: stacked full-width form below sm (input over button), side-by-side sm+ capped max-w-md. Padding now visibly effective.
 - Testimonials heading: text-2xl md:text-3xl — single line on ~360px screens; desktop size unchanged.
+
+## Task Log — 2026-09-22 (Two-line post meta, gadgeterea-style — shared PostMeta component)
+
+- New shared PostMeta: line 1 = avatar-initial circle (accent/10) + author + bullet; line 2 = date • read time. Replaces the single-line "By X • date • readTime" row that wrapped to 3 lines in 2-col mobile cards.
+- Applied: ArticleCard (blog + Trending Now), homepage Latest Posts, Hero, /posts/[slug] detail (text-sm size). Blog listing page.tsx inherits it via ArticleCard.
+- Reference caveat: gadgeterea.com is a JS-rendered app — fetch returns no readable text, so implemented from the user's written spec, not a live device-toolbar comparison.
+- Rule: any new post-meta surface uses the shared PostMeta component; do not hand-roll meta rows.

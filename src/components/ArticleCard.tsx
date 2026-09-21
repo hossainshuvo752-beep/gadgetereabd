@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import PostMeta from './PostMeta';
 
 type Post = {
   id: number;
@@ -30,13 +31,8 @@ const ArticleCard: React.FC<{ post: Post }> = ({ post }) => {
           <p className="hidden md:block text-text-body leading-relaxed mb-4 line-clamp-3">
             {post.excerpt}
           </p>
-          <div className="flex items-center text-[11px] md:text-xs text-text-body">
-            <span>By TechBD Team</span>
-            <span className="mx-2">•</span>
-            <span>{post.date}</span>
-            <span className="mx-2">•</span>
-            <span>{post.readTime}</span>
-          </div>
+          {/* Two-line meta (avatar+author / date•readTime) — shared PostMeta */}
+          <PostMeta date={post.date} readTime={post.readTime} />
         </div>
       </div>
     </Link>
