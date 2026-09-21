@@ -471,3 +471,12 @@ Rule: After completing any task and confirming no build/compile errors (tsc --no
 - Applied: ArticleCard (blog + Trending Now), homepage Latest Posts, Hero, /posts/[slug] detail (text-sm size). Blog listing page.tsx inherits it via ArticleCard.
 - Reference caveat: gadgeterea.com is a JS-rendered app — fetch returns no readable text, so implemented from the user's written spec, not a live device-toolbar comparison.
 - Rule: any new post-meta surface uses the shared PostMeta component; do not hand-roll meta rows.
+
+## Task Log — 2026-09-22 (PostMeta rule: every blog card site-wide + audit)
+
+- Full-site audit (grep readTime): found and converted the last hand-rolled meta row in /category/[category] (also brought to compact card metrics). Search page renders bare result links (no meta) — not a violation. All 6 surfaces now: ArticleCard (blog+Trending), homepage Latest Posts, Hero, posts/[slug], category/[category], PostMeta itself.
+
+Rule: Every blog post card (anywhere on the site — current or future sections) must use this consistent meta info format, matching gadgeterea.com's style:
+- Line 1: circular avatar icon with author initial + author name + bullet separator (•)
+- Line 2: publish date + bullet separator (•) + read time
+This applies on both mobile and desktop. Any new blog card component or section built in the future must follow this same format by default — do not revert to a plain single-line or 3-line meta format.
