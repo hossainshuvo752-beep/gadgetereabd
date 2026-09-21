@@ -46,3 +46,6 @@ next-env.d.ts
 
 # local agent tool state
 .freebuff/
+
+# internal dev notes (kept local only — never pushed)
+memory.md
