@@ -34,7 +34,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
                     <h3 className="text-sm md:text-xl font-bold text-text-heading mb-3 line-clamp-2">
                       {post.title}
                     </h3>
-                    <p className="hidden md:block text-text-body leading-relaxed mb-4 line-clamp-3">
+                    <p className="hidden md:block text-text-body leading-relaxed mb-4 line-clamp-2">
                       {post.excerpt}
                     </p>
                     <PostMeta date={post.date} readTime={post.readTime} />

@@ -28,7 +28,7 @@ const ArticleCard: React.FC<{ post: Post }> = ({ post }) => {
           </h3>
           {/* Excerpt — hidden on mobile (compact 2-col cards), shown on
               desktop exactly as before */}
-          <p className="hidden md:block text-text-body leading-relaxed mb-4 line-clamp-3">
+          <p className="hidden md:block text-text-body leading-relaxed mb-4 line-clamp-2">
             {post.excerpt}
           </p>
           {/* Two-line meta (avatar+author / date•readTime) — shared PostMeta */}

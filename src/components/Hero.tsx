@@ -31,8 +31,8 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
             {post.category}
           </span>
 
-          {/* Article Title */}
-          <h2 className="text-2xl font-bold text-text-heading">
+          {/* Article Title — clamped to 2 lines like the cards */}
+          <h2 className="text-2xl font-bold text-text-heading line-clamp-2">
             {post.title}
           </h2>
 

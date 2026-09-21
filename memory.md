@@ -490,3 +490,8 @@ This applies on both mobile and desktop. Any new blog card component or section 
 
 - CategoryNav desktop sizing tightened (mobile untouched): chips md:px-3 md:py-1.5 md:text-[13px], chevron md:w-3 h-3 ml-1, row gap md:gap-1.5. Total ≈1120px vs ~1216px available at 1280px viewport → one line at 1280–1920 (the target range). 1024–1279 (lg band) still wraps as before — acceptable band, and the scroll-fallback there would clip hover dropdowns (they live inside the row), so wrap is the right behavior below xl.
 - Applied once in the shared component — covers /shop, /quick-look, /new-arrivals, /deals.
+
+## Task Log — 2026-09-22 (Blog cards: line-clamp-2 for title + description, desktop)
+
+- Titles were already line-clamp-2 everywhere; changed the three line-clamp-3 excerpts (ArticleCard, homepage Latest Posts, category route) to line-clamp-2, and clamped the Hero title to 2 lines. Buying Guides already line-clamp-2. /shop has no blog cards (grep-verified).
+- Rule: blog-card titles AND descriptions clamp at 2 lines (line-clamp-2) on every surface, so grid rows stay equal height.
