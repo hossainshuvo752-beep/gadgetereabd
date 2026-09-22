@@ -11,6 +11,8 @@ import WhyTrustUs from '@/components/WhyTrustUs';
 import NewsletterBanner from '@/components/NewsletterBanner';
 import HomeFAQ from '@/components/HomeFAQ';
 import Testimonials from '@/components/Testimonials';
+import JsonLd from '@/components/JsonLd';
+import { organizationSchema, websiteSchema } from '@/lib/schema';
 
 export default function Home() {
   // Featured post for the Hero section (first post)
@@ -22,6 +24,9 @@ export default function Home() {
 
   return (
     <>
+      {/* Site-wide identity + searchbox schema (AEO Standards item 8). */}
+      <JsonLd data={organizationSchema()} />
+      <JsonLd data={websiteSchema()} />
       <Hero post={featuredPost} />
       {/* pt-6: small breathing gap above the heading so it doesn't sit tight
           against the section boundary below the Hero. */}

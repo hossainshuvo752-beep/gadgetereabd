@@ -571,3 +571,32 @@ Two operational notes:
 - Pre-existing folder 'codebase-memory' in ~/.claude/skills is NOT from this repo — left untouched.
 
 Known gap flagged to user: with ~50 skills loaded, agents may mis-select or dilute focus; user accepted this deliberately. If response quality degrades, prune low-relevance skills (e.g. platform-specific ones) by deleting their folders.
+
+## AEO Standards (adopted 2026-09-22 — PERMANENT, applies to all future posts/products)
+
+1. SEO and AEO are one system, not separate — answer-first formatting, entity clarity, and schema markup help Google rankings and AI answer engines (ChatGPT, Perplexity, Google AI Overviews, Gemini) simultaneously.
+2. DIRECT ANSWER FORMAT: Every post gets a 40-60 word direct, standalone answer immediately after the main H1/question — readable alone, fully answering the core question, before expanding into detail.
+3. HEADINGS: Question-format H2s where natural ("What Is X?", "Is X Worth It?"); keep step/numbered format for how-to content (don't force questions). Correct, visually distinct H2/H3 hierarchy. Never render raw markdown ** or # in published content.
+4. ENTITY CLARITY: Full, unambiguous name on first mention of any product/brand. Consistent terminology site-wide. Internal links between related posts.
+5. EXTERNAL CITATIONS & STATS: Where relevant and accurate, cite a credible external source or real statistic — increases AI citation likelihood. Never force citations.
+6. CONTENT FRESHNESS: Content older than ~90 days loses retrieval priority for time-sensitive topics. Review/update time-sensitive content every 6-9 months minimum. Log breaking-news posts in editorial-todo.md with review dates (1-2 weeks after publish, then every 6-9 months).
+7. FAQ SECTIONS: 4-6 real, natural buyer/reader questions per post, marked up with FAQPage schema. Don't over-stuff past ~6.
+8. SCHEMA MARKUP: Correct type per content — BlogPosting for posts, Product (+Offer ONLY when price confirmed, never fabricated) for products, FAQPage for FAQs, BreadcrumbList for navigation, Organization + WebSite on homepage. Verify field accuracy after any schema change; flag if Rich Results Test should be run manually.
+9. ROBOTS.TXT / AI CRAWLERS: Never accidentally block Googlebot. Explicitly allow GPTBot/PerplexityBot/ClaudeBot/Google-Extended etc. only when the user asks; verify robots.txt stays valid.
+10. URL/SLUG STABILITY: Never change a published post's slug during an SEO/AEO pass without explicit approval.
+11. META TITLE ~50-60 chars (keyword near start, click-worthy not stuffed) & META DESCRIPTION ~150-160 chars (concrete specifics — numbers, specs, prices — not vague teasers). Freshness language only when genuinely true. NOTE: our "%s | TechBD" template adds 9 chars to the rendered title, so source metaTitle should be ~45-51 chars.
+12. NO FABRICATION — EVER: No invented specs, prices, review counts, statistics, claims, or URLs. Unconfirmed = omit, or clearly mark "estimated"/"unconfirmed", or ask.
+13. CONVERSATIONAL/LONG-TAIL QUERIES: Write content that answers full natural questions a buyer would ask an AI assistant, not keyword-stuffed phrasing.
+14. COMPARISON/BREAKDOWN FORMAT: Use comparison tables / structured breakdowns where relevant (reviews, X vs Y) — extracted well by Google and AI engines alike.
+15. ROLLOUT STRATEGY: Test big structural/schema/formatting changes on ONE post/page first, verify at build-output level (not source grep), then roll out.
+16. MEASUREMENT (future): Track AI-search referral traffic and citation frequency once analytics exist (e.g. Search Console AI/generative reporting) — not urgent.
+
+## Task Log — 2026-09-22: AEO Standards adopted + Organization/WebSite schema shipped
+
+- Standards above saved as permanent; future content tasks must follow them.
+- Item 8 applied: organizationSchema() + websiteSchema() added to src/lib/schema.ts; homepage renders both via JsonLd. WebSite SearchAction target mirrors the real /search?q= route. Build-verified: homepage JSON-LD blocks now [Organization, WebSite, FAQPage], all parse as valid JSON; SearchAction urlTemplate + query-input correct. Minimal Organization (name/url/description only — no fabricated logo/sameAs).
+- Post audit (items 2, 7, 11) — MEASURED, no content changed yet, awaiting user go-ahead:
+  - Item 2 (40-60w direct answer): posts 1, 3, 4, 6 OK (49/42/57/48w); posts 2 (85w) and 5 (76w) need their lead tightened.
+  - Item 11: rendered titles ALL exceed 60 (65-73 incl " | TechBD" suffix — all 6 need metaTitle trimming; remember the 45-51 source budget). Descriptions: post 4 OK (159); 1/2/6 slightly over (166-168); 3 (184) and 5 (185) well over.
+  - Item 7: all 6 posts have FAQ sections but NO per-post FAQPage schema yet (schema currently only on /faq + HomeFAQ). When we do the content pass: add 4-6 real Q&As per post + FAQPage schema via faqSchema() from the same data the page renders.
+  - Also flagged: posts 1 (iPhone Duo) and 5 (iPhone Ultra) cover the same foldable-iPhone topic — potential keyword cannibalization; recommend consolidating or differentiating during the content pass.

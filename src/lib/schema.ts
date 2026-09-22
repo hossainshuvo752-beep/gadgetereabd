@@ -16,6 +16,38 @@ import type { Product } from './products';
 
 export const SITE_URL = 'https://gadgetereabd.vercel.app';
 
+/** Organization — site-wide identity. Minimal by design: only verifiable
+ *  fields (no fabricated logo URL, social profiles, or address). */
+export function organizationSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'TechBD',
+    url: SITE_URL,
+    description:
+      "Bangladesh's honest source for gadget reviews, buying guides, and tech news.",
+  };
+}
+
+/** WebSite + SearchAction — searchbox eligibility. The target mirrors the
+ *  real /search?q= route the site's header search already uses. */
+export function websiteSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'TechBD',
+    url: SITE_URL,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${SITE_URL}/search?q={search_term_string}`,
+      },
+      'query-input': 'required name=search_term_string',
+    },
+  };
+}
+
 /** FAQPage — pass the EXACT same array the page renders. */
 export function faqSchema(faqs: { question: string; answer: string }[]) {
   return {
