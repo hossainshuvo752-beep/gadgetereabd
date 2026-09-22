@@ -621,3 +621,13 @@ Known gap flagged to user: with ~50 skills loaded, agents may mis-select or dilu
 - Verified: tsc clean; client created against the live project (health endpoint 200, GoTrue v2.197.0) using the anon key; dev server boots Ready with zero errors (home/blog/faq all 200).
 - TODO (user action): add the same two NEXT_PUBLIC_ vars to Vercel dashboard (Settings -> Environment Variables) — .env.local is local-only; production reads Vercel env.
 - No features wired yet by design — tables/features get added one at a time next.
+
+## Task Log — 2026-09-22 (Auth: Supabase Registration/Login)
+- **profiles SQL applied by user** in Supabase SQL Editor (table + RLS: users read/update own row; FK → auth.users on delete cascade).
+- **AuthContext** (src/context/AuthContext.tsx): session state via supabase.auth.onAuthStateChange, display name (profile → user_metadata fallback), mapped error messages (invalid credentials, email in use…), signOut; wrapped app in root layout (inside CartProvider).
+- **Register**: real supabase.auth.signUp with full_name in options.data; "check your email" success state (email confirmation is ON on this project); handles duplicate email; client validation (email format, 8-char min password).
+- **Login**: supabase.auth.signInWithPassword; error mapping; router.push('/') on success.
+- **Header**: shows user's first name + Logout button when logged in (desktop right cluster + mobile drawer bottom block); account icon gets accent dot when signed in.
+- **Account page**: real auth state — greeting + Logout when signed in, login/register prompt otherwise.
+- **Live probes**: signUp round-trip works (user created, email confirmation ON); anon SELECT on profiles → 0 rows; anon INSERT → blocked by RLS.
+- Frontend handles missing-profile gracefully (profile insert is a fallback, not a blocker).

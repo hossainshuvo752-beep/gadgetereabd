@@ -2,21 +2,78 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { supabase } from '@/lib/supabase';
+import { friendlyAuthError } from '@/context/AuthContext';
 
 /**
- * Register — UI placeholder only (same pattern as the Contact page form).
- * No real account creation yet: submit just shows a success panel.
+ * Register — real Supabase Auth signup (email/password). Supabase manages
+ * credentials and sessions internally (auth.users); we only store the
+ * display name: in signup metadata first, mirrored into `profiles` when
+ * a session exists (confirmation OFF). Confirmation ON is handled below.
  */
+
+const inputClasses =
+  'w-full px-4 py-2 border border-text-heading/20 rounded-md text-text-heading placeholder-text-body focus:outline-none focus:ring-2 focus:ring-accent';
+
+type Status =
+  | { kind: 'idle' }
+  | { kind: 'submitting' }
+  | { kind: 'needs-confirmation' }
+  | { kind: 'done' }
+  | { kind: 'error'; message: string };
+
 export default function RegisterPage() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<Status>({ kind: 'idle' });
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
-  };
+    setError(null);
 
-  const inputClasses =
-    'w-full px-4 py-2 border border-text-heading/20 rounded-md text-text-heading placeholder-text-body focus:outline-none focus:ring-2 focus:ring-accent';
+    const form = new FormData(e.currentTarget);
+    const name = String(form.get('name') ?? '').trim();
+    const email = String(form.get('email') ?? '').trim();
+    const password = String(form.get('password') ?? '');
+
+    // Client-side validation (no native browser tooltips)
+    if (name.length < 2) {
+      setError('Please enter your name.');
+      return;
+    }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+    if (password.length < 8) {
+      setError('Password must be at least 8 characters.');
+      return;
+    }
+
+    setStatus({ kind: 'submitting' });
+    const { data, error: signUpError } = await supabase.auth.signUp({
+      email,
+      password,
+      options: { data: { full_name: name } },
+    });
+
+    if (signUpError) {
+      setStatus({ kind: 'idle' });
+      setError(friendlyAuthError(signUpError.message));
+      return;
+    }
+
+    // Confirmation disabled: session exists now -> create profile row.
+    if (data.session && data.user) {
+      await supabase
+        .from('profiles')
+        .insert({ id: data.user.id, full_name: name });
+      setStatus({ kind: 'done' });
+      return;
+    }
+
+    // Confirmation enabled (default): user must click the email link.
+    setStatus({ kind: 'needs-confirmation' });
+  };
 
   return (
     <section className="py-12 bg-bg-light min-h-[calc(100vh-64px)]">
@@ -27,7 +84,27 @@ export default function RegisterPage() {
           gadgets.
         </p>
 
-        {submitted ? (
+        {status.kind === 'needs-confirmation' ? (
+          <div
+            role="status"
+            className="bg-text-on-dark border border-text-heading/10 rounded-lg p-8 text-center"
+          >
+            <div className="text-3xl mb-3">📧</div>
+            <h2 className="text-xl font-bold text-text-heading mb-2">
+              Check your email to confirm
+            </h2>
+            <p className="text-text-body mb-6">
+              We sent a confirmation link to your email address. Confirm it,
+              then log in to finish setting up your account.
+            </p>
+            <Link
+              href="/login"
+              className="px-6 py-2.5 bg-accent text-text-on-dark font-medium rounded-md hover:bg-accent-hover transition-colors"
+            >
+              Go to Login
+            </Link>
+          </div>
+        ) : status.kind === 'done' ? (
           <div
             role="status"
             className="bg-text-on-dark border border-text-heading/10 rounded-lg p-8 text-center"
@@ -37,90 +114,88 @@ export default function RegisterPage() {
               Account created!
             </h2>
             <p className="text-text-body mb-6">
-              This is a placeholder confirmation — no real account system is
-              connected yet.
+              You are signed in and ready to go.
             </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              <Link
-                href="/login"
-                className="px-6 py-2.5 bg-accent text-text-on-dark font-medium rounded-md hover:bg-accent-hover transition-colors"
-              >
-                Go to Login
-              </Link>
-              <button
-                onClick={() => setSubmitted(false)}
-                className="px-6 py-2.5 border border-accent text-accent font-medium rounded-md hover:bg-accent/10 transition-colors"
-              >
-                Register another
-              </button>
-            </div>
+            <Link
+              href="/account"
+              className="px-6 py-2.5 bg-accent text-text-on-dark font-medium rounded-md hover:bg-accent-hover transition-colors"
+            >
+              Go to My Account
+            </Link>
           </div>
         ) : (
-          <>
-            <form className="space-y-5" onSubmit={handleSubmit}>
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-text-heading mb-2"
-                >
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  placeholder="Your full name"
-                  className={inputClasses}
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-text-heading mb-2"
-                >
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  placeholder="you@example.com"
-                  className={inputClasses}
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium text-text-heading mb-2"
-                >
-                  Password
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  required
-                  placeholder="Choose a password"
-                  className={inputClasses}
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full px-6 py-2.5 bg-accent text-text-on-dark font-medium rounded-md hover:bg-accent-hover transition-colors"
+          <form className="space-y-5" onSubmit={handleSubmit}>
+            {error && (
+              <p
+                role="alert"
+                className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-md px-4 py-2"
               >
-                Create Account
-              </button>
-            </form>
+                {error}
+              </p>
+            )}
+            <div>
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-text-heading mb-2"
+              >
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                autoComplete="name"
+                placeholder="Your full name"
+                className={inputClasses}
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-text-heading mb-2"
+              >
+                Email Address
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                autoComplete="email"
+                placeholder="you@example.com"
+                className={inputClasses}
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-text-heading mb-2"
+              >
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                autoComplete="new-password"
+                placeholder="Choose a password (8+ characters)"
+                className={inputClasses}
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={status.kind === 'submitting'}
+              className="w-full px-6 py-2.5 bg-accent text-text-on-dark font-medium rounded-md hover:bg-accent-hover transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {status.kind === 'submitting' ? 'Creating account…' : 'Create Account'}
+            </button>
 
-            <p className="text-sm text-text-body mt-6 text-center">
+            <p className="text-sm text-text-body text-center">
               Already have an account?{' '}
               <Link href="/login" className="text-accent hover:text-accent-hover font-medium">
                 Login here
               </Link>
             </p>
-          </>
+          </form>
         )}
       </div>
     </section>

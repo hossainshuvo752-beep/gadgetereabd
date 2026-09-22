@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import { CartProvider } from "@/context/CartContext";
+import { AuthProvider } from "@/context/AuthContext";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         {/* Cart store wraps the whole app (Header badge, cards, /cart, checkout) */}
+        <AuthProvider>
         <CartProvider>
           <Header />
           {/* Mobile-only bottom clearance so the fixed bottom nav bar
@@ -46,6 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {/* Fixed bottom nav bar — mobile only (md:hidden inside) */}
           <MobileBottomNav />
         </CartProvider>
+        </AuthProvider>
       </body>
     </html>
   );
