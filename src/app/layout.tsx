@@ -12,12 +12,23 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  // Absolute base so Next can resolve canonical + OG URLs (silences the
+  // metadataBase warning and makes sitemap/OG URLs correct).
+  metadataBase: new URL("https://gadgetereabd.vercel.app"),
   title: {
     default: "TechBD — Bangladesh's Trusted Guide to Gadgets, Reviews & Buying Guides",
     template: "%s | TechBD",
   },
   description:
     "Honest gadget reviews, buying guides, and tech news for Bangladesh. No sponsorships, no bias — just real reviews you can trust.",
+  openGraph: {
+    type: "website",
+    siteName: "TechBD",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

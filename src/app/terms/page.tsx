@@ -1,4 +1,10 @@
 import React from 'react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Terms & Conditions',
+  description: 'The terms that govern your use of the TechBD website.',
+};
 
 /**
  * Terms & Conditions — generic placeholder text for now. Replace with real

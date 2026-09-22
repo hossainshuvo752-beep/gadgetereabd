@@ -1,7 +1,21 @@
 import React from 'react';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { posts } from '@/lib/posts';
 import PostMeta from '@/components/PostMeta';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ category: string }>;
+}): Promise<Metadata> {
+  const { category } = await params;
+  const name = category.charAt(0).toUpperCase() + category.slice(1);
+  return {
+    title: `${name} Articles — Blog`,
+    description: `TechBD articles in the ${name} category — reviews, guides, news, and explainers for Bangladesh.`,
+  };
+}
 
 export default async function CategoryPage({ params }: { params: Promise<{ category: string }> }) {
   const { category } = await params;

@@ -10,6 +10,14 @@ const STATS = [
   { value: 'Hands-on', label: 'We test before we recommend' },
 ];
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About Us — Who We Are & Why You Can Trust Us',
+  description:
+    'TechBD is Bangladesh\u2019s honest source for gadget reviews, guides, and buying advice \u2014 hands-on testing, no paid bias, in Bangla and English.',
+};
+
 export default function AboutPage() {
   return (
     <section className="min-h-[calc(100vh-64px)] bg-bg-light">

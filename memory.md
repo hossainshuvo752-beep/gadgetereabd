@@ -524,3 +524,15 @@ This applies on both mobile and desktop. Any new blog card component or section 
 ## Task Log — 2026-09-22 (Contact page: removed "no phone/address" disclaimer line)
 
 - Deleted the placeholder disclaimer paragraph from the contact info card. Nothing else touched.
+
+## Task Log — 2026-09-22: SEO infrastructure pass
+
+- **src/app/sitemap.ts** (new): sitemap for gadgetereabd.vercel.app — 11 static content routes + every /posts/[id], /shop/[id], /quick-look/[slug], /category/[category] generated from the shared data sources (auto-updates as posts/products are added). Transactional routes excluded. Verified emitted at build: 64 URLs.
+- **src/app/robots.ts** (new): allows all content, disallows /cart, /checkout, /order-confirmation, /search, /account, /login, /register; points at the sitemap. Verified emitted at build.
+- **layout.tsx**: metadataBase set to https://gadgetereabd.vercel.app (silences Next warning, makes OG/canonical URLs absolute); site-wide openGraph (siteName TechBD) + twitter summary card defaults.
+- **Per-page titles for all 15 client pages** (blog, quick-look, shop, new-arrivals, deals, cart, checkout, order-confirmation, login, register, account, faq, search, contact + about got direct exports): thin server layout.tsx wrappers exporting metadata — client pages cannot export metadata themselves. Page titles flow through the "%s | TechBD" template.
+- **order-confirmation + search** additionally noindexed (robots: { index: false }).
+- **posts/[slug] + shop/[id]** already had generateMetadata (kept); **quick-look/[slug] + category/[category] gained generateMetadata** this pass.
+- Verified at BUILD-OUTPUT level: sitemap.xml.body (64 URLs, correct priorities), robots.txt.body, blog.html <title> + og:* tags present.
+
+Rule note: any NEW client page added in the future needs a thin server layout.tsx (or a server page) exporting metadata — client pages cannot carry their own metadata export.
