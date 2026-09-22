@@ -559,3 +559,15 @@ Schema per page (all match visible content exactly, verified at build-output lev
 Verification: full production build; python extraction of every <script type="application/ld+json"> from prerendered HTML — 52 blocks site-wide, all parse as valid JSON; FAQ questions cross-checked against rendered <h2> text; offer presence cross-checked against priceEstimated/status flags.
 
 Rule: any future FAQ section, post page, or product surface must emit schema via lib/schema.ts builders from the same data the page renders — never hand-written JSON-LD, never invented ratings/dates.
+
+## Task Log — 2026-09-22: Bulk skill install (44 more from marketing-skills)
+
+Installed 44 additional skills from github.com/kostja94/marketing-skills into C:\Users\User\.claude\skills\ (batch total with the earlier 5: 49). Categories per user request: Technical SEO (9), On-Page SEO (13), Off-Page SEO (2), Content (5), CRO (5), Email Marketing (1), Social Media (9), Analytics (5). Skipped per user: Local SEO, Paid Ads, Affiliate, Copywriting, and all other categories (repo has 172 skills total).
+
+Install method: single GitHub trees API call -> filter category paths -> fetch raw SKILL.md -> write to ~/.claude/skills/<frontmatter-name>/SKILL.md (folder always named from the skill's own name: field). Zero name collisions.
+
+Two operational notes:
+- Initial pass mistakenly included copywriting (trailing-slash bug in the exclude check) — caught in verification, removed.
+- Pre-existing folder 'codebase-memory' in ~/.claude/skills is NOT from this repo — left untouched.
+
+Known gap flagged to user: with ~50 skills loaded, agents may mis-select or dilute focus; user accepted this deliberately. If response quality degrades, prune low-relevance skills (e.g. platform-specific ones) by deleting their folders.
