@@ -19,6 +19,10 @@ export type Post = {
   imageAlt: string;
   /** Article body as HTML, rendered on /posts/[id] via dangerouslySetInnerHTML. */
   content: string;
+  /** FAQ section — 4-6 real buyer questions grounded in THIS post's facts.
+   *  Rendered on the detail page AND emitted as FAQPage schema from this same
+   *  array (AEO Standards 7/8: schema always mirrors visible content). */
+  faqs?: { question: string; answer: string }[];
 };
 
 /**
@@ -30,9 +34,9 @@ export const posts: Post[] = [
   {
     id: 1,
     title: "iPhone Duo: Apple's First Foldable iPhone — Everything You Need to Know",
-    metaTitle: "iPhone Duo: Apple's First Foldable iPhone Price & Specs",
+    metaTitle: "iPhone Duo: Apple's Foldable iPhone Price & Specs",
     metaDescription:
-      "Apple has announced its first foldable iPhone, the iPhone Duo, featuring a 7.6-inch inner display, A20 Pro chip, and a $1,999 price tag. Here's a full breakdown.",
+      "Apple's iPhone Duo foldable: 7.6-inch display, A20 Pro chip, $1,999 price. Pre-orders October 16, sales October 23 in 70+ countries — all confirmed specs.",
     excerpt:
       "Apple has announced its first foldable iPhone, the iPhone Duo, featuring a 7.6-inch inner display, A20 Pro chip, and a $1,999 price tag. Here's a full breakdown.",
     category: 'News',
@@ -59,13 +63,40 @@ export const posts: Post[] = [
       <p>The iPhone Duo starts at $1,999 for the 256GB model. Pre-orders open October 16, with sales beginning October 23 across more than 70 countries, followed by a second wave of markets on October 30.</p>
       <p>Whether Apple's wider, tablet-like unfolded shape gives it an edge over existing foldables from competitors remains to be seen once real-world reviews start rolling in — but there's no denying this is one of the most anticipated launches of the year.</p>
     `,
+    faqs: [
+      {
+        question: 'When did Apple announce the iPhone Duo?',
+        answer:
+          'September 9, 2026, at Apple\'s "Surprise and Shine" event.',
+      },
+      {
+        question: 'How much does the iPhone Duo cost?',
+        answer: 'The iPhone Duo starts at $1,999 for the 256GB model.',
+      },
+      {
+        question: 'When can I buy the iPhone Duo?',
+        answer:
+          'Pre-orders open October 16, 2026, with sales beginning October 23 in more than 70 countries and a second wave of markets on October 30.',
+      },
+      {
+        question: 'Does the iPhone Duo have Face ID?',
+        answer:
+          'No — Apple replaced Face ID with Touch ID on the iPhone Duo, likely a space-saving trade-off in the folding chassis rather than a security downgrade.',
+      },
+      {
+        question: 'What displays does the iPhone Duo have?',
+        answer:
+          'A 5.4-inch outer screen and a 7.6-inch inner display with a nano-texture coating and laser-etched micro-lens surface designed to make the fold crease nearly invisible.',
+      },
+    ],
   },
+
   {
     id: 2,
     title: 'Best Bladeless Tower Fans of 2026: Dreo vs Dreame vs Dyson Compared',
-    metaTitle: 'Best Bladeless Tower Fan 2026: Dreo vs Dreame vs Dyson',
+    metaTitle: 'Bladeless Tower Fans 2026: Dreo vs Dreame vs Dyson',
     metaDescription:
-      'We compared the Dreo Pilot Max S, Dreame MF10, and Dyson Cool AM07 bladeless tower fans on airflow, noise, smart features and price to find the best one for your room.',
+      'Dreo Pilot Max S vs Dreame MF10 vs Dyson AM07: airflow, noise, smart features and price compared to find the best bladeless tower fan for your room in 2026.',
     excerpt:
       'Three bladeless tower fans, three very different personalities. We break down the Dreo Pilot Max S, Dreame MF10 and Dyson Cool AM07 to help you pick the right one for your room — and your budget.',
     category: 'Guide',
@@ -75,8 +106,8 @@ export const posts: Post[] = [
     views: 2600,
     imageAlt: 'Bladeless tower fan comparison (placeholder image)',
     content: `
-      <p>Bladeless tower fans look like they shouldn't work — and then they do. Air is pulled in at the base, squeezed through a narrow internal channel, and pushed out through a ring or slot around the tower. That fast-moving stream drags the surrounding air along with it, a trick usually called air multiplication, so the output feels far bigger than the motor alone would suggest. The payoff over a bladed fan is smoother, less turbulent airflow that's gentler on skin and quieter at low speeds.</p>
-      <p>For 2026, three models keep coming up in every serious conversation. Here's how they differ — and who each one is actually for.</p>
+      <p>The Dreo Pilot Max S is the best bladeless tower fan for most rooms in 2026, with smart temperature-based control and roughly 30,000 user ratings. The Dreame MF10 wins for open spaces with 270-degree airflow, and the Dyson Cool AM07 remains the premium original — at a premium price.</p>
+      <p>How they work: air is pulled in at the base, squeezed through a narrow channel, and pushed out through a ring, dragging the surrounding air along — smoother, quieter and gentler on skin than any bladed fan. For 2026, three models keep coming up in every serious conversation. Here's how they differ — and who each one is actually for.</p>
 
       <h2>Dreo Pilot Max S — the Safe All-Rounder</h2>
       <p>The Pilot Max S is the veteran of this group by review count, with roughly 30,000 ratings backing it up. That volume matters: it means an enormous number of people have lived with this fan long enough to confirm it doesn't fall apart after a month. Feature-wise, it leans on smart automation — the companion app reads your room's temperature and adjusts fan speed on its own, and Alexa and Google Home can both control it by voice. A backlit remote, an onboard display and a generous spread of speed and oscillation settings make it equally at home in a bedroom or a bigger living space.</p>
@@ -101,13 +132,40 @@ export const posts: Post[] = [
       <p>Match the fan to the room. A typical bedroom or living room with one obvious seating area? The Dreo Pilot Max S is the easy answer. A wide, open space where air needs to travel in every direction? The Dreame MF10's 270-degree coverage earns its price. And if you've always wanted the Dyson experience and can justify the premium, the AM07 remains beautifully made — just know exactly what you're paying extra for.</p>
       <p>Availability in Bangladesh varies by seller, so check local stock and warranty terms before ordering any of these — grey-import units usually skip the official warranty.</p>
     `,
+    faqs: [
+      {
+        question: 'Which bladeless tower fan is best for most rooms?',
+        answer:
+          'The Dreo Pilot Max S — smart temperature-based speed control, Alexa and Google Home voice control, and roughly 30,000 ratings make it the safe all-rounder.',
+      },
+      {
+        question: 'Which fan is best for large or open spaces?',
+        answer:
+          'The Dreame MF10 — its 270-degree airflow arc and temperature-adaptive speeds circulate whole rooms rather than just the space directly in front of the fan.',
+      },
+      {
+        question: 'Is the Dyson Cool AM07 worth the higher price?',
+        answer:
+          'Only if build quality and the original Air Multiplier experience matter more to you than features — the base model has no Wi-Fi or voice control, though it carries a two-year warranty.',
+      },
+      {
+        question: 'Are bladeless fans quieter than regular fans?',
+        answer:
+          'Yes at low speeds — bladeless designs produce smoother, less turbulent airflow, which is why all three fans here feel quieter than bladed equivalents.',
+      },
+      {
+        question: 'Can I buy these bladeless fans in Bangladesh?',
+        answer:
+          'Availability varies by seller. Check local stock and warranty terms before ordering — grey-import units usually skip the official warranty.',
+      },
+    ],
   },
   {
     id: 3,
     title: 'Dyson CameraJet: The $500 Toothbrush That Films Inside Your Mouth',
-    metaTitle: 'Dyson CameraJet Toothbrush: Price, Specs & How It Works',
+    metaTitle: 'Dyson CameraJet Toothbrush: Price, Specs, Release',
     metaDescription:
-      "Dyson's CameraJet toothbrush packs a 1mm camera shooting 28 frames a second to spot missed areas and auto-floss them with a water jet. Price, specs and whether it's worth it.",
+      "Dyson's CameraJet ($499) has a 1mm camera shooting 28 frames/sec to spot missed areas and auto-floss them. Launched Sep 1, 2026 — full specs inside.",
     excerpt:
       'A 1mm camera, an AI that spots what your bristles missed, and a water jet that flosses for you. Dyson’s CameraJet is the strangest launch of the year — here’s what it actually does and who should buy it.',
     category: 'News',
@@ -134,11 +192,32 @@ export const posts: Post[] = [
       <p>Honestly? Most people don't need a five-hundred-dollar toothbrush — a solid sonic brush with a timer covers the fundamentals at a fraction of the price. The CameraJet makes sense for two specific buyers: people who genuinely struggle to floss consistently and want the machine to do the targeting, and early adopters who'll pay for the novelty. If inconsistent flossing isn't your problem, neither is the CameraJet's solution.</p>
       <p>It's sold through Dyson directly plus Amazon and Best Buy in colourways including Ceramic Pink and Ceramic Ultra Blue — though official Bangladesh availability is still unclear, so grey-market pricing will likely decide local reality.</p>
     `,
+    faqs: [
+      {
+        question: 'What is the Dyson CameraJet?',
+        answer:
+          'A $499 electric toothbrush with a 1mm camera in the brush head that films 28 frames per second, uses AI to spot missed areas, and flosses them automatically with a water jet.',
+      },
+      {
+        question: 'How much does the Dyson CameraJet cost?',
+        answer: '$499, launched September 1, 2026.',
+      },
+      {
+        question: 'Does the CameraJet store video of my mouth?',
+        answer:
+        'No — Dyson states images are processed on-device or shown briefly in the app, then deleted; nothing is saved or shared.',
+      },
+      {
+        question: 'Is the Dyson CameraJet available in Bangladesh?',
+        answer:
+          'Not officially yet — it is sold via Dyson, Amazon and Best Buy abroad, so grey-market pricing will likely decide local reality.',
+      },
+    ],
   },
   {
     id: 4,
     title: 'iOS 27 Is Here: New Features, Release Date and Compatible iPhones',
-    metaTitle: 'iOS 27: Release Date, New Features & Compatible iPhones',
+    metaTitle: 'iOS 27: Release Date, Features & Compatible iPhones',
     metaDescription:
       'iOS 27 brings a rebuilt generative-AI Siri, an auto-adapting Lock Screen wallpaper and smarter widgets. Here’s everything new and which iPhones can install it.',
     excerpt:
@@ -177,13 +256,35 @@ export const posts: Post[] = [
       <p>Compatibility is generous: every phone that ran iOS 26, right back to the iPhone 11 and the second-generation iPhone SE. The catch is feature splits — Apple Intelligence and most new Siri behaviour require an A17 Pro chip or newer (iPhone 15 Pro and up), and custom Siri voices need the A19 Pro. Everyone else still gets the performance, Photos, Safari, Health and Lock Screen improvements.</p>
       <p>Siri AI won't be available at launch in the EU or China while Apple works through local regulatory requirements. And the standing advice holds: back up before any major iOS update, and if you're on a public beta, expect some features to shift before the final build.</p>
     `,
+    faqs: [
+      {
+        question: 'When did iOS 27 come out?',
+        answer:
+          'Announced at WWDC on June 8, 2026, with the public release rolling out to iPhones worldwide around mid-September 2026.',
+      },
+      {
+        question: 'Which iPhones can run iOS 27?',
+        answer:
+          'Every phone that ran iOS 26 — back to the iPhone 11 and second-generation iPhone SE. Apple Intelligence and most new Siri behaviour need an A17 Pro or newer; custom Siri voices need the A19 Pro.',
+      },
+      {
+        question: 'What is new in iOS 27?',
+        answer:
+          'A generative-AI Siri that handles follow-up questions and multi-step tasks, an auto-extending Lock Screen wallpaper, smarter widgets and search, Shared Albums for Android and Windows users, and a reworked CPU scheduler for older phones.',
+      },
+      {
+        question: 'Is Siri AI available everywhere at launch?',
+        answer:
+          'No — the Siri AI beta ships in English later in 2026, and it will not be available at launch in the EU or China while Apple works through local regulatory requirements.',
+      },
+    ],
   },
   {
     id: 5,
-    title: 'iPhone Ultra: Apple’s First Foldable — Leaked Price, Specs and Release Window',
-    metaTitle: 'iPhone Ultra Foldable: Price, Release Date & Leaked Specs',
+    title: 'iPhone Ultra: Every Rumor About Apple’s Foldable So Far',
+    metaTitle: 'iPhone Ultra Rumors: Leaked Price, Specs & Date',
     metaDescription:
-      'Apple’s foldable iPhone reportedly lands in September 2026 as the iPhone Ultra — a passport-style fold with a crease-free hinge, A20 chip and a $1,999–$2,499 price. What’s known so far.',
+      'iPhone Ultra rumors: passport-style foldable, crease-free hinge, A20 chip, $1,999–$2,499 price, reportedly September 2026. Every credible leak so far.',
     excerpt:
       'After a decade of rumors that went nowhere, Apple’s foldable finally has a shape, a name and a price range. Here’s everything credible about the iPhone Ultra — and why Samsung shouldn’t relax.',
     category: 'News',
@@ -193,7 +294,8 @@ export const posts: Post[] = [
     views: 6700,
     imageAlt: 'iPhone Ultra foldable concept (placeholder image)',
     content: `
-      <p>Apple has been "about to" launch a foldable since roughly 2018 — and every confidently predicted deadline came and went. This time the momentum looks real, and the leaks have converged on a name few expected: not the iPhone Fold, but the <strong>iPhone Ultra</strong>. According to analyst Mark Gurman, the branding is deliberate — Apple is assembling a family of "Ultra" products through the end of 2026, and the foldable is meant to crown that lineup.</p>
+      <p>The iPhone Ultra is not confirmed — every detail here comes from credible leaks, not Apple. Those leaks converge on a passport-style foldable with a 7.7–7.8-inch inner display, a crease-free hinge, an A20 chip and a $1,999–$2,499 price, reportedly arriving September 2026. Here is the best reporting so far, clearly separated from what Apple has announced.</p>
+      <p><em>Update (Sep 10, 2026): Apple has now announced its first foldable — as the <a href="/posts/1">iPhone Duo</a>. That post covers the confirmed specs and pricing; this one preserves the leak-era reporting for reference.</em></p>
 
       <h2>A Passport, Not a Rectangle</h2>
       <p>Forget what the Galaxy Z Fold taught you a foldable looks like. Leakers describe a "passport-style" body — shorter and squarer when closed — opening into a roughly 7.7 to 7.8-inch internal display with an iPad mini-like 4:3 aspect ratio. It's still a book-style vertical fold like the Pixel 9 Pro Fold, just built around squatter proportions.</p>
@@ -211,13 +313,20 @@ export const posts: Post[] = [
       <p>Apple is entering a category Samsung has owned for eight generations. The Galaxy Z Fold8 Ultra just launched at $2,099.99 and measures a startling 4.1mm unfolded — reportedly thinner than the iPhone Ultra's rumoured 4.5mm. If that holds, Apple arrives as the catch-up player on raw thinness while potentially leading on the one problem nobody has fully solved: the crease.</p>
       <p>For buyers in Bangladesh, expect these figures to translate to well over ৳2.5 lakh at launch through official channels, with grey-market units arriving earlier but without warranty. If you simply want a great phone today, an established flagship remains the safer spend — first-generation Apple hardware has a track record, and it isn't flawless.</p>
     `,
+    faqs: [
+      { question: 'Is the iPhone Ultra confirmed by Apple?', answer: 'No — the name, specs and prices here come from credible leaks and analysts, not Apple. For what Apple has officially announced, see our iPhone Duo coverage.' },
+      { question: 'iPhone Ultra vs iPhone Duo — what is the difference?', answer: 'The iPhone Ultra was the leak-era name for Apple’s foldable; the iPhone Duo is what Apple actually announced on September 9, 2026. Our iPhone Duo post has the confirmed specs and pricing.' },
+      { question: 'When is the iPhone Ultra expected to launch?', answer: 'The window in play was September 2026, alongside the iPhone 18 Pro and Pro Max at Apple’s fall event.' },
+      { question: 'How much is the iPhone Ultra expected to cost?', answer: 'Multiple credible reports converged on $1,999–$2,499 — which would make it the most expensive iPhone ever sold by a wide margin.' },
+      { question: 'Will the iPhone Ultra have a crease?', answer: 'Sources claim Apple pursued a crease-free hinge “regardless of cost” — if it ships that way, it would be a genuine category first, since every foldable today shows some fold line.' },
+    ],
   },
   {
     id: 6,
     title: 'iPhone 18 Release Date Split: Which Models Arrive When',
-    metaTitle: 'iPhone 18 Release Date: When Each Model Actually Arrives',
+    metaTitle: 'iPhone 18 Release Date: When Each Model Arrives',
     metaDescription:
-      'Apple is splitting the iPhone 18 launch in two — Pro models and a foldable in September 2026, standard models in spring 2027. Here’s the full timeline and what changes.',
+      'Apple splits the iPhone 18 launch: Pro models and a foldable in September 2026, standard models in spring 2027. Full timeline, C2 modem, A20 Pro chip, pricing.',
     excerpt:
       'For the first time, Apple is splitting its iPhone launch across two seasons. Here’s exactly when the iPhone 18 Pro, Pro Max, the foldable, and the standard models arrive — and why.',
     category: 'News',
@@ -242,5 +351,12 @@ export const posts: Post[] = [
       <h2>The Bottom Line</h2>
       <p>If you want a Pro model or you're curious about Apple's first foldable, September is your month. If you're a standard-model buyer, settle in — spring 2027 is the earliest realistic window, and this year's fall event simply isn't built for you. For Bangladesh buyers, expect official-channel stock of the Pro models within weeks of the US launch, as with recent generations, with the usual price premium over US MSRP.</p>
     `,
+    faqs: [
+      { question: 'When does the iPhone 18 Pro come out?', answer: 'September 2026, at Apple’s fall event, with pre-orders the same week and deliveries shortly after.' },
+      { question: 'When does the standard iPhone 18 come out?', answer: 'Spring 2027 — Apple is holding the standard model, an iPhone 18e, and possibly a second-generation iPhone Air until then.' },
+      { question: 'What chip will the iPhone 18 Pro use?', answer: 'A 2-nanometer A20 Pro chip, plus Apple’s own C2 modem — though some US units may still ship with Qualcomm hardware depending on regional sourcing.' },
+      { question: 'How much will the iPhone 18 cost?', answer: 'Nothing official yet. The iPhone 17 Pro Max held $1,199 last cycle; a foldable near $2,000 sharing the stage is the open question.' },
+      { question: 'When will the iPhone 18 reach Bangladesh?', answer: 'Expect official-channel stock of the Pro models within weeks of the US launch, as with recent generations, with the usual price premium over US MSRP.' },
+    ],
   },
 ];

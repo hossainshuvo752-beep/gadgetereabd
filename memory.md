@@ -600,3 +600,15 @@ Known gap flagged to user: with ~50 skills loaded, agents may mis-select or dilu
   - Item 11: rendered titles ALL exceed 60 (65-73 incl " | TechBD" suffix — all 6 need metaTitle trimming; remember the 45-51 source budget). Descriptions: post 4 OK (159); 1/2/6 slightly over (166-168); 3 (184) and 5 (185) well over.
   - Item 7: all 6 posts have FAQ sections but NO per-post FAQPage schema yet (schema currently only on /faq + HomeFAQ). When we do the content pass: add 4-6 real Q&As per post + FAQPage schema via faqSchema() from the same data the page renders.
   - Also flagged: posts 1 (iPhone Duo) and 5 (iPhone Ultra) cover the same foldable-iPhone topic — potential keyword cannibalization; recommend consolidating or differentiating during the content pass.
+
+## Task Log — 2026-09-22: AEO content pass on all 6 posts (build-verified)
+
+- **Meta titles**: all 6 trimmed to fit the rendered 60-char budget (56-60 rendered incl "| TechBD" suffix). Post 1 73->58, Post 2 63->59, Post 3 68->58, Post 4 68->60, Post 5 70->56, Post 6 65->56.
+- **Meta descriptions**: all 6 now 148-159 chars (target 140-160), packed with concrete specifics (prices, dates, specs). Post 3 184->148, Post 5 185->150, Post 6 168->159, Post 1 166->154, Post 2 167->156; Post 4 kept at 159.
+- **Direct-answer leads**: posts 2 and 5 rewritten answer-first (85->49w, 76->56w); all six leads now 42-57 words.
+- **FAQ sections**: none existed before (earlier audit's "FAQ yes" was a Footer-link false positive) — wrote 4-5 real Q&As per post grounded ONLY in each post's own facts (no fabrication). Rendered as question-format H2s on the detail page from the new post.faqs array.
+- **FAQPage schema**: post.faqs feeds faqSchema() from the same array the page renders (AEO 7/8). Rolled out per standard 15: Post 1 first, build-verified, then the rest.
+- **Infrastructure**: Post type gained optional faqs field; /posts/[slug] renders the FAQ section + conditional FAQPage schema.
+- **iPhone Duo vs Ultra differentiation**: Post 1 positioned as the CONFIRMED announcement (official specs/price/date); Post 5 reframed as the RUMOR/leak piece — new title ("Every Rumor ... So Far"), answer-first lead stating unconfirmed status, updated-slug link to /posts/1 as the confirmed version. Different search intents, complementary not competing. Post 6 unchanged in angle (timeline piece), metas only.
+- **editorial-todo.md created** (standard 6): review dates for all 6 posts (release-week checks for news posts, then 6-9-month cycles).
+- Slugs untouched (standard 10). Final verification: python check of all 6 prerendered pages -> ALL REQUIREMENTS MET: True (schema=[BlogPosting, FAQPage] x6, schema==visible H2s True x6, leads/desc/titles all in range).
