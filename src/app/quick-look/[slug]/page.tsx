@@ -3,6 +3,8 @@ import type { Metadata } from 'next';
 import { slugify, products } from '@/lib/products';
 import QuickLookDetail from '@/components/QuickLookDetail';
 import NewsletterPopup from '@/components/NewsletterPopup';
+import JsonLd from '@/components/JsonLd';
+import { productSchema } from '@/lib/schema';
 
 /**
  * Individual Quick Look detail page: /quick-look/honor-robot-phone,
@@ -52,6 +54,9 @@ export default async function QuickLookProductPage({
 
   return (
     <>
+      {/* Product schema — mirrors the visible spec sheet; offers only when
+          the price is confirmed (see lib/schema.ts). */}
+      <JsonLd data={productSchema(product)} />
       <QuickLookDetail product={product} />
       <NewsletterPopup />
     </>

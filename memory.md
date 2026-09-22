@@ -542,3 +542,20 @@ Rule note: any NEW client page added in the future needs a thin server layout.ts
 Installed 5 Agent Skills from github.com/kostja94/marketing-skills into C:\Users\User\.claude\skills\ (user-level, machine-wide, NOT in the repo):
 robots-txt, xml-sitemap, title-tag, meta-description, schema-markup.
 Each is a SKILL.md file with YAML frontmatter (name/description). Install method: curl the raw SKILL.md from the repo into ~/.claude/skills/<skill-name>/. Removal = delete that folder. Source repo has more SEO skills (skills/seo/{content,entity-seo,local,off-page,on-page,parasite-seo,programmatic-seo,technical}) plus other marketing groups (analytics, channels, content, pages, paid-ads, platforms, strategies) if more are wanted later.
+
+## Task Log — 2026-09-22: AEO / JSON-LD structured data pass
+
+New shared infra:
+- **src/lib/schema.ts** — builders: faqSchema(faqs), articleSchema(post), productSchema(product). Hard rules: only visible content marked up; Product `offers` emitted ONLY when status==='available' && !priceEstimated && price set (estimated prices and upcoming products never become machine-readable offers — answer engines must not quote unconfirmed prices); ISO-8601 dates; SITE_URL constant.
+- **src/components/JsonLd.tsx** — safe JSON-LD script tag (escapes `<` as \u003c so payloads can't break out of the script element).
+
+Schema per page (all match visible content exactly, verified at build-output level):
+- /faq → FAQPage (8 Q&As — programmatic check: schema == visible, EXACT MATCH True)
+- Homepage HomeFAQ → FAQPage (5 Q&As — same array the accordion renders)
+- /posts/[slug] → BlogPosting (headline == visible h1 verified True, datePublished, author, publisher, mainEntityOfPage, articleSection)
+- /shop/[id] ALL products → Product (name/brand/category/description; offers w/ BDT price only for confirmed-price available products — shop/1 HONOR upcoming: no offers; shop/2 Samsung: offers BDT 199999 NewCondition InStock)
+- /quick-look/[slug] ALL products → same Product schema via shared productSchema
+
+Verification: full production build; python extraction of every <script type="application/ld+json"> from prerendered HTML — 52 blocks site-wide, all parse as valid JSON; FAQ questions cross-checked against rendered <h2> text; offer presence cross-checked against priceEstimated/status flags.
+
+Rule: any future FAQ section, post page, or product surface must emit schema via lib/schema.ts builders from the same data the page renders — never hand-written JSON-LD, never invented ratings/dates.

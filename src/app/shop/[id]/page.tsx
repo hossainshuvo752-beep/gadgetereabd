@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import { products } from '@/lib/products';
 import QuickLookDetail from '@/components/QuickLookDetail';
 import NewsletterPopup from '@/components/NewsletterPopup';
+import JsonLd from '@/components/JsonLd';
+import { productSchema } from '@/lib/schema';
 
 /**
  * Individual Shop product page: /shop/1, /shop/2, …
@@ -43,6 +45,9 @@ export default async function ProductDetailPage({
 
   return (
     <>
+      {/* Product schema — offers only when the visible price is confirmed
+          (never for estimated prices or upcoming products). */}
+      <JsonLd data={productSchema(product)} />
       {/* Same shared template as the Quick Look detail page — breadcrumb
           points back to the Shop listing instead of Quick Look. */}
       <QuickLookDetail

@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from 'react';
+import JsonLd from '@/components/JsonLd';
+import { faqSchema } from '@/lib/schema';
 
 const HomeFAQ: React.FC = () => {
   const faqs = [
@@ -39,6 +41,8 @@ const HomeFAQ: React.FC = () => {
 
   return (
     <section className="mb-12 bg-bg-light">
+      {/* FAQPage schema — same array the accordion renders (exact match rule). */}
+      <JsonLd data={faqSchema(faqs)} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h2 className="text-2xl font-bold text-text-heading mb-6 text-center">
           Frequently Asked Questions

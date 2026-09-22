@@ -4,6 +4,8 @@ import type { Metadata } from 'next';
 import { posts } from '@/lib/posts';
 import NewsletterPopup from '@/components/NewsletterPopup';
 import PostMeta from '@/components/PostMeta';
+import JsonLd from '@/components/JsonLd';
+import { articleSchema } from '@/lib/schema';
 
 /**
  * Blog article detail page (/posts/[id]). Imports the single shared posts
@@ -45,6 +47,8 @@ export default async function PostsPage({ params }: Props) {
 
   return (
     <article className="min-h-screen bg-text-on-dark">
+      {/* BlogPosting schema — headline/author/date mirror the visible header. */}
+      <JsonLd data={articleSchema(post)} />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Featured Image Placeholder */}
         <div className="mb-8">

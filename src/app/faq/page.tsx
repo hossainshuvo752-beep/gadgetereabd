@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from 'react';
+import JsonLd from '@/components/JsonLd';
+import { faqSchema } from '@/lib/schema';
 
 /**
  * Site-wide FAQ page — same accordion pattern as the HomeFAQ component
@@ -64,6 +66,9 @@ export default function FaqPage() {
 
   return (
     <section className="py-12 bg-bg-light min-h-[calc(100vh-64px)]">
+      {/* FAQPage schema — same FAQS array the accordion renders, so the
+          marked-up Q&As match the visible content exactly. */}
+      <JsonLd data={faqSchema(FAQS)} />
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold text-text-heading mb-2">
           Frequently Asked Questions
