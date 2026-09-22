@@ -612,3 +612,12 @@ Known gap flagged to user: with ~50 skills loaded, agents may mis-select or dilu
 - **iPhone Duo vs Ultra differentiation**: Post 1 positioned as the CONFIRMED announcement (official specs/price/date); Post 5 reframed as the RUMOR/leak piece — new title ("Every Rumor ... So Far"), answer-first lead stating unconfirmed status, updated-slug link to /posts/1 as the confirmed version. Different search intents, complementary not competing. Post 6 unchanged in angle (timeline piece), metas only.
 - **editorial-todo.md created** (standard 6): review dates for all 6 posts (release-week checks for news posts, then 6-9-month cycles).
 - Slugs untouched (standard 10). Final verification: python check of all 6 prerendered pages -> ALL REQUIREMENTS MET: True (schema=[BlogPosting, FAQPage] x6, schema==visible H2s True x6, leads/desc/titles all in range).
+
+## Task Log — 2026-09-22: Supabase backend integration (initial setup only)
+
+- Installed @supabase/supabase-js. Client singleton: src/lib/supabase.ts — reads NEXT_PUBLIC_SUPABASE_URL + NEXT_PUBLIC_SUPABASE_ANON_KEY from env, throws a clear error if missing. No hardcoded credentials anywhere.
+- .env.local created locally with the real values (gitignored via existing .env* rule — verified with git check-ignore and a post-commit file-list safety check). .env.example committed as the template; .gitignore gained !.env.example exception.
+- ARCHITECTURE RULE: Supabase is for sensitive/user-generated data ONLY (accounts, form submissions, newsletter lists, orders). Product/blog catalog data stays in src/lib (static, SEO-critical) — do NOT migrate it.
+- Verified: tsc clean; client created against the live project (health endpoint 200, GoTrue v2.197.0) using the anon key; dev server boots Ready with zero errors (home/blog/faq all 200).
+- TODO (user action): add the same two NEXT_PUBLIC_ vars to Vercel dashboard (Settings -> Environment Variables) — .env.local is local-only; production reads Vercel env.
+- No features wired yet by design — tables/features get added one at a time next.
