@@ -536,3 +536,9 @@ This applies on both mobile and desktop. Any new blog card component or section 
 - Verified at BUILD-OUTPUT level: sitemap.xml.body (64 URLs, correct priorities), robots.txt.body, blog.html <title> + og:* tags present.
 
 Rule note: any NEW client page added in the future needs a thin server layout.tsx (or a server page) exporting metadata — client pages cannot carry their own metadata export.
+
+## Task Log — 2026-09-22: External SEO skills installed (environment note)
+
+Installed 5 Agent Skills from github.com/kostja94/marketing-skills into C:\Users\User\.claude\skills\ (user-level, machine-wide, NOT in the repo):
+robots-txt, xml-sitemap, title-tag, meta-description, schema-markup.
+Each is a SKILL.md file with YAML frontmatter (name/description). Install method: curl the raw SKILL.md from the repo into ~/.claude/skills/<skill-name>/. Removal = delete that folder. Source repo has more SEO skills (skills/seo/{content,entity-seo,local,off-page,on-page,parasite-seo,programmatic-seo,technical}) plus other marketing groups (analytics, channels, content, pages, paid-ads, platforms, strategies) if more are wanted later.
