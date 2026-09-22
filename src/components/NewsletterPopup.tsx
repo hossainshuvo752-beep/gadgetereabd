@@ -2,25 +2,23 @@
 
 import React, { useEffect, useState } from 'react';
 import { X } from 'lucide-react';
+import { useNewsletterSignup } from '@/hooks/useNewsletterSignup';
 
-// Subscription flag: the ONLY persisted state. Once the user actually
-// submits the subscribe form, the popup never appears again — on any page,
-// in any future session. Closing the popup (X / outside click) stores
-// nothing, so it reappears after 15s on the next mounted page/visit.
+// Display gate ONLY — set after a confirmed Supabase success/already-subscribed
+// result so this browser stops auto-showing the popup. The actual subscription
+// record lives in the newsletter_subscribers table; this flag never creates or
+// fakes one. Closing the popup (X / outside click) stores nothing.
 const SUBSCRIBED_KEY = 'techbd_newsletter_subscribed';
 const SHOW_DELAY_MS = 15000;
 
 const NewsletterPopup: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
-  // Inline validation error ("Please enter your email address." when empty,
-  // a friendly message for malformed addresses) — replaces the browser's
-  // native required/email tooltip, which overlapped the privacy text.
-  const [error, setError] = useState<string | null>(null);
+  const { submit, status, error } = useNewsletterSignup();
 
-  // Show the popup 15s after landing on a mounted page, unless the user
-  // has already subscribed. No "shown/dismissed" tracking of any kind.
+  // Show the popup 15s after landing on a mounted page, unless this browser
+  // has already completed a real subscription through Supabase. No
+  // "shown/dismissed" tracking of any kind.
   useEffect(() => {
     if (typeof window === 'undefined') return;
     if (localStorage.getItem(SUBSCRIBED_KEY)) return;
@@ -38,24 +36,24 @@ const NewsletterPopup: React.FC = () => {
     setIsOpen(false);
   };
 
-  // Actual subscribe: validate inline (no native tooltip), persist and close.
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  // Subscribe: the hook validates inline (no native tooltip), inserts into
+  // Supabase, and maps 23505 to the already-subscribed outcome. The flag is
+  // written ONLY on a confirmed database result.
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const value = email.trim();
-    if (value === '') {
-      setError('Please enter your email address.');
-      return;
+    const result = await submit(email);
+    if (result.outcome === 'error') return; // inline error is rendered from the hook
+
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(SUBSCRIBED_KEY, 'true');
     }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/i.test(value)) {
-      setError('Please enter a valid email address.');
-      return;
-    }
-    localStorage.setItem(SUBSCRIBED_KEY, 'true');
-    setSubmitted(true);
-    setTimeout(() => setIsOpen(false), 1200);
+    setTimeout(() => setIsOpen(false), 1600);
   };
 
   if (!isOpen) return null;
+
+  const busy = status === 'loading';
+  const succeeded = status === 'success' || status === 'already';
 
   return (
     <div
@@ -84,9 +82,11 @@ const NewsletterPopup: React.FC = () => {
           Subscribe for exclusive reviews, new arrivals and tech tips
         </p>
 
-        {submitted ? (
-          <p className="text-center text-accent font-medium">
-            Thanks for subscribing! 🎉 Check your inbox soon.
+        {succeeded ? (
+          <p className="text-center text-accent font-medium" role="status">
+            {status === 'already'
+              ? "You're already subscribed! 🎉"
+              : 'Thanks for subscribing! 🎉 Check your inbox soon.'}
           </p>
         ) : (
           <>
@@ -102,12 +102,10 @@ const NewsletterPopup: React.FC = () => {
               <input
                 type="email"
                 value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  if (error) setError(null); // clear as soon as the user types
-                }}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className={`h-12 w-full rounded-lg sm:rounded-l-lg sm:rounded-r-none border px-4 text-text-heading placeholder-text-body focus:outline-none focus:ring-2 ${
+                disabled={busy}
+                className={`h-12 w-full rounded-lg sm:rounded-l-lg sm:rounded-r-none border px-4 text-text-heading placeholder-text-body focus:outline-none focus:ring-2 disabled:opacity-60 ${
                   error
                     ? 'border-danger ring-1 ring-danger'
                     : 'border-text-heading/10 focus:ring-accent'
@@ -115,13 +113,14 @@ const NewsletterPopup: React.FC = () => {
               />
               <button
                 type="submit"
-                className="h-12 w-full sm:w-auto rounded-lg sm:rounded-l-none sm:rounded-r-lg bg-accent px-6 text-text-on-dark font-medium hover:bg-accent-hover"
+                disabled={busy}
+                className="h-12 w-full sm:w-auto rounded-lg sm:rounded-l-none sm:rounded-r-lg bg-accent px-6 text-text-on-dark font-medium hover:bg-accent-hover disabled:opacity-60"
               >
-                Subscribe
+                {busy ? 'Subscribing…' : 'Subscribe'}
               </button>
             </form>
-            {/* Inline validation error — styled to the site tokens, sits
-                cleanly above the privacy line instead of a native tooltip. */}
+            {/* Inline error from the shared hook — validation or insert
+                failure — styled to the site tokens, no native tooltips. */}
             {error && (
               <p className="mt-2 text-sm text-danger" role="alert">
                 {error}

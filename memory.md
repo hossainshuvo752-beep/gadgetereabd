@@ -631,3 +631,11 @@ Known gap flagged to user: with ~50 skills loaded, agents may mis-select or dilu
 - **Account page**: real auth state — greeting + Logout when signed in, login/register prompt otherwise.
 - **Live probes**: signUp round-trip works (user created, email confirmation ON); anon SELECT on profiles → 0 rows; anon INSERT → blocked by RLS.
 - Frontend handles missing-profile gracefully (profile insert is a fallback, not a blocker).
+
+## Task Log — 2026-09-22 (Newsletter → Supabase wiring)
+- **src/hooks/useNewsletterSignup.ts** — THE shared submission hook for every newsletter form: inline validation (empty + format, exported isValidEmail), Supabase insert into newsletter_subscribers, Postgres 23505 mapped to a friendly "You're already subscribed!", inline error messages (no native tooltips), loading state.
+- **NewsletterPopup** — rewired to the hook; localStorage flag is now ONLY a post-success display gate (set exclusively after a confirmed DB success/already result). Real persistence = Supabase.
+- **NewsletterBanner** — was a no-op form (no onSubmit at all); now uses the same hook + states. Gained "use client" (it holds state now).
+- Other instances checked: checkout has only a subscribe CONSENT CHECKBOX (no email input — belongs to the future orders feature); no other newsletter forms exist.
+- **Live E2E probe against the real table**: fresh insert OK; duplicate → 23505; anon SELECT → 0 rows (RLS holding). Finding: DB accepted 'not-an-email' — the optional email check-constraint SQL was never applied; client-side validation is the only guard. SQL provided to user.
+- Verified: tsc --noEmit clean; full next build green; banner form prerendered in index.html; newsletter_subscribers call present in shipped client chunks.
