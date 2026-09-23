@@ -44,7 +44,8 @@ type EventName =
   | 'add_to_cart'
   | 'checkout_view'
   | 'begin_checkout'
-  | 'order_placed';
+  | 'order_placed'
+  | 'outbound_click';
 
 type Pending = {
   event: EventName;
@@ -258,6 +259,30 @@ export function initTracking() {
   void initWebVitals();
 
   window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Outbound link clicks (affiliate / partner links). Capture-phase listener
+  // so we still see the click even if the page starts navigating away.
+  document.addEventListener(
+    'click',
+    (e) => {
+      const target = e.target as Element | null;
+      const anchor = target?.closest?.('a');
+      if (!anchor) return;
+      const href = anchor.getAttribute('href') || '';
+      if (!/^https?:\/\//i.test(href)) return;
+      try {
+        const host = new URL(href, location.href).hostname;
+        if (host === location.hostname || host.endsWith(`.${location.hostname}`)) return;
+        track('outbound_click', {
+          url: href.slice(0, 300),
+          title: (anchor.textContent || '').trim().slice(0, 120),
+        });
+      } catch {
+        /* never break the click */
+      }
+    },
+    true
+  );
 
   // Refined close-out on tab hide/unload — the SPA-safe complement, not the
   // sole mechanism (that was the reference's bug).

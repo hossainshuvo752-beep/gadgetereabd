@@ -1,18 +1,15 @@
-import { loadOverview, normalizeRange, type DateRange } from '@/lib/analytics-queries';
+import { loadOverview, normalizeRange, funnelSteps } from '@/lib/analytics-queries';
 import { BackfillButtons } from './BackfillButtons';
 import { RangePicker } from './RangePicker';
+import { OverviewSubscriberSearch } from './OverviewSubscriberSearch';
 
 export const dynamic = 'force-dynamic';
 
 /**
- * Analytics overview: stat cards, sessions trend, top pages — all computed
- * over a selectable date range (presets 7/30/90 or a custom start/end pair).
- * The range lives in the URL (?days=N or ?from=...&to=...), so the server
- * component re-queries analytics_reports for exactly that window; the picker
- * is real filtering, not cosmetic.
- *
- * "Today vs yesterday" stays a fixed pair — it is deliberately not part of
- * the range selection.
+ * Analytics overview: everything range-driven (totals, funnel, trend, top
+ * pages/products/categories/blog, per-source stats, newsletter, live clicks)
+ * recalculates from the URL-selected date range. Today/yesterday stays a
+ * fixed pair.
  */
 
 function Stat({
@@ -44,8 +41,65 @@ function fmtDate(iso: string): string {
   });
 }
 
-function rangeLabel(r: DateRange): string {
+function rangeLabel(r: { from: string; to: string }): string {
   return r.from === r.to ? fmtDate(r.from) : `${fmtDate(r.from)} — ${fmtDate(r.to)}`;
+}
+
+function fmtDuration(secs: number): string {
+  if (secs < 60) return `${secs}s`;
+  return `${Math.floor(secs / 60)}m ${secs % 60}s`;
+}
+
+function timeAgo(iso: string): string {
+  const s = Math.max(1, Math.round((Date.now() - new Date(iso).getTime()) / 1000));
+  if (s < 60) return `${s}s ago`;
+  if (s < 3600) return `${Math.round(s / 60)}m ago`;
+  return `${Math.round(s / 3600)}h ago`;
+}
+
+/** Horizontal bar list (no chart lib — same pattern as the rest of admin). */
+function BarList({
+  title,
+  rows,
+  valueLabel,
+}: {
+  title: string;
+  rows: Array<{ label: string; value: number; sub?: string }>;
+  valueLabel: string;
+}) {
+  const max = Math.max(1, ...rows.map((r) => r.value));
+  return (
+    <div>
+      <h2 className="text-lg font-bold text-text-heading mb-3">{title}</h2>
+      <div className="bg-text-on-dark border border-text-heading/10 rounded-lg shadow-sm overflow-hidden">
+        {rows.length === 0 ? (
+          <p className="text-text-body text-sm p-4">
+            No data in this range yet — it appears as tracking events accumulate.
+          </p>
+        ) : (
+          <ul className="divide-y divide-text-heading/5">
+            {rows.map((r) => (
+              <li key={r.label} className="px-4 py-2.5">
+                <div className="flex items-center justify-between gap-4 text-sm mb-1">
+                  <span className="text-text-heading font-medium truncate">{r.label}</span>
+                  <span className="text-text-heading shrink-0">
+                    {nf.format(r.value)} <span className="text-text-body text-xs">{valueLabel}</span>
+                    {r.sub ? <span className="text-text-body text-xs"> · {r.sub}</span> : null}
+                  </span>
+                </div>
+                <div className="h-1.5 bg-bg-light rounded overflow-hidden">
+                  <div
+                    className="h-full bg-accent/80 rounded"
+                    style={{ width: `${(r.value / max) * 100}%` }}
+                  />
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  );
 }
 
 export default async function AnalyticsOverviewPage({
@@ -63,12 +117,8 @@ export default async function AnalyticsOverviewPage({
   const convRate = t.product_views
     ? ((t.add_to_cart / t.product_views) * 100).toFixed(1)
     : '0.0';
-
-  // Inline bar chart for the range's sessions trend (no chart lib). With long
-  // custom ranges flex-1 bars get thinner on their own; labels rotate and
-  // squeeze, which stays readable without extra logic.
-  const trend = data.trend;
-  const maxSessions = Math.max(1, ...trend.map((d) => d.sessions));
+  const funnel = funnelSteps(t);
+  const maxFunnel = Math.max(1, funnel[0]?.value ?? 1);
 
   return (
     <div className="space-y-8">
@@ -123,7 +173,8 @@ export default async function AnalyticsOverviewPage({
             {days !== null ? `Last ${days} days` : 'Selected range'}
           </h2>
           <span className="text-sm text-text-body">
-            {rangeLabel(range)} · {trend.length} day{trend.length === 1 ? '' : 's'} of data
+            {rangeLabel(range)} · {nf.format(data.trend.length)} day
+            {data.trend.length === 1 ? '' : 's'} of data
           </span>
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -142,66 +193,228 @@ export default async function AnalyticsOverviewPage({
         </div>
       </div>
 
-      {/* Trend */}
+      {/* Purchase funnel */}
+      <div>
+        <h2 className="text-lg font-bold text-text-heading mb-3">Purchase funnel</h2>
+        <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-4 shadow-sm">
+          <div className="space-y-2.5">
+            {funnel.map((step, i) => (
+              <div key={step.label}>
+                <div className="flex items-center justify-between text-sm mb-1">
+                  <span className="text-text-heading font-medium">{step.label}</span>
+                  <span className="text-text-heading">
+                    {nf.format(step.value)}
+                    {i > 0 ? (
+                      <span className="text-text-body text-xs ml-2">
+                        {((step.value / maxFunnel) * 100).toFixed(1)}% of sessions
+                      </span>
+                    ) : null}
+                  </span>
+                </div>
+                <div className="h-2 bg-bg-light rounded overflow-hidden">
+                  <div
+                    className={`h-full rounded ${i === 0 ? 'bg-text-heading/30' : 'bg-accent/80'}`}
+                    style={{ width: `${Math.max(1.5, (step.value / maxFunnel) * 100)}%` }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Daily trend for the range */}
       <div>
         <h2 className="text-lg font-bold text-text-heading mb-3">
-          Sessions — {days !== null ? `last ${Math.min(14, days)}` : ''} trend within range
+          Daily trend — {days !== null ? `last ${days} days` : 'selected range'}
         </h2>
         <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-4 shadow-sm">
-          {trend.length === 0 ? (
+          {data.trend.length === 0 ? (
             <p className="text-text-body text-sm">
               No aggregated days in this range — run <strong>Backfill</strong> to build
               reports for it.
             </p>
           ) : (
             <div className="flex items-end gap-1.5 h-32">
-              {trend.map((d) => (
+              {data.trend.map((d) => (
                 <div key={d.date} className="flex-1 min-w-0 flex flex-col items-center gap-1">
                   <div
                     className="w-full bg-accent/80 rounded-t"
-                    style={{ height: `${Math.max(4, (d.sessions / maxSessions) * 100)}%` }}
+                    style={{ height: `${Math.max(4, (d.sessions / Math.max(1, ...data.trend.map((x) => x.sessions)))) * 100}%` }}
                     title={`${d.date}: ${d.sessions} sessions, ${d.page_views} views`}
                   />
                   <span className="text-[10px] text-text-body rotate-45 origin-top-left whitespace-nowrap">
                     {d.date.slice(5)}
                   </span>
                 </div>
-              ))}
+                ))}
             </div>
           )}
         </div>
       </div>
 
-      {/* Top pages */}
+      {/* Traffic sources with per-source stats */}
       <div>
-        <h2 className="text-lg font-bold text-text-heading mb-3">
-          Top pages — {days !== null ? `last ${days} days` : 'selected range'}
-        </h2>
-        <div className="bg-text-on-dark border border-text-heading/10 rounded-lg shadow-sm overflow-hidden">
-          {data.topPages.length === 0 ? (
-            <p className="text-text-body text-sm p-4">
-              No page data in this range yet — it appears after aggregation runs for
-              those days.
-            </p>
+        <h2 className="text-lg font-bold text-text-heading mb-3">Traffic sources</h2>
+        <div className="bg-text-on-dark border border-text-heading/10 rounded-lg shadow-sm overflow-x-auto">
+          {data.bySource.length === 0 ? (
+            <p className="text-text-body text-sm p-4">No aggregated data in this range yet.</p>
           ) : (
             <table className="w-full text-sm">
               <thead>
                 <tr className="text-left text-xs uppercase tracking-wider text-text-body border-b border-text-heading/10">
-                  <th className="px-4 py-2">Page</th>
-                  <th className="px-4 py-2 text-right">Views</th>
+                  <th className="px-4 py-2">Source</th>
+                  <th className="px-4 py-2 text-right">Sessions</th>
+                  <th className="px-4 py-2 text-right">Sessions / day</th>
+                  <th className="px-4 py-2 text-right">Avg session</th>
+                  <th className="px-4 py-2 text-right">Bounce %</th>
+                  <th className="px-4 py-2 text-right">Clicks</th>
+                  <th className="px-4 py-2 text-right">Subs</th>
                 </tr>
               </thead>
               <tbody>
-                {data.topPages.map((p) => (
-                  <tr key={p.page} className="border-b border-text-heading/5 last:border-0">
-                    <td className="px-4 py-2 text-text-heading font-mono text-xs">{p.page}</td>
-                    <td className="px-4 py-2 text-right text-text-heading">{nf.format(p.views)}</td>
+                {data.bySource.map((s) => (
+                  <tr key={s.source} className="border-b border-text-heading/5 last:border-0">
+                    <td className="px-4 py-2 text-text-heading capitalize">{s.source}</td>
+                    <td className="px-4 py-2 text-right text-text-heading">{nf.format(s.sessions)}</td>
+                    <td className="px-4 py-2 text-right text-text-heading">
+                      {s.sessions_per_day.toFixed(1)}
+                    </td>
+                    <td className="px-4 py-2 text-right text-text-heading">
+                      {fmtDuration(s.avg_session_seconds)}
+                    </td>
+                    <td className="px-4 py-2 text-right text-text-heading">{s.bounce_pct}%</td>
+                    <td className="px-4 py-2 text-right text-text-heading">{nf.format(s.clicks)}</td>
+                    <td className="px-4 py-2 text-right text-text-heading">{nf.format(s.subscribes)}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           )}
         </div>
+      </div>
+
+      {/* Rankings */}
+      <BarList
+        title="Top pages"
+        rows={data.topPages.map((p) => ({ label: p.page, value: p.views }))}
+        valueLabel="views"
+      />
+
+      <BarList
+        title="Top products"
+        rows={data.topProducts.map((p) => ({ label: p.label, value: p.views }))}
+        valueLabel="product views"
+      />
+
+      <BarList
+        title="Top categories"
+        rows={data.topCategories.map((c) => ({ label: c.label, value: c.views }))}
+        valueLabel="product views"
+      />
+
+      {/* Top blog posts */}
+      <div>
+        <h2 className="text-lg font-bold text-text-heading mb-3">Top blog posts</h2>
+        <div className="bg-text-on-dark border border-text-heading/10 rounded-lg shadow-sm overflow-x-auto">
+          {data.topBlogPosts.length === 0 ? (
+            <p className="text-text-body text-sm p-4">No blog traffic in this range yet.</p>
+          ) : (
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="text-left text-xs uppercase tracking-wider text-text-body border-b border-text-heading/10">
+                  <th className="px-4 py-2">Post</th>
+                  <th className="px-4 py-2 text-right">Views</th>
+                  <th className="px-4 py-2 text-right">Card clicks</th>
+                  <th className="px-4 py-2 text-right">Avg time</th>
+                  <th className="px-4 py-2 text-right">Engagement</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.topBlogPosts.map((p) => (
+                  <tr key={p.title} className="border-b border-text-heading/5 last:border-0">
+                    <td className="px-4 py-2 text-text-heading max-w-xs truncate">{p.title}</td>
+                    <td className="px-4 py-2 text-right text-text-heading">{nf.format(p.views)}</td>
+                    <td className="px-4 py-2 text-right text-text-heading">{nf.format(p.card_clicks)}</td>
+                    <td className="px-4 py-2 text-right text-text-heading">{fmtDuration(p.avg_time)}</td>
+                    <td className="px-4 py-2 text-right text-text-heading">{p.engagement}%</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
+        <p className="text-xs text-text-body mt-2">
+          Engagement = average time on the post ÷ 60s (a “deep read” floor). Card clicks
+          count header-search result clicks that led to a post.
+        </p>
+      </div>
+
+      {/* Live outbound clicks */}
+      <div>
+        <h2 className="text-lg font-bold text-text-heading mb-3">
+          Live clicks feed — outbound links, last 24h
+        </h2>
+        <div className="bg-text-on-dark border border-text-heading/10 rounded-lg shadow-sm overflow-hidden">
+          {data.liveClicks.length === 0 ? (
+            <p className="text-text-body text-sm p-4">
+              No outbound link clicks recorded in the last 24 hours.
+            </p>
+          ) : (
+            <ul className="divide-y divide-text-heading/5">
+              {data.liveClicks.map((c, i) => (
+                <li key={`${c.when}-${i}`} className="px-4 py-2.5 text-sm flex items-center justify-between gap-4">
+                  <span className="text-text-heading truncate">
+                    {c.title}{' '}
+                    <span className="text-text-body text-xs font-mono">{c.url}</span>
+                  </span>
+                  <span className="text-text-body text-xs shrink-0">{timeAgo(c.when)}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+        <p className="text-xs text-text-body mt-2">
+          Captured automatically from clicks on external links (affiliate / brand pages).
+        </p>
+      </div>
+
+      {/* Newsletter */}
+      <div className="grid lg:grid-cols-2 gap-6">
+        <div>
+          <h2 className="text-lg font-bold text-text-heading mb-3">Newsletter</h2>
+          <div className="grid grid-cols-2 gap-4">
+            <Stat label="Subscribe rate" value={`${data.newsletterRate}%`} hint="subscribes ÷ popup impressions" />
+            <Stat label="Total subscribes" value={nf.format(t.newsletter_subscribes)} />
+          </div>
+          <div className="bg-text-on-dark border border-text-heading/10 rounded-lg shadow-sm overflow-hidden mt-4">
+            {data.newsletterByCountry.length === 0 ? (
+              <p className="text-text-body text-sm p-4">No impressions recorded in this range yet.</p>
+            ) : (
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="text-left text-xs uppercase tracking-wider text-text-body border-b border-text-heading/10">
+                    <th className="px-4 py-2">Country</th>
+                    <th className="px-4 py-2 text-right">Impressions</th>
+                    <th className="px-4 py-2 text-right">Subs</th>
+                    <th className="px-4 py-2 text-right">Rate</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.newsletterByCountry.map((c) => (
+                    <tr key={c.country} className="border-b border-text-heading/5 last:border-0">
+                      <td className="px-4 py-2 text-text-heading capitalize">{c.country}</td>
+                      <td className="px-4 py-2 text-right text-text-heading">{nf.format(c.shown)}</td>
+                      <td className="px-4 py-2 text-right text-text-heading">{nf.format(c.subs)}</td>
+                      <td className="px-4 py-2 text-right text-text-heading">{c.rate}%</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
+        </div>
+        <OverviewSubscriberSearch subscribers={data.subscribers} />
       </div>
 
       <BackfillButtons />
