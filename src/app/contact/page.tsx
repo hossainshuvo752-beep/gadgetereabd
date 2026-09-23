@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import { supabase } from '@/lib/supabase';
 import { FaFacebookF, FaInstagram, FaWhatsapp, FaYoutube, FaPinterest } from 'react-icons/fa';
 
 // Same icon set and styling as the Footer.
@@ -24,6 +25,8 @@ const EMPTY_FORM: FormState = { name: '', email: '', subject: '', message: '' };
 export default function ContactPage() {
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -32,9 +35,32 @@ export default function ContactPage() {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  // No backend yet — placeholder success state only.
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  // Persists the message to Supabase (contact_messages, INSERT-only RLS —
+  // the same pattern as the newsletter forms): inline validation, real
+  // insert, friendly error messages, no native browser tooltips.
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError(null);
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/i.test(form.email.trim())) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+    if (form.message.trim().length < 5) {
+      setError('Please write a slightly longer message.');
+      return;
+    }
+    setSending(true);
+    const { error: insertError } = await supabase.from('contact_messages').insert({
+      name: form.name.trim(),
+      email: form.email.trim(),
+      subject: form.subject.trim(),
+      message: form.message.trim(),
+    });
+    setSending(false);
+    if (insertError) {
+      setError('Something went wrong — please try again in a moment.');
+      return;
+    }
     setSubmitted(true);
   };
 
@@ -66,8 +92,8 @@ export default function ContactPage() {
                 <div className="text-3xl mb-3">🎉</div>
                 <h2 className="text-xl font-bold text-text-heading mb-2">Message sent!</h2>
                 <p className="text-text-body mb-6">
-                  Thanks for reaching out. This is a placeholder confirmation for now — no
-                  backend is connected yet.
+                  Thanks for reaching out — your message is in our inbox and
+                  we&apos;ll get back to you soon.
                 </p>
                 <button
                   onClick={() => {
@@ -153,11 +179,17 @@ export default function ContactPage() {
                     className={inputClasses}
                   />
                 </div>
+                {error && (
+                  <p role="alert" className="text-sm text-danger">
+                    {error}
+                  </p>
+                )}
                 <button
                   type="submit"
-                  className="px-6 py-2.5 bg-accent text-text-on-dark font-medium rounded-md hover:bg-accent-hover transition-colors"
+                  disabled={sending}
+                  className="px-6 py-2.5 bg-accent text-text-on-dark font-medium rounded-md hover:bg-accent-hover transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Send Message
+                  {sending ? 'Sending…' : 'Send Message'}
                 </button>
               </form>
             )}

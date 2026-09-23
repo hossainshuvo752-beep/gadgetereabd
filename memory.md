@@ -639,3 +639,15 @@ Known gap flagged to user: with ~50 skills loaded, agents may mis-select or dilu
 - Other instances checked: checkout has only a subscribe CONSENT CHECKBOX (no email input — belongs to the future orders feature); no other newsletter forms exist.
 - **Live E2E probe against the real table**: fresh insert OK; duplicate → 23505; anon SELECT → 0 rows (RLS holding). Finding: DB accepted 'not-an-email' — the optional email check-constraint SQL was never applied; client-side validation is the only guard. SQL provided to user.
 - Verified: tsc --noEmit clean; full next build green; banner form prerendered in index.html; newsletter_subscribers call present in shipped client chunks.
+
+## Task Log — 2026-09-22 (Admin Dashboard + Register phone + Contact persistence)
+- **/admin unified dashboard** (server component): password gate → POST /api/admin/login (timing-safe check vs ADMIN_PASSWORD server-side) → httpOnly cookie `techbd_admin_session` (HMAC token from server secrets); logout route clears it; robots.ts now disallows /admin + /api/admin; noindex layout metadata.
+- **Server-only data layer**: src/lib/supabaseAdmin.ts (service-role client guarded by `server-only` package — client import = build error) + adminData.ts (auth.admin.listUsers merged with profiles + newsletter_subscribers email cross-check + contact_messages, newest first).
+- **Overview cards**: Registered Users (+X this week), Total Orders 0 (graceful), Contact Messages count, Ordered Value ৳0 (graceful). Orders section = "No orders yet." placeholder.
+- **Users table**: Name/Email/Phone/Newsletter-status/Registered + CSV download; **Messages table**: Name/Email/Subject/Message/Received + CSV download. CSV via /api/admin/csv (cookie-protected, BOM for Excel, RFC-4180 escaping).
+- **Register form**: optional Phone field (validated only when filled) → profiles.phone.
+- **Contact form**: now really persists to contact_messages (INSERT-only RLS — service role is the only reader), inline validation/errors, real success state replacing the placeholder text.
+- **DB (user-run SQL)**: profiles.phone added; contact_messages created with INSERT-only RLS.
+- **E2E verified on the production build**: gate hides data pre-auth; wrong pw → 401; correct pw → cookie; dashboard renders; CSV 401 without cookie, real data with; logout restores gate; robots.txt serves admin disallows. Secret-leak scan of client bundle: clean (only supabase-js's own `sb_secret_` prefix check matched).
+- **PRE-LAUNCH CHECKLIST (security)**: (1) ADMIN_PASSWORD is a temporary demo value — rotate to a strong password before production. (2) The SUPABASE_SERVICE_ROLE_KEY was shared once via chat — treat as compromised and regenerate in Supabase Dashboard → Settings → API after this session, then update .env.local + Vercel.
+- **Vercel reminder**: add ADMIN_PASSWORD and SUPABASE_SERVICE_ROLE_KEY to Vercel env vars (the dashboard shows an error state on /admin without them — by design, fails loudly).

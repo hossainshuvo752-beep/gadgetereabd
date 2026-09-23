@@ -20,6 +20,8 @@ export default function robots(): MetadataRoute.Robots {
           '/account',
           '/login',
           '/register',
+          '/admin',
+          '/api/admin',
         ],
       },
     ],

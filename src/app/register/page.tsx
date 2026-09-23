@@ -8,8 +8,9 @@ import { friendlyAuthError } from '@/context/AuthContext';
 /**
  * Register — real Supabase Auth signup (email/password). Supabase manages
  * credentials and sessions internally (auth.users); we only store the
- * display name: in signup metadata first, mirrored into `profiles` when
- * a session exists (confirmation OFF). Confirmation ON is handled below.
+ * display name and optional phone: in signup metadata first, mirrored into
+ * `profiles` when a session exists (confirmation OFF). Confirmation ON is
+ * handled below.
  */
 
 const inputClasses =
@@ -40,6 +41,12 @@ export default function RegisterPage() {
       setError('Please enter your name.');
       return;
     }
+    // Optional — validated only when provided.
+    const phone = String(form.get('phone') ?? '').trim();
+    if (phone && !/^[+]?[\d\s()-]{6,20}$/.test(phone)) {
+      setError('Please enter a valid phone number (or leave it blank).');
+      return;
+    }
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
       setError('Please enter a valid email address.');
       return;
@@ -66,7 +73,7 @@ export default function RegisterPage() {
     if (data.session && data.user) {
       await supabase
         .from('profiles')
-        .insert({ id: data.user.id, full_name: name });
+        .insert({ id: data.user.id, full_name: name, phone: phone || null });
       setStatus({ kind: 'done' });
       return;
     }
@@ -146,6 +153,22 @@ export default function RegisterPage() {
                 name="name"
                 autoComplete="name"
                 placeholder="Your full name"
+                className={inputClasses}
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="phone"
+                className="block text-sm font-medium text-text-heading mb-2"
+              >
+                Phone <span className="font-normal text-text-body">(optional)</span>
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                autoComplete="tel"
+                placeholder="01XXXXXXXXX"
                 className={inputClasses}
               />
             </div>
