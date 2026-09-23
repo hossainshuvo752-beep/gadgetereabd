@@ -680,3 +680,8 @@ Known gap flagged to user: with ~50 skills loaded, agents may mis-select or dilu
 - Status PATCH route verified: 401 without cookie, 200 with cookie (pending→confirmed confirmed in DB), 400 on invalid status; order restored to pending for review.
 - TEST ORDER LEFT IN DB (TechBD-TEST01) — user may delete it in Table Editor.
 - Orders feature is now fully done: checkout → Supabase → admin dashboard, all verified. Analytics cluster 2 (tracker + ingest) is next.
+
+## Task Log — 2026-09-23 (Post-deploy verification: orders live)
+- Fresh test order via exact Checkout path after user's pgrst NOTIFY: OK in 412ms (insert + order_items + service readback); probe auto-deleted. TechBD-TEST01 left pending in DB for dashboard review.
+- Live Vercel deploy verified running the FIXED checkout: "Could not place your order" string found in served chunk /_next/static/immutable/chunks/3kh-vdqc86j8b.js. (Note: Vercel serves Turbopack chunks under /_next/static/immutable/ — earlier regex missed them.)
+- Orders feature: COMPLETE and DEPLOYED. Next: analytics cluster 2.
