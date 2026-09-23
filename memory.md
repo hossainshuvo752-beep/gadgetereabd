@@ -651,3 +651,8 @@ Known gap flagged to user: with ~50 skills loaded, agents may mis-select or dilu
 - **E2E verified on the production build**: gate hides data pre-auth; wrong pw → 401; correct pw → cookie; dashboard renders; CSV 401 without cookie, real data with; logout restores gate; robots.txt serves admin disallows. Secret-leak scan of client bundle: clean (only supabase-js's own `sb_secret_` prefix check matched).
 - **PRE-LAUNCH CHECKLIST (security)**: (1) ADMIN_PASSWORD is a temporary demo value — rotate to a strong password before production. (2) The SUPABASE_SERVICE_ROLE_KEY was shared once via chat — treat as compromised and regenerate in Supabase Dashboard → Settings → API after this session, then update .env.local + Vercel.
 - **Vercel reminder**: add ADMIN_PASSWORD and SUPABASE_SERVICE_ROLE_KEY to Vercel env vars (the dashboard shows an error state on /admin without them — by design, fails loudly).
+
+## Task Log — 2026-09-22 (Account page redesign)
+- Rebuilt /account (src/app/account/page.tsx) with the centred-card design: avatar circle + heading + subtext, 2-column quick-link grid (My Cart→/cart, Checkout→/checkout, Help & FAQ→/faq, Support/Contact→/contact, Blog→/blog — last tile full-width), Sign In (filled dark) / Create Account (outline) buttons.
+- Built with BOTH states since auth is live: signed-out = the requested reference design; signed-in = initials avatar (from display name), "Hi, {name}" greeting, same grid, Browse Shop + Logout.
+- Verified: tsc clean, build green, prerendered HTML carries the loading state (client page — real state after hydration); title "My Account | TechBD" unchanged.
