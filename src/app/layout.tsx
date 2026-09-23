@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MobileBottomNav from "@/components/MobileBottomNav";
+import AnalyticsBootstrap from "@/components/AnalyticsBootstrap";
 import { CartProvider } from "@/context/CartContext";
 import { AuthProvider } from "@/context/AuthContext";
 
@@ -47,6 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Footer />
           {/* Fixed bottom nav bar — mobile only (md:hidden inside) */}
           <MobileBottomNav />
+        <AnalyticsBootstrap />
         </CartProvider>
         </AuthProvider>
       </body>

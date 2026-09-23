@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
+import { track } from '@/lib/tracking';
 import { friendlyAuthError } from '@/context/AuthContext';
 
 /**
@@ -74,6 +75,7 @@ export default function RegisterPage() {
       await supabase
         .from('profiles')
         .insert({ id: data.user.id, full_name: name, phone: phone || null });
+      track('register_success', { with_phone: Boolean(phone) });
       setStatus({ kind: 'done' });
       return;
     }

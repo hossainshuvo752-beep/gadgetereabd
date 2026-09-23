@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { products, isPurchasable, type Product } from '@/lib/products';
 import { useCart } from '@/context/CartContext';
 import { supabase } from '@/lib/supabase';
+import { track } from '@/lib/tracking';
 import { makeOrderNumber } from '@/lib/orderNumber';
 
 /**
@@ -113,6 +114,12 @@ function CheckoutInner() {
   const total = subtotal + (lines.length > 0 ? DELIVERY_FEE : 0);
   const isEmpty = lines.length === 0;
 
+  // Funnel signal (fire-and-forget): a visitor reached checkout with items.
+  React.useEffect(() => {
+    if (!isEmpty) track('checkout_view', { items: lines.length, buy_now: Boolean(buyNow) });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // Real order placement: INSERT into Supabase (orders + order_items),
   // then navigate to the confirmation page with the DB order number.
   // Every failure surfaces as an inline error — no silent fake success.
@@ -189,6 +196,13 @@ function CheckoutInner() {
           console.warn('newsletter opt-in insert failed:', newsError.message);
         }
       }
+
+      track('order_placed', {
+        total,
+        items: lines.length,
+        buy_now: Boolean(buyNow),
+        payment,
+      });
 
       if (buyNow) {
         router.push(

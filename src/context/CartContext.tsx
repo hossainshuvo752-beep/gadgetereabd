@@ -8,6 +8,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { track } from '@/lib/tracking';
 import { products, isPurchasable, type Product } from '@/lib/products';
 
 /**
@@ -116,6 +117,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         return [...prev, { productId, qty, variant }];
       });
       showToast(`Added to cart: ${product.title}`);
+      track('add_to_cart', { product_id: product.id });
     },
     [showToast]
   );

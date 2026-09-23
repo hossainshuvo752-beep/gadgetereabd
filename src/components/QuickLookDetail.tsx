@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import type { Product } from '@/lib/products';
+import { track } from '@/lib/tracking';
 import PriceTag from '@/components/PriceTag';
 import { isPurchasable, isUpcoming } from '@/lib/products';
 import { useCart } from '@/context/CartContext';
@@ -171,6 +172,13 @@ const QuickLookDetail: React.FC<{
   const router = useRouter();
   const { addToCart, notify } = useCart();
   // Gallery + variant state
+  // Funnel signal (fire-and-forget, once per mount): a product detail page
+  // was actually viewed with this product's data.
+  useEffect(() => {
+    track('product_view', { product_id: product.id });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [product.id]);
+
   const [activeImage, setActiveImage] = useState(0);
   const [activeColor, setActiveColor] = useState(0);
   const [activeStorage, setActiveStorage] = useState(0);

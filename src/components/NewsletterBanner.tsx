@@ -5,7 +5,7 @@ import { useNewsletterSignup } from '@/hooks/useNewsletterSignup';
 
 const NewsletterBanner: React.FC = () => {
   const [email, setEmail] = useState('');
-  const { submit, status, error } = useNewsletterSignup();
+  const { submit, status, error } = useNewsletterSignup('banner');
 
   // Shared Supabase-backed submission (same hook as the popup): inline
   // validation, real insert into newsletter_subscribers, 23505 mapped to

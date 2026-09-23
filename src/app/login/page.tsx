@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
+import { track } from '@/lib/tracking';
 import { friendlyAuthError } from '@/context/AuthContext';
 
 /**
@@ -50,6 +51,7 @@ export default function LoginPage() {
     }
 
     // Session established; AuthProvider updates everywhere via its listener.
+    track('login_success');
     router.push('/account');
     router.refresh();
   };

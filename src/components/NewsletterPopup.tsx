@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { X } from 'lucide-react';
 import { useNewsletterSignup } from '@/hooks/useNewsletterSignup';
+import { track } from '@/lib/tracking';
 
 // Display gate ONLY — set after a confirmed Supabase success/already-subscribed
 // result so this browser stops auto-showing the popup. The actual subscription
@@ -14,7 +15,7 @@ const SHOW_DELAY_MS = 15000;
 const NewsletterPopup: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState('');
-  const { submit, status, error } = useNewsletterSignup();
+  const { submit, status, error } = useNewsletterSignup('popup');
 
   // Show the popup 15s after landing on a mounted page, unless this browser
   // has already completed a real subscription through Supabase. No
@@ -25,6 +26,9 @@ const NewsletterPopup: React.FC = () => {
 
     const timer = setTimeout(() => {
       setIsOpen(true);
+      // Fire-and-forget funnel signal; deduped per session in the tracker's
+      // queue — safe to call on every auto-show.
+      track('newsletter_shown', { placement: 'popup' });
     }, SHOW_DELAY_MS);
 
     return () => clearTimeout(timer);

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { isAdminAuthenticated } from '@/lib/adminAuth';
 import { loadAdminData } from '@/lib/adminData';
 import AdminOrderStatusSelect from '@/components/admin/AdminOrderStatusSelect';
@@ -97,7 +98,15 @@ export default async function AdminPage() {
               Users, orders and messages — server-side data, protected access.
             </p>
           </div>
-          <AdminLogoutButton />
+          <div className="flex items-center gap-3">
+            <Link
+              href="/admin/analytics"
+              className="px-5 py-2.5 bg-accent text-text-on-dark font-medium rounded-md hover:bg-accent/90 transition-colors"
+            >
+              Analytics
+            </Link>
+            <AdminLogoutButton />
+          </div>
         </div>
 
         {/* Overview stat cards */}

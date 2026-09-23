@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useState } from 'react';
+import { markEventSent, track } from '@/lib/tracking';
 
 /**
  * THE shared newsletter-submission logic — every newsletter form on the
@@ -22,7 +23,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/i;
 /** Single source of truth for email validation across newsletter forms. */
 export const isValidEmail = (value: string): boolean => EMAIL_RE.test(value.trim());
 
-export function useNewsletterSignup() {
+export function useNewsletterSignup(placement = 'unknown') {
   const [status, setStatus] = useState<NewsletterStatus>('idle');
   const [error, setError] = useState<string | null>(null);
 
@@ -58,6 +59,10 @@ export function useNewsletterSignup() {
           // already on the list, which is a friendly success, not a failure.
           if (insertError.code === '23505') {
             setStatus('already');
+            // Deduped: each email is reported once per 6h window.
+            if (markEventSent(`nl_already:${email.toLowerCase()}`)) {
+              track('newsletter_subscribe', { placement, repeat: true });
+            }
             return { outcome: 'already' };
           }
           const message =
@@ -68,6 +73,7 @@ export function useNewsletterSignup() {
         }
 
         setStatus('success');
+        track('newsletter_subscribe', { placement });
         return { outcome: 'success' };
       } catch {
         // Client construction failure (missing env vars) or network layer error
@@ -77,7 +83,7 @@ export function useNewsletterSignup() {
         return { outcome: 'error', message };
       }
     },
-    []
+    [placement]
   );
 
   return { submit, status, error, reset: () => { setStatus('idle'); setError(null); } };

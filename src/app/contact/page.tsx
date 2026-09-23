@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { supabase } from '@/lib/supabase';
+import { track } from '@/lib/tracking';
 import { FaFacebookF, FaInstagram, FaWhatsapp, FaYoutube, FaPinterest } from 'react-icons/fa';
 
 // Same icon set and styling as the Footer.
@@ -62,6 +63,7 @@ export default function ContactPage() {
       return;
     }
     setSubmitted(true);
+    track('contact_submit');
   };
 
   const inputClasses =

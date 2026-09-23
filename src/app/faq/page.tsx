@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import JsonLd from '@/components/JsonLd';
+import { track } from '@/lib/tracking';
 import { faqSchema } from '@/lib/schema';
 
 /**
@@ -85,7 +86,10 @@ export default function FaqPage() {
             >
               <button
                 type="button"
-                onClick={() => toggleAccordion(index)}
+                onClick={() => {
+                  toggleAccordion(index);
+                  track('faq_expand', { question: faq.question.slice(0, 80) });
+                }}
                 aria-expanded={openIndex === index}
                 className="flex items-center justify-between gap-4 w-full p-4 text-left cursor-pointer hover:bg-bg-light transition-colors"
               >

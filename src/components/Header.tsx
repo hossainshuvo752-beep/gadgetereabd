@@ -25,6 +25,7 @@ import {
 } from 'react-icons/fa';
 import { posts } from '@/lib/posts';
 import { products } from '@/lib/products';
+import { track } from '@/lib/tracking';
 import { useCart } from '@/context/CartContext';
 import { useAuth } from '@/context/AuthContext';
 
@@ -426,7 +427,10 @@ const Header: React.FC = () => {
                       <Link
                         key={post.id}
                         href={`/posts/${post.id}`}
-                        onClick={closeSearch}
+                        onClick={() => {
+                          track('header_search', { type: 'post', q: query.trim().slice(0, 80) });
+                          closeSearch();
+                        }}
                         className="block px-3 py-1.5 text-sm text-text-on-dark/70 hover:text-text-on-dark rounded"
                       >
                         {post.title}
@@ -443,7 +447,10 @@ const Header: React.FC = () => {
                       <Link
                         key={product.id}
                         href={`/shop/${product.id}`}
-                        onClick={closeSearch}
+                        onClick={() => {
+                          track('header_search', { type: 'product', q: query.trim().slice(0, 80) });
+                          closeSearch();
+                        }}
                         className="flex items-center justify-between gap-3 px-3 py-1.5 text-sm text-text-on-dark/70 hover:text-text-on-dark rounded"
                       >
                         <span>{product.title}</span>
