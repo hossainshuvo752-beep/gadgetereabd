@@ -18,13 +18,20 @@ import { supabase } from '@/lib/supabase';
  * display name only (RLS: users read/update their own row).
  */
 
-export type Profile = { id: string; full_name: string | null };
+export type Profile = {
+  id: string;
+  full_name: string | null;
+  phone: string | null;
+  created_at: string | null;
+};
 
 type AuthState = {
   session: Session | null;
   user: User | null;
   /** Display name: profile.full_name, falling back to signup metadata. */
   displayName: string | null;
+  /** Full profile row (name, phone, created_at) or null when absent. */
+  profile: Profile | null;
   /** True once the initial session check has completed. */
   authReady: boolean;
   signOut: () => Promise<void>;
@@ -79,7 +86,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     (async () => {
       const { data } = await supabase
         .from('profiles')
-        .select('id, full_name')
+        .select('id, full_name, phone, created_at')
         .eq('id', session.user.id)
         .maybeSingle();
       if (active) setProfile((data as Profile) ?? null);
@@ -104,6 +111,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         session,
         user: session?.user ?? null,
         displayName,
+        profile,
         authReady,
         signOut,
       }}

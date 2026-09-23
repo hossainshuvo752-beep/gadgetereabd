@@ -10,6 +10,7 @@ import {
   Mail,
   Newspaper,
   ChevronRight,
+  Phone,
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 
@@ -19,7 +20,8 @@ import { useAuth } from '@/context/AuthContext';
  * Signed OUT: generic person avatar, "Welcome to TechBD" heading, quick-link
  * grid and Sign In / Create Account buttons.
  * Signed IN (auth is live via Supabase): the user's initials in the avatar,
- * a personal greeting, the same quick-link grid, and Browse Shop / Logout.
+ * their full name, email, optional phone line (small phone icon), member
+ * since date, the same quick-link grid, and a single Logout button.
  */
 
 const QUICK_LINKS = [
@@ -39,9 +41,24 @@ const initialsOf = (name: string): string =>
     .join('');
 
 export default function AccountPage() {
-  const { session, displayName, authReady, signOut } = useAuth();
+  const { session, user, displayName, profile, authReady, signOut } = useAuth();
 
   const initials = displayName ? initialsOf(displayName) : null;
+
+  // Member since — profile.created_at falls back to the auth account's
+  // created_at (both are set at signup).
+  const memberSince = profile?.created_at ?? user?.created_at ?? null;
+  const memberSinceText = memberSince
+    ? new Date(memberSince).toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      })
+    : null;
+
+  const email = user?.email ?? null;
+  // Optional Register-form phone — the line is omitted entirely when blank.
+  const phone = profile?.phone?.trim() || null;
 
   return (
     <section className="py-12 bg-bg-light min-h-[calc(100vh-64px)]">
@@ -61,14 +78,28 @@ export default function AccountPage() {
                   <User className="w-9 h-9" />
                 )}
               </div>
-              <h1 className="text-2xl font-bold text-text-heading mb-2">
-                {session ? `Hi, ${displayName ?? 'there'}` : 'Welcome to TechBD'}
+              <h1 className="text-2xl font-bold text-text-heading mb-1">
+                {session ? displayName ?? 'Welcome back' : 'Welcome to TechBD'}
               </h1>
-              <p className="text-text-body mb-8 max-w-xs">
-                {session
-                  ? 'Manage your orders, preferences and favourite gadgets.'
-                  : 'Sign in to view your profile and saved preferences.'}
-              </p>
+              {session && email && (
+                <p className="text-text-body mb-1">{email}</p>
+              )}
+              {session && phone && (
+                <p className="flex items-center justify-center gap-1.5 text-text-body mb-1">
+                  <Phone className="w-3.5 h-3.5 text-accent" aria-hidden="true" />
+                  {phone}
+                </p>
+              )}
+              {session && memberSinceText && (
+                <p className="text-sm text-text-body mb-8">
+                  Member since {memberSinceText}
+                </p>
+              )}
+              {!session && (
+                <p className="text-text-body mb-8 max-w-xs">
+                  Sign in to view your profile and saved preferences.
+                </p>
+              )}
             </div>
 
             {/* Quick-link grid (2 columns) */}
@@ -98,16 +129,10 @@ export default function AccountPage() {
             {/* Bottom action buttons */}
             {session ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <Link
-                  href="/shop"
-                  className="px-6 py-2.5 bg-bg-dark text-text-on-dark font-medium rounded-md hover:opacity-90 transition-opacity text-center"
-                >
-                  Browse the Shop
-                </Link>
                 <button
                   type="button"
                   onClick={() => signOut()}
-                  className="px-6 py-2.5 border border-accent text-accent font-medium rounded-md hover:bg-accent/10 transition-colors"
+                  className="sm:col-span-2 px-6 py-2.5 bg-bg-dark text-text-on-dark font-medium rounded-md hover:opacity-90 transition-opacity"
                 >
                   Logout
                 </button>

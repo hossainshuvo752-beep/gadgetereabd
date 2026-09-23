@@ -656,3 +656,9 @@ Known gap flagged to user: with ~50 skills loaded, agents may mis-select or dilu
 - Rebuilt /account (src/app/account/page.tsx) with the centred-card design: avatar circle + heading + subtext, 2-column quick-link grid (My Cart→/cart, Checkout→/checkout, Help & FAQ→/faq, Support/Contact→/contact, Blog→/blog — last tile full-width), Sign In (filled dark) / Create Account (outline) buttons.
 - Built with BOTH states since auth is live: signed-out = the requested reference design; signed-in = initials avatar (from display name), "Hi, {name}" greeting, same grid, Browse Shop + Logout.
 - Verified: tsc clean, build green, prerendered HTML carries the loading state (client page — real state after hydration); title "My Account | TechBD" unchanged.
+
+## Task Log — 2026-09-22 (Account page: signed-in profile state)
+- /account signed-in card upgraded to full profile view: initials avatar, full name heading, email, optional phone line (phone icon, omitted when blank — reads profiles.phone from the Register form), "Member since {date}" (profile.created_at → auth user.created_at fallback), same quick-link grid, single full-width dark Logout button.
+- AuthContext extended: profile fetch now selects phone + created_at (type Profile widened; `profile` exposed on the context — additive, existing consumers unaffected).
+- No mock data needed: real Supabase session/profile wiring already live; conditional rendering signed-out ↔ signed-in via session.
+- Verified: tsc clean, build green, file re-read clean.
