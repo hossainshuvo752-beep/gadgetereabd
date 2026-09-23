@@ -1,5 +1,6 @@
 import { isAdminAuthenticated } from '@/lib/adminAuth';
 import { loadAdminData } from '@/lib/adminData';
+import AdminOrderStatusSelect from '@/components/admin/AdminOrderStatusSelect';
 import AdminGate from '@/components/admin/AdminGate';
 import AdminLogoutButton from '@/components/admin/AdminLogoutButton';
 import AdminCsvButton from '@/components/admin/AdminCsvButton';
@@ -65,13 +66,24 @@ export default async function AdminPage() {
           ? `+${data.newUsersThisWeek} this week`
           : undefined,
     },
-    { label: 'Total Orders', value: '0', hint: 'No orders yet' },
+    {
+      label: 'Total Orders',
+      value: String(data.totalOrders),
+      hint:
+        data.pendingOrders > 0
+          ? `${data.pendingOrders} pending`
+          : 'all handled',
+    },
     {
       label: 'Contact Messages',
       value: String(data.messages.length),
       hint: undefined,
     },
-    { label: 'Ordered Value', value: '৳0', hint: 'No orders yet' },
+    {
+      label: 'Ordered Value',
+      value: `৳${data.orderedValue.toLocaleString()}`,
+      hint: 'all time',
+    },
   ];
 
   return (
@@ -146,12 +158,64 @@ export default async function AdminPage() {
           )}
         </div>
 
-        {/* Orders — placeholder until the orders feature is built */}
+        {/* Orders */}
         <div className="mb-10">
           <h2 className="text-xl font-bold text-text-heading mb-4">Orders</h2>
-          <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-8 text-center text-text-body">
-            No orders yet.
-          </div>
+          {data.orders.length === 0 ? (
+            <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-8 text-center text-text-body">
+              No orders yet.
+            </div>
+          ) : (
+            <div className="bg-text-on-dark border border-text-heading/10 rounded-lg overflow-x-auto">
+              <table className="w-full min-w-[820px]">
+                <thead className="border-b border-text-heading/10">
+                  <tr>
+                    <th className={th}>Order</th>
+                    <th className={th}>Customer</th>
+                    <th className={th}>Items</th>
+                    <th className={th}>Total</th>
+                    <th className={th}>Placed</th>
+                    <th className={th}>Status</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-text-heading/5">
+                  {data.orders.map((o) => (
+                    <tr key={o.id}>
+                      <td className={`${td} whitespace-nowrap`}>
+                        <span className="font-mono text-xs font-semibold text-accent">{o.orderNumber}</span>
+                        <span className="block text-xs text-text-body mt-0.5">{o.paymentMethod.toUpperCase()}</span>
+                      </td>
+                      <td className={td}>
+                        <span className="font-medium">{o.contactName}</span>
+                        <span className="block text-xs text-text-body">{o.contactPhone}</span>
+                        {o.contactEmail && (
+                          <span className="block text-xs text-text-body">{o.contactEmail}</span>
+                        )}
+                        <span className="block text-xs text-text-body mt-0.5">
+                          {o.address}, {o.city}
+                        </span>
+                      </td>
+                      <td className={td}>
+                        {o.items.map((item, i) => (
+                          <span key={`${o.id}-item-${i}`} className="block text-xs text-text-body">
+                            {item.qty} × {item.title}
+                            <span className="text-text-heading"> ({item.variant})</span>
+                          </span>
+                        ))}
+                      </td>
+                      <td className={`${td} whitespace-nowrap font-semibold`}>
+                        ৳{o.total.toLocaleString()}
+                      </td>
+                      <td className={`${td} whitespace-nowrap`}>{fmtDate(o.createdAt)}</td>
+                      <td className={td}>
+                        <AdminOrderStatusSelect orderId={o.id} current={o.status} />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
 
         {/* Contact messages */}

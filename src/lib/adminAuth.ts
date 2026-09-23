@@ -13,17 +13,27 @@ import { cookies } from 'next/headers';
  */
 export const ADMIN_COOKIE = 'techbd_admin_session';
 
+/** Admin session lifetime. */
+const SESSION_TTL_SECONDS = Number(process.env.ADMIN_SESSION_TTL_HOURS ?? 8) * 60 * 60;
+
 function sessionSecret(): string {
-  // HMAC key material combines both server-side secrets so the token is
+  // HMAC key material: ADMIN_COOKIE_SECRET when set (dedicated secret),
+  // otherwise a combination of the two server secrets so the token is
   // useless without either one.
+  const dedicated = process.env.ADMIN_COOKIE_SECRET;
+  if (dedicated) return dedicated;
   return `${process.env.ADMIN_PASSWORD ?? ''}:${process.env.SUPABASE_SERVICE_ROLE_KEY ?? ''}`;
 }
 
 export function sessionToken(): string {
-  return crypto
-    .createHmac('sha256', sessionSecret())
-    .update('techbd-admin-session-v1')
-    .digest('hex');
+  const body = Buffer.from(
+    JSON.stringify({
+      sub: 'admin',
+      exp: Math.floor(Date.now() / 1000) + SESSION_TTL_SECONDS,
+    })
+  ).toString('base64url');
+  const sig = crypto.createHmac('sha256', sessionSecret()).update(body).digest('base64url');
+  return `${body}.${sig}`;
 }
 
 function safeEqual(a: string, b: string): boolean {
@@ -46,5 +56,24 @@ export async function isAdminAuthenticated(): Promise<boolean> {
   const value = store.get(ADMIN_COOKIE)?.value;
   if (!value) return false;
   if (!process.env.ADMIN_PASSWORD) return false;
-  return safeEqual(value, sessionToken());
+
+  // Token format: base64url(payload).base64url(HMAC). Verify the signature
+  // timing-safely, then the payload (sub + exp).
+  const dot = value.lastIndexOf('.');
+  if (dot < 0) return false;
+  const body = value.slice(0, dot);
+  const sig = value.slice(dot + 1);
+  const expected = crypto.createHmac('sha256', sessionSecret()).update(body).digest('base64url');
+  if (!safeEqual(sig, expected)) return false;
+  try {
+    const payload = JSON.parse(Buffer.from(body, 'base64url').toString('utf8')) as {
+      sub?: string;
+      exp?: number;
+    };
+    if (payload.sub !== 'admin') return false;
+    if (typeof payload.exp !== 'number' || payload.exp < Date.now() / 1000) return false;
+    return true;
+  } catch {
+    return false;
+  }
 }

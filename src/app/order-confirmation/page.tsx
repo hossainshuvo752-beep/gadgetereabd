@@ -4,11 +4,12 @@ import React, { Suspense, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { products, isPurchasable, type Product } from '@/lib/products';
+import { makeOrderNumber } from '@/lib/orderNumber';
 
 /**
- * Order confirmation page — demo only. Shows a success message with a fake
- * Order ID (generated client-side to avoid SSR/hydration mismatches) and an
- * order summary. Two modes:
+ * Order confirmation page — shows the REAL order number passed from
+ * /checkout (persisted in Supabase), falling back to a locally generated
+ * display ID only for legacy/snapshot URLs, and an order summary. Two modes:
  * - BUY NOW (?src=buy-now&id=&qty=&variant=): the single product passed from
  *   /checkout when the order came from a Buy Now button.
  * - CART (?src=cart&data=<json>): the order snapshot /checkout passed in the
@@ -18,24 +19,22 @@ import { products, isPurchasable, type Product } from '@/lib/products';
 
 const DELIVERY_FEE = 150;
 
-const makeOrderId = (): string => {
-  // Fake ID like TechBD-7K3M9Q2 — random, cosmetic only.
-  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-  let suffix = '';
-  for (let i = 0; i < 7; i++) {
-    suffix += chars[Math.floor(Math.random() * chars.length)];
-  }
-  return `TechBD-${suffix}`;
-};
+const makeOrderId = makeOrderNumber;
 
 function OrderConfirmationInner() {
   const searchParams = useSearchParams();
-  const [orderId, setOrderId] = useState<string | null>(null);
+  // The real order number from /checkout (persisted in Supabase). The local
+  // fallback only fires for legacy URLs without ?order= — it's cosmetic and
+  // is NOT the DB's order_number in that case.
+  const realOrder = searchParams.get('order');
+  const [fallbackId, setFallbackId] = useState<string | null>(null);
 
-  // Generate the fake ID after mount so the SSR markup matches hydration.
+  // Generate the fallback after mount so the SSR markup matches hydration.
   useEffect(() => {
-    setOrderId(makeOrderId());
-  }, []);
+    if (!realOrder) setFallbackId(makeOrderNumber());
+  }, [realOrder]);
+
+  const orderId = realOrder ?? fallbackId;
 
   // Buy Now mode: single product from the query params passed by /checkout.
   const idParam = searchParams.get('id');
@@ -114,8 +113,8 @@ function OrderConfirmationInner() {
             Order Confirmed!
           </h1>
           <p className="text-text-body mb-6">
-            Thank you for your order. A confirmation would normally be sent to
-            your email — this demo does not send anything yet.
+            Thank you for your order! We&apos;ll confirm it by phone shortly and
+            email your receipt.
           </p>
 
           <div className="inline-block bg-bg-light border border-text-heading/10 rounded-lg px-6 py-3 mb-8">

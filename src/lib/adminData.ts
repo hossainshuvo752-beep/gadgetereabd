@@ -3,7 +3,7 @@ import { createAdminClient } from '@/lib/supabaseAdmin';
 
 /**
  * All dashboard data is loaded here — server-side only, via the service-role
- * client. Orders do not exist yet, so those numbers are hard zeros.
+ * client. Orders flow in from /checkout (orders + order_items tables).
  */
 
 export type AdminUser = {
@@ -24,12 +24,38 @@ export type AdminMessage = {
   receivedAt: string; // ISO
 };
 
+export type AdminOrderItem = {
+  title: string;
+  variant: string;
+  qty: number;
+  unitPrice: number;
+};
+
+export type AdminOrder = {
+  id: string;
+  orderNumber: string;
+  contactName: string;
+  contactPhone: string;
+  contactEmail: string;
+  address: string;
+  city: string;
+  paymentMethod: string;
+  items: AdminOrderItem[];
+  subtotal: number;
+  deliveryFee: number;
+  total: number;
+  status: string;
+  createdAt: string; // ISO
+};
+
 export type AdminData = {
   users: AdminUser[];
   messages: AdminMessage[];
+  orders: AdminOrder[];
   newUsersThisWeek: number;
-  totalOrders: 0;
-  orderedValue: 0;
+  pendingOrders: number;
+  totalOrders: number;
+  orderedValue: number;
 };
 
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
@@ -109,6 +135,55 @@ export async function loadAdminData(): Promise<AdminData> {
     receivedAt: r.created_at,
   }));
 
-  // Orders: no table yet — graceful zeros by design.
-  return { users, messages, newUsersThisWeek, totalOrders: 0, orderedValue: 0 };
+  // Orders — newest first, with their line items (service role reads all).
+  const { data: orderRows, error: orderError } = await db
+    .from('orders')
+    .select(
+      'id, order_number, contact_name, contact_phone, contact_email, address, city, payment_method, subtotal, delivery_fee, total, status, created_at'
+    )
+    .order('created_at', { ascending: false });
+  if (orderError) throw new Error(`orders select failed: ${orderError.message}`);
+
+  const { data: itemRows, error: itemError } = await db
+    .from('order_items')
+    .select('order_id, title, variant, qty, unit_price');
+  if (itemError) throw new Error(`order_items select failed: ${itemError.message}`);
+  const itemsByOrder = new Map<string, AdminOrderItem[]>();
+  for (const item of itemRows ?? []) {
+    const list = itemsByOrder.get(item.order_id) ?? [];
+    list.push({
+      title: item.title,
+      variant: item.variant,
+      qty: item.qty,
+      unitPrice: item.unit_price,
+    });
+    itemsByOrder.set(item.order_id, list);
+  }
+
+  const orders: AdminOrder[] = (orderRows ?? []).map((r) => ({
+    id: r.id,
+    orderNumber: r.order_number,
+    contactName: r.contact_name,
+    contactPhone: r.contact_phone,
+    contactEmail: r.contact_email ?? '',
+    address: r.address,
+    city: r.city,
+    paymentMethod: r.payment_method,
+    items: itemsByOrder.get(r.id) ?? [],
+    subtotal: r.subtotal,
+    deliveryFee: r.delivery_fee,
+    total: r.total,
+    status: r.status,
+    createdAt: r.created_at,
+  }));
+
+  return {
+    users,
+    messages,
+    orders,
+    newUsersThisWeek,
+    pendingOrders: orders.filter((o) => o.status === 'pending').length,
+    totalOrders: orders.length,
+    orderedValue: orders.reduce((sum, o) => sum + o.total, 0),
+  };
 }

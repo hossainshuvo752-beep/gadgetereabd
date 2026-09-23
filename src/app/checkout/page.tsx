@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { products, isPurchasable, type Product } from '@/lib/products';
 import { useCart } from '@/context/CartContext';
+import { supabase } from '@/lib/supabase';
+import { makeOrderNumber } from '@/lib/orderNumber';
 
 /**
  * Checkout page — demo only (no payment backend). Two modes:
@@ -12,9 +14,11 @@ import { useCart } from '@/context/CartContext';
  *   query params (set by Buy Now buttons on cards/detail pages).
  * - CART (no ?id): shows the shared cart contents from CartContext (items
  *   added via "Add to Cart" buttons, persisted in localStorage).
- * "Place Order" navigates to /order-confirmation — Buy Now params pass
- * through; cart orders pass an order snapshot in the URL so the confirmation
- * summary still displays after the cart is cleared.
+ * "Place Order" PERSISTS the order to Supabase (orders + order_items,
+ * INSERT-only RLS — guests and logged-in users can both order) and then
+ * navigates to /order-confirmation with the real order number. Buy Now
+ * params pass through; cart orders pass an order snapshot in the URL so
+ * the confirmation summary still displays after the cart is cleared.
  *
  * useSearchParams requires a Suspense boundary for static prerendering —
  * hence the inner/outer component split.
@@ -60,9 +64,12 @@ function CheckoutInner() {
   const searchParams = useSearchParams();
   const [form, setForm] = useState<CheckoutForm>(EMPTY_FORM);
   const [payment, setPayment] = useState<PaymentMethod>('bkash');
-  // Marketing opt-in (checked by default, toggleable) — UI only for now;
-  // wire to the newsletter backend when it exists.
+  // Marketing opt-in (checked by default) — on order, also subscribes the
+  // buyer to the newsletter (best-effort; never blocks the order).
   const [subscribeUpdates, setSubscribeUpdates] = useState(true);
+  // Real persistence state — surfaced inline, never swallowed.
+  const [placing, setPlacing] = useState(false);
+  const [orderError, setOrderError] = useState<string | null>(null);
   // Cart mode (no ?id) reads the shared cart store.
   const { items: cartItems, findProduct, clearCart } = useCart();
 
@@ -106,26 +113,96 @@ function CheckoutInner() {
   const total = subtotal + (lines.length > 0 ? DELIVERY_FEE : 0);
   const isEmpty = lines.length === 0;
 
-  // No payment backend — this just routes to the confirmation page. Buy Now
-  // params pass through; cart orders pass a snapshot in the URL so the
-  // confirmation summary survives the cart being cleared.
-  const handlePlaceOrder = (e: React.FormEvent<HTMLFormElement>) => {
+  // Real order placement: INSERT into Supabase (orders + order_items),
+  // then navigate to the confirmation page with the DB order number.
+  // Every failure surfaces as an inline error — no silent fake success.
+  const handlePlaceOrder = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (buyNow) {
-      router.push(
-        `/order-confirmation?src=buy-now&id=${buyNow.id}&qty=${qty}&variant=${encodeURIComponent(variant)}`
+    if (isEmpty || placing) return;
+    setPlacing(true);
+    setOrderError(null);
+
+    try {
+      // Attach the order to the logged-in user when there is one (guest
+      // checkout stays fully supported — user_id is null then).
+      const { data: userData } = await supabase.auth.getUser();
+      const orderNumber = makeOrderNumber();
+
+      const { data: order, error: orderInsertError } = await supabase
+        .from('orders')
+        .insert({
+          order_number: orderNumber,
+          user_id: userData?.user?.id ?? null,
+          contact_name: form.name.trim(),
+          contact_phone: form.phone.trim(),
+          contact_email: form.email.trim() || null,
+          address: form.address.trim(),
+          city: form.city.trim(),
+          payment_method: payment,
+          subtotal,
+          delivery_fee: DELIVERY_FEE,
+          total,
+          status: 'pending',
+          newsletter_opt_in: subscribeUpdates,
+        })
+        .select('id')
+        .single();
+
+      if (orderInsertError || !order) {
+        setOrderError(
+          'Could not place your order — please try again in a moment. If it keeps failing, contact us at hello@techbd.com.'
+        );
+        setPlacing(false);
+        return;
+      }
+
+      const { error: itemsInsertError } = await supabase.from('order_items').insert(
+        lines.map((line) => ({
+          order_id: order.id,
+          product_id: line.productId,
+          title: line.title,
+          variant: line.variant,
+          qty: line.qty,
+          unit_price: line.price,
+          line_total: line.price * line.qty,
+        }))
       );
-      return;
+      // The order row exists even if items failed (network hiccup between
+      // the two inserts) — log loudly server-side, don't block the buyer.
+      if (itemsInsertError) {
+        console.error('order_items insert failed:', itemsInsertError.message);
+      }
+
+      // Best-effort newsletter opt-in (unique violation = already subscribed,
+      // which is fine). Never blocks the order.
+      if (subscribeUpdates && form.email.trim()) {
+        const { error: newsError } = await supabase
+          .from('newsletter_subscribers')
+          .insert({ email: form.email.trim(), source: 'checkout' });
+        if (newsError && newsError.code !== '23505') {
+          console.warn('newsletter opt-in insert failed:', newsError.message);
+        }
+      }
+
+      if (buyNow) {
+        router.push(
+          `/order-confirmation?src=buy-now&id=${buyNow.id}&qty=${qty}&variant=${encodeURIComponent(variant)}&order=${encodeURIComponent(orderNumber)}`
+        );
+        return;
+      }
+      const snapshot = lines.map(({ productId, variant, qty }) => ({
+        productId,
+        variant,
+        qty,
+      }));
+      clearCart();
+      router.push(
+        `/order-confirmation?src=cart&data=${encodeURIComponent(JSON.stringify(snapshot))}&order=${encodeURIComponent(orderNumber)}`
+      );
+    } catch {
+      setOrderError('Connection problem — please check your internet and try again.');
+      setPlacing(false);
     }
-    const snapshot = lines.map(({ productId, variant, qty }) => ({
-      productId,
-      variant,
-      qty,
-    }));
-    clearCart();
-    router.push(
-      `/order-confirmation?src=cart&data=${encodeURIComponent(JSON.stringify(snapshot))}`
-    );
   };
 
   const handleChange = (
@@ -271,12 +348,17 @@ function CheckoutInner() {
               </label>
             </div>
 
+            {orderError && (
+              <p role="alert" className="text-sm text-danger">
+                {orderError}
+              </p>
+            )}
             <button
               type="submit"
-              disabled={isEmpty}
+              disabled={isEmpty || placing}
               className="w-full sm:w-auto px-8 py-3 bg-accent text-text-on-dark font-medium rounded-lg hover:bg-accent-hover transition-colors disabled:bg-accent/50 disabled:cursor-not-allowed"
             >
-              Place Order
+              {placing ? 'Placing Order…' : 'Place Order'}
             </button>
           </form>
 
