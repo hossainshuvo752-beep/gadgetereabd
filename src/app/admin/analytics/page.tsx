@@ -1,11 +1,18 @@
-import { loadOverview } from '@/lib/analytics-queries';
+import { loadOverview, normalizeRange, type DateRange } from '@/lib/analytics-queries';
 import { BackfillButtons } from './BackfillButtons';
+import { RangePicker } from './RangePicker';
 
 export const dynamic = 'force-dynamic';
 
 /**
- * Analytics overview (Cluster 4): stat cards, 14-day trend, top pages,
- * and the funnel for the last 30 days — all from pre-aggregated data.
+ * Analytics overview: stat cards, sessions trend, top pages — all computed
+ * over a selectable date range (presets 7/30/90 or a custom start/end pair).
+ * The range lives in the URL (?days=N or ?from=...&to=...), so the server
+ * component re-queries analytics_reports for exactly that window; the picker
+ * is real filtering, not cosmetic.
+ *
+ * "Today vs yesterday" stays a fixed pair — it is deliberately not part of
+ * the range selection.
  */
 
 function Stat({
@@ -28,18 +35,39 @@ function Stat({
 
 const nf = new Intl.NumberFormat('en-US');
 
-export default async function AnalyticsOverviewPage() {
-  const data = await loadOverview();
+function fmtDate(iso: string): string {
+  return new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+}
 
-  const t = data.totals30;
+function rangeLabel(r: DateRange): string {
+  return r.from === r.to ? fmtDate(r.from) : `${fmtDate(r.from)} — ${fmtDate(r.to)}`;
+}
+
+export default async function AnalyticsOverviewPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const params = await searchParams;
+  const { range, days } = normalizeRange(params);
+  const data = await loadOverview(range);
+
+  const t = data.totals;
   const today = data.today?.totals;
   const yesterday = data.yesterday?.totals;
   const convRate = t.product_views
     ? ((t.add_to_cart / t.product_views) * 100).toFixed(1)
     : '0.0';
 
-  // Simple inline bar chart for the 14-day sessions trend (no chart lib).
-  const trend = data.trend.slice(-14);
+  // Inline bar chart for the range's sessions trend (no chart lib). With long
+  // custom ranges flex-1 bars get thinner on their own; labels rotate and
+  // squeeze, which stays readable without extra logic.
+  const trend = data.trend;
   const maxSessions = Math.max(1, ...trend.map((d) => d.sessions));
 
   return (
@@ -51,7 +79,9 @@ export default async function AnalyticsOverviewPage() {
         </div>
       )}
 
-      {/* Today / yesterday */}
+      <RangePicker activeDays={days} />
+
+      {/* Today / yesterday (fixed window, independent of the range) */}
       <div>
         <h2 className="text-lg font-bold text-text-heading mb-3">Today vs yesterday</h2>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -86,34 +116,47 @@ export default async function AnalyticsOverviewPage() {
         </div>
       </div>
 
-      {/* 30-day totals */}
+      {/* Range totals */}
       <div>
-        <h2 className="text-lg font-bold text-text-heading mb-3">Last 30 days</h2>
+        <div className="flex flex-wrap items-baseline gap-x-3 mb-3">
+          <h2 className="text-lg font-bold text-text-heading">
+            {days !== null ? `Last ${days} days` : 'Selected range'}
+          </h2>
+          <span className="text-sm text-text-body">
+            {rangeLabel(range)} · {trend.length} day{trend.length === 1 ? '' : 's'} of data
+          </span>
+        </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           <Stat label="Sessions" value={nf.format(t.sessions)} />
           <Stat label="Page views" value={nf.format(t.page_views)} />
+          <Stat label="Visitors" value={nf.format(t.visitors)} />
           <Stat label="Product views" value={nf.format(t.product_views)} />
           <Stat label="Add to cart" value={nf.format(t.add_to_cart)} hint={`${convRate}% of product views`} />
           <Stat label="Checkouts" value={nf.format(t.checkouts)} />
           <Stat label="Newsletter subscribes" value={nf.format(t.newsletter_subscribes)} />
-          <Stat label="Contact submits" value={nf.format(t.contact_submits)} />
-          <Stat label="Registers" value={nf.format(t.registers)} />
+          <Stat
+            label="Contact submits + registers"
+            value={nf.format(t.contact_submits + t.registers)}
+            hint={`${nf.format(t.contact_submits)} contact · ${nf.format(t.registers)} registered`}
+          />
         </div>
       </div>
 
       {/* Trend */}
       <div>
-        <h2 className="text-lg font-bold text-text-heading mb-3">Sessions — last 14 days</h2>
+        <h2 className="text-lg font-bold text-text-heading mb-3">
+          Sessions — {days !== null ? `last ${Math.min(14, days)}` : ''} trend within range
+        </h2>
         <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-4 shadow-sm">
           {trend.length === 0 ? (
             <p className="text-text-body text-sm">
-              No aggregated days yet — run <strong>Backfill</strong> to build the
-              first reports.
+              No aggregated days in this range — run <strong>Backfill</strong> to build
+              reports for it.
             </p>
           ) : (
             <div className="flex items-end gap-1.5 h-32">
               {trend.map((d) => (
-                <div key={d.date} className="flex-1 flex flex-col items-center gap-1">
+                <div key={d.date} className="flex-1 min-w-0 flex flex-col items-center gap-1">
                   <div
                     className="w-full bg-accent/80 rounded-t"
                     style={{ height: `${Math.max(4, (d.sessions / maxSessions) * 100)}%` }}
@@ -131,11 +174,14 @@ export default async function AnalyticsOverviewPage() {
 
       {/* Top pages */}
       <div>
-        <h2 className="text-lg font-bold text-text-heading mb-3">Top pages — 30 days</h2>
+        <h2 className="text-lg font-bold text-text-heading mb-3">
+          Top pages — {days !== null ? `last ${days} days` : 'selected range'}
+        </h2>
         <div className="bg-text-on-dark border border-text-heading/10 rounded-lg shadow-sm overflow-hidden">
           {data.topPages.length === 0 ? (
             <p className="text-text-body text-sm p-4">
-              No page data yet — it appears after the first aggregation run.
+              No page data in this range yet — it appears after aggregation runs for
+              those days.
             </p>
           ) : (
             <table className="w-full text-sm">

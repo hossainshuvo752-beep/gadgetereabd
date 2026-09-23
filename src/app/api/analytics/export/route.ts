@@ -5,6 +5,7 @@ import {
   loadOverview,
   loadSubscribers,
   loadSearchAnalytics,
+  lastNDaysRange,
 } from '@/lib/analytics-queries';
 
 export const runtime = 'nodejs';
@@ -33,7 +34,7 @@ export async function GET(request: Request) {
 
   try {
     if (table === 'pages') {
-      const data = await loadOverview();
+      const data = await loadOverview(lastNDaysRange(30));
       csv = toCsv(
         ['Page', 'Views (30d)'],
         data.topPages.map((p) => [p.page, p.views])

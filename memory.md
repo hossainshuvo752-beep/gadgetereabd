@@ -698,3 +698,8 @@ Built the full internal analytics pipeline adapted from the reference admin-anal
 
 **Note**: `web-vitals` added as a dependency (~2KB, dynamic import). `.env.example` documents CRON_SECRET + ADMIN_SESSION_TTL_HOURS (both optional).
 
+
+## Task Log — 2026-09-23: Analytics Overview date-range filtering
+- Added preset (7/30/90) + custom (from/to) date-range filtering to /admin/analytics; range lives in URL params (?days=N or ?from=...&to=...), server-side `normalizeRange()` validates (YYYY-MM-DD regex, from<=to, preset whitelist, 400-day span cap) and `loadOverview(range)` re-queries analytics_reports for exactly that window — totals, trend chart, and top pages all recalculate; today/yesterday cards stay fixed.
+- New: `src/app/admin/analytics/RangePicker.tsx` (client control); changed: analytics-queries.ts (OverviewData.totals30 → totals + range, lastNDaysRange exported), overview page (async searchParams, Next 16), export route updated for new signature.
+- Verified E2E on production build: presets + custom ranges incl. data → sessions=3; custom range EXCLUDING data → sessions=0 + empty state (proves real filtering); garbage/inverted/malformed params → safe default 30-day view; SQL-injection-style param → safe; unauthed request → gate, no data. tsc clean, next build green.

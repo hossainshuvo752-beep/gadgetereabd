@@ -17,7 +17,7 @@ export type OverviewData = {
   today: DayReport | null;
   yesterday: DayReport | null;
   trend: Array<{ date: string; sessions: number; page_views: number }>;
-  totals30: {
+  totals: {
     sessions: number;
     page_views: number;
     visitors: number;
@@ -28,10 +28,54 @@ export type OverviewData = {
     contact_submits: number;
     registers: number;
   };
+  /** The inclusive UTC date range the totals/trend/topPages were computed over. */
+  range: DateRange;
   topPages: Array<{ page: string; views: number }>;
   lastAggregatedAt: string | null;
   staleDays: string[]; // dates with a report older than REPORT_VERSION
 };
+
+export type DateRange = { from: string; to: string }; // YYYY-MM-DD, inclusive, UTC
+
+const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+const MAX_RANGE_DAYS = 400; // keep the reports query bounded
+const PRESET_DAYS = [7, 30, 90] as const;
+
+/** Inclusive range of the last N UTC days (ends today). */
+export function lastNDaysRange(days: number): DateRange {
+  return { from: utcLabel(days - 1), to: utcLabel(0) };
+}
+
+/**
+ * Parse the overview page's search params into a safe date range.
+ * - `from` + `to` (valid YYYY-MM-DD, from <= to) win; the span is capped at
+ *   MAX_RANGE_DAYS so a huge custom range can't hammer the reports table.
+ * - otherwise `days` must be one of the presets (7/30/90); anything else —
+ *   including garbage — falls back to the default last-30-days view.
+ * Returns which mode was chosen so the UI can highlight the active preset.
+ */
+export function normalizeRange(input: {
+  days?: string | string[] | undefined;
+  from?: string | string[] | undefined;
+  to?: string | string[] | undefined;
+}): { range: DateRange; days: number | null } {
+  const first = (v?: string | string[]) => (Array.isArray(v) ? v[0] : v);
+  const from = first(input.from);
+  const to = first(input.to);
+
+  if (from && to && DATE_RE.test(from) && DATE_RE.test(to) && from <= to) {
+    const spanDays = Math.round((Date.parse(to) - Date.parse(from)) / 86_400_000);
+    const cappedTo =
+      spanDays > MAX_RANGE_DAYS
+        ? new Date(Date.parse(from) + MAX_RANGE_DAYS * 86_400_000).toISOString().slice(0, 10)
+        : to;
+    return { range: { from, to: cappedTo }, days: null };
+  }
+
+  const n = Number(first(input.days));
+  const days = (PRESET_DAYS as readonly number[]).includes(n) ? n : 30;
+  return { range: lastNDaysRange(days), days };
+}
 
 export type RealtimeData = {
   activeSessions: number; // sessions with activity in the last 5 min
@@ -82,31 +126,32 @@ function utcLabel(offsetDays: number): string {
   return d.toISOString().slice(0, 10);
 }
 
-/** Overview: today/yesterday reports, 30-day trend + totals, top pages. */
-export async function loadOverview(): Promise<OverviewData> {
+/**
+ * Overview: today/yesterday reports (fixed windows) + everything range-driven
+ * (totals, trend, top pages) computed over the given inclusive UTC range.
+ * One bounded query feeds trend, totals and top pages together.
+ */
+export async function loadOverview(range: DateRange): Promise<OverviewData> {
   const db = createAdminClient();
 
-  const [todayRep, yestRep, trendRows, last30, stale] = await Promise.all([
+  const [todayRep, yestRep, rangeRows, stale] = await Promise.all([
     db.from('analytics_reports').select('payload').eq('date', utcLabel(0)).maybeSingle(),
     db.from('analytics_reports').select('payload').eq('date', utcLabel(1)).maybeSingle(),
     db
       .from('analytics_reports')
       .select('date, payload')
-      .gte('date', utcLabel(29))
+      .gte('date', range.from)
+      .lte('date', range.to)
       .order('date', { ascending: true }),
-    db
-      .from('analytics_reports')
-      .select('payload')
-      .gte('date', utcLabel(29)),
     db.from('analytics_reports').select('date, payload').order('date', { ascending: false }).limit(90),
   ]);
 
-  const reports30 = (last30.data ?? []) as Array<{ payload: DayReport }>;
-  const totals30 = sumReportFields(reports30);
+  const reports = (rangeRows.data ?? []) as Array<{ date: string; payload: DayReport }>;
+  const totals = sumReportFields(reports);
 
   // top pages: fold each report's topPages (already capped at 25/day)
   const pageMap = new Map<string, number>();
-  for (const r of reports30) {
+  for (const r of reports) {
     for (const p of r.payload?.topPages ?? []) {
       pageMap.set(p.page, (pageMap.get(p.page) ?? 0) + p.views);
     }
@@ -123,12 +168,13 @@ export async function loadOverview(): Promise<OverviewData> {
   return {
     today: (todayRep.data?.payload as DayReport | undefined) ?? null,
     yesterday: (yestRep.data?.payload as DayReport | undefined) ?? null,
-    trend: ((trendRows.data ?? []) as Array<{ date: string; payload: DayReport }>).map((r) => ({
+    trend: reports.map((r) => ({
       date: r.date,
       sessions: n(r.payload?.totals?.sessions),
       page_views: n(r.payload?.totals?.page_views),
     })),
-    totals30,
+    totals,
+    range,
     topPages,
     lastAggregatedAt:
       ((stale.data ?? [])[0] as { payload?: DayReport } | undefined)?.payload?.date ?? null,
