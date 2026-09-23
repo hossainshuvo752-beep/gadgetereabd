@@ -74,6 +74,11 @@ export default async function SearchConsolePage() {
         automatically once the cache has data.
       </div>
 
+      {/* No RangePicker here: the Google Search Console API reports per-day
+          data with its own constraints — a fixed 16-month maximum window and
+          a multi-day data delay. Range control will come from GSC's own
+          dimensions when the sync lands, not from our shared picker. */}
+
       {/* Refresh from Google (rate-limited to once per 15 min once live) */}
       <RefreshFromGoogleButton connected={connected} lastFetchedAt={snap?.fetched_at ?? null} />
 

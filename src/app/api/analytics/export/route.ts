@@ -149,7 +149,7 @@ export async function GET(request: Request) {
       ];
       name = 'search-queries';
     } else {
-      const rowsSubs = await loadSubscribers();
+      const rowsSubs = await loadSubscribers(range);
       headers = ['Email', 'Source', 'Country', 'City', 'Subscribed At'];
       rows = rowsSubs.map((r) => [r.email, r.source ?? '', r.country ?? '', r.city ?? '', r.subscribedAt]);
       name = 'subscribers';

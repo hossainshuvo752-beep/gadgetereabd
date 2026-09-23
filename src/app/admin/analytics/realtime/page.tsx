@@ -19,6 +19,14 @@ export default async function RealtimePage() {
 
   return (
     <div className="space-y-6">
+      {/* No RangePicker here, by design: realtime means the last few minutes
+          of live activity. Historical ranges belong to the other tabs. */}
+      <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-3 text-xs text-text-body">
+        <strong className="text-text-heading">Live view — no date range.</strong> This
+        page always shows the last few minutes of activity (active sessions over 5
+        min, event stream over 30 min). For historical windows use the range picker
+        on the other analytics tabs.
+      </div>
       <div className="grid grid-cols-2 gap-4">
         <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-4 shadow-sm">
           <p className="text-xs uppercase tracking-wider text-text-body">Active sessions (5 min)</p>

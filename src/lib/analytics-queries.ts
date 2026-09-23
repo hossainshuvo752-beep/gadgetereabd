@@ -906,15 +906,24 @@ export type SubscriberRow = {
   subscribedAt: string;
 };
 
-/** SubscriberTable: the newsletter list with its geo columns. */
-export async function loadSubscribers(): Promise<SubscriberRow[]> {
+/**
+ * SubscriberTable: the newsletter list with its geo columns.
+ * `range` filters by subscribed_at (UTC day bounds, inclusive).
+ */
+export async function loadSubscribers(range?: DateRange): Promise<SubscriberRow[]> {
   const db = createAdminClient();
-  const { data } = await db
+  let query = db
     .from('newsletter_subscribers')
     .select('email, source, country, city, subscribed_at')
     .order('subscribed_at', { ascending: false })
     .limit(500);
-  return ((data ?? []) as Array<Record<string, unknown>>).map((r) => ({
+  if (range) {
+    query = query
+      .gte('subscribed_at', `${range.from}T00:00:00Z`)
+      .lte('subscribed_at', `${range.to}T23:59:59.999Z`);
+  }
+  const { data } = await query;
+  return ((data ?? []) as unknown as Array<Record<string, unknown>>).map((r) => ({
     email: String(r.email ?? ''),
     source: (r.source as string | null) ?? null,
     country: (r.country as string | null) ?? null,

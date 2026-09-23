@@ -712,3 +712,11 @@ Built the full internal analytics pipeline adapted from the reference admin-anal
 - Search Console: full shell always renders (cards/daily trend/top queries/per-page/index coverage/sitemap status + disabled "Refresh from Google" button) with "not connected yet" states; still cache-first, zero Google API calls — only the sync routine remains TODO(external-api).
 - All analytics sub-pages (Overview/Devices/Locations/Search) now accept the range picker params (days=7|30|90 or from&to); loadOverview/loadBreakdowns/loadSearchAnalytics/loadEnginePages all range-aware; export API accepts from/to/days.
 - E2E verified on production build: every page 200 with real DB data (sessions=3 rendered), all sections present, exports csv/json/xls 200 + unauth 401, outbound_click shipped in tracker chunk. tsc clean, build green.
+
+## Task Log — 2026-09-23: Range picker on every analytics tab + cross-tab persistence
+- RangePicker added to Devices, Locations, Search, and Subscribers pages (same URL params ?days= / ?from=&to=, all genuinely re-querying: loadBreakdowns/loadSearchAnalytics/loadSubscribers all range-aware; Subscribers filters by subscribed_at).
+- Realtime: deliberately NO picker — realtime means the last few minutes; an on-page notice explains this and points to other tabs for historical windows.
+- Search Console: no shared picker — GSC API has its own date constraints (16-month max window, multi-day data delay); range control will come from the GSC sync dimensions when activated.
+- New AnalyticsNav client component: nav links carry the current range params to range-aware tabs (pick 90 days on Overview → Devices stays 90 days) and strip them for Realtime/GSC.
+- Subscriber CSV export now honors the selected range.
+- E2E on production build: nav links carry days=7 and custom ranges (verified in SSR output), Realtime/GSC links clean; Subscribers Sep-range shows rows, Dec-range shows empty state; Devices/Locations/Search show pickers + Dec-range empty states. tsc clean, build green.

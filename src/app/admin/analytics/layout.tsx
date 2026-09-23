@@ -1,24 +1,16 @@
 import Link from 'next/link';
 import { isAdminAuthenticated } from '@/lib/adminAuth';
 import AdminGate from '@/components/admin/AdminGate';
+import { AnalyticsNav } from './AnalyticsNav';
 
 export const dynamic = 'force-dynamic';
 
 /**
  * Analytics section layout — cookie-gates EVERY /admin/analytics/* page in
  * one place (the gate component is reused from the main admin dashboard)
- * and renders the shared section nav.
+ * and renders the shared section nav (client component — carries the
+ * selected date range between tabs so switching pages preserves it).
  */
-const NAV = [
-  { href: '/admin/analytics', label: 'Overview' },
-  { href: '/admin/analytics/realtime', label: 'Realtime' },
-  { href: '/admin/analytics/devices', label: 'Devices & Sources' },
-  { href: '/admin/analytics/locations', label: 'Locations' },
-  { href: '/admin/analytics/search', label: 'Search' },
-  { href: '/admin/analytics/subscribers', label: 'Subscribers' },
-  { href: '/admin/analytics/search-console', label: 'Search Console' },
-];
-
 export default async function AnalyticsLayout({
   children,
 }: {
@@ -47,17 +39,7 @@ export default async function AnalyticsLayout({
           </Link>
         </div>
 
-        <nav className="flex flex-wrap gap-2 mb-8">
-          {NAV.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="px-3 py-1.5 text-sm rounded-md border border-text-heading/15 text-text-heading hover:bg-accent/10 hover:border-accent transition-colors"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+        <AnalyticsNav />
 
         {children}
       </div>
