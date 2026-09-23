@@ -127,10 +127,16 @@ function CheckoutInner() {
       // checkout stays fully supported — user_id is null then).
       const { data: userData } = await supabase.auth.getUser();
       const orderNumber = makeOrderNumber();
+      // RLS is INSERT-only for guests (no SELECT policy — nobody may read
+      // other people's orders), so the insert must not use .select()
+      // (PostgREST RETURNING requires SELECT). We generate the id client-side
+      // and reuse it for the order_items insert instead.
+      const orderId = crypto.randomUUID();
 
-      const { data: order, error: orderInsertError } = await supabase
+      const { error: orderInsertError } = await supabase
         .from('orders')
         .insert({
+          id: orderId,
           order_number: orderNumber,
           user_id: userData?.user?.id ?? null,
           contact_name: form.name.trim(),
@@ -148,7 +154,7 @@ function CheckoutInner() {
         .select('id')
         .single();
 
-      if (orderInsertError || !order) {
+      if (orderInsertError) {
         setOrderError(
           'Could not place your order — please try again in a moment. If it keeps failing, contact us at hello@techbd.com.'
         );
@@ -158,7 +164,7 @@ function CheckoutInner() {
 
       const { error: itemsInsertError } = await supabase.from('order_items').insert(
         lines.map((line) => ({
-          order_id: order.id,
+          order_id: orderId,
           product_id: line.productId,
           title: line.title,
           variant: line.variant,

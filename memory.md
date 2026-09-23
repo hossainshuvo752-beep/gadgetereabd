@@ -672,3 +672,11 @@ Known gap flagged to user: with ~50 skills loaded, agents may mis-select or dilu
 - **Analytics schema VERIFIED LIVE**: analytics_events/sessions/daily/pages_daily/reports + search_console_cache all exist; newsletter_subscribers.source/country/city columns added; anon reads of locked analytics tables return 0 rows (service-role-only RLS holding).
 - **Orders schema NOT applied** — orders/order_items still PGRST205; test-order insert blocked. User re-pasted the orders SQL block; awaiting re-run. (Analytics block succeeded; likely only the first of the two blocks was executed.)
 - Cluster 2 (tracker + ingest API) unblocked — its tables are live.
+
+## Task Log — 2026-09-23 (Orders feature COMPLETE + subtle RLS lesson)
+- Orders schema now live (user split the SQL run into two parts; policies verified present via pg_policies diagnostic).
+- **Subtle root cause found and fixed**: PostgREST `.select()` on an insert = INSERT…RETURNING, and the returned row must pass the SELECT policy — but our RLS is deliberately INSERT-only for guests (nobody may read others' orders). Verified empirically: insert WITHOUT returning → OK; WITH `.select('id')` → 42501. Fix: Checkout now generates the order UUID client-side (crypto.randomUUID) and inserts without returning; the same id is reused for the order_items rows.
+- **E2E verified on the production build**: test order TechBD-TEST01 (Samsung S26 Ultra, ৳200,149, bKash) inserted via the anon path and rendered fully on the admin dashboard (order #, customer, item, total, payment method, status dropdown); stat cards live: Total Orders = 1, Ordered Value = ৳200,149.
+- Status PATCH route verified: 401 without cookie, 200 with cookie (pending→confirmed confirmed in DB), 400 on invalid status; order restored to pending for review.
+- TEST ORDER LEFT IN DB (TechBD-TEST01) — user may delete it in Table Editor.
+- Orders feature is now fully done: checkout → Supabase → admin dashboard, all verified. Analytics cluster 2 (tracker + ingest) is next.
