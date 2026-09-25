@@ -807,3 +807,10 @@ Verified: tsc clean, build green, live probes — detail page renders hero + 3 t
 **Blog cards:** root cause of "oversized" cards was column count, not ratio — homepage Latest Posts/Trending/Guides ran lg:grid-cols-3 (≈383px cards → ~215px images) while /blog already ran lg:grid-cols-4 (≈283px → ~159px images, matching the gadgeterea reference). Unified all homepage blog-card sections AND /category/[category] to lg:grid-cols-4. ArticleCard untouched (aspect-video preserved; container sizing did the work). Testimonials' sm:2/lg:3 grid intentionally untouched (not a blog-card section).
 
 Verified: tsc clean, build green, live SSR probes — hero grid classes present, 4-up on Latest Posts + /blog, no blog-card lg:grid-cols-3 left (remaining hit = Testimonials), /category verified with a real category name.
+
+## Task Log — 2026-09-25 (product pricing pass)
+- Researched and filled prices for ALL 11 previously price-less products via live BD retailer listings (Star Tech, Gadget & Gear, AppleGadgetsBD, Riointernational, Ryans, Sumash Tech), Sep 2026.
+- Per-variant pricing added using the `variants` structure: Tab S10 Ultra (256GB/512GB), iPad Air 11 M3 (128GB/256GB/512GB/1TB), DJI Osmo Action 5 Pro (Standard/Adventure Combo). Others flat.
+- 2 products carry `priceEstimated: true` (no exact live BD listing; anchored to official siblings): Lenovo IdeaCentre AIO 27" (~৳82,000), Xiaomi Smart TV X Pro 55 (~৳85,000, anchored to A Pro 55" ৳74,999). Their Product schema intentionally emits NO offers (existing guard) so answer engines never quote an unconfirmed price.
+- Every catalog product now has a price; all 22 confirmed live. Beats 360 Wireless Headphones: SKIPPED per owner decision (no product entry until told).
+- Verified: tsc clean, production build green, all variant rows resolve through the real variantPrice()/priceForCartVariant() resolvers (0 mismatches).

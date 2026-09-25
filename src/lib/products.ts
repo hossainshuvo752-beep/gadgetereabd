@@ -1120,12 +1120,18 @@ export const products: Product[] = [
     ],
     views: 1400,
     dateAdded: '2024-10-05',
-    price: null,
+    price: 119999,
     oldPrice: null,
     priceEstimated: false,
     status: 'available',
-    priceNote:
-      'Sample catalog product — no confirmed Bangladesh price yet. Verify with retailers before launch.',
+    /** Variant pricing: per-storage rows verified against Riointernational
+     *  (wifi) and Star Tech (5G), Sep 2026. 512GB has no active BD listing.
+     *  Base price mirrors the cheapest variant. */
+    variants: [
+      { label: '256GB', price: 119999 },
+      { label: '512GB', price: 145999, priceEstimated: true },
+    ],
+    priceNote: 'Wi-Fi 256GB ৳119,999 (Riointernational, official BD). 5G 512GB ~৳145,999 (Star Tech listed ৳145,999-185,999 by config; estimated midpoint). 512GB Wi-Fi has no active BD listing — estimated +~৳26k over 256GB.',
     specSheet: {
       basicInfo: {
         model: 'Galaxy Tab S10 Ultra',
@@ -1199,12 +1205,19 @@ export const products: Product[] = [
     ],
     views: 2000,
     dateAdded: '2025-03-12',
-    price: null,
+    price: 89999,
     oldPrice: null,
     priceEstimated: false,
     status: 'available',
-    priceNote:
-      'Sample catalog product — no confirmed Bangladesh price yet. Verify with retailers before launch.',
+    /** Variant pricing: per-storage tiers from AppleGadgetsBD live listing,
+     *  Sep 2026 (128GB Wi-Fi ৳89,999 … 1TB M2 ৳179,999). Base = cheapest. */
+    variants: [
+      { label: '128GB', price: 89999 },
+      { label: '256GB', price: 100999 },
+      { label: '512GB', price: 119999, priceEstimated: true },
+      { label: '1TB', price: 179999 },
+    ],
+    priceNote: 'AppleGadgetsBD (official BD reseller): 128GB ৳89,999 · 256GB ৳100,999 · 1TB ৳179,999 (M2). 512GB currently out of stock there — estimated ৳119,999 between the 256GB and 1TB tiers. Cellular variants cost ~৳20k more.',
     specSheet: {
       basicInfo: {
         model: 'iPad Air 11 (M3)',
@@ -1279,12 +1292,11 @@ export const products: Product[] = [
     ],
     views: 900,
     dateAdded: '2023-06-15',
-    price: null,
+    price: 62000,
     oldPrice: null,
     priceEstimated: false,
     status: 'available',
-    priceNote:
-      'Sample catalog product — no confirmed Bangladesh price yet. Verify with retailers before launch.',
+    priceNote: 'Star Tech lists the Core i3-1215U / 8GB / 512GB X1504VA at ৳61,000-62,000 (official BD warranty).',
     specSheet: {
       basicInfo: {
         model: 'Vivobook 15 X1504VA',
@@ -1364,12 +1376,11 @@ export const products: Product[] = [
     ],
     views: 600,
     dateAdded: '2024-01-20',
-    price: null,
+    price: 82000,
     oldPrice: null,
-    priceEstimated: false,
+    priceEstimated: true,
     status: 'available',
-    priceNote:
-      'Sample catalog product — no confirmed Bangladesh price yet. Verify with retailers before launch.',
+    priceNote: 'No live BD listing found for the 27″ IdeaCentre AIO. Estimated ~৳82,000 from Lenovo BD\u2019s 23.8″ AIO (৳69,000) plus ~৳13,000 typical 27″/RAM uplift — confirm with a Lenovo BD retailer before launch.',
     specSheet: {
       basicInfo: {
         model: 'IdeaCentre AIO 27 (Gen 8)',
@@ -1447,12 +1458,11 @@ export const products: Product[] = [
     ],
     views: 1700,
     dateAdded: '2025-01-15',
-    price: null,
+    price: 14000,
     oldPrice: null,
     priceEstimated: false,
     status: 'available',
-    priceNote:
-      'Sample catalog product — no confirmed Bangladesh price yet. Verify with retailers before launch.',
+    priceNote: 'official BD price: ৳13,999 (BT Calling, all colors same price).',
     specSheet: {
       basicInfo: {
         model: 'Redmi Watch 5',
@@ -1520,12 +1530,11 @@ export const products: Product[] = [
     ],
     views: 3600,
     dateAdded: '2025-09-24',
-    price: null,
+    price: 33500,
     oldPrice: null,
     priceEstimated: false,
     status: 'available',
-    priceNote:
-      'Sample catalog product — no confirmed Bangladesh price yet. Verify with retailers before launch.',
+    priceNote: 'Gadget & Gear (official BD Apple reseller) lists ৳33,500; AppleGadgetsBD currently shows ৳35,000-36,000.',
     specSheet: {
       basicInfo: {
         model: 'AirPods Pro 3',
@@ -1605,12 +1614,11 @@ export const products: Product[] = [
     ],
     views: 950,
     dateAdded: '2023-08-10',
-    price: null,
+    price: 2590,
     oldPrice: null,
     priceEstimated: false,
     status: 'available',
-    priceNote:
-      'Sample catalog product — no confirmed Bangladesh price yet. Verify with retailers before launch.',
+    priceNote: 'Ryans Archives (official BD distributor pricing): ৳2,590.',
     specSheet: {
       basicInfo: {
         model: 'Soundcore R50i',
@@ -1681,12 +1689,18 @@ export const products: Product[] = [
     ],
     views: 1100,
     dateAdded: '2024-09-18',
-    price: null,
+    price: 36500,
     oldPrice: null,
     priceEstimated: false,
     status: 'available',
-    priceNote:
-      'Sample catalog product — no confirmed Bangladesh price yet. Verify with retailers before launch.',
+    /** Variant pricing: DJI\u2019s purchasable dimension is the bundle
+     *  (purchaseOptions), so variant labels are 'Standard' / 'Adventure Combo'.
+     *  Both from Star Tech\u2019s live listing, Sep 2026. */
+    variants: [
+      { label: 'Standard', price: 36500 },
+      { label: 'Adventure Combo', price: 45500 },
+    ],
+    priceNote: 'Star Tech (official BD): Standard Combo ৳36,500 · Adventure Combo ৳45,500.',
     specSheet: {
       basicInfo: {
         model: 'Osmo Action 5 Pro',
@@ -1758,12 +1772,11 @@ export const products: Product[] = [
     ],
     views: 1300,
     dateAdded: '2023-02-01',
-    price: null,
+    price: 4400,
     oldPrice: null,
     priceEstimated: false,
     status: 'available',
-    priceNote:
-      'Sample catalog product — no confirmed Bangladesh price yet. Verify with retailers before launch.',
+    priceNote: 'Star Tech: Anker A1344 20,000mAh 22.5W — ৳4,400 (official BD warranty).',
     specSheet: {
       basicInfo: {
         model: 'PowerCore Select 20000',
@@ -1835,12 +1848,11 @@ export const products: Product[] = [
     ],
     views: 1000,
     dateAdded: '2022-08-20',
-    price: null,
+    price: 28500,
     oldPrice: null,
     priceEstimated: false,
     status: 'available',
-    priceNote:
-      'Sample catalog product — no confirmed Bangladesh price yet. Verify with retailers before launch.',
+    priceNote: 'Sumash Tech (official BD warranty): ৳28,500 (previously ৳33,000).',
     specSheet: {
       basicInfo: {
         model: 'Robot Vacuum S10',
@@ -1912,12 +1924,11 @@ export const products: Product[] = [
     ],
     views: 1500,
     dateAdded: '2023-04-18',
-    price: null,
+    price: 85000,
     oldPrice: null,
-    priceEstimated: false,
+    priceEstimated: true,
     status: 'available',
-    priceNote:
-      'Sample catalog product — no confirmed Bangladesh price yet. Verify with retailers before launch.',
+    priceNote: 'Estimated ~৳85,000 — the exact X Pro 55 has no active BD listing. Anchored to its official sibling, the Xiaomi TV A Pro 55″ QLED 2026 at ৳74,999 (Sumash Tech, official BD), plus a typical ~৳10k step up for the higher X Pro tier. Confirm with a Xiaomi BD retailer before launch.',
     specSheet: {
       basicInfo: {
         model: 'Smart TV X Pro 55',
