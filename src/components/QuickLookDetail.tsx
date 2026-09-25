@@ -339,121 +339,128 @@ const QuickLookDetail: React.FC<{
           {/* LEFT — gallery (2/5). Native CSS sticky below the 64px header
               (top-24 = 96px = 64px header + 32px gap); releases when the row ends. */}
           <div className="lg:col-span-2 lg:sticky lg:top-24 lg:self-start">
-            <div className="relative bg-text-on-dark border border-text-heading/10 rounded-lg p-4">
-              {/* Spec Score badge overlay */}
-              <div className="absolute top-3 left-3 z-10 bg-bg-dark text-text-on-dark rounded-lg px-3 py-2 shadow-md">
-                <div className="text-[10px] uppercase tracking-wide text-text-on-dark/70">Spec Score</div>
-                <div className="text-lg font-bold text-accent leading-none">{specScore}%</div>
-              </div>
-              {/* main image — real photo when available, gray placeholder
-                  otherwise (fill + object-contain preserves any aspect) */}
-              <div className="relative aspect-square w-full bg-bg-dark-secondary/10 flex items-center justify-center rounded-md overflow-hidden">
+            {/* ONE framed gallery unit on every breakpoint: the main image
+                and its thumbnails share a single bordered container. DOM
+                order is [thumbs, main]; flex-col-reverse shows main on top
+                with a horizontal thumb row below on mobile/tablet, while
+                lg:flex-row moves the thumbs into a VERTICAL column on the
+                LEFT of the main image (Amazon-style rail, scrollable when
+                a future gallery grows past the column height). */}
+            <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-4">
+              <div className="flex flex-col-reverse gap-3 lg:flex-row lg:gap-4 lg:items-start">
+                {/* thumbnails — horizontal row on mobile, vertical column
+                    on desktop; same "+N" see-all tile rule as before */}
                 {activeGallery.length > 0 ? (
-                  <Image
-                    src={activeGallery[activeIdx]!}
-                    alt={`${product.imageAlt} — view ${activeIdx + 1} of ${activeGallery.length}`}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 384px"
-                    onClick={showSeeAll ? () => setLightboxOpen(true) : undefined}
-                    className={`object-contain p-2 ${showSeeAll ? 'cursor-zoom-in' : ''}`}
-                    priority
-                  />
+                  <div className="flex gap-3 hide-scrollbar lg:flex-col lg:w-20 lg:max-h-[26rem] lg:overflow-y-auto shrink-0">
+                    {inlineThumbs.map((img, i) => (
+                      <button
+                        key={img}
+                        onClick={() => setActiveImage(i)}
+                        aria-label={`View image ${i + 1}`}
+                        className={`relative aspect-square w-20 shrink-0 rounded-md overflow-hidden border transition-colors ${
+                          activeIdx === i
+                            ? 'border-accent bg-accent/10'
+                            : 'border-text-heading/10 bg-text-on-dark hover:border-accent/50'
+                        }`}
+                      >
+                        <Image
+                          src={img}
+                          alt={`${product.imageAlt} — thumbnail ${i + 1}`}
+                          fill
+                          sizes="80px"
+                          className="object-contain p-0.5"
+                        />
+                      </button>
+                    ))}
+                    {showSeeAll && (
+                      <button
+                        onClick={() => setLightboxOpen(true)}
+                        aria-label={`See all ${activeGallery.length} images`}
+                        className="relative aspect-square w-20 shrink-0 rounded-md overflow-hidden border transition-colors bg-bg-dark/60 hover:bg-bg-dark/80"
+                      >
+                        <Image
+                          src={activeGallery[MAX_THUMBS]!}
+                          alt=""
+                          fill
+                          sizes="80px"
+                          className="object-cover opacity-40"
+                        />
+                        <span className="absolute inset-0 flex items-center justify-center text-sm font-bold text-text-on-dark">
+                          +{activeGallery.length - MAX_THUMBS}
+                        </span>
+                      </button>
+                    )}
+                  </div>
                 ) : (
-                  <span className="text-text-body text-sm">
-                    {activeImage === 0 ? product.imageAlt : `View ${activeImage + 1}`}
-                  </span>
+                  <div className="grid grid-cols-4 gap-3 lg:grid-cols-1 lg:w-20 shrink-0">
+                    {[0, 1, 2].map((i) => (
+                      <button
+                        key={i}
+                        onClick={() => setActiveImage(i)}
+                        className={`h-20 rounded-md flex items-center justify-center text-xs border transition-colors ${
+                          activeImage === i
+                            ? 'border-accent text-text-body bg-accent/10'
+                            : 'border-text-heading/10 bg-text-on-dark text-text-body hover:border-accent/50'
+                        }`}
+                      >
+                        {i === 0 ? product.imageAlt : `View ${i + 1}`}
+                      </button>
+                    ))}
+                    <button
+                      disabled
+                      className="h-20 rounded-md flex items-center justify-center text-xs border border-text-heading/10 bg-text-on-dark text-text-body cursor-default"
+                    >
+                      +3
+                    </button>
+                  </div>
                 )}
-              </div>
-              {/* prev / next */}
-              <button
-                aria-label="Previous image"
-                onClick={() =>
-                  activeGallery.length > 0 &&
-                  setActiveImage((activeImage + activeGallery.length - 1) % activeGallery.length)
-                }
-                className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-text-on-dark border border-text-heading/10 shadow flex items-center justify-center text-text-body hover:text-accent"
-              >
-                ‹
-              </button>
-              <button
-                aria-label="Next image"
-                onClick={() =>
-                  activeGallery.length > 0 && setActiveImage((activeImage + 1) % activeGallery.length)
-                }
-                className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-text-on-dark border border-text-heading/10 shadow flex items-center justify-center text-text-body hover:text-accent"
-              >
-                ›
-              </button>
-            </div>
 
-            {/* thumbnail strip — SINGLE ROW always: up to MAX_THUMBS real
-                thumbs, then a "+N" see-all tile that opens the lightbox
-                (Amazon pattern) when the gallery is larger; ≤4 images show
-                inline with no tile. Legacy placeholder buttons unchanged. */}
-            {activeGallery.length > 0 ? (
-              <div className="flex gap-3 mt-3">
-                {inlineThumbs.map((img, i) => (
-                  <button
-                    key={img}
-                    onClick={() => setActiveImage(i)}
-                    aria-label={`View image ${i + 1}`}
-                    className={`relative aspect-square w-20 shrink-0 rounded-md overflow-hidden border transition-colors ${
-                      activeIdx === i
-                        ? 'border-accent bg-accent/10'
-                        : 'border-text-heading/10 bg-text-on-dark hover:border-accent/50'
-                    }`}
-                  >
+                {/* main image — Spec Score badge and prev/next arrows ride
+                    on the image box itself (correct in both layouts) */}
+                <div className="relative aspect-square w-full bg-bg-dark-secondary/10 flex items-center justify-center rounded-md overflow-hidden">
+                  {/* Spec Score badge overlay */}
+                  <div className="absolute top-3 left-3 z-10 bg-bg-dark text-text-on-dark rounded-lg px-3 py-2 shadow-md">
+                    <div className="text-[10px] uppercase tracking-wide text-text-on-dark/70">Spec Score</div>
+                    <div className="text-lg font-bold text-accent leading-none">{specScore}%</div>
+                  </div>
+                  {activeGallery.length > 0 ? (
                     <Image
-                      src={img}
-                      alt={`${product.imageAlt} — thumbnail ${i + 1}`}
+                      src={activeGallery[activeIdx]!}
+                      alt={`${product.imageAlt} — view ${activeIdx + 1} of ${activeGallery.length}`}
                       fill
-                      sizes="80px"
-                      className="object-contain p-0.5"
+                      sizes="(max-width: 1024px) 100vw, 380px"
+                      onClick={showSeeAll ? () => setLightboxOpen(true) : undefined}
+                      className={`object-contain p-2 ${showSeeAll ? 'cursor-zoom-in' : ''}`}
+                      priority
                     />
-                  </button>
-                ))}
-                {showSeeAll && (
-                  <button
-                    onClick={() => setLightboxOpen(true)}
-                    aria-label={`See all ${activeGallery.length} images`}
-                    className="relative aspect-square w-20 shrink-0 rounded-md overflow-hidden border transition-colors bg-bg-dark/60 hover:bg-bg-dark/80"
-                  >
-                    <Image
-                      src={activeGallery[MAX_THUMBS]!}
-                      alt=""
-                      fill
-                      sizes="80px"
-                      className="object-cover opacity-40"
-                    />
-                    <span className="absolute inset-0 flex items-center justify-center text-sm font-bold text-text-on-dark">
-                      +{activeGallery.length - MAX_THUMBS}
+                  ) : (
+                    <span className="text-text-body text-sm">
+                      {activeImage === 0 ? product.imageAlt : `View ${activeImage + 1}`}
                     </span>
-                  </button>
-                )}
-              </div>
-            ) : (
-              <div className="grid grid-cols-4 gap-3 mt-3">
-                {[0, 1, 2].map((i) => (
+                  )}
+                  {/* prev / next */}
                   <button
-                    key={i}
-                    onClick={() => setActiveImage(i)}
-                    className={`h-20 rounded-md flex items-center justify-center text-xs border transition-colors ${
-                      activeImage === i
-                        ? 'border-accent text-text-body bg-accent/10'
-                        : 'border-text-heading/10 bg-text-on-dark text-text-body hover:border-accent/50'
-                    }`}
+                    aria-label="Previous image"
+                    onClick={() =>
+                      activeGallery.length > 0 &&
+                      setActiveImage((activeImage + activeGallery.length - 1) % activeGallery.length)
+                    }
+                    className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-text-on-dark border border-text-heading/10 shadow flex items-center justify-center text-text-body hover:text-accent"
                   >
-                    {i === 0 ? product.imageAlt : `View ${i + 1}`}
+                    ‹
                   </button>
-                ))}
-                <button
-                  disabled
-                  className="h-20 rounded-md flex items-center justify-center text-xs border border-text-heading/10 bg-text-on-dark text-text-body cursor-default"
-                >
-                  +3
-                </button>
+                  <button
+                    aria-label="Next image"
+                    onClick={() =>
+                      activeGallery.length > 0 && setActiveImage((activeImage + 1) % activeGallery.length)
+                    }
+                    className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-text-on-dark border border-text-heading/10 shadow flex items-center justify-center text-text-body hover:text-accent"
+                  >
+                    ›
+                  </button>
+                </div>
               </div>
-            )}
+            </div>
           </div>
 
           {/* RIGHT — info (3/5) */}

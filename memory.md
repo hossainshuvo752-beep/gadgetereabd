@@ -814,3 +814,9 @@ Verified: tsc clean, build green, live SSR probes — hero grid classes present,
 - 2 products carry `priceEstimated: true` (no exact live BD listing; anchored to official siblings): Lenovo IdeaCentre AIO 27" (~৳82,000), Xiaomi Smart TV X Pro 55 (~৳85,000, anchored to A Pro 55" ৳74,999). Their Product schema intentionally emits NO offers (existing guard) so answer engines never quote an unconfirmed price.
 - Every catalog product now has a price; all 22 confirmed live. Beats 360 Wireless Headphones: SKIPPED per owner decision (no product entry until told).
 - Verified: tsc clean, production build green, all variant rows resolve through the real variantPrice()/priceForCartVariant() resolvers (0 mismatches).
+
+## Task Log — 2026-09-25 (gallery frame redesign)
+- Product gallery (shared by Quick Look + Shop detail pages) rebuilt as ONE bordered container: main image + thumbnails now share a single framed unit on every breakpoint.
+- Desktop (lg+): thumbnails are a vertical column on the LEFT of the main image (Amazon-style rail, w-20, max-h-[26rem], overflow-y-auto, hidden scrollbar if it ever overflows). Mobile/tablet: main image on top + horizontal thumb row below (unchanged orientation) but inside the same frame — flex-col-reverse swap, no DOM duplication.
+- Spec Score badge + prev/next arrows moved onto the main-image box (correctly positioned in both layouts). "+N" see-all tile and LightboxGallery behavior unchanged (≤4 imgs inline, >4 → 3 + tile).
+- Verified: tsc clean, production build green, live probes on /quick-look + /shop (200s, single framed container, rail classes, badge, tile rules).
