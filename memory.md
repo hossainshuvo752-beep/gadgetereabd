@@ -725,3 +725,9 @@ Built the full internal analytics pipeline adapted from the reference admin-anal
 - Removed ALL parenthetical descriptions from sub-category labels across the entire category tree (src/lib/categories.ts): Gadget Accessories ("Sound", "Charging", "Protection", "Computer Accessories", "Photography Accessories") and Home Accessories ("Smart Home Devices"). Checked every other category (Mobile, Tablet, PC, Smart Watch, Earbuds, Camera, Home Appliances) — no other parentheticals existed.
 - Also updated the 3 matching subCategory values in src/lib/products.ts ('Sound (Speaker/Soundbar)' → 'Sound', etc.) so filtering keeps working — filter matching is by exact string, and the category tree and product data must use identical labels.
 - Verified: zero parenthetical label strings remain anywhere in src/, tsc --noEmit clean. No structure/filtering-logic changes; display labels only.
+
+## Task Log — 2026-09-25 — Quick Look now shows the full shared catalog
+- Root cause: src/app/quick-look/page.tsx filtered the pool to category === 'Smartphones' (6 phones), while Shop uses the full products array (22 items).
+- Fix: listing pool is now the entire shared products array from src/lib/products.ts — identical source as Shop. CategoryNav filtering unchanged (topCategory/subCategory over the full pool).
+- Detail pages: /quick-look/[slug] generateStaticParams already covered ALL products, and specSheet is a required field on every product (non-phone items like tablets carry full spec sheets), so every one of the 22 products has a working spec-sheet detail page. QuickLookDetail is also the same component Shop detail pages use for non-phones, so it's already proven for non-phone layouts.
+- Empty-state copy updated ("phones" wording removed). Verified: tsc --noEmit clean, file re-read, no syntax errors.

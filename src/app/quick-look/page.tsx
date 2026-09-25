@@ -8,20 +8,17 @@ import CategoryNav from '@/components/CategoryNav';
 import NewsletterPopup from '@/components/NewsletterPopup';
 
 /**
- * Listing pool: Quick Look focuses on phones (spec sheets, prices and
- * variants). The shared CategoryNav can still select other categories —
- * they simply show the empty state until non-phone products are added.
+ * Listing pool: the FULL shared catalog — same source as the Shop page.
+ * Every product (phones, tablets, PCs, wearables, audio, cameras,
+ * accessories, appliances) gets a spec-sheet Quick Look page.
  */
-const smartphoneProducts: Product[] = products.filter(
-  (p) => p.category === 'Smartphones'
-);
+const allProducts: Product[] = products;
 
 /**
  * Quick Look listing. Shares the exact same top CategoryNav bar as the
  * Shop page (hover dropdowns on desktop, tap-revealed sub-category chips
- * on touch, no counts, no result line). "All Products" shows the full
- * phone pool; a category narrows it; non-Mobile categories currently
- * render the empty state.
+ * on touch, no counts, no result line) and the same full product pool —
+ * "All Products" shows every item in the shared catalog.
  */
 export default function QuickLookPage() {
   const [selectedTop, setSelectedTop] = useState<string | null>(null);
@@ -34,10 +31,10 @@ export default function QuickLookPage() {
 
   const filtered =
     selectedTop === null
-      ? smartphoneProducts
+      ? allProducts
       : selectedSub === null
-        ? smartphoneProducts.filter((p) => p.topCategory === selectedTop)
-        : smartphoneProducts.filter(
+        ? allProducts.filter((p) => p.topCategory === selectedTop)
+        : allProducts.filter(
             (p) => p.topCategory === selectedTop && p.subCategory === selectedSub,
           );
 
@@ -58,14 +55,14 @@ export default function QuickLookPage() {
                 No products found
               </p>
               <p className="text-sm text-text-body mb-4">
-                Quick Look currently focuses on phones — this category has no
-                items yet.
+                No items in this category yet — try another category or view
+                everything.
               </p>
               <button
                 onClick={() => handleSelect(null, null)}
                 className="px-4 py-2 bg-accent text-text-on-dark text-sm font-medium rounded-md hover:bg-accent-hover transition-colors"
               >
-                View all phones
+                View all products
               </button>
             </div>
           ) : (
