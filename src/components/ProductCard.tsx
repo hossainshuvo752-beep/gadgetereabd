@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Product } from '@/lib/products';
 import { isPurchasable, isUpcoming } from '@/lib/products';
 import { useCart } from '@/context/CartContext';
@@ -53,7 +54,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <>
       <div className="bg-text-on-dark border border-text-heading/10 rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-300 flex flex-col">
-        <div className="h-40 bg-bg-dark-secondary/10 flex items-center justify-center relative">
+        <div className="h-40 bg-bg-dark-secondary/10 flex items-center justify-center relative overflow-hidden">
           {/* Mobile-only deal badges (desktop card is untouched) */}
           {hasDeal && (
             <>
@@ -70,7 +71,19 @@ const ProductCard: React.FC<ProductCardProps> = ({
               -{discountPct}%
             </span>
           )}
-          <span className="text-text-body text-sm">{product.imageAlt}</span>
+          {/* Real photo when available (fill + object-contain preserves any
+              aspect ratio); gray placeholder text otherwise. */}
+          {product.heroImage ? (
+            <Image
+              src={product.heroImage}
+              alt={product.imageAlt}
+              fill
+              sizes="(max-width: 768px) 50vw, 33vw"
+              className="object-contain p-2"
+            />
+          ) : (
+            <span className="text-text-body text-sm">{product.imageAlt}</span>
+          )}
         </div>
         <div className="p-4 flex flex-col flex-1">
           <span className="inline-flex items-center self-start px-2.5 py-0.5 text-xs font-semibold bg-accent/10 text-accent-hover rounded-full mb-2">

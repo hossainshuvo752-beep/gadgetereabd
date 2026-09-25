@@ -1,0 +1,237 @@
+{
+  "generated": "2026-09-25T08:55:58.046Z",
+  "products": [
+    {
+      "folder": "Anker PowerCore 20000 Power Bank",
+      "slug": "anker-powercore-20000-power-bank",
+      "gallery": [
+        "/images/products/anker-powercore-20000-power-bank/1.webp",
+        "/images/products/anker-powercore-20000-power-bank/2.webp",
+        "/images/products/anker-powercore-20000-power-bank/3.webp"
+      ]
+    },
+    {
+      "folder": "Anker Soundcore R50i Earbuds",
+      "slug": "anker-soundcore-r50i-earbuds",
+      "gallery": [
+        "/images/products/anker-soundcore-r50i-earbuds/1.webp",
+        "/images/products/anker-soundcore-r50i-earbuds/2.webp",
+        "/images/products/anker-soundcore-r50i-earbuds/3.webp",
+        "/images/products/anker-soundcore-r50i-earbuds/4.webp",
+        "/images/products/anker-soundcore-r50i-earbuds/5.webp",
+        "/images/products/anker-soundcore-r50i-earbuds/6.webp"
+      ]
+    },
+    {
+      "folder": "Apple AirPods Pro 3",
+      "slug": "apple-airpods-pro-3",
+      "gallery": [
+        "/images/products/apple-airpods-pro-3/1.webp",
+        "/images/products/apple-airpods-pro-3/2.webp",
+        "/images/products/apple-airpods-pro-3/3.webp",
+        "/images/products/apple-airpods-pro-3/4.webp"
+      ]
+    },
+    {
+      "folder": "Apple iPad Air 11 (M3)",
+      "slug": "apple-ipad-air-11-m3",
+      "gallery": [
+        "/images/products/apple-ipad-air-11-m3/1.webp",
+        "/images/products/apple-ipad-air-11-m3/2.webp",
+        "/images/products/apple-ipad-air-11-m3/3.webp",
+        "/images/products/apple-ipad-air-11-m3/4.webp"
+      ]
+    },
+    {
+      "folder": "Apple iPhone 17 Pro Max",
+      "slug": "apple-iphone-17-pro-max",
+      "gallery": [
+        "/images/products/apple-iphone-17-pro-max/1.webp",
+        "/images/products/apple-iphone-17-pro-max/2.webp",
+        "/images/products/apple-iphone-17-pro-max/3.webp",
+        "/images/products/apple-iphone-17-pro-max/4.webp",
+        "/images/products/apple-iphone-17-pro-max/5.webp",
+        "/images/products/apple-iphone-17-pro-max/6.webp",
+        "/images/products/apple-iphone-17-pro-max/7.webp",
+        "/images/products/apple-iphone-17-pro-max/8.webp"
+      ]
+    },
+    {
+      "folder": "ASUS Vivobook 15 (X1504VA)",
+      "slug": "asus-vivobook-15-x1504va",
+      "gallery": [
+        "/images/products/asus-vivobook-15-x1504va/1.webp",
+        "/images/products/asus-vivobook-15-x1504va/2.webp",
+        "/images/products/asus-vivobook-15-x1504va/3.webp",
+        "/images/products/asus-vivobook-15-x1504va/4.webp",
+        "/images/products/asus-vivobook-15-x1504va/5.webp",
+        "/images/products/asus-vivobook-15-x1504va/6.webp"
+      ]
+    },
+    {
+      "folder": "AULA F75 Pro Wireless Mechanical Keyboard",
+      "slug": "aula-f75-pro-wireless-mechanical-keyboard",
+      "gallery": [
+        "/images/products/aula-f75-pro-wireless-mechanical-keyboard/1.webp",
+        "/images/products/aula-f75-pro-wireless-mechanical-keyboard/2.webp",
+        "/images/products/aula-f75-pro-wireless-mechanical-keyboard/3.webp",
+        "/images/products/aula-f75-pro-wireless-mechanical-keyboard/4.webp",
+        "/images/products/aula-f75-pro-wireless-mechanical-keyboard/5.webp"
+      ]
+    },
+    {
+      "folder": "DJI Osmo Action 5 Pro",
+      "slug": "dji-osmo-action-5-pro",
+      "gallery": [
+        "/images/products/dji-osmo-action-5-pro/1.webp",
+        "/images/products/dji-osmo-action-5-pro/2.webp",
+        "/images/products/dji-osmo-action-5-pro/3.webp",
+        "/images/products/dji-osmo-action-5-pro/4.webp"
+      ]
+    },
+    {
+      "folder": "HONOR Robot Phone",
+      "slug": "honor-robot-phone",
+      "gallery": [
+        "/images/products/honor-robot-phone/1.webp",
+        "/images/products/honor-robot-phone/2.webp",
+        "/images/products/honor-robot-phone/3.webp",
+        "/images/products/honor-robot-phone/4.webp",
+        "/images/products/honor-robot-phone/5.webp"
+      ]
+    },
+    {
+      "folder": "Infinix Note 60 Pro",
+      "slug": "infinix-note-60-pro",
+      "gallery": [
+        "/images/products/infinix-note-60-pro/1.webp",
+        "/images/products/infinix-note-60-pro/2.webp",
+        "/images/products/infinix-note-60-pro/3.webp",
+        "/images/products/infinix-note-60-pro/4.webp",
+        "/images/products/infinix-note-60-pro/5.webp",
+        "/images/products/infinix-note-60-pro/6.webp"
+      ]
+    },
+    {
+      "folder": "Lenovo IdeaCentre AIO 27″",
+      "slug": "lenovo-ideacentre-aio-27",
+      "gallery": [
+        "/images/products/lenovo-ideacentre-aio-27/1.webp",
+        "/images/products/lenovo-ideacentre-aio-27/2.webp",
+        "/images/products/lenovo-ideacentre-aio-27/3.webp",
+        "/images/products/lenovo-ideacentre-aio-27/4.webp",
+        "/images/products/lenovo-ideacentre-aio-27/5.webp",
+        "/images/products/lenovo-ideacentre-aio-27/6.webp",
+        "/images/products/lenovo-ideacentre-aio-27/7.webp",
+        "/images/products/lenovo-ideacentre-aio-27/8.webp"
+      ]
+    },
+    {
+      "folder": "PlayStation 5 Slim Disc Console",
+      "slug": "playstation-5-slim-disc-console",
+      "gallery": [
+        "/images/products/playstation-5-slim-disc-console/1.webp",
+        "/images/products/playstation-5-slim-disc-console/2.webp",
+        "/images/products/playstation-5-slim-disc-console/3.webp",
+        "/images/products/playstation-5-slim-disc-console/4.webp",
+        "/images/products/playstation-5-slim-disc-console/5.webp",
+        "/images/products/playstation-5-slim-disc-console/6.webp",
+        "/images/products/playstation-5-slim-disc-console/7.webp",
+        "/images/products/playstation-5-slim-disc-console/8.webp"
+      ]
+    },
+    {
+      "folder": "Samsung Galaxy S26 Ultra",
+      "slug": "samsung-galaxy-s26-ultra",
+      "gallery": [
+        "/images/products/samsung-galaxy-s26-ultra/1.webp",
+        "/images/products/samsung-galaxy-s26-ultra/2.webp",
+        "/images/products/samsung-galaxy-s26-ultra/3.webp",
+        "/images/products/samsung-galaxy-s26-ultra/4.webp",
+        "/images/products/samsung-galaxy-s26-ultra/5.webp",
+        "/images/products/samsung-galaxy-s26-ultra/6.webp"
+      ]
+    },
+    {
+      "folder": "Samsung Galaxy Tab S10 Ultra",
+      "slug": "samsung-galaxy-tab-s10-ultra",
+      "gallery": [
+        "/images/products/samsung-galaxy-tab-s10-ultra/1.webp",
+        "/images/products/samsung-galaxy-tab-s10-ultra/2.webp",
+        "/images/products/samsung-galaxy-tab-s10-ultra/3.webp",
+        "/images/products/samsung-galaxy-tab-s10-ultra/4.webp"
+      ]
+    },
+    {
+      "folder": "Samsung Galaxy Z Fold7 256GB",
+      "slug": "samsung-galaxy-z-fold7-256gb",
+      "gallery": [
+        "/images/products/samsung-galaxy-z-fold7-256gb/1.webp",
+        "/images/products/samsung-galaxy-z-fold7-256gb/2.webp",
+        "/images/products/samsung-galaxy-z-fold7-256gb/3.webp",
+        "/images/products/samsung-galaxy-z-fold7-256gb/4.webp",
+        "/images/products/samsung-galaxy-z-fold7-256gb/5.webp"
+      ]
+    },
+    {
+      "folder": "Sony WH-1000XM5 Wireless Headphones",
+      "slug": "sony-wh-1000xm5-wireless-headphones",
+      "gallery": [
+        "/images/products/sony-wh-1000xm5-wireless-headphones/1.webp",
+        "/images/products/sony-wh-1000xm5-wireless-headphones/2.webp",
+        "/images/products/sony-wh-1000xm5-wireless-headphones/3.webp",
+        "/images/products/sony-wh-1000xm5-wireless-headphones/4.webp",
+        "/images/products/sony-wh-1000xm5-wireless-headphones/5.webp"
+      ]
+    },
+    {
+      "folder": "Tecno Camon 40 Pro",
+      "slug": "tecno-camon-40-pro",
+      "gallery": [
+        "/images/products/tecno-camon-40-pro/1.webp",
+        "/images/products/tecno-camon-40-pro/2.webp",
+        "/images/products/tecno-camon-40-pro/3.webp"
+      ]
+    },
+    {
+      "folder": "Vivo X300 Pro",
+      "slug": "vivo-x300-pro",
+      "gallery": [
+        "/images/products/vivo-x300-pro/1.webp",
+        "/images/products/vivo-x300-pro/2.webp",
+        "/images/products/vivo-x300-pro/3.webp",
+        "/images/products/vivo-x300-pro/4.webp",
+        "/images/products/vivo-x300-pro/5.webp"
+      ]
+    },
+    {
+      "folder": "Xiaomi Redmi Watch 5",
+      "slug": "xiaomi-redmi-watch-5",
+      "gallery": [
+        "/images/products/xiaomi-redmi-watch-5/1.webp",
+        "/images/products/xiaomi-redmi-watch-5/2.webp",
+        "/images/products/xiaomi-redmi-watch-5/3.webp"
+      ]
+    },
+    {
+      "folder": "Xiaomi Robot Vacuum S10",
+      "slug": "xiaomi-robot-vacuum-s10",
+      "gallery": [
+        "/images/products/xiaomi-robot-vacuum-s10/1.webp",
+        "/images/products/xiaomi-robot-vacuum-s10/2.webp",
+        "/images/products/xiaomi-robot-vacuum-s10/3.webp",
+        "/images/products/xiaomi-robot-vacuum-s10/4.webp"
+      ]
+    },
+    {
+      "folder": "Xiaomi Smart TV X Pro 55",
+      "slug": "xiaomi-smart-tv-x-pro-55",
+      "gallery": [
+        "/images/products/xiaomi-smart-tv-x-pro-55/1.webp",
+        "/images/products/xiaomi-smart-tv-x-pro-55/2.webp",
+        "/images/products/xiaomi-smart-tv-x-pro-55/3.webp",
+        "/images/products/xiaomi-smart-tv-x-pro-55/4.webp"
+      ]
+    }
+  ]
+}

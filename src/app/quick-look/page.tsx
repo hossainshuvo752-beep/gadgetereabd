@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { slugify, products, type Product } from '@/lib/products';
 import PriceTag from '@/components/PriceTag';
 import CategoryNav from '@/components/CategoryNav';
@@ -75,8 +76,19 @@ export default function QuickLookPage() {
                   href={`/quick-look/${slugify(product.title)}`}
                   className="group bg-text-on-dark border border-text-heading/10 rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-300 flex flex-col"
                 >
-                  <div className="h-36 md:h-48 bg-bg-dark-secondary/10 flex items-center justify-center relative">
-                    <span className="text-text-body text-sm">{product.imageAlt}</span>
+                  <div className="h-36 md:h-48 bg-bg-dark-secondary/10 flex items-center justify-center relative overflow-hidden">
+                    {/* Real photo when available; gray placeholder otherwise */}
+                    {product.heroImage ? (
+                      <Image
+                        src={product.heroImage}
+                        alt={product.imageAlt}
+                        fill
+                        sizes="(max-width: 768px) 50vw, 33vw"
+                        className="object-contain p-2"
+                      />
+                    ) : (
+                      <span className="text-text-body text-sm">{product.imageAlt}</span>
+                    )}
                     <span className="absolute top-2 left-2 px-2.5 py-0.5 text-xs font-semibold bg-accent/10 text-accent-hover rounded-full">
                       {product.specSheet.basicInfo.brand}
                     </span>

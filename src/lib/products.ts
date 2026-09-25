@@ -12,6 +12,15 @@ export interface Product {
    *  top-level category). */
   subCategory: string;
   imageAlt: string;
+  /** Real product photo — hero/main image (WebP, optimized). When present,
+   *  all surfaces render it instead of the imageAlt placeholder box; the
+   *  alt text remains the accessibility label. One shared copy per image,
+   *  served from public/images/products/<slug>/ and used by Shop, Quick
+   *  Look, and every other surface. */
+  heroImage?: string;
+  /** Gallery angles for detail pages (hero first). Products without real
+   *  photos keep the placeholder gallery. */
+  gallery?: string[];
   /** SIMULATED popularity metric — dummy values, NOT real analytics.
    *  Replace with real view-tracking data when a backend exists. Drives
    *  the default most-viewed-first sort on the Homepage grid and the
@@ -106,6 +115,17 @@ export const products: Product[] = [
     topCategory: 'Mobile',
     subCategory: 'HONOR',
     imageAlt: 'HONOR Robot Phone',
+    /** Real product photos (hero = 1.webp; rest are gallery angles).
+     *  Served from public/images/products/honor-robot-phone/ — the single
+     *  shared copy used by Shop, Quick Look, and every other surface. */
+    heroImage: '/images/products/honor-robot-phone/1.webp',
+    gallery: [
+            "/images/products/honor-robot-phone/1.webp",
+            "/images/products/honor-robot-phone/2.webp",
+            "/images/products/honor-robot-phone/3.webp",
+            "/images/products/honor-robot-phone/4.webp",
+            "/images/products/honor-robot-phone/5.webp"
+    ],
     views: 5200,
     dateAdded: '2026-08-15',
     price: 179999,
@@ -189,6 +209,18 @@ export const products: Product[] = [
     topCategory: 'Mobile',
     subCategory: 'Samsung',
     imageAlt: 'Samsung Galaxy S26 Ultra',
+    /** Real product photos (hero = 1.webp; rest are gallery angles).
+     *  Served from public/images/products/samsung-galaxy-s26-ultra/ — the single
+     *  shared copy used by Shop, Quick Look, and every other surface. */
+    heroImage: '/images/products/samsung-galaxy-s26-ultra/1.webp',
+    gallery: [
+            "/images/products/samsung-galaxy-s26-ultra/1.webp",
+            "/images/products/samsung-galaxy-s26-ultra/2.webp",
+            "/images/products/samsung-galaxy-s26-ultra/3.webp",
+            "/images/products/samsung-galaxy-s26-ultra/4.webp",
+            "/images/products/samsung-galaxy-s26-ultra/5.webp",
+            "/images/products/samsung-galaxy-s26-ultra/6.webp"
+    ],
     views: 4800,
     dateAdded: '2026-02-20',
     price: 199999,
@@ -271,6 +303,20 @@ export const products: Product[] = [
     topCategory: 'Mobile',
     subCategory: 'Apple',
     imageAlt: 'Apple iPhone 17 Pro Max',
+    /** Real product photos (hero = 1.webp; rest are gallery angles).
+     *  Served from public/images/products/apple-iphone-17-pro-max/ — the single
+     *  shared copy used by Shop, Quick Look, and every other surface. */
+    heroImage: '/images/products/apple-iphone-17-pro-max/1.webp',
+    gallery: [
+            "/images/products/apple-iphone-17-pro-max/1.webp",
+            "/images/products/apple-iphone-17-pro-max/2.webp",
+            "/images/products/apple-iphone-17-pro-max/3.webp",
+            "/images/products/apple-iphone-17-pro-max/4.webp",
+            "/images/products/apple-iphone-17-pro-max/5.webp",
+            "/images/products/apple-iphone-17-pro-max/6.webp",
+            "/images/products/apple-iphone-17-pro-max/7.webp",
+            "/images/products/apple-iphone-17-pro-max/8.webp"
+    ],
     views: 6100,
     dateAdded: '2025-09-19',
     price: 209900,
@@ -351,6 +397,17 @@ export const products: Product[] = [
     topCategory: 'Mobile',
     subCategory: 'Vivo',
     imageAlt: 'Vivo X300 Pro',
+    /** Real product photos (hero = 1.webp; rest are gallery angles).
+     *  Served from public/images/products/vivo-x300-pro/ — the single
+     *  shared copy used by Shop, Quick Look, and every other surface. */
+    heroImage: '/images/products/vivo-x300-pro/1.webp',
+    gallery: [
+            "/images/products/vivo-x300-pro/1.webp",
+            "/images/products/vivo-x300-pro/2.webp",
+            "/images/products/vivo-x300-pro/3.webp",
+            "/images/products/vivo-x300-pro/4.webp",
+            "/images/products/vivo-x300-pro/5.webp"
+    ],
     views: 2200,
     dateAdded: '2025-10-30',
     price: 149999,
@@ -431,6 +488,15 @@ export const products: Product[] = [
     topCategory: 'Mobile',
     subCategory: 'Tecno',
     imageAlt: 'Tecno Camon 40 Pro',
+    /** Real product photos (hero = 1.webp; rest are gallery angles).
+     *  Served from public/images/products/tecno-camon-40-pro/ — the single
+     *  shared copy used by Shop, Quick Look, and every other surface. */
+    heroImage: '/images/products/tecno-camon-40-pro/1.webp',
+    gallery: [
+            "/images/products/tecno-camon-40-pro/1.webp",
+            "/images/products/tecno-camon-40-pro/2.webp",
+            "/images/products/tecno-camon-40-pro/3.webp"
+    ],
     views: 1500,
     dateAdded: '2025-05-28',
     price: 27999,
@@ -508,6 +574,18 @@ export const products: Product[] = [
     topCategory: 'Mobile',
     subCategory: 'Infinix',
     imageAlt: 'Infinix Note 60 Pro',
+    /** Real product photos (hero = 1.webp; rest are gallery angles).
+     *  Served from public/images/products/infinix-note-60-pro/ — the single
+     *  shared copy used by Shop, Quick Look, and every other surface. */
+    heroImage: '/images/products/infinix-note-60-pro/1.webp',
+    gallery: [
+            "/images/products/infinix-note-60-pro/1.webp",
+            "/images/products/infinix-note-60-pro/2.webp",
+            "/images/products/infinix-note-60-pro/3.webp",
+            "/images/products/infinix-note-60-pro/4.webp",
+            "/images/products/infinix-note-60-pro/5.webp",
+            "/images/products/infinix-note-60-pro/6.webp"
+    ],
     views: 1900,
     dateAdded: '2026-02-10',
     isDeal: true,
@@ -584,7 +662,18 @@ export const products: Product[] = [
     category: 'Smartphones',
     topCategory: 'Mobile',
     subCategory: 'Samsung',
-    imageAlt: 'Samsung Galaxy Z Fold7 (placeholder image)',
+    imageAlt: 'Samsung Galaxy Z Fold7',
+    /** Real product photos (hero = 1.webp; rest are gallery angles).
+     *  Served from public/images/products/samsung-galaxy-z-fold7-256gb/ — the single
+     *  shared copy used by Shop, Quick Look, and every other surface. */
+    heroImage: '/images/products/samsung-galaxy-z-fold7-256gb/1.webp',
+    gallery: [
+            "/images/products/samsung-galaxy-z-fold7-256gb/1.webp",
+            "/images/products/samsung-galaxy-z-fold7-256gb/2.webp",
+            "/images/products/samsung-galaxy-z-fold7-256gb/3.webp",
+            "/images/products/samsung-galaxy-z-fold7-256gb/4.webp",
+            "/images/products/samsung-galaxy-z-fold7-256gb/5.webp"
+    ],
     views: 2600,
     dateAdded: '2025-07-25',
     price: 154999,
@@ -664,7 +753,18 @@ export const products: Product[] = [
     category: 'Accessories',
     topCategory: 'Gadget Accessories',
     subCategory: 'Sound',
-    imageAlt: 'Sony WH-1000XM5 headphones (placeholder image)',
+    imageAlt: 'Sony WH-1000XM5 headphones',
+    /** Real product photos (hero = 1.webp; rest are gallery angles).
+     *  Served from public/images/products/sony-wh-1000xm5-wireless-headphones/ — the single
+     *  shared copy used by Shop, Quick Look, and every other surface. */
+    heroImage: '/images/products/sony-wh-1000xm5-wireless-headphones/1.webp',
+    gallery: [
+            "/images/products/sony-wh-1000xm5-wireless-headphones/1.webp",
+            "/images/products/sony-wh-1000xm5-wireless-headphones/2.webp",
+            "/images/products/sony-wh-1000xm5-wireless-headphones/3.webp",
+            "/images/products/sony-wh-1000xm5-wireless-headphones/4.webp",
+            "/images/products/sony-wh-1000xm5-wireless-headphones/5.webp"
+    ],
     views: 3100,
     dateAdded: '2022-05-20',
     isDeal: true,
@@ -732,7 +832,21 @@ export const products: Product[] = [
     category: 'Gaming',
     topCategory: 'Gadget Accessories',
     subCategory: 'Other',
-    imageAlt: 'PlayStation 5 Slim disc console (placeholder image)',
+    imageAlt: 'PlayStation 5 Slim disc console',
+    /** Real product photos (hero = 1.webp; rest are gallery angles).
+     *  Served from public/images/products/playstation-5-slim-disc-console/ — the single
+     *  shared copy used by Shop, Quick Look, and every other surface. */
+    heroImage: '/images/products/playstation-5-slim-disc-console/1.webp',
+    gallery: [
+            "/images/products/playstation-5-slim-disc-console/1.webp",
+            "/images/products/playstation-5-slim-disc-console/2.webp",
+            "/images/products/playstation-5-slim-disc-console/3.webp",
+            "/images/products/playstation-5-slim-disc-console/4.webp",
+            "/images/products/playstation-5-slim-disc-console/5.webp",
+            "/images/products/playstation-5-slim-disc-console/6.webp",
+            "/images/products/playstation-5-slim-disc-console/7.webp",
+            "/images/products/playstation-5-slim-disc-console/8.webp"
+    ],
     views: 5400,
     dateAdded: '2023-11-10',
     isDeal: true,
@@ -868,7 +982,18 @@ export const products: Product[] = [
     category: 'Gaming',
     topCategory: 'Gadget Accessories',
     subCategory: 'Computer Accessories',
-    imageAlt: 'AULA F75 Pro wireless keyboard (placeholder image)',
+    imageAlt: 'AULA F75 Pro wireless keyboard',
+    /** Real product photos (hero = 1.webp; rest are gallery angles).
+     *  Served from public/images/products/aula-f75-pro-wireless-mechanical-keyboard/ — the single
+     *  shared copy used by Shop, Quick Look, and every other surface. */
+    heroImage: '/images/products/aula-f75-pro-wireless-mechanical-keyboard/1.webp',
+    gallery: [
+            "/images/products/aula-f75-pro-wireless-mechanical-keyboard/1.webp",
+            "/images/products/aula-f75-pro-wireless-mechanical-keyboard/2.webp",
+            "/images/products/aula-f75-pro-wireless-mechanical-keyboard/3.webp",
+            "/images/products/aula-f75-pro-wireless-mechanical-keyboard/4.webp",
+            "/images/products/aula-f75-pro-wireless-mechanical-keyboard/5.webp"
+    ],
     views: 1200,
     dateAdded: '2024-06-01',
     isDeal: true,
@@ -935,7 +1060,17 @@ export const products: Product[] = [
     category: 'Tablets',
     topCategory: 'Tablet',
     subCategory: 'Samsung',
-    imageAlt: 'Samsung Galaxy Tab S10 Ultra (placeholder image)',
+    imageAlt: 'Samsung Galaxy Tab S10 Ultra',
+    /** Real product photos (hero = 1.webp; rest are gallery angles).
+     *  Served from public/images/products/samsung-galaxy-tab-s10-ultra/ — the single
+     *  shared copy used by Shop, Quick Look, and every other surface. */
+    heroImage: '/images/products/samsung-galaxy-tab-s10-ultra/1.webp',
+    gallery: [
+            "/images/products/samsung-galaxy-tab-s10-ultra/1.webp",
+            "/images/products/samsung-galaxy-tab-s10-ultra/2.webp",
+            "/images/products/samsung-galaxy-tab-s10-ultra/3.webp",
+            "/images/products/samsung-galaxy-tab-s10-ultra/4.webp"
+    ],
     views: 1400,
     dateAdded: '2024-10-05',
     price: null,
@@ -998,7 +1133,17 @@ export const products: Product[] = [
     category: 'Tablets',
     topCategory: 'Tablet',
     subCategory: 'Apple',
-    imageAlt: 'Apple iPad Air 11 M3 (placeholder image)',
+    imageAlt: 'Apple iPad Air 11 M3',
+    /** Real product photos (hero = 1.webp; rest are gallery angles).
+     *  Served from public/images/products/apple-ipad-air-11-m3/ — the single
+     *  shared copy used by Shop, Quick Look, and every other surface. */
+    heroImage: '/images/products/apple-ipad-air-11-m3/1.webp',
+    gallery: [
+            "/images/products/apple-ipad-air-11-m3/1.webp",
+            "/images/products/apple-ipad-air-11-m3/2.webp",
+            "/images/products/apple-ipad-air-11-m3/3.webp",
+            "/images/products/apple-ipad-air-11-m3/4.webp"
+    ],
     views: 2000,
     dateAdded: '2025-03-12',
     price: null,
@@ -1061,7 +1206,19 @@ export const products: Product[] = [
     category: 'Laptops',
     topCategory: 'PC',
     subCategory: 'Laptop',
-    imageAlt: 'ASUS Vivobook 15 laptop (placeholder image)',
+    imageAlt: 'ASUS Vivobook 15 laptop',
+    /** Real product photos (hero = 1.webp; rest are gallery angles).
+     *  Served from public/images/products/asus-vivobook-15-x1504va/ — the single
+     *  shared copy used by Shop, Quick Look, and every other surface. */
+    heroImage: '/images/products/asus-vivobook-15-x1504va/1.webp',
+    gallery: [
+            "/images/products/asus-vivobook-15-x1504va/1.webp",
+            "/images/products/asus-vivobook-15-x1504va/2.webp",
+            "/images/products/asus-vivobook-15-x1504va/3.webp",
+            "/images/products/asus-vivobook-15-x1504va/4.webp",
+            "/images/products/asus-vivobook-15-x1504va/5.webp",
+            "/images/products/asus-vivobook-15-x1504va/6.webp"
+    ],
     views: 900,
     dateAdded: '2023-06-15',
     price: null,
@@ -1130,7 +1287,19 @@ export const products: Product[] = [
     category: 'Desktops',
     topCategory: 'PC',
     subCategory: 'Desktop',
-    imageAlt: 'Lenovo IdeaCentre AIO 27 desktop (placeholder image)',
+    imageAlt: 'Lenovo IdeaCentre AIO 27 desktop',
+    /** Real product photos — see the field docs on the Product interface. */
+    heroImage: '/images/products/lenovo-ideacentre-aio-27/1.webp',
+    gallery: [
+        '/images/products/lenovo-ideacentre-aio-27/1.webp',
+        '/images/products/lenovo-ideacentre-aio-27/2.webp',
+        '/images/products/lenovo-ideacentre-aio-27/3.webp',
+        '/images/products/lenovo-ideacentre-aio-27/4.webp',
+        '/images/products/lenovo-ideacentre-aio-27/5.webp',
+        '/images/products/lenovo-ideacentre-aio-27/6.webp',
+        '/images/products/lenovo-ideacentre-aio-27/7.webp',
+        '/images/products/lenovo-ideacentre-aio-27/8.webp',
+    ],
     views: 600,
     dateAdded: '2024-01-20',
     price: null,
@@ -1199,7 +1368,16 @@ export const products: Product[] = [
     category: 'Wearables',
     topCategory: 'Smart Watch',
     subCategory: 'Xiaomi',
-    imageAlt: 'Xiaomi Redmi Watch 5 (placeholder image)',
+    imageAlt: 'Xiaomi Redmi Watch 5',
+    /** Real product photos (hero = 1.webp; rest are gallery angles).
+     *  Served from public/images/products/xiaomi-redmi-watch-5/ — the single
+     *  shared copy used by Shop, Quick Look, and every other surface. */
+    heroImage: '/images/products/xiaomi-redmi-watch-5/1.webp',
+    gallery: [
+            "/images/products/xiaomi-redmi-watch-5/1.webp",
+            "/images/products/xiaomi-redmi-watch-5/2.webp",
+            "/images/products/xiaomi-redmi-watch-5/3.webp"
+    ],
     views: 1700,
     dateAdded: '2025-01-15',
     price: null,
@@ -1262,7 +1440,17 @@ export const products: Product[] = [
     category: 'Audio',
     topCategory: 'Earbuds',
     subCategory: 'AirPods',
-    imageAlt: 'Apple AirPods Pro 3 (placeholder image)',
+    imageAlt: 'Apple AirPods Pro 3',
+    /** Real product photos (hero = 1.webp; rest are gallery angles).
+     *  Served from public/images/products/apple-airpods-pro-3/ — the single
+     *  shared copy used by Shop, Quick Look, and every other surface. */
+    heroImage: '/images/products/apple-airpods-pro-3/1.webp',
+    gallery: [
+            "/images/products/apple-airpods-pro-3/1.webp",
+            "/images/products/apple-airpods-pro-3/2.webp",
+            "/images/products/apple-airpods-pro-3/3.webp",
+            "/images/products/apple-airpods-pro-3/4.webp"
+    ],
     views: 3600,
     dateAdded: '2025-09-24',
     price: null,
@@ -1330,7 +1518,19 @@ export const products: Product[] = [
     category: 'Audio',
     topCategory: 'Earbuds',
     subCategory: 'Bluetooth Earbuds',
-    imageAlt: 'Anker Soundcore R50i earbuds (placeholder image)',
+    imageAlt: 'Anker Soundcore R50i earbuds',
+    /** Real product photos (hero = 1.webp; rest are gallery angles).
+     *  Served from public/images/products/anker-soundcore-r50i-earbuds/ — the single
+     *  shared copy used by Shop, Quick Look, and every other surface. */
+    heroImage: '/images/products/anker-soundcore-r50i-earbuds/1.webp',
+    gallery: [
+            "/images/products/anker-soundcore-r50i-earbuds/1.webp",
+            "/images/products/anker-soundcore-r50i-earbuds/2.webp",
+            "/images/products/anker-soundcore-r50i-earbuds/3.webp",
+            "/images/products/anker-soundcore-r50i-earbuds/4.webp",
+            "/images/products/anker-soundcore-r50i-earbuds/5.webp",
+            "/images/products/anker-soundcore-r50i-earbuds/6.webp"
+    ],
     views: 950,
     dateAdded: '2023-08-10',
     price: null,
@@ -1393,7 +1593,17 @@ export const products: Product[] = [
     category: 'Cameras',
     topCategory: 'Camera',
     subCategory: 'Action Camera',
-    imageAlt: 'DJI Osmo Action 5 Pro (placeholder image)',
+    imageAlt: 'DJI Osmo Action 5 Pro',
+    /** Real product photos (hero = 1.webp; rest are gallery angles).
+     *  Served from public/images/products/dji-osmo-action-5-pro/ — the single
+     *  shared copy used by Shop, Quick Look, and every other surface. */
+    heroImage: '/images/products/dji-osmo-action-5-pro/1.webp',
+    gallery: [
+            "/images/products/dji-osmo-action-5-pro/1.webp",
+            "/images/products/dji-osmo-action-5-pro/2.webp",
+            "/images/products/dji-osmo-action-5-pro/3.webp",
+            "/images/products/dji-osmo-action-5-pro/4.webp"
+    ],
     views: 1100,
     dateAdded: '2024-09-18',
     price: null,
@@ -1461,7 +1671,16 @@ export const products: Product[] = [
     category: 'Accessories',
     topCategory: 'Gadget Accessories',
     subCategory: 'Charging',
-    imageAlt: 'Anker PowerCore 20000 power bank (placeholder image)',
+    imageAlt: 'Anker PowerCore 20000 power bank',
+    /** Real product photos (hero = 1.webp; rest are gallery angles).
+     *  Served from public/images/products/anker-powercore-20000-power-bank/ — the single
+     *  shared copy used by Shop, Quick Look, and every other surface. */
+    heroImage: '/images/products/anker-powercore-20000-power-bank/1.webp',
+    gallery: [
+            "/images/products/anker-powercore-20000-power-bank/1.webp",
+            "/images/products/anker-powercore-20000-power-bank/2.webp",
+            "/images/products/anker-powercore-20000-power-bank/3.webp"
+    ],
     views: 1300,
     dateAdded: '2023-02-01',
     price: null,
@@ -1524,7 +1743,17 @@ export const products: Product[] = [
     category: 'Smart Home',
     topCategory: 'Home Accessories',
     subCategory: 'Cleaning Robot',
-    imageAlt: 'Xiaomi Robot Vacuum S10 (placeholder image)',
+    imageAlt: 'Xiaomi Robot Vacuum S10',
+    /** Real product photos (hero = 1.webp; rest are gallery angles).
+     *  Served from public/images/products/xiaomi-robot-vacuum-s10/ — the single
+     *  shared copy used by Shop, Quick Look, and every other surface. */
+    heroImage: '/images/products/xiaomi-robot-vacuum-s10/1.webp',
+    gallery: [
+            "/images/products/xiaomi-robot-vacuum-s10/1.webp",
+            "/images/products/xiaomi-robot-vacuum-s10/2.webp",
+            "/images/products/xiaomi-robot-vacuum-s10/3.webp",
+            "/images/products/xiaomi-robot-vacuum-s10/4.webp"
+    ],
     views: 1000,
     dateAdded: '2022-08-20',
     price: null,
@@ -1591,7 +1820,17 @@ export const products: Product[] = [
     category: 'Appliances',
     topCategory: 'Home Appliances',
     subCategory: 'Smart TV',
-    imageAlt: 'Xiaomi Smart TV X Pro 55 (placeholder image)',
+    imageAlt: 'Xiaomi Smart TV X Pro 55',
+    /** Real product photos (hero = 1.webp; rest are gallery angles).
+     *  Served from public/images/products/xiaomi-smart-tv-x-pro-55/ — the single
+     *  shared copy used by Shop, Quick Look, and every other surface. */
+    heroImage: '/images/products/xiaomi-smart-tv-x-pro-55/1.webp',
+    gallery: [
+            "/images/products/xiaomi-smart-tv-x-pro-55/1.webp",
+            "/images/products/xiaomi-smart-tv-x-pro-55/2.webp",
+            "/images/products/xiaomi-smart-tv-x-pro-55/3.webp",
+            "/images/products/xiaomi-smart-tv-x-pro-55/4.webp"
+    ],
     views: 1500,
     dateAdded: '2023-04-18',
     price: null,

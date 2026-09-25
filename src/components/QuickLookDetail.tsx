@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import type { Product } from '@/lib/products';
 import { track } from '@/lib/tracking';
@@ -184,6 +185,16 @@ const QuickLookDetail: React.FC<{
   }, [product.id]);
 
   const [activeImage, setActiveImage] = useState(0);
+  // Real photo gallery (hero first) when the product has one; empty for
+  // products still on the placeholder flow (single gray box, no thumbs).
+  const galleryImages: string[] =
+    product.gallery && product.gallery.length > 0
+      ? product.gallery
+      : product.heroImage
+        ? [product.heroImage]
+        : [];
+  // Keeps prev/next + display consistent even if state ever overshoots.
+  const activeIdx = galleryImages.length > 0 ? activeImage % galleryImages.length : 0;
   const [activeColor, setActiveColor] = useState(0);
   const [activeStorage, setActiveStorage] = useState(0);
   // Pre-order confirmation state (upcoming products only).
@@ -317,51 +328,94 @@ const QuickLookDetail: React.FC<{
                 <div className="text-[10px] uppercase tracking-wide text-text-on-dark/70">Spec Score</div>
                 <div className="text-lg font-bold text-accent leading-none">{specScore}%</div>
               </div>
-              {/* main image */}
-              <div className="h-96 bg-bg-dark-secondary/10 flex items-center justify-center rounded-md">
-                <span className="text-text-body text-sm">
-                  {activeImage === 0 ? product.imageAlt : `View ${activeImage + 1}`}
-                </span>
+              {/* main image — real photo when available, gray placeholder
+                  otherwise (fill + object-contain preserves any aspect) */}
+              <div className="relative h-96 bg-bg-dark-secondary/10 flex items-center justify-center rounded-md overflow-hidden">
+                {galleryImages.length > 0 ? (
+                  <Image
+                    src={galleryImages[activeIdx]!}
+                    alt={`${product.imageAlt} — view ${activeIdx + 1} of ${galleryImages.length}`}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 384px"
+                    className="object-contain p-2"
+                    priority
+                  />
+                ) : (
+                  <span className="text-text-body text-sm">
+                    {activeImage === 0 ? product.imageAlt : `View ${activeImage + 1}`}
+                  </span>
+                )}
               </div>
               {/* prev / next */}
               <button
                 aria-label="Previous image"
-                onClick={() => setActiveImage((activeImage + 2) % 3)}
+                onClick={() =>
+                  galleryImages.length > 0 &&
+                  setActiveImage((activeImage + galleryImages.length - 1) % galleryImages.length)
+                }
                 className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-text-on-dark border border-text-heading/10 shadow flex items-center justify-center text-text-body hover:text-accent"
               >
                 ‹
               </button>
               <button
                 aria-label="Next image"
-                onClick={() => setActiveImage((activeImage + 1) % 3)}
+                onClick={() =>
+                  galleryImages.length > 0 && setActiveImage((activeImage + 1) % galleryImages.length)
+                }
                 className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-text-on-dark border border-text-heading/10 shadow flex items-center justify-center text-text-body hover:text-accent"
               >
                 ›
               </button>
             </div>
 
-            {/* thumbnail strip */}
-            <div className="grid grid-cols-4 gap-3 mt-3">
-              {[0, 1, 2].map((i) => (
+            {/* thumbnail strip — real thumbs when photos exist; legacy
+                placeholder buttons otherwise */}
+            {galleryImages.length > 0 ? (
+              <div className="grid grid-cols-4 gap-3 mt-3">
+                {galleryImages.map((img, i) => (
+                  <button
+                    key={img}
+                    onClick={() => setActiveImage(i)}
+                    aria-label={`View image ${i + 1}`}
+                    className={`relative h-20 rounded-md overflow-hidden border transition-colors ${
+                      activeIdx === i
+                        ? 'border-accent bg-accent/10'
+                        : 'border-text-heading/10 bg-text-on-dark hover:border-accent/50'
+                    }`}
+                  >
+                    <Image
+                      src={img}
+                      alt={`${product.imageAlt} — thumbnail ${i + 1}`}
+                      fill
+                      sizes="96px"
+                      className="object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <div className="grid grid-cols-4 gap-3 mt-3">
+                {[0, 1, 2].map((i) => (
+                  <button
+                    key={i}
+                    onClick={() => setActiveImage(i)}
+                    className={`h-20 rounded-md flex items-center justify-center text-xs border transition-colors ${
+                      activeImage === i
+                        ? 'border-accent text-text-body bg-accent/10'
+                        : 'border-text-heading/10 bg-text-on-dark text-text-body hover:border-accent/50'
+                    }`}
+                  >
+                    {i === 0 ? product.imageAlt : `View ${i + 1}`}
+                  </button>
+                ))}
                 <button
-                  key={i}
-                  onClick={() => setActiveImage(i)}
-                  className={`h-20 rounded-md flex items-center justify-center text-xs border transition-colors ${
-                    activeImage === i
-                      ? 'border-accent text-text-body bg-accent/10'
-                      : 'border-text-heading/10 bg-text-on-dark text-text-body hover:border-accent/50'
-                  }`}
+                  disabled
+                  className="h-20 rounded-md flex items-center justify-center text-xs border border-text-heading/10 bg-text-on-dark text-text-body cursor-default"
                 >
-                  {i === 0 ? product.imageAlt : `View ${i + 1}`}
+                  +3
                 </button>
-              ))}
-              <button
-                disabled
-                className="h-20 rounded-md flex items-center justify-center text-xs border border-text-heading/10 bg-text-on-dark text-text-body cursor-default"
-              >
-                +3
-              </button>
-            </div>
+              </div>
+            )}
           </div>
 
           {/* RIGHT — info (3/5) */}

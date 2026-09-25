@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { products, isPurchasable, isUpcoming, type Product } from '@/lib/products';
 import { useCart } from '@/context/CartContext';
 import PriceTag from './PriceTag';
@@ -55,7 +56,18 @@ const ShopTeaser: React.FC = () => {
                       </span>
                     </>
                   )}
-                  <span className="text-text-body text-sm">{product.imageAlt}</span>
+                  {/* Real photo when available; gray placeholder otherwise */}
+                  {product.heroImage ? (
+                    <Image
+                      src={product.heroImage}
+                      alt={product.imageAlt}
+                      fill
+                      sizes="288px"
+                      className="object-contain p-2"
+                    />
+                  ) : (
+                    <span className="text-text-body text-sm">{product.imageAlt}</span>
+                  )}
                 </div>
                 <div className="p-4">
                   <span className="inline-flex items-center px-2.5 py-0.5 text-xs font-semibold bg-accent text-text-on-dark rounded-full mb-2">
