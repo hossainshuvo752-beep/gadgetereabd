@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import type { Product } from '@/lib/products';
 import { track } from '@/lib/tracking';
 import PriceTag from '@/components/PriceTag';
+import LightboxGallery from '@/components/LightboxGallery';
 import { isPurchasable, isUpcoming, storageOptionsOf, variantPrice, type ResolvedPrice } from '@/lib/products';
 import { useCart } from '@/context/CartContext';
 import {
@@ -227,6 +228,15 @@ const QuickLookDetail: React.FC<{
     : 0;
   // Pre-order confirmation state (upcoming products only).
   const [preOrdered, setPreOrdered] = useState(false);
+  // Amazon-style "see all" lightbox for galleries with more than MAX_THUMBS images.
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const MAX_THUMBS = 3;
+  // More than MAX_THUMBS + 1 images (>4): show 3 thumbs + the "+N" tile.
+  // MAX_THUMBS + 1 or fewer (≤4): show them ALL inline, no tile.
+  const showSeeAll = activeGallery.length > MAX_THUMBS + 1;
+  const inlineThumbs = showSeeAll
+    ? activeGallery.slice(0, MAX_THUMBS)
+    : activeGallery;
 
   // Storage variants (see storageOptions above)
 
@@ -364,7 +374,8 @@ const QuickLookDetail: React.FC<{
                     alt={`${product.imageAlt} — view ${activeIdx + 1} of ${activeGallery.length}`}
                     fill
                     sizes="(max-width: 1024px) 100vw, 384px"
-                    className="object-contain p-2"
+                    onClick={showSeeAll ? () => setLightboxOpen(true) : undefined}
+                    className={`object-contain p-2 ${showSeeAll ? 'cursor-zoom-in' : ''}`}
                     priority
                   />
                 ) : (
@@ -395,16 +406,18 @@ const QuickLookDetail: React.FC<{
               </button>
             </div>
 
-            {/* thumbnail strip — real thumbs when photos exist; legacy
-                placeholder buttons otherwise */}
+            {/* thumbnail strip — SINGLE ROW always: up to MAX_THUMBS real
+                thumbs, then a "+N" see-all tile that opens the lightbox
+                (Amazon pattern) when the gallery is larger; ≤4 images show
+                inline with no tile. Legacy placeholder buttons unchanged. */}
             {activeGallery.length > 0 ? (
-              <div className="grid grid-cols-4 gap-3 mt-3">
-                {activeGallery.map((img, i) => (
+              <div className="flex gap-3 mt-3">
+                {inlineThumbs.map((img, i) => (
                   <button
                     key={img}
                     onClick={() => setActiveImage(i)}
                     aria-label={`View image ${i + 1}`}
-                    className={`relative h-20 rounded-md overflow-hidden border transition-colors ${
+                    className={`relative aspect-square w-20 shrink-0 rounded-md overflow-hidden border transition-colors ${
                       activeIdx === i
                         ? 'border-accent bg-accent/10'
                         : 'border-text-heading/10 bg-text-on-dark hover:border-accent/50'
@@ -414,11 +427,29 @@ const QuickLookDetail: React.FC<{
                       src={img}
                       alt={`${product.imageAlt} — thumbnail ${i + 1}`}
                       fill
-                      sizes="96px"
-                      className="object-cover"
+                      sizes="80px"
+                      className="object-contain p-0.5"
                     />
                   </button>
                 ))}
+                {showSeeAll && (
+                  <button
+                    onClick={() => setLightboxOpen(true)}
+                    aria-label={`See all ${activeGallery.length} images`}
+                    className="relative aspect-square w-20 shrink-0 rounded-md overflow-hidden border transition-colors bg-bg-dark/60 hover:bg-bg-dark/80"
+                  >
+                    <Image
+                      src={activeGallery[MAX_THUMBS]!}
+                      alt=""
+                      fill
+                      sizes="80px"
+                      className="object-cover opacity-40"
+                    />
+                    <span className="absolute inset-0 flex items-center justify-center text-sm font-bold text-text-on-dark">
+                      +{activeGallery.length - MAX_THUMBS}
+                    </span>
+                  </button>
+                )}
               </div>
             ) : (
               <div className="grid grid-cols-4 gap-3 mt-3">
@@ -711,6 +742,16 @@ const QuickLookDetail: React.FC<{
         </>
         )}
       </div>
+      {/* Amazon-style see-all lightbox — only for galleries larger than the
+          inline thumb row; opens on the currently active image. */}
+      {lightboxOpen && activeGallery.length > 0 && (
+        <LightboxGallery
+          images={activeGallery}
+          alt={product.title}
+          initialIndex={activeIdx}
+          onClose={() => setLightboxOpen(false)}
+        />
+      )}
     </section>
   );
 };
