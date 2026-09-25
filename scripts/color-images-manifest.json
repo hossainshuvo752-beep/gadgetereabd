@@ -1,0 +1,241 @@
+{
+  "ASUS Vivobook 15 (X1504VA)": {
+    "slug": "asus-vivobook-15-x1504va",
+    "colorSets": [
+      {
+        "color": "Cool Silver",
+        "images": [
+          "/images/products/asus-vivobook-15-x1504va/cool-silver/1.webp",
+          "/images/products/asus-vivobook-15-x1504va/cool-silver/2.webp"
+        ]
+      },
+      {
+        "color": "Quiet Blue",
+        "images": [
+          "/images/products/asus-vivobook-15-x1504va/quiet-blue/1.webp",
+          "/images/products/asus-vivobook-15-x1504va/quiet-blue/2.webp"
+        ]
+      },
+      {
+        "color": "Terra Cotta",
+        "images": [
+          "/images/products/asus-vivobook-15-x1504va/terra-cotta/1.webp",
+          "/images/products/asus-vivobook-15-x1504va/terra-cotta/2.webp"
+        ]
+      }
+    ]
+  },
+  "Anker Soundcore R50i Earbuds": {
+    "slug": "anker-soundcore-r50i-earbuds",
+    "colorSets": [
+      {
+        "color": "black",
+        "images": [
+          "/images/products/anker-soundcore-r50i-earbuds/black/1.webp",
+          "/images/products/anker-soundcore-r50i-earbuds/black/2.webp"
+        ]
+      },
+      {
+        "color": "navi blue",
+        "images": [
+          "/images/products/anker-soundcore-r50i-earbuds/navi-blue/1.webp",
+          "/images/products/anker-soundcore-r50i-earbuds/navi-blue/2.webp"
+        ]
+      },
+      {
+        "color": "white",
+        "images": [
+          "/images/products/anker-soundcore-r50i-earbuds/white/1.webp",
+          "/images/products/anker-soundcore-r50i-earbuds/white/2.webp"
+        ]
+      }
+    ]
+  },
+  "Apple iPad Air 11 (M3)": {
+    "slug": "apple-ipad-air-11-m3",
+    "colorSets": [
+      {
+        "color": "Blue",
+        "images": [
+          "/images/products/apple-ipad-air-11-m3/blue/1.webp"
+        ]
+      },
+      {
+        "color": "Purple",
+        "images": [
+          "/images/products/apple-ipad-air-11-m3/purple/1.webp"
+        ]
+      },
+      {
+        "color": "Space Gray",
+        "images": [
+          "/images/products/apple-ipad-air-11-m3/space-gray/1.webp"
+        ]
+      },
+      {
+        "color": "Starlight",
+        "images": [
+          "/images/products/apple-ipad-air-11-m3/starlight/1.webp"
+        ]
+      }
+    ]
+  },
+  "Infinix Note 60 Pro": {
+    "slug": "infinix-note-60-pro",
+    "colorSets": [
+      {
+        "color": "Deep Ocean Blue",
+        "images": [
+          "/images/products/infinix-note-60-pro/deep-ocean-blue/1.webp"
+        ]
+      },
+      {
+        "color": "Frost Silver",
+        "images": [
+          "/images/products/infinix-note-60-pro/frost-silver/1.webp"
+        ]
+      },
+      {
+        "color": "Gemini_Generated_Image_zg8revzg8revzg8r",
+        "images": [
+          "/images/products/infinix-note-60-pro/gemini-generated-image-zg8revzg8revzg8r/1.webp"
+        ]
+      },
+      {
+        "color": "Mist Titanium",
+        "images": [
+          "/images/products/infinix-note-60-pro/mist-titanium/1.webp"
+        ]
+      },
+      {
+        "color": "Solar Orange",
+        "images": [
+          "/images/products/infinix-note-60-pro/solar-orange/1.webp"
+        ]
+      },
+      {
+        "color": "Torino Black",
+        "images": [
+          "/images/products/infinix-note-60-pro/torino-black/1.webp"
+        ]
+      }
+    ]
+  },
+  "Lenovo IdeaCentre AIO 27″": {
+    "slug": "lenovo-ideacentre-aio-27",
+    "colorSets": [
+      {
+        "color": "Dark Grey",
+        "images": [
+          "/images/products/lenovo-ideacentre-aio-27/dark-grey/1.webp",
+          "/images/products/lenovo-ideacentre-aio-27/dark-grey/2.webp",
+          "/images/products/lenovo-ideacentre-aio-27/dark-grey/3.webp",
+          "/images/products/lenovo-ideacentre-aio-27/dark-grey/4.webp"
+        ]
+      },
+      {
+        "color": "Light Silver",
+        "images": [
+          "/images/products/lenovo-ideacentre-aio-27/light-silver/1.webp",
+          "/images/products/lenovo-ideacentre-aio-27/light-silver/2.webp",
+          "/images/products/lenovo-ideacentre-aio-27/light-silver/3.webp",
+          "/images/products/lenovo-ideacentre-aio-27/light-silver/4.webp"
+        ]
+      }
+    ]
+  },
+  "Samsung Galaxy Tab S10 Ultra": {
+    "slug": "samsung-galaxy-tab-s10-ultra",
+    "colorSets": [
+      {
+        "color": "Gemini_Generated_Image_6hn3696hn3696hn",
+        "images": [
+          "/images/products/samsung-galaxy-tab-s10-ultra/gemini-generated-image-6hn3696hn3696hn/1.webp"
+        ]
+      },
+      {
+        "color": "Gemini_Generated_Image_qkw3qwqkw3qwqkw",
+        "images": [
+          "/images/products/samsung-galaxy-tab-s10-ultra/gemini-generated-image-qkw3qwqkw3qwqkw/1.webp"
+        ]
+      },
+      {
+        "color": "Gemini_Generated_Image_r2sybxr2sybxr2sy",
+        "images": [
+          "/images/products/samsung-galaxy-tab-s10-ultra/gemini-generated-image-r2sybxr2sybxr2sy/1.webp"
+        ]
+      },
+      {
+        "color": "Gemini_Generated_Image_tc2l1utc2l1utc2l",
+        "images": [
+          "/images/products/samsung-galaxy-tab-s10-ultra/gemini-generated-image-tc2l1utc2l1utc2l/1.webp"
+        ]
+      }
+    ]
+  },
+  "Tecno Camon 40 Pro": {
+    "slug": "tecno-camon-40-pro",
+    "colorSets": [
+      {
+        "color": "Emerald Lake Green",
+        "images": [
+          "/images/products/tecno-camon-40-pro/emerald-lake-green/1.webp"
+        ]
+      },
+      {
+        "color": "Galaxy Black",
+        "images": [
+          "/images/products/tecno-camon-40-pro/galaxy-black/1.webp"
+        ]
+      },
+      {
+        "color": "Sandy Titanium",
+        "images": [
+          "/images/products/tecno-camon-40-pro/sandy-titanium/1.webp"
+        ]
+      }
+    ]
+  },
+  "Xiaomi Redmi Watch 5": {
+    "slug": "xiaomi-redmi-watch-5",
+    "colorSets": [
+      {
+        "color": "Lavender Purple",
+        "images": [
+          "/images/products/xiaomi-redmi-watch-5/lavender-purple/1.webp"
+        ]
+      },
+      {
+        "color": "Obsidian Black",
+        "images": [
+          "/images/products/xiaomi-redmi-watch-5/obsidian-black/1.webp"
+        ]
+      },
+      {
+        "color": "Silver Gray",
+        "images": [
+          "/images/products/xiaomi-redmi-watch-5/silver-gray/1.webp"
+        ]
+      }
+    ]
+  },
+  "Xiaomi Robot Vacuum S10": {
+    "slug": "xiaomi-robot-vacuum-s10",
+    "colorSets": [
+      {
+        "color": "black",
+        "images": [
+          "/images/products/xiaomi-robot-vacuum-s10/black/1.webp",
+          "/images/products/xiaomi-robot-vacuum-s10/black/2.webp"
+        ]
+      },
+      {
+        "color": "white",
+        "images": [
+          "/images/products/xiaomi-robot-vacuum-s10/white/1.webp",
+          "/images/products/xiaomi-robot-vacuum-s10/white/2.webp"
+        ]
+      }
+    ]
+  }
+}

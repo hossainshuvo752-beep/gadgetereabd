@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
-import { slugify } from '@/lib/products';
+import { slugify, priceForCartVariant } from '@/lib/products';
 
 /**
  * Cart page — items come from the shared CartContext (populated by
@@ -26,7 +26,7 @@ export default function CartPage() {
   });
 
   const subtotal = lines.reduce(
-    (sum, { item, product }) => sum + (product.price as number) * item.qty,
+    (sum, { item, product }) => sum + (priceForCartVariant(product, item.variant).price as number) * item.qty,
     0
   );
   const total = subtotal + (lines.length > 0 ? DELIVERY_FEE : 0);
@@ -122,10 +122,10 @@ export default function CartPage() {
 
                       <div className="text-right">
                         <div className="text-accent font-semibold">
-                          ৳{((product.price as number) * item.qty).toLocaleString()}
+                          ৳{((priceForCartVariant(product, item.variant).price as number) * item.qty).toLocaleString()}
                         </div>
                         <div className="text-xs text-text-body">
-                          ৳{(product.price as number).toLocaleString()} each
+                          ৳{(priceForCartVariant(product, item.variant).price as number).toLocaleString()} each
                         </div>
                       </div>
                     </div>

@@ -21,6 +21,32 @@ export interface Product {
   /** Gallery angles for detail pages (hero first). Products without real
    *  photos keep the placeholder gallery. */
   gallery?: string[];
+  /** Per-storage-variant pricing. Each `label` must match a storage option
+   *  derived from specSheet.performance.storage (the '/'-split segments) —
+   *  or, for single-storage products whose purchasable options are another
+   *  dimension (e.g. DJI Standard vs Adventure Combo), that dimension's
+   *  label. Selecting a variant on the detail page shows THAT variant's
+   *  price everywhere (price box, cart, checkout) via variantPrice().
+   *  Absent = the product's flat price applies to every option. */
+  variants?: {
+    label: string;
+    price: number;
+    oldPrice?: number;
+    priceEstimated?: boolean;
+  }[];
+  /** Non-color purchasable option dimension (e.g. DJI "Standard" vs
+   *  "Adventure Combo" bundles) rendered as variant buttons on the detail
+   *  page. Use this instead of stuffing bundle names into buildDesign.colors
+   *  (which is a visual spec, not a purchasable choice). variantPrice()
+   *  resolves these labels the same way as storage labels. */
+  purchaseOptions?: string[];
+  /** Color→image mapping for products whose photos are organized by color.
+   *  Each `color` must match a buildDesign.colors entry exactly; while that
+   *  color is selected on the detail page, `images` REPLACES the flat
+   *  gallery (swatch switching). Absent = no color-specific photos exist →
+   *  the detail page renders NO color selector at all (nothing meaningful
+   *  to switch), and the flat gallery/heroImage is used for every color. */
+  colorImages?: { color: string; images: string[] }[];
   /** SIMULATED popularity metric — dummy values, NOT real analytics.
    *  Replace with real view-tracking data when a backend exists. Drives
    *  the default most-viewed-first sort on the Homepage grid and the
@@ -497,6 +523,11 @@ export const products: Product[] = [
             "/images/products/tecno-camon-40-pro/2.webp",
             "/images/products/tecno-camon-40-pro/3.webp"
     ],
+    colorImages: [
+      { color: 'Emerald Lake Green', images: ['/images/products/tecno-camon-40-pro/emerald-lake-green/1.webp'] },
+      { color: 'Galaxy Black', images: ['/images/products/tecno-camon-40-pro/galaxy-black/1.webp'] },
+      { color: 'Sandy Titanium', images: ['/images/products/tecno-camon-40-pro/sandy-titanium/1.webp'] },
+    ],
     views: 1500,
     dateAdded: '2025-05-28',
     price: 27999,
@@ -540,7 +571,7 @@ export const products: Product[] = [
         dimensions: 'TBD',
         weight: 'TBD',
         materials: 'Gorilla Glass 7i front, plastic back and frame, IP68/IP69',
-        colors: ['Emerald Lake Green', 'Galaxy Black', 'Glacier White'],
+        colors: ['Emerald Lake Green', 'Galaxy Black', 'Sandy Titanium'],
       },
       connectivity: {
         network: '5G, 4G LTE',
@@ -585,6 +616,12 @@ export const products: Product[] = [
             "/images/products/infinix-note-60-pro/4.webp",
             "/images/products/infinix-note-60-pro/5.webp",
             "/images/products/infinix-note-60-pro/6.webp"
+    ],
+    colorImages: [
+      { color: 'Mist Titanium', images: ['/images/products/infinix-note-60-pro/mist-titanium/1.webp'] },
+      { color: 'Frost Silver', images: ['/images/products/infinix-note-60-pro/frost-silver/1.webp'] },
+      { color: 'Torino Black', images: ['/images/products/infinix-note-60-pro/torino-black/1.webp'] },
+      { color: 'Solar Orange', images: ['/images/products/infinix-note-60-pro/solar-orange/1.webp'] },
     ],
     views: 1900,
     dateAdded: '2026-02-10',
@@ -631,7 +668,7 @@ export const products: Product[] = [
         dimensions: 'TBD',
         weight: 'TBD',
         materials: 'Gorilla Glass 7i front, aluminum frame, IP64',
-        colors: ['Mist Titanium', 'Midnight Black', 'Fizz Blue'],
+        colors: ['Mist Titanium', 'Frost Silver', 'Torino Black', 'Solar Orange'],
       },
       connectivity: {
         network: '5G, 4G LTE',
@@ -1144,6 +1181,12 @@ export const products: Product[] = [
             "/images/products/apple-ipad-air-11-m3/3.webp",
             "/images/products/apple-ipad-air-11-m3/4.webp"
     ],
+    colorImages: [
+      { color: 'Blue', images: ['/images/products/apple-ipad-air-11-m3/blue/1.webp'] },
+      { color: 'Purple', images: ['/images/products/apple-ipad-air-11-m3/purple/1.webp'] },
+      { color: 'Space Gray', images: ['/images/products/apple-ipad-air-11-m3/space-gray/1.webp'] },
+      { color: 'Starlight', images: ['/images/products/apple-ipad-air-11-m3/starlight/1.webp'] },
+    ],
     views: 2000,
     dateAdded: '2025-03-12',
     price: null,
@@ -1219,6 +1262,11 @@ export const products: Product[] = [
             "/images/products/asus-vivobook-15-x1504va/5.webp",
             "/images/products/asus-vivobook-15-x1504va/6.webp"
     ],
+    colorImages: [
+      { color: 'Cool Silver', images: ['/images/products/asus-vivobook-15-x1504va/cool-silver/1.webp', '/images/products/asus-vivobook-15-x1504va/cool-silver/2.webp'] },
+      { color: 'Quiet Blue', images: ['/images/products/asus-vivobook-15-x1504va/quiet-blue/1.webp', '/images/products/asus-vivobook-15-x1504va/quiet-blue/2.webp'] },
+      { color: 'Terra Cotta', images: ['/images/products/asus-vivobook-15-x1504va/terra-cotta/1.webp', '/images/products/asus-vivobook-15-x1504va/terra-cotta/2.webp'] },
+    ],
     views: 900,
     dateAdded: '2023-06-15',
     price: null,
@@ -1259,7 +1307,7 @@ export const products: Product[] = [
         dimensions: '35.97 x 23.25 x 1.79 cm',
         weight: '1.7kg',
         materials: 'Plastic chassis, backlit keyboard',
-        colors: ['Quiet Blue', 'Cool Silver'],
+        colors: ['Quiet Blue', 'Cool Silver', 'Terra Cotta'],
       },
       connectivity: {
         network: 'Wi-Fi 6E',
@@ -1299,6 +1347,10 @@ export const products: Product[] = [
         '/images/products/lenovo-ideacentre-aio-27/6.webp',
         '/images/products/lenovo-ideacentre-aio-27/7.webp',
         '/images/products/lenovo-ideacentre-aio-27/8.webp',
+    ],
+    colorImages: [
+      { color: 'Dark Grey', images: ['/images/products/lenovo-ideacentre-aio-27/dark-grey/1.webp', '/images/products/lenovo-ideacentre-aio-27/dark-grey/2.webp', '/images/products/lenovo-ideacentre-aio-27/dark-grey/3.webp', '/images/products/lenovo-ideacentre-aio-27/dark-grey/4.webp'] },
+      { color: 'Light Silver', images: ['/images/products/lenovo-ideacentre-aio-27/light-silver/1.webp', '/images/products/lenovo-ideacentre-aio-27/light-silver/2.webp', '/images/products/lenovo-ideacentre-aio-27/light-silver/3.webp', '/images/products/lenovo-ideacentre-aio-27/light-silver/4.webp'] },
     ],
     views: 600,
     dateAdded: '2024-01-20',
@@ -1340,7 +1392,7 @@ export const products: Product[] = [
         dimensions: 'All-in-one with slim bezels',
         weight: 'Approx. 6.6 kg',
         materials: 'Aluminum stand, plastic chassis; wireless keyboard + mouse included',
-        colors: ['Cloud Gray'],
+        colors: ['Dark Grey', 'Light Silver'],
       },
       connectivity: {
         network: 'Wi-Fi 6, Ethernet',
@@ -1377,6 +1429,11 @@ export const products: Product[] = [
             "/images/products/xiaomi-redmi-watch-5/1.webp",
             "/images/products/xiaomi-redmi-watch-5/2.webp",
             "/images/products/xiaomi-redmi-watch-5/3.webp"
+    ],
+    colorImages: [
+      { color: 'Lavender Purple', images: ['/images/products/xiaomi-redmi-watch-5/lavender-purple/1.webp'] },
+      { color: 'Obsidian Black', images: ['/images/products/xiaomi-redmi-watch-5/obsidian-black/1.webp'] },
+      { color: 'Silver Gray', images: ['/images/products/xiaomi-redmi-watch-5/silver-gray/1.webp'] },
     ],
     views: 1700,
     dateAdded: '2025-01-15',
@@ -1418,7 +1475,7 @@ export const products: Product[] = [
         dimensions: 'Approx. 46.2 x 39.6 x 10.5 mm',
         weight: '36.3g (without strap)',
         materials: 'Aluminum alloy frame, 2.5D glass, 5ATM water resistance',
-        colors: ['Black', 'Silver', 'Blue'],
+        colors: ['Obsidian Black', 'Silver Gray', 'Lavender Purple'],
       },
       connectivity: {
         network: 'N/A (no cellular)',
@@ -1531,6 +1588,11 @@ export const products: Product[] = [
             "/images/products/anker-soundcore-r50i-earbuds/5.webp",
             "/images/products/anker-soundcore-r50i-earbuds/6.webp"
     ],
+    colorImages: [
+      { color: 'Black', images: ['/images/products/anker-soundcore-r50i-earbuds/black/1.webp', '/images/products/anker-soundcore-r50i-earbuds/black/2.webp'] },
+      { color: 'Navy Blue', images: ['/images/products/anker-soundcore-r50i-earbuds/navi-blue/1.webp', '/images/products/anker-soundcore-r50i-earbuds/navi-blue/2.webp'] },
+      { color: 'White', images: ['/images/products/anker-soundcore-r50i-earbuds/white/1.webp', '/images/products/anker-soundcore-r50i-earbuds/white/2.webp'] },
+    ],
     views: 950,
     dateAdded: '2023-08-10',
     price: null,
@@ -1571,7 +1633,7 @@ export const products: Product[] = [
         dimensions: 'In-ear stem design',
         weight: 'Approx. 4g per bud',
         materials: 'Plastic',
-        colors: ['Black', 'White', 'Blue'],
+        colors: ['Black', 'White', 'Navy Blue'],
       },
       connectivity: {
         network: 'N/A',
@@ -1594,6 +1656,9 @@ export const products: Product[] = [
     topCategory: 'Camera',
     subCategory: 'Action Camera',
     imageAlt: 'DJI Osmo Action 5 Pro',
+    /** Purchasable package bundles — a real option dimension (affects price),
+     *  unlike colors. Rendered as "Package:" buttons on the detail page. */
+    purchaseOptions: ['Standard', 'Adventure Combo'],
     /** Real product photos (hero = 1.webp; rest are gallery angles).
      *  Served from public/images/products/dji-osmo-action-5-pro/ — the single
      *  shared copy used by Shop, Quick Look, and every other surface. */
@@ -1649,7 +1714,7 @@ export const products: Product[] = [
         dimensions: 'Compact action-cam body',
         weight: '146g',
         materials: 'Waterproof body, magnetic quick-release mount',
-        colors: ['Standard', 'Adventure Combo'],
+        colors: ['Black'],
       },
       connectivity: {
         network: 'Wi-Fi + Bluetooth (DJI Mimo app)',
@@ -1754,6 +1819,10 @@ export const products: Product[] = [
             "/images/products/xiaomi-robot-vacuum-s10/3.webp",
             "/images/products/xiaomi-robot-vacuum-s10/4.webp"
     ],
+    colorImages: [
+      { color: 'Black', images: ['/images/products/xiaomi-robot-vacuum-s10/black/1.webp', '/images/products/xiaomi-robot-vacuum-s10/black/2.webp'] },
+      { color: 'White', images: ['/images/products/xiaomi-robot-vacuum-s10/white/1.webp', '/images/products/xiaomi-robot-vacuum-s10/white/2.webp'] },
+    ],
     views: 1000,
     dateAdded: '2022-08-20',
     price: null,
@@ -1794,7 +1863,7 @@ export const products: Product[] = [
         dimensions: '353 x 350 x 94.5 mm',
         weight: 'Approx. 3.6 kg',
         materials: 'White plastic body with LDS turret',
-        colors: ['White'],
+        colors: ['White', 'Black'],
       },
       connectivity: {
         network: 'Wi-Fi 2.4GHz (app control)',
@@ -1909,6 +1978,67 @@ export function slugify(title: string): string {
  */
 export function isPurchasable(p: Product): boolean {
   return p.price !== null && !p.priceEstimated;
+}
+
+/**
+ * Storage-option labels derived from the spec string ('256GB/512GB/1TB' →
+ * ['256GB', '512GB', '1TB']). Shared by the detail page and the variant
+ * price resolver so every surface splits the string identically.
+ */
+export function storageOptionsOf(p: Product): string[] {
+  const s = p.specSheet.performance.storage;
+  return s.includes('/') ? s.split('/').map((x) => x.trim()) : [s];
+}
+
+/** Resolved pricing for a product/option pair — always all three fields. */
+export type ResolvedPrice = {
+  price: number | null;
+  oldPrice: number | null;
+  priceEstimated: boolean;
+};
+
+function flatPrice(p: Product): ResolvedPrice {
+  return { price: p.price, oldPrice: p.oldPrice ?? null, priceEstimated: p.priceEstimated };
+}
+
+/**
+ * Resolve the price for a selected storage/variant option. Falls back to
+ * the product's flat price fields when no per-variant entry matches (or
+ * when the product has none), so callers never need a null branch.
+ */
+export function variantPrice(p: Product, optionLabel: string | null): ResolvedPrice {
+  if (!optionLabel) return flatPrice(p);
+  const v = p.variants?.find((x) => x.label === optionLabel);
+  if (!v) return flatPrice(p);
+  return {
+    price: v.price,
+    oldPrice: v.oldPrice ?? null,
+    priceEstimated: v.priceEstimated ?? false,
+  };
+}
+
+/**
+ * Resolve the price for a CART/CHECKOUT variant string ("Titanium Black /
+ * 512GB", "512GB", "Standard", …). Checks each '/'-segment from the right
+ * (storage comes after color) against the product's variants labels, then
+ * falls back to the flat price. This is what makes cart lines and Buy Now
+ * checkout charge the SELECTED variant's price, not the base one.
+ */
+export function priceForCartVariant(p: Product, variant: string): ResolvedPrice {
+  if (p.variants?.length && variant && variant !== 'Standard') {
+    const segs = variant.split('/').map((s) => s.trim());
+    for (let i = segs.length - 1; i >= 0; i--) {
+      const v = p.variants.find((x) => x.label === segs[i]);
+      if (v) {
+        return {
+          price: v.price,
+          oldPrice: v.oldPrice ?? null,
+          priceEstimated: v.priceEstimated ?? false,
+        };
+      }
+    }
+  }
+  return flatPrice(p);
 }
 
 /**

@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import type { Product } from '@/lib/products';
 import { track } from '@/lib/tracking';
 import PriceTag from '@/components/PriceTag';
-import { isPurchasable, isUpcoming } from '@/lib/products';
+import { isPurchasable, isUpcoming, storageOptionsOf, variantPrice, type ResolvedPrice } from '@/lib/products';
 import { useCart } from '@/context/CartContext';
 import {
   Info,
@@ -193,17 +193,42 @@ const QuickLookDetail: React.FC<{
       : product.heroImage
         ? [product.heroImage]
         : [];
-  // Keeps prev/next + display consistent even if state ever overshoots.
-  const activeIdx = galleryImages.length > 0 ? activeImage % galleryImages.length : 0;
+  // Color→image sets. Absent/empty = the product has no color-specific
+  // photos → NO color selector is rendered at all (nothing meaningful to
+  // select) and the flat gallery shows for every storage option.
+  const colorImages = product.colorImages ?? [];
+  const showColorSwatches = colorImages.length > 0;
   const [activeColor, setActiveColor] = useState(0);
   const [activeStorage, setActiveStorage] = useState(0);
+  // While a color is selected, that color's images REPLACE the flat gallery.
+  const activeGallery: string[] =
+    showColorSwatches ? colorImages[activeColor]?.images ?? galleryImages : galleryImages;
+  // Keeps prev/next + display consistent even if state ever overshoots.
+  const activeIdx = activeGallery.length > 0 ? activeImage % activeGallery.length : 0;
+
+  // Storage/variant options (e.g. "256GB/512GB UFS 4.0" -> ["256GB", "512GB UFS 4.0"])
+  // — the same split every surface uses via storageOptionsOf().
+  const storageOptions: string[] = storageOptionsOf(product);
+
+  // Selected-variant pricing — the displayed price follows the chosen option.
+  // Package options (purchaseOptions) take priority when present; otherwise
+  // the storage selection drives the price.
+  const purchaseOptions: string[] = product.purchaseOptions ?? [];
+  const [activePurchase, setActivePurchase] = useState(0);
+  const selectedOptionLabel =
+    purchaseOptions.length > 0
+      ? purchaseOptions[Math.min(activePurchase, purchaseOptions.length - 1)]
+      : storageOptions[activeStorage] ?? null;
+  const resolvedPrice: ResolvedPrice = variantPrice(product, selectedOptionLabel);
+
+  // Keep the color selection inside bounds (defensive; no render-phase setState).
+  const safeActiveColor = showColorSwatches
+    ? Math.min(activeColor, colorImages.length - 1)
+    : 0;
   // Pre-order confirmation state (upcoming products only).
   const [preOrdered, setPreOrdered] = useState(false);
 
-  // Storage variants (e.g. "256GB/512GB UFS 4.0" -> ["256GB", "512GB UFS 4.0"])
-  const storageOptions: string[] = product.specSheet.performance.storage.includes('/')
-    ? product.specSheet.performance.storage.split('/').map((s) => s.trim())
-    : [product.specSheet.performance.storage];
+  // Storage variants (see storageOptions above)
 
   // Deterministic pseudo "Spec Score": share of filled key spec fields, not invented data.
   const filled = [
@@ -218,24 +243,26 @@ const QuickLookDetail: React.FC<{
 
   // Add to Cart → shared cart store, with the currently selected variant.
   const handleAddToCart = () => {
-    const chosenColor = product.specSheet.buildDesign.colors[activeColor] ?? 'Standard';
+    const chosenColor = showColorSwatches
+      ? colorImages[safeActiveColor]?.color ?? 'Standard'
+      : 'Standard';
     const chosenStorage = storageOptions[activeStorage] ?? '';
+    const chosenPackage = purchaseOptions[activePurchase] ?? '';
     const variant =
-      product.specSheet.buildDesign.colors.length > 1 && chosenStorage
-        ? `${chosenColor} / ${chosenStorage}`
-        : chosenStorage || chosenColor || 'Standard';
+      [chosenPackage || chosenColor, chosenStorage].filter(Boolean).join(' / ') || 'Standard';
     addToCart(product.id, 1, variant);
   };
 
   // Buy Now → /checkout with this product + the currently selected variant.
   // Only reachable when the product is purchasable (button disabled otherwise).
   const handleBuyNow = () => {
-    const chosenColor = product.specSheet.buildDesign.colors[activeColor] ?? 'Standard';
+    const chosenColor = showColorSwatches
+      ? colorImages[safeActiveColor]?.color ?? 'Standard'
+      : 'Standard';
     const chosenStorage = storageOptions[activeStorage] ?? '';
+    const chosenPackage = purchaseOptions[activePurchase] ?? '';
     const variant =
-      product.specSheet.buildDesign.colors.length > 1 && chosenStorage
-        ? `${chosenColor} / ${chosenStorage}`
-        : chosenStorage || chosenColor;
+      [chosenPackage || chosenColor, chosenStorage].filter(Boolean).join(' / ') || 'Standard';
     router.push(
       `/checkout?id=${product.id}&qty=1&variant=${encodeURIComponent(variant)}`
     );
@@ -331,10 +358,10 @@ const QuickLookDetail: React.FC<{
               {/* main image — real photo when available, gray placeholder
                   otherwise (fill + object-contain preserves any aspect) */}
               <div className="relative aspect-square w-full bg-bg-dark-secondary/10 flex items-center justify-center rounded-md overflow-hidden">
-                {galleryImages.length > 0 ? (
+                {activeGallery.length > 0 ? (
                   <Image
-                    src={galleryImages[activeIdx]!}
-                    alt={`${product.imageAlt} — view ${activeIdx + 1} of ${galleryImages.length}`}
+                    src={activeGallery[activeIdx]!}
+                    alt={`${product.imageAlt} — view ${activeIdx + 1} of ${activeGallery.length}`}
                     fill
                     sizes="(max-width: 1024px) 100vw, 384px"
                     className="object-contain p-2"
@@ -350,8 +377,8 @@ const QuickLookDetail: React.FC<{
               <button
                 aria-label="Previous image"
                 onClick={() =>
-                  galleryImages.length > 0 &&
-                  setActiveImage((activeImage + galleryImages.length - 1) % galleryImages.length)
+                  activeGallery.length > 0 &&
+                  setActiveImage((activeImage + activeGallery.length - 1) % activeGallery.length)
                 }
                 className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-text-on-dark border border-text-heading/10 shadow flex items-center justify-center text-text-body hover:text-accent"
               >
@@ -360,7 +387,7 @@ const QuickLookDetail: React.FC<{
               <button
                 aria-label="Next image"
                 onClick={() =>
-                  galleryImages.length > 0 && setActiveImage((activeImage + 1) % galleryImages.length)
+                  activeGallery.length > 0 && setActiveImage((activeImage + 1) % activeGallery.length)
                 }
                 className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-text-on-dark border border-text-heading/10 shadow flex items-center justify-center text-text-body hover:text-accent"
               >
@@ -370,9 +397,9 @@ const QuickLookDetail: React.FC<{
 
             {/* thumbnail strip — real thumbs when photos exist; legacy
                 placeholder buttons otherwise */}
-            {galleryImages.length > 0 ? (
+            {activeGallery.length > 0 ? (
               <div className="grid grid-cols-4 gap-3 mt-3">
-                {galleryImages.map((img, i) => (
+                {activeGallery.map((img, i) => (
                   <button
                     key={img}
                     onClick={() => setActiveImage(i)}
@@ -428,25 +455,54 @@ const QuickLookDetail: React.FC<{
               <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-5">
                 <h2 className="text-base font-semibold text-text-heading mb-4">Choose Variant</h2>
                 <div className="space-y-4">
-                  <div>
-                    <div className="text-sm font-medium text-text-body mb-2">Color:</div>
-                    <div className="flex items-center gap-2.5">
-                      {product.specSheet.buildDesign.colors.map((color, i) => (
-                        <button
-                          key={color}
-                          aria-label={color}
-                          title={color}
-                          onClick={() => setActiveColor(i)}
-                          className={`w-8 h-8 rounded-full border-2 transition-all ${
-                            activeColor === i
-                              ? 'border-accent scale-110'
-                              : 'border-text-heading/10 hover:border-text-heading/40'
-                          }`}
-                          style={{ backgroundColor: colorHex(color) }}
-                        />
-                      ))}
+                  {/* Color swatches — rendered ONLY when the product has
+                      color-specific photos (colorImages). No color images =
+                      no selector, per the catalog rule. */}
+                  {showColorSwatches && (
+                    <div>
+                      <div className="text-sm font-medium text-text-body mb-2">
+                        Color: <span className="text-text-heading">{colorImages[safeActiveColor]?.color}</span>
+                      </div>
+                      <div className="flex items-center gap-2.5">
+                        {colorImages.map((ci, i) => (
+                          <button
+                            key={ci.color}
+                            aria-label={ci.color}
+                            title={ci.color}
+                            onClick={() => {
+                              setActiveColor(i);
+                              setActiveImage(0); // restart on the new color's hero
+                            }}
+                            className={`w-8 h-8 rounded-full border-2 transition-all ${
+                              safeActiveColor === i
+                                ? 'border-accent scale-110'
+                                : 'border-text-heading/10 hover:border-text-heading/40'
+                            }`}
+                            style={{ backgroundColor: colorHex(ci.color) }}
+                          />
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
+                  {/* Package/bundle options (e.g. DJI Standard vs Adventure
+                      Combo) — a purchasable dimension, not a color. Drives
+                      the variant price like storage does. */}
+                  {purchaseOptions.length > 0 && (
+                    <div>
+                      <div className="text-sm font-medium text-text-body mb-2">Package:</div>
+                      <div className="flex flex-wrap gap-2">
+                        {purchaseOptions.map((opt, i) => (
+                          <VariantButton
+                            key={opt}
+                            selected={activePurchase === i}
+                            onClick={() => setActivePurchase(i)}
+                          >
+                            {opt}
+                          </VariantButton>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                   <div>
                     <div className="text-sm font-medium text-text-body mb-2">Storage:</div>
                     <div className="flex flex-wrap gap-2">
@@ -465,14 +521,16 @@ const QuickLookDetail: React.FC<{
               </div>
 
               {/* price info — no CTA ("Check Latest Price" removed); content
-                  vertically centered to fill the space beside the variant box. */}
+                  vertically centered to fill the space beside the variant box.
+                  Shows the SELECTED VARIANT's price (variantPrice) — updates
+                  immediately when storage changes. */}
               <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-5 flex flex-col justify-center">
                 {/* Confirmed vs estimated price + source note (detailed). */}
                 <div className="text-3xl font-bold">
-                  <PriceTag product={product} detailed />
+                  <PriceTag product={product} detailed resolved={resolvedPrice} />
                 </div>
                 <div className="text-sm text-text-body mt-1">
-                  {product.priceEstimated
+                  {resolvedPrice.priceEstimated
                     ? 'Estimated market reference — not an official Bangladesh price'
                     : '(Official Price in Bangladesh)'}
                 </div>

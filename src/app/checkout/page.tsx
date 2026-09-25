@@ -3,7 +3,7 @@
 import React, { Suspense, useState } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { products, slugify, isPurchasable, type Product } from '@/lib/products';
+import { products, slugify, isPurchasable, priceForCartVariant, type Product } from '@/lib/products';
 import { useCart } from '@/context/CartContext';
 import { supabase } from '@/lib/supabase';
 import { track } from '@/lib/tracking';
@@ -92,7 +92,7 @@ function CheckoutInner() {
           imageAlt: buyNow.imageAlt,
           variant,
           qty,
-          price: buyNow.price as number,
+          price: priceForCartVariant(buyNow, variant).price as number,
         },
       ]
     : cartItems.flatMap((item) => {
@@ -105,7 +105,7 @@ function CheckoutInner() {
             imageAlt: product.imageAlt,
             variant: item.variant,
             qty: item.qty,
-            price: product.price as number,
+            price: priceForCartVariant(product, item.variant).price as number,
           },
         ];
       });

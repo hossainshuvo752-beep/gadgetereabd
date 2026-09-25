@@ -763,3 +763,16 @@ Built the full internal analytics pipeline adapted from the reference admin-anal
 - Homepage now has zero own image containers — all product/blog images flow from the shared data sources (products.ts / posts.ts). One image per product, referenced everywhere.
 
 Verification: tsc --noEmit clean, next build green, grep confirms zero fixed-height image boxes remain (7 aspect-locked containers across all surfaces).
+## Task Log — 2026-09-25 — Variant pricing + color-based image switching
+
+**Data model (products.ts):** added optional `variants` ({label, price, oldPrice?, priceEstimated?} — label matches a storage option), `colorImages` ({color, images[]} — color must match buildDesign.colors; absent = NO color selector renders), and `purchaseOptions` (non-color purchasable dimension, e.g. DJI Standard vs Adventure Combo — moved out of DJI's colors array). Shared resolvers: `storageOptionsOf()`, `variantPrice(product, optionLabel)`, `priceForCartVariant(product, cartVariantString)` — all fall back to flat price.
+
+**Color→image pipeline:** scripts/convert-color-images.cjs converts "<Color> <N>.jfif" folders to public/images/products/<slug>/<color-slug>/N.webp (+ numbered fallbacks); 44 images, 2.49MB. 8 products got colorImages: Tecno(3), Infinix(4), iPad Air(4), ASUS Vivobook(3), Lenovo AIO(2), Redmi Watch 5(3), R50i(3), Robot Vacuum(2). Tab S10's images are all AI-generated → no swatches (per user rule). AI Gemini images included as generic gallery images per user choice.
+
+**Color-name alignment (data now matches image filenames):** Tecno Glacier White→Sandy Titanium; Infinix Midnight Black→Torino Black, Fizz Blue→Solar Orange (Mist Titanium kept — real colorway); Redmi Watch Black→Obsidian Black, Silver→Silver Gray, Blue→Lavender Purple; Lenovo Cloud Gray→Dark Grey+Light Silver; ASUS Terra Cotta added; R50i Blue→Navy Blue (title-cased); Vacuum S10 added Black. iPad already matched.
+
+**UI:** PriceTag accepts optional `resolved` override; QuickLookDetail renders swatches only when colorImages exists, swatch click switches gallery+thumbnails to that color's images, storage/package selection updates displayed price immediately; cart line prices, cart subtotal, and checkout Buy Now all use priceForCartVariant so the SELECTED variant's price is what's charged.
+
+**Verified:** tsc clean, build green, live SSR probes (Tecno swatches render, S26 has no Color label, iPad swatches, color WebP 200), resolver unit checks (flat fallback, per-variant resolution, cart-string parsing).
+
+**PENDING:** 11 products still have price:null (Tab S10 Ultra, iPad Air, ASUS Vivobook, Lenovo AIO, Redmi Watch 5, AirPods Pro 3, R50i, DJI, PowerCore, Robot Vacuum, Xiaomi TV) — awaiting user-supplied per-variant prices; variant rows will be added via the same data pattern when numbers arrive. "Beats 360 Wireless Headphones" folder converted-and-held? No — held, not converted (no catalog product; user to decide).
