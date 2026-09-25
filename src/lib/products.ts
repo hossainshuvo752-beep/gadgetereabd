@@ -952,7 +952,17 @@ export const products: Product[] = [
     category: 'Accessories',
     topCategory: 'Gadget Accessories',
     subCategory: 'Cables & Adapters',
-    imageAlt: 'UGREEN USB-C 5-in-1 hub (placeholder image)',
+    imageAlt: 'UGREEN USB-C 5-in-1 hub',
+    /** Real product photos (hero = 1.webp; rest are gallery angles).
+     *  Served from public/images/products/ugreen-usb-c-hub-5-in-1/ — the
+     *  single shared copy used by Shop, Quick Look, and every other surface. */
+    heroImage: '/images/products/ugreen-usb-c-hub-5-in-1/1.webp',
+    gallery: [
+      '/images/products/ugreen-usb-c-hub-5-in-1/1.webp',
+      '/images/products/ugreen-usb-c-hub-5-in-1/2.webp',
+      '/images/products/ugreen-usb-c-hub-5-in-1/3.webp',
+      '/images/products/ugreen-usb-c-hub-5-in-1/4.webp',
+    ],
     views: 800,
     dateAdded: '2024-03-15',
     price: 3000,

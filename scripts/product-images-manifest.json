@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-25T08:55:58.046Z",
+  "generated": "2026-09-25T13:03:42.915Z",
   "products": [
     {
       "folder": "Anker PowerCore 20000 Power Bank",
@@ -191,6 +191,16 @@
         "/images/products/tecno-camon-40-pro/1.webp",
         "/images/products/tecno-camon-40-pro/2.webp",
         "/images/products/tecno-camon-40-pro/3.webp"
+      ]
+    },
+    {
+      "folder": "UGREEN USB-C Hub 5-in-1",
+      "slug": "ugreen-usb-c-hub-5-in-1",
+      "gallery": [
+        "/images/products/ugreen-usb-c-hub-5-in-1/1.webp",
+        "/images/products/ugreen-usb-c-hub-5-in-1/2.webp",
+        "/images/products/ugreen-usb-c-hub-5-in-1/3.webp",
+        "/images/products/ugreen-usb-c-hub-5-in-1/4.webp"
       ]
     },
     {
