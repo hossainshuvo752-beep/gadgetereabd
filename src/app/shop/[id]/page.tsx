@@ -49,10 +49,13 @@ export default async function ProductDetailPage({
           (never for estimated prices or upcoming products). */}
       <JsonLd data={productSchema(product)} />
       {/* Same shared template as the Quick Look detail page — breadcrumb
-          points back to the Shop listing instead of Quick Look. */}
+          points back to the Shop listing instead of Quick Look. The page
+          ends at the Add to Cart / Buy Now / Notify Me button row (the
+          sectioned Specifications block is Quick Look–only). */}
       <QuickLookDetail
         product={product}
         breadcrumb={{ href: '/shop', label: 'Shop' }}
+        showFullSpecs={false}
       />
       <NewsletterPopup />
     </>

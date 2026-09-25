@@ -731,3 +731,8 @@ Built the full internal analytics pipeline adapted from the reference admin-anal
 - Fix: listing pool is now the entire shared products array from src/lib/products.ts — identical source as Shop. CategoryNav filtering unchanged (topCategory/subCategory over the full pool).
 - Detail pages: /quick-look/[slug] generateStaticParams already covered ALL products, and specSheet is a required field on every product (non-phone items like tablets carry full spec sheets), so every one of the 22 products has a working spec-sheet detail page. QuickLookDetail is also the same component Shop detail pages use for non-phones, so it's already proven for non-phone layouts.
 - Empty-state copy updated ("phones" wording removed). Verified: tsc --noEmit clean, file re-read, no syntax errors.
+
+## Task Log — 2026-09-25 — Shop detail page now ends at the CTA row
+- Added optional `showFullSpecs` prop (default true) to the shared QuickLookDetail component; the full-width sectioned Specifications block (Basic Info, Display, Performance, etc.) renders only when it is true.
+- /shop/[id] passes showFullSpecs={false}: the page now ends right after the Add to Cart / Buy Now / Notify Me buttons, followed only by the Footer. Everything above the buttons (gallery, Spec Score, price box, variant selector, Key Specifications, Additional Info) unchanged.
+- /quick-look/[slug] passes nothing → keeps the Specifications section as before. Verified: tsc --noEmit clean, conditional wiring confirmed in both call sites, section bottom padding preserved (no leftover gap).

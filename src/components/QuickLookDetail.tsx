@@ -168,7 +168,11 @@ const QuickLookDetail: React.FC<{
   product: Product;
   /** Optional parent-listing breadcrumb (e.g. Shop on /shop/[id]); default Quick Look. */
   breadcrumb?: { href: string; label: string } | null;
-}> = ({ product, breadcrumb = null }) => {
+  /** Render the full-width sectioned Specifications below the CTA row?
+   *  Quick Look pages keep it (default true); the Shop detail page ends at
+   *  the Add to Cart / Buy Now / Notify Me buttons and omits it. */
+  showFullSpecs?: boolean;
+}> = ({ product, breadcrumb = null, showFullSpecs = true }) => {
   const router = useRouter();
   const { addToCart, notify } = useCart();
   // Gallery + variant state
@@ -514,6 +518,8 @@ const QuickLookDetail: React.FC<{
           </div>
         </div>
 
+        {showFullSpecs && (
+        <>
         {/* ===== Full-width sectioned specifications ===== */}
         <h2 className="text-2xl font-bold text-text-heading mb-5">Specifications</h2>
         <div className="grid gap-5 md:grid-cols-2 mb-12">
@@ -590,6 +596,8 @@ const QuickLookDetail: React.FC<{
             <IconList items={product.specSheet.notableLimitations} />
           </SectionCard>
         </div>
+        </>
+        )}
       </div>
     </section>
   );
