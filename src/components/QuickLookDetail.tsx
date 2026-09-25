@@ -330,7 +330,7 @@ const QuickLookDetail: React.FC<{
               </div>
               {/* main image — real photo when available, gray placeholder
                   otherwise (fill + object-contain preserves any aspect) */}
-              <div className="relative h-96 bg-bg-dark-secondary/10 flex items-center justify-center rounded-md overflow-hidden">
+              <div className="relative aspect-square w-full bg-bg-dark-secondary/10 flex items-center justify-center rounded-md overflow-hidden">
                 {galleryImages.length > 0 ? (
                   <Image
                     src={galleryImages[activeIdx]!}

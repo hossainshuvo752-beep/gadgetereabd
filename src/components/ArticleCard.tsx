@@ -16,7 +16,9 @@ const ArticleCard: React.FC<{ post: Post }> = ({ post }) => {
   return (
     <Link href={`/posts/${post.id}`}>
       <div className="bg-text-on-dark border border-text-heading/10 rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-300">
-        <div className="h-36 md:h-48 bg-bg-dark-secondary/10 flex items-center justify-center">
+        {/* 16:9 ratio lock — blog images are 16:9 everywhere (listing,
+            homepage cards, detail hero). */}
+        <div className="aspect-video bg-bg-dark-secondary/10 flex items-center justify-center">
           <span className="text-text-body text-sm">{post.imageAlt}</span>
         </div>
         <div className="p-3 md:p-5">

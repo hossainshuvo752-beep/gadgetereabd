@@ -35,7 +35,10 @@ const BuyingGuideHighlight: React.FC = () => {
         <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-3">
           {guides.map((guide) => (
             <div key={guide.id} className="bg-text-on-dark rounded-lg overflow-hidden shadow hover:shadow-md transition-shadow duration-300">
-              <div className="h-36 md:h-48 w-full bg-bg-dark-secondary/10 flex items-center justify-center">
+              {/* 16:9 ratio lock — guides aren't real posts yet (dummy data,
+                  '#' links), so they can't reuse ArticleCard; visual style
+                  follows the blog card spec regardless. */}
+              <div className="aspect-video w-full bg-bg-dark-secondary/10 flex items-center justify-center">
                 <span className="text-text-body text-sm">{guide.imageAlt}</span>
               </div>
               <div className="p-3 md:p-5">

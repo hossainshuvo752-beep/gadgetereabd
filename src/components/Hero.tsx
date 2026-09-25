@@ -19,7 +19,7 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Featured Image Placeholder */}
         <div className="mb-6">
-          <div className="w-full h-48 bg-bg-dark-secondary/10 rounded-lg flex items-center justify-center">
+          <div className="w-full aspect-video bg-bg-dark-secondary/10 rounded-lg flex items-center justify-center">
             <span className="text-text-body text-sm">{post.imageAlt}</span>
           </div>
         </div>

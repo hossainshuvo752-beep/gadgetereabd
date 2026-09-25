@@ -752,3 +752,14 @@ Built the full internal analytics pipeline adapted from the reference admin-anal
   - Both: canonical URL + per-page og:title/og:description + og:image = product hero photo (absolute via metadataBase).
   - productSchema() upgraded: slug canonical URL + absolute hero image; offers still ONLY for confirmed prices (BDT) — estimated/upcoming products emit no offers. Brand+model duplication guard added ("HONOR HONOR" bug caught by live probe).
 - Verified live (production build): 4 sample pages return 200 with correct title/desc/OG/JSON-LD (S26 Ultra offers 199999 BDT; HONOR estimated → no offers), /shop/3 → 404, sitemap slug-only. tsc clean, build green. Probe kept at scripts/verify-product-seo.cjs.
+## Task Log — 2026-09-25 — Image ratio standardization + homepage card de-duplication
+
+**Audit answers:** No aspect-ratio utilities existed — every image box used a fixed height (h-36/h-40/h-48/h-64/h-96), so effective ratios varied by container width. Quick Look detail ≈1:1 (h-96), Shop listing / Deals / New Arrivals / homepage products all h-40, blog cards h-36 md:h-48, post hero h-64.
+
+**Changes:**
+- ALL product surfaces locked to 1:1 (aspect-square): QuickLookDetail gallery (shared by Shop + Quick Look detail pages), Quick Look listing cards, ProductCard (Shop / Deals / New Arrivals), ShopTeaser.
+- ALL blog surfaces locked to 16:9 (aspect-video): ArticleCard, homepage Hero, posts/[slug] hero, Popular Buying Guides (dummy data, can't reuse ArticleCard yet).
+- Homepage de-duplication: ShopTeaser now renders the shared ProductCard (was a hand-rolled duplicate); homepage Latest Posts now renders the shared ArticleCard (was inline markup). Bonus find: /category/[category] page was a third copy of the blog card — also switched to ArticleCard.
+- Homepage now has zero own image containers — all product/blog images flow from the shared data sources (products.ts / posts.ts). One image per product, referenced everywhere.
+
+Verification: tsc --noEmit clean, next build green, grep confirms zero fixed-height image boxes remain (7 aspect-locked containers across all surfaces).

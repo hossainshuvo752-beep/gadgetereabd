@@ -54,7 +54,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <>
       <div className="bg-text-on-dark border border-text-heading/10 rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-300 flex flex-col">
-        <div className="h-40 bg-bg-dark-secondary/10 flex items-center justify-center relative overflow-hidden">
+        <div className="aspect-square bg-bg-dark-secondary/10 flex items-center justify-center relative overflow-hidden">
           {/* Mobile-only deal badges (desktop card is untouched) */}
           {hasDeal && (
             <>

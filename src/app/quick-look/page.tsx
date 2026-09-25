@@ -76,7 +76,7 @@ export default function QuickLookPage() {
                   href={`/quick-look/${slugify(product.title)}`}
                   className="group bg-text-on-dark border border-text-heading/10 rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-300 flex flex-col"
                 >
-                  <div className="h-36 md:h-48 bg-bg-dark-secondary/10 flex items-center justify-center relative overflow-hidden">
+                  <div className="aspect-square bg-bg-dark-secondary/10 flex items-center justify-center relative overflow-hidden">
                     {/* Real photo when available; gray placeholder otherwise */}
                     {product.heroImage ? (
                       <Image

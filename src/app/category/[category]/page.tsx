@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { posts } from '@/lib/posts';
-import PostMeta from '@/components/PostMeta';
+import ArticleCard from '@/components/ArticleCard';
 
 export async function generateMetadata({
   params,
@@ -34,27 +34,10 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
           </p>
         ) : (
           <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-3">
-            {/* Same compact card treatment as ArticleCard/blog listing */}
+            {/* Same shared ArticleCard as /blog and the homepage — one card,
+                one image source, one 16:9 ratio. */}
             {filteredPosts.map((post) => (
-              <Link key={post.id} href={`/posts/${post.id}`}>
-                <div className="bg-text-on-dark border border-text-heading/10 rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-300">
-                  <div className="h-36 md:h-48 bg-bg-dark-secondary/10 flex items-center justify-center">
-                    <span className="text-text-body text-sm">{post.imageAlt}</span>
-                  </div>
-                  <div className="p-3 md:p-5">
-                    <span className="inline-flex items-center px-2.5 py-0.5 text-xs font-semibold bg-accent/10 text-accent-hover rounded-full mb-3">
-                      {post.category}
-                    </span>
-                    <h3 className="text-sm md:text-xl font-bold text-text-heading mb-3 line-clamp-2">
-                      {post.title}
-                    </h3>
-                    <p className="hidden md:line-clamp-2 text-text-body leading-relaxed mb-4">
-                      {post.excerpt}
-                    </p>
-                    <PostMeta date={post.date} readTime={post.readTime} />
-                  </div>
-                </div>
-              </Link>
+              <ArticleCard key={post.id} post={post} />
             ))}
           </div>
         )}
