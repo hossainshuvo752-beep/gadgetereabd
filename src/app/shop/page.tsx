@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { products, type Product } from '@/lib/products';
 import ProductCard from '@/components/ProductCard';
+import ProductGrid from '@/components/ProductGrid';
 import CategoryNav from '@/components/CategoryNav';
 
 /**
@@ -65,13 +66,11 @@ export default function ShopPage() {
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-2 gap-3 md:gap-6 md:grid-cols-3 xl:grid-cols-4">
-            {/* MOBILE: 2 columns (cards go compact on small screens).
-                DESKTOP: unchanged. */}
+          <ProductGrid>
             {filtered.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
-          </div>
+          </ProductGrid>
         )}
       </div>
     </section>

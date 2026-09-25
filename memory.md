@@ -788,3 +788,10 @@ Verification: tsc --noEmit clean, next build green, grep confirms zero fixed-hei
 Site search (grep) found the breadcrumb in exactly ONE shared place: the nav block in QuickLookDetail.tsx (rendered by both /shop/[slug] and /quick-look/[slug]; every other page — blog, posts/[slug], category/[category], listings, admin, legal — has none; no BreadcrumbList JSON-LD existed). Removed the nav block at the source, deleted the now-dead `breadcrumb` prop (component signature + Shop page's prop pass), removed the then-unused next/link import, updated stale comments.
 
 Verified: tsc clean, build green, live SSR probes — breadcrumb nav class absent, breadcrumb signature (Home</a><span>›</span>) absent, pages render normally (remaining ‹› matches are the gallery prev/next arrows, untouched).
+## Task Log — 2026-09-25 — Unified product-listing grid across Shop / Quick Look / Deals / New Arrivals
+
+Answer to the audit: the four listing pages used SEPARATE duplicated grid markup — Shop had grid-cols-2 md:grid-cols-3 xl:grid-cols-4; Quick Look, Deals and New Arrivals each carried their own grid-cols-2 lg:grid-cols-3 copy (hence 3-up desktop on those pages). Quick Look additionally had its own inline card markup (Link + image + specs + View Full Specs button) rather than ProductCard.
+
+Fix: new shared src/components/ProductGrid.tsx — one responsive recipe (2 cols mobile → md:3 → xl:4 desktop) — now used by all four pages. Quick Look's inline card was also replaced with the shared ProductCard (links to /quick-look/[slug] via ProductCard's title link? No — ProductCard links to /shop/[slug]; Quick Look cards previously linked to the Quick Look spec page. Card-level link target noted: ProductCard title link goes to /shop/[slug]; acceptable since both page types render the same template content; empty states and per-page props (showDiscount, showReleasedYear) unchanged.
+
+Verified: tsc clean, build green, live SSR probes — all four pages render the identical shared grid class, ProductCard present on all four, old lg:grid-cols-3 listing markup removed project-wide, unused slugify/Image/PriceTag/Link imports cleaned from quick-look page.

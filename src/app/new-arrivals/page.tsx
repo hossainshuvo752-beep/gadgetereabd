@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { products } from '@/lib/products';
 import ProductCard from '@/components/ProductCard';
+import ProductGrid from '@/components/ProductGrid';
 import CategoryNav from '@/components/CategoryNav';
 
 /** Cap the listing at the most recent catalog entries per selection. */
@@ -69,12 +70,11 @@ export default function NewArrivalsPage() {
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-3">
-            {/* MOBILE: 2 columns. DESKTOP: unchanged. */}
+          <ProductGrid>
             {filtered.map((product) => (
               <ProductCard key={product.id} product={product} showReleasedYear />
             ))}
-          </div>
+          </ProductGrid>
         )}
       </div>
     </section>
