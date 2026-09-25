@@ -24,9 +24,34 @@ export async function generateMetadata({
   const { slug } = await params;
   const product = products.find((p) => slugify(p.title) === slug);
   if (!product) return { title: 'Product not found | TechBD' };
+
+  // Price-lookup/spec intent metadata, generated from real product data only.
+  const { specSheet: spec, price } = product;
+  const title = `${product.title} Price in Bangladesh — Specs & Review | TechBD`;
+
+  const pricePart =
+    price !== null && !product.priceEstimated
+      ? `${product.title} price in Bangladesh: ৳${price.toLocaleString()}.`
+      : product.priceEstimated && price !== null
+        ? `${product.title} estimated price in Bangladesh: ৳${price.toLocaleString()} (official BD price not confirmed yet).`
+        : `${product.title} price in Bangladesh: coming soon.`;
+  const availability =
+    product.status === 'upcoming'
+      ? 'Not officially released in Bangladesh yet.'
+      : product.priceEstimated
+        ? 'Availability in Bangladesh: unconfirmed.'
+        : 'Available now in Bangladesh.';
+  const description = `${pricePart} Check full specifications — ${spec.display.size} ${spec.display.type} display, ${spec.performance.processor}, ${spec.performance.ram} RAM, ${spec.cameraSystem.rear}. ${availability}`;
+
   return {
-    title: `${product.title} — Full Specs & Price in Bangladesh | TechBD`,
-    description: `${product.specSheet.basicInfo.brand} ${product.specSheet.basicInfo.model}: ${product.specSheet.display.size} ${product.specSheet.display.type}, ${product.specSheet.performance.processor}. Full spec sheet and Bangladesh price on TechBD.`,
+    title,
+    description,
+    alternates: { canonical: `/quick-look/${slugify(product.title)}` },
+    openGraph: {
+      title,
+      description,
+      ...(product.heroImage ? { images: [{ url: product.heroImage }] } : {}),
+    },
   };
 }
 

@@ -3,7 +3,7 @@
 import React, { Suspense, useState } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { products, isPurchasable, type Product } from '@/lib/products';
+import { products, slugify, isPurchasable, type Product } from '@/lib/products';
 import { useCart } from '@/context/CartContext';
 import { supabase } from '@/lib/supabase';
 import { track } from '@/lib/tracking';
@@ -406,7 +406,11 @@ function CheckoutInner() {
                     </div>
                     <span className="text-text-body min-w-0 flex-1">
                       <Link
-                        href={`/shop/${line.productId}`}
+                        href={`/shop/${
+                          slugify(
+                            products.find((p) => p.id === line.productId)?.title ?? '',
+                          )
+                        }`}
                         className="hover:text-accent transition-colors line-clamp-1"
                       >
                         {line.title}

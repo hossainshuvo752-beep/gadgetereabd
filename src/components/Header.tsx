@@ -24,7 +24,7 @@ import {
   FaPinterest,
 } from 'react-icons/fa';
 import { posts } from '@/lib/posts';
-import { products } from '@/lib/products';
+import { products, slugify } from '@/lib/products';
 import { track } from '@/lib/tracking';
 import { useCart } from '@/context/CartContext';
 import { useAuth } from '@/context/AuthContext';
@@ -298,7 +298,7 @@ const Header: React.FC = () => {
                     {displayProducts.map((product) => (
                       <Link
                         key={product.id}
-                        href={`/shop/${product.id}`}
+                        href={`/shop/${slugify(product.title)}`}
                         onClick={closeMenu}
                         className="flex items-center justify-between gap-3 px-2 py-1.5 text-sm text-text-on-dark/70 hover:text-text-on-dark rounded"
                       >
@@ -446,7 +446,7 @@ const Header: React.FC = () => {
                     {displayProducts.map((product) => (
                       <Link
                         key={product.id}
-                        href={`/shop/${product.id}`}
+                        href={`/shop/${slugify(product.title)}`}
                         onClick={() => {
                           track('header_search', { type: 'product', q: query.trim().slice(0, 80) });
                           closeSearch();

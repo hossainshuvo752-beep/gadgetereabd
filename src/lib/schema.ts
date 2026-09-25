@@ -1,5 +1,5 @@
 import type { Post } from './posts';
-import type { Product } from './products';
+import { slugify, type Product } from './products';
 
 /**
  * JSON-LD structured data builders (AEO — Answer Engine Optimization).
@@ -85,18 +85,29 @@ export function articleSchema(post: Post) {
   };
 }
 
-/** Product — name/brand/category/description from the spec sheet; offers
- *  only for confirmed prices (see module doc). */
+/** Product — name/brand/category/description/image from the spec sheet
+ *  and shared data; offers only for confirmed prices (see module doc).
+ *  The canonical product URL is the slug-based /shop/<slug> route. */
 export function productSchema(product: Product) {
   const { specSheet: spec } = product;
+  const productUrl = `${SITE_URL}/shop/${slugify(product.title)}`;
+  // Avoid "HONOR HONOR Robot Phone"-style duplication when the model name
+  // already starts with the brand name.
+  const brandModel = spec.basicInfo.model
+    .toLowerCase()
+    .startsWith(spec.basicInfo.brand.toLowerCase())
+    ? spec.basicInfo.model
+    : `${spec.basicInfo.brand} ${spec.basicInfo.model}`;
   const schema: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: product.title,
     brand: { '@type': 'Brand', name: spec.basicInfo.brand },
     category: product.topCategory,
-    url: `${SITE_URL}/shop/${product.id}`,
-    description: `${spec.basicInfo.brand} ${spec.basicInfo.model}: ${spec.display.size} ${spec.display.type}, ${spec.performance.processor}. Full specs and Bangladesh price on TechBD.`,
+    url: productUrl,
+    description: `${brandModel}: ${spec.display.size} ${spec.display.type}, ${spec.performance.processor}. Full specs and Bangladesh price on TechBD.`,
+    // Real hero photo (absolute URL) when the product has one.
+    ...(product.heroImage ? { image: `${SITE_URL}${product.heroImage}` } : {}),
   };
 
   if (
@@ -110,7 +121,7 @@ export function productSchema(product: Product) {
       price: product.price,
       itemCondition: 'https://schema.org/NewCondition',
       availability: 'https://schema.org/InStock',
-      url: `${SITE_URL}/shop/${product.id}`,
+      url: productUrl,
     };
   }
 

@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Product } from '@/lib/products';
-import { isPurchasable, isUpcoming } from '@/lib/products';
+import { isPurchasable, isUpcoming, slugify } from '@/lib/products';
 import { useCart } from '@/context/CartContext';
 import PriceTag from './PriceTag';
 
@@ -90,7 +90,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             {product.category}
           </span>
           <h3 className="text-base font-bold text-text-heading mb-2 line-clamp-2">
-            <Link href={`/shop/${product.id}`} className="hover:text-accent transition-colors">
+            <Link href={`/shop/${slugify(product.title)}`} className="hover:text-accent transition-colors">
               {product.title}
             </Link>
           </h3>

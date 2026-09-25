@@ -4,7 +4,7 @@ import React, { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { posts } from '@/lib/posts';
-import { products } from '@/lib/products';
+import { products, slugify } from '@/lib/products';
 import PriceTag from '@/components/PriceTag';
 import ArticleCard from '@/components/ArticleCard';
 
@@ -101,7 +101,7 @@ function SearchResults() {
                 {matchedProducts.map((product) => (
                   <Link
                     key={product.id}
-                    href={`/shop/${product.id}`}
+                    href={`/shop/${slugify(product.title)}`}
                     className="bg-text-on-dark border border-text-heading/10 rounded-lg p-4 hover:shadow-md transition-shadow duration-300"
                   >
                     <span className="inline-flex items-center px-2 py-0.5 text-xs font-semibold bg-accent/10 text-accent-hover rounded-full mb-2">

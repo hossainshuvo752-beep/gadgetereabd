@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
+import { slugify } from '@/lib/products';
 
 /**
  * Cart page — items come from the shared CartContext (populated by
@@ -66,7 +67,7 @@ export default function CartPage() {
                 >
                   {/* Image placeholder */}
                   <Link
-                    href={`/shop/${product.id}`}
+                    href={`/shop/${slugify(product.title)}`}
                     className="shrink-0 w-full sm:w-28 h-28 bg-bg-dark-secondary/10 rounded-md flex items-center justify-center"
                   >
                     <span className="text-text-body text-xs px-2 text-center">
@@ -79,7 +80,7 @@ export default function CartPage() {
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0">
                         <Link
-                          href={`/shop/${product.id}`}
+                          href={`/shop/${slugify(product.title)}`}
                           className="font-semibold text-text-heading hover:text-accent transition-colors line-clamp-2"
                         >
                           {product.title}

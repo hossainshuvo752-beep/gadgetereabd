@@ -50,7 +50,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const lastModified = Number.isNaN(added.getTime()) ? new Date() : added;
     return [
       {
-        url: `${SITE_URL}/shop/${product.id}`,
+        url: `${SITE_URL}/shop/${slugify(product.title)}`,
         lastModified,
         changeFrequency: 'weekly' as const,
         priority: 0.8,
