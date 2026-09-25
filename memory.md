@@ -720,3 +720,8 @@ Built the full internal analytics pipeline adapted from the reference admin-anal
 - New AnalyticsNav client component: nav links carry the current range params to range-aware tabs (pick 90 days on Overview → Devices stays 90 days) and strip them for Realtime/GSC.
 - Subscriber CSV export now honors the selected range.
 - E2E on production build: nav links carry days=7 and custom ranges (verified in SSR output), Realtime/GSC links clean; Subscribers Sep-range shows rows, Dec-range shows empty state; Devices/Locations/Search show pickers + Dec-range empty states. tsc clean, build green.
+
+## Task Log — 2026-09-25 — Cleaned parenthetical sub-category labels
+- Removed ALL parenthetical descriptions from sub-category labels across the entire category tree (src/lib/categories.ts): Gadget Accessories ("Sound", "Charging", "Protection", "Computer Accessories", "Photography Accessories") and Home Accessories ("Smart Home Devices"). Checked every other category (Mobile, Tablet, PC, Smart Watch, Earbuds, Camera, Home Appliances) — no other parentheticals existed.
+- Also updated the 3 matching subCategory values in src/lib/products.ts ('Sound (Speaker/Soundbar)' → 'Sound', etc.) so filtering keeps working — filter matching is by exact string, and the category tree and product data must use identical labels.
+- Verified: zero parenthetical label strings remain anywhere in src/, tsc --noEmit clean. No structure/filtering-logic changes; display labels only.

@@ -61,12 +61,12 @@ export const categoryTree: CategoryNode[] = [
   {
     name: 'Gadget Accessories',
     subs: [
-      'Sound (Speaker/Soundbar)',
-      'Charging (Chargers, Power Banks, Wireless Chargers)',
+      'Sound',
+      'Charging',
       'Cables & Adapters',
-      'Protection (Cases, Screen Protectors, Sleeves)',
-      'Computer Accessories (Keyboard, Mouse, Webcam)',
-      'Photography Accessories (Tripod, Gimbal)',
+      'Protection',
+      'Computer Accessories',
+      'Photography Accessories',
       'Other',
     ],
   },
@@ -76,7 +76,7 @@ export const categoryTree: CategoryNode[] = [
       'Smart Desk Lamp',
       'Cleaning Robot',
       'Air Purifier',
-      'Smart Home Devices (Smart Plug, Smart Bulb, etc.)',
+      'Smart Home Devices',
     ],
   },
   {
