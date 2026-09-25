@@ -68,7 +68,7 @@ export default function QuickLookPage() {
           ) : (
             <ProductGrid>
               {filtered.map((product) => (
-                <ProductCard key={product.id} product={product} />
+                <ProductCard key={product.id} product={product} linkTo="/quick-look" />
               ))}
             </ProductGrid>
           )}

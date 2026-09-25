@@ -17,6 +17,9 @@ type ProductCardProps = {
   showDiscount?: boolean;
   /** Show the release year in the card meta */
   showReleasedYear?: boolean;
+  /** Detail-page base the card links to. Defaults to '/shop'; the Quick Look
+   *  listing passes '/quick-look' so its cards open the spec-sheet page. */
+  linkTo?: string;
 };
 
 /**
@@ -35,6 +38,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   product,
   showDiscount = true,
   showReleasedYear = false,
+  linkTo = '/shop',
 }) => {
   const { addToCart, notify } = useCart();
 
@@ -90,7 +94,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             {product.category}
           </span>
           <h3 className="text-base font-bold text-text-heading mb-2 line-clamp-2">
-            <Link href={`/shop/${slugify(product.title)}`} className="hover:text-accent transition-colors">
+            <Link href={`${linkTo}/${slugify(product.title)}`} className="hover:text-accent transition-colors">
               {product.title}
             </Link>
           </h3>
