@@ -20,9 +20,9 @@ const TrendingPosts: React.FC = () => {
         <h2 className="text-2xl font-bold text-text-heading mb-6">
           Trending Now
         </h2>
-        {/* MOBILE: 2-col compact grid (ArticleCard already renders the
-            compact title-only card on mobile) — same sizing as Latest Posts. */}
-        <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-3">
+        {/* 4-up on desktop (lg) — same compact card proportions as the
+            /blog page and Latest Posts. */}
+        <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-4">
           {trendingPosts.map((post) => (
             <ArticleCard key={post.id} post={post} />
           ))}

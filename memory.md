@@ -800,3 +800,10 @@ Verified: tsc clean, build green, live SSR probes — all four pages render the 
 The last product without photos got its image pass: 4 source .jfif files (img 1–4, generic set, NO color variants — filenames carry no color tokens) converted via scripts/convert-product-images.cjs (WebP, ≤200KB each: 28–127KB) to public/images/products/ugreen-usb-c-hub-5-in-1/1–4.webp. Wired heroImage + 4-image gallery into products.ts; stale "(placeholder image)" alt suffix removed — the catalog now has real photos for all 22 products. Housekeeping: the generic converter had re-created the held Beats 360 output folder; removed it again (still held for user decision) and stripped it from product-images-manifest.json (22 entries).
 
 Verified: tsc clean, build green, live probes — detail page renders hero + 3 thumbs, WebP serves 200, Shop listing card shows the photo via next/image optimizer URLs (encoded form), placeholder text gone.
+## Task Log — 2026-09-25 — Homepage hero + blog card compaction
+
+**Hero:** was full-width stacked (1216px-wide 16:9 image ≈ 684px tall + text below ≈ 1,050–1,100px total, near full viewport). Restructured Hero.tsx into the standard two-column banner: image left (3/5 column ≈ 730px wide → ~410px tall at 16:9, ~395px effective) + content right (2/5), py-8/lg:py-10. Mobile keeps stacked slim 16:9 (~220px). Ratio unchanged.
+
+**Blog cards:** root cause of "oversized" cards was column count, not ratio — homepage Latest Posts/Trending/Guides ran lg:grid-cols-3 (≈383px cards → ~215px images) while /blog already ran lg:grid-cols-4 (≈283px → ~159px images, matching the gadgeterea reference). Unified all homepage blog-card sections AND /category/[category] to lg:grid-cols-4. ArticleCard untouched (aspect-video preserved; container sizing did the work). Testimonials' sm:2/lg:3 grid intentionally untouched (not a blog-card section).
+
+Verified: tsc clean, build green, live SSR probes — hero grid classes present, 4-up on Latest Posts + /blog, no blog-card lg:grid-cols-3 left (remaining hit = Testimonials), /category verified with a real category name.

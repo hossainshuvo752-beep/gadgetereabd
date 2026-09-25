@@ -33,7 +33,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
             No posts found in the {category} category.
           </p>
         ) : (
-          <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-4">
             {/* Same shared ArticleCard as /blog and the homepage — one card,
                 one image source, one 16:9 ratio. */}
             {filteredPosts.map((post) => (

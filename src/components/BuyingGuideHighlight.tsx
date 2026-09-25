@@ -29,10 +29,9 @@ const BuyingGuideHighlight: React.FC = () => {
         <h2 className="text-2xl font-bold text-text-heading mb-6 text-center">
           Popular Buying Guides
         </h2>
-        {/* MOBILE: 2-col compact grid, same card sizing as Latest Posts /
-            Trending Now (h-36 image, p-3, text-sm title, no description).
-            DESKTOP: unchanged. */}
-        <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-3">
+        {/* 4-up on desktop (lg) — same compact card proportions as the
+            /blog page and the other homepage sections. */}
+        <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-4">
           {guides.map((guide) => (
             <div key={guide.id} className="bg-text-on-dark rounded-lg overflow-hidden shadow hover:shadow-md transition-shadow duration-300">
               {/* 16:9 ratio lock — guides aren't real posts yet (dummy data,

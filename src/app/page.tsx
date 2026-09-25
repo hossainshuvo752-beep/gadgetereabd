@@ -36,9 +36,10 @@ export default function Home() {
             Latest Posts
           </h2>
           {/* MOBILE: 2-col grid of compact title-only cards. DESKTOP:
-              2→3 column grid. Renders the SAME ArticleCard used on /blog —
-              one shared card, one shared image source. */}
-          <div className="grid grid-cols-2 gap-3 md:gap-6 md:grid-cols-2 lg:grid-cols-3">
+              4-up like the /blog page — keeps card images compact (16:9).
+              Renders the SAME ArticleCard used on /blog — one shared card,
+              one shared image source. */}
+          <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-4">
             {latestPosts.map((post) => (
               <ArticleCard key={post.id} post={post} />
             ))}
