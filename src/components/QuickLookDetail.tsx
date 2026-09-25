@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import type { Product } from '@/lib/products';
@@ -168,13 +167,11 @@ function VariantButton({
  */
 const QuickLookDetail: React.FC<{
   product: Product;
-  /** Optional parent-listing breadcrumb (e.g. Shop on /shop/[id]); default Quick Look. */
-  breadcrumb?: { href: string; label: string } | null;
   /** Render the full-width sectioned Specifications below the CTA row?
    *  Quick Look pages keep it (default true); the Shop detail page ends at
    *  the Add to Cart / Buy Now / Notify Me buttons and omits it. */
   showFullSpecs?: boolean;
-}> = ({ product, breadcrumb = null, showFullSpecs = true }) => {
+}> = ({ product, showFullSpecs = true }) => {
   const router = useRouter();
   const { addToCart, notify } = useCart();
   // Gallery + variant state
@@ -294,23 +291,6 @@ const QuickLookDetail: React.FC<{
   return (
     <section className="py-10 bg-bg-light min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Breadcrumb */}
-        <nav className="mb-6 flex items-center gap-2 text-sm text-text-body">
-          <Link href="/" className="hover:text-accent">Home</Link>
-          <span>›</span>
-          {breadcrumb ? (
-            <>
-              <Link href={breadcrumb.href} className="hover:text-accent">
-                {breadcrumb.label}
-              </Link>
-            </>
-          ) : (
-            <Link href="/quick-look" className="hover:text-accent">Quick Look</Link>
-          )}
-          <span>›</span>
-          <span className="text-text-heading font-medium">{product.title}</span>
-        </nav>
-
         {/* ===== Title block ===== */}
         <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
           <div>

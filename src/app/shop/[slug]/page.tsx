@@ -10,8 +10,7 @@ import { productSchema } from '@/lib/schema';
  * Individual Shop product page: /shop/honor-robot-phone, /shop/samsung-galaxy-s26-ultra, …
  * Server component — resolves the product by its name slug (the same slug
  * pattern as /quick-look/[slug]) and delegates to the SHARED QuickLookDetail
- * template (identical layout/gallery/CTA behavior; only the breadcrumb and
- * metadata differ).
+ * template (identical layout/gallery/CTA behavior; only the metadata differs).
  *
  * NOTE: URLs are slugs, not numeric ids. Old numeric links (/shop/3) now
  * 404 gracefully via notFound() — they were never indexed broadly and the
@@ -82,15 +81,10 @@ export default async function ProductDetailPage({
       {/* Product schema — offers only when the visible price is confirmed
           (never for estimated prices or upcoming products). */}
       <JsonLd data={productSchema(product)} />
-      {/* Same shared template as the Quick Look detail page — breadcrumb
-          points back to the Shop listing instead of Quick Look. The page
-          ends at the Add to Cart / Buy Now / Notify Me button row (the
-          sectioned Specifications block is Quick Look–only). */}
-      <QuickLookDetail
-        product={product}
-        breadcrumb={{ href: '/shop', label: 'Shop' }}
-        showFullSpecs={false}
-      />
+      {/* Same shared template as the Quick Look detail page. The page ends
+          at the Add to Cart / Buy Now / Notify Me button row (the sectioned
+          Specifications block is Quick Look–only). */}
+      <QuickLookDetail product={product} showFullSpecs={false} />
       <NewsletterPopup />
     </>
   );
