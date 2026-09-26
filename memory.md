@@ -847,3 +847,6 @@ Verified: tsc clean, build green, live SSR probes — hero grid classes present,
 
 ## Task Log — 2026-09-26
 - Availability/warranty/release pill row HIDDEN behind feature flag SHOW_AVAILABILITY_BADGES=false (top of QuickLookDetail.tsx, alongside the component; row JSX kept intact, just conditionally rendered). Reason per owner decision: the row kept overlapping on mobile and the info is redundant — CTA buttons communicate availability, release date + warranty live in Additional Info. Restore by flipping the flag to true. Verified: pills absent from DOM on Shop + Quick Look, title flows into gallery card with a natural 16px gap, no layout gap/artifact, desktop equally affected (flag is not breakpoint-specific). tsc clean, build green.
+
+## Task Log — 2026-09-26
+- Hero column split set to 60/40 (text/image) via md:grid-cols-[3fr_2fr]; side-by-side breakpoint moved lg→md so tablets (768px) get the split too (owner's "desktop/tablet" framing). Image cap removed at md+ so the 40% is real (max-w-sm kept for mobile stack); 4:5 ratio untouched everywhere. Measured image-column widths: mobile stacked = container width (343px @375, 358px @390); md+ = 40% of (container − gap): ~275px @768, ~470px @1280 and @1440 (container caps at 1280). Recommended source asset: 960×1200 (4:5) covers 2× retina at every breakpoint. tsc clean, build green.
