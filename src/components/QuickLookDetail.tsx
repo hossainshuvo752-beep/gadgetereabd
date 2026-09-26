@@ -292,7 +292,7 @@ const QuickLookDetail: React.FC<{
   };
 
   return (
-    <section className="py-10 bg-bg-light min-h-screen">
+    <section className="py-5 md:py-10 bg-bg-light min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* ===== Title block ===== */}
         <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
@@ -312,7 +312,7 @@ const QuickLookDetail: React.FC<{
             wrapping or pushing the page wide; the row itself scrolls
             horizontally as an absolute last resort (hidden scrollbar).
             Desktop keeps the original sizing — md: overrides restore it. */}
-        <div className="flex flex-nowrap items-center gap-1.5 md:gap-2 mb-6 overflow-x-auto hide-scrollbar">
+        <div className="flex flex-nowrap items-center gap-1.5 md:gap-2 mb-3 md:mb-6 overflow-x-auto hide-scrollbar">
           <span className="inline-flex items-center gap-1 min-w-0 truncate px-2 py-0.5 text-[11px] md:px-3 md:py-1 md:text-xs rounded-full font-semibold bg-accent/10 text-accent-hover">
             {isUpcoming(product) ? '◌ Upcoming — Pre-Order Open' : '● In Stock'}
           </span>
@@ -344,7 +344,7 @@ const QuickLookDetail: React.FC<{
         </div>
 
         {/* ===== Two-column hero: gallery left (sticky), info right ===== */}
-        <div className="grid gap-8 lg:grid-cols-5 mb-10">
+        <div className="grid gap-4 md:gap-8 lg:grid-cols-5 mb-6 md:mb-10">
           {/* LEFT — gallery (2/5). Native CSS sticky below the 64px header
               (top-24 = 96px = 64px header + 32px gap); releases when the row ends.
               min-w-0: lets the column shrink below the gallery's min-content
@@ -358,8 +358,8 @@ const QuickLookDetail: React.FC<{
                 lg:flex-row moves the thumbs into a VERTICAL column on the
                 LEFT of the main image (Amazon-style rail, scrollable when
                 a future gallery grows past the column height). */}
-            <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-4 min-w-0">
-              <div className="flex flex-col-reverse gap-3 min-w-0 lg:flex-row lg:gap-4 lg:items-start">
+            <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-2.5 md:p-4 min-w-0">
+              <div className="flex flex-col-reverse gap-2 md:gap-3 min-w-0 lg:flex-row lg:gap-4 lg:items-start">
                 {/* thumbnails — horizontal SCROLLABLE row on mobile (more
                     thumbs than fit swipe sideways instead of pushing the
                     page wide — the root cause of the mobile overflow),
@@ -372,7 +372,7 @@ const QuickLookDetail: React.FC<{
                         key={img}
                         onClick={() => setActiveImage(i)}
                         aria-label={`View image ${i + 1}`}
-                        className={`relative aspect-square w-20 shrink-0 rounded-md overflow-hidden border transition-colors ${
+                        className={`relative aspect-square w-16 md:w-20 shrink-0 rounded-md overflow-hidden border transition-colors ${
                           activeIdx === i
                             ? 'border-accent bg-accent/10'
                             : 'border-text-heading/10 bg-text-on-dark hover:border-accent/50'
@@ -411,8 +411,7 @@ const QuickLookDetail: React.FC<{
                     {[0, 1, 2].map((i) => (
                       <button
                         key={i}
-                        onClick={() => setActiveImage(i)}
-                        className={`h-20 rounded-md flex items-center justify-center text-xs border transition-colors ${
+                        onClick={() => setActiveImage(i)}                          className={`h-16 md:h-20 rounded-md flex items-center justify-center text-xs border transition-colors ${
                           activeImage === i
                             ? 'border-accent text-text-body bg-accent/10'
                             : 'border-text-heading/10 bg-text-on-dark text-text-body hover:border-accent/50'
@@ -423,7 +422,7 @@ const QuickLookDetail: React.FC<{
                     ))}
                     <button
                       disabled
-                      className="h-20 rounded-md flex items-center justify-center text-xs border border-text-heading/10 bg-text-on-dark text-text-body cursor-default"
+                      className="h-16 md:h-20 rounded-md flex items-center justify-center text-xs border border-text-heading/10 bg-text-on-dark text-text-body cursor-default"
                     >
                       +3
                     </button>
@@ -479,15 +478,15 @@ const QuickLookDetail: React.FC<{
           </div>
 
           {/* RIGHT — info (3/5) */}
-          <div className="lg:col-span-3 space-y-6">
+          <div className="lg:col-span-3 space-y-4 md:space-y-6">
             {/* Variant (left) + Price (right) — side-by-side on desktop,
                 stacked Variant-first on mobile. One grid row so both boxes
                 stretch to equal height. */}
-            <div className="grid gap-6 md:grid-cols-2 items-stretch">
+            <div className="grid gap-4 md:gap-6 md:grid-cols-2 items-stretch">
               {/* variant selector */}
-              <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-5">
-                <h2 className="text-base font-semibold text-text-heading mb-4">Choose Variant</h2>
-                <div className="space-y-4">
+              <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-3.5 md:p-5">
+                <h2 className="text-base font-semibold text-text-heading mb-3 md:mb-4">Choose Variant</h2>
+                <div className="space-y-3 md:space-y-4">
                   {/* Color swatches — rendered ONLY when the product has
                       color-specific photos (colorImages). No color images =
                       no selector, per the catalog rule. */}
@@ -557,7 +556,7 @@ const QuickLookDetail: React.FC<{
                   vertically centered to fill the space beside the variant box.
                   Shows the SELECTED VARIANT's price (variantPrice) — updates
                   immediately when storage changes. */}
-              <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-5 flex flex-col justify-center">
+              <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-3.5 md:p-5 flex flex-col justify-center">
                 {/* Confirmed vs estimated price + source note (detailed). */}
                 <div className="text-3xl font-bold">
                   <PriceTag product={product} detailed resolved={resolvedPrice} />
