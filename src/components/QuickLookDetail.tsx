@@ -114,13 +114,27 @@ function SectionCard({ title, children }: { title: string; children: React.React
 }
 
 function KeyValue({ label, value }: { label: string; value: string }) {
+  // Two-column CSS GRID row (not flex): the label owns a fixed-width left
+  // column (min 90px, max 35%), the value owns the rest — a long value can
+  // only ever wrap WITHIN its own column, never below/into the label space
+  // (the old flex-wrap made wrapped values stack under the label, reading
+  // as one merged blob). items-start pins the label to the row top; the
+  // border + padding keep even 3-line values reading as one pair.
+  // SECONDARY compactness: very long values render one step smaller on
+  // mobile only (md: restores the standard size) — no information trimmed.
+  const long = value.length > 40;
   return (
-    // flex-wrap + min-w-0/break-words on the value: long spec values wrap
-    // inside their column instead of pushing the row past the viewport
-    // (mobile overflow bug — values were getting clipped at the screen edge).
-    <div className="flex flex-wrap items-baseline justify-between gap-4 py-1.5 border-b border-text-heading/10 last:border-b-0">
-      <span className="text-sm font-medium text-text-body shrink-0">{label}</span>
-      <span className="text-sm text-text-heading text-right min-w-0 break-words">{value}</span>
+    <div className="grid grid-cols-[minmax(90px,35%)_1fr] items-start gap-x-4 py-1.5 border-b border-text-heading/10 last:border-b-0">
+      <span className="text-sm font-medium text-text-body">{label}</span>
+      <span
+        className={`min-w-0 break-words ${
+          // long (wrapping) values read better left-aligned inside their
+          // column; short ones keep the tidy right edge.
+          long ? 'text-left text-[13px] md:text-sm' : 'text-right text-sm'
+        } text-text-heading`}
+      >
+        {value}
+      </span>
     </div>
   );
 }
@@ -720,8 +734,8 @@ const QuickLookDetail: React.FC<{
           <SectionCard title="Connectivity">
             <KeyValue label="Network" value={product.specSheet.connectivity.network} />
             <KeyValue label="Bluetooth" value={product.specSheet.connectivity.bluetooth} />
-            <div className="flex flex-wrap items-baseline justify-between gap-4 py-1.5">
-              <span className="text-sm font-medium text-text-body shrink-0">Ports</span>
+            <div className="grid grid-cols-[minmax(90px,35%)_1fr] items-start gap-x-4 py-1.5">
+              <span className="text-sm font-medium text-text-body">Ports</span>
               <span className="text-sm text-text-heading text-right min-w-0 break-words">
                 {product.specSheet.connectivity.ports.join(', ')}
               </span>
