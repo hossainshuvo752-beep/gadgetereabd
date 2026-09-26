@@ -86,7 +86,9 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
           </div>
 
           {/* RIGHT (md+) / BOTTOM (mobile) — featured image, 4:5 portrait
-              at every breakpoint. Mobile: full-width, capped + centered.
+              at every breakpoint. MOBILE: compact — capped at 200px wide
+              (~55-60% of the container, reference density), centered, so it
+              no longer reads as an oversized empty box under the text.
               md+: the box is CONTAINED (capped at 340px wide → 425px tall),
               centered inside its 40% column — a box filling the whole column
               (470px wide) stood 588px tall and dictated the banner height,
@@ -96,12 +98,12 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
               within this box; nothing stretches. Floating category badge
               overlaps the bottom-right edge, reference-style. */}
           <div className="relative md:order-2">
-            <div className="w-full max-w-sm md:max-w-[340px] mx-auto aspect-[4/5] bg-bg-dark-secondary/40 rounded-xl flex items-center justify-center">
+            <div className="w-full max-w-[200px] md:max-w-[340px] mx-auto aspect-[4/5] bg-bg-dark-secondary/40 rounded-xl flex items-center justify-center">
               <span className="text-text-on-dark-muted text-sm px-6 text-center">
                 {post.imageAlt}
               </span>
             </div>
-            <span className="absolute -bottom-3 right-4 inline-flex items-center px-3 py-1 text-xs font-semibold bg-accent text-text-on-dark rounded-full shadow-md">
+            <span className="absolute -bottom-3 right-2 md:right-4 inline-flex items-center px-3 py-1 text-xs font-semibold bg-accent text-text-on-dark rounded-full shadow-md">
               {post.category}
             </span>
           </div>
