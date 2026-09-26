@@ -37,7 +37,7 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
 
   return (
     <section className="bg-gradient-to-r from-bg-hero to-bg-hero-deep">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Text first / image second in the DOM (reference mobile stack).
             SIDE-BY-SIDE from md (tablet) up: TEXT 60% / IMAGE 40% via
             grid-cols-[3fr_2fr] — the reference's proportion (text column
@@ -87,11 +87,16 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
 
           {/* RIGHT (md+) / BOTTOM (mobile) — featured image, 4:5 portrait
               at every breakpoint. Mobile: full-width, capped + centered.
-              md+: the image FILLS its 40% column (cap removed) so the column
-              ratio is real. Floating category badge overlaps the
-              bottom-right edge, reference-style. */}
+              md+: the box is CONTAINED (capped at 340px wide → 425px tall),
+              centered inside its 40% column — a box filling the whole column
+              (470px wide) stood 588px tall and dictated the banner height,
+              leaving the text floating in dead space. At this size the image
+              height ≈ the text column height, so the banner hugs its content.
+              object-cover (for the future real image) crops any source
+              within this box; nothing stretches. Floating category badge
+              overlaps the bottom-right edge, reference-style. */}
           <div className="relative md:order-2">
-            <div className="w-full max-w-sm md:max-w-none mx-auto aspect-[4/5] bg-bg-dark-secondary/40 rounded-xl flex items-center justify-center">
+            <div className="w-full max-w-sm md:max-w-[340px] mx-auto aspect-[4/5] bg-bg-dark-secondary/40 rounded-xl flex items-center justify-center">
               <span className="text-text-on-dark-muted text-sm px-6 text-center">
                 {post.imageAlt}
               </span>

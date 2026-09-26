@@ -850,3 +850,6 @@ Verified: tsc clean, build green, live SSR probes — hero grid classes present,
 
 ## Task Log — 2026-09-26
 - Hero column split set to 60/40 (text/image) via md:grid-cols-[3fr_2fr]; side-by-side breakpoint moved lg→md so tablets (768px) get the split too (owner's "desktop/tablet" framing). Image cap removed at md+ so the 40% is real (max-w-sm kept for mobile stack); 4:5 ratio untouched everywhere. Measured image-column widths: mobile stacked = container width (343px @375, 358px @390); md+ = 40% of (container − gap): ~275px @768, ~470px @1280 and @1440 (container caps at 1280). Recommended source asset: 960×1200 (4:5) covers 2× retina at every breakpoint. tsc clean, build green.
+
+## Task Log — 2026-09-26
+- Hero desktop height fix: the 4:5 box filling the 40% column (470px wide) stood 588px tall and dictated banner height (747px), leaving dead space. Image box now capped at md:max-w-[340px] (→ 425px tall, ratio-true) and centered in its 40% column (items-center on the grid centers text against it); section padding lg:py-12→py-8. Banner: 747→489px (−35%) at 1280/1440/1920 alike (340×425 box, exact 0.8 ratio, columns center-aligned, verified DOM). 60/40 split + 4:5 ratio preserved; object-cover note stands for real images. Retina guidance updated: cap serves 680px needed at 2× → 960×1200 source still ideal. tsc clean, build green.
