@@ -18,13 +18,16 @@ const ArticleCard: React.FC<{ post: Post }> = ({ post }) => {
       <div className="bg-text-on-dark border border-text-heading/10 rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-300">
         {/* 16:9 ratio lock — blog images are 16:9 everywhere (listing,
             homepage cards, detail hero). */}
-        <div className="aspect-video bg-bg-dark-secondary/10 flex items-center justify-center">
+        {/* Category badge overlays the image (top-left, 12px inset) instead
+            of occupying its own row below it — solid bg-accent pill keeps it
+            legible over any image. */}
+        <div className="relative aspect-video bg-bg-dark-secondary/10 flex items-center justify-center">
           <span className="text-text-body text-sm">{post.imageAlt}</span>
-        </div>
-        <div className="p-3 md:p-5">
-          <span className="inline-flex items-center px-2.5 py-0.5 text-xs font-semibold bg-accent text-text-on-dark rounded-full mb-3">
+          <span className="absolute top-3 left-3 inline-flex items-center px-2.5 py-0.5 text-xs font-semibold bg-accent text-text-on-dark rounded-full">
             {post.category}
           </span>
+        </div>
+        <div className="p-3 md:p-5">
           <h3 className="text-sm md:text-xl font-bold text-text-heading mb-3 line-clamp-2">
             {post.title}
           </h3>
