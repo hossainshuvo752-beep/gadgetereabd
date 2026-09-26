@@ -305,16 +305,19 @@ const QuickLookDetail: React.FC<{
           </div>
         </div>
 
-        {/* Status pills */}
+        {/* Status pills — kept SHORT so all three fit one line on mobile
+            (375-414px): long labels wrapped to two lines and wasted vertical
+            space. Upcoming → "Pre-Order"; release month needs no "Released"
+            prefix inside its own pill. */}
         <div className="flex flex-wrap items-center gap-2 mb-6">
           <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-accent/10 text-accent-hover">
-            {isUpcoming(product) ? '◌ Upcoming — Pre-Order Open' : '● In Stock'}
+            {isUpcoming(product) ? '◌ Pre-Order' : '● In Stock'}
           </span>
           <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-bg-dark-secondary/10 text-text-heading border border-text-heading/10">
             Official Warranty
           </span>
           <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-bg-dark-secondary/10 text-text-heading border border-text-heading/10">
-            Released {product.specSheet.basicInfo.releaseDate}
+            {product.specSheet.basicInfo.releaseDate}
           </span>
         </div>
 
