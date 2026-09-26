@@ -179,6 +179,15 @@ function VariantButton({
 /* ---------- detail view ---------- */
 
 /**
+ * FEATURE FLAG — availability/warranty/release-date pill row under the
+ * product title. Currently OFF: the row kept overlapping on mobile, and its
+ * info is redundant (CTA button row communicates availability; release
+ * date + warranty live in Additional Info). Flip to true to restore the
+ * pills everywhere (Quick Look + Shop detail share this component).
+ */
+const SHOW_AVAILABILITY_BADGES = false;
+
+/**
  * Full Quick Look detail layout for any product: sticky gallery column on the
  * left (native CSS sticky), info column on the right, sectioned spec cards below.
  */
@@ -319,24 +328,27 @@ const QuickLookDetail: React.FC<{
           </div>
         </div>
 
-        {/* Status pills — GENERIC one-line fit (no hardcoded short labels):
-            the row never wraps (flex-nowrap) and badges shrink on mobile
-            (smaller padding + 11px text). If a text combination is still
-            too wide, each badge truncates with an ellipsis instead of
-            wrapping or pushing the page wide; the row itself scrolls
-            horizontally as an absolute last resort (hidden scrollbar).
-            Desktop keeps the original sizing — md: overrides restore it. */}
-        <div className="flex flex-nowrap items-center gap-1.5 md:gap-2 mb-3 md:mb-6 overflow-x-auto hide-scrollbar">
-          <span className="inline-flex items-center gap-1 min-w-0 truncate px-2 py-0.5 text-[11px] md:px-3 md:py-1 md:text-xs rounded-full font-semibold bg-accent/10 text-accent-hover">
-            {isUpcoming(product) ? '◌ Upcoming — Pre-Order Open' : '● In Stock'}
-          </span>
-          <span className="inline-flex items-center gap-1 min-w-0 truncate px-2 py-0.5 text-[11px] md:px-3 md:py-1 md:text-xs rounded-full font-semibold bg-bg-dark-secondary/10 text-text-heading border border-text-heading/10">
-            Official Warranty
-          </span>
-          <span className="inline-flex items-center gap-1 min-w-0 truncate px-2 py-0.5 text-[11px] md:px-3 md:py-1 md:text-xs rounded-full font-semibold bg-bg-dark-secondary/10 text-text-heading border border-text-heading/10">
-            Released {product.specSheet.basicInfo.releaseDate}
-          </span>
-        </div>
+        {/* Status pills — TEMPORARILY HIDDEN via SHOW_AVAILABILITY_BADGES.
+            Why: the row kept overlapping/clipping on mobile (long data-driven
+            labels like "Upcoming — Pre-Order Open" + "Released Aug 2026"
+            can't fit small screens), and the information is redundant —
+            availability is already communicated by the CTA button row
+            (Add to Cart / Buy Now / Pre-Order / Notify Me), while release
+            date and warranty live in the Additional Info table.
+            To restore: flip the flag below to true. */}
+        {SHOW_AVAILABILITY_BADGES && (
+          <div className="flex flex-nowrap items-center gap-1.5 md:gap-2 mb-3 md:mb-6 overflow-x-auto hide-scrollbar">
+            <span className="inline-flex items-center gap-1 min-w-0 truncate px-2 py-0.5 text-[11px] md:px-3 md:py-1 md:text-xs rounded-full font-semibold bg-accent/10 text-accent-hover">
+              {isUpcoming(product) ? '◌ Upcoming — Pre-Order Open' : '● In Stock'}
+            </span>
+            <span className="inline-flex items-center gap-1 min-w-0 truncate px-2 py-0.5 text-[11px] md:px-3 md:py-1 md:text-xs rounded-full font-semibold bg-bg-dark-secondary/10 text-text-heading border border-text-heading/10">
+              Official Warranty
+            </span>
+            <span className="inline-flex items-center gap-1 min-w-0 truncate px-2 py-0.5 text-[11px] md:px-3 md:py-1 md:text-xs rounded-full font-semibold bg-bg-dark-secondary/10 text-text-heading border border-text-heading/10">
+              Released {product.specSheet.basicInfo.releaseDate}
+            </span>
+          </div>
+        )}
 
         {/* ===== Highlight strip ===== */}
         <div className="hidden lg:grid grid-cols-5 gap-4 mb-8">
