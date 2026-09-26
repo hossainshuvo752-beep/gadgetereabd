@@ -820,3 +820,6 @@ Verified: tsc clean, build green, live SSR probes — hero grid classes present,
 - Desktop (lg+): thumbnails are a vertical column on the LEFT of the main image (Amazon-style rail, w-20, max-h-[26rem], overflow-y-auto, hidden scrollbar if it ever overflows). Mobile/tablet: main image on top + horizontal thumb row below (unchanged orientation) but inside the same frame — flex-col-reverse swap, no DOM duplication.
 - Spec Score badge + prev/next arrows moved onto the main-image box (correctly positioned in both layouts). "+N" see-all tile and LightboxGallery behavior unchanged (≤4 imgs inline, >4 → 3 + tile).
 - Verified: tsc clean, production build green, live probes on /quick-look + /shop (200s, single framed container, rail classes, badge, tile rules).
+
+## Task Log — 2026-09-26
+- Blog card category badge moved from its own row below the image to an absolute overlay on the image (top-left, 12px inset) in the shared `ArticleCard` — applies to /blog, homepage Latest/Trending, category pages, and search at once. Hero badge (side content column) intentionally unchanged. tsc clean; commit 277406b.
