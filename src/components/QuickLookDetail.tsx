@@ -115,9 +115,12 @@ function SectionCard({ title, children }: { title: string; children: React.React
 
 function KeyValue({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex items-baseline justify-between gap-4 py-1.5 border-b border-text-heading/10 last:border-b-0">
+    // flex-wrap + min-w-0/break-words on the value: long spec values wrap
+    // inside their column instead of pushing the row past the viewport
+    // (mobile overflow bug — values were getting clipped at the screen edge).
+    <div className="flex flex-wrap items-baseline justify-between gap-4 py-1.5 border-b border-text-heading/10 last:border-b-0">
       <span className="text-sm font-medium text-text-body shrink-0">{label}</span>
-      <span className="text-sm text-text-heading text-right">{value}</span>
+      <span className="text-sm text-text-heading text-right min-w-0 break-words">{value}</span>
     </div>
   );
 }
@@ -337,8 +340,11 @@ const QuickLookDetail: React.FC<{
         {/* ===== Two-column hero: gallery left (sticky), info right ===== */}
         <div className="grid gap-8 lg:grid-cols-5 mb-10">
           {/* LEFT — gallery (2/5). Native CSS sticky below the 64px header
-              (top-24 = 96px = 64px header + 32px gap); releases when the row ends. */}
-          <div className="lg:col-span-2 lg:sticky lg:top-24 lg:self-start">
+              (top-24 = 96px = 64px header + 32px gap); releases when the row ends.
+              min-w-0: lets the column shrink below the gallery's min-content
+              width on mobile — without it the thumb strip's intrinsic width
+              pushed the whole grid past the viewport. */}
+          <div className="lg:col-span-2 lg:sticky lg:top-24 lg:self-start min-w-0">
             {/* ONE framed gallery unit on every breakpoint: the main image
                 and its thumbnails share a single bordered container. DOM
                 order is [thumbs, main]; flex-col-reverse shows main on top
@@ -346,12 +352,15 @@ const QuickLookDetail: React.FC<{
                 lg:flex-row moves the thumbs into a VERTICAL column on the
                 LEFT of the main image (Amazon-style rail, scrollable when
                 a future gallery grows past the column height). */}
-            <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-4">
-              <div className="flex flex-col-reverse gap-3 lg:flex-row lg:gap-4 lg:items-start">
-                {/* thumbnails — horizontal row on mobile, vertical column
-                    on desktop; same "+N" see-all tile rule as before */}
+            <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-4 min-w-0">
+              <div className="flex flex-col-reverse gap-3 min-w-0 lg:flex-row lg:gap-4 lg:items-start">
+                {/* thumbnails — horizontal SCROLLABLE row on mobile (more
+                    thumbs than fit swipe sideways instead of pushing the
+                    page wide — the root cause of the mobile overflow),
+                    vertical column on desktop; same "+N" see-all tile rule
+                    as before */}
                 {activeGallery.length > 0 ? (
-                  <div className="flex gap-3 hide-scrollbar lg:flex-col lg:w-20 lg:max-h-[26rem] lg:overflow-y-auto shrink-0">
+                  <div className="flex gap-3 overflow-x-auto hide-scrollbar lg:flex-col lg:overflow-x-visible lg:w-20 lg:max-h-[26rem] lg:overflow-y-auto shrink-0 min-w-0">
                     {inlineThumbs.map((img, i) => (
                       <button
                         key={img}
@@ -392,7 +401,7 @@ const QuickLookDetail: React.FC<{
                     )}
                   </div>
                 ) : (
-                  <div className="grid grid-cols-4 gap-3 lg:grid-cols-1 lg:w-20 shrink-0">
+                  <div className="grid grid-cols-4 gap-3 overflow-x-auto hide-scrollbar lg:grid-cols-1 lg:overflow-x-visible lg:w-20 shrink-0 min-w-0">
                     {[0, 1, 2].map((i) => (
                       <button
                         key={i}
@@ -706,9 +715,9 @@ const QuickLookDetail: React.FC<{
           <SectionCard title="Connectivity">
             <KeyValue label="Network" value={product.specSheet.connectivity.network} />
             <KeyValue label="Bluetooth" value={product.specSheet.connectivity.bluetooth} />
-            <div className="flex items-baseline justify-between gap-4 py-1.5">
+            <div className="flex flex-wrap items-baseline justify-between gap-4 py-1.5">
               <span className="text-sm font-medium text-text-body shrink-0">Ports</span>
-              <span className="text-sm text-text-heading text-right">
+              <span className="text-sm text-text-heading text-right min-w-0 break-words">
                 {product.specSheet.connectivity.ports.join(', ')}
               </span>
             </div>
