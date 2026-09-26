@@ -33,6 +33,10 @@
   --color-text-heading: #0f172a; /* headings + strong text on light */
   --color-text-body: #64748b; /* body / secondary text on light */
   --color-danger: #dc2626; /* error text, error borders, SALE badges */
+  --color-bg-hero: #1e3a5f; /* hero banner gradient — lighter navy stop */
+  --color-bg-hero-deep: #0a1628; /* hero banner gradient — darker navy stop */
+  --color-accent-amber: #fbbf24; /* amber highlight (hero title accent, trending pill) */
+  --color-text-on-dark-muted: #cbd5e1; /* secondary text on dark backgrounds */
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, Arial, sans-serif;

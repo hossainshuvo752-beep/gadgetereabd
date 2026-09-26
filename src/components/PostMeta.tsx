@@ -7,6 +7,9 @@ type PostMetaProps = {
   readTime: string;
   /** Size override for context (cards default compact; detail page passes text-sm). */
   className?: string;
+  /** 'light' (default) for light cards; 'dark' flips the text/avatar tokens
+   *  for dark backgrounds (e.g. the homepage hero banner). */
+  tone?: 'light' | 'dark';
 };
 
 /**
@@ -24,24 +27,30 @@ export default function PostMeta({
   date,
   readTime,
   className = 'text-[11px] md:text-xs',
+  tone = 'light',
 }: PostMetaProps) {
+  const dark = tone === 'dark';
   return (
     <div className={`space-y-1 ${className}`}>
       <div className="flex items-center gap-1.5">
         <span
           aria-hidden="true"
-          className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent-hover text-[10px] font-bold leading-none"
+          className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold leading-none ${
+            dark ? 'bg-accent/20 text-accent-amber' : 'bg-accent/10 text-accent-hover'
+          }`}
         >
           {author.charAt(0).toUpperCase()}
         </span>
-        <span className="font-medium text-text-heading">{author}</span>
-        <span className="text-text-body/60" aria-hidden="true">
+        <span className={`font-medium ${dark ? 'text-text-on-dark' : 'text-text-heading'}`}>
+          {author}
+        </span>
+        <span className={dark ? 'text-text-on-dark-muted/60' : 'text-text-body/60'} aria-hidden="true">
           •
         </span>
       </div>
-      <div className="flex items-center gap-1.5 text-text-body">
+      <div className={`flex items-center gap-1.5 ${dark ? 'text-text-on-dark-muted' : 'text-text-body'}`}>
         <span>{date}</span>
-        <span className="text-text-body/60" aria-hidden="true">
+        <span className={dark ? 'text-text-on-dark-muted/60' : 'text-text-body/60'} aria-hidden="true">
           •
         </span>
         <span>{readTime}</span>

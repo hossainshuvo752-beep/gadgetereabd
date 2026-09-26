@@ -823,3 +823,6 @@ Verified: tsc clean, build green, live SSR probes — hero grid classes present,
 
 ## Task Log — 2026-09-26
 - Blog card category badge moved from its own row below the image to an absolute overlay on the image (top-left, 12px inset) in the shared `ArticleCard` — applies to /blog, homepage Latest/Trending, category pages, and search at once. Hero badge (side content column) intentionally unchanged. tsc clean; commit 277406b.
+
+## Task Log — 2026-09-26
+- Homepage hero redesigned to reference layout: dark navy gradient banner (new tokens bg-hero/bg-hero-deep, amber accent-amber, text-on-dark-muted), two-column with text LEFT / image RIGHT on desktop (stacked text-first on mobile), "🔥 Trending This Week" pill, dynamic headline with post's entity name (pre-colon text) in amber, dark-tone PostMeta (new `tone` prop), floating category badge overlapping image bottom-right. Data source unchanged (posts[0]). Visual pass done in Preview tab (mobile + desktop). tsc clean, build green.
