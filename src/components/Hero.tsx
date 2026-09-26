@@ -14,13 +14,21 @@ interface HeroProps {
 }
 
 /**
- * Homepage hero — dark navy gradient banner matching the reference layout:
- * text LEFT, featured image RIGHT (desktop); stacked text-first on mobile.
+ * Homepage hero — dark navy gradient banner matching the reference layout.
  *
- * The headline renders the post's REAL title with the distinguishing
- * product/entity name (text before the first colon) highlighted in amber —
- * nothing hardcoded: posts[0] is "iPhone Duo: …", so "iPhone Duo" lights up,
- * and any future featured post follows the same rule.
+ * MOBILE (below lg): stacked text-first in the reference's exact order —
+ * trending pill → headline (white with amber entity accent) → muted
+ * description → CTA → featured image LAST, centered, with the floating
+ * category badge on its bottom-right corner. (The author/date meta row is
+ * desktop-only — the reference mobile stack doesn't include it.)
+ *
+ * DESKTOP (lg+): same content, two columns — text LEFT, image RIGHT.
+ *
+ * IMAGE RATIO: 4:5 portrait on EVERY breakpoint (chosen over 3:4 — same
+ * portrait feel, less vertical bulk beside the text column). object-cover
+ * + object-center crop any source image gracefully; when a real hero
+ * image replaces the placeholder, render it with next/image fill +
+ * object-cover object-center inside this same container.
  */
 const Hero: React.FC<HeroProps> = ({ post }) => {
   const colonIndex = post.title.indexOf(':');
@@ -30,9 +38,10 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
   return (
     <section className="bg-gradient-to-r from-bg-hero to-bg-hero-deep">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
-        {/* Text first / image second in the DOM; the row order flips on lg. */}
+        {/* Text first / image second in the DOM (reference mobile stack);
+            the row order is preserved on lg (text left, image right). */}
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-10 items-center">
-          {/* LEFT — content */}
+          {/* LEFT / TOP — content */}
           <div className="space-y-4 lg:order-1">
             {/* Trending pill */}
             <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold bg-accent-amber text-bg-hero-deep rounded-full">
@@ -50,14 +59,19 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
               {restText}
             </h2>
 
-            {/* Excerpt — muted white for dark bg; hidden on mobile (compact
-                hero: pill, title, meta, button only — established pattern) */}
-            <p className="hidden md:line-clamp-2 text-text-on-dark-muted leading-relaxed max-w-xl">
+            {/* Excerpt — muted white; visible on mobile too now (part of the
+                reference stack), clamped to 2 lines at every breakpoint */}
+            <p className="line-clamp-2 text-text-on-dark-muted leading-relaxed max-w-xl">
               {post.excerpt}
             </p>
 
-            {/* Meta Info — same two-line pattern as the cards */}
-            <PostMeta date={post.date} readTime={post.readTime} className="text-xs" tone="dark" />
+            {/* Meta row — desktop only (reference mobile stack ends at CTA) */}
+            <PostMeta
+              date={post.date}
+              readTime={post.readTime}
+              className="hidden lg:block text-xs"
+              tone="dark"
+            />
 
             {/* CTA */}
             <a
@@ -68,12 +82,15 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
             </a>
           </div>
 
-          {/* RIGHT — featured image with floating corner badge (overlaps the
-              bottom-right edge, reference-style). aspect-video keeps the
-              16:9 ratio lock; ~380px tall in the desktop column. */}
+          {/* RIGHT (desktop) / BOTTOM (mobile) — featured image, 4:5 portrait
+              at every breakpoint; capped + centered so the desktop column
+              stays balanced. Floating category badge overlaps the
+              bottom-right edge, reference-style. */}
           <div className="relative lg:order-2">
-            <div className="w-full aspect-video bg-bg-dark-secondary/40 rounded-xl flex items-center justify-center">
-              <span className="text-text-on-dark-muted text-sm">{post.imageAlt}</span>
+            <div className="w-full max-w-sm mx-auto aspect-[4/5] bg-bg-dark-secondary/40 rounded-xl flex items-center justify-center">
+              <span className="text-text-on-dark-muted text-sm px-6 text-center">
+                {post.imageAlt}
+              </span>
             </div>
             <span className="absolute -bottom-3 right-4 inline-flex items-center px-3 py-1 text-xs font-semibold bg-accent text-text-on-dark rounded-full shadow-md">
               {post.category}
