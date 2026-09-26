@@ -305,19 +305,22 @@ const QuickLookDetail: React.FC<{
           </div>
         </div>
 
-        {/* Status pills — kept SHORT so all three fit one line on mobile
-            (375-414px): long labels wrapped to two lines and wasted vertical
-            space. Upcoming → "Pre-Order"; release month needs no "Released"
-            prefix inside its own pill. */}
-        <div className="flex flex-wrap items-center gap-2 mb-6">
-          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-accent/10 text-accent-hover">
-            {isUpcoming(product) ? '◌ Pre-Order' : '● In Stock'}
+        {/* Status pills — GENERIC one-line fit (no hardcoded short labels):
+            the row never wraps (flex-nowrap) and badges shrink on mobile
+            (smaller padding + 11px text). If a text combination is still
+            too wide, each badge truncates with an ellipsis instead of
+            wrapping or pushing the page wide; the row itself scrolls
+            horizontally as an absolute last resort (hidden scrollbar).
+            Desktop keeps the original sizing — md: overrides restore it. */}
+        <div className="flex flex-nowrap items-center gap-1.5 md:gap-2 mb-6 overflow-x-auto hide-scrollbar">
+          <span className="inline-flex items-center gap-1 min-w-0 truncate px-2 py-0.5 text-[11px] md:px-3 md:py-1 md:text-xs rounded-full font-semibold bg-accent/10 text-accent-hover">
+            {isUpcoming(product) ? '◌ Upcoming — Pre-Order Open' : '● In Stock'}
           </span>
-          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-bg-dark-secondary/10 text-text-heading border border-text-heading/10">
+          <span className="inline-flex items-center gap-1 min-w-0 truncate px-2 py-0.5 text-[11px] md:px-3 md:py-1 md:text-xs rounded-full font-semibold bg-bg-dark-secondary/10 text-text-heading border border-text-heading/10">
             Official Warranty
           </span>
-          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-bg-dark-secondary/10 text-text-heading border border-text-heading/10">
-            {product.specSheet.basicInfo.releaseDate}
+          <span className="inline-flex items-center gap-1 min-w-0 truncate px-2 py-0.5 text-[11px] md:px-3 md:py-1 md:text-xs rounded-full font-semibold bg-bg-dark-secondary/10 text-text-heading border border-text-heading/10">
+            Released {product.specSheet.basicInfo.releaseDate}
           </span>
         </div>
 
