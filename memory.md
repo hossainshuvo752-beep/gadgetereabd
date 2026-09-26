@@ -859,3 +859,6 @@ Verified: tsc clean, build green, live SSR probes — hero grid classes present,
 
 ## Task Log — 2026-09-26 (incident)
 - DEPLOYMENT GAP FOUND & FIXED: d6ef4da was pushed to origin/main correctly, but Vercel's production deployment never updated — live CSS contained 340px/max-w-sm (89f0486 state) and lacked 200px, and an Age:1450s CDN HIT predated the commit; cache-busting param didn't bypass (route cache key). Remedied with empty commit 00f72d1 to re-trigger the build; polled live CSS until the new hash contained the 200px rule (first poll, ~15s after trigger), then verified live HTML markup (max-w-[200px] present) AND rendered the live URL at 390px (200×250 box, hero 600px). LESSON: 'committed+pushed' ≠ 'deployed' — future tasks affecting live visuals must verify against the production URL (CSS hash or rendered DOM), not just git push.
+
+## Task Log — 2026-09-26
+- Hero unified: SIDE-BY-SIDE at every breakpoint (owner override of stacked-mobile; grid-cols-[3fr_2fr] unprefixed now, mobile text scaled down: h2 18→24→36px, pill/CTA/badge 10-12px on phones). Author/date/read-time meta REMOVED from hero entirely (PostMeta import dropped; post pages keep theirs). Mobile hero: 776→281px; desktop unchanged 489px; image 124px@375 / 130@390 / 140@414 / 340 desktop, all ratio 0.8, zero overflow at 375/390/414.

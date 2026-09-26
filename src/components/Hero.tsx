@@ -1,5 +1,4 @@
 import React from 'react';
-import PostMeta from './PostMeta';
 
 interface HeroProps {
   post: {
@@ -14,21 +13,20 @@ interface HeroProps {
 }
 
 /**
- * Homepage hero — dark navy gradient banner matching the reference layout.
+ * Homepage hero — dark navy gradient banner. ONE side-by-side structure at
+ * EVERY breakpoint (owner decision, supersedes the earlier stacked-mobile
+ * layout): text LEFT (~60%), featured image RIGHT (~40%), scaled down
+ * proportionally on phones. Text sizes step up mobile → tablet → desktop so
+ * the narrow 3fr column stays readable at 375px.
  *
- * MOBILE (below lg): stacked text-first in the reference's exact order —
- * trending pill → headline (white with amber entity accent) → muted
- * description → CTA → featured image LAST, centered, with the floating
- * category badge on its bottom-right corner. (The author/date meta row is
- * desktop-only — the reference mobile stack doesn't include it.)
+ * The author/date/read-time meta line is intentionally NOT rendered here at
+ * any breakpoint (cluttered in the hero; post detail pages keep theirs).
  *
- * DESKTOP (lg+): same content, two columns — text LEFT, image RIGHT.
- *
- * IMAGE RATIO: 4:5 portrait on EVERY breakpoint (chosen over 3:4 — same
- * portrait feel, less vertical bulk beside the text column). object-cover
- * + object-center crop any source image gracefully; when a real hero
- * image replaces the placeholder, render it with next/image fill +
- * object-cover object-center inside this same container.
+ * IMAGE: 4:5 portrait, object-cover semantics for the future real image
+ * (next/image fill + object-cover object-center inside this box — crops any
+ * source, never stretches). Mobile box: capped 200px, centered in its
+ * column; md+: 340px cap so its height ≈ the text column's and the banner
+ * hugs its content. Floating category badge overlaps the bottom-right edge.
  */
 const Hero: React.FC<HeroProps> = ({ post }) => {
   const colonIndex = post.title.indexOf(':');
@@ -38,21 +36,17 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
   return (
     <section className="bg-gradient-to-r from-bg-hero to-bg-hero-deep">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Text first / image second in the DOM (reference mobile stack).
-            SIDE-BY-SIDE from md (tablet) up: TEXT 60% / IMAGE 40% via
-            grid-cols-[3fr_2fr] — the reference's proportion (text column
-            keeps headline+excerpt comfortable, portrait image stays
-            secondary). Mobile stays stacked full-width. */}
-        <div className="grid gap-6 md:grid-cols-[3fr_2fr] md:gap-8 lg:gap-10 items-center">
-          {/* LEFT / TOP — content */}
-          <div className="space-y-4 lg:order-1">
+        {/* Text left / image right at every breakpoint (3fr:2fr = 60/40). */}
+        <div className="grid grid-cols-[3fr_2fr] items-center gap-4 md:gap-8 lg:gap-10">
+          {/* LEFT — content */}
+          <div className="space-y-3 md:space-y-4">
             {/* Trending pill */}
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold bg-accent-amber text-bg-hero-deep rounded-full">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 md:px-3 text-[10px] md:text-xs font-semibold bg-accent-amber text-bg-hero-deep rounded-full">
               🔥 Trending This Week
             </span>
 
             {/* Headline — real post title, entity name in amber */}
-            <h2 className="text-2xl lg:text-4xl font-bold text-text-on-dark line-clamp-3">
+            <h2 className="text-lg md:text-2xl lg:text-4xl font-bold text-text-on-dark line-clamp-3">
               {leadText && (
                 <>
                   <span className="text-accent-amber">{leadText}</span>
@@ -62,48 +56,30 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
               {restText}
             </h2>
 
-            {/* Excerpt — muted white; visible on mobile too now (part of the
-                reference stack), clamped to 2 lines at every breakpoint */}
-            <p className="line-clamp-2 text-text-on-dark-muted leading-relaxed max-w-xl">
+            {/* Excerpt — muted white, clamped to 2 lines */}
+            <p className="text-xs md:text-sm line-clamp-2 text-text-on-dark-muted leading-relaxed">
               {post.excerpt}
             </p>
-
-            {/* Meta row — desktop only (reference mobile stack ends at CTA) */}
-            <PostMeta
-              date={post.date}
-              readTime={post.readTime}
-              className="hidden lg:block text-xs"
-              tone="dark"
-            />
 
             {/* CTA */}
             <a
               href={`/posts/${post.id}`}
-              className="inline-block px-6 py-2 bg-accent text-text-on-dark font-medium rounded-md hover:bg-accent-hover transition-colors"
+              className="inline-block px-4 py-2 md:px-6 text-xs md:text-sm bg-accent text-text-on-dark font-medium rounded-md hover:bg-accent-hover transition-colors"
             >
               Read Full Review
             </a>
           </div>
 
-          {/* RIGHT (md+) / BOTTOM (mobile) — featured image, 4:5 portrait
-              at every breakpoint. MOBILE: compact — capped at 200px wide
-              (~55-60% of the container, reference density), centered, so it
-              no longer reads as an oversized empty box under the text.
-              md+: the box is CONTAINED (capped at 340px wide → 425px tall),
-              centered inside its 40% column — a box filling the whole column
-              (470px wide) stood 588px tall and dictated the banner height,
-              leaving the text floating in dead space. At this size the image
-              height ≈ the text column height, so the banner hugs its content.
-              object-cover (for the future real image) crops any source
-              within this box; nothing stretches. Floating category badge
-              overlaps the bottom-right edge, reference-style. */}
-          <div className="relative md:order-2">
+          {/* RIGHT — featured image, 4:5 portrait, contained (never stretches
+              to the text column's height). Floating category badge overlaps
+              the bottom-right edge. */}
+          <div className="relative">
             <div className="w-full max-w-[200px] md:max-w-[340px] mx-auto aspect-[4/5] bg-bg-dark-secondary/40 rounded-xl flex items-center justify-center">
-              <span className="text-text-on-dark-muted text-sm px-6 text-center">
+              <span className="text-text-on-dark-muted text-xs md:text-sm px-4 text-center">
                 {post.imageAlt}
               </span>
             </div>
-            <span className="absolute -bottom-3 right-2 md:right-4 inline-flex items-center px-3 py-1 text-xs font-semibold bg-accent text-text-on-dark rounded-full shadow-md">
+            <span className="absolute -bottom-3 right-2 md:right-4 inline-flex items-center px-2.5 md:px-3 py-1 text-[10px] md:text-xs font-semibold bg-accent text-text-on-dark rounded-full shadow-md">
               {post.category}
             </span>
           </div>
