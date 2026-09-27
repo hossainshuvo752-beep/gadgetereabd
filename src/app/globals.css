@@ -171,6 +171,19 @@ body {
   transform: scaleX(1);
 }
 
+/* Hero banner image: soft corner + tasteful hover growth (scale, not
+   layout-affecting). Hover chosen over a constant float loop — motion on
+   the page's largest element is tiring; hover reads as intentional. */
+.hero-img {
+  border-radius: 1rem;
+  transition: transform 300ms ease-out, box-shadow 300ms ease-out;
+  will-change: transform;
+}
+.hero-img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
 /* Respect users who prefer reduced motion: kill transforms/animations,
    keep instant state changes so nothing becomes unusable. */
 @media (prefers-reduced-motion: reduce) {
@@ -179,7 +192,8 @@ body {
   .card-zoom,
   .fade-up,
   .accordion-panel,
-  .nav-underline::after {
+  .nav-underline::after,
+  .hero-img {
     transition: none !important;
     animation: none !important;
   }
@@ -189,7 +203,8 @@ body {
   .tactile:hover,
   .tactile:active,
   .card-lift:hover,
-  .card-lift:hover .card-zoom {
+  .card-lift:hover .card-zoom,
+  .hero-img:hover {
     transform: none !important;
   }
 }

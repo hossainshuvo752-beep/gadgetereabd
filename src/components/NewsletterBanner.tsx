@@ -43,7 +43,7 @@ const NewsletterBanner: React.FC = () => {
               <form
                 noValidate
                 onSubmit={handleSubmit}
-                className="flex flex-col sm:flex-row items-stretch sm:items-center w-full max-w-md"
+                className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 w-full max-w-md"
               >
                 <input
                   type="email"
@@ -51,7 +51,7 @@ const NewsletterBanner: React.FC = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
                   disabled={busy}
-                  className={`h-12 w-full rounded-lg sm:rounded-l-lg sm:rounded-r-none border bg-text-on-dark px-4 text-text-heading placeholder-text-body focus:outline-none focus:ring-2 disabled:opacity-60 ${
+                  className={`h-12 w-full rounded-lg border bg-text-on-dark px-4 text-text-heading placeholder-text-body focus:outline-none focus:ring-2 disabled:opacity-60 ${
                     error
                       ? 'border-danger ring-1 ring-danger'
                       : 'border-text-heading/10 focus:ring-accent'
@@ -60,7 +60,7 @@ const NewsletterBanner: React.FC = () => {
                 <button
                   type="submit"
                   disabled={busy}
-                  className="tactile h-12 w-full sm:w-auto rounded-lg sm:rounded-l-none sm:rounded-r-none sm:rounded-r-lg bg-accent px-6 text-text-on-dark font-medium hover:bg-accent-hover mt-2 sm:mt-0 disabled:opacity-60"
+                  className="tactile h-12 w-full sm:w-auto rounded-lg bg-accent px-6 text-text-on-dark font-medium hover:bg-accent-hover disabled:opacity-60"
                 >
                   {busy ? 'Subscribing…' : 'Subscribe'}
                 </button>

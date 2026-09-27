@@ -82,7 +82,7 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
               the bottom-right edge. */}
           <div className="relative">
             {post.heroImage ? (
-              <div className="w-full max-w-[200px] md:max-w-[340px] mx-auto aspect-[4/5] rounded-xl overflow-hidden">
+              <div className="w-full max-w-[200px] md:max-w-[340px] mx-auto aspect-[4/5] hero-img overflow-hidden">
                 <Image
                   src={post.heroBannerImage ?? post.heroImage}
                   alt={post.imageAlt}

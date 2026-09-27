@@ -101,7 +101,7 @@ const NewsletterPopup: React.FC = () => {
             <form
               noValidate
               onSubmit={handleSubmit}
-              className="flex flex-col sm:flex-row gap-3 sm:gap-0"
+              className="flex flex-col sm:flex-row gap-3"
             >
               <input
                 type="email"
@@ -109,7 +109,7 @@ const NewsletterPopup: React.FC = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
                 disabled={busy}
-                className={`h-12 w-full rounded-lg sm:rounded-l-lg sm:rounded-r-none border px-4 text-text-heading placeholder-text-body focus:outline-none focus:ring-2 disabled:opacity-60 ${
+                className={`h-12 w-full rounded-lg border px-4 text-text-heading placeholder-text-body focus:outline-none focus:ring-2 disabled:opacity-60 ${
                   error
                     ? 'border-danger ring-1 ring-danger'
                     : 'border-text-heading/10 focus:ring-accent'
@@ -118,7 +118,7 @@ const NewsletterPopup: React.FC = () => {
               <button
                 type="submit"
                 disabled={busy}
-                className="tactile h-12 w-full sm:w-auto rounded-lg sm:rounded-l-none sm:rounded-r-lg bg-accent px-6 text-text-on-dark font-medium hover:bg-accent-hover disabled:opacity-60"
+                className="tactile h-12 w-full sm:w-auto rounded-lg bg-accent px-6 text-text-on-dark font-medium hover:bg-accent-hover disabled:opacity-60"
               >
                 {busy ? 'Subscribing…' : 'Subscribe'}
               </button>
