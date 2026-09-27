@@ -920,3 +920,11 @@ Verified: tsc clean, build green, live SSR probes — hero grid classes present,
 - **Commits:** 82d5907 (main pass, 20 files +227/−49), 4b280c9 (CTA branch fix).
 - **Note:** git identity was lost after Freebuff restart — commits used `-c user.name/user.email` flags matching repo history (hossainshuvo752-beep). Remember this pattern after restarts.
 - **Session tooling note:** preview_screenshot intermittently serves one-action-stale frames and "no frames" errors this session; DOM evaluate is the authoritative check. A second opened browser tab never composited — reuse the first tab.
+
+## Task Log — 2026-09-28 — Article header reordered to reference layout
+
+- **What:** Individual post page header rebuilt to the gadgeterea reference order: category badge → H1 title → excerpt subtitle → author/date/read-time meta → hero image → body. Applies to ALL posts via the shared `/posts/[slug]` template.
+- **How:** Badge pill reuses the card palette (`CATEGORY_BADGE_COLORS` now exported from ArticleCard so cards + article stay in sync); meta line reuses the shared `PostMeta` component (the same one previously removed from the article header — restored here at its new position; the Hero banner still omits it per the earlier decision). Excerpt uses the existing `post.excerpt` field (same text family as metaDescription).
+- **Legacy note:** there are no legacy numeric posts left to verify — all 9 are slug-based since the dummy-post replacement (`/posts/1…6` → 404 by design).
+- **Verified:** tsc clean + build green; live DOM on production for 2 posts — iPhone Duo (News badge, orange rgb(249,115,22)) and Best Bladeless Tower Fan (Roundup badge, teal rgb(20,184,166)) — both show exact order badge→h1→excerpt→meta→hero(loaded)→h2 sections; screenshot captured. First live check read the pre-deploy build (~100s Vercel build/propagation window) — re-check after wait confirmed.
+- **Commit:** 4494db6.
