@@ -40,10 +40,10 @@ const Blog: React.FC = () => {
               <button
                 key={option}
                 onClick={() => setSelectedFilter(option)}
-                className={`tactile shrink-0 whitespace-nowrap px-2.5 py-1.5 text-xs md:px-4 md:py-2 md:text-sm font-medium rounded-md border ${
+                className={`tactile chip shrink-0 whitespace-nowrap px-3 py-1.5 text-xs md:px-4 md:py-2 md:text-sm font-medium border relative ${
                   selectedFilter === option
-                    ? 'bg-accent border-accent text-text-on-dark'
-                    : 'bg-transparent border-text-heading/20 text-text-heading hover:border-accent hover:text-accent'
+                    ? 'bg-bg-dark border-bg-dark text-text-on-dark'
+                    : 'chip-underline bg-transparent border-text-heading/20 text-text-heading hover:border-accent hover:text-accent'
                 }`}
               >
                 {option}

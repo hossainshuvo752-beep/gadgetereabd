@@ -150,7 +150,9 @@ body {
   overflow: hidden;
 }
 
-/* Navigation links: animated underline grow from the left. */
+/* Text-link hover: red underline wipes in from the left (200ms ease-out),
+   wipes back out on leave (transform-origin flip). Shared by header nav,
+   footer links, and category chips — NOT solid buttons (they keep .tactile). */
 .nav-underline {
   position: relative;
 }
@@ -161,14 +163,15 @@ body {
   bottom: -4px;
   height: 2px;
   width: 100%;
-  background: currentColor;
+  background: var(--color-danger); /* brand red */
   transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 200ms ease-out;
+  transform-origin: right; /* exit wipes out to the left */
+  transition: transform 220ms ease-out;
 }
 .nav-underline:hover::after,
 .nav-underline:focus-visible::after {
   transform: scaleX(1);
+  transform-origin: left; /* enter wipes in from the left */
 }
 
 /* Hero banner image: soft corner + tasteful hover growth (scale, not
@@ -184,6 +187,36 @@ body {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
+/* Category chips: pill shape + navy active fill (gadgeterea reference).
+   The .chip-underline::after sits INSIDE the rounded border, so it stays
+   clean on both states. Inactive: soft border, transparent bg, red
+   underline wipe on hover. Active: solid navy, white text, no border. */
+.chip {
+  border-radius: 9999px;
+  transition:
+    background-color 180ms ease-out,
+    border-color 180ms ease-out,
+    color 180ms ease-out;
+}
+.chip-underline::after {
+  content: '';
+  position: absolute;
+  left: 12%;
+  bottom: 4px;
+  height: 2px;
+  width: 76%;
+  border-radius: 2px;
+  background: var(--color-danger);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 220ms ease-out;
+}
+.chip-underline:hover::after,
+.chip-underline:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
 /* Respect users who prefer reduced motion: kill transforms/animations,
    keep instant state changes so nothing becomes unusable. */
 @media (prefers-reduced-motion: reduce) {
@@ -193,6 +226,7 @@ body {
   .fade-up,
   .accordion-panel,
   .nav-underline::after,
+  .chip-underline::after,
   .hero-img {
     transition: none !important;
     animation: none !important;
@@ -204,7 +238,11 @@ body {
   .tactile:active,
   .card-lift:hover,
   .card-lift:hover .card-zoom,
-  .hero-img:hover {
+  .hero-img:hover,
+  .nav-underline:hover::after,
+  .nav-underline:focus-visible::after,
+  .chip-underline:hover::after,
+  .chip-underline:focus-visible::after {
     transform: none !important;
   }
 }

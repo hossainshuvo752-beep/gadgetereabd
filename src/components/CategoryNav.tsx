@@ -45,10 +45,10 @@ export default function CategoryNav({
         {/* All Products — clears both filters (and hides Row 2) */}
         <button
           onClick={() => onSelect(null, null)}
-          className={`tactile shrink-0 whitespace-nowrap px-2.5 py-1.5 text-xs md:px-3 md:py-1.5 md:text-[13px] font-medium rounded-md border ${
+          className={`tactile chip shrink-0 whitespace-nowrap px-2.5 py-1.5 text-xs md:px-3 md:py-1.5 md:text-[13px] font-medium border relative ${
             selectedTop === null
-              ? 'bg-accent border-accent text-text-on-dark'
-              : 'bg-transparent border-text-heading/20 text-text-heading hover:border-accent hover:text-accent'
+              ? 'bg-bg-dark border-bg-dark text-text-on-dark'
+              : 'chip-underline bg-transparent border-text-heading/20 text-text-heading hover:border-accent hover:text-accent'
           }`}
         >
           All Products
@@ -61,9 +61,9 @@ export default function CategoryNav({
             <div key={cat.name} className="relative group shrink-0">
               <button
                 onClick={() => onSelect(cat.name, null)}
-                className={`shrink-0 inline-flex items-center px-2.5 py-1.5 text-xs md:px-3 md:py-1.5 md:text-[13px] font-medium rounded-md border transition-colors duration-200 whitespace-nowrap ${
+                className={`chip chip-underline shrink-0 relative inline-flex items-center px-2.5 py-1.5 text-xs md:px-3 md:py-1.5 md:text-[13px] font-medium border transition-colors duration-200 whitespace-nowrap ${
                   isTopSelected
-                    ? 'bg-accent border-accent text-text-on-dark'
+                    ? 'bg-bg-dark border-bg-dark text-text-on-dark'
                     : containsSelection
                       ? 'bg-transparent border-accent/60 text-accent group-hover:border-accent group-hover:text-accent'
                       : 'bg-transparent border-text-heading/20 text-text-heading group-hover:border-accent group-hover:text-accent'

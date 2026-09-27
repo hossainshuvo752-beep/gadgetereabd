@@ -47,9 +47,9 @@ const Footer: React.FC = () => {
           <div className="space-y-4">
             <h3 className="text-sm md:text-lg font-semibold text-text-on-dark">Shop</h3>
             <ul className="space-y-2 md:space-y-3 text-xs md:text-base text-text-on-dark/70">
-              <li><Link href="/new-arrivals" className="hover:text-accent">New Arrivals</Link></li>
-              <li><Link href="/deals" className="hover:text-accent">Deals</Link></li>
-              <li><Link href="/shop" className="hover:text-accent">All Products</Link></li>
+              <li><Link href="/new-arrivals" className="nav-underline hover:text-accent">New Arrivals</Link></li>
+              <li><Link href="/deals" className="nav-underline hover:text-accent">Deals</Link></li>
+              <li><Link href="/shop" className="nav-underline hover:text-accent">All Products</Link></li>
             </ul>
           </div>
 
@@ -57,10 +57,10 @@ const Footer: React.FC = () => {
           <div className="space-y-4">
             <h3 className="text-sm md:text-lg font-semibold text-text-on-dark">Support</h3>
             <ul className="space-y-2 md:space-y-3 text-xs md:text-base text-text-on-dark/70">
-              <li><Link href="/blog" className="hover:text-accent">Blog</Link></li>
-              <li><Link href="/about" className="hover:text-accent">About Us</Link></li>
-              <li><Link href="/contact" className="hover:text-accent">Contact</Link></li>
-              <li><Link href="/faq" className="hover:text-accent">FAQ</Link></li>
+              <li><Link href="/blog" className="nav-underline hover:text-accent">Blog</Link></li>
+              <li><Link href="/about" className="nav-underline hover:text-accent">About Us</Link></li>
+              <li><Link href="/contact" className="nav-underline hover:text-accent">Contact</Link></li>
+              <li><Link href="/faq" className="nav-underline hover:text-accent">FAQ</Link></li>
             </ul>
           </div>
 
@@ -69,10 +69,10 @@ const Footer: React.FC = () => {
           <div className="space-y-4">
             <h3 className="text-sm md:text-lg font-semibold text-text-on-dark">Account</h3>
             <ul className="space-y-2 md:space-y-3 text-xs md:text-base text-text-on-dark/70">
-              <li><Link href="/account" className="hover:text-accent">My Account</Link></li>
-              <li><Link href="/login" className="hover:text-accent">Login</Link></li>
-              <li><Link href="/register" className="hover:text-accent">Register</Link></li>
-              <li><Link href="/cart" className="hover:text-accent">Cart</Link></li>
+              <li><Link href="/account" className="nav-underline hover:text-accent">My Account</Link></li>
+              <li><Link href="/login" className="nav-underline hover:text-accent">Login</Link></li>
+              <li><Link href="/register" className="nav-underline hover:text-accent">Register</Link></li>
+              <li><Link href="/cart" className="nav-underline hover:text-accent">Cart</Link></li>
             </ul>
           </div>
         </div>
@@ -83,9 +83,9 @@ const Footer: React.FC = () => {
           {/* Legal links + copyright on one line; flex-wrap drops the row to a
               second centered line on narrow screens instead of overflowing. */}
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
-            <Link href="/privacy-policy" className="hover:text-accent">Privacy Policy</Link>
+            <Link href="/privacy-policy" className="nav-underline hover:text-accent">Privacy Policy</Link>
             <span aria-hidden="true" className="text-text-on-dark/30">|</span>
-            <Link href="/terms" className="hover:text-accent">Terms &amp; Conditions</Link>
+            <Link href="/terms" className="nav-underline hover:text-accent">Terms &amp; Conditions</Link>
             <span aria-hidden="true" className="text-text-on-dark/30">|</span>
             <span>© {currentYear} TechBD. All rights reserved.</span>
           </div>
