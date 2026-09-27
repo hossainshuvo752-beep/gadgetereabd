@@ -81,6 +81,14 @@ body {
 
    Everything respects prefers-reduced-motion (guard at the bottom). */
 
+/* Buttons show the pointer cursor, matching links (anchors). Browsers
+   default <button> to the arrow while <a> gets a hand — which made
+   "Add to Cart" (button) feel dead next to "Buy Now" (link). Explicit
+   .cursor-not-allowed on disabled buttons still wins (class > element). */
+button:not(:disabled) {
+  cursor: pointer;
+}
+
 /* Buttons / any clickable pill: press-in tactile feel. */
 .tactile {
   transition:
