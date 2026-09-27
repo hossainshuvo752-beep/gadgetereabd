@@ -1,14 +1,18 @@
 import React from 'react';
+import Image from 'next/image';
+import { postHref } from '@/lib/posts';
 
 interface HeroProps {
   post: {
     id: number;
+    slug?: string;
     title: string;
     excerpt: string;
     category: string;
     date: string;
     readTime: string;
     imageAlt: string;
+    heroImage?: string;
   };
 }
 
@@ -63,7 +67,7 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
 
             {/* CTA */}
             <a
-              href={`/posts/${post.id}`}
+              href={postHref(post)}
               className="inline-block px-4 py-2 md:px-6 text-xs md:text-sm bg-accent text-text-on-dark font-medium rounded-md hover:bg-accent-hover transition-colors"
             >
               Read Full Review
@@ -74,11 +78,23 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
               to the text column's height). Floating category badge overlaps
               the bottom-right edge. */}
           <div className="relative">
-            <div className="w-full max-w-[200px] md:max-w-[340px] mx-auto aspect-[4/5] bg-bg-dark-secondary/40 rounded-xl flex items-center justify-center">
-              <span className="text-text-on-dark-muted text-xs md:text-sm px-4 text-center">
-                {post.imageAlt}
-              </span>
-            </div>
+            {post.heroImage ? (
+              <div className="w-full max-w-[200px] md:max-w-[340px] mx-auto aspect-[4/5] rounded-xl overflow-hidden">
+                <Image
+                  src={post.heroImage}
+                  alt={post.imageAlt}
+                  fill
+                  sizes="(max-width: 767px) 200px, 340px"
+                  className="object-cover object-center"
+                />
+              </div>
+            ) : (
+              <div className="w-full max-w-[200px] md:max-w-[340px] mx-auto aspect-[4/5] bg-bg-dark-secondary/40 rounded-xl flex items-center justify-center">
+                <span className="text-text-on-dark-muted text-xs md:text-sm px-4 text-center">
+                  {post.imageAlt}
+                </span>
+              </div>
+            )}
             <span className="absolute -bottom-3 right-2 md:right-4 inline-flex items-center px-2.5 md:px-3 py-1 text-[10px] md:text-xs font-semibold bg-accent text-text-on-dark rounded-full shadow-md">
               {post.category}
             </span>

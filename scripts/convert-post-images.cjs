@@ -52,6 +52,68 @@ const JOBS = [
       'Apple MacBook Air.jfif': 'apple-macbook-air.webp',
     },
   },
+  {
+    // Filenames ARE the model mapping (owner named each file by fan model).
+    folder: 'Best Bladeless Tower Fan 2026 Dreame vs Dyson vs Dreo Compared',
+    outDir: 'best-bladeless-tower-fan-2026',
+    files: {
+      'hero image.jpg': 'hero.webp',
+      'Dreo Pilot Max S.jpg': 'dreo-pilot-max-s.webp',
+      'Dreame MF10.jpg': 'dreame-mf10.webp',
+      'Dyson AM07.jpg': 'dyson-am07.webp',
+    },
+  },
+  {
+    // img 2-5 are Hibbent product/use-case shots (no model names in filenames).
+    folder: 'Best Faucet Extender for Kitchen Sink 2026 Hibbent 1080° Review',
+    outDir: 'best-faucet-extender-hibbent-1080',
+    files: {
+      'hero.jpg': 'hero.webp',
+      'img 2.jpg': 'use-case-1.webp',
+      'img 3.jpg': 'use-case-2.webp',
+      'img 4.jpg': 'use-case-3.webp',
+      'img 5.jpg': 'use-case-4.webp',
+    },
+  },
+  {
+    folder: 'Dyson CameraJet $500 Toothbrush With a Camera — Worth It',
+    outDir: 'dyson-camerajet-toothbrush-worth-it',
+    files: {
+      'hero image.jpg': 'hero.webp',
+    },
+  },
+  {
+    folder: 'ios 27',
+    outDir: 'ios-27-features-release-date',
+    files: {
+      'hero image.jpg': 'hero.webp',
+      'image 2.webp': 'ios27-2.webp',
+      'image 3.webp': 'ios27-3.webp',
+      'image 4.jpg': 'ios27-4.webp',
+    },
+  },
+  {
+    folder: "iPhone Duo Apple's First Foldable — Price, Specs & Release",
+    outDir: 'iphone-duo-foldable-price-specs-release',
+    files: {
+      'hero image.jpg': 'hero.webp',
+      'img 2.jpg': 'iphone-duo-2.webp',
+      'img 3.jpg': 'iphone-duo-3.webp',
+      'img 4.jpg': 'iphone-duo-4.webp',
+      'img 5.jpg': 'iphone-duo-5.webp',
+    },
+  },
+  {
+    // No dedicated hero file — img1 doubles as the hero.
+    folder: "Overhead Camera Mount Review — JINRAIKO's 360° Arm for Content Creators",
+    outDir: 'overhead-camera-mount-jinraiko-review',
+    files: {
+      "img1 Overhead Camera Mount Review — JINRAIKO's 360° Arm for Content Creators.jpg": 'hero.webp',
+      "img2 Overhead Camera Mount Review — JINRAIKO's 360° Arm for Content Creators.jpg": 'jinraiko-2.webp',
+      "img3 Overhead Camera Mount Review — JINRAIKO's 360° Arm for Content Creators.jpg": 'jinraiko-3.webp',
+      "img4 Overhead Camera Mount Review — JINRAIKO's 360° Arm for Content Creators.jpg": 'jinraiko-4.webp',
+    },
+  },
 ];
 
 // Optional CLI filter — convert only jobs whose outDir contains the arg
@@ -112,6 +174,6 @@ async function convert(src, out) {
     }
   }
   console.log(
-    `\nTOTAL: ${Math.round(totalIn)}KB -> ${Math.round(totalOut)}KB across both posts`
+    `\nTOTAL: ${Math.round(totalIn)}KB -> ${Math.round(totalOut)}KB`
   );
 })();

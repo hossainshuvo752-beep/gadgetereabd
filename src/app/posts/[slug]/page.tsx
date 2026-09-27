@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { posts, postHref, type Post } from '@/lib/posts';
 import NewsletterPopup from '@/components/NewsletterPopup';
 import PostFaqAccordion from '@/components/PostFaqAccordion';
@@ -25,7 +26,11 @@ type Props = { params: Promise<{ slug: string }> };
 function findPost(slug: string): Post | undefined {
   return (
     posts.find((p) => p.slug === slug) ??
-    posts.find((p) => p.id === parseInt(slug, 10))
+    // Numeric URLs resolve ONLY slug-less legacy posts (which no longer
+    // exist after the dummy-post removal → /posts/1…6 now correctly 404).
+    // Slug posts resolve by slug alone, so /posts/<id> can't serve duplicate
+    // non-canonical copies of them.
+    posts.find((p) => !p.slug && p.id === parseInt(slug, 10))
   );
 }
 
@@ -77,22 +82,8 @@ export default async function PostsPage({ params }: Props) {
   const { slug } = await params;
   const post = findPost(slug);
 
-  if (!post) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-bg-light p-8">
-        <h1 className="text-2xl font-bold text-text-heading mb-4">Post Not Found</h1>
-        <p className="text-text-body mb-6">
-          The post you&apos;re looking for doesn&apos;t exist.
-        </p>
-        <Link
-          href="/"
-          className="inline-block px-4 py-2 bg-accent text-text-on-dark font-medium rounded-md hover:bg-accent-hover transition-colors"
-        >
-          Return to Homepage
-        </Link>
-      </div>
-    );
-  }
+  // Proper HTTP 404 (not a 200 shell) so search engines drop removed posts.
+  if (!post) notFound();
 
   return (
     <article className="min-h-screen bg-text-on-dark">
