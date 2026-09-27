@@ -9,12 +9,25 @@ type CategoryNavProps = {
   onSelect: (top: string | null, sub: string | null) => void;
 };
 
+/** Blur the clicked button when a POINTER (mouse/touch) activated it.
+ *  Keyboard clicks arrive as plain MouseEvents and keep focus — that focus
+ *  is what lets keyboard users Tab from the category into its dropdown. */
+function blurIfPointer(e: React.MouseEvent<HTMLElement>) {
+  if (typeof PointerEvent !== 'undefined' && e.nativeEvent instanceof PointerEvent) {
+    e.currentTarget.blur();
+  }
+}
+
 /**
- * Shared top horizontal category navigation, used by BOTH the Shop page
- * and the Quick Look listing page (one component, never duplicated).
+ * Shared top horizontal category navigation, used by the Shop, Quick Look,
+ * Deals and New Arrivals listing pages (one component, never duplicated).
  * - Desktop: hovering (or keyboard-focusing) a category reveals a dropdown
  *   of its sub-categories. Clicking the category name selects the whole
  *   category; clicking a sub-item narrows to that sub-category.
+ * - POINTER clicks blur the activated button: focus would otherwise pin the
+ *   dropdown open via group-focus-within after the mouse leaves (the
+ *   "dropdown never closes" bug). Keyboard activation keeps focus so Tab
+ *   can still move into the revealed items.
  * - Touch/mobile: hover isn't available, so selecting a category reveals a
  *   SECOND ROW below the nav (this file's Row 2) with that category's
  *   sub-category chips — every sub-category stays one tap away without
@@ -44,11 +57,14 @@ export default function CategoryNav({
       >
         {/* All Products — clears both filters (and hides Row 2) */}
         <button
-          onClick={() => onSelect(null, null)}
-          className={`tactile chip shrink-0 whitespace-nowrap px-2.5 py-1.5 text-xs md:px-3 md:py-1.5 md:text-[13px] font-medium border relative ${
+          onClick={(e) => {
+            blurIfPointer(e);
+            onSelect(null, null);
+          }}
+          className={`tactile chip shrink-0 whitespace-nowrap px-2.5 py-1.5 text-xs md:px-3 md:py-1.5 md:text-[13px] font-medium border ${
             selectedTop === null
               ? 'bg-bg-dark border-bg-dark text-text-on-dark'
-              : 'chip-underline bg-transparent border-text-heading/20 text-text-heading hover:border-accent hover:text-accent'
+              : 'bg-transparent border-text-heading/20 text-text-heading hover:border-accent hover:text-accent'
           }`}
         >
           All Products
@@ -60,12 +76,15 @@ export default function CategoryNav({
           return (
             <div key={cat.name} className="relative group shrink-0">
               <button
-                onClick={() => onSelect(cat.name, null)}
-                className={`chip chip-underline shrink-0 relative inline-flex items-center px-2.5 py-1.5 text-xs md:px-3 md:py-1.5 md:text-[13px] font-medium border transition-colors duration-200 whitespace-nowrap ${
+                onClick={(e) => {
+                  blurIfPointer(e);
+                  onSelect(cat.name, null);
+                }}
+                className={`chip shrink-0 inline-flex items-center px-2.5 py-1.5 text-xs md:px-3 md:py-1.5 md:text-[13px] font-medium border transition-colors duration-200 whitespace-nowrap ${
                   isTopSelected
                     ? 'bg-bg-dark border-bg-dark text-text-on-dark'
                     : containsSelection
-                      ? 'bg-transparent border-accent/60 text-accent group-hover:border-accent group-hover:text-accent'
+                      ? 'bg-transparent border-bg-dark/60 text-bg-dark group-hover:border-bg-dark group-hover:text-bg-dark'
                       : 'bg-transparent border-text-heading/20 text-text-heading group-hover:border-accent group-hover:text-accent'
                 }`}
               >
@@ -103,11 +122,14 @@ export default function CategoryNav({
                     return (
                       <button
                         key={sub}
-                        onClick={() => onSelect(cat.name, sub)}
+                        onClick={(e) => {
+                          blurIfPointer(e);
+                          onSelect(cat.name, sub);
+                        }}
                         className={`w-full px-4 py-1.5 text-sm text-left rounded-md transition-colors ${
                           isSubSelected
-                            ? 'font-semibold text-accent-hover bg-accent/5'
-                            : 'text-text-body hover:bg-bg-dark-secondary/10 hover:text-accent'
+                            ? 'font-semibold text-bg-dark bg-bg-dark/5'
+                            : 'text-text-body hover:bg-bg-dark-secondary/10 hover:text-bg-dark'
                         }`}
                       >
                         {sub}
@@ -135,7 +157,7 @@ export default function CategoryNav({
             onClick={() => onSelect(selectedTop, null)}
             className={`shrink-0 whitespace-nowrap px-3 py-1.5 text-xs font-medium rounded-full border transition-colors duration-200 ${
               selectedSub === null
-                ? 'bg-accent/10 border-accent text-accent-hover'
+                ? 'bg-bg-dark border-bg-dark text-text-on-dark'
                 : 'bg-transparent border-text-heading/20 text-text-body hover:border-accent hover:text-accent'
             }`}
           >
@@ -149,7 +171,7 @@ export default function CategoryNav({
                 onClick={() => onSelect(selectedTop, sub)}
                 className={`shrink-0 whitespace-nowrap px-3 py-1.5 text-xs font-medium rounded-full border transition-colors duration-200 ${
                   isSubSelected
-                    ? 'bg-accent/10 border-accent text-accent-hover'
+                    ? 'bg-bg-dark border-bg-dark text-text-on-dark'
                     : 'bg-transparent border-text-heading/20 text-text-body hover:border-accent hover:text-accent'
                 }`}
               >
