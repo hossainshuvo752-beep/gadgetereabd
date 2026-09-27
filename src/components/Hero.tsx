@@ -71,7 +71,7 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
             {/* CTA */}
             <a
               href={postHref(post)}
-              className="inline-block px-4 py-2 md:px-6 text-xs md:text-sm bg-accent text-text-on-dark font-medium rounded-md hover:bg-accent-hover transition-colors"
+              className="tactile inline-block px-4 py-2 md:px-6 text-xs md:text-sm bg-accent text-text-on-dark font-medium rounded-md hover:bg-accent-hover"
             >
               Read Full Review
             </a>

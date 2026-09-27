@@ -56,11 +56,15 @@ const PostFaqAccordion: React.FC<{ faqs: Faq[] }> = ({ faqs }) => {
                 )}
               </div>
             </div>
-            {openIndex === i && (
-              <div className="px-4 pb-4 text-text-body">
-                <p>{faq.answer}</p>
+            {/* Smooth expand/collapse via the shared grid-rows transition
+                (globals.css .accordion-panel) — no height snap. */}
+            <div className="accordion-panel" data-open={openIndex === i}>
+              <div>
+                <div className="px-4 pb-4 text-text-body">
+                  <p>{faq.answer}</p>
+                </div>
               </div>
-            )}
+            </div>
           </div>
         ))}
       </div>

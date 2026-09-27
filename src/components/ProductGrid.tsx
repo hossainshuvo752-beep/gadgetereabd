@@ -14,6 +14,10 @@ type ProductGridProps = {
  * grid container.
  */
 export default function ProductGrid({ children }: ProductGridProps) {
+  // Children are expected to be wrapped fragments already carrying the
+  // .fade-up + --stagger-delay pattern where pages enumerate products
+  // (see shop/deals/new-arrivals/quick-look maps); the grid itself owns
+  // only the column recipe.
   return (
     <div className="grid grid-cols-2 gap-3 md:gap-6 md:grid-cols-3 xl:grid-cols-4">
       {children}

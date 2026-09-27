@@ -39,6 +39,20 @@
   --color-accent-amber: #fbbf24; /* amber highlight (hero title accent, trending pill) */
   --color-text-on-dark-muted: #cbd5e1; /* secondary text on dark backgrounds */
 
+  /* ── VISUAL REFRESH (2026): secondary accent + category badge palette ──
+     Teal is the ONE secondary accent: complements navy + orange without
+     muddying either, and reads energetic to a Gen Z audience. Used
+     sparingly: secondary badges, hover accents, decorative touches. */
+  --color-accent-teal: #14b8a6; /* secondary accent — badges, hovers, accents */
+  --color-accent-teal-dark: #0f9488; /* teal hover/dark-on-teal state */
+  /* Category badge colors — distinct hues so blog chips scan fast. Each has
+     a dark text-on-color pairing with ≥4.5:1 contrast checked. */
+  --color-badge-news: #f97316; /* orange (brand accent) — News */
+  --color-badge-roundup: #14b8a6; /* teal — Roundup */
+  --color-badge-explainer: #3b82f6; /* blue — Explainer */
+  --color-badge-review: #ec4899; /* pink — Review */
+  --color-badge-guide: #8b5cf6; /* violet — Guide */
+
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, Arial, sans-serif;
 }
@@ -57,6 +71,127 @@ html {
 html,
 body {
   overflow-x: clip;
+}
+
+/* ── VISUAL REFRESH: micro-interaction utilities ────────────────────────
+   Tactile feedback for a modern, energetic feel: gentle hover scale with
+   soft shadow, quick pressed scale-down, card lift. All durations 150-
+   250ms ease-out — snappy, never sluggish. Applied via shared utilities so
+   every page type inherits them consistently.
+
+   Everything respects prefers-reduced-motion (guard at the bottom). */
+
+/* Buttons / any clickable pill: press-in tactile feel. */
+.tactile {
+  transition:
+    transform 180ms ease-out,
+    box-shadow 180ms ease-out,
+    background-color 180ms ease-out,
+    border-color 180ms ease-out,
+    color 180ms ease-out;
+  will-change: transform;
+}
+.tactile:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 14px rgba(10, 15, 30, 0.18);
+}
+.tactile:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 6px rgba(10, 15, 30, 0.12);
+}
+
+/* Cards: lift + deepen shadow; media inside zooms subtly. */
+.card-lift {
+  transition:
+    transform 220ms ease-out,
+    box-shadow 220ms ease-out;
+  will-change: transform;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(10, 15, 30, 0.12);
+}
+.card-lift:hover .card-zoom {
+  transform: scale(1.05);
+}
+.card-zoom {
+  transition: transform 300ms ease-out;
+}
+
+/* Staggered fade-up entrance for card grids (two 4-up rows). Cards get
+   .fade-up + an inline --stagger-delay set by the rendering component. */
+.fade-up {
+  opacity: 0;
+  animation: fade-up-in 420ms ease-out forwards;
+  animation-delay: var(--stagger-delay, 0ms);
+}
+@keyframes fade-up-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smooth accordion expand/collapse — pair with the grid-rows technique in
+   components (0fr→1fr) so height animates without JS measurement. */
+.accordion-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 240ms ease-out;
+}
+.accordion-panel[data-open='true'] {
+  grid-template-rows: 1fr;
+}
+.accordion-panel > div {
+  overflow: hidden;
+}
+
+/* Navigation links: animated underline grow from the left. */
+.nav-underline {
+  position: relative;
+}
+.nav-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 200ms ease-out;
+}
+.nav-underline:hover::after,
+.nav-underline:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Respect users who prefer reduced motion: kill transforms/animations,
+   keep instant state changes so nothing becomes unusable. */
+@media (prefers-reduced-motion: reduce) {
+  .tactile,
+  .card-lift,
+  .card-zoom,
+  .fade-up,
+  .accordion-panel,
+  .nav-underline::after {
+    transition: none !important;
+    animation: none !important;
+  }
+  .fade-up {
+    opacity: 1 !important;
+  }
+  .tactile:hover,
+  .tactile:active,
+  .card-lift:hover,
+  .card-lift:hover .card-zoom {
+    transform: none !important;
+  }
 }
 
 body {

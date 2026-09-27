@@ -37,8 +37,9 @@ const BuyingGuideHighlight: React.FC = () => {
         {/* 4-up on desktop (lg) — same compact card proportions as the
             /blog page and the other homepage sections. */}
         <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-4">
-          {guides.map((guide) => (
-            <div key={guide.id} className="bg-text-on-dark rounded-lg overflow-hidden shadow hover:shadow-md transition-shadow duration-300">
+          {guides.map((guide, i) => (
+            <div key={guide.id} className="fade-up" style={{ '--stagger-delay': `${Math.min(i * 60, 300)}ms` } as React.CSSProperties}>
+            <div className="card-lift bg-text-on-dark rounded-lg overflow-hidden shadow">
               {/* Real post hero image, 16:9 — same image source as the
                   blog listing (ArticleCard) and Latest Posts. */}
               <div className="relative aspect-video w-full bg-bg-dark-secondary/10 overflow-hidden">
@@ -72,6 +73,7 @@ const BuyingGuideHighlight: React.FC = () => {
                   Read Guide →
                 </Link>
               </div>
+            </div>
             </div>
           ))}
         </div>

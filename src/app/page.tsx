@@ -41,8 +41,12 @@ export default function Home() {
               Renders the SAME ArticleCard used on /blog — one shared card,
               one shared image source. */}
           <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-4">
-            {latestPosts.map((post) => (
-              <ArticleCard key={post.id} post={post} />
+            {latestPosts.map((post, i) => (
+              // Staggered entrance (shared .fade-up utility in globals.css) —
+              // capped at 50ms steps so 8 cards never feel slow.
+              <div key={post.id} className="fade-up" style={{ '--stagger-delay': `${Math.min(i * 50, 350)}ms` } as React.CSSProperties}>
+                <ArticleCard post={post} />
+              </div>
             ))}
           </div>
         </div>

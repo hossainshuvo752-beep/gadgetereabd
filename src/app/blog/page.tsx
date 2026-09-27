@@ -40,7 +40,7 @@ const Blog: React.FC = () => {
               <button
                 key={option}
                 onClick={() => setSelectedFilter(option)}
-                className={`shrink-0 whitespace-nowrap px-2.5 py-1.5 text-xs md:px-4 md:py-2 md:text-sm font-medium rounded-md border transition-colors duration-200 ${
+                className={`tactile shrink-0 whitespace-nowrap px-2.5 py-1.5 text-xs md:px-4 md:py-2 md:text-sm font-medium rounded-md border ${
                   selectedFilter === option
                     ? 'bg-accent border-accent text-text-on-dark'
                     : 'bg-transparent border-text-heading/20 text-text-heading hover:border-accent hover:text-accent'
@@ -54,8 +54,10 @@ const Blog: React.FC = () => {
           {/* Article Grid — MOBILE: 2 columns (cards go compact via
               ArticleCard's mobile rules). DESKTOP: unchanged. */}
           <div className="grid grid-cols-2 gap-3 md:gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {filteredPosts.map((post) => (
-              <ArticleCard key={post.id} post={post} />
+            {filteredPosts.map((post, i) => (
+              <div key={post.id} className="fade-up" style={{ '--stagger-delay': `${Math.min(i * 50, 350)}ms` } as React.CSSProperties}>
+                <ArticleCard post={post} />
+              </div>
             ))}
             {filteredPosts.length === 0 && (
               <div className="col-span-2 md:col-span-4 text-center py-12 text-text-body">

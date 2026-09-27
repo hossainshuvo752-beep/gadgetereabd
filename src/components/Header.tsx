@@ -134,7 +134,7 @@ const Header: React.FC = () => {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-text-on-dark hover:text-accent transition-colors whitespace-nowrap"
+                  className="nav-underline text-text-on-dark hover:text-accent transition-colors whitespace-nowrap"
                 >
                   {link.label}
                 </Link>

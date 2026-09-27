@@ -45,7 +45,7 @@ export default function CategoryNav({
         {/* All Products — clears both filters (and hides Row 2) */}
         <button
           onClick={() => onSelect(null, null)}
-          className={`shrink-0 whitespace-nowrap px-2.5 py-1.5 text-xs md:px-3 md:py-1.5 md:text-[13px] font-medium rounded-md border transition-colors duration-200 ${
+          className={`tactile shrink-0 whitespace-nowrap px-2.5 py-1.5 text-xs md:px-3 md:py-1.5 md:text-[13px] font-medium rounded-md border ${
             selectedTop === null
               ? 'bg-accent border-accent text-text-on-dark'
               : 'bg-transparent border-text-heading/20 text-text-heading hover:border-accent hover:text-accent'
@@ -104,10 +104,10 @@ export default function CategoryNav({
                       <button
                         key={sub}
                         onClick={() => onSelect(cat.name, sub)}
-                        className={`w-full px-4 py-1.5 text-sm text-left transition-colors ${
+                        className={`w-full px-4 py-1.5 text-sm text-left rounded-md transition-colors ${
                           isSubSelected
-                            ? 'font-semibold text-accent-hover'
-                            : 'text-text-body hover:bg-bg-dark-secondary/10 hover:text-text-heading'
+                            ? 'font-semibold text-accent-hover bg-accent/5'
+                            : 'text-text-body hover:bg-bg-dark-secondary/10 hover:text-accent'
                         }`}
                       >
                         {sub}

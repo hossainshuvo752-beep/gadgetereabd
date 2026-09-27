@@ -60,7 +60,7 @@ const NewsletterBanner: React.FC = () => {
                 <button
                   type="submit"
                   disabled={busy}
-                  className="h-12 w-full sm:w-auto rounded-lg sm:rounded-l-none sm:rounded-r-none sm:rounded-r-lg bg-accent px-6 text-text-on-dark font-medium hover:bg-accent-hover mt-2 sm:mt-0 disabled:opacity-60"
+                  className="tactile h-12 w-full sm:w-auto rounded-lg sm:rounded-l-none sm:rounded-r-none sm:rounded-r-lg bg-accent px-6 text-text-on-dark font-medium hover:bg-accent-hover mt-2 sm:mt-0 disabled:opacity-60"
                 >
                   {busy ? 'Subscribing…' : 'Subscribe'}
                 </button>

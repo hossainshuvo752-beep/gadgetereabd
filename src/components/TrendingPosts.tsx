@@ -24,8 +24,10 @@ const TrendingPosts: React.FC = () => {
         {/* 4-up on desktop (lg) — same compact card proportions as the
             /blog page and Latest Posts. */}
         <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-4">
-          {trendingPosts.map((post) => (
-            <ArticleCard key={post.id} post={post} />
+          {trendingPosts.map((post, i) => (
+            <div key={post.id} className="fade-up" style={{ '--stagger-delay': `${Math.min(i * 50, 350)}ms` } as React.CSSProperties}>
+              <ArticleCard post={post} />
+            </div>
           ))}
         </div>
       </div>

@@ -57,7 +57,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
   return (
     <>
-      <div className="bg-text-on-dark border border-text-heading/10 rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-300 flex flex-col">
+      <div className="card-lift bg-text-on-dark border border-text-heading/10 rounded-lg overflow-hidden flex flex-col">
         <div className="aspect-square bg-bg-dark-secondary/10 flex items-center justify-center relative overflow-hidden">
           {/* Mobile-only deal badges (desktop card is untouched) */}
           {hasDeal && (
@@ -83,7 +83,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               alt={product.imageAlt}
               fill
               sizes="(max-width: 768px) 50vw, 33vw"
-              className="object-contain p-2"
+              className="card-zoom object-contain p-2"
             />
           ) : (
             <span className="text-text-body text-sm">{product.imageAlt}</span>
@@ -153,7 +153,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             ) : isPurchasable(product) ? (
               <Link
                 href={`/checkout?id=${product.id}&qty=1&variant=Standard`}
-                className="flex-1 px-3 py-2 bg-accent text-text-on-dark font-medium rounded-md hover:bg-accent-hover transition-colors text-sm text-center"
+                className="tactile flex-1 px-3 py-2 bg-accent text-text-on-dark font-medium rounded-md hover:bg-accent-hover text-sm text-center"
               >
                 Buy Now
               </Link>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { products } from '@/lib/products';
 import ProductCard from '@/components/ProductCard';
 import ProductGrid from '@/components/ProductGrid';
@@ -71,8 +71,10 @@ export default function NewArrivalsPage() {
           </div>
         ) : (
           <ProductGrid>
-            {filtered.map((product) => (
-              <ProductCard key={product.id} product={product} showReleasedYear />
+            {filtered.map((product, i) => (
+              <div key={product.id} className="fade-up" style={{ '--stagger-delay': `${Math.min(i * 40, 320)}ms` } as React.CSSProperties}>
+                <ProductCard product={product} showReleasedYear />
+              </div>
             ))}
           </ProductGrid>
         )}

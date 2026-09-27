@@ -164,8 +164,7 @@ function VariantButton({
 }) {
   return (
     <button
-      onClick={onClick}
-      className={`px-4 py-1.5 text-sm rounded-md border transition-colors ${
+      onClick={onClick}              className={`tactile px-4 py-1.5 text-sm rounded-md border ${
         selected
           ? 'border-accent bg-accent/10 text-accent-hover font-semibold'
           : 'border-text-heading/20 bg-text-on-dark text-text-body hover:border-accent/50'
@@ -398,7 +397,7 @@ const QuickLookDetail: React.FC<{
                         key={img}
                         onClick={() => setActiveImage(i)}
                         aria-label={`View image ${i + 1}`}
-                        className={`relative aspect-square w-16 md:w-20 shrink-0 rounded-md overflow-hidden border transition-colors ${
+                        className={`tactile relative aspect-square w-16 md:w-20 shrink-0 rounded-md overflow-hidden border ${
                           activeIdx === i
                             ? 'border-accent bg-accent/10'
                             : 'border-text-heading/10 bg-text-on-dark hover:border-accent/50'
@@ -531,7 +530,7 @@ const QuickLookDetail: React.FC<{
                               setActiveColor(i);
                               setActiveImage(0); // restart on the new color's hero
                             }}
-                            className={`w-8 h-8 rounded-full border-2 transition-all ${
+                            className={`w-8 h-8 rounded-full border-2 transition-all hover:scale-110 ${
                               safeActiveColor === i
                                 ? 'border-accent scale-110'
                                 : 'border-text-heading/10 hover:border-text-heading/40'
@@ -630,7 +629,7 @@ const QuickLookDetail: React.FC<{
             <div className="grid gap-3 sm:grid-cols-3">
               <button
                 onClick={handleAddToCart}
-                className="flex items-center justify-center px-5 py-3 bg-accent text-text-on-dark font-medium rounded-lg hover:bg-accent-hover transition-colors"
+                className="tactile flex items-center justify-center px-5 py-3 bg-accent text-text-on-dark font-medium rounded-lg hover:bg-accent-hover"
               >
                 Add to Cart
               </button>
@@ -679,7 +678,7 @@ const QuickLookDetail: React.FC<{
               ) : (
                 <button
                   onClick={handleNotifyMe}
-                  className="flex items-center justify-center px-5 py-3 bg-accent text-text-on-dark font-medium rounded-lg hover:bg-accent-hover transition-colors"
+                  className="tactile flex items-center justify-center px-5 py-3 bg-accent text-text-on-dark font-medium rounded-lg hover:bg-accent-hover"
                 >
                   Notify Me
                 </button>

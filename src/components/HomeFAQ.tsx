@@ -69,11 +69,14 @@ const HomeFAQ: React.FC = () => {
                   )}
                 </div>
               </div>
-              {openIndex === faq.id && (
-                <div className="px-4 pb-4 text-text-body">
-                  <p>{faq.answer}</p>
+              {/* Smooth expand/collapse via the shared grid-rows transition. */}
+              <div className="accordion-panel" data-open={openIndex === faq.id}>
+                <div>
+                  <div className="px-4 pb-4 text-text-body">
+                    <p>{faq.answer}</p>
+                  </div>
                 </div>
-              )}
+              </div>
             </div>
           ))}
         </div>
