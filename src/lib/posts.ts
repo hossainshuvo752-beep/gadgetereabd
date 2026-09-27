@@ -388,6 +388,8 @@ export const posts: Post[] = [
     metaTitle: 'Windows vs Mac: Which Laptop OS to Choose in 2026?',
     metaDescription:
       'Windows or Mac for your next laptop? Compare performance, price, software compatibility, and battery life to find the right OS for your needs in 2026.',
+    metaKeywords:
+      'windows vs mac, windows or mac for students, laptop os comparison, macos vs windows 2026, macbook bangladesh, windows laptop bangladesh, which laptop os',
     excerpt:
       "Confused between Windows and Mac for your next laptop? Here's a practical, no-nonsense breakdown of performance, software, price, and who each platform is really built for.",
     category: 'Explainer',
