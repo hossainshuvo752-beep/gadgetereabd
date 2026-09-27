@@ -81,7 +81,7 @@ export const posts: Post[] = [
     views: 9100,
     imageAlt: 'iPhone Duo foldable — front and open views',
     heroImage: '/images/posts/iphone-duo-foldable-price-specs-release/hero.webp',
-    heroBannerImage: '/images/posts/iphone-duo-foldable-price-specs-release/hero-banner.webp',
+    heroBannerImage: '/images/posts/iphone-duo-foldable-price-specs-release/hero-banner-2.webp',
     mentions: [{ name: 'iPhone Duo', brand: 'Apple' }],
     content: `
       <p>After years of "foldable iPhone" rumors, Apple made it official on September 9, 2026: the <strong>iPhone Duo</strong> is a book-style foldable that opens from a phone-sized body into a 7.6-inch tablet-class display — and it's coming to stores this October. Here's everything confirmed so far, and what it means for buyers in Bangladesh.</p>
