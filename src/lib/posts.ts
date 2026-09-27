@@ -39,6 +39,12 @@ export type Post = {
    *  by the detail hero, ArticleCard, and used as og:image; posts without
    *  one keep the placeholder box. */
   heroImage?: string;
+  /** DEDICATED homepage-hero-banner image (4:5 portrait composition) — used
+   *  ONLY by the Home Hero component. Falls back to heroImage when absent,
+   *  so most posts need just the one field. Provide a separate
+   *  heroBannerImage when the banner wants a different crop/composition
+   *  than the 16:9 card/detail thumbnail. */
+  heroBannerImage?: string;
   /** Products MENTIONED in the article (name/brand only, exactly as
    *  stated). Emits minimal Product JSON-LD — never offers/ratings/reviews,
    *  because an article mention confirms nothing beyond name + brand. */
@@ -75,6 +81,7 @@ export const posts: Post[] = [
     views: 9100,
     imageAlt: 'iPhone Duo foldable — front and open views',
     heroImage: '/images/posts/iphone-duo-foldable-price-specs-release/hero.webp',
+    heroBannerImage: '/images/posts/iphone-duo-foldable-price-specs-release/hero-banner.webp',
     mentions: [{ name: 'iPhone Duo', brand: 'Apple' }],
     content: `
       <p>After years of "foldable iPhone" rumors, Apple made it official on September 9, 2026: the <strong>iPhone Duo</strong> is a book-style foldable that opens from a phone-sized body into a 7.6-inch tablet-class display — and it's coming to stores this October. Here's everything confirmed so far, and what it means for buyers in Bangladesh.</p>

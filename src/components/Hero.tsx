@@ -13,6 +13,9 @@ interface HeroProps {
     readTime: string;
     imageAlt: string;
     heroImage?: string;
+    /** Dedicated 4:5 banner composition; falls back to the post's
+     *  standard heroImage when not provided. */
+    heroBannerImage?: string;
   };
 }
 
@@ -81,7 +84,7 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
             {post.heroImage ? (
               <div className="w-full max-w-[200px] md:max-w-[340px] mx-auto aspect-[4/5] rounded-xl overflow-hidden">
                 <Image
-                  src={post.heroImage}
+                  src={post.heroBannerImage ?? post.heroImage}
                   alt={post.imageAlt}
                   fill
                   sizes="(max-width: 767px) 200px, 340px"

@@ -899,3 +899,8 @@ Verified: tsc clean, build green, live SSR probes — hero grid classes present,
 ## Task Log — 2026-09-27 — Homepage section caps + data-driven Buying Guides
 - Latest Posts and Trending Now capped at 8 (posts.slice / sort+slice(0,8)).
 - BuyingGuideHighlight rewritten from hardcoded '#' links to posts-data-driven: qualifies category 'Roundup' OR title starts with 'Best ', newest-first fill, cap 4, real heroImage + postHref links, keeps original card visual style. Verified locally: 4/4 entries with real images + slug links; Latest/Trending = 8 cards each.
+
+## Task Log — 2026-09-27 — Dedicated hero-banner image field for iPhone Duo post
+- New Post field heroBannerImage (falls back to heroImage) — homepage Hero uses it; cards/detail/og:image keep the standard 16:9 hero.webp.
+- Converted D:\hero banner image\iPhone Duo....jfif → public/images/posts/iphone-duo-foldable-price-specs-release/hero-banner.webp (47KB, 928x1152 native 4:5, q82).
+- Verified locally: hero box exact 0.800 ratio showing hero-banner.webp; Latest Posts card + og:image still hero.webp.
