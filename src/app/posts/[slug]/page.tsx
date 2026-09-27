@@ -9,6 +9,8 @@ import PostFaqAccordion from '@/components/PostFaqAccordion';
 import ShareButtons from '@/components/ShareButtons';
 import AuthorBio from '@/components/AuthorBio';
 import RelatedPosts from '@/components/RelatedPosts';
+import PostMeta from '@/components/PostMeta';
+import { CATEGORY_BADGE_COLORS } from '@/components/ArticleCard';
 import JsonLd from '@/components/JsonLd';
 import { articleSchema, faqSchema, mentionsSchema } from '@/lib/schema';
 
@@ -96,6 +98,26 @@ export default async function PostsPage({ params }: Props) {
           renders below (AEO Standards 7/8: exact visible-content match). */}
       {post.faqs && post.faqs.length > 0 && <JsonLd data={faqSchema(post.faqs)} />}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Content Header — gadgeterea-style order: category badge → title →
+            excerpt → author/date/read-time meta, THEN the hero image and body.
+            The badge/meta were restored here (2026-09-28) after previously
+            being removed from the article header; PostMeta keeps them in sync
+            with the card pattern. */}
+        <div className="mb-6">
+          <span
+            className={`inline-flex items-center px-2.5 py-0.5 text-xs font-semibold text-text-on-dark rounded-full ${
+              CATEGORY_BADGE_COLORS[post.category] ?? 'bg-accent'
+            }`}
+          >
+            {post.category}
+          </span>
+          <h1 className="mt-3 text-3xl font-bold text-text-heading">{post.title}</h1>
+          <p className="mt-3 text-base md:text-lg text-text-body leading-relaxed">{post.excerpt}</p>
+          <div className="mt-4">
+            <PostMeta author={post.author} date={post.date} readTime={post.readTime} className="text-sm" />
+          </div>
+        </div>
+
         {/* Featured image — real optimized WebP when the post has one;
             legacy posts keep the placeholder box. Native dimensions match
             the converted 1376×768 sources (16:9). */}
@@ -115,14 +137,6 @@ export default async function PostsPage({ params }: Props) {
               <span className="text-text-body text-sm">{post.imageAlt}</span>
             </div>
           )}
-        </div>
-
-        {/* Content Header — title only. Category badge + author/date meta
-            were removed here (redundant on the full article — they stay on
-            listing/home cards); authorship lives in the AuthorBio block
-            below the article. */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-text-heading">{post.title}</h1>
         </div>
 
         {/* Article Content — scoped typography (.post-body in globals.css;

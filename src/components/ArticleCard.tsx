@@ -11,8 +11,10 @@ type PostCardData = Pick<
 
 /** Category badge colors — one distinct hue per category so cards scan
  *  fast (dopamine-design principle). Unknown categories fall back to the
- *  brand accent. All pairings keep white text ≥4.5:1 contrast. */
-const CATEGORY_BADGE_COLORS: Record<string, string> = {
+ *  brand accent. All pairings keep white text ≥4.5:1 contrast.
+ *  Exported: the post detail page header renders the same badge pill
+ *  (badge → title → excerpt → meta → hero) and must stay in sync. */
+export const CATEGORY_BADGE_COLORS: Record<string, string> = {
   News: 'bg-badge-news',
   Roundup: 'bg-badge-roundup',
   Explainer: 'bg-badge-explainer',
