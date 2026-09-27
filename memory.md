@@ -889,3 +889,9 @@ Verified: tsc clean, build green, live SSR probes — hero grid classes present,
 - Audited all 9 posts' content HTML in src/lib/posts.ts: all 48 section headings already correct <h2>; zero <h1>/<h3>/<h4> in content; <strong>Best for:</strong> lines are inline emphasis (correct). No changes to content needed.
 - Post page: exactly one <h1> (post.title in template); FAQ section <h2> with <h3> questions; RelatedPosts "Keep Browsing" <h2>. Verified live via browser on /posts/best-laptop-under-50000-in-bangladesh (1 h1, 9 h2, h3s nested under FAQ h2) and legacy /posts/2 (1 h1, 7 h2).
 - Convention documented on Post.content JSDoc in src/lib/posts.ts: no <h1> in content (template owns it), <h2> sections, <h3> only nested under h2, never skip levels — future posts correct by default.
+
+## Task Log — 2026-09-27 — Dummy posts replaced with 6 researched articles (commit e3a99cc)
+- Removed 6 placeholder-image posts (iPhone Duo, tower fans, CameraJet, iOS 27, iPhone Ultra rumors, iPhone 18 split). Legacy /posts/1-6 now 404 properly (notFound() + numeric fallback restricted to slug-less posts — prevents /posts/<id> serving duplicate copies of slug posts).
+- 6 new researched posts (web-searched specs/prices): iPhone Duo (announced Sep 9, $1,999, Oct 23), iOS 27 (shipped Sep 14, Gemini-powered Siri AI), Dyson CameraJet ($499, Sep 1 IFA), Dreo Pilot Max S $129.99 vs Dreame MF10 ~$300 vs Dyson AM07 $299.99, Hibbent 1080° $22.99, JINRAIKO mount ~$43.
+- 27 images converted 17.6MB→1.1MB; Hero now renders real featured image (next/image fill, object-cover) via postHref link; blog chips unchanged (Guide chip now empty by design).
+- NOTE: numeric post IDs 1-6 were REUSED for the new posts — old URLs are dead by design; new posts all use slugs.
