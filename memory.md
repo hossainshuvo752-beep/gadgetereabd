@@ -884,3 +884,8 @@ Verified: tsc clean, build green, live SSR probes — hero grid classes present,
 - Individual post page header: removed category badge + author/date/read-time meta (title only); badge/meta kept on listing & Home cards (verified live: /blog still has Roundup badges + min-read metas).
 - Root cause of "dull black" body: prose classes were dead (no typography plugin); text inherited site-wide gray #64748b. Added scoped .post-body layer in globals.css (token --color-text-article #1a1a2e, p weight 450, h2 #0f172a/800, orange li markers, link styling). Only affects /posts/[slug].
 - LESSON (new): Vercel now serves a bot-checkpoint (HTTP 403 challenge page) to curl on gadgetereabd.vercel.app — curl-based live verification is broken; verify live via real browser session (preview_open + evaluate/screenshot) instead of curl polling.
+
+## Task Log — 2026-09-27 — Heading-hierarchy SEO audit (commit pending)
+- Audited all 9 posts' content HTML in src/lib/posts.ts: all 48 section headings already correct <h2>; zero <h1>/<h3>/<h4> in content; <strong>Best for:</strong> lines are inline emphasis (correct). No changes to content needed.
+- Post page: exactly one <h1> (post.title in template); FAQ section <h2> with <h3> questions; RelatedPosts "Keep Browsing" <h2>. Verified live via browser on /posts/best-laptop-under-50000-in-bangladesh (1 h1, 9 h2, h3s nested under FAQ h2) and legacy /posts/2 (1 h1, 7 h2).
+- Convention documented on Post.content JSDoc in src/lib/posts.ts: no <h1> in content (template owns it), <h2> sections, <h3> only nested under h2, never skip levels — future posts correct by default.

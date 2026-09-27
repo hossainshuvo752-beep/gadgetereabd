@@ -21,7 +21,11 @@ export type Post = {
    *  filter). */
   views: number;
   imageAlt: string;
-  /** Article body as HTML, rendered on /posts/[id] via dangerouslySetInnerHTML. */
+  /** Article body as HTML, rendered on /posts/[slug] via dangerouslySetInnerHTML.
+   *  HEADING CONVENTION (SEO): never include an <h1> — the page template owns
+   *  the single page <h1> from post.title. Section headings are <h2>; genuine
+   *  sub-points nested under an H2 may use <h3>. Never skip levels (H1→H3).
+   *  Every current post follows this — keep it that way for future posts. */
   content: string;
   /** FAQ section — 4-6 real buyer questions grounded in THIS post's facts.
    *  Rendered on the detail page AND emitted as FAQPage schema from this same
