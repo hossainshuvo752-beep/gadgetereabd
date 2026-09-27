@@ -40,7 +40,25 @@ const JOBS = [
       'Acer Aspire 3.jfif': 'acer-aspire-3.webp',
     },
   },
+  {
+    folder: 'Best Laptop for Programming Students',
+    outDir: 'best-laptop-for-programming-students',
+    files: {
+      'hero image.jfif': 'hero.webp',
+      'Lenovo ThinkPad E14.jfif': 'lenovo-thinkpad-e14.webp',
+      'ASUS Vivobook Go 15.jfif': 'asus-vivobook-go-15.webp',
+      'HP Pavilion 15.jfif': 'hp-pavilion-15.webp',
+      'Acer Aspire Go 15.jfif': 'acer-aspire-go-15.webp',
+      'Apple MacBook Air.jfif': 'apple-macbook-air.webp',
+    },
+  },
 ];
+
+// Optional CLI filter — convert only jobs whose outDir contains the arg
+// (e.g. `node scripts/convert-post-images.cjs programming`), so adding a
+// post doesn't re-convert every previous folder.
+const filter = process.argv[2] || '';
+const JOBS_TO_RUN = JOBS.filter((j) => j.outDir.includes(filter));
 
 const IMG_RE = /\.(jpe?g|jfif|png|webp|avif|gif)$/i;
 
@@ -65,7 +83,7 @@ async function convert(src, out) {
 (async () => {
   let totalIn = 0;
   let totalOut = 0;
-  for (const job of JOBS) {
+  for (const job of JOBS_TO_RUN) {
     const srcDir = path.join(SRC_ROOT, job.folder);
     const outDir = path.join(OUT_ROOT, job.outDir);
     fs.mkdirSync(outDir, { recursive: true });

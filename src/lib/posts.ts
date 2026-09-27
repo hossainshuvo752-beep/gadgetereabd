@@ -5,6 +5,10 @@ export type Post = {
   metaTitle: string;
   /** SEO meta description — must ALWAYS be English (content rule). */
   metaDescription: string;
+  /** Optional explicit meta keywords (Google ignores the tag; some other
+   *  engines/tools still read it). When omitted, the post page derives a
+   *  simple keyword list from category + title automatically. */
+  metaKeywords?: string;
   excerpt: string;
   category: string;
   author: string;
@@ -465,6 +469,8 @@ export const posts: Post[] = [
     metaTitle: 'Best Laptop Under ৳50,000 in Bangladesh (2026 Guide)',
     metaDescription:
       'Discover the top 5 laptops under ৳50,000 in Bangladesh for 2026 — HP, Lenovo, Dell, ASUS & Acer compared on specs, performance, and value.',
+    metaKeywords:
+      'best laptop under 50000, budget laptop bangladesh, HP 250 G9, Lenovo IdeaPad Slim 3, Dell Vostro 15 3510, ASUS VivoBook 15, Acer Aspire 3, student laptop bd',
     excerpt:
       'Looking for a reliable laptop without breaking the bank? Here are the top 5 laptops under ৳50,000 in Bangladesh for students, professionals, and everyday users in 2026.',
     category: 'Roundup',
@@ -546,6 +552,99 @@ export const posts: Post[] = [
       {
         question: 'Which brand offers the best after-sales support in Bangladesh?',
         answer: 'HP and Dell are generally considered to have strong, widely available after-sales support networks in Bangladesh, which is valuable for long-term peace of mind.',
+      },
+    ],
+  },
+  {
+    id: 9,
+    title: 'Best Laptop for Programming Students in 2026',
+    slug: 'best-laptop-for-programming-students',
+    metaTitle: 'Best Laptop for Programming Students in 2026',
+    metaDescription:
+      'Find the best laptop for programming students in 2026 — top picks across budgets from Lenovo, ASUS, HP, Acer, and Apple, compared on RAM, processor, and value.',
+    metaKeywords:
+      'best laptop for programming students, programming laptop bangladesh, Lenovo ThinkPad E14, ASUS Vivobook Go 15, HP Pavilion 15, Acer Aspire Go 15, MacBook Air M-series, coding laptop',
+    excerpt:
+      'From budget-friendly picks to premium choices, here are the best laptops for programming students in 2026 — covering RAM, processor, and build quality for every coding workload.',
+    category: 'Roundup',
+    author: 'TechBD Team',
+    date: 'Sep 27, 2026',
+    readTime: '6 min read',
+    views: 520,
+    imageAlt: 'Best laptops for programming students in 2026',
+    heroImage: '/images/posts/best-laptop-for-programming-students/hero.webp',
+    mentions: [
+      { name: 'Lenovo ThinkPad E14', brand: 'Lenovo' },
+      { name: 'ASUS Vivobook Go 15', brand: 'ASUS' },
+      { name: 'HP Pavilion 15', brand: 'HP' },
+      { name: 'Acer Aspire Go 15', brand: 'Acer' },
+      { name: 'Apple MacBook Air', brand: 'Apple' },
+    ],
+    content: `
+      <p>Choosing a laptop for programming is different from picking one for general use — you need enough RAM to run an IDE, a browser with dozens of tabs, and possibly a Docker container or virtual machine, all at the same time, without everything grinding to a halt. Here are five solid picks for programming students in 2026, across different budgets.</p>
+
+      <h2>What Actually Matters for a Programming Laptop</h2>
+      <ul>
+        <li><strong>RAM</strong>: 16GB is the realistic minimum in 2026. 8GB might save money upfront, but it becomes a bottleneck fast once you're running an IDE, a browser, and any local server or container together.</li>
+        <li><strong>Processor</strong>: A modern multi-core CPU (Intel Core i5/i7, AMD Ryzen 5/7, or Apple Silicon) handles compiling and multitasking far more comfortably than entry-level chips.</li>
+        <li><strong>Storage</strong>: An SSD is non-negotiable — it directly affects how fast your IDE loads and how quickly builds complete.</li>
+        <li><strong>Keyboard &amp; Battery</strong>: You'll be typing for hours daily, so keyboard comfort matters more than most students expect, and good battery life means less time tethered to an outlet in class or the library.</li>
+      </ul>
+
+      <h2>1. Lenovo ThinkPad E14</h2>
+      <p>A classic starting point for programming students, the ThinkPad E14 offers ThinkPad's legendary keyboard comfort at a genuinely budget-friendly price. It's not the fastest machine on this list, but it's expandable, reliable, and a favorite among junior developers and students learning to code.</p>
+      <p><strong>Best for:</strong> Budget-conscious students who prioritize keyboard comfort and reliability over raw speed.</p>
+      <figure class="my-6">
+        <img src="/images/posts/best-laptop-for-programming-students/lenovo-thinkpad-e14.webp" alt="Lenovo ThinkPad E14 laptop" class="rounded-lg w-full" loading="lazy" />
+      </figure>
+
+      <h2>2. ASUS Vivobook Go 15</h2>
+      <p>If you're just starting out with web development, scripting, or basic coursework, the Vivobook Go 15 delivers reliable performance at one of the lowest prices on this list — a practical choice for beginners who don't yet need heavy computing power.</p>
+      <p><strong>Best for:</strong> Beginners and students on a tight budget doing lightweight coding work.</p>
+      <figure class="my-6">
+        <img src="/images/posts/best-laptop-for-programming-students/asus-vivobook-go-15.webp" alt="ASUS Vivobook Go 15 laptop" class="rounded-lg w-full" loading="lazy" />
+      </figure>
+
+      <h2>3. HP Pavilion 15</h2>
+      <p>With a capable processor and enough RAM to comfortably run an IDE, browser, and local development server together, the Pavilion 15 hits a sweet spot for students who need real multitasking headroom without jumping to premium pricing.</p>
+      <p><strong>Best for:</strong> Students who need comfortable day-to-day multitasking for coursework involving multiple tools running at once.</p>
+      <figure class="my-6">
+        <img src="/images/posts/best-laptop-for-programming-students/hp-pavilion-15.webp" alt="HP Pavilion 15 laptop" class="rounded-lg w-full" loading="lazy" />
+      </figure>
+
+      <h2>4. Acer Aspire Go 15</h2>
+      <p>For heavier workloads — machine learning coursework, larger codebases, or running multiple virtual machines — the Aspire Go 15 offers strong performance-per-taka thanks to its capable processor, making it a smart pick for students tackling more demanding computer science modules.</p>
+      <p><strong>Best for:</strong> Students handling heavier workloads like ML projects or large codebases on a mid-range budget.</p>
+      <figure class="my-6">
+        <img src="/images/posts/best-laptop-for-programming-students/acer-aspire-go-15.webp" alt="Acer Aspire Go 15 laptop" class="rounded-lg w-full" loading="lazy" />
+      </figure>
+
+      <h2>5. Apple MacBook Air (M-series)</h2>
+      <p>For students who need macOS — particularly those doing iOS app development, which requires a Mac — or who simply want excellent battery life and build quality, the MacBook Air remains the top premium pick. Its efficient chip handles most programming workloads smoothly while running cool and quiet.</p>
+      <p><strong>Best for:</strong> iOS developers and students who want premium build quality and all-day battery life, and have the budget for it.</p>
+      <figure class="my-6">
+        <img src="/images/posts/best-laptop-for-programming-students/apple-macbook-air.webp" alt="Apple MacBook Air laptop" class="rounded-lg w-full" loading="lazy" />
+      </figure>
+
+      <h2>Final Thoughts</h2>
+      <p>There's no single "best" laptop for every programming student — it depends on your coursework and budget. If you're just starting out, the ASUS Vivobook Go 15 or Lenovo ThinkPad E14 will serve you well. If your coursework involves heavier projects, lean toward the HP Pavilion 15 or Acer Aspire Go 15. And if you need macOS specifically or want the best overall experience, the MacBook Air is worth the investment.</p>
+    `,
+    faqs: [
+      {
+        question: 'How much RAM do I need for a programming laptop?',
+        answer: "16GB is the realistic minimum in 2026. It's enough to comfortably run an IDE, a browser with many tabs, and a local server or container at the same time without slowdown.",
+      },
+      {
+        question: 'Do I need a MacBook for programming?',
+        answer: "Only if you're developing iOS apps, which requires macOS. For most other programming — web development, Python, Java, game development — a well-specced Windows laptop works just as well, often at a lower price.",
+      },
+      {
+        question: 'Is 8GB RAM enough for programming students?',
+        answer: "8GB can work for very basic scripting or coursework, but it quickly becomes limiting once you're running an IDE alongside a browser and any local development tools. 16GB is recommended for a smoother experience throughout your studies.",
+      },
+      {
+        question: "What's the best budget laptop for programming students in Bangladesh?",
+        answer: 'The ASUS Vivobook Go 15 and Lenovo ThinkPad E14 are strong budget-friendly picks that handle typical coursework, web development, and scripting comfortably.',
       },
     ],
   },

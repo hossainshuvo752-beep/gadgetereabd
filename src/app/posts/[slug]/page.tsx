@@ -5,6 +5,10 @@ import type { Metadata } from 'next';
 import { posts, postHref, type Post } from '@/lib/posts';
 import NewsletterPopup from '@/components/NewsletterPopup';
 import PostMeta from '@/components/PostMeta';
+import PostFaqAccordion from '@/components/PostFaqAccordion';
+import ShareButtons from '@/components/ShareButtons';
+import AuthorBio from '@/components/AuthorBio';
+import RelatedPosts from '@/components/RelatedPosts';
 import JsonLd from '@/components/JsonLd';
 import { articleSchema, faqSchema, mentionsSchema } from '@/lib/schema';
 
@@ -34,6 +38,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: post.metaTitle,
     description: post.metaDescription,
+    // Meta keywords: Google ignores them, but some engines/tools still read
+    // them — derived from category + FAQ questions when no explicit list.
+    keywords:
+      post.metaKeywords ??
+      [post.category, ...post.title.split(/[^\w৳]+/).filter((w) => w.length > 3)]
+        .slice(0, 8)
+        .join(', '),
     alternates: { canonical: url },
     openGraph: {
       type: 'article',
@@ -132,19 +143,23 @@ export default async function PostsPage({ params }: Props) {
         <div className="prose lg:prose-xl max-w-none">
           {/* Trusted, locally-authored HTML from src/lib/posts.ts */}
           <div dangerouslySetInnerHTML={{ __html: post.content }} />
-          {/* FAQ section — each question a natural question-format H2 (AEO
-              Standards 3/7); the same array feeds the FAQPage schema above. */}
-          {post.faqs && post.faqs.length > 0 && (
-            <section>
-              {post.faqs.map((faq) => (
-                <div key={faq.question}>
-                  <h2>{faq.question}</h2>
-                  <p>{faq.answer}</p>
-                </div>
-              ))}
-            </section>
-          )}
         </div>
+
+        {/* FAQ accordion — same faqs array feeds the FAQPage schema above
+            (single-open, chevron pattern shared with HomeFAQ and /faq). */}
+        {post.faqs && post.faqs.length > 0 && <PostFaqAccordion faqs={post.faqs} />}
+
+        {/* Share row (client) — canonical URL composed server-side. */}
+        <ShareButtons
+          url={`https://gadgetereabd.vercel.app${postHref(post)}`}
+          title={post.title}
+        />
+
+        {/* Author attribution + link to About. */}
+        <AuthorBio author={post.author} />
+
+        {/* Related posts — same category first, recent fill. */}
+        <RelatedPosts current={post} />
 
         {/* Back to Home Link */}
         <div className="mt-12">
