@@ -1,28 +1,35 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import PostMeta from './PostMeta';
+import { postHref, type Post } from '@/lib/posts';
 
-type Post = {
-  id: number;
-  title: string;
-  excerpt: string;
-  category: string;
-  date: string;
-  readTime: string;
-  imageAlt: string;
-};
+type PostCardData = Pick<
+  Post,
+  'id' | 'slug' | 'title' | 'excerpt' | 'category' | 'date' | 'readTime' | 'imageAlt' | 'heroImage'
+>;
 
-const ArticleCard: React.FC<{ post: Post }> = ({ post }) => {
+const ArticleCard: React.FC<{ post: PostCardData }> = ({ post }) => {
   return (
-    <Link href={`/posts/${post.id}`}>
+    <Link href={postHref(post)}>
       <div className="bg-text-on-dark border border-text-heading/10 rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-300">
         {/* 16:9 ratio lock — blog images are 16:9 everywhere (listing,
             homepage cards, detail hero). */}
         {/* Category badge overlays the image (top-left, 12px inset) instead
             of occupying its own row below it — solid bg-accent pill keeps it
             legible over any image. */}
-        <div className="relative aspect-video bg-bg-dark-secondary/10 flex items-center justify-center">
-          <span className="text-text-body text-sm">{post.imageAlt}</span>
+        <div className="relative aspect-video bg-bg-dark-secondary/10 flex items-center justify-center overflow-hidden">
+          {post.heroImage ? (
+            <Image
+              src={post.heroImage}
+              alt={post.imageAlt}
+              fill
+              sizes="(max-width: 768px) 50vw, 25vw"
+              className="object-cover"
+            />
+          ) : (
+            <span className="text-text-body text-sm">{post.imageAlt}</span>
+          )}
           <span className="absolute top-3 left-3 inline-flex items-center px-2.5 py-0.5 text-xs font-semibold bg-accent text-text-on-dark rounded-full">
             {post.category}
           </span>

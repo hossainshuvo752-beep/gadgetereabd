@@ -23,7 +23,7 @@ import {
   FaYoutube,
   FaPinterest,
 } from 'react-icons/fa';
-import { posts } from '@/lib/posts';
+import { posts, postHref } from '@/lib/posts';
 import { products, slugify } from '@/lib/products';
 import { track } from '@/lib/tracking';
 import { useCart } from '@/context/CartContext';
@@ -281,7 +281,7 @@ const Header: React.FC = () => {
                     {postResults.map((post) => (
                       <Link
                         key={post.id}
-                        href={`/posts/${post.id}`}
+                        href={postHref(post)}
                         onClick={closeMenu}
                         className="block px-2 py-1.5 text-sm text-text-on-dark/70 hover:text-text-on-dark rounded"
                       >
@@ -426,7 +426,7 @@ const Header: React.FC = () => {
                     {postResults.map((post) => (
                       <Link
                         key={post.id}
-                        href={`/posts/${post.id}`}
+                        href={postHref(post)}
                         onClick={() => {
                           track('header_search', { type: 'post', q: query.trim().slice(0, 80) });
                           closeSearch();

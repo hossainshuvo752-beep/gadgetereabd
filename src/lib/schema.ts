@@ -1,5 +1,6 @@
 import type { Post } from './posts';
 import { slugify, type Product } from './products';
+import { postHref } from './posts';
 
 /**
  * JSON-LD structured data builders (AEO — Answer Engine Optimization).
@@ -61,7 +62,9 @@ export function faqSchema(faqs: { question: string; answer: string }[]) {
   };
 }
 
-/** BlogPosting/Article — visible headline, category, author, publish date. */
+/** BlogPosting/Article — visible headline, category, author, publish date.
+ *  @id/mainEntityOfPage use the slug URL for slug posts (legacy posts keep
+ *  their numeric /posts/<id> URLs). Hero photo attached when present. */
 export function articleSchema(post: Post) {
   const published = new Date(post.date);
   return {
@@ -74,14 +77,28 @@ export function articleSchema(post: Post) {
     ...(Number.isNaN(published.getTime())
       ? {}
       : { datePublished: published.toISOString().slice(0, 10) }),
+    ...(post.heroImage ? { image: `${SITE_URL}${post.heroImage}` } : {}),
     author: { '@type': 'Organization', name: post.author },
     publisher: { '@type': 'Organization', name: 'TechBD', url: SITE_URL },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `${SITE_URL}/posts/${post.id}`,
+      '@id': `${SITE_URL}${postHref(post)}`,
     },
     articleSection: post.category,
     inLanguage: 'en',
+  };
+}
+
+/** Product schema for a product MENTIONED inside an article (e.g. a
+ *  buying-guide roundup). Deliberately minimal: name + brand ONLY — the
+ *  two things an article mention actually confirms. No offers (an article
+ *  does not verify a store price), no ratings/reviews (none exist). */
+export function mentionsSchema(mention: { name: string; brand: string }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: mention.name,
+    brand: { '@type': 'Brand', name: mention.brand },
   };
 }
 

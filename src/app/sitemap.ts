@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { posts } from '@/lib/posts';
+import { posts, postHref } from '@/lib/posts';
 import { products, slugify } from '@/lib/products';
 
 /**
@@ -38,7 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // lastModified; fall back to today if it ever fails to parse.
     const parsed = new Date(post.date);
     return {
-      url: `${SITE_URL}/posts/${post.id}`,
+      url: `${SITE_URL}${postHref(post)}`,
       lastModified: Number.isNaN(parsed.getTime()) ? new Date() : parsed,
       changeFrequency: 'monthly' as const,
       priority: 0.8,

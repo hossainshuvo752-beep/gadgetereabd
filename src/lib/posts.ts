@@ -23,7 +23,25 @@ export type Post = {
    *  Rendered on the detail page AND emitted as FAQPage schema from this same
    *  array (AEO Standards 7/8: schema always mirrors visible content). */
   faqs?: { question: string; answer: string }[];
+  /** URL slug for name-based /posts/<slug> URLs. Posts WITHOUT a slug keep
+   *  their existing numeric /posts/<id> URLs (AEO Standards 10: published
+   *  URLs are never changed retroactively). New posts should always set one. */
+  slug?: string;
+  /** Hero photo (optimized WebP in public/images/posts/<slug>/). Rendered
+   *  by the detail hero, ArticleCard, and used as og:image; posts without
+   *  one keep the placeholder box. */
+  heroImage?: string;
+  /** Products MENTIONED in the article (name/brand only, exactly as
+   *  stated). Emits minimal Product JSON-LD — never offers/ratings/reviews,
+   *  because an article mention confirms nothing beyond name + brand. */
+  mentions?: { name: string; brand: string }[];
 };
+
+/** Canonical href builder for a post — slug when available, numeric id for
+ *  legacy posts. ALL internal links + sitemap + schema go through this. */
+export function postHref(post: Pick<Post, 'id' | 'slug'>): string {
+  return `/posts/${post.slug ?? post.id}`;
+}
 
 /**
  * Blog posts. Six real posts — every consumer (Hero, Latest Posts, blog grid
@@ -357,6 +375,178 @@ export const posts: Post[] = [
       { question: 'What chip will the iPhone 18 Pro use?', answer: 'A 2-nanometer A20 Pro chip, plus Apple’s own C2 modem — though some US units may still ship with Qualcomm hardware depending on regional sourcing.' },
       { question: 'How much will the iPhone 18 cost?', answer: 'Nothing official yet. The iPhone 17 Pro Max held $1,199 last cycle; a foldable near $2,000 sharing the stage is the open question.' },
       { question: 'When will the iPhone 18 reach Bangladesh?', answer: 'Expect official-channel stock of the Pro models within weeks of the US launch, as with recent generations, with the usual price premium over US MSRP.' },
+    ],
+  },
+  {
+    id: 7,
+    title: 'Windows vs Mac: Which Laptop OS Should You Choose in 2026?',
+    slug: 'windows-vs-mac-which-laptop-os-to-choose',
+    metaTitle: 'Windows vs Mac: Which Laptop OS to Choose in 2026?',
+    metaDescription:
+      'Windows or Mac for your next laptop? Compare performance, price, software compatibility, and battery life to find the right OS for your needs in 2026.',
+    excerpt:
+      "Confused between Windows and Mac for your next laptop? Here's a practical, no-nonsense breakdown of performance, software, price, and who each platform is really built for.",
+    category: 'Explainer',
+    author: 'TechBD Team',
+    date: 'Sep 27, 2026',
+    readTime: '5 min read',
+    views: 500,
+    imageAlt: 'Windows vs Mac laptop comparison',
+    heroImage: '/images/posts/windows-vs-mac-which-laptop-os-to-choose/hero.webp',
+    content: `
+      <p>Choosing between Windows and Mac is one of the most common questions laptop buyers ask — and honestly, there's no universal "better" answer. The right choice depends on your budget, the software you need, and what you'll actually be doing with the laptop day to day. Here's a clear breakdown to help you decide.</p>
+
+      <h2>Market Reality: Windows Still Dominates, But Mac Is Growing</h2>
+      <p>Windows currently runs on roughly 72% of desktops and laptops worldwide, while macOS sits at around 15% and continues to grow steadily, especially among creative professionals and tech workers. This gap matters less for personal use and more if you need to collaborate with others — file compatibility, shared software, and IT support are all easier when you're using the more common platform in your field.</p>
+
+      <h2>Performance &amp; Hardware</h2>
+      <p>Windows laptops span an enormous range — from ultra-budget models under ৳30,000 to high-end gaming rigs with dedicated graphics cards. This flexibility means you can pick exactly the specs you need without overpaying for features you won't use.</p>
+      <p>MacBooks, on the other hand, use Apple's own M-series chips, which are known for excellent performance-per-watt and long battery life. You pay a premium, but you get a machine that runs cool, quiet, and efficiently — ideal for people who value build quality and battery life over raw customization.</p>
+
+      <h2>Software &amp; Compatibility</h2>
+      <p>If your work depends on Windows-only software — certain engineering tools, specific enterprise applications, Excel macros/VBA, or Microsoft Access — Windows is the safer choice. Some older Office add-ins and niche industry software still don't have a Mac equivalent.</p>
+      <p>Mac tends to win for creative workflows — video editing, photography, and music production software often feels more polished and native on macOS. Mac also integrates tightly with iPhone and iPad if you're already in the Apple ecosystem (Handoff, AirDrop, Continuity features).</p>
+      <p>For general office work — Word, Excel, PowerPoint, Teams, or browser-based tools like Google Workspace — both platforms perform almost identically today, so this shouldn't be your deciding factor unless you rely on the specific Windows-only features mentioned above.</p>
+      <figure class="my-6">
+        <img src="/images/posts/windows-vs-mac-which-laptop-os-to-choose/windows-use-case.webp" alt="Windows laptop for everyday office and browsing use" class="rounded-lg w-full" loading="lazy" />
+      </figure>
+
+      <h2>Price: Windows Wins on Value</h2>
+      <p>This is where Windows has a clear edge. You can get a genuinely capable Windows laptop for students or office work in Bangladesh for ৳40,000–৳60,000. The cheapest usable MacBook (Air, M-series) typically costs significantly more, and Apple doesn't offer as many budget tiers. If cost is your primary constraint, Windows gives you far more choice.</p>
+
+      <h2>Battery Life &amp; Build Quality</h2>
+      <p>Modern MacBooks generally lead in battery life, often lasting a full workday on a single charge thanks to Apple Silicon's efficiency. Windows laptops vary widely here — premium ultrabooks (like business ThinkPads or premium Dell/HP lines) can compete closely, but budget Windows laptops often fall short in comparison.</p>
+
+      <h2>Who Should Choose Windows?</h2>
+      <ul>
+        <li>You're on a tight budget and need the most laptop for your money</li>
+        <li>You need specific Windows-only software (engineering tools, certain enterprise apps, Excel power features)</li>
+        <li>You want maximum hardware choice — gaming, upgradability, wide port selection</li>
+        <li>You already use an Android phone and prefer that ecosystem</li>
+      </ul>
+
+      <h2>Who Should Choose Mac?</h2>
+      <ul>
+        <li>You do creative work — video editing, photo editing, music production</li>
+        <li>You already use an iPhone/iPad and want seamless integration</li>
+        <li>Battery life and build quality matter more to you than raw customization</li>
+        <li>You do software development, especially iOS app development (which requires macOS)</li>
+      </ul>
+      <figure class="my-6">
+        <img src="/images/posts/windows-vs-mac-which-laptop-os-to-choose/mac-use-case.webp" alt="MacBook for creative work and coding" class="rounded-lg w-full" loading="lazy" />
+      </figure>
+
+      <h2>Final Verdict</h2>
+      <p>There's no single winner here — it genuinely depends on your use case. If you want flexibility and value for money, go Windows. If you want a polished, efficient machine and you're already invested in the Apple ecosystem, Mac is worth the premium. Whichever you choose, match the platform to your actual daily tasks, not brand preference alone.</p>
+    `,
+    faqs: [
+      {
+        question: 'Is Mac better than Windows for programming?',
+        answer: "It depends on what you're building. Mac is required for iOS app development and is popular among web/backend developers for its Unix-based terminal. Windows works well for most other programming, game development, and offers more hardware choice for the same budget.",
+      },
+      {
+        question: 'Is Windows cheaper than Mac?',
+        answer: 'Yes. Windows laptops are available at nearly every price point, starting well below what the cheapest MacBook costs, making Windows the better choice if budget is a primary concern.',
+      },
+      {
+        question: 'Which OS has better battery life?',
+        answer: 'Modern MacBooks with Apple Silicon generally offer longer battery life than most Windows laptops, though premium Windows ultrabooks can come close.',
+      },
+      {
+        question: 'Can I run Windows software on a Mac?',
+        answer: 'Some Windows-only software cannot run natively on macOS. Solutions like virtualization software exist but add cost and complexity, so if you rely heavily on Windows-specific programs, buying a Windows laptop directly is simpler.',
+      },
+    ],
+  },
+  {
+    id: 8,
+    title: 'Best Laptop Under ৳50,000 in Bangladesh (2026 Buying Guide)',
+    slug: 'best-laptop-under-50000-in-bangladesh',
+    metaTitle: 'Best Laptop Under ৳50,000 in Bangladesh (2026 Guide)',
+    metaDescription:
+      'Discover the top 5 laptops under ৳50,000 in Bangladesh for 2026 — HP, Lenovo, Dell, ASUS & Acer compared on specs, performance, and value.',
+    excerpt:
+      'Looking for a reliable laptop without breaking the bank? Here are the top 5 laptops under ৳50,000 in Bangladesh for students, professionals, and everyday users in 2026.',
+    category: 'Roundup',
+    author: 'TechBD Team',
+    date: 'Sep 27, 2026',
+    readTime: '6 min read',
+    views: 510,
+    imageAlt: 'Best laptops under ৳50,000 in Bangladesh',
+    heroImage: '/images/posts/best-laptop-under-50000-in-bangladesh/hero.webp',
+    mentions: [
+      { name: 'HP 250 G9', brand: 'HP' },
+      { name: 'Lenovo IdeaPad Slim 3', brand: 'Lenovo' },
+      { name: 'Dell Vostro 15 3510', brand: 'Dell' },
+      { name: 'ASUS VivoBook 15', brand: 'ASUS' },
+      { name: 'Acer Aspire 3', brand: 'Acer' },
+    ],
+    content: `
+      <p>Finding a good laptop under ৳50,000 in Bangladesh doesn't mean settling for poor performance. Whether you need it for office work, online classes, or everyday browsing, there are solid options that balance price and capability well. Here's our pick of the top 5 laptops in this budget range, along with what to look for before you buy.</p>
+
+      <h2>What to Check Before Buying a Budget Laptop</h2>
+      <ul>
+        <li><strong>Processor</strong>: An Intel Core i3 or AMD Ryzen 3 is sufficient for general use — browsing, office work, streaming.</li>
+        <li><strong>RAM</strong>: 8GB is the practical minimum in 2026 if you plan to multitask with several browser tabs and apps open at once.</li>
+        <li><strong>Storage</strong>: Prioritize an SSD (256GB or more) over a traditional HDD — it makes a massive difference in boot time and overall speed.</li>
+        <li><strong>Display</strong>: A Full HD (1920×1080) screen gives noticeably better clarity for work and entertainment compared to lower resolutions.</li>
+      </ul>
+
+      <h2>1. HP 250 G9</h2>
+      <p>A dependable pick from one of the most trusted brands in Bangladesh. Powered by an Intel Core i3/i5 processor with 8GB RAM and SSD storage, it handles everyday office and study tasks smoothly. HP's strong after-sales support network in Bangladesh makes this a low-risk choice if you want peace of mind alongside decent performance.</p>
+      <p><strong>Best for:</strong> Office workers and students who want brand reliability and easy local service support.</p>
+      <figure class="my-6">
+        <img src="/images/posts/best-laptop-under-50000-in-bangladesh/hp-250-g9.webp" alt="HP 250 G9 laptop" class="rounded-lg w-full" loading="lazy" />
+      </figure>
+
+      <h2>2. Lenovo IdeaPad Slim 3</h2>
+      <p>The IdeaPad Slim 3 pairs an Intel Core i3 processor with 8GB RAM and a 256GB SSD, wrapped in a genuinely solid build for this price range. It's a popular choice among budget buyers specifically because it doesn't feel "cheap" in daily use — the keyboard and chassis hold up well over time.</p>
+      <p><strong>Best for:</strong> Buyers who want the best build quality-to-price ratio in this segment.</p>
+      <figure class="my-6">
+        <img src="/images/posts/best-laptop-under-50000-in-bangladesh/lenovo-ideapad-slim-3.webp" alt="Lenovo IdeaPad Slim 3 laptop" class="rounded-lg w-full" loading="lazy" />
+      </figure>
+
+      <h2>3. Dell Vostro 15 3510</h2>
+      <p>Built with business and student users in mind, the Vostro 15 3510 runs an 11th-gen Intel Core i3 processor. It's a balanced, no-frills machine that focuses on getting work done reliably rather than chasing flashy features.</p>
+      <p><strong>Best for:</strong> Students and office users who want a straightforward, dependable workhorse.</p>
+      <figure class="my-6">
+        <img src="/images/posts/best-laptop-under-50000-in-bangladesh/dell-vostro-15-3510.webp" alt="Dell Vostro 15 3510 laptop" class="rounded-lg w-full" loading="lazy" />
+      </figure>
+
+      <h2>4. ASUS VivoBook 15</h2>
+      <p>Lightweight and portable, the VivoBook 15 comes with an Intel Core i3 processor and 8GB RAM, plus a display that's a step above what you'd expect at this price. If portability and screen quality matter more to you than raw power, this is worth prioritizing.</p>
+      <p><strong>Best for:</strong> Users who carry their laptop around often and want a lighter build.</p>
+      <figure class="my-6">
+        <img src="/images/posts/best-laptop-under-50000-in-bangladesh/asus-vivobook-15.webp" alt="ASUS VivoBook 15 laptop" class="rounded-lg w-full" loading="lazy" />
+      </figure>
+
+      <h2>5. Acer Aspire 3</h2>
+      <p>The Aspire 3 remains one of the most popular budget laptops in Bangladesh, and for good reason — a latest-gen Intel Core i3-1215U processor, 8GB DDR4 RAM, and a 256GB SSD add up to smooth day-to-day performance at a genuinely accessible price.</p>
+      <p><strong>Best for:</strong> First-time buyers looking for the best all-round value under ৳50,000.</p>
+      <figure class="my-6">
+        <img src="/images/posts/best-laptop-under-50000-in-bangladesh/acer-aspire-3.webp" alt="Acer Aspire 3 laptop" class="rounded-lg w-full" loading="lazy" />
+      </figure>
+
+      <h2>Final Thoughts</h2>
+      <p>All five of these laptops handle everyday computing well — browsing, office work, online classes, and light multitasking. Your final choice should come down to what matters most to you: HP and Dell lean toward reliability and support, Lenovo and ASUS toward build quality and portability, and Acer toward pure value for money.</p>
+    `,
+    faqs: [
+      {
+        question: 'What is the best laptop under ৳50,000 in Bangladesh?',
+        answer: 'Among current options, the Acer Aspire 3 and HP 250 G9 offer the best overall balance of performance and reliability under ৳50,000, thanks to their Intel Core i3 processors, 8GB RAM, and SSD storage.',
+      },
+      {
+        question: 'Is 8GB RAM enough for a budget laptop in 2026?',
+        answer: "Yes, for everyday tasks like browsing, office work, and streaming, 8GB RAM is sufficient. It's the practical minimum for smooth multitasking in 2026.",
+      },
+      {
+        question: 'Should I buy an SSD or HDD laptop under ৳50,000?',
+        answer: 'Always prioritize an SSD. It significantly improves boot time and overall responsiveness compared to a traditional HDD, even at the same storage capacity.',
+      },
+      {
+        question: 'Which brand offers the best after-sales support in Bangladesh?',
+        answer: 'HP and Dell are generally considered to have strong, widely available after-sales support networks in Bangladesh, which is valuable for long-term peace of mind.',
+      },
     ],
   },
 ];

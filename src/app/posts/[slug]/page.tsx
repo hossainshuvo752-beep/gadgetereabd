@@ -1,32 +1,71 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
-import { posts } from '@/lib/posts';
+import { posts, postHref, type Post } from '@/lib/posts';
 import NewsletterPopup from '@/components/NewsletterPopup';
 import PostMeta from '@/components/PostMeta';
 import JsonLd from '@/components/JsonLd';
-import { articleSchema, faqSchema } from '@/lib/schema';
+import { articleSchema, faqSchema, mentionsSchema } from '@/lib/schema';
 
 /**
- * Blog article detail page (/posts/[id]). Imports the single shared posts
+ * Blog article detail page (/posts/[slug]). Imports the single shared posts
  * data source from @/lib/posts — do NOT inline post data here.
+ *
+ * Slug resolution: /posts/<slug> for slug posts (canonical), /posts/<id>
+ * for the six legacy posts whose published URLs predate slugs (AEO
+ * Standards 10 — never republish an existing URL).
  */
 
 type Props = { params: Promise<{ slug: string }> };
 
+function findPost(slug: string): Post | undefined {
+  return (
+    posts.find((p) => p.slug === slug) ??
+    posts.find((p) => p.id === parseInt(slug, 10))
+  );
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = posts.find((p) => p.id === parseInt(slug, 10));
+  const post = findPost(slug);
   if (!post) return { title: 'Post Not Found — TechBD' };
+  const url = postHref(post);
   return {
     title: post.metaTitle,
     description: post.metaDescription,
+    alternates: { canonical: url },
+    openGraph: {
+      type: 'article',
+      siteName: 'TechBD',
+      title: post.metaTitle,
+      description: post.metaDescription,
+      url,
+      ...(post.heroImage
+        ? {
+            images: [
+              {
+                url: post.heroImage,
+                width: 1376,
+                height: 768,
+                alt: post.imageAlt,
+              },
+            ],
+          }
+        : {}),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.metaTitle,
+      description: post.metaDescription,
+      ...(post.heroImage ? { images: [post.heroImage] } : {}),
+    },
   };
 }
 
 export default async function PostsPage({ params }: Props) {
   const { slug } = await params;
-  const post = posts.find((p) => p.id === parseInt(slug, 10));
+  const post = findPost(slug);
 
   if (!post) {
     return (
@@ -47,17 +86,34 @@ export default async function PostsPage({ params }: Props) {
 
   return (
     <article className="min-h-screen bg-text-on-dark">
-      {/* BlogPosting schema — headline/author/date mirror the visible header. */}
+      {/* BlogPosting schema — headline/author/date mirror the visible header.
+          Products MENTIONED in the article emit minimal name+brand Product
+          schema only — never offers/ratings (nothing visible confirms them). */}
       <JsonLd data={articleSchema(post)} />
+      {post.mentions?.map((m) => <JsonLd key={m.name} data={mentionsSchema(m)} />)}
       {/* FAQPage schema — emitted only from the same faqs array the page
           renders below (AEO Standards 7/8: exact visible-content match). */}
       {post.faqs && post.faqs.length > 0 && <JsonLd data={faqSchema(post.faqs)} />}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Featured Image Placeholder */}
+        {/* Featured image — real optimized WebP when the post has one;
+            legacy posts keep the placeholder box. Native dimensions match
+            the converted 1376×768 sources (16:9). */}
         <div className="mb-8">
-          <div className="w-full aspect-video bg-bg-dark-secondary/10 rounded-lg flex items-center justify-center">
-            <span className="text-text-body text-sm">{post.imageAlt}</span>
-          </div>
+          {post.heroImage ? (
+            <Image
+              src={post.heroImage}
+              alt={post.imageAlt}
+              width={1376}
+              height={768}
+              priority
+              sizes="(max-width: 768px) 100vw, 896px"
+              className="w-full h-auto rounded-lg"
+            />
+          ) : (
+            <div className="w-full aspect-video bg-bg-dark-secondary/10 rounded-lg flex items-center justify-center">
+              <span className="text-text-body text-sm">{post.imageAlt}</span>
+            </div>
+          )}
         </div>
 
         {/* Content Header */}
@@ -105,9 +161,7 @@ export default async function PostsPage({ params }: Props) {
   );
 }
 
-// Generate static paths for all posts
+// Generate static paths — slug-based for slug posts, numeric for legacy.
 export async function generateStaticParams() {
-  return posts.map((post) => ({
-    slug: post.id.toString(),
-  }));
+  return posts.map((post) => ({ slug: post.slug ?? post.id.toString() }));
 }
