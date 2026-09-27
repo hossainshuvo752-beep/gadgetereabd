@@ -1,27 +1,32 @@
 import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { posts, postHref, type Post } from '@/lib/posts';
+
+/**
+ * Popular Buying Guides — homepage section fed by the REAL posts data
+ * source (same as Blog listing / Latest Posts), not hardcoded entries.
+ *
+ * A post qualifies as a "buying guide" when it is category 'Roundup'
+ * (best-of / comparison roundups) OR its title starts with "Best " —
+ * the two patterns all guide-style posts currently share. Newest first
+ * by the array's publish order, capped at 4 (one 4-up desktop row).
+ * Falls back to a category-agnostic recent fill if fewer than 4 match,
+ * so the section never renders with obvious holes.
+ */
+function buyingGuidePosts(): Post[] {
+  const matches = posts.filter(
+    (p) => p.category === 'Roundup' || p.title.startsWith('Best ')
+  );
+  const fill = posts.filter((p) => !matches.includes(p));
+  return [...matches, ...fill].slice(0, 4);
+}
 
 const BuyingGuideHighlight: React.FC = () => {
-  // Dummy data for buying guides
-  const guides = [
-    {
-      id: 1,
-      title: 'Best Laptop Under ৳50,000 in Bangladesh',
-      description: 'Top picks for performance and value in the mid-range budget.',
-      imageAlt: 'Laptop under 50000 BDT',
-    },
-    {
-      id: 2,
-      title: 'Best Laptop for Programming Students',
-      description: 'Ideal machines for coding, compiling, and multitasking on a student budget.',
-      imageAlt: 'Laptop for programming students',
-    },
-    {
-      id: 3,
-      title: 'Windows vs Mac: Which Laptop OS to Choose',
-      description: 'A detailed comparison to help you decide the right operating system for your needs.',
-      imageAlt: 'Windows vs Mac comparison',
-    },
-  ];
+  const guides = buyingGuidePosts();
+
+  // No posts at all — hide the section rather than render an empty shell.
+  if (guides.length === 0) return null;
 
   return (
     <section className="mb-12 bg-bg-light">
@@ -34,22 +39,38 @@ const BuyingGuideHighlight: React.FC = () => {
         <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-4">
           {guides.map((guide) => (
             <div key={guide.id} className="bg-text-on-dark rounded-lg overflow-hidden shadow hover:shadow-md transition-shadow duration-300">
-              {/* 16:9 ratio lock — guides aren't real posts yet (dummy data,
-                  '#' links), so they can't reuse ArticleCard; visual style
-                  follows the blog card spec regardless. */}
-              <div className="aspect-video w-full bg-bg-dark-secondary/10 flex items-center justify-center">
-                <span className="text-text-body text-sm">{guide.imageAlt}</span>
+              {/* Real post hero image, 16:9 — same image source as the
+                  blog listing (ArticleCard) and Latest Posts. */}
+              <div className="relative aspect-video w-full bg-bg-dark-secondary/10 overflow-hidden">
+                {guide.heroImage ? (
+                  <Image
+                    src={guide.heroImage}
+                    alt={guide.imageAlt}
+                    fill
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                    className="object-cover"
+                  />
+                ) : (
+                  <span className="absolute inset-0 flex items-center justify-center text-text-body text-sm">
+                    {guide.imageAlt}
+                  </span>
+                )}
               </div>
               <div className="p-3 md:p-5">
                 <h3 className="text-sm md:text-xl font-bold text-text-heading mb-3 line-clamp-2">
                   {guide.title}
                 </h3>
                 <p className="hidden md:line-clamp-2 text-text-body mb-4">
-                  {guide.description}
+                  {guide.excerpt}
                 </p>
-                <a href="#" className="text-accent hover:text-accent-hover underline font-medium text-sm md:text-base">
+                {/* Real slug URL via the shared postHref builder — the old
+                    hardcoded version linked to '#'. */}
+                <Link
+                  href={postHref(guide)}
+                  className="text-accent hover:text-accent-hover underline font-medium text-sm md:text-base"
+                >
                   Read Guide →
-                </a>
+                </Link>
               </div>
             </div>
           ))}

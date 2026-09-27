@@ -19,8 +19,9 @@ export default function Home() {
   const featuredPost = posts[0];
 
   // Latest Posts grid: default sort most-viewed first (views are simulated
-  // for now). Copied before sorting — never mutate the shared posts array.
-  const latestPosts = [...posts].sort((a, b) => b.views - a.views);
+  // for now), capped at 8 — the homepage never shows more than one grid
+  // (2 rows) of cards. Copied before sorting — never mutate shared posts.
+  const latestPosts = [...posts].sort((a, b) => b.views - a.views).slice(0, 8);
 
   return (
     <>

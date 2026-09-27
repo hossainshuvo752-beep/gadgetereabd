@@ -8,8 +8,9 @@ import { posts } from '@/lib/posts';
  * itself instead of duplicating the same card.
  */
 const TrendingPosts: React.FC = () => {
-  // Skip the Hero's featured post (the first one) — trend what's left.
-  const trendingPosts = posts.slice(1);
+  // Skip the Hero's featured post (the first one) — trend what's left,
+  // capped at 8 (two 4-up rows on desktop) like Latest Posts.
+  const trendingPosts = posts.slice(1, 9);
 
   // Single-post site: nothing left to trend — render nothing.
   if (trendingPosts.length === 0) return null;

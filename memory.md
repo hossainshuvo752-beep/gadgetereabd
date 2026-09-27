@@ -895,3 +895,7 @@ Verified: tsc clean, build green, live SSR probes — hero grid classes present,
 - 6 new researched posts (web-searched specs/prices): iPhone Duo (announced Sep 9, $1,999, Oct 23), iOS 27 (shipped Sep 14, Gemini-powered Siri AI), Dyson CameraJet ($499, Sep 1 IFA), Dreo Pilot Max S $129.99 vs Dreame MF10 ~$300 vs Dyson AM07 $299.99, Hibbent 1080° $22.99, JINRAIKO mount ~$43.
 - 27 images converted 17.6MB→1.1MB; Hero now renders real featured image (next/image fill, object-cover) via postHref link; blog chips unchanged (Guide chip now empty by design).
 - NOTE: numeric post IDs 1-6 were REUSED for the new posts — old URLs are dead by design; new posts all use slugs.
+
+## Task Log — 2026-09-27 — Homepage section caps + data-driven Buying Guides
+- Latest Posts and Trending Now capped at 8 (posts.slice / sort+slice(0,8)).
+- BuyingGuideHighlight rewritten from hardcoded '#' links to posts-data-driven: qualifies category 'Roundup' OR title starts with 'Best ', newest-first fill, cap 4, real heroImage + postHref links, keeps original card visual style. Verified locally: 4/4 entries with real images + slug links; Latest/Trending = 8 cards each.
