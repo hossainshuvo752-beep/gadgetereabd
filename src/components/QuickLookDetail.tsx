@@ -654,7 +654,7 @@ const QuickLookDetail: React.FC<{
               ) : isPurchasable(product) ? (
                 <button
                   onClick={handleBuyNow}
-                  className="flex items-center justify-center px-5 py-3 bg-bg-dark text-text-on-dark font-medium rounded-lg hover:bg-bg-dark-secondary transition-colors"
+                  className="tactile flex items-center justify-center px-5 py-3 bg-bg-dark text-text-on-dark font-medium rounded-lg hover:bg-bg-dark-secondary"
                 >
                   Buy Now
                 </button>
@@ -672,7 +672,7 @@ const QuickLookDetail: React.FC<{
                 </button>
               )}
               {isPurchasable(product) ? (
-                <button className="flex items-center justify-center px-5 py-3 bg-text-on-dark border border-text-heading/20 text-text-body font-medium rounded-md hover:bg-bg-light transition-colors">
+                <button className="tactile flex items-center justify-center px-5 py-3 bg-text-on-dark border border-text-heading/20 text-text-body font-medium rounded-md hover:bg-bg-light">
                   Notify Me
                 </button>
               ) : (
