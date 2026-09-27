@@ -928,3 +928,9 @@ Verified: tsc clean, build green, live SSR probes — hero grid classes present,
 - **Legacy note:** there are no legacy numeric posts left to verify — all 9 are slug-based since the dummy-post replacement (`/posts/1…6` → 404 by design).
 - **Verified:** tsc clean + build green; live DOM on production for 2 posts — iPhone Duo (News badge, orange rgb(249,115,22)) and Best Bladeless Tower Fan (Roundup badge, teal rgb(20,184,166)) — both show exact order badge→h1→excerpt→meta→hero(loaded)→h2 sections; screenshot captured. First live check read the pre-deploy build (~100s Vercel build/propagation window) — re-check after wait confirmed.
 - **Commit:** 4494db6.
+
+## Task Log — 2026-09-28 — Hero banner image replaced (updated source)
+
+- User replaced the hero-banner source PNG at `D:\bd web blog image\hero banner image\...` (448×557 native 4:5). Re-processed through the standard sharp pipeline (webp q82) as **`hero-banner-2.webp`** (448×557, 23KB) in the same post folder; `posts.ts` heroBannerImage updated; old `hero-banner.webp` deleted.
+- **Cache-busting pattern (repeat this):** when a source image is REPLACED, output under a NEW filename instead of overwriting — immutable Vercel/CDN/browser caches then can never serve the stale version. Verify live by parsing the `?url=` param of the /_next/image src, not the optimizer URL itself.
+- Verified: tsc clean, build green; live production homepage serves hero-banner-2.webp at 340×422 (4:5) — screenshot confirms the new open-Duo composition. Commits: b6ee8a2 (+30acf02 removing the old file). Note: `git push` hit a transient "Empty reply from server" once — a plain retry succeeded.
