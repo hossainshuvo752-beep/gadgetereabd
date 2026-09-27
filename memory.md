@@ -904,3 +904,19 @@ Verified: tsc clean, build green, live SSR probes — hero grid classes present,
 - New Post field heroBannerImage (falls back to heroImage) — homepage Hero uses it; cards/detail/og:image keep the standard 16:9 hero.webp.
 - Converted D:\hero banner image\iPhone Duo....jfif → public/images/posts/iphone-duo-foldable-price-specs-release/hero-banner.webp (47KB, 928x1152 native 4:5, q82).
 - Verified locally: hero box exact 0.800 ratio showing hero-banner.webp; Latest Posts card + og:image still hero.webp.
+
+## Task Log — 2026-09-28 — Site-wide micro-interactions + accent colors (Gen Z refresh)
+
+- **What:** Site-wide visual polish pass over ALL page types (Home, Blog listing, blog post, Shop listing/detail, Quick Look listing/detail, Deals, New Arrivals, About, Contact, Cart, Checkout) — animations + accent colors only, zero layout changes.
+- **Animations added** (all in `globals.css` as shared utilities, reduced-motion guarded via `@media (prefers-reduced-motion: reduce)`):
+  - `.tactile` — hover scale 1.03 + soft shadow, active scale 0.97, 180ms ease-out. Applied to every button/CTA: Hero CTA, Add to Cart, Buy Now (incl. the purchasable + disabled branches), Pre-Order, Notify Me (both branches), Subscribe, FAQ toggles, category chips, swatches, export buttons.
+  - `.card-lift` / `.card-zoom` — cards lift (translateY(-4px) + shadow) on hover; inner image zooms 1.05. Applied via ArticleCard, ProductCard, ProductGrid, BuyingGuideHighlight, TrendingPosts → covers Home, Blog, Shop, Quick Look, Deals, New Arrivals.
+  - `.fade-up` + `--stagger-delay` — staggered entrance for card grids (Latest, Trending, Guides, product grids).
+  - `.nav-link` — animated underline grow on Header links.
+  - FAQ accordions (HomeFAQ, PostFaqAccordion, /faq) animate open/close via grid-template-rows 0fr→1fr, no JS measurement.
+- **Colors:** secondary accent = teal (#14b8a6 family, `--color-accent-2` token). Category badges now distinct: News=orange, Explainer=blue, Roundup=teal, Guide=teal-dark, Review=pink/magenta — all AA+ contrast on their text. Teal also on CategoryNav sub-link hover + selected states.
+- **Caught in verification:** the first push (82d5907) missed two QuickLookDetail CTA branches (purchasable Buy Now, in-stock Notify Me) — found by live DOM probing (tactile 1/2 CTAs), fixed and pushed as 4b280c9.
+- **Verified:** tsc clean; production build green; live production DOM checks (browser, not curl — curl gets Vercel 403): Home 20 fade-ups + 3 distinct badge colors + 21 tactile elements; Shop 22/22 product cards with lift+zoom; blog listing 9/9 cards lift+zoom, badges orange/blue/teal. Screenshots captured of Home, Shop, Blog on production.
+- **Commits:** 82d5907 (main pass, 20 files +227/−49), 4b280c9 (CTA branch fix).
+- **Note:** git identity was lost after Freebuff restart — commits used `-c user.name/user.email` flags matching repo history (hossainshuvo752-beep). Remember this pattern after restarts.
+- **Session tooling note:** preview_screenshot intermittently serves one-action-stale frames and "no frames" errors this session; DOM evaluate is the authoritative check. A second opened browser tab never composited — reuse the first tab.
