@@ -4,7 +4,6 @@ import Image from 'next/image';
 import type { Metadata } from 'next';
 import { posts, postHref, type Post } from '@/lib/posts';
 import NewsletterPopup from '@/components/NewsletterPopup';
-import PostMeta from '@/components/PostMeta';
 import PostFaqAccordion from '@/components/PostFaqAccordion';
 import ShareButtons from '@/components/ShareButtons';
 import AuthorBio from '@/components/AuthorBio';
@@ -127,20 +126,17 @@ export default async function PostsPage({ params }: Props) {
           )}
         </div>
 
-        {/* Content Header */}
+        {/* Content Header — title only. Category badge + author/date meta
+            were removed here (redundant on the full article — they stay on
+            listing/home cards); authorship lives in the AuthorBio block
+            below the article. */}
         <div className="mb-8">
-          <div className="flex items-center space-x-4 mb-4">
-            <span className="inline-flex items-center px-3 py-1 text-xs font-semibold bg-accent/10 text-accent-hover rounded-full">
-              {post.category}
-            </span>
-            <h1 className="text-3xl font-bold text-text-heading">{post.title}</h1>
-          </div>
-          {/* Two-line meta (avatar+author / date•readTime) — detail page size */}
-          <PostMeta author={post.author} date={post.date} readTime={post.readTime} className="text-sm" />
+          <h1 className="text-3xl font-bold text-text-heading">{post.title}</h1>
         </div>
 
-        {/* Article Content */}
-        <div className="prose lg:prose-xl max-w-none">
+        {/* Article Content — scoped typography (.post-body in globals.css;
+            Tailwind's prose classes were dead here — no typography plugin). */}
+        <div className="post-body">
           {/* Trusted, locally-authored HTML from src/lib/posts.ts */}
           <div dangerouslySetInnerHTML={{ __html: post.content }} />
         </div>

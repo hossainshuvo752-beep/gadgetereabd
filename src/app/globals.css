@@ -32,6 +32,7 @@
   --color-text-on-dark: #ffffff; /* primary text on dark backgrounds */
   --color-text-heading: #0f172a; /* headings + strong text on light */
   --color-text-body: #64748b; /* body / secondary text on light */
+  --color-text-article: #1a1a2e; /* article body copy (blog post page) — dark charcoal, near-black readability with a modern feel */
   --color-danger: #dc2626; /* error text, error borders, SALE badges */
   --color-bg-hero: #1e3a5f; /* hero banner gradient — lighter navy stop */
   --color-bg-hero-deep: #0a1628; /* hero banner gradient — darker navy stop */
@@ -70,4 +71,72 @@ body {
 }
 .hide-scrollbar::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
+}
+
+/* ── Article typography (individual blog post page ONLY) ──────────────
+   Scoped to .post-body on /posts/[slug]. Blog listing cards, Home
+   sections and every other page keep the site-wide tokens untouched.
+
+   Body copy uses --color-text-article (dark charcoal #1a1a2e) instead of
+   the muted site-wide gray: ≈16:1 contrast on white (WCAG AAA) with a
+   modern, less flat feel. Paragraphs sit at weight 450 — a touch of
+   presence without reading as bold — while headings stay near-black
+   (#0f172a) at 800 so the hierarchy stays obvious. Orange list markers
+   echo the accent token for subtle energy without touching text color. */
+.post-body {
+  color: var(--color-text-article);
+  font-size: 1.0625rem; /* 17px */
+  line-height: 1.75;
+}
+.post-body p {
+  font-weight: 450;
+  margin: 0 0 1.25rem;
+}
+.post-body h2 {
+  color: var(--color-text-heading);
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.3;
+  margin: 2.25rem 0 1rem;
+}
+.post-body h3 {
+  color: var(--color-text-heading);
+  font-size: 1.1875rem;
+  font-weight: 700;
+  margin: 1.75rem 0 0.75rem;
+}
+.post-body ul,
+.post-body ol {
+  margin: 0 0 1.25rem;
+  padding-left: 1.375rem;
+}
+.post-body ul {
+  list-style: disc;
+}
+.post-body ol {
+  list-style: decimal;
+}
+.post-body li {
+  font-weight: 450;
+  margin: 0 0 0.5rem;
+  padding-left: 0.25rem;
+}
+.post-body ul li::marker,
+.post-body ol li::marker {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+.post-body strong,
+.post-body b {
+  color: var(--color-text-heading);
+  font-weight: 700;
+}
+.post-body a {
+  color: var(--color-accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.post-body img {
+  margin: 1.75rem 0;
 }
