@@ -979,3 +979,21 @@ Verified: tsc clean, build green, live SSR probes — hero grid classes present,
 - Verified: tsc clean, build green; local 375/390/414 (open→type→results→close via
   backdrop and X); live production DOM checks (expand/collapse, input width, bottom
   nav icons). Commit 8cb8704.
+
+## Task Log — 2026-09-28: About page mobile spacing tightened to home rhythm
+
+- Measured gaps at 375px (before → after): stats→"Why Trust" heading 128→64px
+  (removed a pb-12 + mb-12 + py-8 triple-stack: story wrapper pb-8, stats mb
+  dropped, section top pad provides the rest); trust grid→CTA box 80→64px
+  (shared WhyTrustUs mb-12 → mb-8 sm:mb-12 — desktop untouched); CTA box→footer
+  160→112px (pb-24 → pb-12), which now EXACTLY matches the homepage's
+  last-section→footer rhythm (48 wrapper + 64 main pb). Home's section rhythm
+  is a uniform 48px — used as the density reference throughout.
+- WhyTrustUs is shared with the Home page: at 375px Home's neighbors keep 48/32px
+  gaps (visually unaffected); at sm+ mb stays 12 (48px) — zero desktop change.
+- LESSON: gaps made of stacked margin+padding across wrapper/section collapse
+  invisibly in code — measure computed geometry per breakpoint before and after
+  instead of eyeballing classes.
+- Verified: tsc clean, build green, 375px + 390px live (64/64/112 both), 768px
+  trust→CTA still 80px (desktop intact). Live before/after screenshots captured
+  from production with identical framing. Commit 6c1893a.
