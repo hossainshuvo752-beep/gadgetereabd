@@ -79,8 +79,14 @@ export default function ScrollHint({
         /* flex IS the fix: without display:flex the row renders as a block
            (children stack vertically). flex-nowrap alone only sets wrap
            behavior. snap-x + child snap-start gives smooth swipe alignment;
-           disabled at md+ where rows wrap instead of scrolling. */
-        className={`flex flex-nowrap items-center overflow-x-auto hide-scrollbar snap-x snap-proximity [&>*]:snap-start md:snap-none ${className}`}
+           disabled at md+ where rows wrap instead of scrolling.
+           scroll-pl-4 is REQUIRED with the snap: snap-start aligns children
+           to the snapport edge, which ignores the row's padding-left unless
+           scroll-padding mirrors it — without it Chrome's initial snap
+           scrolls the row right by exactly the px-4 padding on load, leaving
+           the first chip 16px left of the card grid (the misalignment bug).
+           scroll-pl-4 makes scroll-position 0 the first chip's snap point. */
+        className={`flex flex-nowrap items-center overflow-x-auto hide-scrollbar snap-x snap-proximity scroll-pl-4 [&>*]:snap-start md:snap-none ${className}`}
       >
         {children}
       </div>
