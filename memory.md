@@ -1048,3 +1048,24 @@ Verified: tsc clean, build green, live SSR probes — hero grid classes present,
   Duo post. Commit bf8edba.
 - LESSON: a shared meta component serving both narrow cards and wide article
   headers needs the layout as a prop, not one shape for all.
+
+## Task Log — 2026-09-28: Sitewide pointer-cursor audit + rule hardening
+
+- AUDIT RESULT: no missing instances found. Global button:not(:disabled)
+  rule (from the earlier Add to Cart fix) already covered real buttons;
+  zero div/span-onClick clickables; zero <input type=button/submit>;
+  three FAQ accordions carry explicit cursor-pointer; cursor-not-allowed
+  usages are all genuinely disabled (Coming Soon, Refresh-from-Google stub,
+  form submits while busy).
+- HARDENED the global rule in globals.css to be enforced BY CONSTRUCTION:
+  now also matches [role="button"]:not([aria-disabled]), input
+  button/submit/reset, and summary — future components covered with no
+  per-instance fixes. Disabled/aria-disabled keep not-allowed (class wins).
+- NIT (not fixed, noted): HomeFAQ's toggle row is a div with onClick but no
+  role="button"/tabIndex — cursor works via explicit class, but it's not
+  keyboard-focusable; PostFaqAccordion does this correctly.
+- Verified LIVE: home (Add to Cart, Subscribe, hero CTA, disabled Coming
+  Soon), blog post (role=button FAQ toggle, share buttons), blog (6 chips),
+  product detail (Pre-Order, Notify Me, gallery thumbs), contact (submit),
+  faq (10 toggles) — all pointer; disabled = not-allowed. tsc clean, build
+  green. Commit 07ec7d4.
