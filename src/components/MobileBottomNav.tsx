@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, LayoutGrid, Tag, ShoppingCart } from 'lucide-react';
+import { Home, ShoppingBag, Tag, ShoppingCart } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 
 /**
@@ -21,7 +21,7 @@ import { useCart } from '@/context/CartContext';
  */
 const ITEMS = [
   { href: '/', label: 'Home', icon: Home },
-  { href: '/shop', label: 'Shop', icon: LayoutGrid },
+  { href: '/shop', label: 'Shop', icon: ShoppingBag },
   { href: '/deals', label: 'Offer', icon: Tag },
   { href: '/cart', label: 'Cart', icon: ShoppingCart },
 ] as const;

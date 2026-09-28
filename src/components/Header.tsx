@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import {
   X,
@@ -76,6 +76,10 @@ const Header: React.FC = () => {
   const { session, displayName, signOut } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  // Mobile expanded search: the compact header pill expands into a
+  // full-width search overlay on tap (see overlay below the header).
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
+  const mobileSearchInputRef = useRef<HTMLInputElement>(null);
   const [query, setQuery] = useState('');
   // Live cart count for the badge on the cart icon.
   const { count: cartCount } = useCart();
@@ -113,6 +117,19 @@ const Header: React.FC = () => {
     setIsMenuOpen(false);
     setQuery('');
   };
+
+  // Expanded-search close: collapse back to the compact header pill and
+  // clear the query so the next open starts fresh.
+  const closeMobileSearch = () => {
+    setIsMobileSearchOpen(false);
+    setQuery('');
+  };
+
+  // Autofocus the input once the expanded search opens — the overlay is
+  // mounted persistently for the slide animation, so autoFocus won't fire.
+  useEffect(() => {
+    if (isMobileSearchOpen) mobileSearchInputRef.current?.focus();
+  }, [isMobileSearchOpen]);
 
   return (
     <>
@@ -196,21 +213,151 @@ const Header: React.FC = () => {
             </div>
           </div>
 
-          {/* Mobile Menu Button (Hamburger) */}
-          <div className="md:hidden">
+          {/* Mobile row — reference layout: compact search pill fills the
+              middle space between the logo and the profile/hamburger icons;
+              all four elements in one row with no wrapping. The pill expands
+              into the full-width search overlay below on tap. */}
+          <div className="md:hidden flex items-center flex-1 min-w-0 ml-3 gap-2">
+            {/* Compact search trigger */}
+            <button
+              onClick={() => setIsMobileSearchOpen(true)}
+              aria-label="Search"
+              aria-expanded={isMobileSearchOpen}
+              className="flex items-center gap-2 flex-1 min-w-0 h-9 px-3 rounded-full border border-text-on-dark/25 bg-bg-dark-secondary text-left text-sm text-text-on-dark/60 hover:text-text-on-dark/80 transition-colors"
+            >
+              <Search className="w-4 h-4 shrink-0" />
+              <span className="truncate">Search products...</span>
+            </button>
+
+            {/* Profile */}
+            <Link
+              href="/account"
+              aria-label="Account"
+              className="shrink-0 w-9 h-9 rounded-full border border-text-on-dark/20 flex items-center justify-center text-text-on-dark hover:bg-text-on-dark/10 transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </Link>
+
+            {/* Hamburger */}
             <button
               onClick={() => setIsMenuOpen(true)}
               aria-label="Open menu"
               aria-expanded={isMenuOpen}
-              className="text-text-on-dark hover:text-accent"
+              className="shrink-0 w-9 h-9 flex items-center justify-center text-text-on-dark hover:text-accent"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
           </div>
         </div>
       </header>
+
+      {/* Mobile expanded search (md:hidden) — full-width takeover that slides
+          down over the header (z-[80], above the z-50 header, below the z-[90]
+          menu drawer). Tapping the dimmed backdrop (i.e. anywhere outside the
+          search panel) or the X closes it; the panel covers logo/profile/
+          hamburger while open. */}
+      <div
+        className={`md:hidden fixed inset-0 z-[80] transition-[visibility] ${
+          isMobileSearchOpen ? 'visible' : 'invisible pointer-events-none'
+        }`}
+        aria-hidden={!isMobileSearchOpen}
+      >
+        {/* Click-outside layer — any tap not on the search panel closes it */}
+        <div
+          onClick={closeMobileSearch}
+          className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${
+            isMobileSearchOpen ? 'opacity-100' : 'opacity-0'
+          }`
+          }
+        />
+
+        {/* Sliding panel: full-width search bar + live results */}
+        <div
+          className={`relative bg-bg-dark shadow-xl transition-transform duration-300 ease-out ${
+            isMobileSearchOpen ? 'translate-y-0' : '-translate-y-full'
+          }`}
+        >
+          <div className="flex items-center gap-2 px-4 h-16">
+            <div className="relative flex-1 min-w-0">
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-text-on-dark/60" />
+              <input
+                ref={mobileSearchInputRef}
+                type="text"
+                placeholder="Search products..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                className="w-full pl-10 pr-4 py-2.5 border border-accent/40 rounded-full bg-bg-dark-secondary placeholder-text-on-dark/70 text-text-on-dark text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+              />
+            </div>
+            <button
+              onClick={closeMobileSearch}
+              aria-label="Close search"
+              className="shrink-0 w-9 h-9 flex items-center justify-center rounded-full text-text-on-dark/70 hover:text-text-on-dark hover:bg-text-on-dark/10"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Live results — same data as the drawer/desktop search. Hidden
+              while the query is empty, so the whole screen below the bar is
+              tappable click-outside space. */}
+          {q !== '' && (postResults.length > 0 || displayProducts.length > 0) && (
+            <div className="border-t border-text-on-dark/10 px-4 py-3 max-h-[70dvh] overflow-y-auto space-y-1">
+              {postResults.length > 0 && (
+                <div>
+                  <p className="px-2 pb-1 text-xs font-semibold uppercase tracking-wider text-text-on-dark/50">
+                    Articles
+                  </p>
+                  {postResults.map((post) => (
+                    <Link
+                      key={post.id}
+                      href={postHref(post)}
+                      onClick={() => {
+                        track('header_search', { type: 'post', q: query.trim().slice(0, 80) });
+                        closeMobileSearch();
+                      }}
+                      className="block px-2 py-1.5 text-sm text-text-on-dark/70 hover:text-text-on-dark rounded"
+                    >
+                      {post.title}
+                    </Link>
+                  ))}
+                </div>
+              )}
+              {displayProducts.length > 0 && (
+                <div>
+                  <p className="px-2 pb-1 text-xs font-semibold uppercase tracking-wider text-text-on-dark/50">
+                    {showFallback ? 'You might be interested in' : 'Products'}
+                  </p>
+                  {displayProducts.map((product) => (
+                    <Link
+                      key={product.id}
+                      href={`/shop/${slugify(product.title)}`}
+                      onClick={() => {
+                        track('header_search', { type: 'product', q: query.trim().slice(0, 80) });
+                        closeMobileSearch();
+                      }}
+                      className="flex items-center justify-between gap-3 px-2 py-1.5 text-sm text-text-on-dark/70 hover:text-text-on-dark rounded"
+                    >
+                      <span>{product.title}</span>
+                      <span className="shrink-0 text-xs text-accent">
+                        {product.price === null
+                          ? 'Coming Soon'
+                          : product.priceEstimated
+                            ? `Est. ৳${product.price.toLocaleString()}`
+                            : `৳${product.price.toLocaleString()}`}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
 
       {/* Mobile slide-in menu — mobile only (md:hidden), overlay drawer.
           Desktop is untouched: this whole block is hidden at md+ and the
