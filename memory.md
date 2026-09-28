@@ -1034,3 +1034,17 @@ Verified: tsc clean, build green, live SSR probes — hero grid classes present,
   2-line titles) all equal heights + aligned Add to Cart; Home teaser: 22
   cards uniform. LIVE Shop: 11 rows, 7 mixed, all aligned; screenshot shows
   AULA F75 + Tab S10 same viewport with aligned rows. Commit 41ccfb1.
+
+## Task Log — 2026-09-28: Single-line article meta (PostMeta singleLine variant)
+
+- PostMeta's default layout is TWO lines (author / date+readtime) — that was a
+  deliberate earlier fix for narrow 2-col cards and stays for cards + hero.
+- Added `singleLine` prop: one nowrap flex row (avatar + author + • + date +
+  • + read time), text spans individually nowrap with min-width:0 fallback so
+  a too-narrow surface would ellipsize rather than wrap. Article header
+  (posts/[slug]) passes singleLine; cards/hero untouched.
+- Measured: container exactly 20px tall at 375/390/414/1280, all children on
+  one y, nothing clipped, no right-edge overflow. Verified live on the iPhone
+  Duo post. Commit bf8edba.
+- LESSON: a shared meta component serving both narrow cards and wide article
+  headers needs the layout as a prop, not one shape for all.
