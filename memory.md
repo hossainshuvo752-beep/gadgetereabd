@@ -1016,3 +1016,21 @@ Verified: tsc clean, build green, live SSR probes — hero grid classes present,
 - Verified: tsc clean, build green; local + LIVE at 375/390/414: all 5 pages
   scrollLeft=0, pillX=16=cardX (also Row 2 on Shop). Live screenshots: Shop +
   Blog. Commit 2a19d32.
+
+## Task Log — 2026-09-28: Uniform product card heights (2-line reserved title)
+
+- ProductCard: title h3 now reserves EXACTLY 2 lines (16px font / 24px
+  line-height → h-12 = 48px) with line-clamp-2 + explicit -webkit-box
+  ellipsis cap; card root gains h-full so cards stretch to grid-row height
+  (buttons already pinned via mt-auto). 1-line titles leave intentional
+  empty space; price/CTAs align across every row.
+- Applied once in the shared ProductCard → covers Shop, Quick Look, Deals,
+  New Arrivals, and Home "Trending Picks" (ShopTeaser) automatically.
+- LESSON: line-clamp alone doesn't reserve height; equal card heights need
+  BOTH a reserved title box AND h-full stretch on the card inside grid/flex
+  wrappers (grid items stretch by default, but the card div needed h-full
+  to inherit it through the fade-up wrapper).
+- Verified: tsc clean, build green. Local Shop: 6 mixed rows (1-line beside
+  2-line titles) all equal heights + aligned Add to Cart; Home teaser: 22
+  cards uniform. LIVE Shop: 11 rows, 7 mixed, all aligned; screenshot shows
+  AULA F75 + Tab S10 same viewport with aligned rows. Commit 41ccfb1.
