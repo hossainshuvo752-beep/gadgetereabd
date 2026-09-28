@@ -69,7 +69,10 @@ export default function QuickLookPage() {
             <ProductGrid>
               {filtered.map((product, i) => (
                 <div key={product.id} className="fade-up" style={{ '--stagger-delay': `${Math.min(i * 40, 320)}ms` } as React.CSSProperties}>
-                  <ProductCard product={product} linkTo="/quick-look" />
+                  {/* Quick Look LISTING = browse cards (blog-style): no action
+                      buttons, whole card links to the detail page. The
+                      detail page keeps its own action buttons untouched. */}
+                  <ProductCard product={product} linkTo="/quick-look" showActions={false} />
                 </div>
               ))}
             </ProductGrid>
