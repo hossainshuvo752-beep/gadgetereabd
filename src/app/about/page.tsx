@@ -31,8 +31,11 @@ export default function AboutPage() {
       </div>
 
       {/* Story card + stats — same container classes as the heading wrapper above
-          (py-12 was split into pt-12/pb-12; horizontal classes identical) */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+          (py-12 was split into pt-12/pb-12; horizontal classes identical).
+          pb-8: bottom spacing before the trust section — stats have no extra
+          margin, so the stats→"Why Trust" gap stays ~64px on mobile instead of
+          the original 128px triple-stack. */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
         {/* Mission/story — full width box (stacked layout; the earlier
             side-by-side story+stats grid was reverted per user decision) */}
         <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-6 sm:p-8 mb-8">
@@ -59,8 +62,9 @@ export default function AboutPage() {
         </div>
 
         {/* Stats row (honest facts only) — single 4-across row on md+,
-            stacking to 2 columns on small screens */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+            stacking to 2 columns on small screens. No bottom margin: the
+            wrapper's pb-8 + the trust section's own top padding form the gap. */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {STATS.map((stat) => (
             <div
               key={stat.label}
@@ -77,9 +81,11 @@ export default function AboutPage() {
       <WhyTrustUs />
 
       {/* CTA — same container as WhyTrustUs so the edges align with the trust row.
-          pb-24 (padding, not margin — margins can collapse through the section)
-          keeps a clearly visible gap above the Footer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+          pb-12 (padding, not margin — margins can collapse through the section)
+          matches the homepage's last-section→footer rhythm exactly
+          (48px here + 64px main padding = 112px), instead of the original
+          excessive pb-24 (160px total). */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
         <div className="bg-bg-dark rounded-lg p-8 text-center">
           <h2 className="text-2xl font-bold text-text-on-dark mb-2">
             Ready for your next gadget decision?

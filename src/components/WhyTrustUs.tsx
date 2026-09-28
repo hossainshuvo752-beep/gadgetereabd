@@ -28,8 +28,12 @@ const WhyTrustUs: React.FC = () => {
     },
   ];
 
+  // mb-8 on mobile / mb-12 from sm up — tightens the About page's
+  // stats→trust gap on phones (this component is shared with the Home
+  // page; there it sits between 48px-rhythm sections, so the small
+  // mobile reduction is invisible there, and desktop is untouched).
   return (
-    <section className="mb-12 bg-bg-light">
+    <section className="mb-8 sm:mb-12 bg-bg-light">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h2 className="text-2xl font-bold text-text-heading mb-6 text-center">
           Why Trust TechBD
