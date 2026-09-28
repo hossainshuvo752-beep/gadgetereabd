@@ -57,7 +57,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
   return (
     <>
-      <div className="card-lift bg-text-on-dark border border-text-heading/10 rounded-lg overflow-hidden flex flex-col">
+      <div className="card-lift bg-text-on-dark border border-text-heading/10 rounded-lg overflow-hidden flex flex-col h-full">
         <div className="aspect-square bg-bg-dark-secondary/10 flex items-center justify-center relative overflow-hidden">
           {/* Mobile-only deal badges (desktop card is untouched) */}
           {hasDeal && (
@@ -93,7 +93,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <span className="inline-flex items-center self-start px-2.5 py-0.5 text-xs font-semibold bg-accent/10 text-accent-hover rounded-full mb-2">
             {product.category}
           </span>
-          <h3 className="text-base font-bold text-text-heading mb-2 line-clamp-2">
+          {/* Title area reserves EXACTLY 2 lines (2 × 24px line-height = h-12)
+              regardless of actual length, and line-clamp-2 hard-caps longer
+              titles at 2 lines with an ellipsis — so price/buttons below sit
+              at the same vertical position on every card in a grid row.
+              The empty space under 1-line titles is intentional. */}
+          <h3 className="text-base font-bold text-text-heading mb-2 line-clamp-2 h-12 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] overflow-hidden">
             <Link href={`${linkTo}/${slugify(product.title)}`} className="hover:text-accent transition-colors">
               {product.title}
             </Link>
