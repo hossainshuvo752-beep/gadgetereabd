@@ -84,8 +84,25 @@ body {
 /* Buttons show the pointer cursor, matching links (anchors). Browsers
    default <button> to the arrow while <a> gets a hand — which made
    "Add to Cart" (button) feel dead next to "Buy Now" (link). Explicit
-   .cursor-not-allowed on disabled buttons still wins (class > element). */
-button:not(:disabled) {
+   .cursor-not-allowed on disabled buttons still wins (class > element).
+
+   Enforced BY CONSTRUCTION for every clickable pattern, so future
+   components are covered without per-instance fixes:
+   - button:not(:disabled)         → every real button
+   - [role="button"]:not([aria-disabled="true"])
+                                   → accessible div/span clickables
+                                     (FAQ accordion rows etc.)
+   - input[type="button" i], input[type="submit" i], input[type="reset" i]
+                                   → native input buttons
+   - summary                       → native disclosure toggles
+   Anchors are natively pointer; disabled/aria-disabled elements keep the
+   not-allowed affordance where a class sets it (class beats element rule). */
+button:not(:disabled),
+[role="button"]:not([aria-disabled="true"]),
+input[type="button" i]:not(:disabled),
+input[type="submit" i]:not(:disabled),
+input[type="reset" i]:not(:disabled),
+summary {
   cursor: pointer;
 }
 
