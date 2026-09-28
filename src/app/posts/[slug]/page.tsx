@@ -114,7 +114,13 @@ export default async function PostsPage({ params }: Props) {
           <h1 className="mt-3 text-3xl font-bold text-text-heading">{post.title}</h1>
           <p className="mt-3 text-base md:text-lg text-text-body leading-relaxed">{post.excerpt}</p>
           <div className="mt-4">
-            <PostMeta author={post.author} date={post.date} readTime={post.readTime} className="text-sm" />
+            <PostMeta
+              author={post.author}
+              date={post.date}
+              readTime={post.readTime}
+              className="text-sm"
+              singleLine
+            />
           </div>
         </div>
 
