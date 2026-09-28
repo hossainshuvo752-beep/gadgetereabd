@@ -1069,3 +1069,20 @@ Verified: tsc clean, build green, live SSR probes — hero grid classes present,
   product detail (Pre-Order, Notify Me, gallery thumbs), contact (submit),
   faq (10 toggles) — all pointer; disabled = not-allowed. tsc clean, build
   green. Commit 07ec7d4.
+
+## Task Log — 2026-09-28: Quick Look listing cards → buttonless whole-card links
+
+- ProductCard gained showActions (default true). Quick Look listing passes
+  showActions={false}: card renders image + category + title + price only,
+  ROOT is one <Link> to /quick-look/<slug> (blog-card behavior). In this
+  variant the title is plain text (no link-in-link) and the price drops
+  mb so the reserved space sits inside the flex column (rows stay aligned).
+- Shop / Deals / New Arrivals unchanged (default variant keeps the button
+  row + per-surface deal presentation). Quick Look DETAIL page untouched
+  (buttons live in QuickLookDetail, below Additional Info).
+- LESSON: when a card's root becomes a link, inner links/buttons must be
+  removed (invalid HTML otherwise) — variant switch replaces the title's
+  inner Link with text and drops the button row wholesale.
+- Verified LIVE: quick-look 22/22 whole-card links + 0 buttons; shop 22/22,
+  deals 4/4, new-arrivals 12/12 with Add to Cart; detail page has Add to
+  Cart/Pre-Order/Notify Me. tsc clean, build green. Commit c90c948.
