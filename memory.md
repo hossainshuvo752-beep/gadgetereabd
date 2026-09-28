@@ -960,3 +960,22 @@ Verified: tsc clean, build green, live SSR probes — hero grid classes present,
 - **Bug:** Add to Cart showed the default arrow while Buy Now showed a hand. Root cause: Buy Now is a Next `<Link>` (`<a>`, hand by default) but Add to Cart is a real `<button>` — browsers default buttons to `cursor: auto` (arrow), NOT pointer. No shared button component exists; CTAs are inline across ProductCard / QuickLookDetail / newsletter forms.
 - **Fix:** one global rule in globals.css — `button:not(:disabled) { cursor: pointer; }` — covers every enabled button sitewide (cards, detail pages, forms, chips, accordions). Disabled buttons keep `cursor-not-allowed` via their explicit utility class (class > element selector), verified live: disabled "Coming Soon"/"Price TBD" buttons still report not-allowed.
 - Verified live: 22/22 Shop card Add-to-Cart buttons + Quick Look detail Add to Cart + Buy Now all report `pointer`. Commit fa0745a.
+
+## Task Log — 2026-09-28: Mobile header search pill + expandable search + Shop bottom-nav icon
+
+- **Header (src/components/Header.tsx):** mobile row now = logo → compact search
+  pill (flex-1) → circular profile icon → hamburger, one row no-wrap at 375/390/414
+  (verified overflow=0). Tapping the pill opens a full-width expanded search overlay
+  (fixed z-[80], above z-50 header, below z-[90] drawer): dark panel slides down
+  300ms, full-width input (autofocus via effect, persistent mount), live results
+  reusing shared posts/products logic + track('header_search'), X button + dimmed
+  backdrop = tap-anywhere-outside close, query cleared on close.
+- **BottomNav (src/components/MobileBottomNav.tsx):** Shop icon LayoutGrid →
+  lucide ShoppingBag (same icon set as the rest of the bar).
+- LESSON: probing hidden vs visible duplicates — aria-label="Search" exists on BOTH
+  the desktop icon and mobile pill; JS clicks must scope to the visible container.
+ LESSON: preview webview can serve stale frames even when DOM computed styles are
+  current; force repaint (window.scrollBy) before screenshot, or trust DOM checks.
+- Verified: tsc clean, build green; local 375/390/414 (open→type→results→close via
+  backdrop and X); live production DOM checks (expand/collapse, input width, bottom
+  nav icons). Commit 8cb8704.
