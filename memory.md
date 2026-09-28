@@ -997,3 +997,22 @@ Verified: tsc clean, build green, live SSR probes — hero grid classes present,
 - Verified: tsc clean, build green, 375px + 390px live (64/64/112 both), 768px
   trust→CTA still 80px (desktop intact). Live before/after screenshots captured
   from production with identical framing. Commit 6c1893a.
+
+## Task Log — 2026-09-28: Chip rows loaded 16px scrolled (scroll-snap vs padding)
+
+- BUG: on mobile, category/chip rows (Blog + Shop/Quick Look/Deals/New
+  Arrivals via shared ScrollHint) loaded with scrollLeft=16 — first pill sat
+  16px LEFT of the card grid until the user scrolled.
+- ROOT CAUSE: not padding mismatch — the `-mx-4 px-4` full-bleed pattern was
+  correct. The snap-x snap-proximity + [&>*]:snap-start added in the visual
+  refresh made Chrome's INITIAL snap align the first chip to the snapport
+  edge, which ignores the row's own padding-left unless scroll-padding
+  mirrors it. Initial snap therefore scrolled the row right by exactly px-4.
+- FIX: one class `scroll-pl-4` on the shared ScrollHint row (scroll-position
+  0 becomes the first chip's snap point). All 5 pages fixed at once; Row 2
+  sub-category rows too (same component).
+- LESSON: scroll-snap + container padding requires scroll-padding-* to match;
+  browsers otherwise re-snap on load and eat the padding as scroll offset.
+- Verified: tsc clean, build green; local + LIVE at 375/390/414: all 5 pages
+  scrollLeft=0, pillX=16=cardX (also Row 2 on Shop). Live screenshots: Shop +
+  Blog. Commit 2a19d32.
