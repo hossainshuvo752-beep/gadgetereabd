@@ -1086,3 +1086,9 @@ Verified: tsc clean, build green, live SSR probes — hero grid classes present,
 - Verified LIVE: quick-look 22/22 whole-card links + 0 buttons; shop 22/22,
   deals 4/4, new-arrivals 12/12 with Add to Cart; detail page has Add to
   Cart/Pre-Order/Notify Me. tsc clean, build green. Commit c90c948.
+
+## Task Log — 2026-10-05 — Blog category fixes: Review/Guide tabs now non-empty
+
+- 4 posts' `category` corrected in `src/lib/posts.ts` (content-type mismatch left the Review + Guide /blog tabs at zero posts): dyson-camerajet-toothbrush-worth-it News→Review, best-faucet-extender-hibbent-1080 Roundup→Review, overhead-camera-mount-jinraiko-review Roundup→Review, best-laptop-under-50000-in-bangladesh Roundup→Guide. All other posts untouched.
+- Final distribution: News ×1 (iphone-duo), Explainer ×2 (ios-27, windows-vs-mac), Review ×3 (dyson-camerajet, hibbent, jinraiko), Guide ×1 (best-laptop-under-50000), Roundup ×2 (bladeless-tower-fan, programming-students). Schema/FAQs/images unaffected (category is display + filter only).
+- Stale comment in blog/page.tsx updated (it said "Review has no posts yet"). tsc --noEmit clean (exit 0); dev server booted Ready with zero errors — user verifies /blog tabs in the browser themselves (Review 3, Guide 1, Roundup 2 expected).

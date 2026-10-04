@@ -20,8 +20,8 @@ const Blog: React.FC = () => {
     .sort((a, b) => b.views - a.views);
 
   // Fixed site taxonomy — the chips must always show exactly these six.
-  // ('Review' has no posts yet; its grid shows the friendly empty state
-  // instead of the chip disappearing, as happened with the old derived list.)
+  // (Empty categories keep their chip + a friendly empty-state grid instead
+  // of the chip disappearing, as happened with the old derived list.)
   const filterOptions = ['All', 'Review', 'Guide', 'News', 'Explainer', 'Roundup'];
 
   return (

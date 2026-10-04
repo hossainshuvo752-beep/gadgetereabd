@@ -217,7 +217,7 @@ export const posts: Post[] = [
       'dyson camerajet, dyson toothbrush, dyson camerajet price, camera toothbrush, dyson camerajet review, gap optical targeting, dyson toothbrush bangladesh',
     excerpt:
       'A 1mm camera, an AI that spots what your bristles missed, and a water jet that flosses for you. Dyson\'s $499 CameraJet is the strangest launch of the year — here\'s what it actually does and who should buy it.',
-    category: 'News',
+    category: 'Review',
     author: 'TechBD Team',
     date: 'Sep 27, 2026',
     readTime: '5 min read',
@@ -346,7 +346,7 @@ export const posts: Post[] = [
       'hibbent 1080 faucet extender, faucet extender review, best faucet aerator 2026, swivel faucet extender, kitchen sink faucet attachment, hibbent bangladesh',
     excerpt:
       'A three-joint metal arm that rotates a full 1080° and bends to aim water anywhere in your sink — the Hibbent 1080° is the faucet extender worth buying in 2026. Here\'s the full review.',
-    category: 'Roundup',
+    category: 'Review',
     author: 'TechBD Team',
     date: 'Sep 27, 2026',
     readTime: '4 min read',
@@ -412,7 +412,7 @@ export const posts: Post[] = [
       'jinraiko camera mount, overhead camera mount review, camera arm for filming, overhead phone mount, content creator gear, top down camera stand bangladesh',
     excerpt:
       'A hydraulic floating arm that holds position all day, clamps to any desk, and costs under $50 — the JINRAIKO overhead mount reviewed for artists, streamers and top-down shooters.',
-    category: 'Roundup',
+    category: 'Review',
     author: 'TechBD Team',
     date: 'Sep 27, 2026',
     readTime: '5 min read',
@@ -558,7 +558,7 @@ export const posts: Post[] = [
       'best laptop under 50000, budget laptop bangladesh, HP 250 G9, Lenovo IdeaPad Slim 3, Dell Vostro 15 3510, ASUS VivoBook 15, Acer Aspire 3, student laptop bd',
     excerpt:
       'Looking for a reliable laptop without breaking the bank? Here are the top 5 laptops under ৳50,000 in Bangladesh for students, professionals, and everyday users in 2026.',
-    category: 'Roundup',
+    category: 'Guide',
     author: 'TechBD Team',
     date: 'Sep 27, 2026',
     readTime: '6 min read',
