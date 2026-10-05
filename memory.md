@@ -1092,3 +1092,40 @@ Verified: tsc clean, build green, live SSR probes — hero grid classes present,
 - 4 posts' `category` corrected in `src/lib/posts.ts` (content-type mismatch left the Review + Guide /blog tabs at zero posts): dyson-camerajet-toothbrush-worth-it News→Review, best-faucet-extender-hibbent-1080 Roundup→Review, overhead-camera-mount-jinraiko-review Roundup→Review, best-laptop-under-50000-in-bangladesh Roundup→Guide. All other posts untouched.
 - Final distribution: News ×1 (iphone-duo), Explainer ×2 (ios-27, windows-vs-mac), Review ×3 (dyson-camerajet, hibbent, jinraiko), Guide ×1 (best-laptop-under-50000), Roundup ×2 (bladeless-tower-fan, programming-students). Schema/FAQs/images unaffected (category is display + filter only).
 - Stale comment in blog/page.tsx updated (it said "Review has no posts yet"). tsc --noEmit clean (exit 0); dev server booted Ready with zero errors — user verifies /blog tabs in the browser themselves (Review 3, Guide 1, Roundup 2 expected).
+
+## Task Log — 2026-10-05 — Rebrand TechBD → Jupiter BD + per-product SEO for all 44 product pages
+
+- SITE-WIDE REBRAND to "Jupiter BD" (moved to jupiter.bd domain). New single
+  source of truth `src/lib/brand.ts` (BRAND_NAME, BRAND_AUTHOR) drives root
+  title template "%s | Jupiter BD", default title, OG siteName, JSON-LD
+  Organization/WebSite/Article-publisher names, header/desktop+mobile logo,
+  footer brand + copyright, WhyTrustUs, Testimonials, HomeFAQ, About,
+  Account, legal pages (terms/privacy), category/blog/search layouts,
+  AuthorBio/PostMeta defaults, and all 9 posts' author in posts.ts.
+- Order numbers rebranded TechBD-XXXXXXX → JupiterBD-XXXXXXX
+  (orderNumber.ts — customer-visible on confirmations/admin). Kept internal:
+  `techbd_*` storage keys (cart/session/newsletter — renaming orphans real
+  user data), CSV export filename prefixes, package name. Supabase SQL doc
+  comments updated to Jupiter BD.
+- PART 2+3 (product SEO): new shared builder `src/lib/productSeo.ts` —
+  22 per-product spec phrases; Quick Look template "{Product} Price in
+  Bangladesh — Specs & Review | Jupiter BD" + Shop template "{Product} —
+  Buy Online in Bangladesh | Jupiter BD". Descriptions generated from real
+  catalog flags: deal → "Now ৳X (was ৳Y)…" / estimated → "estimated price…
+  Coming soon." / upcoming → "Pre-order… Reserve yours before stock runs
+  out." / regular → "Price: ৳X. In stock, fast delivery." Both [slug] pages
+  now call the shared builders (canonical + OG kept). Fixed 3 copy entries
+  that double-printed "specifications" (infinix/ugreen/lenovo QL phrases).
+- VERIFIED: rg TechBD across src/+supabase+config = ZERO matches (only
+  lowercase techbd_* internal keys remain, intentionally). All 44 titles +
+  descriptions unique (sort|uniq -d = 0 dupes). JSON-LD: Product brand =
+  manufacturer (Apple/Samsung — correct; site brand lives in the schema
+  description + Organization/WebSite). Metadata stays <head>-only, no
+  visible text leak (browser-checked). tsc --noEmit clean ×3 runs, next
+  build green ×3. LOCAL + LIVE (Vercel, after 115s): homepage header/footer/
+  tab title = Jupiter BD, zero TechBD in rendered text; sample QL + shop
+  titles match the brief verbatim (HONOR estimated/pre-order, iPhone
+  209,900, PS5 deal, Lenovo coming-soon). Commit fe01702, pushed, live.
+- GOTCHA: write_file tool echoed corrupted content for the new productSeo.ts
+  (mixed fragments + tsc syntax errors) — ALWAYS verify freshly written files
+  on disk (wc + tsc) before building on them; rewrote cleanly.
