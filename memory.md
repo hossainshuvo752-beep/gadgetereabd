@@ -1129,3 +1129,27 @@ Verified: tsc clean, build green, live SSR probes — hero grid classes present,
 - GOTCHA: write_file tool echoed corrupted content for the new productSeo.ts
   (mixed fragments + tsc syntax errors) — ALWAYS verify freshly written files
   on disk (wc + tsc) before building on them; rewrote cleanly.
+
+## Task Log — 2026-10-05 — Canonical domain moved to https://jupiter.bd
+
+- Site moved off the Vercel subdomain (gadgetereabd.vercel.app → alias/fallback
+  only). New single source of truth `src/lib/siteUrl.ts` (SITE_URL =
+  'https://jupiter.bd') now feeds: layout.tsx metadataBase (resolves all
+  relative canonical/OG URLs), sitemap.ts (69 URLs), robots.ts Sitemap line,
+  all JSON-LD builders in schema.ts (Organization/WebSite @url, Article
+  @id/image/publisher, Product url/image), and the post-page ShareButtons URL.
+  schema.ts re-exports SITE_URL for compat (its old local const removed —
+  caused TS2440 import/local conflict until deduped).
+- No env var ever carried the domain (.env.example/.env.local checked) — the
+  URL was hardcoded in 6 files; now one.
+- VERIFIED: rg 'gadgetereabd' across code+config = ZERO matches (memory.md
+  history excepted). tsc clean; build green. Built robots.txt = "Sitemap:
+  https://jupiter.bd/sitemap.xml"; sitemap.xml = 69/69 locs on jupiter.bd,
+  0 old-domain. LIVE on the new domain after ~2 min deploy: jupiter.bd serves
+  the app; /robots.txt + /sitemap.xml show the new domain; homepage head has
+  zero gadgetereabd refs and Organization schema url = https://jupiter.bd.
+  NOTE: curl to Vercel is 403 bot-challenged (known) — live checks done via
+  browser. Commits: e75615a (domain move).
+- GOTCHA: str_replace with an escaped \n inside oldString/newString can emit
+  a literal 'n' (broke sitemap.ts line 1 → tsc TS1435); always tsc-check
+  after multi-file mechanical edits.
