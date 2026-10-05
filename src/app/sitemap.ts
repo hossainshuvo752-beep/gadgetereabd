@@ -1,17 +1,16 @@
 import type { MetadataRoute } from 'next';
 import { posts, postHref } from '@/lib/posts';
 import { products, slugify } from '@/lib/products';
+import { SITE_URL } from '@/lib/siteUrl';
 
 /**
- * Sitemap for gadgetereabd.vercel.app.
+ * Sitemap for jupiter.bd (canonical domain).
  *
  * Includes every content page (static + generated from the shared data
  * sources) so search engines can discover posts and products without
  * crawling. Transactional/utility routes (cart, checkout, login, etc.)
  * are deliberately excluded from the sitemap and disallowed in robots.ts.
  */
-
-const SITE_URL = 'https://gadgetereabd.vercel.app';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [

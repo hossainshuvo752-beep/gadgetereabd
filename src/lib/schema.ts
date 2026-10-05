@@ -2,6 +2,12 @@ import type { Post } from './posts';
 import { slugify, type Product } from './products';
 import { postHref } from './posts';
 import { BRAND_NAME } from './brand';
+import { SITE_URL } from './siteUrl';
+
+// Canonical origin lives in lib/siteUrl.ts (single source of truth).
+// Re-exported here so existing/legacy imports of SITE_URL from schema
+// keep working.
+export { SITE_URL };
 
 /**
  * JSON-LD structured data builders (AEO — Answer Engine Optimization).
@@ -15,8 +21,6 @@ import { BRAND_NAME } from './brand';
  *   offers so answer engines never quote an unconfirmed price.
  * - ISO 8601 dates only.
  */
-
-export const SITE_URL = 'https://gadgetereabd.vercel.app';
 
 /** Organization — site-wide identity. Minimal by design: only verifiable
  *  fields (no fabricated logo URL, social profiles, or address). */

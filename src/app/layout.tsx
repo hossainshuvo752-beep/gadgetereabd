@@ -8,6 +8,7 @@ import AnalyticsBootstrap from "@/components/AnalyticsBootstrap";
 import { CartProvider } from "@/context/CartContext";
 import { AuthProvider } from "@/context/AuthContext";
 import { BRAND_NAME } from "@/lib/brand";
+import { SITE_URL } from "@/lib/siteUrl";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -17,7 +18,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   // Absolute base so Next can resolve canonical + OG URLs (silences the
   // metadataBase warning and makes sitemap/OG URLs correct).
-  metadataBase: new URL("https://gadgetereabd.vercel.app"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: `${BRAND_NAME} — Bangladesh's Trusted Guide to Gadgets, Reviews & Buying Guides`,
     template: `%s | ${BRAND_NAME}`,

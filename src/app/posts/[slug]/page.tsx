@@ -13,6 +13,7 @@ import PostMeta from '@/components/PostMeta';
 import { CATEGORY_BADGE_COLORS } from '@/components/ArticleCard';
 import JsonLd from '@/components/JsonLd';
 import { articleSchema, faqSchema, mentionsSchema } from '@/lib/schema';
+import { SITE_URL } from '@/lib/siteUrl';
 
 /**
  * Blog article detail page (/posts/[slug]). Imports the single shared posts
@@ -158,7 +159,7 @@ export default async function PostsPage({ params }: Props) {
 
         {/* Share row (client) — canonical URL composed server-side. */}
         <ShareButtons
-          url={`https://gadgetereabd.vercel.app${postHref(post)}`}
+          url={`${SITE_URL}${postHref(post)}`}
           title={post.title}
         />
 
