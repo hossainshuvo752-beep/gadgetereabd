@@ -203,6 +203,19 @@ summary {
   transform-origin: left; /* enter wipes in from the left */
 }
 
+/* Active-page indicator: the header link for the route you are on keeps
+   its underline visible, in brand accent orange (same token as Buy Now
+   CTAs) instead of the hover red. NavLink sets data-active/aria-current
+   from usePathname — exact match for "/", prefix match for section
+   children (/shop and /shop/[slug] both light up "Shop"); unmatched
+   routes (404, /account, ...) light up nothing. Scoped to header so the
+   footer's hover-only underlines keep their current behavior. */
+header .nav-underline[data-active="true"]::after {
+  transform: scaleX(1);
+  transform-origin: left;
+  background: var(--color-accent);
+}
+
 /* Hero banner image: soft corner + tasteful hover growth (scale, not
    layout-affecting). Hover chosen over a constant float loop — motion on
    the page's largest element is tiring; hover reads as intentional. */
@@ -270,6 +283,13 @@ summary {
   .hero-img:hover,
   .nav-underline:hover::after,
   .nav-underline:focus-visible::after,
+  .chip-underline:hover::after,
+  .chip-underline:focus-visible::after {
+    /* :not([data-active]) keeps the persistent active-page underline
+       visible even while hovering under reduced motion. */
+  }
+  .nav-underline:not([data-active="true"]):hover::after,
+  .nav-underline:not([data-active="true"]):focus-visible::after,
   .chip-underline:hover::after,
   .chip-underline:focus-visible::after {
     transform: none !important;

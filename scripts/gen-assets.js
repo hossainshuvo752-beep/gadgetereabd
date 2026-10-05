@@ -1,10 +1,12 @@
 /**
- * One-shot brand asset generator.
- * Source art: D:/website bd/elements/{logo.png, falcon icon.png} (4000x4000 RGBA)
- * Outputs:    public/logo/logo.png (trimmed wordmark, 128px tall),
- *             src/app/icon.png (256), src/app/apple-icon.png (180),
- *             src/app/favicon.ico (16/32/48 PNG-in-ICO)
- * Run: node scripts/gen-assets.js
+ * Brand asset generator — the header wordmark.
+ * Source art: D:/website bd/elements/logo.png (4000x4000 RGBA)
+ * Output:     public/logo/logo.png (trimmed wordmark, 128px tall)
+ *
+ * NOTE: the favicon/apple-icon set has its own generator,
+ * scripts/gen-favicons.js, because the falcon source needs its opaque
+ * near-black plate keyed out before cropping (plain .trim() cannot).
+ * Run: node scripts/gen-assets.js && node scripts/gen-favicons.js
  */
 const sharp = require('sharp');
 const fs = require('fs');
@@ -17,6 +19,8 @@ const FALCON_SRC = 'D:/website bd/elements/falcon icon.png';
 // its fixed pipeline, so a separate .extend() pads the ALREADY-resized
 // image and yields oversized output (that bug once put a 148x48 PNG inside
 // a 48x48 ICO entry and broke the Turbopack build).
+// (Kept for reference; icon generation now lives in scripts/gen-favicons.js,
+// which additionally keys out the falcon source's opaque plate.)
 async function trimmedSquare(src, size) {
   const t = await sharp(src).trim().toBuffer();
   return sharp(t)
@@ -65,11 +69,5 @@ async function buildIco(falconSrc, out) {
     .png({ compressionLevel: 9 })
     .toFile('public/logo/logo.png');
   console.log(`public/logo/logo.png ${Math.round((128 * lm.width) / lm.height)}x128 ${(fs.statSync('public/logo/logo.png').size / 1024).toFixed(1)}KB`);
-
-  await fs.promises.writeFile('src/app/icon.png', await trimmedSquare(FALCON_SRC, 256));
-  await fs.promises.writeFile('src/app/apple-icon.png', await trimmedSquare(FALCON_SRC, 180));
-  await buildIco(FALCON_SRC, 'src/app/favicon.ico');
-  for (const f of ['src/app/icon.png', 'src/app/apple-icon.png', 'src/app/favicon.ico']) {
-    console.log(`${f} ${(fs.statSync(f).size / 1024).toFixed(1)}KB`);
-  }
+  console.log('favicons: run node scripts/gen-favicons.js');
 })().catch((e) => { console.error(e); process.exit(1); });
