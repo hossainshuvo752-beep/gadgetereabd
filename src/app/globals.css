@@ -57,9 +57,13 @@
     "Segoe UI", Roboto, Arial, sans-serif;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+/* NOTE: no `html { scroll-behavior: smooth }` here ON PURPOSE. Next.js
+   resets the scroll position to the top on every route change; making that
+   jump CSS-animated means the animation gets interrupted by late hydration
+   layout shifts (fonts/images) and pages can land part-way down. Keeping
+   the reset instant guarantees every navigation lands exactly at scrollY 0
+   (the sticky header sits in normal flow at the top, so nothing is hidden
+   behind it). Hash-anchor navigation isn't used on this site. */
 
 /* Horizontal-overflow safety net: anything wider than the viewport gets
    clipped instead of widening the document (which made mobile browsers

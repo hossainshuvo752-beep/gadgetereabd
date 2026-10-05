@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Home, ShoppingBag, Tag, ShoppingCart } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
+import NavLink from '@/components/NavLink';
 
 /**
  * Mobile-only fixed bottom navigation bar (hidden at md+). Four items with
@@ -44,7 +45,7 @@ const MobileBottomNav: React.FC = () => {
             href === '/' ? pathname === '/' : pathname.startsWith(href);
 
           return (
-            <Link
+            <NavLink
               key={href}
               href={href}
               aria-current={active ? 'page' : undefined}
@@ -62,7 +63,7 @@ const MobileBottomNav: React.FC = () => {
                 )}
               </span>
               {label}
-            </Link>
+            </NavLink>
           );
         })}
       </div>

@@ -25,6 +25,7 @@ import {
   FaPinterest,
 } from 'react-icons/fa';
 import { posts, postHref } from '@/lib/posts';
+import NavLink from '@/components/NavLink';
 import { products, slugify } from '@/lib/products';
 import { track } from '@/lib/tracking';
 import { useCart } from '@/context/CartContext';
@@ -140,7 +141,10 @@ const Header: React.FC = () => {
           {/* Logo — jupiter wordmark (h-8 keeps the 64px-tall header row;
               width flows from the trimmed mark's 232:128 aspect). */}
           <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center" aria-label="Jupiter BD — home">
+            {/* NavLink (not Link): clicking the logo on the home page itself
+                forces a reload — <Link> no-ops on the current route. Cross-
+                route clicks navigate normally and land at the exact top. */}
+            <NavLink href="/" className="flex items-center" aria-label="Jupiter BD — home">
               <Image
                 src="/logo/logo.png"
                 alt="Jupiter BD"
@@ -149,7 +153,7 @@ const Header: React.FC = () => {
                 priority
                 className="h-8 w-auto md:h-9"
               />
-            </Link>
+            </NavLink>
           </div>
 
           {/* Desktop Navigation and Actions */}
@@ -157,13 +161,13 @@ const Header: React.FC = () => {
             {/* Navigation Links */}
             <nav className="flex space-x-5 text-sm">
               {NAV_LINKS.map((link) => (
-                <Link
+                <NavLink
                   key={link.href}
                   href={link.href}
                   className="nav-underline text-text-on-dark hover:text-accent transition-colors whitespace-nowrap"
                 >
                   {link.label}
-                </Link>
+                </NavLink>
               ))}
             </nav>
 
@@ -190,7 +194,7 @@ const Header: React.FC = () => {
               </div>
 
               {/* Account Icon — links to the placeholder /account page */}
-              <Link
+              <NavLink
                 href="/account"
                 aria-label="Account"
                 className="border border-text-on-dark/20 text-text-on-dark rounded-full w-10 h-10 flex items-center justify-center hover:bg-text-on-dark/10 transition-colors"
@@ -201,10 +205,10 @@ const Header: React.FC = () => {
                 {session && (
                 <span className="absolute top-1 right-1 w-2 h-2 bg-accent rounded-full" />
               )}
-              </Link>
+              </NavLink>
 
               {/* Cart Icon — links to the /cart page */}
-              <Link
+              <NavLink
                 href="/cart"
                 aria-label={`Cart${cartCount > 0 ? ` (${cartCount} items)` : ''}`}
                 className="relative border border-text-on-dark/20 text-text-on-dark rounded-full w-10 h-10 flex items-center justify-center hover:bg-text-on-dark/10 transition-colors"
@@ -218,7 +222,7 @@ const Header: React.FC = () => {
                     {cartCount > 99 ? '99+' : cartCount}
                   </span>
                 )}
-              </Link>
+              </NavLink>
             </div>
           </div>
 
@@ -239,7 +243,7 @@ const Header: React.FC = () => {
             </button>
 
             {/* Profile */}
-            <Link
+            <NavLink
               href="/account"
               aria-label="Account"
               className="shrink-0 w-9 h-9 rounded-full border border-text-on-dark/20 flex items-center justify-center text-text-on-dark hover:bg-text-on-dark/10 transition-colors"
@@ -247,7 +251,7 @@ const Header: React.FC = () => {
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
-            </Link>
+            </NavLink>
 
             {/* Hamburger */}
             <button
@@ -400,7 +404,7 @@ const Header: React.FC = () => {
         >
           {/* Panel header: brand + X close (top-right corner) */}
           <div className="flex items-center justify-between px-4 py-3 border-b border-text-on-dark/10">
-            <Link href="/" onClick={closeMenu} className="flex items-center" aria-label="Jupiter BD — home">
+            <NavLink href="/" onClick={closeMenu} className="flex items-center" aria-label="Jupiter BD — home">
               <Image
                 src="/logo/logo.png"
                 alt="Jupiter BD"
@@ -408,7 +412,7 @@ const Header: React.FC = () => {
                 height={64}
                 className="h-8 w-auto"
               />
-            </Link>
+            </NavLink>
             <button
               onClick={closeMenu}
               aria-label="Close menu"
@@ -485,7 +489,7 @@ const Header: React.FC = () => {
             </p>
             <nav className="space-y-1 mb-6">
               {MOBILE_MENU_ITEMS.map(({ href, label, icon: Icon }) => (
-                <Link
+                <NavLink
                   key={href}
                   href={href}
                   onClick={closeMenu}
@@ -493,7 +497,7 @@ const Header: React.FC = () => {
                 >
                   <Icon className="w-5 h-5 shrink-0" />
                   <span className="text-base font-medium">{label}</span>
-                </Link>
+                </NavLink>
               ))}
             </nav>
 
@@ -503,7 +507,7 @@ const Header: React.FC = () => {
             </p>
             <nav className="space-y-1">
               {MOBILE_COMPANY_ITEMS.map(({ href, label, icon: Icon }) => (
-                <Link
+                <NavLink
                   key={href}
                   href={href}
                   onClick={closeMenu}
@@ -511,7 +515,7 @@ const Header: React.FC = () => {
                 >
                   <Icon className="w-5 h-5 shrink-0" />
                   <span className="text-base font-medium">{label}</span>
-                </Link>
+                </NavLink>
               ))}
             </nav>
           </div>

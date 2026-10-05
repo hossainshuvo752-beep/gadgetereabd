@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { FaFacebookF, FaInstagram, FaWhatsapp, FaYoutube, FaPinterest } from 'react-icons/fa';
+import NavLink from '@/components/NavLink';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -47,9 +48,9 @@ const Footer: React.FC = () => {
           <div className="space-y-4">
             <h3 className="text-sm md:text-lg font-semibold text-text-on-dark">Shop</h3>
             <ul className="space-y-2 md:space-y-3 text-xs md:text-base text-text-on-dark/70">
-              <li><Link href="/new-arrivals" className="nav-underline hover:text-accent">New Arrivals</Link></li>
-              <li><Link href="/deals" className="nav-underline hover:text-accent">Deals</Link></li>
-              <li><Link href="/shop" className="nav-underline hover:text-accent">All Products</Link></li>
+              <li><NavLink href="/new-arrivals" className="nav-underline hover:text-accent">New Arrivals</NavLink></li>
+              <li><NavLink href="/deals" className="nav-underline hover:text-accent">Deals</NavLink></li>
+              <li><NavLink href="/shop" className="nav-underline hover:text-accent">All Products</NavLink></li>
             </ul>
           </div>
 
@@ -57,10 +58,10 @@ const Footer: React.FC = () => {
           <div className="space-y-4">
             <h3 className="text-sm md:text-lg font-semibold text-text-on-dark">Support</h3>
             <ul className="space-y-2 md:space-y-3 text-xs md:text-base text-text-on-dark/70">
-              <li><Link href="/blog" className="nav-underline hover:text-accent">Blog</Link></li>
-              <li><Link href="/about" className="nav-underline hover:text-accent">About Us</Link></li>
-              <li><Link href="/contact" className="nav-underline hover:text-accent">Contact</Link></li>
-              <li><Link href="/faq" className="nav-underline hover:text-accent">FAQ</Link></li>
+              <li><NavLink href="/blog" className="nav-underline hover:text-accent">Blog</NavLink></li>
+              <li><NavLink href="/about" className="nav-underline hover:text-accent">About Us</NavLink></li>
+              <li><NavLink href="/contact" className="nav-underline hover:text-accent">Contact</NavLink></li>
+              <li><NavLink href="/faq" className="nav-underline hover:text-accent">FAQ</NavLink></li>
             </ul>
           </div>
 
@@ -69,10 +70,10 @@ const Footer: React.FC = () => {
           <div className="space-y-4">
             <h3 className="text-sm md:text-lg font-semibold text-text-on-dark">Account</h3>
             <ul className="space-y-2 md:space-y-3 text-xs md:text-base text-text-on-dark/70">
-              <li><Link href="/account" className="nav-underline hover:text-accent">My Account</Link></li>
-              <li><Link href="/login" className="nav-underline hover:text-accent">Login</Link></li>
-              <li><Link href="/register" className="nav-underline hover:text-accent">Register</Link></li>
-              <li><Link href="/cart" className="nav-underline hover:text-accent">Cart</Link></li>
+              <li><NavLink href="/account" className="nav-underline hover:text-accent">My Account</NavLink></li>
+              <li><NavLink href="/login" className="nav-underline hover:text-accent">Login</NavLink></li>
+              <li><NavLink href="/register" className="nav-underline hover:text-accent">Register</NavLink></li>
+              <li><NavLink href="/cart" className="nav-underline hover:text-accent">Cart</NavLink></li>
             </ul>
           </div>
         </div>
