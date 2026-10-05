@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   X,
   Search,
@@ -136,10 +137,18 @@ const Header: React.FC = () => {
       {/* Header */}
       <header className="bg-bg-dark sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-          {/* Logo */}
+          {/* Logo — jupiter wordmark (h-8 keeps the 64px-tall header row;
+              width flows from the trimmed mark's 232:128 aspect). */}
           <div className="flex-shrink-0">
-            <Link href="/" className="text-xl font-bold text-text-on-dark">
-              Jupiter BD
+            <Link href="/" className="flex items-center" aria-label="Jupiter BD — home">
+              <Image
+                src="/logo/logo.png"
+                alt="Jupiter BD"
+                width={116}
+                height={64}
+                priority
+                className="h-8 w-auto md:h-9"
+              />
             </Link>
           </div>
 
@@ -391,8 +400,14 @@ const Header: React.FC = () => {
         >
           {/* Panel header: brand + X close (top-right corner) */}
           <div className="flex items-center justify-between px-4 py-3 border-b border-text-on-dark/10">
-            <Link href="/" onClick={closeMenu} className="text-xl font-bold text-text-on-dark">
-              Jupiter BD
+            <Link href="/" onClick={closeMenu} className="flex items-center" aria-label="Jupiter BD — home">
+              <Image
+                src="/logo/logo.png"
+                alt="Jupiter BD"
+                width={116}
+                height={64}
+                className="h-8 w-auto"
+              />
             </Link>
             <button
               onClick={closeMenu}
