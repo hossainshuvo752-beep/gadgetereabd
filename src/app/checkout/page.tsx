@@ -163,7 +163,7 @@ function CheckoutInner() {
 
       if (orderInsertError) {
         setOrderError(
-          'Could not place your order — please try again in a moment. If it keeps failing, contact us at hello@techbd.com.'
+          'Could not place your order — please try again in a moment. If it keeps failing, contact us at hossainshuvo752@gmail.com.'
         );
         setPlacing(false);
         return;

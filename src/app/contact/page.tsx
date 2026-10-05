@@ -203,13 +203,13 @@ export default function ContactPage() {
             <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-5">
               <h2 className="text-base font-semibold text-text-heading mb-2">Email us</h2>
               <a
-                href="mailto:hello@techbd.com"
+                href="mailto:hossainshuvo752@gmail.com"
                 className="text-accent hover:text-accent-hover font-medium"
               >
-                hello@techbd.com
+                hossainshuvo752@gmail.com
               </a>
               <p className="text-xs text-text-body mt-2">
-                Placeholder address — we&apos;ll swap in our real inbox once it&apos;s live.
+                Temporary address — we&apos;ll swap in our real inbox once it&apos;s live.
               </p>
             </div>
 

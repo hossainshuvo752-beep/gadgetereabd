@@ -83,7 +83,7 @@ const SECTIONS: LegalSection[] = [
     paragraphs: ['You can:'],
     bullets: [
       'Unsubscribe from our newsletter at any time using the link in any email.',
-      'Ask us to delete information you have sent us by contacting hello@techbd.com.',
+      'Ask us to delete information you have sent us by contacting hossainshuvo752@gmail.com.',
       'Clear stored session data in your browser at any time.',
     ],
   },
@@ -96,7 +96,7 @@ const SECTIONS: LegalSection[] = [
   {
     heading: '11. Contact',
     paragraphs: [
-      'Questions about this policy can be sent to hello@techbd.com (placeholder address) or through the contact page.',
+      'Questions about this policy can be sent to hossainshuvo752@gmail.com (temporary address) or through the contact page.',
     ],
   },
 ];

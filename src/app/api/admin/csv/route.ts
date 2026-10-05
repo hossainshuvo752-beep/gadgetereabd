@@ -51,7 +51,7 @@ export async function GET(request: Request) {
           csvDate(u.registeredAt),
         ])
       );
-      filename = `techbd-users-${today}.csv`;
+      filename = `jupiterbd-users-${today}.csv`;
     } else {
       csv = toCsv(
         ['Name', 'Email', 'Subject', 'Message', 'Received'],
@@ -63,7 +63,7 @@ export async function GET(request: Request) {
           csvDate(m.receivedAt),
         ])
       );
-      filename = `techbd-messages-${today}.csv`;
+      filename = `jupiterbd-messages-${today}.csv`;
     }
 
     return new NextResponse(csv, {

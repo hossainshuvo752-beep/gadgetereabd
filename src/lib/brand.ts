@@ -6,7 +6,7 @@
  * headers, footers, and legal copy — should read from here so a future
  * rename touches one file only.
  *
- * NOTE: internal identifiers (storage keys like `techbd_cart_v1`, CSV
+ * NOTE: internal identifiers (storage keys like `jupiterbd_cart_v1`, CSV
  * export filename prefixes, and the internal package name) are deliberately
  * NOT derived from this constant — renaming them would orphan existing
  * browser storage and break admin tooling for zero user-visible benefit.

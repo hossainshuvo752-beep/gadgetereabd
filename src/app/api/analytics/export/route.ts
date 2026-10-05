@@ -160,10 +160,10 @@ export async function GET(request: Request) {
       return send(
         JSON.stringify({ range, table: name, headers, rows }, null, 2),
         'json',
-        `techbd-${name}-${suffix}`
+        `jupiterbd-${name}-${suffix}`
       );
     }
-    return send(csv, format, `techbd-${name}-${suffix}`);
+    return send(csv, format, `jupiterbd-${name}-${suffix}`);
   } catch (e) {
     return NextResponse.json(
       { error: e instanceof Error ? e.message : 'export failed' },

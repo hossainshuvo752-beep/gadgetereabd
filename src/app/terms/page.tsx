@@ -98,7 +98,7 @@ const SECTIONS: LegalSection[] = [
   {
     heading: '13. Contact',
     paragraphs: [
-      'Questions about these terms can be sent to hello@techbd.com (placeholder address) or through the contact page.',
+      'Questions about these terms can be sent to hossainshuvo752@gmail.com (temporary address) or through the contact page.',
     ],
   },
 ];

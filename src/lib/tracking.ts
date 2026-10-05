@@ -2,7 +2,7 @@
  * Jupiter BD client analytics tracker (Cluster 2 of the analytics build).
  *
  * Ported from the reference admin-analytics export (tracking.ts) and adapted:
- *  - Storage keys renamed to techbd_*.
+ *  - Storage keys renamed to jupiterbd_*.
  *  - Funnel events use Jupiter BD's conversion vocabulary (see supabase/analytics-schema.sql).
  *  - LESSON #1 FIX BUILT IN: the reference lost page stats on SPA navigations
  *    because document.visibilitychange / pagehide never fired for client-side
@@ -19,10 +19,10 @@
  */
 
 const API = '/api/analytics/collect';
-const SESSION_KEY = 'techbd_sid';
-const SESSION_TS_KEY = 'techbd_sid_ts';
-const UID_KEY = 'techbd_uid';
-const SENT_EVENTS_KEY = 'techbd_sent';
+const SESSION_KEY = 'jupiterbd_sid';
+const SESSION_TS_KEY = 'jupiterbd_sid_ts';
+const UID_KEY = 'jupiterbd_uid';
+const SENT_EVENTS_KEY = 'jupiterbd_sent';
 const SENT_TTL_MS = 6 * 60 * 60 * 1000; // dedupe window: 6h
 
 const SESSION_TTL_MS = 30 * 60 * 1000; // 30 min of inactivity = new session

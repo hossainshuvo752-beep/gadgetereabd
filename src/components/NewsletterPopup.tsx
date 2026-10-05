@@ -9,7 +9,7 @@ import { track } from '@/lib/tracking';
 // result so this browser stops auto-showing the popup. The actual subscription
 // record lives in the newsletter_subscribers table; this flag never creates or
 // fakes one. Closing the popup (X / outside click) stores nothing.
-const SUBSCRIBED_KEY = 'techbd_newsletter_subscribed';
+const SUBSCRIBED_KEY = 'jupiterbd_newsletter_subscribed';
 const SHOW_DELAY_MS = 15000;
 
 const NewsletterPopup: React.FC = () => {

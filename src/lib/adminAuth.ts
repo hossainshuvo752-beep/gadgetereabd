@@ -11,7 +11,7 @@ import { cookies } from 'next/headers';
  * routes verify the cookie value with a timing-safe comparison. No client
  * code can read or forge any of this.
  */
-export const ADMIN_COOKIE = 'techbd_admin_session';
+export const ADMIN_COOKIE = 'jupiterbd_admin_session';
 
 /** Admin session lifetime. */
 const SESSION_TTL_SECONDS = Number(process.env.ADMIN_SESSION_TTL_HOURS ?? 8) * 60 * 60;

@@ -31,7 +31,7 @@ export type CartItem = {
   variant: string;
 };
 
-const STORAGE_KEY = 'techbd_cart_v1';
+const STORAGE_KEY = 'jupiterbd_cart_v1';
 
 type CartContextValue = {
   items: CartItem[];

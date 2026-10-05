@@ -54,7 +54,7 @@ const FAQS: FaqItem[] = [
   {
     question: 'How can I contact the Jupiter BD team?',
     answer:
-      'Use the contact page form or email hello@techbd.com (placeholder address for now). We read every message.',
+      'Use the contact page form or email hossainshuvo752@gmail.com (temporary address). We read every message.',
   },
 ];
 
