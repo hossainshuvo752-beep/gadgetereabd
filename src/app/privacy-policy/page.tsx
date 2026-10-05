@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: 'How TechBD handles your data, cookies, and privacy.',
+  description: 'How Jupiter BD handles your data, cookies, and privacy.',
 };
 
 /**
@@ -23,7 +23,7 @@ const SECTIONS: LegalSection[] = [
   {
     heading: '1. Introduction',
     paragraphs: [
-      'TechBD ("we", "our", "us") operates this website to provide gadget reviews, guides, and buying advice for readers in Bangladesh. This Privacy Policy explains what information we collect, how we use it, and the choices you have.',
+      'Jupiter BD ("we", "our", "us") operates this website to provide gadget reviews, guides, and buying advice for readers in Bangladesh. This Privacy Policy explains what information we collect, how we use it, and the choices you have.',
       'This is placeholder policy text intended as a starting template. It is not legal advice, and it will be replaced with a reviewed policy before any personal data is actively collected.',
     ],
   },

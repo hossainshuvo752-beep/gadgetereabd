@@ -13,7 +13,7 @@ export async function generateMetadata({
   const name = category.charAt(0).toUpperCase() + category.slice(1);
   return {
     title: `${name} Articles — Blog`,
-    description: `TechBD articles in the ${name} category — reviews, guides, news, and explainers for Bangladesh.`,
+    description: `Jupiter BD articles in the ${name} category — reviews, guides, news, and explainers for Bangladesh.`,
   };
 }
 

@@ -68,7 +68,7 @@ function SearchResults() {
         <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-12 text-center">
           <div className="text-4xl mb-4">🔍</div>
           <h2 className="text-xl font-bold text-text-heading mb-2">
-            Search TechBD
+            Search Jupiter BD
           </h2>
           <p className="text-text-body">
             Type a search term above — for example &ldquo;laptop&rdquo; or

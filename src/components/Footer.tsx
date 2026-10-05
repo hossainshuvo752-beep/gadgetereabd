@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
           {/* Brand — spans all 3 mobile columns; single cell at md/lg */}
           <div className="col-span-3 md:col-span-1 space-y-4">
             <Link href="/" className="mb-2 inline-block">
-              <span className="text-2xl font-bold text-text-on-dark">TechBD</span>
+              <span className="text-2xl font-bold text-text-on-dark">Jupiter BD</span>
             </Link>
             <p className="text-text-on-dark/70">
               Your honest guide to gadgets in Bangladesh.
@@ -87,7 +87,7 @@ const Footer: React.FC = () => {
             <span aria-hidden="true" className="text-text-on-dark/30">|</span>
             <Link href="/terms" className="nav-underline hover:text-accent">Terms &amp; Conditions</Link>
             <span aria-hidden="true" className="text-text-on-dark/30">|</span>
-            <span>© {currentYear} TechBD. All rights reserved.</span>
+            <span>© {currentYear} Jupiter BD. All rights reserved.</span>
           </div>
         </div>
       </div>

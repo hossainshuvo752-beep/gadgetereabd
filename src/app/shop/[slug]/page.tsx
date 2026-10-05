@@ -5,6 +5,10 @@ import QuickLookDetail from '@/components/QuickLookDetail';
 import NewsletterPopup from '@/components/NewsletterPopup';
 import JsonLd from '@/components/JsonLd';
 import { productSchema } from '@/lib/schema';
+import {
+  shopSeoTitle,
+  shopSeoDescription,
+} from '@/lib/productSeo';
 
 /**
  * Individual Shop product page: /shop/honor-robot-phone, /shop/samsung-galaxy-s26-ultra, …
@@ -27,30 +31,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const product = products.find((p) => slugify(p.title) === slug);
-  if (!product) return { title: 'Product not found | TechBD' };
+  if (!product) return { title: 'Product not found | Jupiter BD' };
 
-  // Buying-intent metadata, generated from real product data only.
-  const { specSheet: spec, price } = product;
-  const title = `${product.title} — Buy Online in Bangladesh | TechBD`;
-
-  const pricePart =
-    price !== null && !product.priceEstimated
-      ? `Price: ৳${price.toLocaleString()}.`
-      : product.priceEstimated && price !== null
-        ? `Estimated price: ৳${price.toLocaleString()} (official BD price not confirmed yet).`
-        : 'Price coming soon.';
-  const availability =
-    product.status === 'upcoming'
-      ? 'Not officially released in Bangladesh yet — pre-order open.'
-      : product.priceEstimated
-        ? 'Availability in Bangladesh: unconfirmed.'
-        : 'Available now in Bangladesh.';
-  const description = [
-    `Buy ${product.title} in Bangladesh.`,
-    `${spec.display.size} ${spec.display.type} display, ${spec.performance.processor}, ${spec.performance.ram} RAM.`,
-    pricePart,
-    availability,
-  ].join(' ');
+  // Buying-intent metadata, generated from real product data only
+  // (shared builder in lib/productSeo.ts — same copy basis as the Quick
+  // Look route; hand-tuned per-product description phrases included).
+  const title = shopSeoTitle(product);
+  const description = shopSeoDescription(product);
 
   return {
     title,

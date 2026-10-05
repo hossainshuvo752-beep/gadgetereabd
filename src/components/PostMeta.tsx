@@ -27,7 +27,7 @@ type PostMetaProps = {
  * any card width; sizes are token-based (site color rule) and tweakable via
  * `className` per surface.
  */export default function PostMeta({
-  author = 'TechBD Team',
+  author = 'Jupiter BD Team',
   date,
   readTime,
   className = 'text-[11px] md:text-xs',

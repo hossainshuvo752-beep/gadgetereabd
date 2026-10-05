@@ -13,7 +13,7 @@ type Testimonial = {
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    quote: "TechBD's reviews are thorough and unbiased. I bought a laptop based on their recommendation and it's been perfect for my studies.",
+    quote: "Jupiter BD's reviews are thorough and unbiased. I bought a laptop based on their recommendation and it's been perfect for my studies.",
     rating: 5,
     reviewerName: "Rafiul Islam",
     reviewerLocation: "Dhaka",
@@ -29,7 +29,7 @@ const testimonials: Testimonial[] = [
   },
   {
     id: 3,
-    quote: "I trust TechBD for honest opinions. Their team is knowledgeable and always ready to help.",
+    quote: "I trust Jupiter BD for honest opinions. Their team is knowledgeable and always ready to help.",
     rating: 5,
     reviewerName: "Shakib Hasan",
     reviewerLocation: "Sylhet",

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /*
-  ── TechBD COLOR SYSTEM ────────────────────────────────────────────────
+  ── Jupiter BD COLOR SYSTEM ────────────────────────────────────────────────
   Single source of truth for ALL colors on the site. Tailwind 4 generates
   utilities from these tokens (bg-*, text-*, border-*, ring-*) AND emits
   them as CSS custom properties on :root, e.g.:

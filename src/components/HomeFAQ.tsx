@@ -8,7 +8,7 @@ const HomeFAQ: React.FC = () => {
   const faqs = [
     {
       id: 1,
-      question: 'What kind of products does TechBD review?',
+      question: 'What kind of products does Jupiter BD review?',
       answer: 'We review a wide range of consumer electronics including smartphones, laptops, audio devices, gaming accessories, and smart home gadgets available in Bangladesh.',
     },
     {
@@ -18,8 +18,8 @@ const HomeFAQ: React.FC = () => {
     },
     {
       id: 3,
-      question: 'Can I buy products directly from TechBD?',
-      answer: 'TechBD is a review and information platform. We do not sell products directly, but we provide links to trusted retailers where you can purchase reviewed items.',
+      question: 'Can I buy products directly from Jupiter BD?',
+      answer: 'Jupiter BD is a review and information platform. We do not sell products directly, but we provide links to trusted retailers where you can purchase reviewed items.',
     },
     {
       id: 4,

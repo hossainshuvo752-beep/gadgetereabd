@@ -17,9 +17,9 @@ type FaqItem = {
 
 const FAQS: FaqItem[] = [
   {
-    question: 'What is TechBD?',
+    question: 'What is Jupiter BD?',
     answer:
-      'TechBD is Bangladesh\u2019s honest source for gadget reviews, guides, and buying advice — written for Bangladeshi readers, in both Bangla and English.',
+      'Jupiter BD is Bangladesh\u2019s honest source for gadget reviews, guides, and buying advice — written for Bangladeshi readers, in both Bangla and English.',
   },
   {
     question: 'Are your reviews sponsored or paid for?',
@@ -32,9 +32,9 @@ const FAQS: FaqItem[] = [
       'We only show prices we can stand behind. When official Bangladesh pricing is not confirmed yet, the product is marked "Coming Soon / Price Unavailable in Bangladesh" instead of guessing.',
   },
   {
-    question: 'Can I buy products directly from TechBD?',
+    question: 'Can I buy products directly from Jupiter BD?',
     answer:
-      'Not yet. TechBD is primarily a review and information platform. The shop, cart, and checkout on this site are early demos — no real orders are fulfilled and no payments are processed.',
+      'Not yet. Jupiter BD is primarily a review and information platform. The shop, cart, and checkout on this site are early demos — no real orders are fulfilled and no payments are processed.',
   },
   {
     question: 'Do you cover content in Bangla as well as English?',
@@ -52,7 +52,7 @@ const FAQS: FaqItem[] = [
       'A mix of what our community asks for and what is launching in the Bangladeshi market. Request a review through the contact page — community requests get priority.',
   },
   {
-    question: 'How can I contact the TechBD team?',
+    question: 'How can I contact the Jupiter BD team?',
     answer:
       'Use the contact page form or email hello@techbd.com (placeholder address for now). We read every message.',
   },
@@ -75,7 +75,7 @@ export default function FaqPage() {
           Frequently Asked Questions
         </h1>
         <p className="text-text-body mb-8">
-          Everything you might want to know about TechBD.
+          Everything you might want to know about Jupiter BD.
         </p>
 
         <div className="space-y-4">

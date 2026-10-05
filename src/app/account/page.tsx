@@ -17,7 +17,7 @@ import { useAuth } from '@/context/AuthContext';
 /**
  * My Account — centred card design.
  *
- * Signed OUT: generic person avatar, "Welcome to TechBD" heading, quick-link
+ * Signed OUT: generic person avatar, "Welcome to Jupiter BD" heading, quick-link
  * grid and Sign In / Create Account buttons.
  * Signed IN (auth is live via Supabase): the user's initials in the avatar,
  * their full name, email, optional phone line (small phone icon), member
@@ -79,7 +79,7 @@ export default function AccountPage() {
                 )}
               </div>
               <h1 className="text-2xl font-bold text-text-heading mb-1">
-                {session ? displayName ?? 'Welcome back' : 'Welcome to TechBD'}
+                {session ? displayName ?? 'Welcome back' : 'Welcome to Jupiter BD'}
               </h1>
               {session && email && (
                 <p className="text-text-body mb-1">{email}</p>

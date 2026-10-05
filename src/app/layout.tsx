@@ -7,6 +7,7 @@ import MobileBottomNav from "@/components/MobileBottomNav";
 import AnalyticsBootstrap from "@/components/AnalyticsBootstrap";
 import { CartProvider } from "@/context/CartContext";
 import { AuthProvider } from "@/context/AuthContext";
+import { BRAND_NAME } from "@/lib/brand";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -18,14 +19,14 @@ export const metadata: Metadata = {
   // metadataBase warning and makes sitemap/OG URLs correct).
   metadataBase: new URL("https://gadgetereabd.vercel.app"),
   title: {
-    default: "TechBD — Bangladesh's Trusted Guide to Gadgets, Reviews & Buying Guides",
-    template: "%s | TechBD",
+    default: `${BRAND_NAME} — Bangladesh's Trusted Guide to Gadgets, Reviews & Buying Guides`,
+    template: `%s | ${BRAND_NAME}`,
   },
   description:
     "Honest gadget reviews, buying guides, and tech news for Bangladesh. No sponsorships, no bias — just real reviews you can trust.",
   openGraph: {
     type: "website",
-    siteName: "TechBD",
+    siteName: BRAND_NAME,
     locale: "en_US",
   },
   twitter: {

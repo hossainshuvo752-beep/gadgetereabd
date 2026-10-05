@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Your Cart',
-  description: 'Review the items in your TechBD cart before checkout.',
+  description: 'Review the items in your Jupiter BD cart before checkout.',
 };
 
 export default function CartLayout({ children }: { children: React.ReactNode }) {

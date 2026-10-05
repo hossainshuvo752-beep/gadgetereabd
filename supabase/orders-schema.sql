@@ -1,5 +1,5 @@
 -- ============================================================================
--- TechBD Orders schema — run in the Supabase SQL Editor.
+-- Jupiter BD Orders schema — run in the Supabase SQL Editor.
 -- Stores real orders placed through /checkout (Buy Now + cart flows).
 -- Prices are whole taka (int) — matches the site's ৳ formatting.
 -- ============================================================================
@@ -7,7 +7,7 @@
 -- 1. Orders — one row per placed order
 create table if not exists public.orders (
   id uuid primary key default gen_random_uuid(),
-  order_number text not null unique,            -- display ID, e.g. TechBD-7K3M9Q2
+  order_number text not null unique,            -- display ID, e.g. Jupiter BD-7K3M9Q2
   user_id uuid references auth.users(id) on delete set null,  -- null = guest checkout
   contact_name text not null,
   contact_phone text not null,

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Search',
-  description: 'Search TechBD articles and products.',
+  description: 'Search Jupiter BD articles and products.',
   robots: { index: false },
 };
 

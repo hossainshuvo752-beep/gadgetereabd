@@ -2,7 +2,7 @@ import 'server-only';
 import { createAdminClient } from '@/lib/supabaseAdmin';
 
 /**
- * TechBD analytics aggregation engine (Cluster 3).
+ * Jupiter BD analytics aggregation engine (Cluster 3).
  *
  * Adapted from the reference build with its hard-won lessons applied:
  *  - LESSON #4 (double-counting on re-aggregation): every aggregate write is
@@ -12,7 +12,7 @@ import { createAdminClient } from '@/lib/supabaseAdmin';
  *  - REPORT_VERSION guards the payload shape: bump it when the report format
  *    changes so stale cached payloads can be detected and rebuilt.
  *
- * Funnel mapping (metricFor) matches TechBD's conversion vocabulary in
+ * Funnel mapping (metricFor) matches Jupiter BD's conversion vocabulary in
  * supabase/analytics-schema.sql exactly:
  *   product_views, add_to_cart, checkouts (checkout_view + begin_checkout +
  *   order_placed), newsletter_subscribes, newsletter_shown, contact_submits,

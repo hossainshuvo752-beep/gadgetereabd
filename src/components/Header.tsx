@@ -139,7 +139,7 @@ const Header: React.FC = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="text-xl font-bold text-text-on-dark">
-              TechBD
+              Jupiter BD
             </Link>
           </div>
 
@@ -392,7 +392,7 @@ const Header: React.FC = () => {
           {/* Panel header: brand + X close (top-right corner) */}
           <div className="flex items-center justify-between px-4 py-3 border-b border-text-on-dark/10">
             <Link href="/" onClick={closeMenu} className="text-xl font-bold text-text-on-dark">
-              TechBD
+              Jupiter BD
             </Link>
             <button
               onClick={closeMenu}

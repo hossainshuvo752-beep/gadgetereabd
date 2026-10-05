@@ -89,7 +89,7 @@ export default function RegisterPage() {
       <div className="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold text-text-heading mb-2">Register</h1>
         <p className="text-text-body mb-8">
-          Create a TechBD account to track orders and save your favourite
+          Create a Jupiter BD account to track orders and save your favourite
           gadgets.
         </p>
 

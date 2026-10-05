@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Order Confirmed',
-  description: 'Your TechBD order has been placed successfully.',
+  description: 'Your Jupiter BD order has been placed successfully.',
   robots: { index: false },
 };
 

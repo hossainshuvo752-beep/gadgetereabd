@@ -1,6 +1,7 @@
 import type { Post } from './posts';
 import { slugify, type Product } from './products';
 import { postHref } from './posts';
+import { BRAND_NAME } from './brand';
 
 /**
  * JSON-LD structured data builders (AEO — Answer Engine Optimization).
@@ -23,7 +24,7 @@ export function organizationSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'TechBD',
+    name: BRAND_NAME,
     url: SITE_URL,
     description:
       "Bangladesh's honest source for gadget reviews, buying guides, and tech news.",
@@ -36,7 +37,7 @@ export function websiteSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'TechBD',
+    name: BRAND_NAME,
     url: SITE_URL,
     potentialAction: {
       '@type': 'SearchAction',
@@ -79,7 +80,7 @@ export function articleSchema(post: Post) {
       : { datePublished: published.toISOString().slice(0, 10) }),
     ...(post.heroImage ? { image: `${SITE_URL}${post.heroImage}` } : {}),
     author: { '@type': 'Organization', name: post.author },
-    publisher: { '@type': 'Organization', name: 'TechBD', url: SITE_URL },
+    publisher: { '@type': 'Organization', name: BRAND_NAME, url: SITE_URL },
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': `${SITE_URL}${postHref(post)}`,
@@ -122,7 +123,7 @@ export function productSchema(product: Product) {
     brand: { '@type': 'Brand', name: spec.basicInfo.brand },
     category: product.topCategory,
     url: productUrl,
-    description: `${brandModel}: ${spec.display.size} ${spec.display.type}, ${spec.performance.processor}. Full specs and Bangladesh price on TechBD.`,
+    description: `${brandModel}: ${spec.display.size} ${spec.display.type}, ${spec.performance.processor}. Full specs and Bangladesh price on ${BRAND_NAME}.`,
     // Real hero photo (absolute URL) when the product has one.
     ...(product.heroImage ? { image: `${SITE_URL}${product.heroImage}` } : {}),
   };

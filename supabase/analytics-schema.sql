@@ -1,8 +1,8 @@
 -- ============================================================================
--- TechBD Analytics schema — adapted from the reference admin-analytics build.
+-- Jupiter BD Analytics schema — adapted from the reference admin-analytics build.
 -- Run in the Supabase SQL Editor. Idempotent-ish: guarded with IF NOT EXISTS.
 --
--- Funnel vocabulary adapted for TechBD (NOT the affiliate original):
+-- Funnel vocabulary adapted for Jupiter BD (NOT the affiliate original):
 --   conversions = add_to_cart, checkout_view/begin_checkout (checkout intent),
 --   newsletter_subscribe, contact_submit, register_success.
 -- All analytics tables are SERVICE-ROLE ONLY: RLS enabled with NO policies,
@@ -70,7 +70,7 @@ create table if not exists public.analytics_daily (
   page_views int default 0,
   bounces int default 0,
   session_seconds int default 0,
-  -- TechBD funnel counters (adapted from the affiliate original):
+  -- Jupiter BD funnel counters (adapted from the affiliate original):
   product_views int default 0,
   add_to_cart int default 0,
   checkouts int default 0,

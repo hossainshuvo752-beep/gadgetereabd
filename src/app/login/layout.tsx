@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Log In',
-  description: 'Log in to your TechBD account.',
+  description: 'Log in to your Jupiter BD account.',
 };
 
 export default function LoginLayout({ children }: { children: React.ReactNode }) {

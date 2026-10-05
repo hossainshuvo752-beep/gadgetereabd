@@ -75,7 +75,7 @@ export const posts: Post[] = [
     excerpt:
       'Apple\'s first foldable is real: the iPhone Duo opens a 7.6-inch inner display from a passport-sized body, powered by A20 Pro — starting at $1,999. Here are the confirmed specs, price, and release details.',
     category: 'News',
-    author: 'TechBD Team',
+    author: 'Jupiter BD Team',
     date: 'Sep 27, 2026',
     readTime: '6 min read',
     views: 9100,
@@ -152,7 +152,7 @@ export const posts: Post[] = [
     excerpt:
       'Apple\'s iOS 27 went public on September 14 — led by a generative-AI Siri rebuilt on Apple and Google Gemini models, and a Lock Screen wallpaper that extends itself to any screen. Here\'s what\'s new and whether your iPhone makes the cut.',
     category: 'Explainer',
-    author: 'TechBD Team',
+    author: 'Jupiter BD Team',
     date: 'Sep 27, 2026',
     readTime: '6 min read',
     views: 6800,
@@ -218,7 +218,7 @@ export const posts: Post[] = [
     excerpt:
       'A 1mm camera, an AI that spots what your bristles missed, and a water jet that flosses for you. Dyson\'s $499 CameraJet is the strangest launch of the year — here\'s what it actually does and who should buy it.',
     category: 'Review',
-    author: 'TechBD Team',
+    author: 'Jupiter BD Team',
     date: 'Sep 27, 2026',
     readTime: '5 min read',
     views: 4600,
@@ -273,7 +273,7 @@ export const posts: Post[] = [
     excerpt:
       'Three bladeless tower fans, three very different personalities. Real specs and prices on the Dreo Pilot Max S, Dreame MF10 and Dyson Cool AM07 — so you pick the right one for your room and budget.',
     category: 'Roundup',
-    author: 'TechBD Team',
+    author: 'Jupiter BD Team',
     date: 'Sep 27, 2026',
     readTime: '6 min read',
     views: 3400,
@@ -347,7 +347,7 @@ export const posts: Post[] = [
     excerpt:
       'A three-joint metal arm that rotates a full 1080° and bends to aim water anywhere in your sink — the Hibbent 1080° is the faucet extender worth buying in 2026. Here\'s the full review.',
     category: 'Review',
-    author: 'TechBD Team',
+    author: 'Jupiter BD Team',
     date: 'Sep 27, 2026',
     readTime: '4 min read',
     views: 2100,
@@ -413,7 +413,7 @@ export const posts: Post[] = [
     excerpt:
       'A hydraulic floating arm that holds position all day, clamps to any desk, and costs under $50 — the JINRAIKO overhead mount reviewed for artists, streamers and top-down shooters.',
     category: 'Review',
-    author: 'TechBD Team',
+    author: 'Jupiter BD Team',
     date: 'Sep 27, 2026',
     readTime: '5 min read',
     views: 1900,
@@ -476,7 +476,7 @@ export const posts: Post[] = [
     excerpt:
       "Confused between Windows and Mac for your next laptop? Here's a practical, no-nonsense breakdown of performance, software, price, and who each platform is really built for.",
     category: 'Explainer',
-    author: 'TechBD Team',
+    author: 'Jupiter BD Team',
     date: 'Sep 27, 2026',
     readTime: '5 min read',
     views: 500,
@@ -559,7 +559,7 @@ export const posts: Post[] = [
     excerpt:
       'Looking for a reliable laptop without breaking the bank? Here are the top 5 laptops under ৳50,000 in Bangladesh for students, professionals, and everyday users in 2026.',
     category: 'Guide',
-    author: 'TechBD Team',
+    author: 'Jupiter BD Team',
     date: 'Sep 27, 2026',
     readTime: '6 min read',
     views: 510,
@@ -652,7 +652,7 @@ export const posts: Post[] = [
     excerpt:
       'From budget-friendly picks to premium choices, here are the best laptops for programming students in 2026 — covering RAM, processor, and build quality for every coding workload.',
     category: 'Roundup',
-    author: 'TechBD Team',
+    author: 'Jupiter BD Team',
     date: 'Sep 27, 2026',
     readTime: '6 min read',
     views: 520,

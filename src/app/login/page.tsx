@@ -115,7 +115,7 @@ export default function LoginPage() {
         </form>
 
         <p className="text-sm text-text-body mt-6 text-center">
-          New to TechBD?{' '}
+          New to Jupiter BD?{' '}
           <Link href="/register" className="text-accent hover:text-accent-hover font-medium">
             Create an account
           </Link>

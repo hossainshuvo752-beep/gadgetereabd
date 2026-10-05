@@ -1,9 +1,9 @@
 /**
- * TechBD client analytics tracker (Cluster 2 of the analytics build).
+ * Jupiter BD client analytics tracker (Cluster 2 of the analytics build).
  *
  * Ported from the reference admin-analytics export (tracking.ts) and adapted:
  *  - Storage keys renamed to techbd_*.
- *  - Funnel events use TechBD's conversion vocabulary (see supabase/analytics-schema.sql).
+ *  - Funnel events use Jupiter BD's conversion vocabulary (see supabase/analytics-schema.sql).
  *  - LESSON #1 FIX BUILT IN: the reference lost page stats on SPA navigations
  *    because document.visibilitychange / pagehide never fired for client-side
  *    route changes, so `page_view` heartbeats (and time_on_page close-out)

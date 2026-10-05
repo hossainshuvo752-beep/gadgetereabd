@@ -15,7 +15,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'About Us — Who We Are & Why You Can Trust Us',
   description:
-    'TechBD is Bangladesh\u2019s honest source for gadget reviews, guides, and buying advice \u2014 hands-on testing, no paid bias, in Bangla and English.',
+    'Jupiter BD is Bangladesh\u2019s honest source for gadget reviews, guides, and buying advice \u2014 hands-on testing, no paid bias, in Bangla and English.',
 };
 
 export default function AboutPage() {
@@ -24,7 +24,7 @@ export default function AboutPage() {
       {/* Heading + tagline — own wrapper; container classes are byte-identical
           to the content wrapper below, so left edges align exactly */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
-        <h1 className="text-3xl font-bold text-text-heading mb-2">About TechBD</h1>
+        <h1 className="text-3xl font-bold text-text-heading mb-2">About Jupiter BD</h1>
         <p className="text-text-body mb-8">
           Bangladesh&apos;s honest source for gadget reviews, guides, and buying advice.
         </p>
@@ -41,7 +41,7 @@ export default function AboutPage() {
         <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-6 sm:p-8 mb-8">
           <h2 className="text-2xl font-bold text-text-heading mb-4">Our Story</h2>
           <p className="text-text-body leading-relaxed mb-4">
-            TechBD started because buying a laptop or phone in Bangladesh shouldn&apos;t feel like
+            Jupiter BD started because buying a laptop or phone in Bangladesh shouldn&apos;t feel like
             guesswork. Market prices shift from shop to shop, spec sheets get lost in translation,
             and sponsored posts drown out the honest voices. We&apos;re here to fix that — with
             reviews, guides, and buying advice written for Bangladeshi readers, not copied from

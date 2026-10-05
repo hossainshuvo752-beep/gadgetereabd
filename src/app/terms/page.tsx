@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Terms & Conditions',
-  description: 'The terms that govern your use of the TechBD website.',
+  description: 'The terms that govern your use of the Jupiter BD website.',
 };
 
 /**
@@ -23,14 +23,14 @@ const SECTIONS: LegalSection[] = [
   {
     heading: '1. Acceptance of Terms',
     paragraphs: [
-      'By accessing or using TechBD, you agree to these Terms & Conditions. If you do not agree, please do not use the site.',
+      'By accessing or using Jupiter BD, you agree to these Terms & Conditions. If you do not agree, please do not use the site.',
       'This is placeholder terms text intended as a starting template. It is not legal advice and will be replaced with a reviewed version before commercial features go live.',
     ],
   },
   {
-    heading: '2. About TechBD',
+    heading: '2. About Jupiter BD',
     paragraphs: [
-      'TechBD is an independent technology publication for readers in Bangladesh. We publish reviews, guides, news, and buying advice, focused first on PCs, laptops, and the Windows ecosystem.',
+      'Jupiter BD is an independent technology publication for readers in Bangladesh. We publish reviews, guides, news, and buying advice, focused first on PCs, laptops, and the Windows ecosystem.',
     ],
   },
   {
@@ -49,13 +49,13 @@ const SECTIONS: LegalSection[] = [
   {
     heading: '5. Purchases from Third-Party Retailers',
     paragraphs: [
-      'If we link to external retailers or marketplaces, any purchase you make is a transaction between you and that retailer, governed by their own terms, pricing, warranty, and return policies. TechBD is not a party to those transactions and is not responsible for them.',
+      'If we link to external retailers or marketplaces, any purchase you make is a transaction between you and that retailer, governed by their own terms, pricing, warranty, and return policies. Jupiter BD is not a party to those transactions and is not responsible for them.',
     ],
   },
   {
     heading: '6. Intellectual Property',
     paragraphs: [
-      'All original content on this site — reviews, articles, guides, graphics, and code — is owned by TechBD unless otherwise stated. You may share and quote our content with clear attribution and a link back. Republishing substantial portions of our content without permission is not allowed.',
+      'All original content on this site — reviews, articles, guides, graphics, and code — is owned by Jupiter BD unless otherwise stated. You may share and quote our content with clear attribution and a link back. Republishing substantial portions of our content without permission is not allowed.',
       'Product names, brands, and trademarks mentioned on this site belong to their respective owners.',
     ],
   },
@@ -80,7 +80,7 @@ const SECTIONS: LegalSection[] = [
   {
     heading: '10. Limitation of Liability',
     paragraphs: [
-      'To the maximum extent permitted by law, TechBD and its contributors will not be liable for any indirect, incidental, or consequential damages arising from your use of the site or reliance on its content, including purchasing decisions.',
+      'To the maximum extent permitted by law, Jupiter BD and its contributors will not be liable for any indirect, incidental, or consequential damages arising from your use of the site or reliance on its content, including purchasing decisions.',
     ],
   },
   {

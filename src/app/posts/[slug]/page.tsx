@@ -39,7 +39,7 @@ function findPost(slug: string): Post | undefined {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = findPost(slug);
-  if (!post) return { title: 'Post Not Found — TechBD' };
+  if (!post) return { title: 'Post Not Found — Jupiter BD' };
   const url = postHref(post);
   return {
     title: post.metaTitle,
@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: { canonical: url },
     openGraph: {
       type: 'article',
-      siteName: 'TechBD',
+      siteName: 'Jupiter BD',
       title: post.metaTitle,
       description: post.metaDescription,
       url,
