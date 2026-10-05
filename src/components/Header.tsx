@@ -138,9 +138,12 @@ const Header: React.FC = () => {
       {/* Header */}
       <header className="bg-bg-dark sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-          {/* Logo — jupiter wordmark (h-8 keeps the 64px-tall header row;
-              width flows from the trimmed mark's 232:128 aspect). */}
-          <div className="flex-shrink-0">
+          {/* Logo — jupiter wordmark. h-10/md:h-11 keeps it clearly the
+              visual anchor of the 64px header row (40px mobile / 44px
+              desktop, width flows from the trimmed mark's 232:128 aspect);
+              self-center pins it to the exact vertical middle so it always
+              lines up with the nav links, search and icons. */}
+          <div className="flex-shrink-0 self-center">
             {/* NavLink (not Link): clicking the logo on the home page itself
                 forces a reload — <Link> no-ops on the current route. Cross-
                 route clicks navigate normally and land at the exact top. */}
@@ -151,7 +154,7 @@ const Header: React.FC = () => {
                 width={116}
                 height={64}
                 priority
-                className="h-8 w-auto md:h-9"
+                className="h-10 w-auto md:h-11"
               />
             </NavLink>
           </div>
@@ -410,7 +413,7 @@ const Header: React.FC = () => {
                 alt="Jupiter BD"
                 width={116}
                 height={64}
-                className="h-8 w-auto"
+                className="h-10 w-auto"
               />
             </NavLink>
             <button
