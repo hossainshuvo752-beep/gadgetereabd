@@ -1167,3 +1167,11 @@ Verified: tsc clean, build green, live SSR probes — hero grid classes present,
 - Wired: Header desktop NAV_LINKS, BOTH header logos (desktop + mobile drawer), desktop + mobile Account/Cart icons, drawer MENU/COMPANY items; Footer Shop/Support/Account columns; MobileBottomNav 4 items. Kept plain Link: search-result links, socials (#), Login/Register drawer button.
 - Verified: tsc clean, BUILD_EXIT=0; local browser tests on 3491 — (a) scrolled /shop → /blog lands scrollY 0; (b) Shop-on-/shop full reload (JS marker gone) + top; (c) logo-on-home full reload + top, logo-on-/blog SPA → home top; (d) cross-route SPA marker SURVIVES (no gratuitous reloads).
 - Pushed origin/main = 867366a. Note: production behaves same as local build; tab-favicon-style browser caching can serve stale JS for a session — hard refresh if old behavior persists.
+
+## 2026-10-06 — Header logo enlarged + vertically centered (a5dc0fa)
+- User: logo too small and not vertically middle-aligned with nav/search/icons; logo priority over mobile search width.
+- Ground truth first: public/logo/logo.png ink bounds measured via sharp — perfectly trimmed (0px padding all sides), so misalignment was layout, not asset padding.
+- Change (Header.tsx only): desktop logo h-8/md:h-9 (32/36px) -> h-10/md:h-11 (40/44px); drawer logo h-8 -> h-10; logo column gets self-center for explicit middle alignment in the 64px flex row. Width flows from 232:128 aspect (~72px mobile / ~79px desktop).
+- Search pill NOT shrunk: flexible flex-1 min-w-0 pill self-absorbed the extra 15px (183 -> 169px wide) — no overflow at 390px, no clipping.
+- Measured (local + LIVE jupiter.bd): desktop logo/nav/search all cy=32 (44/20/42px tall); mobile logo/pill/icons all cy=32 (40/36px); scrollWidth == clientWidth (no overflow). Screenshots confirmed desktop + mobile.
+- Verified: tsc clean, BUILD_EXIT=0, server restarted on 3491 for new build, pushed origin/main = a5dc0fa.
