@@ -38,6 +38,9 @@ export type QuickLookGuide = {
   pros: { heading: string; pros: string[]; cons: string[] };
   /** H2 — buying tips for Bangladesh. */
   buyingTips: { heading: string; paragraphs: string[] };
+  /** Optional key-fact pairs rendered as a semantic <dl> in the price
+   *  section. Values must come from the product data (no invention). */
+  keyFacts?: { term: string; detail: string }[];
   faqs: { question: string; answer: string }[];
   /** "Keep exploring" internal-link cards. */
   links: QuickLookLink[];
@@ -60,6 +63,12 @@ const guides: Record<string, QuickLookGuide> = {
         'Variant differences matter: the phone is listed with 512GB and 1TB storage options, and launching variants are likely to price differently once official retail begins. Until HONOR Bangladesh announces pricing, treat ৳179,999 as a planning number, not a store quote — and expect the official price to differ once VAT and import duties are applied. Buy Now stays disabled for this phone for exactly that reason; the site never asks you to order against an unconfirmed price.',
       ],
     },
+    keyFacts: [
+      { term: 'Estimated price (12GB/512GB)', detail: '৳179,999' },
+      { term: 'Price basis', detail: 'China launch price ¥9,999 (~$1,480)' },
+      { term: 'Official Bangladesh price', detail: 'Not announced — grey-market quotes may vary' },
+      { term: 'Other storage option', detail: '1TB (pricing TBD until launch)' },
+    ],
     features: [
       {
         heading: 'Key features explained',
@@ -154,6 +163,11 @@ const guides: Record<string, QuickLookGuide> = {
       },
     ],
     links: [
+      {
+        label: 'HONOR Robot Phone — Shop page',
+        description: 'The full Shop listing for this phone',
+        href: '/shop/honor-robot-phone',
+      },
       {
         label: 'Samsung Galaxy S26 Ultra — Quick Look',
         description: 'Officially available 200MP flagship rival with S Pen',

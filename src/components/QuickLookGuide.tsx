@@ -54,6 +54,16 @@ export default function QuickLookGuideSection({ guide }: { guide: QuickLookGuide
             </p>
           ))}
         </div>
+        {guide.keyFacts && guide.keyFacts.length > 0 && (
+          <dl className="mt-6 bg-bg-light border border-text-heading/10 rounded-lg p-5 grid gap-x-8 gap-y-2 sm:grid-cols-2">
+            {guide.keyFacts.map((f) => (
+              <div key={f.term} className="contents sm:flex sm:flex-col">
+                <dt className="text-sm font-medium text-text-body">{f.term}</dt>
+                <dd className="text-sm font-semibold text-text-heading">{f.detail}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
       </div>
 
       {/* Key features — clean stacked feature blocks in a 2-up grid on md+ */}
