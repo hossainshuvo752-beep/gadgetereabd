@@ -4,11 +4,13 @@ import { slugify, products } from '@/lib/products';
 import QuickLookDetail from '@/components/QuickLookDetail';
 import NewsletterPopup from '@/components/NewsletterPopup';
 import JsonLd from '@/components/JsonLd';
-import { productSchema } from '@/lib/schema';
+import { productSchema, faqSchema } from '@/lib/schema';
 import {
   quickLookSeoTitle,
   quickLookSeoDescription,
 } from '@/lib/productSeo';
+import { getQuickLookContent } from '@/lib/quickLookContent';
+import QuickLookGuideSection from '@/components/QuickLookGuide';
 
 /**
  * Individual Quick Look detail page: /quick-look/honor-robot-phone,
@@ -69,12 +71,21 @@ export default async function QuickLookProductPage({
     );
   }
 
+  // Long-form guide exists for this slug only when written; products
+  // without an entry render nothing extra (no thin duplicate content).
+  const guide = getQuickLookContent(slugify(product.title));
+
   return (
     <>
       {/* Product schema — mirrors the visible spec sheet; offers only when
-          the price is confirmed (see lib/schema.ts). */}
+          the price is confirmed (see lib/schema.ts). FAQPage schema is
+          emitted from the SAME array the guide section renders, so the
+          marked-up text matches the visible text exactly (only for the
+          guide's own FAQ — the existing Product schema is untouched). */}
       <JsonLd data={productSchema(product)} />
+      {guide && <JsonLd data={faqSchema(guide.faqs)} />}
       <QuickLookDetail product={product} />
+      {guide && <QuickLookGuideSection guide={guide} />}
       <NewsletterPopup />
     </>
   );
