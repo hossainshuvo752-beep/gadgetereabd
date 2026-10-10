@@ -1769,6 +1769,722 @@ const guides: Record<string, QuickLookGuide> = {
       },
     ],
   },
+
+  'apple-ipad-air-11-m3': {
+    productName: 'Apple iPad Air 11 (M3)',
+    heading: 'Apple iPad Air 11 (M3) Price in Bangladesh: Full Guide',
+    lead:
+      'The Apple iPad Air 11 (M3) is the middle iPad — an 11-inch Liquid Retina screen with the M3 chip, 8GB of RAM, Apple Pencil Pro and Magic Keyboard support — officially priced from ৳89,999 in Bangladesh for the 128GB Wi-Fi model.',
+    overview: [
+      'The iPad Air 11 (M3) sits between the cheaper iPad and the Pro, and for most buyers it is the sensible pick: an 11-inch Liquid Retina display at 2360 x 1640, Apple\'s M3 chip (8-core CPU, 9-core GPU) with 8GB of RAM, 462g of aluminium, iPadOS 18 out of the box, and full support for Apple Pencil Pro and the Magic Keyboard. Storage runs from 128GB to 1TB, and it comes in Blue, Purple, Space Gray and Starlight.',
+      'This guide lays out all four storage prices, explains why the 60Hz panel and USB 2-speed port are the two compromises to weigh, covers what Apple Pencil Pro and Apple Intelligence actually add, and details what to check when buying an iPad in Bangladesh, including the roughly ৳20,000 gap between Wi-Fi and cellular models.',
+    ],
+    priceSection: {
+      heading: 'Apple iPad Air 11 (M3) price in Bangladesh',
+      paragraphs: [
+        'AppleGadgetsBD, an official Bangladesh reseller, lists the 128GB Wi-Fi model at ৳89,999, 256GB at ৳100,999 and the 1TB (M2) at ৳179,999. The 512GB tier currently has no live stock there, so our ৳119,999 figure for it is an estimate sitting between the 256GB and 1TB prices rather than a quoted price — confirm with the retailer before committing to that tier.',
+        'One more number changes the calculation: cellular variants cost approximately ৳20,000 more than the same capacity in Wi-Fi. Unless you genuinely need a data SIM in the tablet, that premium buys very little today — most buyers tether from a phone instead, and the saving is nearly an accessory\'s worth of money. The iPad Air also has no expandable storage, so the capacity you pick at purchase is the one you keep.',
+      ],
+    },
+    keyFacts: [
+      { term: 'Official price (128GB Wi-Fi)', detail: '৳89,999 at AppleGadgetsBD' },
+      { term: 'Storage prices', detail: '256GB ৳100,999 · 1TB ৳179,999 (M2)' },
+      { term: 'Cellular premium', detail: '~৳20,000 over Wi-Fi' },
+      { term: 'Chip and RAM', detail: 'Apple M3 with 8GB RAM' },
+    ],
+    features: [
+      {
+        heading: 'Key features explained',
+        title: 'The M3 chip closes the gap with the Pro',
+        body:
+          'An M3 with an 8-core CPU and 9-core GPU in an iPad Air is the reason this model matters: it handles photo and video editing, multitasking with Stage Manager, games and Apple Intelligence features without the Pro premium. The 8GB of RAM is what makes Apple\'s on-device AI — Writing Tools and Image Playground — work at all, since Apple Intelligence has memory requirements the base iPad cannot meet. For a tablet expected to last five or more years, that hardware headroom is the most future-proof part of the package.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Apple Pencil Pro and Magic Keyboard support',
+        body:
+          'The Air supports Apple Pencil Pro, which adds squeeze gestures, barrel roll and haptic feedback, and it works with the Magic Keyboard through the Smart Connector on the side. That combination is what turns the tablet into a note-taking and document machine rather than a media player — plus the 12MP Center Stage front camera keeps you framed during video calls. Neither accessory is included, so budget for the Pencil and keyboard separately if a stylus-and-keyboard setup is the plan.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Where Apple saved money: 60Hz and USB 2 speeds',
+        body:
+          'Two confirmed limitations define what this iPad is not. The 11-inch Liquid Retina IPS panel runs at 60Hz while 120Hz ProMotion panels exist one tier up, which affects how smooth scrolling and Pencil strokes feel. And the USB-C port is limited to USB 2 speeds, so transferring large video files is slow compared with the Pro. Both are listed limitations rather than surprises, and both are tolerable if this is your first iPad — they are the compromises that keep the price below the Pro.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'All-day battery and the practical build',
+        body:
+          'Apple rates the battery at up to 10 hours of web use from a 28.93Wh cell, charged over USB-C at 20W or higher. At 247.6 x 178.5 x 6.1mm and 462g in an aluminium unibody, the Air is light enough to hold one-handed for reading and small enough to slip into most bags. Connectivity covers Wi-Fi 6E, Bluetooth 5.3, an optional 5G cellular model, and Touch ID in the top button — though there is no headphone jack and no Face ID, both worth knowing before you buy.',
+      },
+    ],
+    buyers: {
+      heading: 'Who should buy the iPad Air 11 (M3) — and who should skip it',
+      should: [
+        'Students who write and annotate: Apple Pencil Pro plus the Magic Keyboard make notes and assignments genuinely practical.',
+        'Buyers who want the fastest non-Pro iPad: M3 silicon with 8GB RAM handles editing and Apple Intelligence features.',
+        'Existing iPhone owners: AirDrop, Handoff and shared Apple account settings make the pairing effortless.',
+        'Anyone replacing a light laptop for reading and writing: at 462g this is far easier to carry than any laptop in its price range.',
+      ],
+      skip: [
+        'ProMotion users coming from an iPad Pro: dropping to a 60Hz panel is visible the moment you scroll.',
+        'Video editors moving large footage: USB 2 speeds on the USB-C port make big transfers slow.',
+        'Face ID fans: the Air uses Touch ID in the top button, which is a real change in everyday use.',
+        'Desktop-replacement buyers: iPadOS with the Magic Keyboard still is not a laptop for heavy multi-app work.',
+      ],
+    },
+    pros: {
+      heading: 'Pros and cons of the Apple iPad Air 11 (M3)',
+      pros: [
+        'Apple M3 chip with 8GB RAM — the fastest non-Pro iPad configuration',
+        'Apple Pencil Pro and Magic Keyboard support via Smart Connector',
+        '11-inch laminated Liquid Retina display with an anti-reflective coating',
+        'Up to 10 hours of web use and 462g of aluminium body',
+        'Up to 1TB storage and Wi-Fi 6E connectivity',
+        'Apple Intelligence support (Writing Tools, Image Playground)',
+      ],
+      cons: [
+        '60Hz display in a class where 120Hz is common (listed limitation)',
+        'USB-C limited to USB 2 transfer speeds (listed limitation)',
+        'No Face ID — Touch ID in the top button instead (listed limitation)',
+        'The 512GB tier currently has no live Bangladesh listing, so its ৳119,999 price is an estimate',
+        'Cellular models cost about ৳20,000 more, and neither Pencil nor keyboard is included',
+      ],
+    },
+    buyingTips: {
+      heading: 'Buying the iPad Air 11 (M3) in Bangladesh: what to know',
+      paragraphs: [
+        'Buy the storage tier that matches how you actually use the tablet: 128GB is fine for streaming and notes, but 128GB fills quickly if you shoot 4K video or keep offline games, and there is no memory card to rescue you. If you want to spend on one accessory, the Apple Pencil Pro matters more than extra storage for note-takers and sketchers, while the Magic Keyboard is what turns it into a writing machine — neither is in the box, so price them before committing to a bigger iPad.',
+        'This is a Wi-Fi tablet unless you pay about ৳20,000 more for cellular, so there is no IMEI or PTA check on the standard model. What matters instead is channel and authenticity: buy from an official Apple reseller or a retailer with a written warranty, confirm the model number matches the capacity you paid for, and register the serial number with Apple to see its warranty status. Before leaving the shop, check the display for pressure marks or dead pixels on a white screen, pair a Pencil if you are buying one, confirm Touch ID reads your fingerprint, and make sure the USB-C charger and cable are in the box.',
+      ],
+    },
+    faqs: [
+      {
+        question: 'What is the Apple iPad Air 11 (M3) price in Bangladesh?',
+        answer:
+          'AppleGadgetsBD lists 128GB Wi-Fi at ৳89,999, 256GB at ৳100,999 and the 1TB M2 at ৳179,999. The 512GB tier has no live stock there, so its ৳119,999 figure is an estimate, and cellular models cost about ৳20,000 more.',
+      },
+      {
+        question: 'Does the iPad Air 11 (M3) come with an Apple Pencil?',
+        answer:
+          'No — the Apple Pencil Pro is sold separately, as is the Magic Keyboard, though the tablet supports both through Bluetooth and the Smart Connector.',
+      },
+      {
+        question: 'How much RAM does the iPad Air 11 (M3) have?',
+        answer:
+          'It has 8GB of RAM paired with the Apple M3 chip (8-core CPU, 9-core GPU) — enough to run Apple Intelligence features like Writing Tools and Image Playground.',
+      },
+      {
+        question: 'Is the iPad Air 11 (M3) display 120Hz?',
+        answer:
+          'No. The 11-inch Liquid Retina panel runs at 60Hz, which Apple lists among the tablet\'s limitations — ProMotion 120Hz panels sit one tier up in the iPad Pro.',
+      },
+      {
+        question: 'Should I buy the cellular or Wi-Fi iPad Air?',
+        answer:
+          'Cellular adds roughly ৳20,000 to the price of the same capacity. If you can tether from your phone, the Wi-Fi model is usually the better value.',
+      },
+    ],
+    links: [
+      {
+        label: 'Apple iPad Air 11 (M3) — Shop page',
+        description: 'The full Shop listing with storage tier pricing',
+        href: '/shop/apple-ipad-air-11-m3',
+      },
+      {
+        label: 'Samsung Galaxy Tab S10 Ultra — Quick Look',
+        description: 'The Android alternative with a much bigger screen',
+        href: '/quick-look/samsung-galaxy-tab-s10-ultra',
+      },
+      {
+        label: 'Apple AirPods Pro 3 — Quick Look',
+        description: 'The companion audio product for this iPad',
+        href: '/quick-look/apple-airpods-pro-3',
+      },
+      {
+        label: 'UGREEN USB-C Hub 5-in-1 — Quick Look',
+        description: 'Adds USB-A and HDMI to the iPad\'s single port',
+        href: '/quick-look/ugreen-usb-c-hub-5-in-1',
+      },
+    ],
+  },
+
+  'asus-vivobook-15-x1504va': {
+    productName: 'ASUS Vivobook 15 (X1504VA)',
+    heading: 'ASUS Vivobook 15 (X1504VA) Price in Bangladesh: Full Guide',
+    lead:
+      'The ASUS Vivobook 15 (X1504VA) is a 15.6-inch everyday Windows laptop with a 13th-gen Intel processor, 8GB or 16GB of DDR4 RAM and a 512GB NVMe SSD — listed at ৳62,000 in Bangladesh with official local warranty.',
+    overview: [
+      'The Vivobook 15 X1504VA is the practical end of the laptop market: a 15.6-inch anti-glare Full HD IPS display, a 13th-generation Intel processor, a 512GB NVMe SSD, a backlit keyboard and a set of ports that outnumbers what most modern ultrabooks offer — USB-C, two USB-A, HDMI, a 3.5mm combo jack and a microSD reader. It runs Windows 11 Home out of the box and weighs 1.7kg.',
+      'This guide explains which configuration is actually being sold locally (the processor in the spec sheet and the one in the retailer listing differ, and that matters), how the 42Wh battery and 60Hz panel should shape expectations, and what to verify before paying for a laptop at this price in Bangladesh.',
+    ],
+    priceSection: {
+      heading: 'ASUS Vivobook 15 X1504VA price in Bangladesh',
+      paragraphs: [
+        'Star Tech lists the Vivobook 15 X1504VA at ৳61,000–৳62,000 with official Bangladesh warranty, and our listing sits at ৳62,000. That price band is consistent with its hardware class, and shopping the two ends of it is more about bundle details than about the machine itself.',
+        'Before you buy, settle one thing: the configuration. Our spec sheet lists an Intel Core i5-1335U (13th Gen), while the retailer price note references the Core i3-1215U / 8GB / 512GB listing — and ASUS sells the X1504VA with both, plus 8GB and 16GB RAM options. Ask the seller to confirm in writing which processor and how much RAM the unit has, because the same model number can be two meaningfully different laptops at the same shelf price. RAM is also partially soldered depending on SKU, so treat upgradability as something to verify rather than assume.',
+      ],
+    },
+    keyFacts: [
+      { term: 'Price', detail: '৳62,000 (Star Tech lists ৳61,000–৳62,000)' },
+      { term: 'Processor (listed)', detail: 'Intel Core i5-1335U — confirm i3-1215U variants' },
+      { term: 'Memory and storage', detail: '8GB/16GB DDR4 with a 512GB NVMe SSD' },
+      { term: 'Weight', detail: '1.7kg, 15.6-inch anti-glare IPS display' },
+    ],
+    features: [
+      {
+        heading: 'Key features explained',
+        title: 'A 13th-gen Intel chip built for everyday work',
+        body:
+          'The listed Core i5-1335U is a 13th-generation low-power part suited to the work this laptop is for: documents and spreadsheets, dozens of browser tabs, video calls, streaming and light photo editing. It is not a gaming or video-rendering machine, and the lack of a dedicated GPU — a confirmed limitation — rules heavy creative work out. Buyers who see an i3-1215U variant at a lower price should expect a correspondingly smaller performance margin, not a broken promise.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Storage, memory and the upgrade question',
+        body:
+          'A 512GB NVMe SSD is the right headline spec for this class — it makes Windows and applications load quickly and leaves practical room for files, and it is a genuine step up from the 256GB drives common in budget laptops. RAM decisions need more care: the machine ships with 8GB or 16GB of DDR4, and ASUS notes RAM is partially soldered depending on SKU, so a future memory upgrade may be limited or impossible on the unit you buy. If you plan to keep this laptop for years, aim for the 16GB configuration now.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Ports: this is where budget laptops still win',
+        body:
+          'The port selection is genuinely generous and the reason many buyers pick this over slimmer rivals: USB-C 3.2, two USB-A ports, HDMI 1.4, a 3.5mm combo jack and a microSD reader, plus Wi-Fi 6E and Bluetooth 5.3 for wireless. Nothing here needs a dongle for a projector, a mouse, a printer or a memory card. The 720p webcam includes a privacy shutter, and Windows Studio Effects is supported in compatible apps.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'The 15.6-inch panel, the battery and 1.7kg of plastic',
+        body:
+          'The display is a Full HD (1920 x 1080) IPS panel with an anti-glare finish — the right resolution and coating for all-day office use, though it is a basic 60Hz panel, a listed limitation rather than a fault. The 42Wh battery with a 45W USB-C adapter is the compromise to understand: it is a modest cell for a 15.6-inch machine, so plan on plugging in during long days. At 1.7kg in a plastic chassis with a backlit keyboard, it is portable enough for daily carrying without being light. Colour options are Quiet Blue, Cool Silver and Terra Cotta.',
+      },
+    ],
+    buyers: {
+      heading: 'Who should buy the Vivobook 15 X1504VA — and who should skip it',
+      should: [
+        'Students and office users: documents, browsing, calls and streaming are exactly what this class of hardware does well.',
+        'Buyers who hate dongles: USB-C, two USB-A, HDMI, a combo jack and a microSD reader are all built in.',
+        'First-time Windows laptop buyers: an official-warranty listing at ৳62,000 with a 512GB SSD is a low-risk starting point.',
+        'People who type all day: the backlit keyboard and anti-glare 15.6-inch screen are built for long sessions.',
+      ],
+      skip: [
+        'Gamers and video editors: no dedicated GPU is a confirmed limitation.',
+        'All-day battery users: a 42Wh cell in a 15.6-inch body means carrying the charger.',
+        'High refresh-rate buyers: the panel is 60Hz.',
+        'Anyone who might want to add RAM later without checking: memory is partially soldered depending on SKU.',
+      ],
+    },
+    pros: {
+      heading: 'Pros and cons of the ASUS Vivobook 15 X1504VA',
+      pros: [
+        '512GB NVMe SSD — generous for a budget laptop',
+        'Full-size port set: USB-C, 2x USB-A, HDMI, 3.5mm jack, microSD',
+        'Comfortable 15.6-inch anti-glare Full HD IPS display',
+        'Backlit keyboard and Wi-Fi 6E connectivity',
+        'Official Bangladesh warranty at ৳62,000',
+        '720p webcam with a privacy shutter',
+      ],
+      cons: [
+        '60Hz basic panel (listed limitation)',
+        'No dedicated GPU (listed limitation)',
+        'RAM partially soldered depending on SKU (listed limitation)',
+        '42Wh battery is small for the screen size',
+        'Processor and RAM vary by SKU — the spec sheet lists an i5 while the local listing has referenced an i3 configuration',
+      ],
+    },
+    buyingTips: {
+      heading: 'Buying the Vivobook 15 in Bangladesh: what to know',
+      paragraphs: [
+        'For a laptop at ৳62,000, the warranty and the exact configuration matter more than a thousand taka of movement on price. Buy from a retailer with ASUS Bangladesh warranty support — Star Tech\'s listing is the reference here — and get the invoice to state the full model number, processor, RAM amount and storage capacity. This is the single most important step with a Vivobook, because the X1504VA name covers both i3 and i5 processors and 8GB or 16GB of memory, so what is on the shelf is not necessarily what the spec sheet describes.',
+        'At the counter, check the obvious physical points first: open and close the lid to feel the hinge, press every keyboard key including the backlight levels, and test both USB-A ports, the HDMI output on a nearby monitor and the microSD reader. Run the display on a plain background looking for backlight bleed or dead pixels, confirm the battery reports a healthy design capacity rather than a worn one, and make sure the 45W USB-C adapter is included. Also confirm whether the RAM is soldered on your specific unit if you intend to upgrade later — that answer cannot be changed after purchase.',
+      ],
+    },
+    faqs: [
+      {
+        question: 'What is the ASUS Vivobook 15 X1504VA price in Bangladesh?',
+        answer:
+          'It is listed at ৳61,000–৳62,000 at Star Tech with official Bangladesh warranty. Our listing sits at ৳62,000.',
+      },
+      {
+        question: 'Which processor does the Vivobook 15 X1504VA have?',
+        answer:
+          'The spec sheet lists an Intel Core i5-1335U (13th Gen), while the local retailer listing has referenced a Core i3-1215U / 8GB / 512GB configuration. ASUS sells both under the X1504VA name, so confirm the exact SKU before paying.',
+      },
+      {
+        question: 'Can I upgrade the RAM in the Vivobook 15 X1504VA?',
+        answer:
+          'It depends on the SKU — ASUS lists RAM as partially soldered on some configurations, so upgradeability is not guaranteed. Check your specific unit or buy the 16GB model if you plan to keep it long term.',
+      },
+      {
+        question: 'How long does the Vivobook 15 battery last?',
+        answer:
+          'It uses a 42Wh battery with a 45W USB-C adapter. That is modest for a 15.6-inch laptop, so expect to charge during a full working day.',
+      },
+      {
+        question: 'Can the Vivobook 15 X1504VA play games?',
+        answer:
+          'Only lightly. It has no dedicated GPU — a listed limitation — so it handles casual and older titles, not modern 3D games or GPU-heavy creative work.',
+      },
+    ],
+    links: [
+      {
+        label: 'ASUS Vivobook 15 (X1504VA) — Shop page',
+        description: 'The full Shop listing with the current price',
+        href: '/shop/asus-vivobook-15-x1504va',
+      },
+      {
+        label: 'Lenovo IdeaCentre AIO 27 — Quick Look',
+        description: 'The desk-bound alternative if portability is not needed',
+        href: '/quick-look/lenovo-ideacentre-aio-27',
+      },
+      {
+        label: 'UGREEN USB-C Hub 5-in-1 — Quick Look',
+        description: 'Extra ports for sharing one desk between devices',
+        href: '/quick-look/ugreen-usb-c-hub-5-in-1',
+      },
+      {
+        label: 'Apple iPad Air 11 (M3) — Quick Look',
+        description: 'The tablet route if you mostly read and write',
+        href: '/quick-look/apple-ipad-air-11-m3',
+      },
+      {
+        label: 'Best Laptop Under ৳50,000 in Bangladesh (2026 Buying Guide)',
+        description: 'Blog: how this laptop compares in the budget segment',
+        href: '/posts/best-laptop-under-50000-in-bangladesh',
+      },
+      {
+        label: 'Windows vs Mac: Which Laptop OS Should You Choose in 2026?',
+        description: 'Blog: why a Windows machine suits most buyers here',
+        href: '/posts/windows-vs-mac-which-laptop-os-to-choose',
+      },
+    ],
+  },
+
+  'lenovo-ideacentre-aio-27': {
+    productName: 'Lenovo IdeaCentre AIO 27',
+    heading: 'Lenovo IdeaCentre AIO 27 Price in Bangladesh: Full Guide',
+    lead:
+      'The Lenovo IdeaCentre AIO 27 is an all-in-one desktop — a 27-inch Full HD display, 13th-gen Intel Core i5, 16GB RAM and a 512GB SSD with wireless keyboard and mouse included — estimated around ৳82,000 in Bangladesh, though it has no live local listing yet.',
+    overview: [
+      'An all-in-one trades upgradability for tidiness, and the IdeaCentre AIO 27 (Gen 8) is a clear example: the whole computer lives behind a 27-inch Full HD IPS panel on an aluminium stand, so there is no tower, no cable spaghetti and no separate monitor to buy. Inside sit an Intel Core i5-13420H, 16GB of DDR4 RAM, a 512GB NVMe SSD and Windows 11 Home, with a 5MP pop-up privacy camera, Wi-Fi 6, Ethernet and a set of ports including HDMI out.',
+      'The most important thing to know before reading further is the pricing status: this exact 27-inch model currently has no live Bangladesh listing, so the ৳82,000 figure is an estimate, the product is marked as estimated on this site, and Buy Now is disabled because we never let customers order at an unconfirmed price. Everything below reflects that.',
+    ],
+    priceSection: {
+      heading: 'Lenovo IdeaCentre AIO 27 price in Bangladesh',
+      paragraphs: [
+        'There is no live Bangladesh listing for the 27-inch IdeaCentre AIO, so our ৳82,000 figure is an estimate. It is anchored to Lenovo Bangladesh\'s 23.8-inch AIO at ৳69,000, plus roughly ৳13,000 for the typical 27-inch and memory step-up. That is a reasoned estimate, not a quote, and it should be treated as a planning number until a Lenovo BD retailer confirms stock and price.',
+        'Because the price is unconfirmed, this is also why the Shop listing cannot be ordered: the site flags estimated pricing and keeps checkout closed so nobody pays against a number that may not exist at retail. If you are comparing all-in-ones today, treat the estimate as a ceiling rather than a target, and confirm the actual price, configuration and warranty with a Lenovo Bangladesh retailer before making any commitment.',
+      ],
+    },
+    keyFacts: [
+      { term: 'Estimated price', detail: '~৳82,000 (no live BD listing)' },
+      { term: 'Price basis', detail: 'Lenovo BD 23.8″ AIO at ৳69,000 + ~৳13,000 for 27″/RAM' },
+      { term: 'Status', detail: 'Estimated — not purchasable at an unconfirmed price' },
+      { term: 'Core spec', detail: 'Core i5-13420H, 16GB DDR4, 512GB NVMe' },
+    ],
+    features: [
+      {
+        heading: 'Key features explained',
+        title: 'A 27-inch all-in-one with a physical resolution caveat',
+        body:
+          'The 27-inch IPS panel runs at 1920 x 1080 at 60Hz, and Lenovo\'s own limitation list is blunt about the consequence: 1080p on a 27-inch panel is low pixel density. Text and icons are noticeably less crisp than on a 24-inch screen at the same resolution, and far behind a 1440p 27-inch monitor. The upside is a large canvas for browsing, documents and multitasking on an anti-glare-ish IPS panel — just go in knowing you are trading sharpness for screen area at this size.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Laptop-class silicon in a desktop body',
+        body:
+          'The Intel Core i5-13420H is a mobile-suffix chip, and the AIO pairs it with 16GB of DDR4 RAM and a 512GB NVMe SSD. That combination comfortably covers office work, browsing, video calls, streaming and light photo editing — and 16GB is the amount that lets you keep many tabs and apps open without slowing down. There is no dedicated graphics, which Lenovo lists as a limitation: this is a productivity machine, not a gaming or rendering rig, and it should be bought as one.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Ports, networking and the pop-up camera',
+        body:
+          'Connectivity is desktop-appropriate: three USB-A ports, a USB-C data port, HDMI out, a 3.5mm combo jack, plus Gigabit Ethernet and Wi-Fi 6 — wired networking is genuinely useful on a fixed machine, and the HDMI output lets you add a second monitor. The 5MP camera pops up from the chassis with a physical privacy mechanism, which is the most dependable kind of webcam cover, and the box includes a wireless keyboard and mouse so the desk needs nothing else.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'One unit, no tower, but no battery',
+        body:
+          'The AIO sits on an aluminium stand in a 6.6kg body, powered by a 135W adapter, and it comes in Dark Grey or Light Silver. The trade-offs are structural: it is mains-powered with no battery, so it is desk-bound by design, and everything is integrated, meaning repairs and upgrades are far more limited than on a tower. What you get in return is a single clean object on the desk with a wireless keyboard and mouse — the reason all-in-ones exist.',
+      },
+    ],
+    buyers: {
+      heading: 'Who should buy the IdeaCentre AIO 27 — and who should skip it',
+      should: [
+        'Home-office and family desk setups: one screen, one power cable, wireless peripherals included.',
+        'Buyers who value a tidy desk over upgradeability — no tower, no monitor cable, no separate speakers to plan for.',
+        'People who want wired reliability: Ethernet and Wi-Fi 6 on a machine that never moves.',
+        'Anyone doing document, browsing and streaming work on a large canvas.',
+      ],
+      skip: [
+        'Pixel-density-sensitive buyers: 1080p on 27 inches is low density, a listed limitation.',
+        'Gamers and editors: integrated graphics only, also listed as a limitation.',
+        'Travellers and students on the move: no battery, and it weighs about 6.6kg.',
+        'Buyers who want to upgrade later: an all-in-one has almost no upgrade path compared with a desktop tower.',
+        'Anyone who needs a confirmed price today — the ৳82,000 figure is an estimate with no live Bangladesh listing.',
+      ],
+    },
+    pros: {
+      heading: 'Pros and cons of the Lenovo IdeaCentre AIO 27',
+      pros: [
+        '27-inch Full HD IPS display in a single integrated unit',
+        'Intel Core i5-13420H with 16GB DDR4 and a 512GB NVMe SSD',
+        'Wireless keyboard and mouse included in the box',
+        'Gigabit Ethernet, Wi-Fi 6, HDMI out and three USB-A ports',
+        '5MP pop-up privacy camera with a physical mechanism',
+        'Clean desk footprint on an aluminium stand in two colourways',
+      ],
+      cons: [
+        '1080p resolution on a 27-inch panel is low pixel density (listed limitation)',
+        'Integrated graphics only (listed limitation)',
+        'No battery — mains-powered and desk-bound (listed limitation)',
+        'No live Bangladesh listing: the ৳82,000 price is an estimate and the product is not purchasable',
+        'About 6.6kg, in a category with limited repairability and upgradability',
+      ],
+    },
+    buyingTips: {
+      heading: 'Buying the IdeaCentre AIO 27 in Bangladesh: what to know',
+      paragraphs: [
+        'The first rule with this product is not to pay against an estimate. There is no live Bangladesh listing for the 27-inch IdeaCentre AIO, so the ৳82,000 we show is derived from Lenovo BD\'s 23.8-inch model plus a typical step-up — it is useful for planning, not for haggling. Start by confirming with a Lenovo Bangladesh retailer whether the 27-inch model is stocked at all, and at what configuration and price; if it is not, the 23.8-inch AIO it is derived from is a real, priced alternative.',
+        'If a retailer does offer it, check the things that decide whether an all-in-one suits you before paying: view the 27-inch 1080p panel from normal working distance to judge whether the pixel density bothers you, confirm the processor and memory on the invoice since AIO configurations vary, and test the pop-up camera, all three USB-A ports, the HDMI output and the Ethernet port on the spot. Insist on Lenovo Bangladesh warranty coverage in writing — with an integrated machine, the warranty is effectively the whole product, because a failed panel or mainboard is not a user-serviceable part.',
+      ],
+    },
+    faqs: [
+      {
+        question: 'What is the Lenovo IdeaCentre AIO 27 price in Bangladesh?',
+        answer:
+          'There is no live Bangladesh listing for the 27-inch model. Our ৳82,000 figure is an estimate based on Lenovo BD\'s 23.8-inch AIO at ৳69,000 plus roughly ৳13,000 for the larger screen and memory step-up.',
+      },
+      {
+        question: 'Can I buy the IdeaCentre AIO 27 on this site right now?',
+        answer:
+          'No — the price is estimated and unconfirmed, so the product is not purchasable here. We do not accept orders against a price that has not been confirmed by a Bangladesh retailer.',
+      },
+      {
+        question: 'Is 1080p a problem on a 27-inch screen?',
+        answer:
+          'It is lower pixel density than a 24-inch panel at the same resolution, and Lenovo lists it as a limitation. Text is less crisp, though the larger canvas still suits browsing and office work.',
+      },
+      {
+        question: 'Can the IdeaCentre AIO 27 run games?',
+        answer:
+          'Only basic or older titles — it uses integrated graphics, which Lenovo lists as a limitation. It is a productivity all-in-one, not a gaming machine.',
+      },
+      {
+        question: 'What is included with the IdeaCentre AIO 27?',
+        answer:
+          'A wireless keyboard and mouse are included, along with a 135W power adapter. The machine itself is mains-powered with no battery, so it stays on a desk.',
+      },
+    ],
+    links: [
+      {
+        label: 'Lenovo IdeaCentre AIO 27 — Shop page',
+        description: 'The Shop listing, marked with estimated pricing',
+        href: '/shop/lenovo-ideacentre-aio-27',
+      },
+      {
+        label: 'ASUS Vivobook 15 (X1504VA) — Quick Look',
+        description: 'If you would rather have portability at the same budget',
+        href: '/quick-look/asus-vivobook-15-x1504va',
+      },
+      {
+        label: 'AULA F75 Pro Wireless Mechanical Keyboard — Quick Look',
+        description: 'A keyboard upgrade for an all-in-one desk',
+        href: '/quick-look/aula-f75-pro-wireless-mechanical-keyboard',
+      },
+      {
+        label: 'UGREEN USB-C Hub 5-in-1 — Quick Look',
+        description: 'Extra ports without opening the case',
+        href: '/quick-look/ugreen-usb-c-hub-5-in-1',
+      },
+      {
+        label: 'Windows vs Mac: Which Laptop OS Should You Choose in 2026?',
+        description: 'Blog: how Windows fits a fixed home-office desk',
+        href: '/posts/windows-vs-mac-which-laptop-os-to-choose',
+      },
+    ],
+  },
+
+  'xiaomi-redmi-watch-5': {
+    productName: 'Xiaomi Redmi Watch 5',
+    heading: 'Xiaomi Redmi Watch 5 Price in Bangladesh: Full Guide',
+    lead:
+      'The Xiaomi Redmi Watch 5 is a budget smartwatch with a 2.07-inch AMOLED display, Bluetooth calling, heart-rate and SpO2 tracking and up to 24 days of battery — officially priced at ৳13,999 in Bangladesh.',
+    overview: [
+      'The Redmi Watch 5 does the basics of a smartwatch well and cheaply: a large 2.07-inch AMOLED panel at 432 x 514, an aluminium alloy frame with 5ATM water resistance, heart-rate and SpO2 sensors, Bluetooth 5.3 for calls and notifications, and a battery rating of up to 24 days of typical use on a magnetic charging dock. It launched in January 2025 and runs Xiaomi\'s wearable build of HyperOS.',
+      'This guide explains what a 24-day battery rating really means in practice, what the 5ATM rating does and does not cover, why the charger being proprietary is worth knowing before you buy, and what to check at a Bangladesh counter where budget wearables are sold in large numbers and sometimes swapped between boxes.',
+    ],
+    priceSection: {
+      heading: 'Xiaomi Redmi Watch 5 price in Bangladesh',
+      paragraphs: [
+        'The official Bangladesh price is ৳13,999 with Bluetooth calling, and all three colours — Obsidian Black, Silver Gray and Lavender Purple — carry the same price, so colour is a free choice here rather than a premium. Our listing rounds this to ৳14,000, which is the same product at effectively the same price.',
+        'It is a single configuration, so there is no variant ladder to weigh and no reason to pay more than the official figure. If a retailer quotes noticeably above ৳13,999 without bundling an extra strap or screen protector, it is worth asking why — in this segment the official price is well known and should be the reference point for any negotiation.',
+      ],
+    },
+    keyFacts: [
+      { term: 'Official price', detail: '৳13,999 (BT Calling, all colours)' },
+      { term: 'Display', detail: '2.07-inch AMOLED, 432 x 514' },
+      { term: 'Battery', detail: 'Up to 24 days typical use' },
+      { term: 'Water resistance', detail: '5ATM' },
+    ],
+    features: [
+      {
+        heading: 'Key features explained',
+        title: 'A 2.07-inch AMOLED display at a budget price',
+        body:
+          'The display is the feature that makes this watch feel more expensive than it is: a 2.07-inch AMOLED at 432 x 514 with 60Hz refresh and 2.5D glass, which is a large, bright panel for the price bracket. AMOLED means true blacks and better outdoor visibility than LCD rivals, and the large size makes notifications, workouts and watch faces genuinely readable. The 2.5D glass curves at the edges, so a screen protector that fits the curve is worth buying alongside it.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Heart rate, SpO2 and 5ATM water resistance',
+        body:
+          'Health tracking covers heart rate and SpO2 sensors plus an accelerometer and gyroscope for step, workout and sleep tracking — the core metrics most buyers actually use. The 5ATM water-resistance rating means it is designed for swimming and showering, which is unusual at ৳13,999 and a genuine differentiator over splash-only budget watches. Sensors like these are guidance tools rather than medical devices, so treat the readings as trends to follow rather than clinical measurements.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Up to 24 days of battery, on a proprietary charger',
+        body:
+          'Xiaomi rates battery life at up to 24 days of typical use, which is the defining advantage of this class of watch over Wear OS or Apple Watch devices that need charging every day or two. Charging happens through a magnetic dock with pogo pins, and that dock is proprietary — a listed limitation that matters in practice, because losing the cable means sourcing a Redmi-specific replacement. Keep the dock in one place and treat the cable as part of the product.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Bluetooth calling, HyperOS and no NFC here',
+        body:
+          'The watch uses Bluetooth 5.3 for calls and notifications on Android and iOS, and the version sold in Bangladesh is the Bluetooth Calling model per the official price note. Xiaomi\'s wearable HyperOS handles the interface and watch faces, and there is no third-party app support — a listed limitation, and the main reason this is a notifications-and-fitness watch rather than a platform. NFC payments are also unavailable in most regions, so do not plan on paying with your wrist.',
+      },
+    ],
+    buyers: {
+      heading: 'Who should buy the Redmi Watch 5 — and who should skip it',
+      should: [
+        'First smartwatch buyers: the large AMOLED screen and core health sensors give a premium feel at an entry price.',
+        'Swimmers and active users: 5ATM ratings are rare at ৳13,999 and make pool or shower use realistic.',
+        'Battery-life prioritists: up to 24 days means charging is a monthly chore, not a nightly one.',
+        'Buyers who mainly want calls and notifications on the wrist: Bluetooth calling plus a big screen covers that cleanly.',
+      ],
+      skip: [
+        'App-ecosystem users: there is no third-party app support — a listed limitation.',
+        'Anyone planning to tap-to-pay: NFC payments are unavailable in most regions.',
+        'People who lose charging cables: the magnetic dock is proprietary, so replacements are specific and harder to source.',
+        'Medical-grade monitoring expectations: heart rate and SpO2 here are wellness sensors, not clinical instruments.',
+      ],
+    },
+    pros: {
+      heading: 'Pros and cons of the Xiaomi Redmi Watch 5',
+      pros: [
+        'Large 2.07-inch AMOLED display at 432 x 514',
+        'Up to 24 days of battery on typical use',
+        'Heart rate, SpO2, accelerometer and gyroscope tracking',
+        '5ATM water resistance suitable for swimming',
+        'Bluetooth 5.3 calling and notifications, with an aluminium alloy frame',
+        'One official price (৳13,999) across all three colours',
+      ],
+      cons: [
+        'No NFC payments in most regions (listed limitation)',
+        'Proprietary magnetic charger (listed limitation)',
+        'No third-party app support (listed limitation)',
+        '60Hz display with no always-on claims in the data',
+        'Fitness and health readings are consumer-grade, not medical-grade',
+      ],
+    },
+    buyingTips: {
+      heading: 'Buying the Redmi Watch 5 in Bangladesh: what to know',
+      paragraphs: [
+        'At ৳13,999 official with all colours priced the same, there is no pricing puzzle here — the risk is a swapped or non-genuine unit. Buy from a Xiaomi-authorized retailer and check that the box seal matches the watch model, that the band fitted is a Redmi band, and that the charging dock in the box has the magnetic pogo pins rather than the clip the cheaper clone watches use. In this price bracket, "same watch, different box" claims are common on marketplaces and rarely end well.',
+        'There is no IMEI or PTA check on a Bluetooth-only watch. Test instead at the counter: power the watch on and check for uniform brightness across the AMOLED panel, enable the heart-rate sensor and watch the reading change while you move, confirm Bluetooth pairing with your own phone, take a test call to verify the Bluetooth calling works in both directions, and check the alarm and vibration motor. Confirm the strap colour matches the price you paid — since all three are the same price, there is no reason to accept a substitute — and ask about the warranty period and where a service claim would be handled.',
+      ],
+    },
+    faqs: [
+      {
+        question: 'What is the Xiaomi Redmi Watch 5 price in Bangladesh?',
+        answer:
+          'The official Bangladesh price is ৳13,999 for the Bluetooth Calling model, and all three colours — Obsidian Black, Silver Gray and Lavender Purple — cost the same.',
+      },
+      {
+        question: 'How long does the Redmi Watch 5 battery last?',
+        answer:
+          'Xiaomi rates it at up to 24 days of typical use. It charges on a magnetic dock, which is a proprietary accessory rather than a standard USB cable.',
+      },
+      {
+        question: 'Can you swim with the Redmi Watch 5?',
+        answer:
+          'Yes — it carries a 5ATM water-resistance rating, which covers swimming and showering. That is unusual for a watch in this price range.',
+      },
+      {
+        question: 'Does the Redmi Watch 5 support NFC payments?',
+        answer:
+          'No, not in most regions — Xiaomi notes NFC payments as unavailable in most regions, so do not count on tap-to-pay.',
+      },
+      {
+        question: 'Can I install third-party apps on the Redmi Watch 5?',
+        answer:
+          'No — the watch runs Xiaomi\'s wearable HyperOS without third-party app support, which Xiaomi lists as a limitation. It is a notifications and fitness device rather than an app platform.',
+      },
+    ],
+    links: [
+      {
+        label: 'Xiaomi Redmi Watch 5 — Shop page',
+        description: 'The full Shop listing at the official price',
+        href: '/shop/xiaomi-redmi-watch-5',
+      },
+      {
+        label: 'Apple AirPods Pro 3 — Quick Look',
+        description: 'The audio companion for workouts and calls',
+        href: '/quick-look/apple-airpods-pro-3',
+      },
+      {
+        label: 'Anker PowerCore 20000 Power Bank — Quick Look',
+        description: 'Travel backup for phones, watches and earbuds',
+        href: '/quick-look/anker-powercore-20000-power-bank',
+      },
+      {
+        label: 'Xiaomi Robot Vacuum S10 — Quick Look',
+        description: 'The other Xiaomi product built around app control',
+        href: '/quick-look/xiaomi-robot-vacuum-s10',
+      },
+    ],
+  },
+
+  'apple-airpods-pro-3': {
+    productName: 'Apple AirPods Pro 3',
+    heading: 'Apple AirPods Pro 3 Price in Bangladesh: Full Guide',
+    lead:
+      'The Apple AirPods Pro 3 are Apple\'s flagship earbuds — the H2 chip, a heart-rate sensor, an IP57 rating and up to 8 hours of ANC listening per charge — officially listed at ৳33,500 at Bangladesh resellers.',
+    overview: [
+      'The AirPods Pro 3 are as much a health and hearing device as they are earbuds. Beyond the H2 chip driving adaptive audio and noise cancelling, Apple added a heart-rate sensor, hearing-aid functionality and Live Translation through Apple Intelligence, all in buds rated IP57 against sweat and water. Battery is up to 8 hours with noise cancelling on, extending to 24 hours with the USB-C case, which also supports MagSafe and Qi wireless charging.',
+      'This guide covers the three local price points and why they differ, what the sensors and Apple Intelligence features do when paired with an iPhone, the ear-tip sizing that decides whether these stay in your ears, and the checks that matter when buying Apple earbuds in Bangladesh where closed-box returns are rare.',
+    ],
+    priceSection: {
+      heading: 'Apple AirPods Pro 3 price in Bangladesh',
+      paragraphs: [
+        'Gadget & Gear, an official Bangladesh Apple reseller, lists the AirPods Pro 3 at ৳33,500, while AppleGadgetsBD currently shows ৳35,000–৳36,000 for the same product. That spread of a few thousand taka between official resellers is normal in this category, and it means the ৳33,500 figure is a genuine reference price rather than a promotional outlier.',
+        'One configuration, one colour — White — so there is no spec decision to make and no reason to pay above the listing you can verify. Check the seller\'s warranty terms before saving a small amount elsewhere: earbud batteries and the charging case are the parts that fail first, and an official-channel purchase is what makes a claim realistic.',
+      ],
+    },
+    keyFacts: [
+      { term: 'Price (Gadget & Gear)', detail: '৳33,500 official reseller' },
+      { term: 'Price (AppleGadgetsBD)', detail: '৳35,000–৳36,000' },
+      { term: 'Battery', detail: 'Up to 8 hours ANC; 24 hours with case' },
+      { term: 'Chip', detail: 'Apple H2, iOS 18.4+ for all features' },
+    ],
+    features: [
+      {
+        heading: 'Key features explained',
+        title: 'Adaptive Audio and noise cancelling on the H2 chip',
+        body:
+          'The H2 chip runs the audio processing, and it powers the feature set that separates these from cheaper earbuds: Adaptive Audio blends transparency and noise cancelling based on your environment, Conversation Awareness drops the volume when you speak, and a vent system keeps pressure comfortable in the ear. Voice noise reduction on calls is handled here too. The result is a pair of buds that adjust without requiring you to change modes manually, which is what you are paying the premium for.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'A heart-rate sensor — the surprise addition',
+        body:
+          'The AirPods Pro 3 include a heart-rate sensor, a skin-detect sensor, an accelerometer and the vent system, which together allow workout tracking without a watch. That is the most interesting hardware change in this generation: earbuds that measure effort while you run or lift. Pair that with the Hearing Aid feature and the buds cover two genuine health use cases, though Apple\'s own note is clear that all features work best inside its ecosystem.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Live Translation and Apple Intelligence',
+        body:
+          'On a compatible iPhone, Live Translation through Apple Intelligence lets you follow a conversation in another language without taking the phone out, and the iOS-side features require iOS 18.4 or later. This is the clearest reason to buy these over a rival: the buds are effectively an accessory to the iPhone\'s intelligence layer. The listed limitation is the other side of that coin — the best features require Apple devices, so Android users get audio and ANC but lose much of what defines the product.',
+      },
+      {
+        heading: 'Key features explained',
+        title: '8 hours of ANC, 24 with the case, and the fit question',
+        body:
+          'Up to 8 hours of listening with noise cancelling on is a long single session, and the USB-C case extends total use to 24 hours with MagSafe and Qi wireless charging supported. Fit is the part reviews cannot do for you: the buds ship with foam-tipped ear tips in XS through L, weigh 5.55g each, and the seal decides both comfort and how well noise cancelling works. If a tip size does not seal, ANC performance drops noticeably — spend the time finding the right size.',
+      },
+    ],
+    buyers: {
+      heading: 'Who should buy the AirPods Pro 3 — and who should skip it',
+      should: [
+        'iPhone owners who want the full feature set: Adaptive Audio, Live Translation and the Hearing Aid feature are designed around Apple hardware.',
+        'Runners and gym users: the heart-rate sensor tracks effort without a watch, and IP57 covers sweat and rain.',
+        'Frequent callers: voice noise reduction and Conversation Awareness make calls and quick chats easier.',
+        'People who want long single-charge sessions: 8 hours with ANC beats most earbuds in this price band.',
+      ],
+      skip: [
+        'Android users: the standout features require Apple devices — a confirmed limitation.',
+        'Audiophiles chasing lossless: there is no lossless over Bluetooth (listed limitation).',
+        'Anyone who wants on-bud controls for volume: there are no physical volume controls on the buds (listed limitation).',
+        'Buyers who cannot test fit first: without a proper tip seal the noise cancelling underperforms, and earbud returns are restrictive.',
+      ],
+    },
+    pros: {
+      heading: 'Pros and cons of the Apple AirPods Pro 3',
+      pros: [
+        'Apple H2 chip with Adaptive Audio and Conversation Awareness',
+        'Built-in heart-rate sensor alongside skin detection',
+        'Up to 8 hours with ANC; 24 hours with the USB-C case',
+        'IP57 sweat and water resistance on buds and case',
+        'MagSafe, Qi wireless and USB-C charging for the case',
+        'Live Translation and Hearing Aid features with Apple Intelligence',
+      ],
+      cons: [
+        'No lossless audio over Bluetooth (listed limitation)',
+        'Best features require Apple devices (listed limitation)',
+        'No physical volume controls on the buds (listed limitation)',
+        'One colour only — White',
+        'Local pricing varies between resellers (৳33,500 to ৳36,000)',
+      ],
+    },
+    buyingTips: {
+      heading: 'Buying the AirPods Pro 3 in Bangladesh: what to know',
+      paragraphs: [
+        'The price difference between official resellers here — ৳33,500 at Gadget & Gear versus ৳35,000–৳36,000 at AppleGadgetsBD — is a few percent, so buy on warranty and channel reliability rather than on chasing the lowest number. AirPods are heavily counterfeited, and the counterfeit versions are convincing from the outside; buying through an authorized reseller with an invoice is the single most effective protection. Sealed-box earbud returns are generally not accepted for hygiene reasons, so inspect before you leave.',
+        'There is no IMEI or PTA check on earbuds. Verify instead: pair them with your iPhone and confirm the Settings page reports a valid serial number and coverage, test noise cancelling and Active/Adaptive modes to hear the pressure change and the seal quality, run the ear-tip fit test in settings and try more than one tip size, check the heart-rate sensor reports a reading during a short walk, and confirm the case charges both wirelessly on a MagSafe or Qi pad and over USB-C. Finally, confirm all tip sizes and the charging cable are present — a missing accessory is the earliest sign of a repackaged unit.',
+      ],
+    },
+    faqs: [
+      {
+        question: 'What is the Apple AirPods Pro 3 price in Bangladesh?',
+        answer:
+          'Gadget & Gear lists them at ৳33,500, while AppleGadgetsBD shows ৳35,000–৳36,000. The small spread is between official resellers rather than a discount versus a regular price.',
+      },
+      {
+        question: 'How long do the AirPods Pro 3 battery last?',
+        answer:
+          'Up to 8 hours of listening with noise cancelling on, extending to 24 hours total with the USB-C charging case.',
+      },
+      {
+        question: 'Do the AirPods Pro 3 measure heart rate?',
+        answer:
+          'Yes — they include a heart-rate sensor along with skin-detect and motion sensors, so they can track workouts without a paired watch.',
+      },
+      {
+        question: 'Do the AirPods Pro 3 work well with Android?',
+        answer:
+          'They work for audio and noise cancelling, but Apple lists the best features as requiring Apple devices — so Adaptive Audio behaviour, Live Translation and Hearing Aid functionality are limited outside Apple hardware.',
+      },
+      {
+        question: 'Are the AirPods Pro 3 water resistant?',
+        answer:
+          'Yes — both the buds and the case carry an IP57 rating for sweat and water resistance, which covers workouts and rain.',
+      },
+    ],
+    links: [
+      {
+        label: 'Apple AirPods Pro 3 — Shop page',
+        description: 'The full Shop listing with the current price',
+        href: '/shop/apple-airpods-pro-3',
+      },
+      {
+        label: 'Sony WH-1000XM5 — Quick Look',
+        description: 'The over-ear alternative with a bigger battery',
+        href: '/quick-look/sony-wh-1000xm5-wireless-headphones',
+      },
+      {
+        label: 'Anker Soundcore R50i Earbuds — Quick Look',
+        description: 'Budget earbuds if ANC is not essential',
+        href: '/quick-look/anker-soundcore-r50i-earbuds',
+      },
+      {
+        label: 'Apple iPhone 17 Pro Max — Quick Look',
+        description: 'The phone these buds are designed to pair with',
+        href: '/quick-look/apple-iphone-17-pro-max',
+      },
+      {
+        label: 'iOS 27 Is Here: Top Features, Release Date and Compatible iPhones',
+        description: 'Blog: the software layer behind Live Translation and Apple Intelligence audio',
+        href: '/posts/ios-27-features-release-date',
+      },
+    ],
+  },
 };
 /** Long-form guide for a product slug, or undefined when none is written yet. */
 export function getQuickLookContent(slug: string): QuickLookGuide | undefined {
