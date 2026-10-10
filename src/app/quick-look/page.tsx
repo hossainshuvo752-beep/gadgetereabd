@@ -24,6 +24,21 @@ export default function QuickLookPage() {
   const [selectedTop, setSelectedTop] = useState<string | null>(null);
   const [selectedSub, setSelectedSub] = useState<string | null>(null);
 
+  /**
+   * Page title + muted description pair, ABOVE the category nav.
+   * Compact margins so the product grid doesn't move down much.
+   */
+  const headerBlock = (
+    <div className="mb-4 max-w-3xl">
+      <h1 className="text-xl sm:text-2xl font-bold text-text-heading leading-tight">
+        Gadget Quick Look: Specs &amp; Prices in Bangladesh
+      </h1>
+      <h2 className="mt-1 text-sm font-normal text-text-body">
+        Phones, laptops, audio and more, with prices in BDT
+      </h2>
+    </div>
+  );
+
   const handleSelect = (top: string | null, sub: string | null) => {
     setSelectedTop(top);
     setSelectedSub(sub);
@@ -42,6 +57,7 @@ export default function QuickLookPage() {
     <>
       <section className="py-12 bg-bg-light min-h-screen">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {headerBlock}
           {/* Top category nav — same shared component as Shop */}
           <CategoryNav
             selectedTop={selectedTop}
