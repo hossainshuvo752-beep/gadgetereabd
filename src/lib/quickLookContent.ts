@@ -1062,6 +1062,713 @@ const guides: Record<string, QuickLookGuide> = {
       },
     ],
   },
+
+  'sony-wh-1000xm5-wireless-headphones': {
+    productName: 'Sony WH-1000XM5',
+    heading: 'Sony WH-1000XM5 Price in Bangladesh: Full Guide',
+    lead:
+      'The Sony WH-1000XM5 is the headphone that made top-tier noise cancelling mainstream — dual processors (V1 + QN1) driving up to 30 hours of ANC playback, LDAC wireless sound and 250g of over-ear comfort — currently on offer at ৳29,990 in Bangladesh, down from ৳32,990.',
+    overview: [
+      'The WH-1000XM5 launched back in May 2022, yet it is still the benchmark buyers compare every new noise-cancelling headphone against. Sony builds it around two dedicated DSPs — the Integrated Processor V1 working with the QN1 — which is why its ANC, call noise reduction and adaptive behaviour feel a generation ahead of single-processor rivals. Bluetooth 5.2, LDAC support, multipoint pairing, USB-C charging and a 3.5mm jack for wired listening cover the practical side.',
+      'This guide explains what the ৳29,990 offer actually buys, why the XM5 not folding is a genuine daily trade-off rather than a spec-sheet footnote, and how to buy a genuine unit in Bangladesh where counterfeit and refurbished stock is common in this category.',
+    ],
+    priceSection: {
+      heading: 'Sony WH-1000XM5 price in Bangladesh',
+      paragraphs: [
+        'Star Tech currently lists the XM5 at its offer price of ৳29,990, against a regular ৳33,090 — a genuine saving of around ৳3,000 on the official channel. Our listing carries ৳32,990 as the old price, so expect the offer to move in and out. Gadget & Gear has listed the same headphone at ৳27,999, which tells you the market for genuine XM5 stock in Bangladesh spans roughly ৳28,000 to ৳33,000 depending on retailer and colour.',
+        'Four colourways exist — Black, Platinum Silver, Midnight Blue and Smoky Pink — and unlike storage variants on phones, colour changes nothing about the price or hardware here. What does change the value is channel: a ৳27,999 deal is only a deal if the unit is genuine Sony with local warranty, so the section below covers what to verify.',
+      ],
+    },
+    keyFacts: [
+      { term: 'Offer price', detail: '৳29,990 (regular ৳33,090 at Star Tech)' },
+      { term: 'Noise cancelling', detail: 'Dual DSP — Integrated Processor V1 + QN1' },
+      { term: 'Battery', detail: 'Up to 30 hours with ANC on' },
+      { term: 'Weight', detail: '250g over-ear, lays flat (does not fold)' },
+    ],
+    features: [
+      {
+        heading: 'Key features explained',
+        title: 'Noise cancelling driven by two processors',
+        body:
+          'Sony pairs the Integrated Processor V1 with the QN1 to handle noise cancelling as a dedicated job rather than a side task of the audio chip. The result is quieter commutes, flights and open-plan offices, with AI noise reduction also cleaning up your voice on calls. Adaptive Sound Control then adjusts the cancellation based on where you are and what you are doing, and Speak-to-Chat pauses playback automatically the moment you start talking — a small feature you end up using constantly.',
+      },
+      {
+        heading: 'Key features explained',
+        title: '30 hours of battery and a 3-minute rescue charge',
+        body:
+          'Up to 30 hours of playback with ANC on covers a working week of commuting between charges, and the quick-charge behaviour is the genuinely useful part: three minutes on USB-C buys about three hours of listening. For anyone who forgets to charge until they are already leaving the house, that single number matters more than the headline figure. The charging port is USB-C, so one cable covers the headphone and most modern devices.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'LDAC sound, with a multipoint trade-off',
+        body:
+          'The XM5 supports LDAC for higher-resolution Bluetooth audio and multipoint pairing for two devices at once — but Sony states multipoint is unavailable while using LDAC. That means a real choice between maximum sound quality and being connected to both your laptop and phone simultaneously. DSEE Extreme AI upscaling fills in detail on compressed streams, and wired listening over the 3.5mm jack sidesteps Bluetooth entirely when sound quality is the priority.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Comfort first — but it will not fold',
+        body:
+          'At 250g with synthetic leather earpads and a plastic frame, the XM5 is built for long sessions rather than short bursts, and wear detection pauses playback when you take them off. The cost of that comfort is the flat-fold design: these headphones lay flat but do not fold, and the supplied case is a soft one. In a bag that is noticeably more bulk than the folding competition, and it is the compromise Sony made to fit the larger earcups and driver assembly.',
+      },
+    ],
+    buyers: {
+      heading: 'Who should buy the WH-1000XM5 — and who should skip it',
+      should: [
+        'Commuters and flyers: the dual-processor ANC is the reason this model still tops shortlists four years after launch.',
+        'People who wear headphones all day: 30-hour battery, 250g weight and wear detection make long sessions effortless.',
+        'Android users who want better-than-basic Bluetooth audio: LDAC is genuinely supported rather than advertised and buried.',
+        'Buyers who value wired fallback: the 3.5mm jack means the headphone still works on a plane seatback or a studio interface.',
+      ],
+      skip: [
+        'Frequent travellers who pack light: no folding mechanism and a soft case only, which is bulkier than rivals in a bag.',
+        'Anyone who needs LDAC and two devices at once: multipoint is unavailable while using LDAC — a confirmed limitation.',
+        'Buyers expecting the latest generation: this launched in May 2022; newer ANC headphones exist, even if this remains the reference point.',
+        'Shoppers who cannot verify authenticity: this category is heavily counterfeited in the local market, so warranty-backed channels matter.',
+      ],
+    },
+    pros: {
+      heading: 'Pros and cons of the Sony WH-1000XM5',
+      pros: [
+        'Dual-processor ANC (V1 + QN1) plus AI call noise reduction',
+        'Up to 30 hours with ANC on; 3-minute charge for ~3 hours',
+        'LDAC high-resolution audio and DSEE Extreme upscaling',
+        'Multipoint pairing and wear detection',
+        '250g with spacious earpads for all-day comfort',
+        'Wired 3.5mm listening alongside USB-C charging',
+      ],
+      cons: [
+        'Does not fold — flat storage only, and the case is soft (listed limitation)',
+        'Multipoint is unavailable while using LDAC (listed limitation)',
+        'Adaptive Sound Control and Speak-to-Chat are tuned via the Headphones Connect app, adding setup time',
+        'Plastic frame and pads are wear items over years of use',
+        'A 2022 design competing against newer ANC models',
+      ],
+    },
+    buyingTips: {
+      heading: 'Buying the WH-1000XM5 in Bangladesh: what to know',
+      paragraphs: [
+        'The ৳29,990 offer at Star Tech (against a ৳33,090 regular price) is the safest route, because Sony Bangladesh warranty and the retailer invoice are what turn a good price into a low-risk purchase. If a shop quotes noticeably under ৳28,000, treat it as counterfeit or grey stock until proven otherwise — noise-cancelling headphones are among the most cloned products on local marketplaces, and the giveaway is a case with mismatched logos, budged packaging or a serial that will not register.',
+        'There is no IMEI or PTA check here since the XM5 has no cellular radio — the checks that matter are for authenticity and function. Confirm the serial number and register it, verify LDAC enables in the Headphones Connect app (a real XM5 will, a clone will not), toggle noise cancelling between modes listening for the pressure change, test both earpads and the case latches, and make sure the 3.5mm cable and USB-C cable are in the box. Keep the invoice: charge-time faults usually appear within the first weeks, and warranty claims here go through the seller first.',
+      ],
+    },
+    faqs: [
+      {
+        question: 'What is the Sony WH-1000XM5 price in Bangladesh?',
+        answer:
+          'The current offer price at Star Tech is ৳29,990, with a regular price of ৳33,090. Gadget & Gear has listed it at ৳27,999, so genuine stock generally ranges from about ৳28,000 to ৳33,000.',
+      },
+      {
+        question: 'How long does the WH-1000XM5 battery last?',
+        answer:
+          'Up to 30 hours of playback with noise cancelling on. A three-minute quick charge provides roughly three hours of listening.',
+      },
+      {
+        question: 'Does the WH-1000XM5 fold?',
+        answer:
+          'No — it lays flat but does not fold, and it ships with a soft carrying case only. That makes it bulkier to pack than folding rivals.',
+      },
+      {
+        question: 'Can the WH-1000XM5 connect to two devices at once?',
+        answer:
+          'Yes, via multipoint pairing for two devices — but Sony notes multipoint is unavailable while using LDAC, so on LDAC you are limited to one connection at a time.',
+      },
+      {
+        question: 'How is the noise cancelling on the WH-1000XM5?',
+        answer:
+          'It uses two dedicated processors — the Integrated Processor V1 and QN1 — for noise cancelling and call noise reduction, which is why it remains a benchmark for over-ear ANC.',
+      },
+    ],
+    links: [
+      {
+        label: 'Sony WH-1000XM5 — Shop page',
+        description: 'The full Shop listing with the current offer price',
+        href: '/shop/sony-wh-1000xm5-wireless-headphones',
+      },
+      {
+        label: 'Apple AirPods Pro 3 — Quick Look',
+        description: 'If you want ANC in a much smaller in-ear package',
+        href: '/quick-look/apple-airpods-pro-3',
+      },
+      {
+        label: 'Anker Soundcore R50i Earbuds — Quick Look',
+        description: 'The budget earbud option with no noise cancelling',
+        href: '/quick-look/anker-soundcore-r50i-earbuds',
+      },
+      {
+        label: 'PlayStation 5 Slim Disc Console — Quick Look',
+        description: 'Headphones this good deserve a serious games console',
+        href: '/quick-look/playstation-5-slim-disc-console',
+      },
+    ],
+  },
+
+  'playstation-5-slim-disc-console': {
+    productName: 'PlayStation 5 Slim Disc',
+    heading: 'PlayStation 5 Slim Disc Console Price in Bangladesh: Full Guide',
+    lead:
+      'The PlayStation 5 Slim Disc edition is the 1TB console with a detachable UHD Blu-ray drive and a 10.28 TFLOP RDNA 2 GPU — currently priced at ৳100,000 in Bangladesh, down from a ৳105,000 regular price.',
+    overview: [
+      'The PS5 Slim is Sony\'s revised PS5: the same performance silicon — an 8-core AMD Zen 2 CPU with an RDNA 2 GPU rated at 10.28 TFLOPs, paired with 16GB of GDDR6 memory — in a smaller two-tone chassis, with the disc drive now detachable. This is the Disc Edition with 1TB of custom NVMe storage, so it plays physical UHD Blu-ray games as well as downloads, and the M.2 slot lets you add more storage later.',
+      'For buyers in Bangladesh the practical questions are about the disc drive, whether 1TB is enough, what display you need to see 4K at 120Hz, and how to tell a genuine local unit from an imported one. This guide covers each, using only the console\'s own listed specifications.',
+    ],
+    priceSection: {
+      heading: 'PlayStation 5 Slim Disc console price in Bangladesh',
+      paragraphs: [
+        'Star Tech lists the 1TB disc edition at ৳100,000, reduced from a regular ৳105,000 — a ৳5,000 saving on the official channel. That places the Slim Disc at the top of the console market locally, and the reason is straightforward: this is the model that still plays physical discs, so it holds value against the digital-only alternative for buyers who trade or borrow game discs.',
+        'There is only one configuration in the data — 1TB with the detachable UHD Blu-ray drive — so unlike phones there is no storage ladder to weigh. What varies is what retailers bundle alongside it. The specs list a DualSense controller that charges over USB-C, but since bundle contents are set by the seller rather than the console itself, confirm exactly what is in the box before paying, and see the buying tips below for the checks that matter on a device this expensive.',
+      ],
+    },
+    keyFacts: [
+      { term: 'Current price', detail: '৳100,000 (regular ৳105,000 at Star Tech)' },
+      { term: 'Storage', detail: '1TB custom NVMe SSD, M.2 expandable' },
+      { term: 'Performance', detail: 'Zen 2 8-core CPU + RDNA 2 GPU, 10.28 TFLOPs' },
+      { term: 'Disc drive', detail: 'Detachable UHD Blu-ray drive included' },
+    ],
+    features: [
+      {
+        heading: 'Key features explained',
+        title: 'A disc drive you can actually detach',
+        body:
+          'The headline change on this Slim model is that the UHD Blu-ray drive is detachable. That matters in two directions: you keep the ability to install and resell physical games, and if the drive ever fails you replace a module rather than the console. For buyers who mostly download but occasionally want a disc — a cheap second-hand game, a region-specific title, a Blu-ray film — this is the version to get rather than the digital-only model.',
+      },
+      {
+        heading: 'Key features explained',
+        title: '1TB NVMe storage with an M.2 slot for later',
+        body:
+          'The 1TB custom NVMe SSD is fast, but modern installs are enormous and the console\'s own spec sheet flags that 1TB fills quickly, recommending M.2 expansion. That is the single most useful thing to know before buying: budget for an M.2 drive if you keep a half-dozen big titles installed at once. Sony\'s expansion path is internal, so there is no external-drive workaround for the games themselves.',
+      },
+      {
+        heading: 'Key features explained',
+        title: '10.28 TFLOPs and what your TV needs to show it off',
+        body:
+          'The RDNA 2 GPU at 10.28 TFLOPs with 16GB of GDDR6 is the performance foundation, and the console outputs up to 4K at 120Hz with nominal 8K support. The catch is listed plainly in the specs: seeing 4K at 120Hz requires an HDMI 2.1 display. On an older 60Hz television you still get excellent 4K60 play, but you will not see the higher refresh modes this hardware is built for.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Connectivity and the DualSense controller',
+        body:
+          'Connectivity covers Wi-Fi 6 and Gigabit Ethernet on the network side, with Bluetooth 5.1, two USB-A ports, a front USB-C port and HDMI 2.1 for video. The controller charges over USB-C, and the console itself is a substantial object: roughly 358 x 96 x 216 mm vertically with the drive attached and about 3.2kg. Plan for ventilation space and a stand position before it arrives — both are genuine placement constraints in a typical Bangladeshi living room setup.',
+      },
+    ],
+    buyers: {
+      heading: 'Who should buy the PS5 Slim Disc — and who should skip it',
+      should: [
+        'Disc owners and traders: the detachable UHD Blu-ray drive lets you buy, borrow and resell physical games, which is often cheaper in the long run.',
+        'Players with a 4K 120Hz television: the console\'s output modes are built to be used, and an HDMI 2.1 panel is what unlocks them.',
+        'Households that share one console: a 1TB install plus M.2 expansion covers several people\'s game libraries.',
+        'Blu-ray film viewers: the drive plays UHD Blu-ray discs, so one box covers games and movies.',
+      ],
+      skip: [
+        'Small-space setups: roughly 3.2kg and over 35cm tall with the drive fitted — this needs real shelf or stand room.',
+        'Impatient installers: 1TB fills fast with modern titles, and the fix is buying an M.2 SSD, not ignoring it.',
+        'Owners of older 60Hz TVs: the 120Hz output modes need HDMI 2.1, so you would be paying for performance you cannot display.',
+        'Buyers who want the cheapest entry point: a digital-only console costs less if you never intend to use discs.',
+      ],
+    },
+    pros: {
+      heading: 'Pros and cons of the PlayStation 5 Slim Disc console',
+      pros: [
+        'Detachable UHD Blu-ray drive — physical games, films and easier repairs',
+        '1TB NVMe SSD with internal M.2 expansion support',
+        'Up to 4K at 120Hz output (8K nominal support)',
+        'Wi-Fi 6 and Gigabit Ethernet for reliable downloads and streaming',
+        'Discount pricing: ৳100,000 against a ৳105,000 regular price',
+        'RDNA 2 GPU at 10.28 TFLOPs with 16GB GDDR6',
+      ],
+      cons: [
+        'Large and heavy — a real TV-stand consideration (listed limitation)',
+        '1TB storage fills quickly; M.2 expansion is recommended (listed limitation)',
+        '4K at 120Hz requires an HDMI 2.1 display (listed limitation)',
+        'Only a single HDMI 2.1 output for the whole setup',
+        'Two-tone white finish shows dust and fingerprints',
+        'A substantial ৳100,000 commitment with games and an M.2 drive on top',
+      ],
+    },
+    buyingTips: {
+      heading: 'Buying the PS5 Slim Disc in Bangladesh: what to know',
+      paragraphs: [
+        'At ৳100,000 (down from ৳105,000 at Star Tech), this is the kind of purchase where the seller\'s reputation is worth more than a small discount. Buy from a retailer that provides a written warranty and a Bangla/English invoice with the serial number on it, and confirm exactly what the box contains — console, drive module, controller and cables vary by bundle and region, so get the contents listed on the invoice before paying anything.',
+        'Physically check the unit while the seller is watching: power it on, confirm the disc drive slot ejects and accepts a disc, connect it to a display and check the resolution setting reports correctly, and pair a controller so you know the Bluetooth module works. Confirm the region of the unit matches what you were sold — imported consoles can arrive with different power-plug types and regional account behaviour. Then budget for the two extras that matter: an M.2 SSD if you install several large games, and an HDMI 2.1 cable if your television supports 120Hz.',
+      ],
+    },
+    faqs: [
+      {
+        question: 'What is the PlayStation 5 Slim Disc console price in Bangladesh?',
+        answer:
+          'Star Tech lists the 1TB Disc Edition at ৳100,000, down from a regular price of ৳105,000.',
+      },
+      {
+        question: 'Is the disc drive on the PS5 Slim removable?',
+        answer:
+          'Yes — the UHD Blu-ray drive on this Slim model is detachable, so it can be serviced or replaced as a module rather than the whole console.',
+      },
+      {
+        question: 'How much storage does the PS5 Slim Disc have, and can it be expanded?',
+        answer:
+          'It has a 1TB custom NVMe SSD. Because 1TB fills quickly with modern games, the console supports internal M.2 SSD expansion.',
+      },
+      {
+        question: 'Does the PS5 Slim need a special TV for 4K 120Hz?',
+        answer:
+          'Yes — 4K at 120Hz output requires an HDMI 2.1 display. On a 60Hz television the console still runs at 4K60 but cannot show its higher-refresh modes.',
+      },
+      {
+        question: 'How heavy and how big is the PS5 Slim with the disc drive?',
+        answer:
+          'Approximately 358 x 96 x 216 mm when standing vertically with the disc drive attached, and around 3.2kg — plan for ventilation space and a stable stand.',
+      },
+    ],
+    links: [
+      {
+        label: 'PlayStation 5 Slim Disc Console — Shop page',
+        description: 'The full Shop listing with the current price',
+        href: '/shop/playstation-5-slim-disc-console',
+      },
+      {
+        label: 'Sony WH-1000XM5 — Quick Look',
+        description: 'ANC headphones that pair naturally with a console setup',
+        href: '/quick-look/sony-wh-1000xm5-wireless-headphones',
+      },
+      {
+        label: 'AULA F75 Pro Wireless Mechanical Keyboard — Quick Look',
+        description: 'Cross-platform keyboard for couch or desk play',
+        href: '/quick-look/aula-f75-pro-wireless-mechanical-keyboard',
+      },
+      {
+        label: 'Xiaomi Smart TV X Pro 55 — Quick Look',
+        description: 'A 4K 120Hz panel option to pair with the console',
+        href: '/quick-look/xiaomi-smart-tv-x-pro-55',
+      },
+    ],
+  },
+
+  'ugreen-usb-c-hub-5-in-1': {
+    productName: 'UGREEN USB-C Hub 5-in-1',
+    heading: 'UGREEN USB-C Hub 5-in-1 Price in Bangladesh: Full Guide',
+    lead:
+      'The UGREEN USB-C Hub 5-in-1 is a driver-free aluminum adapter that turns one USB-C port into HDMI 4K at 60Hz, three USB-A 3.0 ports and 100W power pass-through — priced at ৳3,000 in Bangladesh.',
+    overview: [
+      'Laptops and tablets keep losing ports, and this is the cheapest reliable way to get them back: UGREEN\'s Ultra Slim 5-in-1 hub (model CM418) is a bus-powered aluminum brick weighing about 60g that adds HDMI output, three USB-A 3.0 ports at 5Gbps and a USB-C PD pass-through rated up to 100W. It needs no drivers on Windows, macOS, iPadOS or Android, and it draws its operating power from the host device.',
+      'This guide covers what the ৳3,000 price buys, which laptop or tablet will actually work with it, the limitations UGREEN lists itself — no Ethernet, one external display only, and reduced host charging speed while power pass-through is in use — and how to avoid the uncertified clones that sell for half this price.',
+    ],
+    priceSection: {
+      heading: 'UGREEN USB-C Hub 5-in-1 price in Bangladesh',
+      paragraphs: [
+        'The Ultra Slim 5-in-1 (CM418) is priced at ৳3,000 at Global Brand BD. Comparable UGREEN 5-in-1 hubs locally run between ৳2,650 and ৳3,500, so this sits mid-range for the brand — you are paying slightly more than the floor price for the slim aluminum build rather than for extra ports.',
+        'Because the naming across UGREEN\'s range is close (5-in-1, 6-in-1, 7-in-1 with Ethernet), it is worth checking the exact port count at the counter rather than trusting the box alone. At ৳3,000 there is very little price ladder to weigh — the real decision is whether you need Ethernet or a second display output, because if you do, this is the wrong hub rather than a cheap one.',
+      ],
+    },
+    keyFacts: [
+      { term: 'Price', detail: '৳3,000 (comparables ৳2,650–৳3,500)' },
+      { term: 'Video out', detail: 'HDMI up to 4K at 60Hz' },
+      { term: 'Data ports', detail: 'USB-A 3.0 x3 at 5Gbps' },
+      { term: 'Power', detail: 'Up to 100W USB-C PD pass-through' },
+    ],
+    features: [
+      {
+        heading: 'Key features explained',
+        title: 'HDMI 4K at 60Hz from one cable',
+        body:
+          'The HDMI port outputs up to 4K at 60Hz, which is the useful standard for a second screen — 60Hz at 4K is smooth for spreadsheets, video and general desktop work, where a 30Hz connection feels laggy with a mouse. The limitation worth knowing before buying is that this hub drives a single external display only; if you want two monitors, you need a dock with DisplayLink or a machine that supports multiple streams natively.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Three USB-A 3.0 ports at 5Gbps',
+        body:
+          'Three USB-A 3.0 ports at 5Gbps cover the everyday accessories that modern laptops drop: a mouse or keyboard receiver, a flash drive, an external SSD, a card reader. At 5Gbps they are fast enough for USB SSDs to run comfortably, though not at the full speed of a 10Gbps port. All three share the hub\'s bus bandwidth, so copying between two drives through the hub will not hit full speed on both at once.',
+      },
+      {
+        heading: 'Key features explained',
+        title: '100W power pass-through, with a caveat',
+        body:
+          'The USB-C PD port accepts up to 100W pass-through so you can charge the laptop through the same connection the hub uses — one cable to the wall instead of two. UGREEN\'s own limitation list notes that host charging speed may drop while PD pass-through is in use, and that is simply how bus-powered hubs behave: power sent to the hub and then to peripherals reduces what reaches the laptop. For light laptop loads it is invisible; during heavy sustained work expect a slower charge.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Driver-free across four platforms',
+        body:
+          'The hub is driver-free on Windows, macOS, iPadOS and Android, which makes it equally useful for a Windows ultrabook, a MacBook Air, an iPad in a keyboard case, or an Android tablet with desktop mode. The aluminum shell is the other practical feature: at about 60g and palm-sized, it survives being carried loose in a bag, and the metal body helps dissipate heat that plastic hubs trap during long data transfers.',
+      },
+    ],
+    buyers: {
+      heading: 'Who should buy the UGREEN 5-in-1 Hub — and who should skip it',
+      should: [
+        'Ultrabook and MacBook owners: this restores HDMI, USB-A and charging from a single port laptop.',
+        'iPad and tablet users: driver-free support on iPadOS and Android makes it a genuine tablet dock for presentations and files.',
+        'Desk-tidy setups: 100W pass-through means one cable to the wall instead of a charger plus a hub.',
+        'Travel kits: the 60g aluminum body is small enough to live permanently in a laptop sleeve.',
+      ],
+      skip: [
+        'Wired-network users: this 5-in-1 has no Ethernet port — a listed limitation you cannot work around.',
+        'Dual-monitor setups: it drives a single external display only.',
+        'Buyers who need maximum charge speed while working: host charging can slow during PD pass-through by design.',
+        'High-bandwidth workflows: three USB-A ports sharing 5Gbps is not built for editing directly off external arrays.',
+      ],
+    },
+    pros: {
+      heading: 'Pros and cons of the UGREEN USB-C Hub 5-in-1',
+      pros: [
+        'HDMI output up to 4K at 60Hz',
+        'Three USB-A 3.0 ports at 5Gbps for everyday peripherals',
+        'Up to 100W USB-C PD pass-through charging',
+        'Driver-free on Windows, macOS, iPadOS and Android',
+        'Compact 60g aluminum body that survives bag travel',
+        'Priced at ৳3,000 within the brand\'s ৳2,650–৳3,500 local range',
+      ],
+      cons: [
+        'No Ethernet port on this 5-in-1 variant (listed limitation)',
+        'Single external display only (listed limitation)',
+        'Host charging speed may drop while PD pass-through is in use (listed limitation)',
+        'USB-A ports share 5Gbps bus bandwidth',
+        'Nothing is powered via external supply — everything runs off the host',
+      ],
+    },
+    buyingTips: {
+      heading: 'Buying the UGREEN 5-in-1 Hub in Bangladesh: what to know',
+      paragraphs: [
+        'At ৳3,000, this is not a purchase worth chasing a grey import for — the brand name is the value, and UGREEN clones printed with similar logos and near-identical gray aluminum shells are everywhere in the local market at half the price. Buy from a retailer that imports through the official distributor and gives you a warranty card or an invoice naming UGREEN CM418, and check the packaging print quality and USB-C connector fit, which are reliably sloppy on the copies.',
+        'There is no IMEI or PTA check on a hub, so verify function instead, at the counter and with your own device if possible. Plug in a flash drive and confirm all three USB-A ports read it, connect the HDMI to a display and confirm 4K is reported at 60Hz rather than 30Hz, and attach your laptop charger through the PD port while watching the laptop\'s reported charge rate. Bring your own laptop or tablet to the shop — hubs that work on Android phones sometimes fail on certain laptop USB-C implementations, and no spec sheet can tell you which yours is until you try it.',
+      ],
+    },
+    faqs: [
+      {
+        question: 'What is the UGREEN USB-C Hub 5-in-1 price in Bangladesh?',
+        answer:
+          'Global Brand BD prices the Ultra Slim 5-in-1 (CM418) at ৳3,000. Comparable UGREEN 5-in-1 hubs in Bangladesh run from about ৳2,650 to ৳3,500.',
+      },
+      {
+        question: 'Does the UGREEN 5-in-1 hub support 4K at 60Hz?',
+        answer:
+          'Yes — the HDMI port outputs up to 4K at 60Hz. It can drive one external display only, which is a listed limitation.',
+      },
+      {
+        question: 'Can I charge my laptop through the UGREEN 5-in-1 hub?',
+        answer:
+          'Yes, via up to 100W USB-C Power Delivery pass-through. Note that host charging speed may drop while pass-through is in use, and the hub itself is bus-powered with no external supply.',
+      },
+      {
+        question: 'Do I need to install drivers for this hub?',
+        answer:
+          'No — it works driver-free on Windows, macOS, iPadOS and Android.',
+      },
+      {
+        question: 'Does the UGREEN 5-in-1 hub have an Ethernet port?',
+        answer:
+          'No. This 5-in-1 variant has no Ethernet port, so wired networking needs a different hub or a USB-A to Ethernet adapter.',
+      },
+    ],
+    links: [
+      {
+        label: 'UGREEN USB-C Hub 5-in-1 — Shop page',
+        description: 'The full Shop listing with the current price',
+        href: '/shop/ugreen-usb-c-hub-5-in-1',
+      },
+      {
+        label: 'ASUS Vivobook 15 (X1504VA) — Quick Look',
+        description: 'A budget laptop that gains real flexibility from this hub',
+        href: '/quick-look/asus-vivobook-15-x1504va',
+      },
+      {
+        label: 'Apple iPad Air 11 (M3) — Quick Look',
+        description: 'An iPad that this hub turns into a desktop setup',
+        href: '/quick-look/apple-ipad-air-11-m3',
+      },
+      {
+        label: 'Anker PowerCore 20000 Power Bank — Quick Look',
+        description: 'The other half of a travel charging kit',
+        href: '/quick-look/anker-powercore-20000-power-bank',
+      },
+      {
+        label: 'Windows vs Mac: Which Laptop OS Should You Choose in 2026?',
+        description: 'Blog: the port situation differs sharply between the two',
+        href: '/posts/windows-vs-mac-which-laptop-os-to-choose',
+      },
+    ],
+  },
+
+  'aula-f75-pro-wireless-mechanical-keyboard': {
+    productName: 'AULA F75 Pro',
+    heading: 'AULA F75 Pro Price in Bangladesh: Wireless Mechanical Keyboard Guide',
+    lead:
+      'The AULA F75 Pro is a 75% gasket-mounted mechanical keyboard with hot-swappable switches, PBT keycaps and tri-mode connectivity (Bluetooth, 2.4GHz and USB-C) — current price ৳5,200 in Bangladesh, down from ৳5,800.',
+    overview: [
+      'The F75 Pro packs features that were flagship-only two years ago into a ৳5,200 keyboard: a 75% layout that keeps the arrow keys and adds a media knob, a gasket-mounted plate for a softer typing feel, PBT keycaps that resist the shine that wears into cheaper ABS caps, and hot-swap sockets so you can change switches without soldering. It connects three ways — Bluetooth 5.0 with three-device memory, an included 2.4GHz USB-A receiver, and USB-C wired — powered by a built-in rechargeable battery.',
+      'This guide explains what each of those features actually changes about daily use, how the media knob and south-facing RGB work in practice, and how to buy the right switch variant locally, since Bangladesh stock spans roughly ৳5,199 to ৳6,200 depending on which switches are fitted.',
+    ],
+    priceSection: {
+      heading: 'AULA F75 Pro price in Bangladesh',
+      paragraphs: [
+        'The F75 Pro lists at ৳5,200, down from a ৳5,800 regular price, and that is typical Bangladesh retail — Creatus and other local retailers sit in the same range. The important thing to understand is that the F75 and F75 Pro line spans roughly ৳5,199 to ৳6,200 across switch variants, so two shops selling "an F75 Pro" can be selling meaningfully different keyboards at different prices.',
+        'Because the switches are the main variable, compare the exact switch model in each offer rather than the product name. The keyboard is available in Black and White; it is a single configuration otherwise, so there is no storage-ladder decision to make — just confirm the switch type and that the 2.4GHz receiver is included in the box.',
+      ],
+    },
+    keyFacts: [
+      { term: 'Current price', detail: '৳5,200 (regular ৳5,800)' },
+      { term: 'Layout', detail: '75% compact with media knob' },
+      { term: 'Connectivity', detail: 'Bluetooth 5.0, 2.4GHz receiver, USB-C wired' },
+      { term: 'Switches', detail: 'Hot-swappable, 3-pin and 5-pin mechanical' },
+    ],
+    features: [
+      {
+        heading: 'Key features explained',
+        title: 'Hot-swap sockets — change switches without soldering',
+        body:
+          'The sockets accept both 3-pin and 5-pin mechanical switches, which means you can pull the stock switches with a simple tool and fit a different type whenever your preference changes — linear for gaming, tactile for typing, quieter switches for shared rooms. That flexibility is what makes a ৳5,200 keyboard worth buying over a sealed one, because you are no longer locked into the manufacturer\'s choice. Note the limitation: hot-swap works with 3/5-pin mechanical switches only, so optical and other non-mechanical types will not fit.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Tri-mode connectivity with three-device Bluetooth memory',
+        body:
+          'Bluetooth 5.0 remembers three devices, so a laptop, a tablet and a phone can all be paired and switched between without re-pairing each time. The included 2.4GHz USB-A receiver gives a lower-latency wireless option that suits gaming and is the mode most people leave it on for a desktop, while USB-C wired mode handles charging and doubles as a zero-latency connection. A built-in rechargeable battery powers the wireless modes, and the keyboard is plug-and-play with no driver install.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Gasket mounting and PBT keycaps',
+        body:
+          'Gasket mounting means the plate floats on compressible material inside the case instead of being screwed rigidly to it, which softens bottoming-out and gives the whole board a more cushioned, less hollow sound. PBT keycaps resist the greasy shine that ABS caps develop within months of daily use, so the legends and texture stay cleaner for longer. Together these are the two features that most separate a gasket-mount board from budget mechanical keyboards, and both are present here.',
+      },
+      {
+        heading: 'Key features explained',
+        title: '75% layout, media knob and 950g of stability',
+        body:
+          'The 75% layout keeps the arrow keys, function row and a media knob while cutting the number pad, which leaves more desk room for the mouse without learning a cramped 60% layout. The knob is not remappable — a listed limitation to accept before buying — but it handles volume and mute in daily use. At approximately 950g the board stays planted during fast typing, and south-facing RGB avoids glare off the top row of keys, though AULA notes it can clash mechanically with some non-OEM switch designs.',
+      },
+    ],
+    buyers: {
+      heading: 'Who should buy the AULA F75 Pro — and who should skip it',
+      should: [
+        'First mechanical keyboard buyers: hot-swap switches let you learn your preference without buying three keyboards.',
+        'Multi-device users: three-device Bluetooth memory plus a 2.4GHz receiver covers a work laptop, a home desktop and a tablet.',
+        'Gamers who also type: 2.4GHz wireless for play and a gasket-mounted plate for long typing sessions.',
+        'Small-desk setups: the 75% layout drops the number pad while keeping arrows and a media knob.',
+      ],
+      skip: [
+        'Number-pad dependent users: there is no numpad, and that is a layout decision you cannot change later.',
+        'Anyone who needs a remappable dial: the media knob is not remappable — a listed limitation.',
+        'Buyers planning exotic switches: hot-swap supports 3/5-pin mechanical switches only.',
+        'Non-OEM switch collectors: south-facing RGB can clash with some third-party switch designs.',
+      ],
+    },
+    pros: {
+      heading: 'Pros and cons of the AULA F75 Pro',
+      pros: [
+        'Hot-swappable sockets for 3-pin and 5-pin mechanical switches',
+        'Tri-mode connectivity: Bluetooth 5.0 (3 devices), 2.4GHz receiver, USB-C wired',
+        'Gasket-mounted plate for a softer, more cushioned typing feel',
+        'PBT keycaps that resist shine and wear',
+        'Compact 75% layout with arrow keys and a media knob',
+        'On-deal at ৳5,200 against a ৳5,800 regular price',
+      ],
+      cons: [
+        'Media knob is not remappable (listed limitation)',
+        'Hot-swap supports 3/5-pin mechanical switches only (listed limitation)',
+        'South-facing RGB can clash with some non-OEM switch designs (listed limitation)',
+        'No wired passthrough for peripherals — it is a keyboard, not a hub',
+        'Roughly 950g makes it a desk keyboard rather than a travel one',
+      ],
+    },
+    buyingTips: {
+      heading: 'Buying the AULA F75 Pro in Bangladesh: what to know',
+      paragraphs: [
+        'At ৳5,200 with a ৳5,800 regular price, this is a value purchase where the switch variant is the thing to negotiate rather than the price in isolation. Ask the seller which switch model is fitted and what type it is — linear, tactile or clicky — because the F75 line ranges from about ৳5,199 to ৳6,200 specifically on switch differences, and "F75 Pro" alone does not tell you what you are getting. Buy from a retailer that offers a replacement window, since a dead hot-swap socket or a failing battery shows up quickly.',
+        'There is no IMEI or PTA check on a keyboard. Instead, verify at the counter: press a dozen keys to check for chatter or dead switches, plug in the 2.4GHz receiver and confirm it connects without the USB-C cable attached, cycle through the three Bluetooth device slots, turn the media knob, and confirm the 2.4GHz receiver, keycap puller and cable are in the box. RGB behaviour is worth a look too — a quick sweep through colours catches a bad LED row before you leave the shop.',
+      ],
+    },
+    faqs: [
+      {
+        question: 'What is the AULA F75 Pro price in Bangladesh?',
+        answer:
+          'It lists at ৳5,200, down from a ৳5,800 regular price. The wider F75/F75 Pro line runs roughly ৳5,199 to ৳6,200 depending on which switch variant is fitted.',
+      },
+      {
+        question: 'Can I change the switches on the AULA F75 Pro?',
+        answer:
+          'Yes — the sockets are hot-swappable and support 3-pin and 5-pin mechanical switches, so no soldering is needed. Non-mechanical switch types will not fit.',
+      },
+      {
+        question: 'How many devices can the AULA F75 Pro connect to?',
+        answer:
+          'Three over Bluetooth 5.0, and it also connects through the included 2.4GHz USB-A receiver or a USB-C wired connection.',
+      },
+      {
+        question: 'Is the media knob on the AULA F75 Pro programmable?',
+        answer:
+          'No — the media knob is not remappable, which AULA lists among the keyboard\'s limitations. It controls volume and mute in its default configuration.',
+      },
+      {
+        question: 'Does the AULA F75 Pro have a numpad?',
+        answer:
+          'No. It uses a 75% layout, which keeps arrow keys, the function row and a media knob, but omits the number pad to save desk space.',
+      },
+    ],
+    links: [
+      {
+        label: 'AULA F75 Pro — Shop page',
+        description: 'The full Shop listing with the current price',
+        href: '/shop/aula-f75-pro-wireless-mechanical-keyboard',
+      },
+      {
+        label: 'PlayStation 5 Slim Disc Console — Quick Look',
+        description: 'The 2.4GHz wireless mode suits console-adjacent desk play',
+        href: '/quick-look/playstation-5-slim-disc-console',
+      },
+      {
+        label: 'UGREEN USB-C Hub 5-in-1 — Quick Look',
+        description: 'Pairs with a single-port laptop that needs more USB-A',
+        href: '/quick-look/ugreen-usb-c-hub-5-in-1',
+      },
+      {
+        label: 'ASUS Vivobook 15 (X1504VA) — Quick Look',
+        description: 'A budget laptop that makes a good home for this keyboard',
+        href: '/quick-look/asus-vivobook-15-x1504va',
+      },
+      {
+        label: 'Best Laptop for Programming Students in 2026',
+        description: 'Blog: pairing the right machine with a keyboard you type on all day',
+        href: '/posts/best-laptop-for-programming-students',
+      },
+    ],
+  },
+
+  'samsung-galaxy-tab-s10-ultra': {
+    productName: 'Samsung Galaxy Tab S10 Ultra',
+    heading: 'Samsung Galaxy Tab S10 Ultra Price in Bangladesh: Full Guide',
+    lead:
+      'The Samsung Galaxy Tab S10 Ultra is a 14.6-inch 120Hz AMOLED tablet with the S Pen included, Dimensity 9300+ power and an 11200mAh battery — officially priced at ৳119,999 in Bangladesh for the Wi-Fi 256GB model.',
+    overview: [
+      'The Tab S10 Ultra is Samsung\'s largest tablet: a 14.6-inch Dynamic AMOLED 2X panel at 2960 x 1848 with 120Hz refresh and an anti-reflective coating that makes it usable in bright rooms, driven by the MediaTek Dimensity 9300+ with 12GB of RAM. The S Pen is included rather than sold separately, Samsung DeX turns the tablet into a desktop-style workspace, and the 11200mAh battery supports 45W wired charging.',
+      'This guide covers the two pricing tiers and what each actually means for buyers, how the S Pen and DeX change what this tablet can replace, where a 718g device becomes a real constraint, and what to verify when buying an official unit versus an imported 5G model.',
+    ],
+    priceSection: {
+      heading: 'Samsung Galaxy Tab S10 Ultra price in Bangladesh',
+      paragraphs: [
+        'The Wi-Fi 256GB model is officially ৳119,999 at Riointernational. The 5G 512GB configuration sits around ৳145,999 — Star Tech has listed that tier between ৳145,999 and ৳185,999 depending on configuration, so our ৳145,999 figure is an estimated midpoint rather than a fixed quote. Wi-Fi 512GB has no active Bangladesh listing, and we estimate it at roughly ৳26,000 above the 256GB model, again as an estimate.',
+        'That means the honest pricing picture here is: one confirmed official price for Wi-Fi 256GB, one estimated tier above it, and a wide 5G range that depends entirely on configuration. If you want a cellular tablet, treat ৳145,999 as a starting point and confirm the final configuration price with the retailer rather than assuming the lower figure holds for the storage and connectivity you want.',
+      ],
+    },
+    keyFacts: [
+      { term: 'Official price (Wi-Fi 256GB)', detail: '৳119,999 at Riointernational' },
+      { term: '5G 512GB', detail: '~৳145,999 estimated (Star Tech lists ৳145,999–৳185,999)' },
+      { term: 'S Pen', detail: 'Included in the box' },
+      { term: 'Battery', detail: '11200mAh with 45W wired charging' },
+    ],
+    features: [
+      {
+        heading: 'Key features explained',
+        title: 'A 14.6-inch anti-reflective AMOLED built for outdoors',
+        body:
+          'At 14.6 inches with 2960 x 1848 resolution and 120Hz, this is closer to a portable monitor than a typical tablet, and the anti-reflective coating is the difference-maker — large glossy panels turn into mirrors under room lighting and sunlight, and the S10 Ultra\'s coating keeps the image readable instead. The trade is physical: at 326.4 x 208.6 x 5.4mm and 718g, it is a two-handed device that needs a kickstand or a desk. Samsung lists limited one-handed use among the tablet\'s limitations, which is exactly right.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'S Pen included, and Samsung DeX',
+        body:
+          'The S Pen ships in the box rather than as a ৳8,000 extra, and it pairs with Samsung\'s AI features — Sketch to Image turns rough drawings into renders, Note Assist organises handwritten notes, and Circle to Search works by drawing. Combined with Samsung DeX, which switches the interface into a desktop-style multitasking environment, the Tab S10 Ultra can genuinely replace a laptop for writing, annotating and document work. The keyboard cover, however, is sold separately — a listed limitation if you plan to type seriously.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Dimensity 9300+ with 12GB RAM',
+        body:
+          'The MediaTek Dimensity 9300+ paired with 12GB of RAM and 256GB or 512GB of storage handles split-screen apps, drawing in Samsung Notes, video editing and DeX multitasking without strain, running Android 14 with One UI 6.1 and Galaxy AI features like Note Assist and Sketch to Image. Storage is not expandable, so if you plan to keep video projects or large media libraries on the tablet, decide the tier at purchase — moving from 256GB to 512GB costs a real step up in price.',
+      },
+      {
+        heading: 'Key features explained',
+        title: '11200mAh battery, 45W charging and a dual front camera',
+        body:
+          'The 11200mAh cell is what makes a 14.6-inch screen practical — it supports long work or viewing sessions between charges, and 45W wired charging refills it at a reasonable pace for a battery this size. Cameras are practical rather than remarkable: a 13MP main and 8MP ultra-wide on the back, with two 12MP front cameras (including an ultra-wide) that matter more than the rear array here, since the cover camera matters for video calls in laptop orientation. Connectivity covers Wi-Fi 6E, optional 5G, Bluetooth 5.3 and USB-C 3.2 — with no headphone jack, a listed limitation.',
+      },
+    ],
+    buyers: {
+      heading: 'Who should buy the Tab S10 Ultra — and who should skip it',
+      should: [
+        'Pen-first users: the S Pen is included, and Sketch to Image plus Note Assist make it genuinely useful rather than an accessory demo.',
+        'People who want one device for reading, drawing and light work: 14.6 inches of anti-reflective AMOLED with DeX covers a lot of ground.',
+        'Media-heavy households: the E6-class panel and 11200mAh battery suit long viewing sessions.',
+        'Students and annotators: writing on a large screen with an included stylus beats printing and marking up paper.',
+      ],
+      skip: [
+        'Portability-first buyers: 718g and a 14.6-inch footprint need a bag of their own — nearly tablet-laptop weight.',
+        'Typing-focused users on a budget: the keyboard cover is sold separately, so budget for it if you want to write.',
+        'Headphone-jack holdouts: there is no 3.5mm jack, a listed limitation.',
+        'One-handed readers: this is a lap-and-kickstand device, not something you hold in one hand on a bus.',
+      ],
+    },
+    pros: {
+      heading: 'Pros and cons of the Samsung Galaxy Tab S10 Ultra',
+      pros: [
+        '14.6-inch 120Hz Dynamic AMOLED 2X with anti-reflective coating',
+        'S Pen included in the box',
+        'Samsung DeX desktop-style multitasking',
+        'MediaTek Dimensity 9300+ with 12GB RAM',
+        '11200mAh battery with 45W wired charging',
+        'Galaxy AI features: Note Assist, Circle to Search, Sketch to Image',
+      ],
+      cons: [
+        'No headphone jack (listed limitation)',
+        'Keyboard cover sold separately (listed limitation)',
+        '718g and 14.6 inches limit one-handed use (listed limitation)',
+        '512GB Wi-Fi has no active Bangladesh listing; the 5G tier is estimated',
+        'Storage is not expandable',
+        'Android 14 and One UI 6.1 out of the box — older software than 2026 phones ship with',
+      ],
+    },
+    buyingTips: {
+      heading: 'Buying the Tab S10 Ultra in Bangladesh: what to know',
+      paragraphs: [
+        'Start with the connectivity question, because it changes both price and channel. The Wi-Fi 256GB model at ৳119,999 from Riointernational is the confirmed official price and the safest purchase. The 5G 512GB version is where prices spread widely — Star Tech has listed that configuration from ৳145,999 up to ৳185,999 — so get the exact model, storage and connectivity confirmed in writing before paying, and do not treat the lower figure as guaranteed.',
+        'For a cellular tablet, the same checks that apply to imported phones apply here: *#06# for the IMEI matched against the box, and confirmation that the device is PTA-approved so it keeps working on Bangladesh networks. Physically, open the S Pen and pair it, draw a line across the full screen to check for dead zones around the edges, test the 120Hz setting, and confirm the 45W charger is in the box. Confirm the keyboard cover situation too — it is not included, so ask what the retailer bundles before you assume you can type on it out of the box.',
+      ],
+    },
+    faqs: [
+      {
+        question: 'What is the Samsung Galaxy Tab S10 Ultra price in Bangladesh?',
+        answer:
+          'The Wi-Fi 256GB model is officially ৳119,999 at Riointernational. The 5G 512GB tier is around ৳145,999 estimated, with Star Tech listings spanning ৳145,999 to ৳185,999 by configuration.',
+      },
+      {
+        question: 'Does the Galaxy Tab S10 Ultra come with an S Pen?',
+        answer:
+          'Yes — the S Pen is included in the box, not sold separately. The keyboard cover, however, is sold separately.',
+      },
+      {
+        question: 'How big and how heavy is the Tab S10 Ultra?',
+        answer:
+          'It measures 326.4 x 208.6 x 5.4mm and weighs 718g, with a 14.6-inch display — Samsung lists limited one-handed use among its limitations.',
+      },
+      {
+        question: 'Does the Tab S10 Ultra have expandable storage?',
+        answer:
+          'No — storage is not expandable, so the 256GB or 512GB choice you make at purchase is permanent. The 512GB Wi-Fi model currently has no active Bangladesh listing.',
+      },
+      {
+        question: 'What processor does the Galaxy Tab S10 Ultra use?',
+        answer:
+          'A MediaTek Dimensity 9300+ with 12GB of RAM, running Android 14 with One UI 6.1 and Galaxy AI features such as Note Assist and Sketch to Image.',
+      },
+    ],
+    links: [
+      {
+        label: 'Samsung Galaxy Tab S10 Ultra — Shop page',
+        description: 'The full Shop listing with variant pricing',
+        href: '/shop/samsung-galaxy-tab-s10-ultra',
+      },
+      {
+        label: 'Apple iPad Air 11 (M3) — Quick Look',
+        description: 'The lighter, smaller iPad alternative',
+        href: '/quick-look/apple-ipad-air-11-m3',
+      },
+      {
+        label: 'Samsung Galaxy Z Fold7 256GB — Quick Look',
+        description: 'Foldable-phone route to a big screen on the go',
+        href: '/quick-look/samsung-galaxy-z-fold7-256gb',
+      },
+      {
+        label: 'UGREEN USB-C Hub 5-in-1 — Quick Look',
+        description: 'Adds USB-A and HDMI to a single-port tablet',
+        href: '/quick-look/ugreen-usb-c-hub-5-in-1',
+      },
+    ],
+  },
 };
 /** Long-form guide for a product slug, or undefined when none is written yet. */
 export function getQuickLookContent(slug: string): QuickLookGuide | undefined {
