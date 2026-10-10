@@ -183,7 +183,9 @@ export const posts: Post[] = [
       <p>After years of "foldable iPhone" rumors, Apple made it official on September 9, 2026: the <strong>iPhone Duo</strong> is a book-style foldable that opens from a phone-sized body into a 7.6-inch tablet-class display — and it's coming to stores this October. Here's everything confirmed so far, and what it means for buyers in Bangladesh.</p>
 
       <h2>The Design: A Passport, Not a Slab</h2>
+      <h3>Form factor and display</h3>
       <p>Closed, the iPhone Duo is roughly 90% of a passport's footprint — noticeably squarer than a standard iPhone, with a 5.4-inch outer display handling everyday one-handed use. Open, it reveals a 7.6-inch inner OLED at 1878×2670 with ProMotion 120Hz, Always-On, and up to 3,000 nits peak brightness. Apple says the nano-texture display option plus a laser-etched micro-lens surface makes the fold crease nearly invisible — historically the foldable category's hardest problem.</p>
+      <h3>Titanium build and Touch ID</h3>
       <p>The frame and hinge cover are Grade 5 titanium, and Apple claims a precision hinge rated for years of daily open-close cycles. Face ID is out — Touch ID moves to the power button, the same space-saving trade-off every book-style foldable has made.</p>
       <figure class="my-6">
         <img src="/images/posts/iphone-duo-foldable-price-specs-release/iphone-duo-2.webp" alt="iPhone Duo closed form factor" class="rounded-lg w-full" loading="lazy" />
@@ -264,7 +266,9 @@ export const posts: Post[] = [
       <p>Announced at WWDC on June 8, 2026 and polished through a summer of betas, iOS 27 went public on <strong>September 14, 2026</strong>. Apple skipped a dramatic visual overhaul this cycle and spent its energy on two things instead: making Siri genuinely useful, and sanding down daily annoyances.</p>
 
       <h2>Siri AI: The Headline Act</h2>
+      <h3>What Siri AI can do</h3>
       <p>Siri has been re-architected around generative models — Apple's own foundation models plus, notably, Google Gemini under the hood — into a dedicated "Siri AI" mode. It handles follow-up questions, understands what's on your screen, digs specifics out of your email, and completes multi-step tasks inside apps. A system-wide search bar now lets you route a question to Siri or ChatGPT. The visual identity changed too: a refreshed icon and a fluid glow around the Dynamic Island replace the old pulsing orb.</p>
+      <h3>Rollout and availability</h3>
       <p>Two caveats: the full Siri AI beta rolls out in English through late 2026, and it's absent at launch in the EU and China while Apple clears local regulators.</p>
       <figure class="my-6">
         <img src="/images/posts/ios-27-features-release-date/ios27-2.webp" alt="Siri AI interface in iOS 27" class="rounded-lg w-full" loading="lazy" />
@@ -599,12 +603,17 @@ export const posts: Post[] = [
       <p>Windows currently runs on roughly 72% of desktops and laptops worldwide, while macOS sits at around 15% and continues to grow steadily, especially among creative professionals and tech workers. This gap matters less for personal use and more if you need to collaborate with others — file compatibility, shared software, and IT support are all easier when you're using the more common platform in your field.</p>
 
       <h2>Performance &amp; Hardware</h2>
+      <h3>Windows: pick your specs</h3>
       <p>Windows laptops span an enormous range — from ultra-budget models under ৳30,000 to high-end gaming rigs with dedicated graphics cards. This flexibility means you can pick exactly the specs you need without overpaying for features you won't use.</p>
+      <h3>Mac: M-series efficiency</h3>
       <p>MacBooks, on the other hand, use Apple's own M-series chips, which are known for excellent performance-per-watt and long battery life. You pay a premium, but you get a machine that runs cool, quiet, and efficiently — ideal for people who value build quality and battery life over raw customization.</p>
 
       <h2>Software &amp; Compatibility</h2>
+      <h3>Windows-only software</h3>
       <p>If your work depends on Windows-only software — certain engineering tools, specific enterprise applications, Excel macros/VBA, or Microsoft Access — Windows is the safer choice. Some older Office add-ins and niche industry software still don't have a Mac equivalent.</p>
+      <h3>Mac for creative work</h3>
       <p>Mac tends to win for creative workflows — video editing, photography, and music production software often feels more polished and native on macOS. Mac also integrates tightly with iPhone and iPad if you're already in the Apple ecosystem (Handoff, AirDrop, Continuity features).</p>
+      <h3>General office work</h3>
       <p>For general office work — Word, Excel, PowerPoint, Teams, or browser-based tools like Google Workspace — both platforms perform almost identically today, so this shouldn't be your deciding factor unless you rely on the specific Windows-only features mentioned above.</p>
       <figure class="my-6">
         <img src="/images/posts/windows-vs-mac-which-laptop-os-to-choose/windows-use-case.webp" alt="Windows laptop for everyday office and browsing use" class="rounded-lg w-full" loading="lazy" />
