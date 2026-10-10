@@ -2485,6 +2485,702 @@ const guides: Record<string, QuickLookGuide> = {
       },
     ],
   },
+
+  'anker-soundcore-r50i-earbuds': {
+    productName: 'Anker Soundcore R50i',
+    heading: 'Anker Soundcore R50i Earbuds Price in Bangladesh: Full Guide',
+    lead:
+      'The Anker Soundcore R50i are budget true-wireless earbuds — Bluetooth 5.3, up to 10 hours per charge and 42 hours with the case, 22 EQ presets in the Soundcore app — priced at ৳2,590 in Bangladesh.',
+    overview: [
+      'The R50i occupy the cheapest end of the true-wireless market and are honest about it: no active noise cancelling, no wireless charging case, an average microphone for calls. What they do offer for ৳2,590 is Bluetooth 5.3, an in-ear stem design at about 4g per bud, IPX5 water resistance against sweat and splashes, up to 10 hours of playback per charge and 42 hours total with the case, plus a Soundcore app with 22 preset equaliser modes and a custom EQ.',
+      'This guide explains what you get and what you give up at this price, why the app-based EQ is the feature that actually matters here, how the battery numbers should be read, and what to check when buying earbuds this cheap in Bangladesh, where lookalike clones are extremely common.',
+    ],
+    priceSection: {
+      heading: 'Anker Soundcore R50i price in Bangladesh',
+      paragraphs: [
+        'Ryans Archives, an official Bangladesh distributor, lists the R50i at ৳2,590, and that is the price to anchor on. There is one configuration and three colours — Black, White and Navy Blue — with colour having no effect on price, so the only variable is which shop you buy from.',
+        'At this price the temptation is to buy the cheapest listing you can find, but that is exactly where the counterfeit problem lives: unbranded earbuds in R50i-shaped boxes sell for under ৳1,000 locally and look convincing in photos. The ৳2,590 official price is low enough that there is no meaningful saving to chase, so buying the genuine product from an authorized seller is the more valuable decision.',
+      ],
+    },
+    keyFacts: [
+      { term: 'Price', detail: '৳2,590 at Ryans (official distributor)' },
+      { term: 'Battery', detail: 'Up to 10 hours per charge, 42 hours with case' },
+      { term: 'Connectivity', detail: 'Bluetooth 5.3, USB-C charging case' },
+      { term: 'Sound control', detail: '22 preset EQ modes and custom EQ via app' },
+    ],
+    features: [
+      {
+        heading: 'Key features explained',
+        title: '10 hours per charge, 42 hours with the case',
+        body:
+          'Ten hours of playback from a single charge and 42 hours total with the USB-C case is a strong battery story for this price bracket — it means charging is roughly a weekly routine rather than a daily one. The case charges over USB-C, so one cable covers the earbuds and most modern phones. The trade-off, and it is a listed limitation, is that the case does not support wireless charging; if you use a wireless pad on your desk, these will not join it.',
+      },
+      {
+        heading: 'Key features explained',
+        title: '22 EQ presets — the app is where the sound is tuned',
+        body:
+          'The Soundcore app on iOS and Android is what turns these from generic budget buds into something you can shape: 22 preset equaliser modes plus a custom EQ let you dial in the bass, mids and treble to your taste. On cheaper earbuds, tuning is often limited to whatever the factory shipped; here the app does real work. This is the single most useful feature in the box, so pair the earbuds and update the firmware before judging the sound.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Comfort at 4g and IPX5 sweat resistance',
+        body:
+          'At around 4g per bud in an in-ear stem design, the R50i are light enough to forget during long sessions, and the IPX5 rating on the buds covers sweat and splashes — the practical rating for gym, running and commuting. Note that IPX5 is splash resistance rather than full water protection: rain and sweat are fine, submersion is not. The plastic build is unremarkable, which is exactly what you would expect at this price, and the three colour choices are the only cosmetic variable.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'No noise cancelling — and what that means in Dhaka',
+        body:
+          'There is no active noise cancelling, which is a listed limitation and the biggest thing separating these from earbuds costing several times more. In a noisy bus or a packed street, passive isolation from the ear tips is all you get, and you turn the volume up to compensate. If traffic noise is your main reason for buying earbuds, spend more on a model with ANC; if you want cheap, light earbuds for music, calls and workouts, the absence of ANC is the reason the price stays where it is.',
+      },
+    ],
+    buyers: {
+      heading: 'Who should buy the Soundcore R50i — and who should skip it',
+      should: [
+        'Budget-first listeners: ৳2,590 buys real Bluetooth 5.3 earbuds with app EQ rather than unbranded clones.',
+        'Gym and running users: 4g buds with IPX5 sweat resistance and 10 hours per charge.',
+        'People who forget to charge: 42 hours with the case makes charging a weekly task.',
+        'Anyone who likes tuning sound: 22 presets plus custom EQ is unusual at this price point.',
+      ],
+      skip: [
+        'Buyers who need noise cancelling: there is none — a listed limitation, so noisy commutes suffer.',
+        'Wireless-charging fans: the case is USB-C only, with no wireless charging (listed limitation).',
+        'Call-heavy professionals: microphone quality is average for calls, another listed limitation.',
+        'Listeners who want premium build or codec detail: this is a plastic, basics-first product.',
+      ],
+    },
+    pros: {
+      heading: 'Pros and cons of the Anker Soundcore R50i',
+      pros: [
+        'Up to 10 hours per charge and 42 hours with the case',
+        'Bluetooth 5.3 with a USB-C charging case',
+        '22 preset EQ modes and custom EQ in the Soundcore app',
+        'Around 4g per bud for all-day comfort',
+        'IPX5 sweat and splash resistance on the buds',
+        'Official Bangladesh distributor pricing at ৳2,590',
+      ],
+      cons: [
+        'No active noise cancelling (listed limitation)',
+        'No wireless charging on the case (listed limitation)',
+        'Average microphone quality for calls (listed limitation)',
+        'IPX5 covers splashes, not submersion',
+        'Heavily counterfeited category — buying the genuine product needs an authorized seller',
+      ],
+    },
+    buyingTips: {
+      heading: 'Buying the Soundcore R50i in Bangladesh: what to know',
+      paragraphs: [
+        'At ৳2,590 from an official distributor, this is a purchase where authenticity matters more than price. Counterfeit and unbranded earbuds in similar shapes are everywhere locally, and the genuine ones are identified by the Soundcore branding, the case finish and — decisively — whether the Soundcore app can see and pair with them. A clone will not appear in the app, which is why installing it before you pay is the single best authenticity test for these earbuds.',
+        'There is no IMEI or PTA check on Bluetooth earbuds. Check them in the shop instead: pair them with your own phone and confirm the Soundcore app detects them and reports firmware and battery, cycle through a couple of EQ presets to hear the sound change, confirm all three ear-tip sizes are in the box, test the touch controls, and check the USB-C port on the case actually charges. Then ask about the warranty period and whether claims go through the seller or the distributor.',
+      ],
+    },
+    faqs: [
+      {
+        question: 'What is the Anker Soundcore R50i price in Bangladesh?',
+        answer:
+          'Ryans Archives, an official Bangladesh distributor, prices them at ৳2,590. Black, White and Navy Blue all cost the same.',
+      },
+      {
+        question: 'Do the Soundcore R50i earbuds have active noise cancelling?',
+        answer:
+          'No — they have no ANC, which Anker lists among their limitations. Isolation comes only from the ear tips, so noisy commutes will be audible.',
+      },
+      {
+        question: 'How long do the R50i earbuds last on a charge?',
+        answer:
+          'Up to 10 hours of playback per charge, and up to 42 hours in total when the USB-C charging case is included.',
+      },
+      {
+        question: 'Are the R50i earbuds good for exercise?',
+        answer:
+          'Yes for sweat and splashes — the buds carry an IPX5 rating and weigh about 4g each, so they suit gym and running use. They are not rated for submersion in water.',
+      },
+      {
+        question: 'Are the R50i earbuds water resistant?',
+        answer:
+          'The buds are IPX5 rated, covering sweat and light splashes. That is not full water protection, so do not swim with them or rinse them under a tap.',
+      },
+    ],
+    links: [
+      {
+        label: 'Anker Soundcore R50i Earbuds — Shop page',
+        description: 'The full Shop listing with the current price',
+        href: '/shop/anker-soundcore-r50i-earbuds',
+      },
+      {
+        label: 'Apple AirPods Pro 3 — Quick Look',
+        description: 'The ANC premium option if budget allows',
+        href: '/quick-look/apple-airpods-pro-3',
+      },
+      {
+        label: 'Sony WH-1000XM5 — Quick Look',
+        description: 'Over-ear noise cancelling for serious listening',
+        href: '/quick-look/sony-wh-1000xm5-wireless-headphones',
+      },
+      {
+        label: 'Anker PowerCore 20000 Power Bank — Quick Look',
+        description: 'Another Anker product with the same value-first approach',
+        href: '/quick-look/anker-powercore-20000-power-bank',
+      },
+    ],
+  },
+
+  'dji-osmo-action-5-pro': {
+    productName: 'DJI Osmo Action 5 Pro',
+    heading: 'DJI Osmo Action 5 Pro Price in Bangladesh: Full Guide',
+    lead:
+      'The DJI Osmo Action 5 Pro is a rugged action camera with a 1/1.3-inch sensor shooting up to 4K at 120fps, RockSteady 3.0 stabilization, 47GB of built-in storage and 20m waterproofing without a housing — ৳36,500 for the Standard Combo in Bangladesh.',
+    overview: [
+      'The Osmo Action 5 Pro is built for the situations phones cannot handle: it records up to 4K at 120fps from a 1/1.3-inch sensor, sits in a body waterproof to 20m without any case, and carries dual OLED touchscreens — a 1.4-inch front display for framing yourself and a 2.0-inch rear for everything else. RockSteady 3.0 handles stabilization, there is 47GB of internal storage before you add a card, and DJI rates recording up to four hours per charge.',
+      'This guide covers the two combo prices and what the Adventure bundle adds, why the fixed lens and lack of a built-in ND filter matter to anyone shooting outdoors, how the magnetic mount and 47GB internal storage change a shooting day, and what to verify when buying a camera this exposed to element and grey-market risk.',
+    ],
+    priceSection: {
+      heading: 'DJI Osmo Action 5 Pro price in Bangladesh',
+      paragraphs: [
+        'Star Tech, an official Bangladesh retailer, prices the Osmo Action 5 Pro at ৳36,500 for the Standard Combo and ৳45,500 for the Adventure Combo. Unlike phone storage tiers, the difference between these two is accessories rather than hardware — the camera itself is the same — so the ৳9,000 step is about how much mounting and battery gear you need from day one.',
+        'For most owners the Standard Combo covers the basics and additional batteries or mounts can be bought later; the Adventure option makes sense if you already know you will shoot long sessions away from power. Either way, budget separately for a microSD card, because 47GB of internal storage is a starting allowance rather than a permanent home for footage — that is a listed limitation, not an upsell.',
+      ],
+    },
+    keyFacts: [
+      { term: 'Standard Combo', detail: '৳36,500 at Star Tech' },
+      { term: 'Adventure Combo', detail: '৳45,500 at Star Tech' },
+      { term: 'Video', detail: '1/1.3-inch sensor, up to 4K at 120fps' },
+      { term: 'Durability', detail: 'Waterproof to 20m without a housing, 146g' },
+    ],
+    features: [
+      {
+        heading: 'Key features explained',
+        title: 'RockSteady 3.0 stabilization and 4K at 120fps',
+        body:
+          'The 1/1.3-inch sensor recording up to 4K at 120fps gives you both resolution and slow-motion headroom, and RockSteady 3.0 is what makes handheld action footage watchable: it smooths out running, cycling and handlebar vibration electronically, in-camera. Slow-motion at 120fps is also genuinely useful for sports, surf and cooking-style content. The catch is the fixed focal length — there is no optical zoom, so framing is entirely down to where you put the camera, which is a listed limitation rather than a fault.',
+      },
+      {
+        heading: 'Key features explained',
+        title: '20m underwater with no housing, in a 146g body',
+        body:
+          'The camera is waterproof to 20 metres without any additional case, which removes the seal-failure anxiety of housing-based action cameras, and at 146g in a compact body it mounts almost anywhere without sagging. The magnetic quick-release mount is the other practical design win: swapping between a helmet, handlebar, chest mount and tripod takes a second rather than a screwdriver, which is the difference between getting the shot and missing it. Two OLED touchscreens — 1.4-inch front, 2.0-inch rear — mean you can frame yourself without guessing.',
+      },
+      {
+        heading: 'Key features explained',
+        title: '47GB built in, four hours per charge, and subject tracking',
+        body:
+          'Internal storage of 47GB means the camera works out of the box before you buy a card, and it can record up to four hours per charge — long enough for a day of activity shooting without spare batteries. Subject tracking plus AI highlighting in the DJI Mimo app handle the editing side: footage can be automatically cut into a shareable highlight reel, which saves real time if your goal is posting rather than archiving. Connectivity is Wi-Fi and Bluetooth 5.0 through the Mimo app, with USB-C for charging and file transfer.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Where an action camera demands extras',
+        body:
+          'Two limitations shape how you should budget. First, beyond the 47GB of internal storage you need a microSD card, and action footage fills cards fast at 4K120. Second, there is no built-in ND filter, so bright daytime shots at slow shutter speeds will need an external ND filter to avoid the over-bright, stuttery look that plagues action footage in daylight. Neither is a defect, but both are costs that sit outside the ৳36,500 price and are worth planning for before the first trip.',
+      },
+    ],
+    buyers: {
+      heading: 'Who should buy the Osmo Action 5 Pro — and who should skip it',
+      should: [
+        'Outdoor and sports shooters: 20m waterproofing without a housing plus RockSteady 3.0 handles water, dust and vibration.',
+        'Vloggers who film themselves: the 1.4-inch front screen makes framing a solo shot practical.',
+        'Riders and motorcyclists: the magnetic quick-release mount makes swapping positions fast.',
+        'Editors who post quickly: AI highlighting in the Mimo app turns raw footage into a highlight reel with little manual work.',
+      ],
+      skip: [
+        'Photographers who need zoom: the lens is fixed focal length — a listed limitation.',
+        'Someone looking for one do-everything camera: with no optical zoom and no built-in ND filter, this is a specialist tool.',
+        'Shooters who never buy accessories: a microSD card is needed beyond 47GB, and daylight shooting usually wants an external ND filter.',
+        'Buyers who want long-form footage: four hours per charge is strong, but cards and batteries remain part of the kit.',
+      ],
+    },
+    pros: {
+      heading: 'Pros and cons of the DJI Osmo Action 5 Pro',
+      pros: [
+        '1/1.3-inch sensor recording up to 4K at 120fps',
+        'RockSteady 3.0 stabilization built in',
+        'Waterproof to 20m without any housing',
+        'Dual OLED touchscreens (1.4-inch front, 2.0-inch rear)',
+        '47GB internal storage plus up to four hours recording per charge',
+        'Magnetic quick-release mount and 146g body',
+      ],
+      cons: [
+        'Fixed focal length — no optical zoom (listed limitation)',
+        'microSD required beyond the 47GB internal storage (listed limitation)',
+        'No built-in ND filter (listed limitation)',
+        'The Adventure Combo costs ৳9,000 more for accessories rather than better hardware',
+        'Battery and card extras are effectively mandatory costs for serious shooting',
+      ],
+    },
+    buyingTips: {
+      heading: 'Buying the Osmo Action 5 Pro in Bangladesh: what to know',
+      paragraphs: [
+        'Decide between the ৳36,500 Standard Combo and the ৳45,500 Adventure Combo before you shop, and ask the retailer to list exactly what is in each box — the camera hardware is identical, so the decision is entirely about batteries, mounts and cases. Buy from an authorized DJI retailer with a written warranty, because an action camera takes real physical abuse and the warranty is the part that matters when a lens cover scratches or a battery swells.',
+        'There is no IMEI or PTA check here. Test the camera before paying, and test it the way you will use it: power it on, record a short 4K120 clip and play it back to confirm the sensor and both screens work, enable RockSteady and shake the camera gently while recording to see stabilization engage, confirm the front screen flips for self-framing, verify the magnetic mount locks positively, and check the USB-C port charges. Then confirm the serial number on the box matches the camera, because action cameras are commonly sold as grey imports with mismatched or missing local warranty.',
+      ],
+    },
+    faqs: [
+      {
+        question: 'What is the DJI Osmo Action 5 Pro price in Bangladesh?',
+        answer:
+          'Star Tech lists the Standard Combo at ৳36,500 and the Adventure Combo at ৳45,500. The camera hardware is the same in both; the difference is included accessories.',
+      },
+      {
+        question: 'Does the Osmo Action 5 Pro need a waterproof case?',
+        answer:
+          'No — it is waterproof to 20 metres without any housing, so it can be used in water directly. The external case is not part of the waterproofing.',
+      },
+      {
+        question: 'What video can the Osmo Action 5 Pro record?',
+        answer:
+          'Its 1/1.3-inch sensor records up to 4K at 120fps, with RockSteady 3.0 stabilization applied in-camera and subject tracking plus AI highlight edits available in the DJI Mimo app.',
+      },
+      {
+        question: 'Does the Osmo Action 5 Pro have zoom?',
+        answer:
+          'No optical zoom — the lens is fixed focal length, which DJI lists as a limitation. Framing depends on where you mount the camera.',
+      },
+      {
+        question: 'How long does the Osmo Action 5 Pro battery last?',
+        answer:
+          'DJI rates recording at up to four hours per charge. The camera also has 47GB of internal storage, though a microSD card is needed once that fills.',
+      },
+    ],
+    links: [
+      {
+        label: 'DJI Osmo Action 5 Pro — Shop page',
+        description: 'The full Shop listing with both combo prices',
+        href: '/shop/dji-osmo-action-5-pro',
+      },
+      {
+        label: 'Anker PowerCore 20000 Power Bank — Quick Look',
+        description: 'Keep cameras and phones charged on location shoots',
+        href: '/quick-look/anker-powercore-20000-power-bank',
+      },
+      {
+        label: 'Sony WH-1000XM5 — Quick Look',
+        description: 'Useful for editing and travel with footage in the bag',
+        href: '/quick-look/sony-wh-1000xm5-wireless-headphones',
+      },
+      {
+        label: 'Xiaomi Smart TV X Pro 55 — Quick Look',
+        description: 'A 4K screen for reviewing action footage at home',
+        href: '/quick-look/xiaomi-smart-tv-x-pro-55',
+      },
+    ],
+  },
+
+  'anker-powercore-20000-power-bank': {
+    productName: 'Anker PowerCore 20000',
+    heading: 'Anker PowerCore 20000 Price in Bangladesh: Full Guide',
+    lead:
+      'The Anker PowerCore 20000 (A1344) is a 20,000mAh power bank with 22.5W output, USB-C Power Delivery input and output and enough capacity to refill a phone several times — officially priced at ৳4,400 in Bangladesh.',
+    overview: [
+      'The PowerCore 20000 is the plain, dependable kind of power bank: a 20,000mAh cell (roughly 74Wh) delivering up to 22.5W through USB-C Power Delivery and USB-A ports, wrapped in a plastic shell weighing about 445g with Anker\'s MultiProtect safety system. It recharges fully in about five hours over USB-C, and there is no capacity display on this model.',
+      'This guide explains how the 22.5W ceiling should shape your expectations, whether 445g is the right trade for the capacity you get, why the charger is not in the box, and what to check when buying a power bank locally where cell capacity is routinely overstated on unbranded units.',
+    ],
+    priceSection: {
+      heading: 'Anker PowerCore 20000 price in Bangladesh',
+      paragraphs: [
+        'Star Tech lists the Anker A1344 20,000mAh 22.5W power bank at ৳4,400 with official Bangladesh warranty. Unbranded 20,000mAh power banks sell locally for a fraction of that, and the price gap is almost entirely about whether the capacity printed on the shell is real.',
+        'There is a single configuration — Black, no capacity display — so there is no variant decision to make. At ৳4,400 you are buying a known cell, a safety system and a warranty rather than a claimed number on a casing. For a device that will sit in a bag next to your phone and sometimes on a plane, that is the sensible way to spend this money.',
+      ],
+    },
+    keyFacts: [
+      { term: 'Price', detail: '৳4,400 at Star Tech (Anker A1344)' },
+      { term: 'Capacity', detail: '20,000mAh cell (~74Wh)' },
+      { term: 'Output', detail: '22.5W max, USB-C PD in/out plus USB-A' },
+      { term: 'Weight', detail: '~445g, ~5 hours to recharge fully' },
+    ],
+    features: [
+      {
+        heading: 'Key features explained',
+        title: '20,000mAh, and what that actually refills',
+        body:
+          'A 20,000mAh cell at roughly 74Wh is the size where a power bank stops being a top-up and starts being a day of independence: it will refill a typical phone several times over, keep a tablet or a watch and earbuds going, and covers a long journey or a power cut. The honest expectation to set is that watt-hours, not millamp-hours, decide how much energy leaves the port — and 74Wh is a large, legitimate amount for a bag-sized brick.',
+      },
+      {
+        heading: 'Key features explained',
+        title: '22.5W USB-C PD — great for phones, not for laptops',
+        body:
+          'The 22.5W maximum output with USB-C Power Delivery handles fast phone charging well and covers tablets at a reasonable speed. Anker\'s own limitation list is clear that 22.5W is not enough for full-speed laptop charging: a laptop will charge slowly, or may report that the charger is underpowered while in use. If your main need is topping up a MacBook, this is the wrong product rather than a weak one — phones, earbuds and watches are what it is good at.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'USB-C PD in and out, plus USB-A, with a five-hour refill',
+        body:
+          'The ports are USB-C with Power Delivery for both input and output, plus a USB-A port for older cables and devices, which means one 20,000mAh bank can charge two things at once. Refilling the bank itself takes about five hours over USB-C, so overnight charging is the natural routine. There is no capacity display on this model — a listed limitation — so you judge remaining charge by the LED indicators rather than a percentage, which is fine in daily use but worth knowing before you buy.',
+      },
+      {
+        heading: 'Key features explained',
+        title: '445g, MultiProtect and no charger in the box',
+        body:
+          'At approximately 445g the PowerCore 20000 is a bag item rather than a pocket one — that weight is the direct cost of the capacity, and it is why many buyers keep it in a backpack rather than on their person. Anker\'s MultiProtect safety system covers the usual electrical protections, and the plastic shell is built for being carried. One more thing to budget for: the charger is not included, so you need your own USB-C wall adapter to refill it — a listed limitation that catches people out when the bank arrives with only a cable.',
+      },
+    ],
+    buyers: {
+      heading: 'Who should buy the PowerCore 20000 — and who should skip it',
+      should: [
+        'Travellers and commuters: 74Wh covers a full day of phone use away from power.',
+        'Households preparing for load-shedding: it keeps phones, watches and small devices charged through extended outages.',
+        'Families sharing one bank: USB-C PD and USB-A ports let two devices charge together.',
+        'Buyers who value cell quality: official Anker stock with MultiProtect and a warranty beats an overstated no-name unit.',
+      ],
+      skip: [
+        'Laptop-first users: 22.5W cannot charge a laptop at full speed — a listed limitation.',
+        'Light travellers who want a pocket bank: about 445g is too heavy to carry comfortably in a pocket.',
+        'Buyers who want to see a battery percentage: the base model has no capacity display (listed limitation).',
+        'Anyone assuming a charger is included: it is not in the box.',
+      ],
+    },
+    pros: {
+      heading: 'Pros and cons of the Anker PowerCore 20000',
+      pros: [
+        '20,000mAh (~74Wh) capacity refills a phone several times',
+        '22.5W output with USB-C Power Delivery input and output',
+        'USB-A port alongside USB-C for two devices at once',
+        'Anker MultiProtect safety system',
+        'About five hours to recharge fully over USB-C',
+        'Official Bangladesh warranty at ৳4,400',
+      ],
+      cons: [
+        'Charger not included (listed limitation)',
+        'No capacity display on the base model (listed limitation)',
+        '22.5W is not enough for full-speed laptop charging (listed limitation)',
+        'About 445g — heavy for pocket carrying',
+        'Long overnight refill rather than a fast one',
+      ],
+    },
+    buyingTips: {
+      heading: 'Buying a power bank in Bangladesh: what to know',
+      paragraphs: [
+        'Power banks are one of the most misrepresented products in the local market: units labelled 20,000mAh or 30,000mAh at very low prices usually carry far smaller cells, and underpowered protection circuits in cheap banks are a genuine safety concern when they sit charging overnight in a house. Buying the Anker A1344 at ৳4,400 from an authorized seller is how you avoid that entire problem, and the capacity you get is the capacity printed.',
+        'There is no IMEI or PTA check on a power bank. What you can verify is behaviour: bring your own phone and cable, plug it into the USB-C port and confirm the phone reports fast charging rather than standard charging, then repeat on the USB-A port with a different cable. Check the four LED indicators light in sequence as it charges, feel for any heat build-up while it is working, and confirm the bank and cable in the box match the packaging. Because there is no capacity display, ask the seller whether you can fully charge the bank before buying if you want to confirm it holds its rated energy.',
+      ],
+    },
+    faqs: [
+      {
+        question: 'What is the Anker PowerCore 20000 price in Bangladesh?',
+        answer:
+          'Star Tech lists the Anker A1344 20,000mAh 22.5W power bank at ৳4,400 with official Bangladesh warranty.',
+      },
+      {
+        question: 'Can the PowerCore 20000 charge a laptop?',
+        answer:
+          'Only slowly. Its 22.5W maximum output is not enough for full-speed laptop charging — Anker lists this among the power bank\'s limitations.',
+      },
+      {
+        question: 'How long does it take to recharge the PowerCore 20000?',
+        answer:
+          'About five hours for a full recharge over USB-C. Note that a charger is not included in the box, so you need your own USB-C wall adapter.',
+      },
+      {
+        question: 'Does the PowerCore 20000 have a battery percentage display?',
+        answer:
+          'No — the base model has no capacity display, which Anker lists as a limitation. Remaining charge is shown through LED indicators instead.',
+      },
+      {
+        question: 'How heavy is the Anker PowerCore 20000?',
+        answer:
+          'Approximately 445g. That is the trade-off for 20,000mAh of capacity — it is a bag item rather than something you carry in a pocket.',
+      },
+    ],
+    links: [
+      {
+        label: 'Anker PowerCore 20000 Power Bank — Shop page',
+        description: 'The full Shop listing with the current price',
+        href: '/shop/anker-powercore-20000-power-bank',
+      },
+      {
+        label: 'Anker Soundcore R50i Earbuds — Quick Look',
+        description: 'The other Anker product in the same value bracket',
+        href: '/quick-look/anker-soundcore-r50i-earbuds',
+      },
+      {
+        label: 'DJI Osmo Action 5 Pro — Quick Look',
+        description: 'Pairs well with a power bank on outdoor shoots',
+        href: '/quick-look/dji-osmo-action-5-pro',
+      },
+      {
+        label: 'Xiaomi Redmi Watch 5 — Quick Look',
+        description: 'A wearable that benefits from the same bag backup',
+        href: '/quick-look/xiaomi-redmi-watch-5',
+      },
+    ],
+  },
+
+  'xiaomi-robot-vacuum-s10': {
+    productName: 'Xiaomi Robot Vacuum S10',
+    heading: 'Xiaomi Robot Vacuum S10 Price in Bangladesh: Full Guide',
+    lead:
+      'The Xiaomi Robot Vacuum S10 is a laser-mapping robot vacuum with room zoning, no-go zones, voice control and up to about 130 minutes of cleaning per charge — officially priced at ৳28,500 in Bangladesh, down from ৳33,000.',
+    overview: [
+      'The Robot Vacuum S10 is built around navigation rather than raw power figures: an LDS laser distance sensor maps your home, cliff and wall sensors keep it off staircases and away from walls, and the Mi Home app lets you set room zones and no-go areas so it cleans where you want and skips where you do not. A 5200mAh battery gives up to about 130 minutes per charge, with auto-recharge and resume when the battery runs low, and it also mops with a flat mop pad.',
+      'This guide covers what the mapping and zoning actually change about living with a robot vacuum, how to read the battery and recharge behaviour, the honest limits of a flat mop and 2.4GHz-only Wi-Fi, and — because this is one of the thinner spec sheets in the catalogue — what the data does and does not tell you before you buy.',
+    ],
+    priceSection: {
+      heading: 'Xiaomi Robot Vacuum S10 price in Bangladesh',
+      paragraphs: [
+        'Sumash Tech lists the S10 at ৳28,500 with official Bangladesh warranty, previously ৳33,000 — so the current price is roughly ৳4,500 below where it started, which is typical for a model that has been on the market for a while. That discount is the main reason to consider it now: the hardware has not changed, but the entry cost has.',
+        'There is one configuration with White and Black colour options, and colours do not change the price. Worth knowing before you compare with newer vacuums: this model has been out since 2022 and sits below the current generation in features. Buy it for the mapping, the app and the price rather than for the newest tech in the category.',
+      ],
+    },
+    keyFacts: [
+      { term: 'Current price', detail: '৳28,500 at Sumash Tech (was ৳33,000)' },
+      { term: 'Battery', detail: '5200mAh, up to ~130 minutes per charge' },
+      { term: 'Navigation', detail: 'LDS laser sensor with app mapping and zoning' },
+      { term: 'Mop', detail: 'Basic flat mop pad (no vibration or lift)' },
+    ],
+    features: [
+      {
+        heading: 'Key features explained',
+        title: 'Laser mapping, room zoning and no-go zones',
+        body:
+          'The LDS laser distance sensor is what makes this vacuum useful rather than random: it builds a map of your home in the Mi Home app, then lets you divide that map into rooms and set no-go zones around cables, pet bowls or a prayer mat. Cliff sensors stop it dropping down staircases and the wall sensor keeps it tracking edges reasonably closely. With mapping in place you can send it to a single room rather than letting it roam the whole flat, which is the feature that saves the most time day to day.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Battery, auto-recharge and resuming where it stopped',
+        body:
+          'A 5200mAh battery is rated for up to about 130 minutes of cleaning per charge, which covers a typical apartment in one run and much of a larger flat before it needs help. When the battery does run down, the vacuum returns to its dock, recharges and then resumes cleaning from where it stopped rather than starting over — the feature that makes long, multi-room jobs practical without supervision. At 353 x 350 x 94.5mm and about 3.6kg, it fits under most beds and sofas, though measure before assuming it will clear a low sofa.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'A flat mop pad, and what it cannot do',
+        body:
+          'The S10 mops with a basic flat pad dragged along behind it. Xiaomi\'s own limitation list is direct about the consequences: there is no vibration and no mop-lift, so it does not scrub dried stains and it will drag a damp pad over carpets unless you remove it. Used as intended — a light pass over hard floors after vacuuming — it is a nice extra. Treated as a floor-cleaning replacement, it will disappoint, and buyers who want real mopping should look at vacuums with vibrating or lifting mop systems.',
+      },
+      {
+        heading: 'Key features explained',
+        title: '2.4GHz Wi-Fi, voice control and no auto-empty dock',
+        body:
+          'Everything runs through the Mi Home / Xiaomi Home app over 2.4GHz Wi-Fi, and the 2.4GHz-only requirement is a listed limitation: routers that broadcast a single combined network name sometimes fail to connect until the 2.4GHz band is separated. Google Assistant and Alexa voice control are supported, so starting a clean by voice works once setup is done. There is no auto-empty dock, so you empty the bin by hand after each few runs — normal for this class, but worth knowing if self-emptying is on your wish list.',
+      },
+    ],
+    buyers: {
+      heading: 'Who should buy the Robot Vacuum S10 — and who should skip it',
+      should: [
+        'Busy households with hard floors: scheduled daily vacuuming with app mapping removes a chore from the week.',
+        'Homes with more than one room: zoning and no-go areas let it target single rooms and avoid problem spots.',
+        'Anyone already using Xiaomi devices: the shared Mi Home app keeps control in one place.',
+        'Buyers who want mapping at a mid-range price: LDS navigation is what separates this from random-bounce entry-level vacuums.',
+      ],
+      skip: [
+        'Heavy-mopping expectations: the flat mop pad has no vibration or lift, a listed limitation.',
+        'Homes with thick or high-pile carpets: a flat mop and this clearance profile are not built for them.',
+        'Anyone who wants a self-emptying dock: there is none.',
+        'Network setups that cannot split a 2.4GHz band: 2.4GHz-only Wi-Fi is a listed limitation.',
+        'Buyers who need the newest generation of robot vacuum features at any price.',
+      ],
+    },
+    pros: {
+      heading: 'Pros and cons of the Xiaomi Robot Vacuum S10',
+      pros: [
+        'LDS laser navigation with app mapping, room zoning and no-go zones',
+        '5200mAh battery rated for up to ~130 minutes per charge',
+        'Auto-recharge and resume cleaning from where it stopped',
+        'Google Assistant and Alexa voice control',
+        'White or Black colour options at the same price',
+        'Discounted to ৳28,500 from ৳33,000 with official BD warranty',
+      ],
+      cons: [
+        'Basic flat mop with no vibration or mop lift (listed limitation)',
+        '2.4GHz Wi-Fi only (listed limitation)',
+        'No auto-empty dock (listed limitation)',
+        'A 2022-era model sitting below current-generation vacuums in features',
+        'The spec sheet lists no suction rating in pascals, so suction performance cannot be compared from the data alone',
+      ],
+    },
+    buyingTips: {
+      heading: 'Buying the Robot Vacuum S10 in Bangladesh: what to know',
+      paragraphs: [
+        'At ৳28,500 from Sumash Tech with official warranty — down from ৳33,000 — this is a reasonable entry into mapped robot vacuuming, and buying the officially warranted unit matters more than usual because replacement parts (brushes, filters, the charging dock) are what keep a robot vacuum running over years. Confirm what spares come in the box and ask how you would source replacements locally before you pay.',
+        'There is no IMEI or PTA check on a vacuum. Instead, verify the two things that decide whether it works in your home after the box is open. First, Wi-Fi: this model connects only over 2.4GHz, so check your router can broadcast that band separately — a failure here is the most common setup complaint. Second, physical clearance: measure the lowest furniture gap you expect it to clean under against its 94.5mm height. In the shop, run a short cleaning cycle to see the LDS turret spin and the wheels turn both ways, and confirm the app can add the vacuum to your account before you leave.',
+      ],
+    },
+    faqs: [
+      {
+        question: 'What is the Xiaomi Robot Vacuum S10 price in Bangladesh?',
+        answer:
+          'Sumash Tech lists it at ৳28,500 with official Bangladesh warranty, reduced from a previous ৳33,000.',
+      },
+      {
+        question: 'Does the Robot Vacuum S10 mop floors?',
+        answer:
+          'It includes a basic flat mop pad, but there is no vibration or mop-lift, so it does not scrub dried stains and will drag a damp pad over carpet unless you remove it.',
+      },
+      {
+        question: 'How long does the Robot Vacuum S10 run on one charge?',
+        answer:
+          'Its 5200mAh battery is rated for up to about 130 minutes of cleaning per charge, and it automatically returns to its dock to recharge and then resumes cleaning where it stopped.',
+      },
+      {
+        question: 'Which Wi-Fi band does the Robot Vacuum S10 need?',
+        answer:
+          'It connects over 2.4GHz Wi-Fi only — a listed limitation. If your router broadcasts a single merged network, you may need to separate the 2.4GHz band during setup.',
+      },
+      {
+        question: 'Can I control the Robot Vacuum S10 by voice?',
+        answer:
+          'Yes — Google Assistant and Alexa voice control are supported, alongside app control through Mi Home / Xiaomi Home with room zoning and no-go zones.',
+      },
+    ],
+    links: [
+      {
+        label: 'Xiaomi Robot Vacuum S10 — Shop page',
+        description: 'The full Shop listing with the current price',
+        href: '/shop/xiaomi-robot-vacuum-s10',
+      },
+      {
+        label: 'Xiaomi Smart TV X Pro 55 — Quick Look',
+        description: 'Another Xiaomi device that lives on the same app ecosystem',
+        href: '/quick-look/xiaomi-smart-tv-x-pro-55',
+      },
+      {
+        label: 'Xiaomi Redmi Watch 5 — Quick Look',
+        description: 'The Xiaomi wearable for the same household',
+        href: '/quick-look/xiaomi-redmi-watch-5',
+      },
+      {
+        label: 'Anker PowerCore 20000 Power Bank — Quick Look',
+        description: 'Useful during the load-shedding that maps and schedules have to survive',
+        href: '/quick-look/anker-powercore-20000-power-bank',
+      },
+    ],
+  },
+
+  'xiaomi-smart-tv-x-pro-55': {
+    productName: 'Xiaomi Smart TV X Pro 55',
+    heading: 'Xiaomi Smart TV X Pro 55 Price in Bangladesh: Full Guide',
+    lead:
+      'The Xiaomi Smart TV X Pro 55 is a 55-inch QLED 4K television with a 120Hz panel, Google TV, Dolby Vision IQ and HDMI 2.1 — estimated at around ৳85,000 in Bangladesh, since this exact model has no active local listing yet.',
+    overview: [
+      'The Smart TV X Pro 55 pairs a 55-inch QLED panel at 3840 x 2160 with a 120Hz refresh rate, runs Google TV on a quad-core media processor with 2GB of RAM and 32GB of storage, and supports Dolby Vision IQ, Google Assistant, Chromecast built-in and HDMI 2.1 with eARC and ALLM. It stands on a metal stand in a slim-bezel black frame, weighs around 12kg with the stand, and offers dual-band Wi-Fi, Ethernet and an optical audio output.',
+      'The pricing status matters here more than the specs: there is no active Bangladesh listing for this exact model, so the ~৳85,000 figure is an estimate anchored to its official sibling, the Xiaomi TV A Pro 55-inch QLED 2026 at ৳74,999. This guide explains that estimate, what the panel and Google TV platform deliver, where the speakers and HDMI port count fall short, and how to buy safely in a television market full of mislabelled panels.',
+    ],
+    priceSection: {
+      heading: 'Xiaomi Smart TV X Pro 55 price in Bangladesh',
+      paragraphs: [
+        'The exact X Pro 55 has no active Bangladesh listing, so our approximately ৳85,000 figure is an estimate rather than a quote. It is built from a real anchor: the official Xiaomi TV A Pro 55-inch QLED 2026 is listed at ৳74,999 at Sumash Tech with official Bangladesh warranty, and the X Pro tier typically sits roughly ৳10,000 above its A Pro sibling. Treat that ~৳10,000 as a typical uplift, not a guaranteed difference.',
+        'Because the price is unconfirmed, this product is not purchasable on our site — the listing shows estimated pricing and checkout stays closed so nobody orders against a number that may not hold at retail. Before committing, confirm with a Xiaomi Bangladesh retailer whether the X Pro 55 is actually stocked and at what price, or compare against the A Pro 55 at ৳74,999, which is a confirmed, warrantable alternative.',
+      ],
+    },
+    keyFacts: [
+      { term: 'Estimated price', detail: '~৳85,000 (no active BD listing)' },
+      { term: 'Price basis', detail: 'Xiaomi TV A Pro 55″ QLED 2026 at ৳74,999 + ~৳10,000 tier step' },
+      { term: 'Status', detail: 'Estimated — not purchasable at an unconfirmed price' },
+      { term: 'Panel', detail: '55-inch QLED 4K (3840 x 2160) at 120Hz' },
+    ],
+    features: [
+      {
+        heading: 'Key features explained',
+        title: 'A 55-inch QLED 4K panel at 120Hz',
+        body:
+          'QLED with 4K resolution at 120Hz is a strong combination for the price band: QLED delivers brighter, more saturated colour than basic LED panels, and 120Hz matters most for sports, action films and console gaming where smoother motion is immediately visible. Dolby Vision IQ adapts the picture to room lighting rather than just the content, which helps in bright Bangladeshi living rooms during the day. At 55 inches, it is the size that fits most apartment living rooms without overwhelming them.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Google TV with Assistant and Chromecast built in',
+        body:
+          'Google TV is the streaming platform here, backed by a quad-core media processor with 2GB of RAM and 32GB of storage for apps. Google Assistant voice search and Chromecast built-in mean you can cast from a phone without an extra dongle or stick, and 32GB of storage leaves room for a good number of apps and games. The listed limitation to keep in mind is that Google TV surfaces ads and sponsored content on its home screen — normal for the platform, but noticeable if you expect a clean interface.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'HDMI 2.1 with eARC and ALLM — but only one port',
+        body:
+          'Connectivity covers HDMI 2.1 with eARC and ALLM, two USB-A ports, Ethernet, an optical audio output, dual-band Wi-Fi and Bluetooth 5.0. HDMI 2.1 with eARC is what makes it a credible partner for a modern console: variable refresh support and auto low-latency mode matter for gaming, and eARC passes high-quality audio to a receiver or soundbar. The catch, and Xiaomi lists it as a limitation, is that only one of the HDMI ports is 2.1 — so a console and a high-refresh PC must share that single port.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'A 30W speaker system and a 12kg metal stand',
+        body:
+          'Sound is where this TV is weakest by its own admission: the 30W speaker system is average, which is the usual starting point for adding a soundbar or powered speakers later — and the optical audio output plus HDMI eARC both make that easy. The build is slim-bezel in black with a metal stand, at approximately 12kg with the stand attached. If you are wall-mounting, note that stand weight does not apply, but the slim frame is designed to sit close to the wall rather than house rear ports with thick cables.',
+      },
+    ],
+    buyers: {
+      heading: 'Who should buy the Smart TV X Pro 55 — and who should skip it',
+      should: [
+        'Living-room movie watchers: QLED 4K with Dolby Vision IQ and 120Hz suits films and series well.',
+        'Console and sports viewers: HDMI 2.1 with ALLM and a 120Hz panel are what make fast motion look clean.',
+        'Existing Android/Google users: Assistant and Chromecast built-in avoid another streaming stick.',
+        'Buyers already invested in the Xiaomi ecosystem at home.',
+      ],
+      skip: [
+        'Anyone who needs a confirmed price today: there is no active Bangladesh listing for this exact model — the ৳85,000 figure is an estimate.',
+        'Multi-console households: only one HDMI port is 2.1, a listed limitation.',
+        'Buyers expecting big built-in audio: the 30W system is average, so budget for a soundbar.',
+        'People who dislike advertising on the home screen: Google TV shows ads and sponsored content, a listed limitation.',
+      ],
+    },
+    pros: {
+      heading: 'Pros and cons of the Xiaomi Smart TV X Pro 55',
+      pros: [
+        '55-inch QLED 4K panel at 120Hz',
+        'Dolby Vision IQ with Google Assistant and Chromecast built in',
+        'HDMI 2.1 with eARC and ALLM for consoles and soundbars',
+        '32GB of app storage with 2GB RAM',
+        'Ethernet, dual-band Wi-Fi and optical audio out',
+        'Slim-bezel design on a metal stand at around 12kg',
+      ],
+      cons: [
+        'Average 30W speaker system (listed limitation)',
+        'Google TV shows ads and sponsored content (listed limitation)',
+        'Only one HDMI 2.1 port (listed limitation)',
+        'No active Bangladesh listing, so the ~৳85,000 price is an estimate and the product is not purchasable here',
+        'Sits below current-generation TVs in platform and picture processing features',
+      ],
+    },
+    buyingTips: {
+      heading: 'Buying a 55-inch Xiaomi TV in Bangladesh: what to know',
+      paragraphs: [
+        'Start with the fact that the X Pro 55 is not currently listed in Bangladesh, so treat the ~৳85,000 as an estimate built from the A Pro 55 QLED at ৳74,999 plus a ~৳10,000 tier step. Do not pay against an estimate: confirm with a Xiaomi Bangladesh retailer whether the X Pro 55 is actually available and at what price, and compare it against the confirmed A Pro 55 — which carries official warranty and a real listing — before deciding the extra tier is worth it. If the X Pro is not stocked, the A Pro is the honest alternative rather than a downgrade.',
+        'There is no IMEI or PTA check on a television. The checks that matter are about panel authenticity and warranty. Ask the retailer to play a 4K HDR clip so you can see brightness and colour rather than a demo loop, check for backlight bleed and dead pixels on a full-screen grey image, confirm the panel is 120Hz by checking the refresh setting with a console or PC if available, and test that HDMI 2.1 features enable on the correct port. Physically inspect the panel for pressure marks before it is crated, and confirm the box contains the metal stand, remote and power cable. On a purchase this size, an official invoice with the serial number is what makes a warranty claim possible later.',
+      ],
+    },
+    faqs: [
+      {
+        question: 'What is the Xiaomi Smart TV X Pro 55 price in Bangladesh?',
+        answer:
+          'This model has no active Bangladesh listing, so our approximately ৳85,000 figure is an estimate. It is anchored to the official Xiaomi TV A Pro 55-inch QLED 2026 at ৳74,999 plus a typical ~৳10,000 step up to the X Pro tier.',
+      },
+      {
+        question: 'Can I order the Xiaomi Smart TV X Pro 55 on this site right now?',
+        answer:
+          'No. Because the price is estimated and unconfirmed, the product is not purchasable — we do not accept orders against a price a Bangladesh retailer has not confirmed.',
+      },
+      {
+        question: 'Is the Xiaomi Smart TV X Pro 55 good for gaming?',
+        answer:
+          'It has a 120Hz panel and HDMI 2.1 with ALLM and eARC, which suit modern consoles. Note that only one HDMI port is 2.1, so a console and a PC must share it.',
+      },
+      {
+        question: 'What operating system does the Xiaomi Smart TV X Pro 55 run?',
+        answer:
+          'Google TV on a quad-core media processor with 2GB of RAM and 32GB of storage, with Google Assistant and Chromecast built in. Google TV surfaces ads and sponsored content, which Xiaomi lists as a limitation.',
+      },
+      {
+        question: 'How good are the speakers on the Xiaomi Smart TV X Pro 55?',
+        answer:
+          'The 30W speaker system is average, which Xiaomi lists as a limitation. HDMI eARC and an optical audio output make adding a soundbar straightforward.',
+      },
+    ],
+    links: [
+      {
+        label: 'Xiaomi Smart TV X Pro 55 — Shop page',
+        description: 'The Shop listing, marked with estimated pricing',
+        href: '/shop/xiaomi-smart-tv-x-pro-55',
+      },
+      {
+        label: 'Xiaomi Robot Vacuum S10 — Quick Look',
+        description: 'The other Xiaomi home device on the same app',
+        href: '/quick-look/xiaomi-robot-vacuum-s10',
+      },
+      {
+        label: 'PlayStation 5 Slim Disc Console — Quick Look',
+        description: 'A console that can make use of the HDMI 2.1 port',
+        href: '/quick-look/playstation-5-slim-disc-console',
+      },
+      {
+        label: 'DJI Osmo Action 5 Pro — Quick Look',
+        description: 'Shoot 4K footage and then watch it back on the big screen',
+        href: '/quick-look/dji-osmo-action-5-pro',
+      },
+    ],
+  },
 };
 /** Long-form guide for a product slug, or undefined when none is written yet. */
 export function getQuickLookContent(slug: string): QuickLookGuide | undefined {
