@@ -9,6 +9,7 @@ import PostFaqAccordion from '@/components/PostFaqAccordion';
 import ShareButtons from '@/components/ShareButtons';
 import AuthorBio from '@/components/AuthorBio';
 import RelatedPosts from '@/components/RelatedPosts';
+import ProductsMentioned from '@/components/ProductsMentioned';
 import PostMeta from '@/components/PostMeta';
 import { CATEGORY_BADGE_COLORS } from '@/components/ArticleCard';
 import JsonLd from '@/components/JsonLd';
@@ -152,6 +153,13 @@ export default async function PostsPage({ params }: Props) {
           {/* Trusted, locally-authored HTML from src/lib/posts.ts */}
           <div dangerouslySetInnerHTML={{ __html: post.content }} />
         </div>
+
+        {/* Products mentioned (rule 6): Quick Look cards for the catalog
+            products this article genuinely covers — above "Keep Browsing",
+            below the article body/FAQ. Renders nothing when relatedProducts
+            is absent or empty. Card copy derives from the shared product
+            data; article text is not duplicated here. */}
+        <ProductsMentioned slugs={post.relatedProducts} />
 
         {/* FAQ accordion — same faqs array feeds the FAQPage schema above
             (single-open, chevron pattern shared with HomeFAQ and /faq). */}

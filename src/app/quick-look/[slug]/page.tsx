@@ -85,7 +85,9 @@ export default async function QuickLookProductPage({
       <JsonLd data={productSchema(product)} />
       {guide && <JsonLd data={faqSchema(guide.faqs)} />}
       <QuickLookDetail product={product} />
-      {guide && <QuickLookGuideSection guide={guide} />}
+      {guide && (
+        <QuickLookGuideSection guide={guide} productTitle={product.title} />
+      )}
       <NewsletterPopup />
     </>
   );

@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "jsx": "react",
+    "outDir": ".next/tmp-crosslinks",
+    "rootDir": "src",
+    "incremental": false,
+    "plugins": [],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "src/lib/products.ts",
+    "src/lib/posts.ts"
+  ]
+}

@@ -49,6 +49,16 @@ export type Post = {
    *  stated). Emits minimal Product JSON-LD — never offers/ratings/reviews,
    *  because an article mention confirms nothing beyond name + brand. */
   mentions?: { name: string; brand: string }[];
+  /** Cross-linking source of truth (rule 6): slugs of products the article
+   *  GENUINELY covers (dedicated section or a real evaluation — a passing
+   *  name-drop does not count). Read this field and you get BOTH
+   *  directions: the post's "Products mentioned" block is built from it,
+   *  and each product's Quick Look "Keep exploring" posts come from the
+   *  REVERSE lookup (getPostProductSlugMap), so never mirror this mapping
+   *  in products.ts or in a page component. Real slugs only — the
+   *  check-crosslinks script fails the build over a slug that no
+   *  product's slugify(title) matches. Max 5 slugs per post. */
+  relatedProducts?: string[];
 };
 
 /** Canonical href builder for a post — slug when available, numeric id for
@@ -58,10 +68,90 @@ export function postHref(post: Pick<Post, 'id' | 'slug'>): string {
 }
 
 /**
+ * The cross-linking map, derived from the SAME relatedProducts field the
+ * posts carry (rule 6: single source of truth). Keyed by Quick Look slug
+ * (slugify(product.title)); each value lists the posts that genuinely
+ * cover that product, ALLOWED OVERLAP DELIBERATELY REMOVED — a product with
+ * no genuine coverage has NO entry, so Quick Look pages render post links
+ * only when the data says so, never as filler.
+ *
+ * Built once per process import; posts are a small, static catalog.
+ */
+export type PostProductLookup = Record<string, Post[]>;
+
+export function getPostProductMap(): PostProductLookup {
+  const map: PostProductLookup = {};
+  for (const post of posts) {
+    if (!post.relatedProducts) continue;
+    for (const slug of post.relatedProducts) {
+      (map[slug] ??= []).push(post);
+    }
+  }
+  return map;
+}
+
+/**
+ * Up to `limit` posts that genuinely cover the given product slug, ordered
+ * by the post's displayed publish date (newest first) so the most current
+ * coverage links first. Returns [] when no post covers it — the renderer
+ * must show no blog row in that case (no empty heading).
+ */
+export function getPostsForProduct(productSlug: string, limit = 2): Post[] {
+  const relevant = posts.filter(
+    (post) => post.relatedProducts?.includes(productSlug)
+  );
+  const asDate = (display: string) => {
+    const parsed = new Date(display);
+    return Number.isNaN(parsed.getTime()) ? null : parsed.getTime();
+  };
+  return relevant
+    .sort((a, b) => {
+      const ta = asDate(a.date);
+      const tb = asDate(b.date);
+      return (tb ?? 0) - (ta ?? 0);
+    })
+    .slice(0, limit);
+}
+
+/**
  * Blog posts. Every consumer (Hero, Latest Posts, blog grid
  * + chips, category pages, /search, Header search dropdown) handles any
  * number of posts. Array order matters: posts[0] is the Hero feature.
  */
+// ── relatedProducts: audit-derived, 2026-10-10 ───────────────────────────────────
+// Each post lists ONLY products it genuinely covers (a dedicated section or
+// a real verified evaluation — never a passing mention), and only products
+// that exist in products.ts (the script check-crosslinks.js enforces this).
+// iPhone 14 Pro / Pro Max and Google Pixel 7 / 7 Pro posts (not present in
+// the current catalog) are deliberately NOT covered by any Quick Look page.
+// Dreo Pilot Max S / Dreame MF10 / Dyson AM07, the Hibbent extender and the
+// JINRAIKO arm have no catalog match at all — see the audit report.
+//
+// Slug constants for the 22 catalog products (used by relatedProducts
+// below; defined once at module scope):
+const HONOR = 'honor-robot-phone';
+const S26U = 'samsung-galaxy-s26-ultra';
+const IP17PM = 'apple-iphone-17-pro-max';
+const X300P = 'vivo-x300-pro';
+const CAMON40 = 'tecno-camon-40-pro';
+const N60P = 'infinix-note-60-pro';
+const FOLD7 = 'samsung-galaxy-z-fold7-256gb';
+const XM5 = 'sony-wh-1000xm5-wireless-headphones';
+const PS5 = 'playstation-5-slim-disc-console';
+const HUB51 = 'ugreen-usb-c-hub-5-in-1';
+const F75P = 'aula-f75-pro-wireless-mechanical-keyboard';
+const TABS10U = 'samsung-galaxy-tab-s10-ultra';
+const IPADAIRM3 = 'apple-ipad-air-11-m3';
+const VIVOBOOK15X = 'asus-vivobook-15-x1504va';
+const IDEACENTRE27 = 'lenovo-ideacentre-aio-27';
+const REDMIW5 = 'xiaomi-redmi-watch-5';
+const APPP3 = 'apple-airpods-pro-3';
+const R50I = 'anker-soundcore-r50i-earbuds';
+const ACTION5P = 'dji-osmo-action-5-pro';
+const POWERCORE20K = 'anker-powercore-20000-power-bank';
+const VACUUMS10 = 'xiaomi-robot-vacuum-s10';
+const TVXPRO55 = 'xiaomi-smart-tv-x-pro-55';
+
 export const posts: Post[] = [
   {
     id: 1,
@@ -83,6 +173,12 @@ export const posts: Post[] = [
     heroImage: '/images/posts/iphone-duo-foldable-price-specs-release/hero.webp',
     heroBannerImage: '/images/posts/iphone-duo-foldable-price-specs-release/hero-banner-2.webp',
     mentions: [{ name: 'iPhone Duo', brand: 'Apple' }],
+    // Audit: genuinely covers HONOR (Robot Phone named as the first
+    // Snapdragon 8 Elite Gen 5 phone, with price framing), the Galaxy
+    // S26 Ultra (its "200MP Samsung rival" lineup reference) and the
+    // iPhone 17 Pro Max (Apple's own current flagship). Samsung Z Fold7
+    // is only a passing name-drop → not linked.
+    relatedProducts: [HONOR, S26U, IP17PM],
     content: `
       <p>After years of "foldable iPhone" rumors, Apple made it official on September 9, 2026: the <strong>iPhone Duo</strong> is a book-style foldable that opens from a phone-sized body into a 7.6-inch tablet-class display — and it's coming to stores this October. Here's everything confirmed so far, and what it means for buyers in Bangladesh.</p>
 
@@ -158,6 +254,12 @@ export const posts: Post[] = [
     views: 6800,
     imageAlt: 'iOS 27 running on iPhone',
     heroImage: '/images/posts/ios-27-features-release-date/hero.webp',
+    // Audit: covers the iPhone 17 Pro Max directly in "Will Your iPhone
+    // Run It?" — its A19 Pro chip is called out as the minimum for custom
+    // Siri voices, and that model has a Quick Look page. First mention is
+    // linked inline in the content above. No other catalog product is
+    // genuinely discussed in this software-focused explainer.
+    relatedProducts: [IP17PM],
     content: `
       <p>Announced at WWDC on June 8, 2026 and polished through a summer of betas, iOS 27 went public on <strong>September 14, 2026</strong>. Apple skipped a dramatic visual overhaul this cycle and spent its energy on two things instead: making Siri genuinely useful, and sanding down daily annoyances.</p>
 
@@ -183,8 +285,7 @@ export const posts: Post[] = [
         <img src="/images/posts/ios-27-features-release-date/ios27-4.webp" alt="iOS 27 Lock Screen features" class="rounded-lg w-full" loading="lazy" />
       </figure>
 
-      <h2>Will Your iPhone Run It?</h2>
-      <p>iOS 27 supports every iPhone 11 and newer (plus the second-gen iPhone SE), and comes preinstalled on the iPhone 18 lineup and iPhone Duo. The catch is feature splits: Apple Intelligence and the new Siri need an A17 Pro or newer, and custom Siri voices demand the A19 Pro chip (iPhone Air and iPhone 17 Pro and up). Everyone else still gets the performance, Safari, Photos and Health improvements. Standard advice applies: back up before updating.</p>
+      <h2>Will Your iPhone Run It?</h2>          <p>iOS 27 supports every iPhone 11 and newer (plus the second-gen iPhone SE), and comes preinstalled on the iPhone 18 lineup and iPhone Duo. The catch is feature splits: Apple Intelligence and the new Siri need an A17 Pro or newer, and custom Siri voices demand the A19 Pro chip (iPhone Air, iPhone 17 Pro and up — see the <a href="/quick-look/apple-iphone-17-pro-max">iPhone 17 Pro Max price in Bangladesh</a> Quick Look). Everyone else still gets the performance, Safari, Photos and Health improvements. Standard advice applies: back up before updating.</p>
     `,
     faqs: [
       {
@@ -482,6 +583,15 @@ export const posts: Post[] = [
     views: 500,
     imageAlt: 'Windows vs Mac laptop comparison',
     heroImage: '/images/posts/windows-vs-mac-which-laptop-os-to-choose/hero.webp',
+    // Audit: the closest genuine catalog coverage is Windows-side budgets
+    // — the ৳40,000–৳60,000 Windows-budget paragraph describes exactly the
+    // Vivobook 15 X1504VA (Star Tech ৳61,000–62,000 official listing), so
+    // its first mention is linked inline above. Lenovo IdeaCentre AIO 27
+    // has no live Bangladesh listing (estimated price), so although the
+    // roster names Lenovo among PC makers, linking a page we flag as
+    // "estimated, not purchasable" would mislead — recorded in the audit
+    // report as a candidate for future coverage instead.
+    relatedProducts: [VIVOBOOK15X],
     content: `
       <p>Choosing between Windows and Mac is one of the most common questions laptop buyers ask — and honestly, there's no universal "better" answer. The right choice depends on your budget, the software you need, and what you'll actually be doing with the laptop day to day. Here's a clear breakdown to help you decide.</p>
 
@@ -501,7 +611,7 @@ export const posts: Post[] = [
       </figure>
 
       <h2>Price: Windows Wins on Value</h2>
-      <p>This is where Windows has a clear edge. You can get a genuinely capable Windows laptop for students or office work in Bangladesh for ৳40,000–৳60,000. The cheapest usable MacBook (Air, M-series) typically costs significantly more, and Apple doesn't offer as many budget tiers. If cost is your primary constraint, Windows gives you far more choice.</p>
+      <p>This is where Windows has a clear edge. You can get a genuinely capable Windows laptop for students or office work in Bangladesh for ৳40,000–৳60,000 — for example the <a href="/quick-look/asus-vivobook-15-x1504va">ASUS Vivobook 15 (X1504VA) price in Bangladesh</a> sits at the top of that band. The cheapest usable MacBook (Air, M-series) typically costs significantly more, and Apple doesn't offer as many budget tiers. If cost is your primary constraint, Windows gives you far more choice.</p>
 
       <h2>Battery Life &amp; Build Quality</h2>
       <p>Modern MacBooks generally lead in battery life, often lasting a full workday on a single charge thanks to Apple Silicon's efficiency. Windows laptops vary widely here — premium ultrabooks (like business ThinkPads or premium Dell/HP lines) can compete closely, but budget Windows laptops often fall short in comparison.</p>
@@ -572,6 +682,13 @@ export const posts: Post[] = [
       { name: 'ASUS VivoBook 15', brand: 'ASUS' },
       { name: 'Acer Aspire 3', brand: 'Acer' },
     ],
+    // Audit: the ASUS VivoBook 15 gets a full dedicated section (heading
+    // "4. ASUS VivoBook 15" + photo) and its exact X1504VA variant has a
+    // Quick Look page — first mention linked inline. HP 250 G9, Lenovo
+    // IdeaPad Slim 3, Dell Vostro 15 3510 and Acer Aspire 3 are all
+    // covered as genuine sections too, but none of those exact SKUs
+    // exists in products.ts, so they cannot be cross-linked at all.
+    relatedProducts: [VIVOBOOK15X],
     content: `
       <p>Finding a good laptop under ৳50,000 in Bangladesh doesn't mean settling for poor performance. Whether you need it for office work, online classes, or everyday browsing, there are solid options that balance price and capability well. Here's our pick of the top 5 laptops in this budget range, along with what to look for before you buy.</p>
 
@@ -605,7 +722,7 @@ export const posts: Post[] = [
       </figure>
 
       <h2>4. ASUS VivoBook 15</h2>
-      <p>Lightweight and portable, the VivoBook 15 comes with an Intel Core i3 processor and 8GB RAM, plus a display that's a step above what you'd expect at this price. If portability and screen quality matter more to you than raw power, this is worth prioritizing.</p>
+      <p>Lightweight and portable, the VivoBook 15 comes with an Intel Core i3 processor and 8GB RAM, plus a display that's a step above what you'd expect at this price. If portability and screen quality matter more to you than raw power, this is worth prioritizing. Current full spec coverage sits in our <a href="/quick-look/asus-vivobook-15-x1504va">ASUS Vivobook 15 (X1504VA) price in Bangladesh</a> Quick Look.</p>
       <p><strong>Best for:</strong> Users who carry their laptop around often and want a lighter build.</p>
       <figure class="my-6">
         <img src="/images/posts/best-laptop-under-50000-in-bangladesh/asus-vivobook-15.webp" alt="ASUS VivoBook 15 laptop" class="rounded-lg w-full" loading="lazy" />
@@ -665,6 +782,12 @@ export const posts: Post[] = [
       { name: 'Acer Aspire Go 15', brand: 'Acer' },
       { name: 'Apple MacBook Air', brand: 'Apple' },
     ],
+    // Audit: all five laptops get real dedicated sections, but none of
+    // these exact SKUs (ThinkPad E14, Vivobook GO 15, Pavilion 15, Aspire
+    // GO 15, MacBook Air) exists in the 22-product catalog — the catalog's
+    // ASUS machine is the Vivobook 15 X1504VA, a DIFFERENT laptop (office
+    // use, not the Go 15 programming pick). No cross-links from this post.
+    // No "mention name + brand → product" guessing is allowed.
     content: `
       <p>Choosing a laptop for programming is different from picking one for general use — you need enough RAM to run an IDE, a browser with dozens of tabs, and possibly a Docker container or virtual machine, all at the same time, without everything grinding to a halt. Here are five solid picks for programming students in 2026, across different budgets.</p>
 

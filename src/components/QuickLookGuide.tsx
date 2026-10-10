@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import type { QuickLookGuide } from '@/lib/quickLookContent';
-import { CheckCircle2, XCircle, BookOpen, ArrowRight } from 'lucide-react';
+import { CheckCircle2, XCircle, BookOpen, ArrowRight, FileText } from 'lucide-react';
+import { slugify } from '@/lib/products';
+import { getPostsForProduct, postHref, type Post } from '@/lib/posts';
 
 /**
  * Long-form SEO guide section for /quick-look/[slug] — rendered BELOW the
@@ -21,7 +23,31 @@ import { CheckCircle2, XCircle, BookOpen, ArrowRight } from 'lucide-react';
  *   colors); the accent-soft classes use accent/10-style opacity, which
  *   still derives from the token.
  */
-export default function QuickLookGuideSection({ guide }: { guide: QuickLookGuide }) {
+export default function QuickLookGuideSection({
+  guide,
+  productTitle,
+}: {
+  guide: QuickLookGuide;
+  /** Bare product title — resolves the Quick Look slug shared by the
+   *  cross-linking rule (rule 6) so related posts come from shared data,
+   *  never a hardcoded list. */
+  productTitle: string;
+}) {
+  // Reverse lookup (rule 6): posts whose relatedProducts contain THIS
+  // product's slug, newest first, max 2 — then any of those the guide's
+  // own "Keep exploring" links already point to are filtered out so no
+  // post card renders twice on one page. Empty result = no blog cards
+  // rendered (no empty heading, no filler).
+  const relatedPosts: Post[] = getPostsForProduct(
+    slugify(productTitle)
+  )
+    .slice(0, 2)
+    .filter(
+      (post) =>
+        !guide.links.some(
+          (link) => link.href === postHref(post)
+        )
+    );
   return (
     <section
       aria-label="Buying guide"
@@ -197,6 +223,45 @@ export default function QuickLookGuideSection({ guide }: { guide: QuickLookGuide
           ))}
         </div>
       </div>
+
+      {/* Related blog posts (rule 6, reverse lookup over relatedProducts)
+          — rendered INSIDE the "Keep exploring" block (first in the grid).
+          Max 2, post title as anchor; duplicates of links the guide's own
+          cards already carry are filtered out, and the block is omitted
+          entirely when nothing remains. */}
+      {relatedPosts.length > 0 && (
+        <>
+          <h3 className="text-xl md:text-2xl font-bold text-text-heading flex items-center gap-2 mt-8">
+            <FileText className="w-5 h-5 text-accent" />
+            From our blog
+          </h3>
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            {relatedPosts.map((post) => (
+              <Link
+                key={post.id}
+                href={postHref(post)}
+                className="group flex gap-3 bg-bg-light border border-text-heading/10 rounded-lg p-4 card-lift"
+              >
+                <span className="inline-flex flex-shrink-0 items-start mt-0.5">
+                  <FileText className="w-4 h-4 text-accent" />
+                </span>
+                <span className="min-w-0">
+                  <span className="block text-sm font-semibold text-text-heading group-hover:text-accent transition-colors">
+                    {post.title}
+                  </span>
+                  <span className="mt-1 block text-xs text-text-body">
+                    {post.category} · {post.date} · {post.readTime}
+                  </span>
+                  <span className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-accent">
+                    Read the article
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+                  </span>
+                </span>
+              </Link>
+            ))}
+          </div>
+        </>
+      )}
 
       {/* Keep exploring — internal link cards */}
       <div className="mt-12">
