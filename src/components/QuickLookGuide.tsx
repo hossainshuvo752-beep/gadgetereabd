@@ -10,8 +10,9 @@ import { CheckCircle2, XCircle, BookOpen, ArrowRight } from 'lucide-react';
  * SEO/AEO rules implemented here:
  * - The page's product title stays the only H1; this section starts at H2,
  *   sub-parts use H3 — heading levels never skip.
- * - Paragraph text is readable-length prose (max-w-prose) at article
- *   contrast (--color-text-article, same as blog posts).
+ * - Paragraph text uses article contrast (--color-text-article, same as
+ *   blog posts) and spans the full max-w-7xl container so the section
+ *   aligns with the spec cards above it.
  * - EVERYTHING is server-rendered text visible by default: no accordions,
  *   no collapsed panels, no hidden text. The FAQ cards are static.
  * - FAQPage JSON-LD is emitted by the page from the SAME faqs array this
@@ -28,7 +29,7 @@ export default function QuickLookGuideSection({ guide }: { guide: QuickLookGuide
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14">
       {/* H2 + direct-answer lead (quotable by AI answer engines) */}
-      <div className="max-w-prose">
+      <div>
         <h2 className="text-2xl md:text-3xl font-bold text-text-heading leading-tight">
           {guide.heading}
         </h2>
@@ -43,7 +44,7 @@ export default function QuickLookGuideSection({ guide }: { guide: QuickLookGuide
       </div>
 
       {/* Price in Bangladesh — the money section */}
-      <div className="mt-10 max-w-prose">
+      <div className="mt-10">
         <h3 className="text-xl md:text-2xl font-bold text-text-heading">
           {guide.priceSection.heading}
         </h3>
@@ -169,7 +170,7 @@ export default function QuickLookGuideSection({ guide }: { guide: QuickLookGuide
       </div>
 
       {/* Buying tips for Bangladesh */}
-      <div className="mt-12 max-w-prose">
+      <div className="mt-12">
         <h3 className="text-xl md:text-2xl font-bold text-text-heading">
           {guide.buyingTips.heading}
         </h3>
@@ -183,7 +184,7 @@ export default function QuickLookGuideSection({ guide }: { guide: QuickLookGuide
       </div>
 
       {/* FAQ — static, visible answers (no accordion), matches JSON-LD exactly */}
-      <div className="mt-12 max-w-prose">
+      <div className="mt-12">
         <h3 className="text-xl md:text-2xl font-bold text-text-heading">
           Frequently asked questions: {guide.productName}
         </h3>
