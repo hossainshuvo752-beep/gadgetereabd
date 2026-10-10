@@ -3,6 +3,7 @@ import { slugify, type Product } from './products';
 import { postHref } from './posts';
 import { BRAND_NAME } from './brand';
 import { SITE_URL } from './siteUrl';
+import { LOGO_IMAGE_URL } from './siteOgImage';
 
 // Canonical origin lives in lib/siteUrl.ts (single source of truth).
 // Re-exported here so existing/legacy imports of SITE_URL from schema
@@ -23,13 +24,17 @@ export { SITE_URL };
  */
 
 /** Organization — site-wide identity. Minimal by design: only verifiable
- *  fields (no fabricated logo URL, social profiles, or address). */
+ *  fields. `logo` is the real site wordmark as an absolute URL (the same
+ *  asset the header renders), which is what Organization markup expects.
+ *  `sameAs` is deliberately absent until real profile URLs exist — an
+ *  invented or placeholder profile URL is worse than no field at all. */
 export function organizationSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: BRAND_NAME,
     url: SITE_URL,
+    logo: `${SITE_URL}${LOGO_IMAGE_URL}`,
     description:
       "Bangladesh's honest source for gadget reviews, buying guides, and tech news.",
   };

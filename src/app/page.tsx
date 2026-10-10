@@ -1,11 +1,14 @@
-"use client";
-
-import Link from 'next/link';
+import type { Metadata } from 'next';
+import type { CSSProperties } from 'react';
 import { posts } from '@/lib/posts';
+import { SITE_URL } from '@/lib/siteUrl';
+import { DEFAULT_OG_IMAGE } from '@/lib/siteOgImage';
 import ArticleCard from '@/components/ArticleCard';
 import Hero from '@/components/Hero';
+import HomeIntro from '@/components/HomeIntro';
 import ShopTeaser from '@/components/ShopTeaser';
 import TrendingPosts from '@/components/TrendingPosts';
+import BrowseCategories from '@/components/BrowseCategories';
 import BuyingGuideHighlight from '@/components/BuyingGuideHighlight';
 import WhyTrustUs from '@/components/WhyTrustUs';
 import NewsletterBanner from '@/components/NewsletterBanner';
@@ -14,6 +17,43 @@ import Testimonials from '@/components/Testimonials';
 import JsonLd from '@/components/JsonLd';
 import { organizationSchema, websiteSchema } from '@/lib/schema';
 
+/**
+ * Homepage metadata.
+ *
+ * `title.absolute` is used ON PURPOSE: the root layout's template appends
+ * "| Jupiter BD", which would duplicate the brand name in a title that
+ * already starts with it. Description and the social title/description are
+ * the SAME strings for og: and twitter: so a shared link renders
+ * identically wherever it is pasted.
+ */
+const HOME_TITLE = 'Jupiter BD: Gadget Prices, Specs & Reviews in Bangladesh';
+const HOME_DESCRIPTION =
+  'Check phone and gadget prices in Bangladesh, full specs, honest reviews and buying guides. Prices for official and unofficial models.';
+
+export const metadata: Metadata = {
+  title: { absolute: HOME_TITLE },
+  description: HOME_DESCRIPTION,
+  // Self-referencing canonical on the canonical origin (https://jupiter.bd).
+  alternates: { canonical: SITE_URL },
+  openGraph: {
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
+    url: SITE_URL,
+    images: [{ ...DEFAULT_OG_IMAGE }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
+    images: [DEFAULT_OG_IMAGE.url],
+  },
+};
+
+/**
+ * Homepage. Server component so the route can export metadata (a client
+ * page cannot) — every interactive section below is its own client
+ * component, so nothing here needs the directive.
+ */
 export default function Home() {
   // Featured post for the Hero section (first post)
   const featuredPost = posts[0];
@@ -29,6 +69,9 @@ export default function Home() {
       <JsonLd data={organizationSchema()} />
       <JsonLd data={websiteSchema()} />
       <Hero post={featuredPost} />
+      {/* The page's single H1 lives here, in normal flow under the hero —
+          visible text, not sr-only, aligned to the shared container. */}
+      <HomeIntro />
       {/* pt-6: small breathing gap above the heading so it doesn't sit tight
           against the section boundary below the Hero. */}
       <section className="pt-6 mb-12">
@@ -44,7 +87,7 @@ export default function Home() {
             {latestPosts.map((post, i) => (
               // Staggered entrance (shared .fade-up utility in globals.css) —
               // capped at 50ms steps so 8 cards never feel slow.
-              <div key={post.id} className="fade-up" style={{ '--stagger-delay': `${Math.min(i * 50, 350)}ms` } as React.CSSProperties}>
+              <div key={post.id} className="fade-up" style={{ '--stagger-delay': `${Math.min(i * 50, 350)}ms` } as CSSProperties}>
                 <ArticleCard post={post} />
               </div>
             ))}
@@ -56,6 +99,10 @@ export default function Home() {
       <div className="mt-12">
         <TrendingPosts />
       </div>
+      {/* Category + Quick Look navigation, directly below Trending Picks.
+          (The newsletter banner renders ABOVE Trending Picks on this page —
+          it was not moved, so no existing section's order changed.) */}
+      <BrowseCategories />
       <BuyingGuideHighlight />
       <WhyTrustUs />
       <Testimonials />

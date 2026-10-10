@@ -9,6 +9,7 @@ import { CartProvider } from "@/context/CartContext";
 import { AuthProvider } from "@/context/AuthContext";
 import { BRAND_NAME } from "@/lib/brand";
 import { SITE_URL } from "@/lib/siteUrl";
+import { DEFAULT_OG_IMAGE } from "@/lib/siteOgImage";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -29,9 +30,14 @@ export const metadata: Metadata = {
     type: "website",
     siteName: BRAND_NAME,
     locale: "en_US",
+    // Site-wide fallback card. Pages that declare their own openGraph
+    // images (product/post hero photos, the homepage card) override this
+    // rather than merge with it, so no page's own image is replaced.
+    images: [{ ...DEFAULT_OG_IMAGE }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
+    images: [DEFAULT_OG_IMAGE.url],
   },
 };
 

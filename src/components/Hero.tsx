@@ -83,10 +83,19 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
           <div className="relative">
             {post.heroImage ? (
               <div className="w-full max-w-[200px] md:max-w-[340px] mx-auto aspect-[4/5] hero-img overflow-hidden">
+                {/* LCP: this hero image is the homepage's largest paint, so
+                    it loads eagerly (priority → eager + preload link) AND
+                    carries fetchPriority="high" explicitly — on Next 16.3
+                    the priority prop alone only emits the preload hint, not
+                    the attribute the browser uses to order the fetch.
+                    sizes/srcset stay unchanged; below-the-fold images keep
+                    their default lazy loading. */}
                 <Image
                   src={post.heroBannerImage ?? post.heroImage}
                   alt={post.imageAlt}
                   fill
+                  priority
+                  fetchPriority="high"
                   sizes="(max-width: 767px) 200px, 340px"
                   className="object-cover object-center"
                 />
