@@ -183,16 +183,10 @@ const guides: Record<string, QuickLookGuide> = {
         description: 'Camera-first flagship officially sold in Bangladesh',
         href: '/quick-look/vivo-x300-pro',
       },
-      {
-        label: 'iPhone Duo: Apple\'s First Foldable — Price, Specs & Release',
-        description: 'Blog: where the ultra-premium market is heading',
-        href: '/posts/iphone-duo-foldable-price-specs-release',
-      },
-      {
-        label: 'Windows vs Mac: Which Laptop OS Should You Choose in 2026?',
-        description: 'Blog: if the Robot Phone budget is stretching to laptops too',
-        href: '/posts/windows-vs-mac-which-laptop-os-to-choose',
-      },
+      // NOTE: no blog links here — the iPhone Duo post genuinely covers
+      // this phone (declared via relatedProducts), so its backlink renders
+      // from the reverse lookup (rule 6: one source of truth). The Windows
+      // vs Mac post does NOT cover this phone, so no blog link for it.
     ],
   },
 
@@ -332,11 +326,9 @@ const guides: Record<string, QuickLookGuide> = {
         description: 'Camera-focused alternative with faster charging',
         href: '/quick-look/vivo-x300-pro',
       },
-      {
-        label: 'iPhone Duo: Apple\'s First Foldable — Price, Specs & Release',
-        description: 'Blog: how the ultra-premium segment is shifting',
-        href: '/posts/iphone-duo-foldable-price-specs-release',
-      },
+      // NOTE: no blog links here — the iPhone Duo post declares this phone
+      // in relatedProducts, so its backlink renders via the reverse lookup
+      // (rule 6) instead of a duplicated guide entry.
     ],
   },
 
@@ -475,16 +467,10 @@ const guides: Record<string, QuickLookGuide> = {
         description: 'The tablet half of the Apple ecosystem pairing',
         href: '/quick-look/apple-ipad-air-11-m3',
       },
-      {
-        label: 'iPhone Duo: Apple\'s First Foldable — Price, Specs & Release',
-        description: 'Blog: Apple\'s foldable is the next tier above this phone',
-        href: '/posts/iphone-duo-foldable-price-specs-release',
-      },
-      {
-        label: 'iOS 27 Is Here: Top Features, Release Date and Compatible iPhones',
-        description: 'Blog: what this phone gains from the new software',
-        href: '/posts/ios-27-features-release-date',
-      },
+      // NOTE: no blog links here — both posts that cover this phone
+      // (iPhone Duo, iOS 27) declare it in relatedProducts, so their
+      // backlinks come from the reverse lookup (rule 6), not from
+      // duplicated hand-picked entries in this guide.
     ],
   },
 
@@ -624,11 +610,9 @@ const guides: Record<string, QuickLookGuide> = {
         description: 'The ecosystem alternative with official warranty',
         href: '/quick-look/apple-iphone-17-pro-max',
       },
-      {
-        label: 'iPhone Duo: Apple\'s First Foldable — Price, Specs & Release',
-        description: 'Blog: how the ultra-premium camera phones are evolving',
-        href: '/posts/iphone-duo-foldable-price-specs-release',
-      },
+      // NOTE: no blog links here — the iPhone Duo post declares this
+      // model in relatedProducts, so its backlink renders via the
+      // reverse lookup (rule 6), not a hand-picked guide entry.
     ],
   },
 
@@ -1045,6 +1029,9 @@ const guides: Record<string, QuickLookGuide> = {
         description: 'The officially-warranted flagship alternative',
         href: '/quick-look/samsung-galaxy-s26-ultra',
       },
+      // The iPhone Duo blog link stays contextual here: the Z Fold7 is
+      // NOT declared in that post's relatedProducts, so this guide link
+      // is the only cross-link for the pair (no duplication).
       {
         label: 'iPhone Duo: Apple\'s First Foldable — Price, Specs & Release',
         description: 'Blog: Apple\'s answer to book-style foldables',
@@ -2045,16 +2032,10 @@ const guides: Record<string, QuickLookGuide> = {
         description: 'The tablet route if you mostly read and write',
         href: '/quick-look/apple-ipad-air-11-m3',
       },
-      {
-        label: 'Best Laptop Under ৳50,000 in Bangladesh (2026 Buying Guide)',
-        description: 'Blog: how this laptop compares in the budget segment',
-        href: '/posts/best-laptop-under-50000-in-bangladesh',
-      },
-      {
-        label: 'Windows vs Mac: Which Laptop OS Should You Choose in 2026?',
-        description: 'Blog: why a Windows machine suits most buyers here',
-        href: '/posts/windows-vs-mac-which-laptop-os-to-choose',
-      },
+      // NOTE: no blog links here — both laptop posts that genuinely cover
+      // this machine (Windows vs Mac, Best Laptop Under ৳50,000) declare
+      // it in relatedProducts, so their cards render via the reverse
+      // lookup (rule 6) instead of duplicated guide entries.
     ],
   },
 
