@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import JsonLd from '@/components/JsonLd';
 import { faqSchema } from '@/lib/schema';
+import HomeSectionHeading from './HomeSectionHeading';
 
 const HomeFAQ: React.FC = () => {
   const faqs = [
@@ -44,14 +45,12 @@ const HomeFAQ: React.FC = () => {
       {/* FAQPage schema — same array the accordion renders (exact match rule). */}
       <JsonLd data={faqSchema(faqs)} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Section heading pair (homepage multi-H1 pattern): h1 title +
-            muted h2 description subtext; the accordion questions stay h3. */}
-        <h1 className="text-2xl font-bold text-text-heading mb-1 text-center">
-          Jupiter BD FAQ: Questions About Reviews, Prices &amp; Specs
-        </h1>
-        <h2 className="text-sm font-normal text-text-body mb-6 text-center">
-          Answers about how we review and what we cover
-        </h2>
+        {/* Centered section heading pair via the SHARED homepage heading
+            component (FAQ text unchanged; the accordion questions stay h3). */}
+        <HomeSectionHeading
+          title="Jupiter BD FAQ: Questions About Reviews, Prices & Specs"
+          support="Answers about how we review and what we cover"
+        />
         <div className="space-y-4">
           {faqs.map((faq) => (
             <div key={faq.id} className="border border-text-heading/10 rounded-lg overflow-hidden shadow-sm bg-text-on-dark">

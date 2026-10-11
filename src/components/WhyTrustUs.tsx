@@ -1,4 +1,5 @@
 import React from 'react';
+import HomeSectionHeading from './HomeSectionHeading';
 
 const WhyTrustUs: React.FC = () => {
   const trustPoints = [
@@ -35,14 +36,12 @@ const WhyTrustUs: React.FC = () => {
   return (
     <section className="mb-8 sm:mb-12 bg-bg-light">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Section heading pair (homepage multi-H1 pattern): existing
-            title/subtitle text, now an h1 + muted h2 subtext. */}
-        <h1 className="text-2xl font-bold text-text-heading mb-1 text-center">
-          Why Trust Jupiter BD
-        </h1>
-        <h2 className="text-sm font-normal text-text-body mb-6 text-center">
-          Genuine testing, honest reviews — no sponsorships, no bias
-        </h2>
+        {/* Centered section heading pair via the SHARED homepage heading
+            component (text unchanged). */}
+        <HomeSectionHeading
+          title="Why Trust Jupiter BD"
+          support="Genuine testing, honest reviews — no sponsorships, no bias"
+        />
         {/* Mobile: 2x2 card grid (reference-style); sm+ keeps the previous
             2-col / lg 4-col desktop layout unchanged. */}
         <div className="grid grid-cols-2 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">

@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { homeCategoryLinks, homeQuickLookLinks } from '@/lib/homeLinks';
+import HomeSectionHeading from './HomeSectionHeading';
 
 /**
  * Homepage internal-navigation section: "Browse by Category".
@@ -22,14 +23,12 @@ const BrowseCategories: React.FC = () => {
   return (
     <section className="mb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section heading pair (homepage multi-H1 pattern): h1 title +
-            muted h2 description subtext. */}
-        <h1 className="text-2xl font-bold text-text-heading mb-1">
-          Browse Gadgets by Category: Phones, Laptops, Audio &amp; More
-        </h1>
-        <h2 className="text-sm font-normal text-text-body mb-6">
-          Find specs and prices by device type or brand
-        </h2>
+        {/* Centered section heading pair via the SHARED homepage heading
+            component. */}
+        <HomeSectionHeading
+          title="Browse Gadgets by Category: Phones, Laptops, Audio & More"
+          support="Find specs and prices by device type or brand"
+        />
 
         {/* Top-level categories — labels and counts from the shared tree. */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
@@ -51,18 +50,16 @@ const BrowseCategories: React.FC = () => {
 
         {/* Latest Quick Look pages — deep links straight to the guides. */}
         <div className="mt-10">
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            {/* Sub-section heading pair (homepage multi-H1 pattern): the
-                Quick Look row gets its own h1 + h2 description, as
-                specified for section 5. */}
-            <div>
-              <h1 className="text-lg md:text-xl font-bold text-text-heading">
-                Latest Phone &amp; Gadget Prices and Specs in Bangladesh
-              </h1>
-              <h2 className="mt-1 text-sm font-normal text-text-body">
-                Quick spec sheets with prices for phones and gadgets
-              </h2>
-            </div>
+          {/* Centered compact sub-heading (shared homepage heading
+              component, compact variant); the "View all Quick Look" link
+              keeps working, centered BELOW the heading/description. */}
+          <div className="text-center">
+            <HomeSectionHeading
+              compact
+              title="Latest Phone & Gadget Prices and Specs in Bangladesh"
+              support="Quick spec sheets with prices for phones and gadgets"
+              supportClassName="mb-3"
+            />
             <Link
               href="/quick-look"
               className="inline-flex items-center gap-1 text-sm font-medium text-accent hover:text-accent-hover transition-colors"

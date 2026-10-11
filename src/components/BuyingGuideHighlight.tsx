@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { posts, postHref, type Post } from '@/lib/posts';
 import { postCardAlt, nextOccurrence, type AltOccurrenceTracker } from '@/lib/imageAlt';
+import HomeSectionHeading from './HomeSectionHeading';
 
 /**
  * Popular Buying Guides — homepage section fed by the REAL posts data
@@ -32,14 +33,12 @@ const BuyingGuideHighlight: React.FC<{ altTracker?: AltOccurrenceTracker }> = ({
   return (
     <section className="mb-12 bg-bg-light">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Section heading pair (homepage multi-H1 pattern): h1 title +
-            muted h2 description subtext, look unchanged from the old h2. */}
-        <h1 className="text-2xl font-bold text-text-heading mb-1 text-center">
-          Best Gadget Buying Guides for Bangladeshi Buyers
-        </h1>
-        <h2 className="text-sm font-normal text-text-body mb-6 text-center">
-          Honest comparisons to help you pick the right gadget
-        </h2>
+        {/* Centered section heading pair via the SHARED homepage heading
+            component. */}
+        <HomeSectionHeading
+          title="Best Gadget Buying Guides for Bangladeshi Buyers"
+          support="Honest comparisons to help you pick the right gadget"
+        />
         {/* 4-up on desktop (lg) — same compact card proportions as the
             /blog page and the other homepage sections. */}
         <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-4">

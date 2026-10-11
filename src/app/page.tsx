@@ -6,7 +6,7 @@ import { DEFAULT_OG_IMAGE } from '@/lib/siteOgImage';
 import ArticleCard from '@/components/ArticleCard';
 import { createAltOccurrenceTracker, nextOccurrence, type AltOccurrenceTracker } from '@/lib/imageAlt';
 import Hero from '@/components/Hero';
-import HomeIntro from '@/components/HomeIntro';
+import HomeSectionHeading from '@/components/HomeSectionHeading';
 import ShopTeaser from '@/components/ShopTeaser';
 import TrendingPosts from '@/components/TrendingPosts';
 import BrowseCategories from '@/components/BrowseCategories';
@@ -79,23 +79,24 @@ export default function Home() {
       <JsonLd data={organizationSchema()} />
       <JsonLd data={websiteSchema()} />
       <Hero post={featuredPost} />
-      {/* The page's single H1 lives here, in normal flow under the hero —
-          visible text, not sr-only, aligned to the shared container. */}
-      <HomeIntro />
-      {/* pt-6: small breathing gap above the heading so it doesn't sit tight
-          against the section boundary below the Hero. */}
-      <section className="pt-6 mb-12">
+      {/* Latest Posts section — now owns the page's H1 directly above the
+          post grid (the old slim intro strip and separate "Latest Posts"
+          heading were merged into this one centered heading block; no
+          orphan strip or divider remains between hero and grid). The hero
+          headline stays h2. */}
+      <section className="pt-8 mb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Latest Posts grid heading — an h3: the section's h1+h2 pair lives
-              in HomeIntro directly above (homepage multi-H1 pattern, one h1
-              + one descriptive h2 per section; card titles stay h3). */}
-          <h3 className="text-2xl font-bold text-text-heading mb-6">
-            Latest Posts
-          </h3>
+          {/* Centered heading pair via the SHARED homepage component — same
+              sizes/weights/spacing as every other section title. */}
+          <HomeSectionHeading
+            title="Gadget Prices, Specs & Reviews in Bangladesh"
+            support="Official & unofficial prices, full specs and honest guides"
+          />
           {/* MOBILE: 2-col grid of compact title-only cards. DESKTOP:
               4-up like the /blog page — keeps card images compact (16:9).
               Renders the SAME ArticleCard used on /blog — one shared card,
-              one shared image source. */}
+              one shared image source. Grid cards, order and links are
+              unchanged. */}
           <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-4">
             {latestPosts.map((post, i) => (
               // Staggered entrance (shared .fade-up utility in globals.css) —

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useNewsletterSignup } from '@/hooks/useNewsletterSignup';
+import HomeSectionHeading from './HomeSectionHeading';
 
 const NewsletterBanner: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -21,12 +22,14 @@ const NewsletterBanner: React.FC = () => {
   return (
     <section className="bg-bg-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Section heading pair (homepage multi-H1 pattern): existing
-            title/subtitle text, now an h1 + muted h2 subtext. */}
-        <h1 className="text-3xl font-bold text-center text-text-on-dark mb-2">
+        {/* Centered section heading pair — this dark section needs its OWN
+            token colors (text-on-dark), so it keeps the same STRUCTURE as
+            the shared heading (h1 + mt-2/text-sm h2 description) but stays
+            inline rather than importing the light-surface component. */}
+        <h1 className="text-2xl md:text-3xl font-bold text-center text-text-on-dark mb-0">
           Get Weekly Tech Deals &amp; Updates 🔥
         </h1>
-        <h2 className="text-center text-sm font-normal text-text-on-dark/70 mb-6">
+        <h2 className="mt-2 text-sm md:text-base font-normal text-center text-text-on-dark/70 mb-6">
           Subscribe for exclusive reviews, new arrivals and tech tips
         </h2>
         <div className="flex flex-col items-center">

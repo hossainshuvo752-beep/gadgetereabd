@@ -1,5 +1,6 @@
 import React from 'react';
 import { Star, Quote } from 'lucide-react';
+import HomeSectionHeading from './HomeSectionHeading';
 
 type Testimonial = {
   id: number;
@@ -82,16 +83,16 @@ const Testimonials: React.FC = () => {
   return (
     <section className="py-12 bg-bg-light">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section heading pair (homepage multi-H1 pattern): existing
-            title/subtitle text, now an h1 + muted h2 subtext. MOBILE:
-            text-2xl keeps the heading on ONE line (text-3xl wraps on ~360px
-            screens); md: restores the larger desktop size. */}
-        <h1 className="text-2xl md:text-3xl font-bold text-center text-text-heading mb-1">
-          What Our Customers Say
-        </h1>
-        <h2 className="text-center text-sm font-normal text-text-body mb-8">
-          Trusted by thousands across Bangladesh
-        </h2>
+        {/* Centered section heading pair via the SHARED homepage heading
+            component (text unchanged; this section shares the About page,
+            and the shared heading's centered output matches both). */}
+        <div className="max-w-3xl mx-auto">
+          <HomeSectionHeading
+            title="What Our Customers Say"
+            support="Trusted by thousands across Bangladesh"
+            supportClassName="mb-8"
+          />
+        </div>
 
         {/* MOBILE: horizontally scrollable, snap-scrolling row — each card is
             ~85% of the viewport so the next one peeks in from the right,

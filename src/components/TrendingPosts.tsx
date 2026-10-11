@@ -2,6 +2,7 @@ import React from 'react';
 import ArticleCard from '@/components/ArticleCard';
 import { posts } from '@/lib/posts';
 import { nextOccurrence, type AltOccurrenceTracker } from '@/lib/imageAlt';
+import HomeSectionHeading from './HomeSectionHeading';
 
 /**
  * Trending Now — shows posts beyond the Hero's featured one. With only ONE
@@ -19,14 +20,14 @@ const TrendingPosts: React.FC<{ altTracker?: AltOccurrenceTracker }> = ({ altTra
   return (
     <section className="mb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section heading pair (homepage multi-H1 pattern): h1 title +
-            muted h2 description subtext, look unchanged from the old h2. */}
-        <h1 className="text-2xl font-bold text-text-heading mb-1">
-          Popular Tech Guides &amp; Comparisons for Bangladesh
-        </h1>
-        <h2 className="text-sm font-normal text-text-body mb-6">
-          Most-read reviews, explainers and buying comparisons
-        </h2>
+        {/* Centered section heading pair via the SHARED homepage heading
+            component. */}
+        <div className="text-center">
+          <HomeSectionHeading
+            title="Popular Tech Guides & Comparisons for Bangladesh"
+            support="Most-read reviews, explainers and buying comparisons"
+          />
+        </div>
         {/* 4-up on desktop (lg) — same compact card proportions as the
             /blog page and Latest Posts. */}
         <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-4">
