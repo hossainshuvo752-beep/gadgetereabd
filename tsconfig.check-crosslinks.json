@@ -16,6 +16,8 @@
   },
   "include": [
     "src/lib/products.ts",
-    "src/lib/posts.ts"
+    "src/lib/posts.ts",
+    "src/lib/sitemapData.ts",
+    "src/lib/siteUrl.ts"
   ]
 }
