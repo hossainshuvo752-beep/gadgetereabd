@@ -44,8 +44,13 @@ const HomeFAQ: React.FC = () => {
       {/* FAQPage schema — same array the accordion renders (exact match rule). */}
       <JsonLd data={faqSchema(faqs)} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h2 className="text-2xl font-bold text-text-heading mb-6 text-center">
-          Frequently Asked Questions
+        {/* Section heading pair (homepage multi-H1 pattern): h1 title +
+            muted h2 description subtext; the accordion questions stay h3. */}
+        <h1 className="text-2xl font-bold text-text-heading mb-1 text-center">
+          Jupiter BD FAQ: Questions About Reviews, Prices &amp; Specs
+        </h1>
+        <h2 className="text-sm font-normal text-text-body mb-6 text-center">
+          Answers about how we review and what we cover
         </h2>
         <div className="space-y-4">
           {faqs.map((faq) => (

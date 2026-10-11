@@ -23,9 +23,19 @@ const ShopTeaser: React.FC = () => {
   return (
     <section className="mb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section heading pair (homepage multi-H1 pattern): the section
+            title is an h1 and the description line directly below is a
+            muted h2 subtext — visual look unchanged from the old h2. */}
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-text-heading">Trending Picks</h2>
-          <Link href="/shop" className="text-accent hover:text-accent-hover font-medium">
+          <div>
+            <h1 className="text-2xl font-bold text-text-heading">
+              Trending Phones &amp; Gadgets with Prices in Bangladesh
+            </h1>
+            <h2 className="mt-1 text-sm font-normal text-text-body">
+              Editor-picked phones and gadgets, priced in BDT
+            </h2>
+          </div>
+          <Link href="/shop" className="text-accent hover:text-accent-hover font-medium shrink-0">
             View All in Shop →
           </Link>
         </div>

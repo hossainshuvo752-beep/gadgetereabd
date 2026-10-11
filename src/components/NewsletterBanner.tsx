@@ -21,12 +21,14 @@ const NewsletterBanner: React.FC = () => {
   return (
     <section className="bg-bg-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h2 className="text-3xl font-bold text-center text-text-on-dark mb-4">
-          Get Weekly Tech Deals & Updates 🔥
-        </h2>
-        <p className="text-center text-text-on-dark/70 mb-6">
+        {/* Section heading pair (homepage multi-H1 pattern): existing
+            title/subtitle text, now an h1 + muted h2 subtext. */}
+        <h1 className="text-3xl font-bold text-center text-text-on-dark mb-2">
+          Get Weekly Tech Deals &amp; Updates 🔥
+        </h1>
+        <h2 className="text-center text-sm font-normal text-text-on-dark/70 mb-6">
           Subscribe for exclusive reviews, new arrivals and tech tips
-        </p>
+        </h2>
         <div className="flex flex-col items-center">
           {succeeded ? (
             <p className="text-accent font-medium" role="status">

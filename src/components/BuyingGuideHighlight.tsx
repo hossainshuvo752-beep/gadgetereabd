@@ -31,8 +31,13 @@ const BuyingGuideHighlight: React.FC = () => {
   return (
     <section className="mb-12 bg-bg-light">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h2 className="text-2xl font-bold text-text-heading mb-6 text-center">
-          Popular Buying Guides
+        {/* Section heading pair (homepage multi-H1 pattern): h1 title +
+            muted h2 description subtext, look unchanged from the old h2. */}
+        <h1 className="text-2xl font-bold text-text-heading mb-1 text-center">
+          Best Gadget Buying Guides for Bangladeshi Buyers
+        </h1>
+        <h2 className="text-sm font-normal text-text-body mb-6 text-center">
+          Honest comparisons to help you pick the right gadget
         </h2>
         {/* 4-up on desktop (lg) — same compact card proportions as the
             /blog page and the other homepage sections. */}

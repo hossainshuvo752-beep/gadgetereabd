@@ -76,9 +76,12 @@ export default function Home() {
           against the section boundary below the Hero. */}
       <section className="pt-6 mb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-text-heading mb-6">
+          {/* Latest Posts grid heading — an h3: the section's h1+h2 pair lives
+              in HomeIntro directly above (homepage multi-H1 pattern, one h1
+              + one descriptive h2 per section; card titles stay h3). */}
+          <h3 className="text-2xl font-bold text-text-heading mb-6">
             Latest Posts
-          </h2>
+          </h3>
           {/* MOBILE: 2-col grid of compact title-only cards. DESKTOP:
               4-up like the /blog page — keeps card images compact (16:9).
               Renders the SAME ArticleCard used on /blog — one shared card,
