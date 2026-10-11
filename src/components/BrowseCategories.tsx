@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { homeCategoryLinks, homeQuickLookLinks } from '@/lib/homeLinks';
 import HomeSectionHeading from './HomeSectionHeading';
+import ViewAllButton from './ViewAllButton';
 
 /**
  * Homepage internal-navigation section: "Browse by Category".
@@ -51,23 +52,14 @@ const BrowseCategories: React.FC = () => {
         {/* Latest Quick Look pages — deep links straight to the guides. */}
         <div className="mt-10">
           {/* Centered compact sub-heading (shared homepage heading
-              component, compact variant); the "View all Quick Look" link
-              keeps working, centered BELOW the heading/description. */}
-          <div className="text-center">
-            <HomeSectionHeading
-              compact
-              title="Latest Phone & Gadget Prices and Specs in Bangladesh"
-              support="Quick spec sheets with prices for phones and gadgets"
-              supportClassName="mb-3"
-            />
-            <Link
-              href="/quick-look"
-              className="inline-flex items-center gap-1 text-sm font-medium text-accent hover:text-accent-hover transition-colors"
-            >
-              View all Quick Look
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
+              component, compact variant). The old header-row "View all
+              Quick Look" link is replaced by the shared dark button BELOW
+              the Quick Look card grid. */}
+          <HomeSectionHeading
+            compact
+            title="Latest Phone & Gadget Prices and Specs in Bangladesh"
+            support="Quick spec sheets with prices for phones and gadgets"
+          />
           <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
             {homeQuickLookLinks.map((link) => (
               <Link
@@ -88,6 +80,10 @@ const BrowseCategories: React.FC = () => {
               </Link>
             ))}
           </div>
+
+          {/* Single "View all" control for this sub-section — the shared
+              dark button, centered under the Quick Look card grid. */}
+          <ViewAllButton href="/quick-look" label="View All in Quick Look" />
         </div>
       </div>
     </section>

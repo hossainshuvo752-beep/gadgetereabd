@@ -1,10 +1,10 @@
 "use client";
 
 import React from 'react';
-import Link from 'next/link';
 import { products, type Product } from '@/lib/products';
 import ProductCard from './ProductCard';
 import HomeSectionHeading from './HomeSectionHeading';
+import ViewAllButton from './ViewAllButton';
 
 // Trending Picks = most-viewed first (views are simulated for now; replace
 // with real view-tracking data when a backend exists). Computed once at
@@ -25,19 +25,12 @@ const ShopTeaser: React.FC = () => {
     <section className="mb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Centered section heading pair via the SHARED homepage heading
-            component. The "View All in Shop →" link keeps working, now
-            centered BELOW the heading/description (owner rule: the link
-            stays visible and attached, just no longer on the right edge). */}
-        <div className="text-center mb-6">
-          <HomeSectionHeading
-            title="Trending Phones & Gadgets with Prices in Bangladesh"
-            support="Editor-picked phones and gadgets, priced in BDT"
-            supportClassName="mb-3"
-          />
-          <Link href="/shop" className="inline-block text-accent hover:text-accent-hover font-medium">
-            View All in Shop →
-          </Link>
-        </div>
+            component — the old header-row "View All in Shop" link is
+            replaced by the shared dark button BELOW the card row. */}
+        <HomeSectionHeading
+          title="Trending Phones & Gadgets with Prices in Bangladesh"
+          support="Editor-picked phones and gadgets, priced in BDT"
+        />
 
         {/* Responsive container: scrollable on mobile, row on desktop */}
         <div className="overflow-x-auto whitespace-nowrap px-4">
@@ -49,6 +42,10 @@ const ShopTeaser: React.FC = () => {
             ))}
           </div>
         </div>
+
+        {/* Single "View all" control for this section — the shared dark
+            button, centered under the scrollable row. */}
+        <ViewAllButton href="/shop" label="View All in Shop" />
       </div>
     </section>
   );
