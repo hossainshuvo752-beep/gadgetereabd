@@ -4,6 +4,7 @@ import { postHref } from './posts';
 import { BRAND_NAME } from './brand';
 import { SITE_URL } from './siteUrl';
 import { LOGO_IMAGE_URL } from './siteOgImage';
+import { productSpecDescription } from './productDescription';
 
 // Canonical origin lives in lib/siteUrl.ts (single source of truth).
 // Re-exported here so existing/legacy imports of SITE_URL from schema
@@ -114,10 +115,19 @@ export function mentionsSchema(mention: { name: string; brand: string }) {
 
 /** Product — name/brand/category/description/image from the spec sheet
  *  and shared data; offers only for confirmed prices (see module doc).
- *  The canonical product URL is the slug-based /shop/<slug> route. */
-export function productSchema(product: Product) {
+ *  The canonical product URL matches the ROUTE the schema is emitted on:
+ *  Quick Look pages self-reference /quick-look/<slug>, Shop pages keep
+ *  /shop/<slug> — built from the shared slug helper (never hardcoded per
+ *  product), so Search Console's URL inspection resolves the Product
+ *  schema URL to the page it sits on. */
+export function productSchema(
+  product: Product,
+  /** Route context the schema is embedded in. Defaults to 'shop' for
+   *  backward compatibility with every existing caller. */
+  urlContext: 'shop' | 'quick-look' = 'shop'
+) {
   const { specSheet: spec } = product;
-  const productUrl = `${SITE_URL}/shop/${slugify(product.title)}`;
+  const productUrl = `${SITE_URL}/${urlContext}/${slugify(product.title)}`;
   // Avoid "HONOR HONOR Robot Phone"-style duplication when the model name
   // already starts with the brand name.
   const brandModel = spec.basicInfo.model
@@ -132,7 +142,7 @@ export function productSchema(product: Product) {
     brand: { '@type': 'Brand', name: spec.basicInfo.brand },
     category: product.topCategory,
     url: productUrl,
-    description: `${brandModel}: ${spec.display.size} ${spec.display.type}, ${spec.performance.processor}. Full specs and Bangladesh price on ${BRAND_NAME}.`,
+    description: productSpecDescription(product, brandModel),
     // Real hero photo (absolute URL) when the product has one.
     ...(product.heroImage ? { image: `${SITE_URL}${product.heroImage}` } : {}),
   };

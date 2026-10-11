@@ -1,5 +1,6 @@
 import type { Product } from './products';
 import { BRAND_NAME } from './brand';
+import { productSpecDescription } from './productDescription';
 
 /**
  * Hand-tuned SEO metadata for the 22 product detail pages.
@@ -59,7 +60,7 @@ const seoCopy: Record<string, ProductSeoCopy> = {
   },
   'playstation-5-slim-disc-console': {
     shopSpecs: 'limited-time offer',
-    quickLookSpecs: 'storage, specs, and current deal',
+    quickLookSpecs: 'storage options, gaming features, and current deal',
   },
   'ugreen-usb-c-hub-5-in-1': {
     shopSpecs: 'Multi-port connectivity, compact design',
@@ -144,7 +145,38 @@ export function quickLookSeoDescription(product: Product): string {
   }
 
   const availability = productStatusTail(product);
-  return `${pricePart} Check full specifications, ${specs}. ${availability}`;
+  // Spec attributes from the SHARED filtered builder — the same source the
+  // Product JSON-LD description uses, so meta/og/twitter and schema stay
+  // consistent. The builder's filter guarantees no "N/A", "None", "TBD",
+  // or double-space residue can ever appear here. Sentence:
+  // "… price in Bangladesh: ৳X. 250g, USB-C charging. Pre-order available."
+  const specClause = specClauseOf(product);
+  const specPart = specClause ? ` ${specClause}.` : '';
+  return `${pricePart}${specPart} Check full specifications, ${specs}. ${availability}`;
+}
+
+/**
+ * Comma-joined list of the product's usable spec values (display size
+ * + type, processor, storage, weight) — built by the shared filtered
+ * builder, with the brand-model lead and closing tail stripped. Empty
+ * when nothing usable (then the generic "Check full specifications"
+ * fallback above applies).
+ */
+function specClauseOf(product: Product): string {
+  const { specSheet: spec } = product;
+  const brandModel = spec.basicInfo.model
+    .toLowerCase()
+    .startsWith(spec.basicInfo.brand.toLowerCase())
+    ? spec.basicInfo.model
+    : `${spec.basicInfo.brand} ${spec.basicInfo.model}`;
+  const full = productSpecDescription(product, brandModel);
+  // Shape: "<brandModel>: <clauses>. Full specs and Bangladesh price on
+  // Jupiter BD." — take only the clause segment between the two.
+  const start = full.indexOf(': ');
+  const end = full.lastIndexOf('. Full specs');
+  if (start === -1 || end === -1 || end <= start) return '';
+  const clause = full.slice(start + 2, end).trim();
+  return clause.length > 0 ? clause : '';
 }
 
 /** Shop title template: "{Product} — Buy Online in Bangladesh | Jupiter BD" */

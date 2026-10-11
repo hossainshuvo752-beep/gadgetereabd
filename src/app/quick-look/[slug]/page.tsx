@@ -78,11 +78,13 @@ export default async function QuickLookProductPage({
   return (
     <>
       {/* Product schema — mirrors the visible spec sheet; offers only when
-          the price is confirmed (see lib/schema.ts). FAQPage schema is
-          emitted from the SAME array the guide section renders, so the
-          marked-up text matches the visible text exactly (only for the
-          guide's own FAQ — the existing Product schema is untouched). */}
-      <JsonLd data={productSchema(product)} />
+          the price is confirmed (see lib/schema.ts). urlContext='quick-look'
+          makes the Product/Offer url self-reference THIS page's canonical
+          /quick-look/<slug> (Search Console inspection fix); the Shop route
+          keeps its default /shop/<slug> context. FAQPage schema is emitted
+          from the SAME array the guide section renders, so the marked-up
+          text matches the visible text exactly. */}
+      <JsonLd data={productSchema(product, 'quick-look')} />
       {guide && <JsonLd data={faqSchema(guide.faqs)} />}
       <QuickLookDetail product={product} />
       {guide && (

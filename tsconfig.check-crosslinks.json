@@ -18,6 +18,8 @@
     "src/lib/products.ts",
     "src/lib/posts.ts",
     "src/lib/sitemapData.ts",
-    "src/lib/siteUrl.ts"
+    "src/lib/siteUrl.ts",
+    "src/lib/productDescription.ts",
+    "src/lib/brand.ts"
   ]
 }
