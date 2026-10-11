@@ -8,6 +8,7 @@ import { track } from '@/lib/tracking';
 import PriceTag from '@/components/PriceTag';
 import LightboxGallery from '@/components/LightboxGallery';
 import { isPurchasable, isUpcoming, storageOptionsOf, variantPrice, type ResolvedPrice } from '@/lib/products';
+import { productQuickLookMainAlt, productGalleryAlt } from '@/lib/imageAlt';
 import { useCart } from '@/context/CartContext';
 import {
   Info,
@@ -405,7 +406,7 @@ const QuickLookDetail: React.FC<{
                       >
                         <Image
                           src={img}
-                          alt={`${product.imageAlt} — thumbnail ${i + 1}`}
+                          alt={productGalleryAlt(product, i, activeGallery.length, showColorSwatches ? colorImages[safeActiveColor]?.color : undefined)}
                           fill
                           sizes="80px"
                           className="object-contain p-0.5"
@@ -463,15 +464,19 @@ const QuickLookDetail: React.FC<{
                     <div className="text-lg font-bold text-accent leading-none">{specScore}%</div>
                   </div>
                   {activeGallery.length > 0 ? (
-                    <Image
-                      src={activeGallery[activeIdx]!}
-                      alt={`${product.imageAlt} — view ${activeIdx + 1} of ${activeGallery.length}`}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 380px"
-                      onClick={showSeeAll ? () => setLightboxOpen(true) : undefined}
-                      className={`object-contain p-2 ${showSeeAll ? 'cursor-zoom-in' : ''}`}
-                      priority
-                    />
+                    <>
+                      {/* Quick Look main image carries the price-keyword alt
+                          (exactly once per page, Quick Look ONLY). */}
+                      <Image
+                        src={activeGallery[activeIdx]!}
+                        alt={productQuickLookMainAlt(product)}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 380px"
+                        onClick={showSeeAll ? () => setLightboxOpen(true) : undefined}
+                        className={`object-contain p-2 ${showSeeAll ? 'cursor-zoom-in' : ''}`}
+                        priority
+                      />
+                    </>
                   ) : (
                     <span className="text-text-body text-sm">
                       {activeImage === 0 ? product.imageAlt : `View ${activeImage + 1}`}
@@ -773,7 +778,8 @@ const QuickLookDetail: React.FC<{
       {lightboxOpen && activeGallery.length > 0 && (
         <LightboxGallery
           images={activeGallery}
-          alt={product.title}
+          alts={activeGallery.map((_, i) => productGalleryAlt(product, i, activeGallery.length, showColorSwatches ? colorImages[safeActiveColor]?.color : undefined))}
+          ariaLabelBase={product.title}
           initialIndex={activeIdx}
           onClose={() => setLightboxOpen(false)}
         />

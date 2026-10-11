@@ -21,6 +21,18 @@ export type Post = {
    *  filter). */
   views: number;
   imageAlt: string;
+  /** OPTIONAL hand-written alt that wins over imageAlt when set — for one
+   *  image you want a different (better) alt than the generated/default
+   *  one. Leave unset on most posts; the shared helper in imageAlt.ts
+   *  handles generation. */
+  imageAltOverride?: string;
+  /** OPTIONAL hand-written alts for SPECIFIC IN-BODY images (matched by
+   *  src path within post content). Keyed by src; each entry overrides the
+   *  existing alt of exactly one <img> inside this post's HTML. Leave
+   *  unset on most posts — in-body images should carry their own existing
+   *  alt text; only add an entry when a specific image needs a better alt
+   *  than the content HTML hardcoded one. */
+  inlineAltOverrides?: { src: string; alt: string }[];
   /** Article body as HTML, rendered on /posts/[slug] via dangerouslySetInnerHTML.
    *  HEADING CONVENTION (SEO): never include an <h1> — the page template owns
    *  the single page <h1> from post.title. Section headings are <h2>; genuine

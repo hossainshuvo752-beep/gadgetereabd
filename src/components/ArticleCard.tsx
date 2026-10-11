@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import PostMeta from './PostMeta';
 import { postHref, type Post } from '@/lib/posts';
+import { postCardAlt } from '@/lib/imageAlt';
 
 type PostCardData = Pick<
   Post,
@@ -22,7 +23,14 @@ export const CATEGORY_BADGE_COLORS: Record<string, string> = {
   Guide: 'bg-badge-guide',
 };
 
-const ArticleCard: React.FC<{ post: PostCardData }> = ({ post }) => {
+const ArticleCard: React.FC<{
+  post: PostCardData;
+  /** 0-based index for repeated uses of the SAME post image on one page
+   *  (homepage sections can feature the same post twice). 0 = unique on
+   *  the page; callers on listing pages omit it. Keeps alts unique per
+   *  page via the shared helper (postCardAlt appends "— card N"). */
+  occurrence?: number;
+}> = ({ post, occurrence = 0 }) => {
   return (
     <Link href={postHref(post)}>
       <div className="card-lift bg-text-on-dark border border-text-heading/10 rounded-lg overflow-hidden">
@@ -35,7 +43,7 @@ const ArticleCard: React.FC<{ post: PostCardData }> = ({ post }) => {
           {post.heroImage ? (
             <Image
               src={post.heroImage}
-              alt={post.imageAlt}
+              alt={postCardAlt(post, occurrence)}
               fill
               sizes="(max-width: 768px) 50vw, 25vw"
               className="card-zoom object-cover"

@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { posts, postHref, type Post } from '@/lib/posts';
+import { postCardAlt, nextOccurrence, type AltOccurrenceTracker } from '@/lib/imageAlt';
 
 /**
  * Popular Buying Guides — homepage section fed by the REAL posts data
@@ -22,7 +23,7 @@ function buyingGuidePosts(): Post[] {
   return [...matches, ...fill].slice(0, 4);
 }
 
-const BuyingGuideHighlight: React.FC = () => {
+const BuyingGuideHighlight: React.FC<{ altTracker?: AltOccurrenceTracker }> = ({ altTracker }) => {
   const guides = buyingGuidePosts();
 
   // No posts at all — hide the section rather than render an empty shell.
@@ -51,7 +52,7 @@ const BuyingGuideHighlight: React.FC = () => {
                 {guide.heroImage ? (
                   <Image
                     src={guide.heroImage}
-                    alt={guide.imageAlt}
+                    alt={postCardAlt(guide, altTracker ? nextOccurrence(altTracker, guide.id) : 0)}
                     fill
                     sizes="(max-width: 768px) 50vw, 25vw"
                     className="object-cover"

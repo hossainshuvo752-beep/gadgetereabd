@@ -4,6 +4,7 @@ import Image from 'next/image';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { posts, postHref, type Post } from '@/lib/posts';
+import { postHeroAlt } from '@/lib/imageAlt';
 import NewsletterPopup from '@/components/NewsletterPopup';
 import PostFaqAccordion from '@/components/PostFaqAccordion';
 import ShareButtons from '@/components/ShareButtons';
@@ -36,6 +37,34 @@ function findPost(slug: string): Post | undefined {
     // non-canonical copies of them.
     posts.find((p) => !p.slug && p.id === parseInt(slug, 10))
   );
+}
+
+/**
+ * Apply the post data's inlineAltOverrides (per-image hand-written alts
+ * from src/lib/posts.ts) onto the content HTML's <img> alt attributes.
+ * Only images whose src matches an override entry are touched — existing
+ * good hand-written alt text inside the content is left untouched. Each
+ * override wins by src-fragment match; a matching <img> without an alt
+ * attribute gets one injected. Escapes regex chars so paths with dots
+ * are safe.
+ */
+function postContentWithAlts(post: Post): string {
+  if (!post.inlineAltOverrides || post.inlineAltOverrides.length === 0) {
+    return post.content;
+  }
+  let out = post.content;
+  for (const { src, alt } of post.inlineAltOverrides) {
+    const escaped = src.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const tagRe = new RegExp(`<img\\b[^>]*\\ssrc="[^"]*${escaped}"[^>]*>`, 'i');
+    const match = out.match(tagRe);
+    if (!match) continue;
+    const tag = match[0];
+    const newTag = /\salt="/i.test(tag)
+      ? tag.replace(/\salt="[^"]*"/i, `alt="${alt}"`)
+      : tag.replace(/(\ssrc="[^"]*")/i, `$1 alt="${alt}"`);
+    out = out.replace(tag, newTag);
+  }
+  return out;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -133,7 +162,7 @@ export default async function PostsPage({ params }: Props) {
           {post.heroImage ? (
             <Image
               src={post.heroImage}
-              alt={post.imageAlt}
+              alt={postHeroAlt(post)}
               width={1376}
               height={768}
               priority
@@ -150,8 +179,11 @@ export default async function PostsPage({ params }: Props) {
         {/* Article Content — scoped typography (.post-body in globals.css;
             Tailwind's prose classes were dead here — no typography plugin). */}
         <div className="post-body">
-          {/* Trusted, locally-authored HTML from src/lib/posts.ts */}
-          <div dangerouslySetInnerHTML={{ __html: post.content }} />
+          {/* Trusted, locally-authored HTML from src/lib/posts.ts. Inline
+              <img> alt texts are (optionally) overridden from the post's
+              inlineAltOverrides data by the shared imageAlt helper — no
+              hardcoded alt changes inside content HTML here. */}
+          <div dangerouslySetInnerHTML={{ __html: postContentWithAlts(post) }} />
         </div>
 
         {/* Products mentioned (rule 6): Quick Look cards for the catalog

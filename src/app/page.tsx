@@ -4,6 +4,7 @@ import { posts } from '@/lib/posts';
 import { SITE_URL } from '@/lib/siteUrl';
 import { DEFAULT_OG_IMAGE } from '@/lib/siteOgImage';
 import ArticleCard from '@/components/ArticleCard';
+import { createAltOccurrenceTracker, nextOccurrence, type AltOccurrenceTracker } from '@/lib/imageAlt';
 import Hero from '@/components/Hero';
 import HomeIntro from '@/components/HomeIntro';
 import ShopTeaser from '@/components/ShopTeaser';
@@ -63,6 +64,15 @@ export default function Home() {
   // (2 rows) of cards. Copied before sorting — never mutate shared posts.
   const latestPosts = [...posts].sort((a, b) => b.views - a.views).slice(0, 8);
 
+  // Page-scoped alt-occurrence tracker: the same post image may appear in
+  // several homepage sections (Hero + Latest Posts + Trending Now + Buying
+  // Guides); the tracker gives each placement a distinct "card N" alt so
+  // no two <img> on the page share identical alt text (a11y + SEO rule).
+  // Passed down into the section components that render post images.
+  const altTracker: AltOccurrenceTracker = createAltOccurrenceTracker();
+  // The Hero's image counts as this post image's first placement.
+  void nextOccurrence(altTracker, featuredPost.id);
+
   return (
     <>
       {/* Site-wide identity + searchbox schema (AEO Standards item 8). */}
@@ -91,7 +101,7 @@ export default function Home() {
               // Staggered entrance (shared .fade-up utility in globals.css) —
               // capped at 50ms steps so 8 cards never feel slow.
               <div key={post.id} className="fade-up" style={{ '--stagger-delay': `${Math.min(i * 50, 350)}ms` } as CSSProperties}>
-                <ArticleCard post={post} />
+                <ArticleCard post={post} occurrence={nextOccurrence(altTracker, post.id)} />
               </div>
             ))}
           </div>
@@ -100,13 +110,13 @@ export default function Home() {
       <ShopTeaser />
       <NewsletterBanner />
       <div className="mt-12">
-        <TrendingPosts />
+        <TrendingPosts altTracker={altTracker} />
       </div>
       {/* Category + Quick Look navigation, directly below Trending Picks.
           (The newsletter banner renders ABOVE Trending Picks on this page —
           it was not moved, so no existing section's order changed.) */}
       <BrowseCategories />
-      <BuyingGuideHighlight />
+      <BuyingGuideHighlight altTracker={altTracker} />
       <WhyTrustUs />
       <Testimonials />
       <HomeFAQ />

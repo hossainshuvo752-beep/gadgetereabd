@@ -1,13 +1,14 @@
 import React from 'react';
 import ArticleCard from '@/components/ArticleCard';
 import { posts } from '@/lib/posts';
+import { nextOccurrence, type AltOccurrenceTracker } from '@/lib/imageAlt';
 
 /**
  * Trending Now — shows posts beyond the Hero's featured one. With only ONE
  * post on the site, the Hero already features it, so this section hides
  * itself instead of duplicating the same card.
  */
-const TrendingPosts: React.FC = () => {
+const TrendingPosts: React.FC<{ altTracker?: AltOccurrenceTracker }> = ({ altTracker }) => {
   // Skip the Hero's featured post (the first one) — trend what's left,
   // capped at 8 (two 4-up rows on desktop) like Latest Posts.
   const trendingPosts = posts.slice(1, 9);
@@ -31,7 +32,10 @@ const TrendingPosts: React.FC = () => {
         <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-4">
           {trendingPosts.map((post, i) => (
             <div key={post.id} className="fade-up" style={{ '--stagger-delay': `${Math.min(i * 50, 350)}ms` } as React.CSSProperties}>
-              <ArticleCard post={post} />
+              <ArticleCard
+                post={post}
+                occurrence={altTracker ? nextOccurrence(altTracker, post.id) : 0}
+              />
             </div>
           ))}
         </div>

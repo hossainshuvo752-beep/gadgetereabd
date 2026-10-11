@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { Product } from '@/lib/products';
 import { isPurchasable, isUpcoming, slugify } from '@/lib/products';
+import { productMainAlt } from '@/lib/imageAlt';
 import { useCart } from '@/context/CartContext';
 import PriceTag from './PriceTag';
 
@@ -96,7 +97,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         {product.heroImage ? (
           <Image
             src={product.heroImage}
-            alt={product.imageAlt}
+            alt={productMainAlt(product)}
             fill
             sizes="(max-width: 768px) 50vw, 33vw"
             className="card-zoom object-contain p-2"

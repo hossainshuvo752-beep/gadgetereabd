@@ -5,8 +5,13 @@ import Image from 'next/image';
 
 type LightboxGalleryProps = {
   images: string[];
-  /** Alt-text base (product name) — suffixed per view for accessibility. */
-  alt: string;
+  /** Per-image alt text, POSITION-MATCHED to `images` — built by the
+   *  shared src/lib/imageAlt.ts helper (never hardcoded here). Each entry
+   *  is unique and data-backed. */
+  alts: string[];
+  /** Plain-text base used ONLY for the dialog's aria-label (not an img
+   *  alt), e.g. the product title for "<title> image gallery". */
+  ariaLabelBase?: string;
   initialIndex: number;
   onClose: () => void;
 };
@@ -19,7 +24,8 @@ type LightboxGalleryProps = {
  */
 export default function LightboxGallery({
   images,
-  alt,
+  alts,
+  ariaLabelBase,
   initialIndex,
   onClose,
 }: LightboxGalleryProps) {
@@ -54,7 +60,7 @@ export default function LightboxGallery({
       className="fixed inset-0 z-[100] bg-bg-dark/90 flex items-center justify-center p-4"
       role="dialog"
       aria-modal="true"
-      aria-label={`${alt} image gallery`}
+      aria-label={`${ariaLabelBase ?? ''} image gallery`}
       onClick={onClose}
     >
       <div
@@ -82,7 +88,7 @@ export default function LightboxGallery({
         <div className="relative w-full aspect-square max-h-[65vh] bg-bg-dark-secondary/10 rounded-md overflow-hidden">
           <Image
             src={images[index]!}
-            alt={`${alt} — image ${index + 1} of ${total}`}
+            alt={alts[index] ?? ''}
             fill
             sizes="(max-width: 1024px) 100vw, 800px"
             className={`object-contain p-2 transition-transform duration-200 ${

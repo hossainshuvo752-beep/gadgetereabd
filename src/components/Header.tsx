@@ -408,9 +408,12 @@ const Header: React.FC = () => {
           {/* Panel header: brand + X close (top-right corner) */}
           <div className="flex items-center justify-between px-4 py-3 border-b border-text-on-dark/10">
             <NavLink href="/" onClick={closeMenu} className="flex items-center" aria-label="Jupiter BD — home">
+              {/* Decorative within the drawer: the link's aria-label carries
+                  the accessible name; an alt here would duplicate the
+                  desktop header logo's alt on the same page. */}
               <Image
                 src="/logo/logo.png"
-                alt="Jupiter BD"
+                alt=""
                 width={116}
                 height={64}
                 className="h-10 w-auto"

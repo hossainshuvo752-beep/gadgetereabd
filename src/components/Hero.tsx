@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { postHref } from '@/lib/posts';
+import { postHeroAlt } from '@/lib/imageAlt';
 
 interface HeroProps {
   post: {
@@ -92,7 +93,7 @@ const Hero: React.FC<HeroProps> = ({ post }) => {
                     their default lazy loading. */}
                 <Image
                   src={post.heroBannerImage ?? post.heroImage}
-                  alt={post.imageAlt}
+                  alt={postHeroAlt(post)}
                   fill
                   priority
                   fetchPriority="high"

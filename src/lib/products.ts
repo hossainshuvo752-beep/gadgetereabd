@@ -12,6 +12,12 @@ export interface Product {
    *  top-level category). */
   subCategory: string;
   imageAlt: string;
+  /** OPTIONAL hand-written alt that wins over the generated "name + type"
+   *  alt for this product's MAIN/hero image. Leave unset on most products —
+   *  the shared helper (imageAlt.ts) generates "<title> <category>"; set
+   *  only when a specific product needs different wording. Gallery and
+   *  color images always use the generated alt (variant/position based). */
+  altOverride?: string;
   /** Real product photo — hero/main image (WebP, optimized). When present,
    *  all surfaces render it instead of the imageAlt placeholder box; the
    *  alt text remains the accessibility label. One shared copy per image,
