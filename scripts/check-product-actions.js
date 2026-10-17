@@ -15,13 +15,18 @@
  *   2. a product surface starts rendering its own purchase CTA text again, or
  *   3. ProductActions loses the purchaseModeOf() switch, or
  *   4. the free-order block can render a buy action / the buy block can
- *      render Free Order (i.e. Buy Now and Free Order together).
+ *      render Free Order (i.e. Buy Now and Free Order together), or
+ *   5. a DEAL — any product flagged isDeal, i.e. anything /deals can list — is
+ *      in 'free-order' mode or only has an estimated price. /deals shows a
+ *      Buy Now + Add to Cart price offer, so a product nobody may actually
+ *      buy at a confirmed price must never appear there.
  *
  * Copy that is not a CTA (checkout/cart/terms/faq/confirmation pages) is not
  * scanned — only the surfaces that render product cards / detail CTAs.
  */
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 
 const root = process.cwd();
 const ACTIONS_FILE = 'src/components/ProductActions.tsx';
@@ -63,6 +68,33 @@ function stripComments(src) {
   return src
     .replace(/\/\*[\s\S]*?\*\//g, '')
     .replace(/^\s*\/\/.*$/gm, '');
+}
+
+/**
+ * Load the shared catalog (typescript). ts-node reads the source directly;
+ * otherwise the single file is transpiled FRESH into .next/tmp-product-actions
+ * on every run — never a cached copy from an earlier build, because this
+ * guard must judge the products as they are right now (a stale artifact would
+ * silently pass a deal that was just flipped to free-order). The catalog MUST
+ * load: this guard's whole point is the product data, so a load failure is a
+ * build failure, never a skip.
+ */
+function loadCatalog() {
+  const cwd = root;
+  try {
+    if (fs.existsSync(path.join(cwd, 'node_modules/ts-node'))) {
+      require('ts-node/register/transpile-only');
+      return require(path.join(cwd, 'src/lib/products.ts'));
+    }
+    const outDir = path.join(cwd, '.next/tmp-product-actions');
+    execSync(
+      `npx tsc src/lib/products.ts --outDir "${outDir}" --module commonjs --target es2020 --moduleResolution node --skipLibCheck`,
+      { stdio: 'inherit', cwd }
+    );
+    return require(path.join(outDir, 'products.js'));
+  } catch (error) {
+    fail(`could not load the product catalog to check /deals: ${error.message}`);
+  }
 }
 
 const problems = [];
@@ -138,11 +170,35 @@ if (!FREE_ORDER_BLOCK.test(actionsCode) || !BUY_BLOCK.test(actionsCode)) {
   }
 }
 
+// ---- Deals exclusivity -----------------------------------------------------
+const dealsRel = 'src/app/deals/page.tsx';
+const dealsCode = stripComments(fs.readFileSync(path.join(root, dealsRel), 'utf8'));
+if (!/isDeal/.test(dealsCode)) {
+  problems.push(
+    `${dealsRel} no longer filters the shared catalog on isDeal — /deals must list deals only.`
+  );
+}
+
+const { products, purchaseModeOf } = loadCatalog();
+const forbiddenDeals = products.filter(
+  (p) => p.isDeal === true && (purchaseModeOf(p) === 'free-order' || p.priceEstimated === true)
+);
+if (forbiddenDeals.length > 0) {
+  problems.push(
+    `${forbiddenDeals.length} product(s) on /deals are free-order or estimated-price: ` +
+      forbiddenDeals
+        .map((p) => `"${p.title}" (id ${p.id}${p.priceEstimated ? ', estimated price' : ''})`)
+        .join(', ') +
+      ' — a deal must be buyable at a confirmed price (drop isDeal or set purchaseMode: "buy" with a real price).'
+  );
+}
+
 if (problems.length > 0) {
   fail(problems.map((p) => `- ${p}`).join('\n  '));
 }
 
 console.log(
   `check-product-actions: OK — ${SURFACES.length} product surface(s) delegate to ProductActions; ` +
-    'free-order and buy blocks are mutually exclusive.'
+    'free-order and buy blocks are mutually exclusive; ' +
+    `${products.filter((p) => p.isDeal === true).length} deal(s) all in buy mode.`
 );
