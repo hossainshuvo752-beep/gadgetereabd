@@ -39,7 +39,14 @@ type CartContextValue = {
   count: number;
   /** Whether localStorage has been read (avoid badge flicker before hydration). */
   hydrated: boolean;
-  addToCart: (productId: number, qty?: number, variant?: string) => void;
+  /** `surface` is the placement the click came from (shop-card,
+   *  new-arrivals-card, deals-card, shop-detail, quick-look) — analytics only. */
+  addToCart: (
+    productId: number,
+    qty?: number,
+    variant?: string,
+    surface?: string
+  ) => void;
   changeQty: (productId: number, delta: number) => void;
   removeItem: (productId: number) => void;
   clearCart: () => void;
@@ -99,7 +106,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const addToCart = useCallback(
-    (productId: number, qty = 1, variant = 'Standard') => {
+    (productId: number, qty = 1, variant = 'Standard', surface?: string) => {
       const product = products.find((p) => p.id === productId);
       if (!product || !isPurchasable(product)) {
         showToast('Sorry — this product can’t be added yet (no confirmed price).');
@@ -117,7 +124,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         return [...prev, { productId, qty, variant }];
       });
       showToast(`Added to cart: ${product.title}`);
-      track('add_to_cart', { product_id: product.id });
+      track('add_to_cart', { product_id: product.id, ...(surface ? { surface } : {}) });
     },
     [showToast]
   );

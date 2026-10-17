@@ -71,7 +71,7 @@ export default async function ProductDetailPage({
       {/* Same shared template as the Quick Look detail page. The page ends
           at the Add to Cart / Buy Now / Notify Me button row (the sectioned
           Specifications block is Quick Look–only). */}
-      <QuickLookDetail product={product} showFullSpecs={false} />
+      <QuickLookDetail product={product} showFullSpecs={false} surface="shop-detail" />
       <NewsletterPopup />
     </>
   );

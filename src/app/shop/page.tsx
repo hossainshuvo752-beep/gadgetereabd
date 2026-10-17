@@ -69,7 +69,7 @@ export default function ShopPage() {
           <ProductGrid>
             {filtered.map((product, i) => (
               <div key={product.id} className="fade-up" style={{ '--stagger-delay': `${Math.min(i * 40, 320)}ms` } as React.CSSProperties}>
-                <ProductCard product={product} />
+                <ProductCard product={product} surface="shop-card" />
               </div>
             ))}
           </ProductGrid>

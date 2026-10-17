@@ -37,7 +37,9 @@ const ShopTeaser: React.FC = () => {
           <div className="inline-flex space-x-4">
             {trendingProducts.map((product) => (
               <div key={product.id} className="flex-shrink-0 w-72 whitespace-normal">
-                <ProductCard product={product} showDiscount={false} />
+                {/* Homepage Trending Picks reuses the Shop listing card, so it
+                    reports as shop-card — no hand-edited button logic here. */}
+                <ProductCard product={product} showDiscount={false} surface="shop-card" />
               </div>
             ))}
           </div>

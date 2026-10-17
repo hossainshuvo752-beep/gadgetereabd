@@ -45,6 +45,10 @@ type EventName =
   | 'checkout_view'
   | 'begin_checkout'
   | 'order_placed'
+  | 'free_order_view'
+  | 'free_order_click'
+  | 'free_order_submit'
+  | 'notify_click'
   | 'outbound_click';
 
 type Pending = {

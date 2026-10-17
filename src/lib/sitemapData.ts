@@ -63,6 +63,7 @@ export const EXCLUDED_ROUTES: string[] = [
   '/admin', // password-gated dashboard + analytics
   '/cart', // transactional flow
   '/checkout', // transactional flow
+  '/free-order', // free-order request form (transactional flow)
   '/login', // auth flow
   '/register', // auth flow
   '/order-confirmation', // post-transaction receipt (noindex in its layout)

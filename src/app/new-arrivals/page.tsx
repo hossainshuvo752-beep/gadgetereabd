@@ -73,7 +73,7 @@ export default function NewArrivalsPage() {
           <ProductGrid>
             {filtered.map((product, i) => (
               <div key={product.id} className="fade-up" style={{ '--stagger-delay': `${Math.min(i * 40, 320)}ms` } as React.CSSProperties}>
-                <ProductCard product={product} showReleasedYear />
+                <ProductCard product={product} showReleasedYear surface="new-arrivals-card" />
               </div>
             ))}
           </ProductGrid>

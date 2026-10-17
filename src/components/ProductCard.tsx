@@ -4,10 +4,10 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Product } from '@/lib/products';
-import { isPurchasable, isUpcoming, slugify } from '@/lib/products';
+import { purchaseModeOf, slugify } from '@/lib/products';
 import { productMainAlt } from '@/lib/imageAlt';
-import { useCart } from '@/context/CartContext';
 import PriceTag from './PriceTag';
+import ProductActions, { type PurchaseSurface } from './ProductActions';
 
 type ProductCardProps = {
   product: Product;
@@ -21,14 +21,16 @@ type ProductCardProps = {
   /** Detail-page base the card links to. Defaults to '/shop'; the Quick Look
    *  listing passes '/quick-look' so its cards open the spec-sheet page. */
   linkTo?: string;
-  /** Render the action-button row (Add to Cart / Buy Now / Pre-Order /
-   *  Coming Soon). DEFAULT TRUE — Shop, Deals and New Arrivals keep their
-   *  shopping cards. The Quick Look LISTING passes false: its cards become
-   *  simple browse cards (image + badge + title + price) where the WHOLE
-   *  card is one link to the detail page — same click-to-open behavior as
-   *  blog cards. The Quick Look DETAIL page keeps its own action buttons,
-   *  untouched, inside QuickLookDetail. */
+  /** Render the shared action-button row (ProductActions). DEFAULT TRUE —
+   *  Shop, Deals and New Arrivals keep their shopping cards. The Quick Look
+   *  LISTING passes false: its cards become simple browse cards (image +
+   *  badge + title + price) where the WHOLE card is one link to the detail
+   *  page — same click-to-open behavior as blog cards. */
   showActions?: boolean;
+  /** Analytics attribution for the purchase buttons — the page this card is
+   *  rendered on. Defaults to 'shop-card'; New Arrivals / Deals pass their
+   *  own value so the admin dashboard can tell the three listings apart. */
+  surface?: PurchaseSurface;
 };
 
 /**
@@ -49,15 +51,21 @@ const ProductCard: React.FC<ProductCardProps> = ({
   showReleasedYear = false,
   linkTo = '/shop',
   showActions = true,
+  surface = 'shop-card',
 }) => {
-  const { addToCart, notify } = useCart();
-
   const href = `${linkTo}/${slugify(product.title)}`;
+
+  // Free-order products are order REQUESTS (estimated prices) — they must
+  // never carry sale/-% badges or a struck-through price that implies they
+  // can be bought at that number. The price still renders through PriceTag,
+  // which keeps its "Estimated Price" label.
+  const isFreeOrder = purchaseModeOf(product) === 'free-order';
 
   // A genuine discount exists whenever oldPrice > price — shown on mobile
   // regardless of the desktop-only showDiscount flag (which only controls
   // the desktop strike-through, keeping desktop layouts unchanged).
   const hasDeal =
+    !isFreeOrder &&
     product.price !== null &&
     product.oldPrice !== null &&
     product.oldPrice > product.price;
@@ -154,54 +162,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
             <PriceTag product={product} hideOldPrice={!isDeal} />
           )}
         </div>
+        {/* The ONLY purchase buttons a card may render — shared component,
+            card layout (never Notify Me, so card height stays uniform). */}
         {showActions && (
-          <>
-            {/* MOBILE: stacked full-width buttons (side-by-side wrapped
-                awkwardly in the narrow 2-col grid); md: side-by-side as before. */}
-            {/* MOBILE: stacked; gap-1.5 (was gap-2) tightens between buttons.
-                Button py-2 KEPT: reducing it would drop height to 32px, below
-                the ~40px tap-target floor (36px text+padding today). */}
-            <div className="mt-auto flex flex-col gap-1.5 md:gap-2 md:flex-row">
-              {/* Add to Cart → cart context + toast; works for every product
-                  (unpurchasable ones get an explanatory toast from the store). */}
-              <button
-                onClick={() => addToCart(product.id, 1, 'Standard')}
-                className="flex-1 px-3 py-2 border border-accent text-accent rounded-md hover:bg-accent/10 transition-colors text-sm font-medium"
-              >
-                Add to Cart
-              </button>
-              {/* Upcoming products: Pre-Order (simple confirmation — no checkout,
-                  since unreleased products have no confirmed price to order against).
-                  Estimated-price products can't be ordered — Coming Soon. Else Buy Now. */}
-              {isUpcoming(product) ? (
-                <button
-                  onClick={() => notify(`Pre-order request received: ${product.title}`)}
-                  className="flex-1 px-3 py-2 bg-bg-dark text-text-on-dark font-medium rounded-md hover:bg-bg-dark-secondary transition-colors text-sm"
-                >
-                  Pre-Order
-                </button>
-              ) : isPurchasable(product) ? (
-                <Link
-                  href={`/checkout?id=${product.id}&qty=1&variant=Standard`}
-                  className="tactile flex-1 px-3 py-2 bg-accent text-text-on-dark font-medium rounded-md hover:bg-accent-hover text-sm text-center"
-                >
-                  Buy Now
-                </Link>
-              ) : (
-                <button
-                  disabled
-                  title={
-                    product.priceEstimated
-                      ? 'Estimated price only — Buy Now opens once an official Bangladesh price is confirmed'
-                      : "Price coming soon — this product can't be ordered yet"
-                  }
-                  className="flex-1 px-3 py-2 bg-accent/50 text-text-on-dark font-medium rounded-md cursor-not-allowed text-sm"
-                >
-                  Coming Soon
-                </button>
-              )}
-            </div>
-          </>
+          <ProductActions product={product} surface={surface} layout="card" />
         )}
       </div>
     </>

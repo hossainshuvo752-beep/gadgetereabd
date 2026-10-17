@@ -2,14 +2,13 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import type { Product } from '@/lib/products';
 import { track } from '@/lib/tracking';
 import PriceTag from '@/components/PriceTag';
 import LightboxGallery from '@/components/LightboxGallery';
-import { isPurchasable, isUpcoming, storageOptionsOf, variantPrice, type ResolvedPrice } from '@/lib/products';
+import ProductActions, { type PurchaseSurface } from '@/components/ProductActions';
+import { isUpcoming, storageOptionsOf, variantPrice, type ResolvedPrice } from '@/lib/products';
 import { productQuickLookMainAlt, productGalleryAlt } from '@/lib/imageAlt';
-import { useCart } from '@/context/CartContext';
 import {
   Info,
   Monitor,
@@ -197,16 +196,18 @@ const QuickLookDetail: React.FC<{
    *  Quick Look pages keep it (default true); the Shop detail page ends at
    *  the Add to Cart / Buy Now / Notify Me buttons and omits it. */
   showFullSpecs?: boolean;
-}> = ({ product, showFullSpecs = true }) => {
-  const router = useRouter();
-  const { addToCart, notify } = useCart();
+  /** Which detail surface this is — 'shop-detail' for /shop/[slug],
+   *  'quick-look' for /quick-look/[slug]. Forwarded to ProductActions so
+   *  Buy Now / Free Order / Notify Me clicks are attributed correctly. */
+  surface?: PurchaseSurface;
+}> = ({ product, showFullSpecs = true, surface = 'quick-look' }) => {
   // Gallery + variant state
   // Funnel signal (fire-and-forget, once per mount): a product detail page
   // was actually viewed with this product's data.
   useEffect(() => {
-    track('product_view', { product_id: product.id });
+    track('product_view', { product_id: product.id, surface });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [product.id]);
+  }, [product.id, surface]);
 
   const [activeImage, setActiveImage] = useState(0);
   // Real photo gallery (hero first) when the product has one; empty for
@@ -249,8 +250,6 @@ const QuickLookDetail: React.FC<{
   const safeActiveColor = showColorSwatches
     ? Math.min(activeColor, colorImages.length - 1)
     : 0;
-  // Pre-order confirmation state (upcoming products only).
-  const [preOrdered, setPreOrdered] = useState(false);
   // Amazon-style "see all" lightbox for galleries with more than MAX_THUMBS images.
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const MAX_THUMBS = 3;
@@ -274,45 +273,20 @@ const QuickLookDetail: React.FC<{
   ].filter(Boolean).length;
   const specScore = Math.round((filled / 6) * 100);
 
-  // Add to Cart → shared cart store, with the currently selected variant.
-  const handleAddToCart = () => {
+  // The currently selected variant ("Titanium Black / 512GB"), composed once
+  // and handed to ProductActions — Add to Cart, Buy Now and Free Order all
+  // carry the same selection.
+  const selectedVariant = (() => {
     const chosenColor = showColorSwatches
       ? colorImages[safeActiveColor]?.color ?? 'Standard'
       : 'Standard';
     const chosenStorage = storageOptions[activeStorage] ?? '';
     const chosenPackage = purchaseOptions[activePurchase] ?? '';
-    const variant =
-      [chosenPackage || chosenColor, chosenStorage].filter(Boolean).join(' / ') || 'Standard';
-    addToCart(product.id, 1, variant);
-  };
-
-  // Buy Now → /checkout with this product + the currently selected variant.
-  // Only reachable when the product is purchasable (button disabled otherwise).
-  const handleBuyNow = () => {
-    const chosenColor = showColorSwatches
-      ? colorImages[safeActiveColor]?.color ?? 'Standard'
-      : 'Standard';
-    const chosenStorage = storageOptions[activeStorage] ?? '';
-    const chosenPackage = purchaseOptions[activePurchase] ?? '';
-    const variant =
-      [chosenPackage || chosenColor, chosenStorage].filter(Boolean).join(' / ') || 'Standard';
-    router.push(
-      `/checkout?id=${product.id}&qty=1&variant=${encodeURIComponent(variant)}`
+    return (
+      [chosenPackage || chosenColor, chosenStorage].filter(Boolean).join(' / ') ||
+      'Standard'
     );
-  };
-
-  // Notify Me for coming-soon products → the contact form (no newsletter signup exists).
-  const handleNotifyMe = () => {
-    router.push('/contact');
-  };
-
-  // Pre-Order for upcoming products — a request, not an order (no confirmed
-  // price to checkout with). Confirmed inline + toast; Buy Now still replaced
-  // by Pre-Order on every surface per the site-wide rule.
-  const handlePreOrder = () => {
-    setPreOrdered(true);
-    notify(`Pre-order request received: ${product.title}`);
-  };
+  })();
 
   return (
     <section className="py-5 md:py-10 bg-bg-light min-h-screen">
@@ -630,65 +604,15 @@ const QuickLookDetail: React.FC<{
               </div>
             </div>
 
-            {/* CTA buttons */}
-            <div className="grid gap-3 sm:grid-cols-3">
-              <button
-                onClick={handleAddToCart}
-                className="tactile flex items-center justify-center px-5 py-3 bg-accent text-text-on-dark font-medium rounded-lg hover:bg-accent-hover"
-              >
-                Add to Cart
-              </button>
-              {/* Upcoming → Pre-Order (inline confirmation, not checkout).
-                  Estimated-price products must never reach checkout — Coming Soon. */}
-              {isUpcoming(product) ? (
-                preOrdered ? (
-                  <button
-                    disabled
-                    className="flex items-center justify-center px-5 py-3 bg-bg-dark/70 text-text-on-dark/80 font-medium rounded-lg cursor-not-allowed"
-                  >
-                    ✓ Pre-order Requested
-                  </button>
-                ) : (
-                  <button
-                    onClick={handlePreOrder}
-                    className="flex items-center justify-center px-5 py-3 bg-bg-dark text-text-on-dark font-medium rounded-lg hover:bg-bg-dark-secondary transition-colors"
-                  >
-                    Pre-Order
-                  </button>
-                )
-              ) : isPurchasable(product) ? (
-                <button
-                  onClick={handleBuyNow}
-                  className="tactile flex items-center justify-center px-5 py-3 bg-bg-dark text-text-on-dark font-medium rounded-lg hover:bg-bg-dark-secondary"
-                >
-                  Buy Now
-                </button>
-              ) : (
-                <button
-                  disabled
-                  title={
-                    product.priceEstimated
-                      ? 'Estimated price only — Buy Now opens once an official Bangladesh price is confirmed'
-                      : "Price coming soon — this product can't be ordered yet"
-                  }
-                  className="flex items-center justify-center px-5 py-3 bg-bg-dark/50 text-text-on-dark/70 font-medium rounded-lg cursor-not-allowed"
-                >
-                  {product.priceEstimated ? 'Buy Now (Estimated Price)' : 'Buy Now (Price TBD)'}
-                </button>
-              )}
-              {isPurchasable(product) ? (
-                <button className="tactile flex items-center justify-center px-5 py-3 bg-text-on-dark border border-text-heading/20 text-text-body font-medium rounded-md hover:bg-bg-light">
-                  Notify Me
-                </button>
-              ) : (
-                <button
-                  onClick={handleNotifyMe}
-                  className="tactile flex items-center justify-center px-5 py-3 bg-accent text-text-on-dark font-medium rounded-lg hover:bg-accent-hover"
-                >
-                  Notify Me
-                </button>
-              )}
-            </div>
+            {/* CTA buttons — the SHARED ProductActions row (Buy Now + Add to
+                Cart, or Free Order only, plus Notify Me in both modes). Never
+                hand-roll purchase buttons here. */}
+            <ProductActions
+              product={product}
+              surface={surface}
+              layout="detail"
+              variant={selectedVariant}
+            />
           </div>
         </div>
 

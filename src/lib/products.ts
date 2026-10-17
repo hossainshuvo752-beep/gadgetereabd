@@ -73,6 +73,14 @@ export interface Product {
   oldPrice: number | null;
   /** True when `price` is an estimate (no confirmed Bangladesh price found). */
   priceEstimated: boolean;
+  /** How this product is sold. 'buy' = normal cart/checkout flow (Buy Now +
+   *  Add to Cart; Pre-Order while upcoming). 'free-order' = an order REQUEST
+   *  with no payment and no cart (a single Free Order button) — used for
+   *  products whose price is only an estimate, because nobody should be
+   *  charged a guess. Optional: purchaseModeOf() derives it from
+   *  priceEstimated when unset, so estimated-price products are free-order
+   *  automatically. Set it explicitly only to override that default. */
+  purchaseMode?: PurchaseMode;
   /** 'available' = officially released/available in Bangladesh; 'upcoming' =
    *  announced but not yet officially available (pre-order stage). */
   status: 'available' | 'upcoming';
@@ -1996,6 +2004,25 @@ export function slugify(title: string): string {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/(^-|-$)/g, '');
+}
+
+/**
+ * How a product is sold, on EVERY surface that renders a purchase action:
+ * - 'buy'        → Add to Cart + Buy Now (Pre-Order while upcoming)
+ * - 'free-order' → ONE Free Order button (order request, no payment/cart)
+ * The shared ProductActions component is the only place these buttons are
+ * rendered; see scripts/check-product-actions.js for the build guard.
+ */
+export type PurchaseMode = 'buy' | 'free-order';
+
+/**
+ * The ONE resolver for a product's purchase mode. An explicit
+ * `purchaseMode` always wins; otherwise estimated-price products default to
+ * 'free-order' (never charge/checkout an unconfirmed price).
+ */
+export function purchaseModeOf(p: Product): PurchaseMode {
+  if (p.purchaseMode) return p.purchaseMode;
+  return p.priceEstimated ? 'free-order' : 'buy';
 }
 
 /**

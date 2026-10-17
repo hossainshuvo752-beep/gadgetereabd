@@ -1,6 +1,9 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { products, slugify } from '@/lib/products';
+import { isPurchaseSurface } from '@/components/ProductActions';
 import { supabase } from '@/lib/supabase';
 import { track } from '@/lib/tracking';
 import { FaFacebookF, FaInstagram, FaWhatsapp, FaYoutube, FaPinterest } from 'react-icons/fa';
@@ -23,8 +26,31 @@ type FormState = {
 
 const EMPTY_FORM: FormState = { name: '', email: '', subject: '', message: '' };
 
-export default function ContactPage() {
-  const [form, setForm] = useState<FormState>(EMPTY_FORM);
+function ContactInner() {
+  const searchParams = useSearchParams();
+  // "Notify Me" on a product detail page lands here with the product slug and
+  // the surface it was clicked from, so the message arrives pre-filled AND
+  // the submit can be attributed to that placement.
+  const notifySlug = searchParams.get('product') ?? '';
+  const notifySurfaceParam = searchParams.get('surface');
+  const notifySurface = isPurchaseSurface(notifySurfaceParam)
+    ? notifySurfaceParam
+    : '';
+  const notifyProduct =
+    searchParams.get('topic') === 'notify' && notifySlug
+      ? products.find((p) => slugify(p.title) === notifySlug)
+      : undefined;
+
+  const [form, setForm] = useState<FormState>(() =>
+    notifyProduct
+      ? {
+          name: '',
+          email: '',
+          subject: `Notify me when ${notifyProduct.title} is available`,
+          message: `Please let me know when ${notifyProduct.title} becomes available in Bangladesh.`,
+        }
+      : EMPTY_FORM
+  );
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -63,7 +89,12 @@ export default function ContactPage() {
       return;
     }
     setSubmitted(true);
-    track('contact_submit');
+    track(
+      'contact_submit',
+      notifyProduct
+        ? { notify: true, product_id: notifyProduct.id, surface: notifySurface }
+        : undefined
+    );
   };
 
   const inputClasses =
@@ -77,6 +108,14 @@ export default function ContactPage() {
           Have a question, feedback, or a product you want us to review next? Tell us below —
           we read every message.
         </p>
+
+        {notifyProduct && !submitted && (
+          <div className="mb-6 rounded-lg border border-accent/30 bg-accent/5 px-4 py-3 text-sm text-text-heading">
+            You&apos;re asking to be notified about{' '}
+            <span className="font-semibold">{notifyProduct.title}</span> — send
+            the message below and we&apos;ll email you when it&apos;s available.
+          </div>
+        )}
 
         {/* items-start keeps both columns top-aligned. lg:mt-7 (28px) then anchors
             the sidebar to the FORM'S FIRST FIELD, not the column top: the Name
@@ -236,5 +275,21 @@ export default function ContactPage() {
         </div>
       </div>
     </section>
+  );
+}
+
+export default function ContactPage() {
+  return (
+    <Suspense
+      fallback={
+        <section className="min-h-[calc(100vh-64px)] bg-bg-light">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <p className="text-text-body">Loading contact form…</p>
+          </div>
+        </section>
+      }
+    >
+      <ContactInner />
+    </Suspense>
   );
 }

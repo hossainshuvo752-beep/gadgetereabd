@@ -85,6 +85,13 @@ export default async function AdminPage() {
       value: `৳${data.orderedValue.toLocaleString()}`,
       hint: 'all time',
     },
+    {
+      label: 'Free Orders',
+      value: data.freeOrdersReady ? String(data.freeOrders.length) : '—',
+      hint: data.freeOrdersReady
+        ? `${data.freeOrders.filter((o) => o.status === 'pending').length} pending`
+        : 'run the free-orders SQL',
+    },
   ];
 
   return (
@@ -110,7 +117,7 @@ export default async function AdminPage() {
         </div>
 
         {/* Overview stat cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-10">
           {stats.map(({ label, value, hint }) => (
             <div
               key={label}
@@ -219,6 +226,118 @@ export default async function AdminPage() {
                       <td className={td}>
                         <AdminOrderStatusSelect orderId={o.id} current={o.status} />
                       </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+
+        {/* Free order requests — a request, not a paid order. The surface
+            column records which placement (shop card, deals card, product
+            detail, …) produced it. */}
+        <div className="mb-10">
+          <h2 className="text-xl font-bold text-text-heading mb-1">Free Orders</h2>
+          <p className="text-sm text-text-body mb-4">
+            Order requests with no payment. &ldquo;Surface&rdquo; is the page the
+            visitor clicked Free Order on.
+          </p>
+          {!data.freeOrdersReady ? (
+            <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-8 text-center text-text-body">
+              The free_orders table doesn&apos;t exist yet — run{' '}
+              <code className="text-text-heading">supabase/free-orders-schema.sql</code>{' '}
+              in the Supabase SQL editor to start collecting free order
+              requests.
+            </div>
+          ) : data.freeOrders.length === 0 ? (
+            <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-8 text-center text-text-body">
+              No free order requests yet.
+            </div>
+          ) : (
+            <div className="bg-text-on-dark border border-text-heading/10 rounded-lg overflow-x-auto">
+              <table className="w-full min-w-[860px]">
+                <thead className="border-b border-text-heading/10">
+                  <tr>
+                    <th className={th}>Reference</th>
+                    <th className={th}>Product</th>
+                    <th className={th}>Customer</th>
+                    <th className={th}>Surface</th>
+                    <th className={th}>Requested</th>
+                    <th className={th}>Status</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-text-heading/5">
+                  {data.freeOrders.map((o) => (
+                    <tr key={o.id}>
+                      <td className={`${td} whitespace-nowrap`}>
+                        <span className="font-mono text-xs font-semibold text-accent">
+                          {o.reference}
+                        </span>
+                      </td>
+                      <td className={td}>
+                        <span className="font-medium">{o.productTitle}</span>
+                        <span className="block text-xs text-text-body">
+                          {o.variant}
+                        </span>
+                      </td>
+                      <td className={td}>
+                        <span className="font-medium">{o.contactName}</span>
+                        <span className="block text-xs text-text-body">
+                          {o.contactPhone}
+                        </span>
+                        {o.contactEmail && (
+                          <span className="block text-xs text-text-body">
+                            {o.contactEmail}
+                          </span>
+                        )}
+                        <span className="block text-xs text-text-body mt-0.5">
+                          {o.address}, {o.city}
+                        </span>
+                        {o.note && (
+                          <span className="block text-xs text-text-body mt-0.5">
+                            Note: {o.note}
+                          </span>
+                        )}
+                      </td>
+                      <td className={td}>
+                        <span className="font-mono text-xs">{o.surface}</span>
+                      </td>
+                      <td className={`${td} whitespace-nowrap`}>
+                        {fmtDate(o.createdAt)}
+                      </td>
+                      <td className={td}>{o.status}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+
+          {/* Surface attribution for the last 30 days */}
+          {data.purchaseSurfaces.length > 0 && (
+            <div className="mt-4 bg-text-on-dark border border-text-heading/10 rounded-lg overflow-x-auto">
+              <table className="w-full min-w-[640px]">
+                <caption className="px-4 pt-4 text-left text-sm font-semibold text-text-heading">
+                  Purchase surfaces — last 30 days
+                </caption>
+                <thead className="border-b border-text-heading/10">
+                  <tr>
+                    <th className={th}>Surface</th>
+                    <th className={th}>Free Order requests</th>
+                    <th className={th}>Free Order clicks</th>
+                    <th className={th}>Notify clicks</th>
+                    <th className={th}>Notify submit</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-text-heading/5">
+                  {data.purchaseSurfaces.map((s) => (
+                    <tr key={s.surface}>
+                      <td className={`${td} font-mono text-xs`}>{s.surface}</td>
+                      <td className={td}>{s.freeOrders}</td>
+                      <td className={td}>{s.freeOrderClicks}</td>
+                      <td className={td}>{s.notifyClicks}</td>
+                      <td className={td}>{s.notifySubmits}</td>
                     </tr>
                   ))}
                 </tbody>
