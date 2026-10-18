@@ -93,6 +93,69 @@ export default function QuickLookGuideSection({
         )}
       </div>
 
+      {/* Optional setup-cost table — configurations with verified overseas
+          prices (set only where a Bangladesh price does not exist). */}
+      {guide.setupCosts && (
+        <div className="mt-10">
+          <h3 className="text-xl md:text-2xl font-bold text-text-heading">
+            {guide.setupCosts.heading}
+          </h3>
+          <div className="mt-4 bg-bg-light border border-text-heading/10 rounded-lg overflow-x-auto">
+            <table className="w-full min-w-[560px] text-sm">
+              <thead className="border-b border-text-heading/10">
+                <tr>
+                  <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-text-body">
+                    Configuration
+                  </th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-text-body">
+                    Price (US)
+                  </th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-text-body">
+                    Notes
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-text-heading/5">
+                {guide.setupCosts.rows.map((row) => (
+                  <tr key={row.configuration}>
+                    <td className="px-4 py-3 text-text-heading align-top">
+                      {row.configuration}
+                    </td>
+                    <td className="px-4 py-3 font-semibold text-accent align-top whitespace-nowrap">
+                      {row.price}
+                    </td>
+                    <td className="px-4 py-3 text-text-body align-top">
+                      {row.note ?? '—'}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          {guide.setupCosts.footer && (
+            <p className="mt-2 text-xs text-text-body leading-relaxed">
+              {guide.setupCosts.footer}
+            </p>
+          )}
+        </div>
+      )}
+
+      {/* Optional availability section (products with no local launch) */}
+      {guide.availability && (
+        <div className="mt-10">
+          <h3 className="text-xl md:text-2xl font-bold text-text-heading">
+            {guide.availability.heading}
+          </h3>
+          <div className="mt-4 space-y-4">
+            {guide.availability.paragraphs.map((p, i) => (
+              <p key={i} className="text-text-article leading-relaxed">
+                {p}
+              </p>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Key features — clean stacked feature blocks in a 2-up grid on md+ */}
       {guide.features.length > 0 && (
       <div className="mt-12">
@@ -288,6 +351,14 @@ export default function QuickLookGuideSection({
           ))}
         </div>
       </div>
+
+      {/* Provenance: only the pages actually opened, with the check date.
+          Rendered only when the guide data sets it. */}
+      {guide.sourcesChecked && (
+        <p className="mt-10 text-xs text-text-body leading-relaxed">
+          {guide.sourcesChecked}
+        </p>
+      )}
       </div>
     </section>
   );

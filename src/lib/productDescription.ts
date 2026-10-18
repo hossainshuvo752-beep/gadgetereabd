@@ -18,7 +18,22 @@ import { BRAND_NAME } from './brand';
  */
 
 /** Markers that mean "this spec field has no usable value". */
-const NA_MARKERS = ['n/a', 'na', 'tbd', 'none', 'unknown', '-', '–'];
+const NA_MARKERS = [
+  'n/a',
+  'na',
+  'tbd',
+  'none',
+  'unknown',
+  '-',
+  '–',
+  // Apple's spec sheets print "Not listed by Apple" / "Not specified by
+  // Apple" where a value does not exist (the HomeView's RAM, storage and
+  // refresh rate). Those are absences, not specs — quoting them in a
+  // generated sentence would be noise, so they are skipped like N/A.
+  'not listed',
+  'not specified',
+  'not named',
+];
 
 /**
  * Is this spec value usable for the description sentence?

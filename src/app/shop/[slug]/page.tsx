@@ -38,6 +38,10 @@ export async function generateMetadata({
   // Look route; hand-tuned per-product description phrases included).
   const title = shopSeoTitle(product);
   const description = shopSeoDescription(product);
+  // Social card: a product with its own 1200x630 card (ogImage) uses it
+  // instead of the square hero. Only the image source changes here — every
+  // other product keeps the hero, exactly as before.
+  const shareImage = product.ogImage ?? product.heroImage;
 
   return {
     title,
@@ -46,7 +50,7 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
-      ...(product.heroImage ? { images: [{ url: product.heroImage }] } : {}),
+      ...(shareImage ? { images: [{ url: shareImage }] } : {}),
     },
   };
 }
@@ -66,8 +70,10 @@ export default async function ProductDetailPage({
   return (
     <>
       {/* Product schema — offers only when the visible price is confirmed
-          (never for estimated prices or upcoming products). */}
-      <JsonLd data={productSchema(product)} />
+          (never for estimated prices or upcoming products). A product
+          flagged noProductSchema (nothing to mark up: no price, offers,
+          rating or review) emits no Product node at all. */}
+      {!product.noProductSchema && <JsonLd data={productSchema(product)} />}
       {/* Same shared template as the Quick Look detail page. The page ends
           at the Add to Cart / Buy Now / Notify Me button row (the sectioned
           Specifications block is Quick Look–only). */}

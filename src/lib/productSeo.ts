@@ -23,9 +23,29 @@ interface ProductSeoCopy {
   shopSpecs: string;
   /** Quick Look description spec phrase, e.g. "camera, display, and performance details". */
   quickLookSpecs: string;
+  /** Exact <title> when the generated template cannot fit the 60-char
+   *  budget (the template adds " | Jupiter BD"). Rendered as an ABSOLUTE
+   *  title — see quickLookSeoTitleOverride — so no suffix is appended. */
+  titleOverride?: string;
+  /** Exact meta/og/twitter description when the generated one would state
+   *  something the data cannot support (e.g. a Bangladesh price that does
+   *  not exist). Used by BOTH product routes. */
+  descriptionOverride?: string;
 }
 
 const seoCopy: Record<string, ProductSeoCopy> = {
+  /** Apple announced HomeView on October 13, 2026 with US pricing only —
+   *  there is no Bangladesh price or release date, so both the title (49
+   *  chars, forced absolute) and the description state only what Apple
+   *  announced. Figures come from the Apple pages listed in the guide's
+   *  "sources checked" line. */
+  'apple-homeview-smart-display': {
+    shopSpecs: 'US launch price, setup costs, and availability',
+    quickLookSpecs: 'US launch price, setup costs, and Bangladesh availability',
+    titleOverride: 'Apple HomeView Price in Bangladesh & Release Date',
+    descriptionOverride:
+      'Apple HomeView smart display: US launch price from $299, US availability from Nov 13, 7-inch screen, four colors. Not yet announced for Bangladesh.',
+  },
   'honor-robot-phone': {
     shopSpecs: 'Innovative design',
     quickLookSpecs: 'release status, and buying guide',
@@ -118,8 +138,21 @@ const seoCopy: Record<string, ProductSeoCopy> = {
 
 const taka = (n: number): string => `৳${n.toLocaleString('en-US')}`;
 
+/**
+ * A product's exact <title> when the owner supplied one because the
+ * generated template would break the 60-character budget. Callers MUST
+ * render this as an absolute title (metadata `title: { absolute }`),
+ * otherwise the root layout's "%s | Jupiter BD" template pushes it back
+ * over 60. Returns null for every other product (no behavior change).
+ */
+export function quickLookSeoTitleOverride(product: Product): string | null {
+  return seoCopy[slugOf(product)]?.titleOverride ?? null;
+}
+
 /** Quick Look title template: "{Product} Price in Bangladesh — Specs & Review | Jupiter BD" */
 export function quickLookSeoTitle(product: Product): string {
+  const override = quickLookSeoTitleOverride(product);
+  if (override) return override;
   return `${product.title} Price in Bangladesh — Specs & Review | ${BRAND_NAME}`;
 }
 
@@ -131,7 +164,9 @@ export function quickLookSeoTitle(product: Product): string {
  * - upcoming (pre-order): "{Product} estimated price in Bangladesh: ৳X. Check … Pre-order available."
  */
 export function quickLookSeoDescription(product: Product): string {
-  const specs = seoCopy[slugOf(product)]?.quickLookSpecs ?? 'full specifications';
+  const copy = seoCopy[slugOf(product)];
+  if (copy?.descriptionOverride) return copy.descriptionOverride;
+  const specs = copy?.quickLookSpecs ?? 'full specifications';
 
   let pricePart: string;
   if (product.price === null) {
@@ -192,7 +227,9 @@ export function shopSeoTitle(product: Product): string {
  * - upcoming (pre-order): "Pre-order {Product} in Bangladesh. {Specs}, estimated price ৳X. Reserve yours before stock runs out."
  */
 export function shopSeoDescription(product: Product): string {
-  const specs = seoCopy[slugOf(product)]?.shopSpecs ?? 'solid specs';
+  const copy = seoCopy[slugOf(product)];
+  if (copy?.descriptionOverride) return copy.descriptionOverride;
+  const specs = copy?.shopSpecs ?? 'solid specs';
 
   if (product.status === 'upcoming') {
     const price =

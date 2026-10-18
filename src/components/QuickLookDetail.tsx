@@ -8,7 +8,11 @@ import PriceTag from '@/components/PriceTag';
 import LightboxGallery from '@/components/LightboxGallery';
 import ProductActions, { type PurchaseSurface } from '@/components/ProductActions';
 import { isUpcoming, storageOptionsOf, variantPrice, type ResolvedPrice } from '@/lib/products';
-import { productQuickLookMainAlt, productGalleryAlt } from '@/lib/imageAlt';
+import {
+  productQuickLookMainAlt,
+  productGalleryAlt,
+  galleryAltOverride,
+} from '@/lib/imageAlt';
 import {
   Info,
   Monitor,
@@ -276,6 +280,13 @@ const QuickLookDetail: React.FC<{
   // The currently selected variant ("Titanium Black / 512GB"), composed once
   // and handed to ProductActions — Add to Cart, Buy Now and Free Order all
   // carry the same selection.
+  // Does this product have anything to choose at all? Products whose data
+  // has no color photos, no package options and no real storage dimension
+  // (the HomeView) render no variant card, and the price card then takes
+  // the full row instead of leaving an empty half-width box.
+  const hasVariantChoices =
+    showColorSwatches || storageOptions.length > 0 || purchaseOptions.length > 0;
+
   const selectedVariant = (() => {
     const chosenColor = showColorSwatches
       ? colorImages[safeActiveColor]?.color ?? 'Standard'
@@ -380,7 +391,7 @@ const QuickLookDetail: React.FC<{
                       >
                         <Image
                           src={img}
-                          alt={productGalleryAlt(product, i, activeGallery.length, showColorSwatches ? colorImages[safeActiveColor]?.color : undefined)}
+                          alt={productGalleryAlt(product, i, activeGallery.length, showColorSwatches ? colorImages[safeActiveColor]?.color : undefined, img)}
                           fill
                           sizes="80px"
                           className="object-contain p-0.5"
@@ -443,7 +454,16 @@ const QuickLookDetail: React.FC<{
                           (exactly once per page, Quick Look ONLY). */}
                       <Image
                         src={activeGallery[activeIdx]!}
-                        alt={productQuickLookMainAlt(product)}
+                        /* A per-image override describes the ACTIVE image; the
+                           thumbnail above renders the same file on the same
+                           page, so the main image adds its placement to stay
+                           unique (duplicate alt on one page fails the build
+                           guard). Products without galleryAlts are unchanged. */
+                        alt={
+                          galleryAltOverride(product, activeGallery[activeIdx])
+                            ? `${galleryAltOverride(product, activeGallery[activeIdx])} — main product image`
+                            : productQuickLookMainAlt(product)
+                        }
                         fill
                         sizes="(max-width: 1024px) 100vw, 380px"
                         onClick={showSeeAll ? () => setLightboxOpen(true) : undefined}
@@ -479,6 +499,11 @@ const QuickLookDetail: React.FC<{
                 </div>
               </div>
             </div>
+            {/* Visible product-level gallery note (only when the data sets
+                one — e.g. "Images are renders…" for the HomeView). */}
+            {product.galleryNote && (
+              <p className="mt-2 text-xs text-text-body">{product.galleryNote}</p>
+            )}
           </div>
 
           {/* RIGHT — info (3/5) */}
@@ -486,8 +511,16 @@ const QuickLookDetail: React.FC<{
             {/* Variant (left) + Price (right) — side-by-side on desktop,
                 stacked Variant-first on mobile. One grid row so both boxes
                 stretch to equal height. */}
-            <div className="grid gap-4 md:gap-6 md:grid-cols-2 items-stretch">
-              {/* variant selector */}
+            <div
+              className={
+                hasVariantChoices
+                  ? 'grid gap-4 md:gap-6 md:grid-cols-2 items-stretch'
+                  : 'grid gap-4 md:gap-6 items-stretch'
+              }
+            >
+              {/* variant selector — only when the product has something to
+                  choose (color swatches, package options or storage). */}
+              {hasVariantChoices && (
               <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-3.5 md:p-5">
                 <h2 className="text-base font-semibold text-text-heading mb-3 md:mb-4">Choose Variant</h2>
                 <div className="space-y-3 md:space-y-4">
@@ -539,22 +572,25 @@ const QuickLookDetail: React.FC<{
                       </div>
                     </div>
                   )}
-                  <div>
-                    <div className="text-sm font-medium text-text-body mb-2">Storage:</div>
-                    <div className="flex flex-wrap gap-2">
-                      {storageOptions.map((opt, i) => (
-                        <VariantButton
-                          key={opt}
-                          selected={activeStorage === i}
-                          onClick={() => setActiveStorage(i)}
-                        >
-                          {opt}
-                        </VariantButton>
-                      ))}
+                  {storageOptions.length > 0 && (
+                    <div>
+                      <div className="text-sm font-medium text-text-body mb-2">Storage:</div>
+                      <div className="flex flex-wrap gap-2">
+                        {storageOptions.map((opt, i) => (
+                          <VariantButton
+                            key={opt}
+                            selected={activeStorage === i}
+                            onClick={() => setActiveStorage(i)}
+                          >
+                            {opt}
+                          </VariantButton>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </div>
+              )}
 
               {/* price info — no CTA ("Check Latest Price" removed); content
                   vertically centered to fill the space beside the variant box.
@@ -566,14 +602,22 @@ const QuickLookDetail: React.FC<{
                   <PriceTag product={product} detailed resolved={resolvedPrice} />
                 </div>
                 <div className="text-sm text-text-body mt-1">
-                  {resolvedPrice.priceEstimated
-                    ? 'Estimated market reference — not an official Bangladesh price'
-                    : '(Official Price in Bangladesh)'}
+                  {product.priceDisplayNote
+                    ? product.priceDisplayNote
+                    : resolvedPrice.priceEstimated
+                      ? 'Estimated market reference — not an official Bangladesh price'
+                      : '(Official Price in Bangladesh)'}
                 </div>
-                <div className="flex items-center gap-1.5 text-xs text-text-body mt-3">
-                  <Info className="w-3.5 h-3.5" />
-                  Prices may vary by store and variant
-                </div>
+                {/* Only meaningful when a price is actually shown — a product
+                    with no price at all (the Apple HomeView) would otherwise
+                    invite comparison shopping for a figure that does not
+                    exist yet. */}
+                {product.price !== null && (
+                  <div className="flex items-center gap-1.5 text-xs text-text-body mt-3">
+                    <Info className="w-3.5 h-3.5" />
+                    Prices may vary by store and variant
+                  </div>
+                )}
               </div>
             </div>
 
@@ -702,7 +746,7 @@ const QuickLookDetail: React.FC<{
       {lightboxOpen && activeGallery.length > 0 && (
         <LightboxGallery
           images={activeGallery}
-          alts={activeGallery.map((_, i) => productGalleryAlt(product, i, activeGallery.length, showColorSwatches ? colorImages[safeActiveColor]?.color : undefined))}
+          alts={activeGallery.map((img, i) => productGalleryAlt(product, i, activeGallery.length, showColorSwatches ? colorImages[safeActiveColor]?.color : undefined, img))}
           ariaLabelBase={product.title}
           initialIndex={activeIdx}
           onClose={() => setLightboxOpen(false)}

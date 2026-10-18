@@ -140,6 +140,21 @@ export function productQuickLookMainAlt(product: Product): string {
 }
 
 /**
+ * A product's hand-written alt for ONE gallery image, from its data
+ * (galleryAlts, matched by exact src or path suffix). Returns null when the
+ * image has no override — callers then generate the standard text — so a
+ * missing entry can never produce empty alt text.
+ */
+export function galleryAltOverride(product: Product, src?: string): string | null {
+  if (!src) return null;
+  const hit = product.galleryAlts?.find(
+    (o) => o.src === src || src.endsWith(o.src)
+  );
+  const text = hit?.alt?.trim();
+  return text ? cap(text) : null;
+}
+
+/**
  * Alt text for a product GALLERY/thumbnail image.
  *
  * - When `variantLabel` is provided (the color/package/variant name the
@@ -153,8 +168,14 @@ export function productGalleryAlt(
   product: Product,
   position: number,
   total: number,
-  variantLabel?: string
+  variantLabel?: string,
+  /** The image's src. When the product's data carries a per-image override
+   *  for it (galleryAlts), that hand-written text wins for this image only
+   *  and every other image keeps the generated text below. */
+  src?: string
 ): string {
+  const override = galleryAltOverride(product, src);
+  if (override) return override;
   const base = productMainAlt(product);
   if (variantLabel && variantLabel.trim() !== '') {
     // A color/variant set with MORE than one photo disambiguates by

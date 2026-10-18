@@ -46,6 +46,30 @@ export interface Product {
    *  (which is a visual spec, not a purchasable choice). variantPrice()
    *  resolves these labels the same way as storage labels. */
   purchaseOptions?: string[];
+  /** Per-image hand-written alt text for GALLERY images, keyed by image src
+   *  (path). The shared helper (imageAlt.ts) uses the override for exactly
+   *  that image and generates the standard text for every other image — set
+   *  only when a gallery needs description beyond "photo N of M" (e.g. the
+   *  HomeView renders). Never hardcode alt text in a component. */
+  galleryAlts?: { src: string; alt: string }[];
+  /** One short visible line rendered directly under a product's gallery —
+   *  used by the HomeView renders to say so on the page. Absent = nothing
+   *  rendered (default for every other product). */
+  galleryNote?: string;
+  /** Replaces the price box's standard subtitle on the detail page (the
+   *  "(Official Price in Bangladesh)" / "Estimated market reference…"
+   *  line). Set only for products with no Bangladesh price at all, where the
+   *  standard wording would mislead; the price NUMBER still comes from
+   *  PriceTag. Absent = the existing wording (unchanged for every product). */
+  priceDisplayNote?: string;
+  /** Emit NO Product JSON-LD for this product. Product pages still emit the
+   *  other schema they carry (FAQPage). Set only when the product has no
+   *  offers, rating or review to mark up, so the Product node cannot trigger
+   *  a Search Console error. Absent = Product schema exactly as today. */
+  noProductSchema?: boolean;
+  /** Social-share (OG/Twitter) image URL for this product's pages when the
+   *  square hero is the wrong card shape. Absent = heroImage, as today. */
+  ogImage?: string;
   /** Color→image mapping for products whose photos are organized by color.
    *  Each `color` must match a buildDesign.colors entry exactly; while that
    *  color is selected on the detail page, `images` REPLACES the flat
@@ -1996,6 +2020,152 @@ export const products: Product[] = [
       ],
     },
   },
+  {
+    id: 23,
+    title: 'Apple HomeView Smart Display',
+    category: 'Smart Home',
+    topCategory: 'Home Accessories',
+    subCategory: 'Smart Home Devices',
+    imageAlt: 'Apple HomeView Smart Display',
+    /** AI-generated renders supplied for this product — the only product
+     *  images on the site that are not photographs. They are declared as
+     *  renders three ways: this note (visible under the gallery), every alt
+     *  string below, and the price/spec copy. Numeric names like the rest of
+     *  the catalog, inside a NEW product folder so no other product's cached
+     *  1.webp can be served here; 1024x1024 WebP, sharp-converted.
+     *  Order: 1 = tabletop silver (main), 2 = starlight, 3 = rose pink,
+     *  4 = space gray, 5-6 = wall-mounted. The supplied files' colour names
+     *  were paired with the wrong renders (the pink-based file was called
+     *  silver, the cream one starlight, and so on), so each file was matched
+     *  to the colour it actually shows before numbering. */
+    heroImage: '/images/products/apple-homeview-smart-display/1.webp',
+    gallery: [
+      '/images/products/apple-homeview-smart-display/1.webp',
+      '/images/products/apple-homeview-smart-display/2.webp',
+      '/images/products/apple-homeview-smart-display/3.webp',
+      '/images/products/apple-homeview-smart-display/4.webp',
+      '/images/products/apple-homeview-smart-display/5.webp',
+      '/images/products/apple-homeview-smart-display/6.webp',
+    ],
+    galleryAlts: [
+      {
+        src: '/images/products/apple-homeview-smart-display/1.webp',
+        alt: 'AI render of the Apple HomeView tabletop display in silver',
+      },
+      {
+        src: '/images/products/apple-homeview-smart-display/2.webp',
+        alt: 'AI render of the Apple HomeView tabletop display in starlight',
+      },
+      {
+        src: '/images/products/apple-homeview-smart-display/3.webp',
+        alt: 'AI render of the Apple HomeView tabletop display in rose pink',
+      },
+      {
+        src: '/images/products/apple-homeview-smart-display/4.webp',
+        alt: 'AI render of the Apple HomeView tabletop display in space gray',
+      },
+      {
+        src: '/images/products/apple-homeview-smart-display/5.webp',
+        alt: 'AI render of the wall-mounted Apple HomeView on a wall',
+      },
+      {
+        src: '/images/products/apple-homeview-smart-display/6.webp',
+        alt: 'AI render of the wall-mounted Apple HomeView shown closer up',
+      },
+    ],
+    galleryNote:
+      'Images are renders based on Apple\'s announced design, not photographs.',
+    priceDisplayNote:
+      'No Bangladesh price yet — Apple lists a US launch price of $299 for both versions (announced October 13, 2026, before tax and shipping).',
+    /** No offers, rating or review exist for this product, so a Product node
+     *  would be incomplete — opt out and keep the page's FAQPage only. */
+    noProductSchema: true,
+    /** 1200x630 card cropped centred from the hero render (the site's OG
+     *  card format) instead of the square hero, which social crawlers
+     *  letterbox. */
+    ogImage: '/og/apple-homeview-smart-display-20261018.png',
+    views: 1200,
+    dateAdded: '2026-10-18',
+    price: null,
+    oldPrice: null,
+    /** No Bangladesh price exists — deliberately NOT set to a converted US
+     *  figure. purchaseMode 'free-order' keeps the page to a single Free
+     *  Order request button (no Buy Now, no cart, no payment). */
+    priceEstimated: true,
+    purchaseMode: 'free-order',
+    status: 'upcoming',
+    priceNote:
+      'Apple has not announced a Bangladesh price or release date. Apple announced a US launch price of $299 for both versions on October 13, 2026, with pre-orders open and availability from November 13, 2026 in the US, Australia, Canada, India, New Zealand, Singapore, South Africa and the UK.',
+    specSheet: {
+      basicInfo: {
+        model: 'HomeView',
+        brand: 'Apple',
+        releaseDate: 'Nov 2026',
+      },
+      display: {
+        type: 'Liquid Retina (LED-backlit IPS, square)',
+        size: '7 inches (6.98 inches measured diagonally)',
+        resolution: '1088 x 1088 pixels (220 ppi)',
+        refreshRate: 'Not listed by Apple',
+        protection: 'Not listed by Apple',
+      },
+      performance: {
+        processor: 'A18 chip',
+        ram: 'Not listed by Apple',
+        storage: 'Not listed by Apple',
+        os: 'Not named by Apple — requires iOS 27.2 or iPadOS 27.2 or later on a paired iPhone or iPad',
+      },
+      cameraSystem: {
+        // A smart display has no rear camera — 'None' is the catalog's
+        // non-applicable marker (filtered out of generated descriptions).
+        rear: 'None',
+        front: '12MP Center Stage camera (ƒ/2.4)',
+        features: [
+          'Center Stage keeps you framed during FaceTime calls',
+          'Home Camera face shows up to nine video feeds at once',
+        ],
+      },
+      batteryCharging: {
+        // Apple lists no battery; both versions are mains powered.
+        capacity: 'No battery listed by Apple — mains powered',
+        charging:
+          'Tabletop: 30W power adapter and 1.5 m USB-C cable included. Wall-mounted: compatible mount, USB-C cable and a 20W-or-higher power adapter sold separately',
+      },
+      buildDesign: {
+        dimensions:
+          'Tabletop: 5.73 in x 5.38–6.82 in x 3.78–5.13 in; wall-mounted: 5.73 in x 5.73 in x 0.39 in',
+        weight: 'Tabletop 2.1 lb (952 g); wall-mounted 0.63 lb (286 g)',
+        materials: 'Not listed by Apple',
+        colors: ['Silver', 'Starlight', 'Rose Pink', 'Space Gray'],
+      },
+      connectivity: {
+        network: 'Wi-Fi 6E (802.11ax) with MIMO, Thread networking',
+        bluetooth: '6.0',
+        ports: ['USB-C'],
+      },
+      sensors: [
+        'Four beamforming microphones for far-field Siri',
+        '12MP Center Stage camera',
+        'Ambient light sensor, temperature and humidity sensor, accelerometer',
+      ],
+      aiFeatures: [
+        'Siri AI with broad world knowledge and natural conversation',
+        'Personal context when paired with an Apple Intelligence-enabled iPhone or iPad',
+        'Personalized Home Screen for up to six recognized people',
+        'Siri AI music discovery',
+        'Faces including Photos, Flow and Snoopy',
+        'Home Camera face showing up to nine video feeds at once',
+      ],
+      notableLimitations: [
+        'Not announced for Bangladesh — no local price, release date or launch market',
+        'Not available for sale in the European Union, because Siri AI is unavailable in iOS there',
+        'Wall-mounted version ships without a mount, USB-C cable or power adapter',
+        'Personal context needs an Apple Intelligence-enabled iPhone or iPad — without one, Siri AI is limited to world knowledge and music discovery',
+        'Power Mount PoE Wired arrives only in early 2027',
+        'No ultra-wideband (UWB) listed in Apple\'s wireless specifications',
+      ],
+    },
+  },
 ];
 
 /** URL slug for a product title, e.g. 'HONOR Robot Phone' -> 'honor-robot-phone' */
@@ -2039,9 +2209,18 @@ export function isPurchasable(p: Product): boolean {
  * ['256GB', '512GB', '1TB']). Shared by the detail page and the variant
  * price resolver so every surface splits the string identically.
  */
+/** Spec values that mean "no such dimension exists" — 'Not listed by
+ *  Apple' for the HomeView, whose storage Apple does not publish. */
+const NON_SPEC = /^(n\/?a|none|unknown|tbd|-|–|not listed|not specified|not named)/i;
+
 export function storageOptionsOf(p: Product): string[] {
-  const s = p.specSheet.performance.storage;
-  return s.includes('/') ? s.split('/').map((x) => x.trim()) : [s];
+  const s = (p.specSheet.performance.storage ?? '').trim();
+  // A product with no storage dimension gets NO storage options (and so no
+  // storage selector and no "… / Not listed by Apple" variant label).
+  if (!s || NON_SPEC.test(s)) return [];
+  return s.includes('/')
+    ? s.split('/').map((x) => x.trim()).filter(Boolean)
+    : [s];
 }
 
 /** Resolved pricing for a product/option pair — always all three fields. */

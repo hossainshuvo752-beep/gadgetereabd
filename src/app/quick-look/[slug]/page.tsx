@@ -7,6 +7,7 @@ import JsonLd from '@/components/JsonLd';
 import { productSchema, faqSchema } from '@/lib/schema';
 import {
   quickLookSeoTitle,
+  quickLookSeoTitleOverride,
   quickLookSeoDescription,
 } from '@/lib/productSeo';
 import { getQuickLookContent } from '@/lib/quickLookContent';
@@ -34,18 +35,38 @@ export async function generateMetadata({
   // Price-lookup/spec intent metadata, generated from real product data
   // only (shared builder in lib/productSeo.ts — same copy basis as the
   // Shop route; hand-tuned per-product description phrases included).
+  // A product may carry an exact title (titleOverride) when the generated
+  // template would exceed 60 characters. It is rendered ABSOLUTE so the
+  // root layout's "%s | Jupiter BD" template cannot push it back over 60.
+  const titleOverride = quickLookSeoTitleOverride(product);
   const title = quickLookSeoTitle(product);
   const description = quickLookSeoDescription(product);
+  // Social card: a product with its own 1200x630 card (ogImage) uses it
+  // instead of the square hero, and then also sets twitter explicitly so
+  // og: and twitter: carry the SAME text and image (the layout's twitter
+  // block would otherwise keep the listing page's copy).
+  const shareImage = product.ogImage ?? product.heroImage;
+  const social = shareImage ? [{ url: shareImage }] : undefined;
 
   return {
-    title,
+    title: titleOverride ? { absolute: titleOverride } : title,
     description,
     alternates: { canonical: `/quick-look/${slugify(product.title)}` },
     openGraph: {
       title,
       description,
-      ...(product.heroImage ? { images: [{ url: product.heroImage }] } : {}),
+      ...(social ? { images: social } : {}),
     },
+    ...(product.ogImage
+      ? {
+          twitter: {
+            card: 'summary_large_image' as const,
+            title,
+            description,
+            images: [product.ogImage],
+          },
+        }
+      : {}),
   };
 }
 
@@ -83,8 +104,14 @@ export default async function QuickLookProductPage({
           /quick-look/<slug> (Search Console inspection fix); the Shop route
           keeps its default /shop/<slug> context. FAQPage schema is emitted
           from the SAME array the guide section renders, so the marked-up
-          text matches the visible text exactly. */}
-      <JsonLd data={productSchema(product, 'quick-look')} />
+          text matches the visible text exactly.
+          Products flagged noProductSchema (no price, offers, rating or
+          review to mark up — the Apple HomeView) emit NO Product node at
+          all, which is what keeps an incomplete Product markup out of
+          Search Console; their FAQPage is still emitted below. */}
+      {!product.noProductSchema && (
+        <JsonLd data={productSchema(product, 'quick-look')} />
+      )}
       {guide && <JsonLd data={faqSchema(guide.faqs)} />}
       <QuickLookDetail product={product} />
       {guide && (
