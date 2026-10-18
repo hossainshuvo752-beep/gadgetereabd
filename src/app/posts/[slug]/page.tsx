@@ -73,7 +73,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return { title: 'Post Not Found — Jupiter BD' };
   const url = postHref(post);
   return {
-    title: post.metaTitle,
+    // Posts keep the layout's " | Jupiter BD" template EXCEPT where the
+    // owner fixed a full-length title (metaTitleAbsolute): that one is
+    // rendered absolute so the suffix cannot push it past its budget.
+    title: post.metaTitleAbsolute ? { absolute: post.metaTitle } : post.metaTitle,
     description: post.metaDescription,
     // Meta keywords: Google ignores them, but some engines/tools still read
     // them — derived from category + FAQ questions when no explicit list.
@@ -152,6 +155,13 @@ export default async function PostsPage({ params }: Props) {
               className="text-sm"
               singleLine
             />
+            {/* Visible "last updated" line — only for posts whose data
+                carries an updated date (default: nothing rendered). */}
+            {post.updated && (
+              <p className="mt-2 text-xs text-text-body">
+                Last updated: {post.updated}
+              </p>
+            )}
           </div>
         </div>
 
@@ -173,6 +183,11 @@ export default async function PostsPage({ params }: Props) {
             <div className="w-full aspect-video bg-bg-dark-secondary/10 rounded-lg flex items-center justify-center">
               <span className="text-text-body text-sm">{post.imageAlt}</span>
             </div>
+          )}
+          {/* Optional hero caption (only when the data sets one) — used to
+              label illustrations as illustrations. */}
+          {post.heroCaption && (
+            <p className="mt-2 text-xs text-text-body">{post.heroCaption}</p>
           )}
         </div>
 

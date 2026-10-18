@@ -78,6 +78,9 @@ export function faqSchema(faqs: { question: string; answer: string }[]) {
  *  their numeric /posts/<id> URLs). Hero photo attached when present. */
 export function articleSchema(post: Post) {
   const published = new Date(post.date);
+  // dateModified mirrors the visible "Last updated" line — only emitted
+  // when the post data actually carries an updated date (never guessed).
+  const modified = post.updated ? new Date(post.updated) : null;
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -88,6 +91,9 @@ export function articleSchema(post: Post) {
     ...(Number.isNaN(published.getTime())
       ? {}
       : { datePublished: published.toISOString().slice(0, 10) }),
+    ...(modified && !Number.isNaN(modified.getTime())
+      ? { dateModified: modified.toISOString().slice(0, 10) }
+      : {}),
     ...(post.heroImage ? { image: `${SITE_URL}${post.heroImage}` } : {}),
     author: { '@type': 'Organization', name: post.author },
     publisher: { '@type': 'Organization', name: BRAND_NAME, url: SITE_URL },

@@ -13,6 +13,16 @@ export type Post = {
   category: string;
   author: string;
   date: string;
+  /** OPTIONAL "last updated" display date (same format as `date`). When
+   *  set, the article header shows a small "Last updated: …" line and the
+   *  Article schema emits dateModified. Absent = the post has never been
+   *  materially updated (default for every existing post). */
+  updated?: string;
+  /** OPTIONAL: render `metaTitle` EXACTLY as given, without the layout's
+   *  " | Jupiter BD" suffix. Set only for a title the owner deliberately
+   *  fixed at its full length (the HONOR WIN 2 post). Absent = the usual
+   *  template behaviour for every other post. */
+  metaTitleAbsolute?: boolean;
   readTime: string;
   /** SIMULATED popularity metric — dummy values, NOT real analytics.
    *  Replace with real view-tracking data when a backend exists. Drives
@@ -51,6 +61,9 @@ export type Post = {
    *  by the detail hero, ArticleCard, and used as og:image; posts without
    *  one keep the placeholder box. */
   heroImage?: string;
+  /** OPTIONAL visible caption under the hero image (small muted line).
+   *  Used to label illustrations as such; absent = no caption. */
+  heroCaption?: string;
   /** DEDICATED homepage-hero-banner image (4:5 portrait composition) — used
    *  ONLY by the Home Hero component. Falls back to heroImage when absent,
    *  so most posts need just the one field. Provide a separate
@@ -246,6 +259,152 @@ export const posts: Post[] = [
       {
         question: 'Does the iPhone Duo have Face ID?',
         answer: 'No — Apple swapped Face ID for Touch ID in the power button, a space-saving trade-off shared by every book-style foldable on the market.',
+      },
+    ],
+  },
+
+  {
+    id: 10,
+    title: 'HONOR WIN 2 Gaming Phone: Dual Fans, Chip and Launch Date',
+    slug: 'honor-win-2-dual-fans-chip-launch-date',
+    // Same text as the H1 on purpose: the owner fixed this title at its full
+    // length, so metaTitleAbsolute renders it WITHOUT " | Jupiter BD".
+    metaTitle: 'HONOR WIN 2 Gaming Phone: Dual Fans, Chip and Launch Date',
+    metaTitleAbsolute: true,
+    metaDescription:
+      'HONOR WIN 2 launches in China on October 21 with dual-fan cooling. See what is confirmed, what is leaked and whether it will reach Bangladesh.',
+    excerpt:
+      "HONOR's dual-fan gaming phone launches in China on October 21. Here is what is confirmed, what is only reported, and what it means for Bangladesh.",
+    category: 'News',
+    author: 'Jupiter BD Team',
+    date: 'Oct 18, 2026',
+    updated: 'Oct 18, 2026',
+    readTime: '6 min read',
+    views: 900,
+    imageAlt: 'Illustration of two HONOR WIN 2 phones against a lunar landscape',
+    heroImage: '/images/posts/honor-win-2-dual-fans-chip-launch-date/hero.webp',
+    heroCaption:
+      'AI-generated illustration, not an official HONOR photo. Final retail design may differ.',
+    content: `
+      <p>HONOR WIN 2 is a gaming-focused flagship that HONOR will launch in China on October 21, 2026 at 14:30 (GMT+8). Its headline feature is active cooling with two fans. HONOR has not announced a Bangladesh release, and the original WIN launched in China and is not listed in HONOR's global phone catalogue, so Bangladeshi buyers would most likely depend on unofficial imports. Last updated: Oct 18, 2026.</p>
+
+      <h2>What is confirmed and what is still a report</h2>
+      <p>This table separates what HONOR has said itself from what comes from leaks and early listings. We will update it after the launch event.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Detail</th><th>What we know</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Launch</td><td>October 21, 2026, 14:30 (GMT+8), China, sales start the same day</td><td>Confirmed by HONOR</td></tr>
+            <tr><td>Pre-orders</td><td>Open in China with a CNY 100 deposit</td><td>Confirmed (HONOR's online store listing)</td></tr>
+            <tr><td>Cooling</td><td>Two fans, airflow 284% higher than the previous generation, SGS cooling certification</td><td>HONOR's own poster claims</td></tr>
+            <tr><td>Chip</td><td>Snapdragon 8 Elite Extreme platform; &ldquo;Gen 6&rdquo; naming comes from reports</td><td>Promotional material points to it, generation naming is reported</td></tr>
+            <tr><td>Display</td><td>2K OLED, 185Hz; size reported as 6.83 or 6.89 inches</td><td>Resolution and refresh rate from promotional material, size unconfirmed</td></tr>
+            <tr><td>Battery</td><td>About 10,000 to 10,100 mAh with 100W wired charging</td><td>Reported, differs between sources</td></tr>
+            <tr><td>Colors</td><td>Quick Black, Designated Win, Red/Blue Buff (translated names)</td><td>Reported from the pre-order listing</td></tr>
+            <tr><td>Price in China</td><td>5,499 yuan for 12GB + 512GB with the Chinese subsidy</td><td>Stated by HONOR's global marketing chief</td></tr>
+            <tr><td>Global and Bangladesh availability</td><td>Not announced</td><td>Unconfirmed</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Dual-fan cooling: what HONOR says</h2>
+      <p>The original WIN had active cooling with a built-in fan. The WIN 2 uses two. HONOR says total airflow is 284% higher than on the previous generation, that body temperature can drop by up to 10&deg;C in 50 seconds in its own lab testing, and that the design passed SGS cooling certification.</p>
+      <p>Other reports quote different numbers, such as processor temperature drops of around 14 to 15.5&deg;C and an airflow of 1.19 CFM. Those figures do not match HONOR's poster, so treat them as unconfirmed until the launch. Fan noise, thickness and dust and water protection have not been confirmed either.</p>
+
+      <h2>Chip and performance</h2>
+      <p>HONOR's promotional material points to a Snapdragon 8 Elite Extreme platform, and several reports call it the Snapdragon 8 Elite Extreme Gen 6, a 2nm chip. An engineering unit with the model number RTW-AN00, 16GB of LPDDR5X RAM, 1TB of UFS 4.1 storage and Android 17 scored 5,702,964 on AnTuTu V12, including 2,072,221 for the GPU. This was a pre-launch test unit, so retail phones and their thermal settings may behave differently. The only price HONOR has quoted so far is for the 12GB + 512GB version.</p>
+
+      <h2>Display, battery and design</h2>
+      <p>HONOR's promotional material lists a 2K OLED panel with a 185Hz refresh rate. The screen size is reported as 6.89 inches in recent coverage, while earlier leaks said 6.83 inches, the size of the original WIN. The battery is reported at roughly 10,000 to 10,100 mAh with 100W wired charging, but the exact figure is not confirmed.</p>
+      <figure>
+        <img src="/images/posts/honor-win-2-dual-fans-chip-launch-date/front-display.webp" alt="Illustration of the HONOR WIN 2 with its retail box" width="1376" height="768" loading="lazy" decoding="async">
+        <figcaption>AI-generated illustration, not an official HONOR photo. Final retail design may differ.</figcaption>
+      </figure>
+      <p>The reported colors are Quick Black, Designated Win and Red/Blue Buff. These names are translated from Chinese and may change at launch.</p>
+      <figure>
+        <img src="/images/posts/honor-win-2-dual-fans-chip-launch-date/front-home-screen.webp" alt="Illustration of the HONOR WIN 2 home screen beside its retail box" width="1375" height="768" loading="lazy" decoding="async">
+        <figcaption>AI-generated illustration, not an official HONOR photo. Final retail design may differ.</figcaption>
+      </figure>
+
+      <h2>Price in China</h2>
+      <p>HONOR's global marketing chief said the 12GB + 512GB model costs 5,499 yuan with the Chinese subsidy. He also quoted 5,999 yuan after a limited-time discount and 6,299 yuan as HONOR's own price for the same model. The subsidy applies to buyers in China. The original WIN started at 3,999 yuan for 12GB + 256GB, so the WIN 2 is a clear step up, and reports point to higher memory costs as one reason. No entry-level price for the WIN 2 has been announced yet.</p>
+
+      <h2>Will HONOR WIN 2 come to Bangladesh?</h2>
+      <p>HONOR has not confirmed any global release. The original WIN launched in China and is not listed in HONOR's global phone catalogue, yet it reached Bangladesh through unofficial importers: listings in 2026 show the 12GB + 256GB model at about &#2547;77,000 (MobileDokan) to &#2547;78,999 (Rio International), marked &ldquo;Unofficial&rdquo; with a service warranty rather than an official HONOR warranty. The WIN 2 will most likely follow the same route after October 21.</p>
+      <p><strong>Estimated price (our own estimate, not a store listing):</strong> the original WIN sells in Bangladesh at roughly &#2547;19 to &#2547;20 for every yuan of its China launch price. Applying that range to 5,499 to 6,299 yuan suggests about &#2547;105,000 to &#2547;126,000 for the 12GB + 512GB model, most likely around &#2547;110,000 to &#2547;125,000. Early imports are often priced higher and then settle, and exchange rates, duties and shop margins can move the number. We will replace this estimate with real listings as soon as they appear.</p>
+
+      <h2>HONOR WIN 2 vs the original WIN</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Detail</th><th>HONOR WIN (Dec 2025)</th><th>HONOR WIN 2 (Oct 2026)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Launch</td><td>December 2025, China</td><td>October 21, 2026, China</td></tr>
+            <tr><td>Chip</td><td>Snapdragon 8 Elite Gen 5</td><td>Snapdragon 8 Elite Extreme platform (generation reported)</td></tr>
+            <tr><td>Cooling</td><td>Built-in active-cooling fan</td><td>Two fans</td></tr>
+            <tr><td>Display</td><td>6.83-inch 185Hz OLED</td><td>2K 185Hz OLED, size reported as 6.83 or 6.89 inches</td></tr>
+            <tr><td>Battery</td><td>10,000 mAh</td><td>Reported about 10,000 to 10,100 mAh</td></tr>
+            <tr><td>China price</td><td>From 3,999 yuan (12GB + 256GB)</td><td>5,499 yuan with subsidy for 12GB + 512GB, base price not announced</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Who it suits and who should wait</h2>
+      <p>It suits mobile gamers who want sustained performance, active cooling and a very large battery, and who are comfortable buying an imported phone. Wait if you need an official warranty in Bangladesh, if price matters most, or if you want to see real reviews first, especially on fan noise, thickness and thermal behavior. Reports also mention a WIN RT 2, a WIN Turbo 2 and a WIN tablet from the same event, but their details are still unconfirmed.</p>
+
+      <h2>What to watch on October 21</h2>
+      <ul>
+        <li>Final specs: battery size, display size and chip name.</li>
+        <li>Prices for every storage option, not just 12GB + 512GB.</li>
+        <li>Any word on global or Bangladesh availability.</li>
+        <li>Early reviews on fan noise, thickness and temperature.</li>
+      </ul>
+      <p>We will update this post after the event.</p>
+
+      <h2>Sources</h2>
+      <ul>
+        <li>Notebookcheck &mdash; pre-order and cooling details</li>
+        <li>FoneArena &mdash; pricing and colors</li>
+        <li>Huawei Central &mdash; price announcement</li>
+        <li>Nokiamob &mdash; benchmark and specs leak</li>
+        <li>Memeburn &mdash; teaser details</li>
+        <li><a href="https://www.mobiledokan.com/review/honor-win-full-review" target="_blank" rel="noopener">MobileDokan</a> &mdash; original WIN price in Bangladesh</li>
+        <li><a href="https://riointernational.com.bd/product/honor-win-5g" target="_blank" rel="noopener">Rio International</a> &mdash; original WIN listing and warranty wording</li>
+      </ul>
+    `,
+    faqs: [
+      {
+        question: 'When does HONOR WIN 2 launch?',
+        answer:
+          'HONOR will launch it in China on October 21, 2026 at 14:30 (GMT+8), with sales starting the same day.',
+      },
+      {
+        question: 'Will HONOR WIN 2 be available in Bangladesh?',
+        answer:
+          'HONOR has not announced it. The original WIN launched in China and is not listed in HONOR&rsquo;s global phone catalogue; it reached Bangladesh through unofficial importers, so the WIN 2 will most likely do the same.',
+      },
+      {
+        question: 'What is the HONOR WIN 2 price?',
+        answer:
+          'In China, HONOR&rsquo;s global marketing chief said the 12GB + 512GB model costs 5,499 yuan with the Chinese subsidy. For Bangladesh we estimate about &#2547;110,000 to &#2547;125,000 for unofficial imports, but this is our own estimate, not a store listing.',
+      },
+      {
+        question: 'What is new compared with the first WIN?',
+        answer:
+          'The main change is cooling: the WIN 2 uses two fans, and HONOR claims 284% more airflow than the previous generation. A new chip and a 2K display are also reported.',
+      },
+      {
+        question: 'Which chip does HONOR WIN 2 use?',
+        answer:
+          'HONOR&rsquo;s promotional material points to a Snapdragon 8 Elite Extreme platform. Reports call it the Gen 6, but the exact name is not confirmed yet.',
+      },
+      {
+        question: 'How big is the battery?',
+        answer:
+          'Reports say roughly 10,000 to 10,100 mAh with 100W wired charging. HONOR has not confirmed the final figure.',
       },
     ],
   },
