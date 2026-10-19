@@ -59,9 +59,13 @@ function postContentWithAlts(post: Post): string {
     const match = out.match(tagRe);
     if (!match) continue;
     const tag = match[0];
+    const safeAlt = alt.replace(/"/g, '&quot;');
+    // Keep the whitespace that separated the attribute from the previous one —
+    // dropping it emitted `<img src="…"alt="…">`, which browsers recover from
+    // but is invalid HTML and made the alt-text guard see a missing alt.
     const newTag = /\salt="/i.test(tag)
-      ? tag.replace(/\salt="[^"]*"/i, `alt="${alt}"`)
-      : tag.replace(/(\ssrc="[^"]*")/i, `$1 alt="${alt}"`);
+      ? tag.replace(/(\s)alt="[^"]*"/i, `$1alt="${safeAlt}"`)
+      : tag.replace(/(\ssrc="[^"]*")/i, `$1 alt="${safeAlt}"`);
     out = out.replace(tag, newTag);
   }
   return out;

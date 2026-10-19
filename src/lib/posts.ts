@@ -264,6 +264,176 @@ export const posts: Post[] = [
   },
 
   {
+    id: 11,
+    title: 'Apple HomeView: Price, Release Date, Specs & Features',
+    slug: 'apple-homeview-price-release-date-features',
+    // Same text as the H1 on purpose: the owner fixed this title at its full
+    // length (53 chars), so metaTitleAbsolute renders it WITHOUT
+    // " | Jupiter BD", which would push it past 60.
+    metaTitle: 'Apple HomeView: Price, Release Date, Specs & Features',
+    metaTitleAbsolute: true,
+    metaDescription:
+      'Apple HomeView is a $299 smart display with a 7-inch screen and Siri AI, shipping November 13. See specs, colors, wall mounts and who should buy.',
+    metaKeywords:
+      'apple homeview, apple homeview price, apple homeview release date, apple homeview bangladesh, apple smart display, siri ai, apple home',
+    excerpt:
+      "Apple's first smart home display starts at $299 and ships from November 13. Here are the price, colors, wall mounts and what we know about Bangladesh.",
+    category: 'Explainer',
+    author: 'Jupiter BD Team',
+    date: 'Oct 19, 2026',
+    updated: 'Oct 19, 2026',
+    readTime: '6 min read',
+    views: 1100,
+    imageAlt: 'Render of the Apple HomeView on a sideboard and mounted on a wall',
+    heroImage: '/images/posts/apple-homeview-price-release-date-features/hero.webp',
+    heroCaption: 'Render based on Apple’s announced design, not a photograph.',
+    // Cross-linking (rule 6): the HomeView Quick Look page exists
+    // (apple-homeview-smart-display), so it gets the reverse link too.
+    relatedProducts: ['apple-homeview-smart-display'],
+    // Per-image alts come from the shared helper's override fields — the
+    // content HTML carries the same strings, the helper is the source.
+    inlineAltOverrides: [
+      {
+        src: 'apple-homeview-price-release-date-features/wall-mount.webp',
+        alt: 'Render of the silver Apple HomeView mounted on a wall above a wooden counter',
+      },
+      {
+        src: 'apple-homeview-price-release-date-features/colors.webp',
+        alt: 'Render of four Apple HomeView units in silver, starlight, rose pink and space gray',
+      },
+      {
+        src: 'apple-homeview-price-release-date-features/display-sound.webp',
+        alt: 'Render of the white Apple HomeView on a tabletop showing the clock and weather',
+      },
+      {
+        src: 'apple-homeview-price-release-date-features/siri-ai.webp',
+        alt: 'Render of the Apple HomeView playing music on a kitchen counter by a window',
+      },
+      {
+        src: 'apple-homeview-price-release-date-features/faces.webp',
+        alt: 'Render of five HomeView screens: weather, FaceTime, Photos, home controls, video',
+      },
+    ],
+    content: `
+      <p>Apple HomeView is Apple's first dedicated smart home display. It has a 7-inch square screen, starts at $299 and begins arriving on November 13, 2026. It is built around Siri AI and works as a control screen for your home, a video-call screen and a music speaker. Apple announced it on October 13 at its &ldquo;Welcome Home&rdquo; event, and pre-orders opened the same day.</p>
+
+      <h2>What Is Apple HomeView?</h2>
+      <p>HomeView is a smart display with a 7-inch Liquid Retina screen. It comes in two versions: a tabletop version with a built-in speaker base, and a wall-mounted version. Apple presents it as a hub for controlling the home, making FaceTime calls and playing media. It was announced together with a new Apple TV 4K and HomePod mini 2, so it is one part of a wider smart home push. Pricing and dates for those two products are not covered here, so check Apple's site for them.</p>
+
+      <h2>Apple HomeView Price and Release Date</h2>
+      <p>Both versions start at $299. Pre-orders are open now and the first deliveries begin on November 13. Apple says availability starts in select markets. These are US dollar prices from Apple's announcement; prices in other countries will differ.</p>
+      <h3>Wall Mount Cost</h3>
+      <p>The wall-mounted version needs a separate mount from Schneider Home:</p>
+      <ul>
+        <li>Power Mount USB-C Wall Connector: from $59.95</li>
+        <li>Power Mount AC Wired: from $79.95</li>
+        <li>Power Mount PoE Wired: $129.95, arriving in early 2027</li>
+      </ul>
+      <p>So the cheapest wall-mounted setup costs $358.95 ($299 plus $59.95), and with the AC Wired mount it is $378.95. The tabletop version does not need a mount. Prices are before tax and shipping. Check Apple's page for what is included in the box.</p>
+      <figure>
+        <img src="/images/posts/apple-homeview-price-release-date-features/wall-mount.webp" alt="Render of the silver Apple HomeView mounted on a wall above a wooden counter" width="1376" height="768" loading="lazy" decoding="async">
+        <figcaption>Render based on Apple’s announced design, not a photograph.</figcaption>
+      </figure>
+
+      <h2>Is Apple HomeView Coming to Bangladesh?</h2>
+      <p>Apple has not announced a Bangladesh release date or price, and Bangladesh has not been named as a launch market. Availability starts in select markets only. Any unit sold in Bangladesh before an official launch would be an unofficial import, which can mean no Apple warranty or local support, and a US-market power adapter would need checking for plug and voltage compatibility. We will update this post when Apple announces more. We do not convert the US prices into taka, because import costs and shop margins would change the real price.</p>
+
+      <h2>Colors</h2>
+      <p>The tabletop version comes in silver, starlight, rose pink and space gray. The wall-mounted version comes in space gray and silver only. Apple lists no price difference between colors in the announcement we read, so confirm on the Apple Store page before ordering.</p>
+      <figure>
+        <img src="/images/posts/apple-homeview-price-release-date-features/colors.webp" alt="Render of four Apple HomeView units in silver, starlight, rose pink and space gray" width="1376" height="768" loading="lazy" decoding="async">
+        <figcaption>Render based on Apple’s announced design, not a photograph.</figcaption>
+      </figure>
+
+      <h2>Display, Sound and Camera</h2>
+      <p>The screen has True Tone and reaches 500 nits of brightness. It can also dim down to 0.3 nits, which suits a nightstand because it will not light up the room. For sound, Apple describes two full-range drivers in the display, a down-firing woofer and two passive radiators. A Center Stage camera is included for FaceTime calls.</p>
+      <figure>
+        <img src="/images/posts/apple-homeview-price-release-date-features/display-sound.webp" alt="Render of the white Apple HomeView on a tabletop showing the clock and weather" width="1376" height="768" loading="lazy" decoding="async">
+        <figcaption>Render based on Apple’s announced design, not a photograph.</figcaption>
+      </figure>
+
+      <h2>Siri AI</h2>
+      <p>Siri AI is the centerpiece of HomeView. If you own an iPhone or iPad that supports Apple Intelligence, HomeView can use your personal context. Without one, Siri AI on HomeView is limited to world knowledge and music discovery.</p>
+      <p>HomeView can recognize up to six people and show each one a personalized Home Screen. The screen also changes with distance: from across the room it shows simple information, and as you get closer it shows more detail.</p>
+      <figure>
+        <img src="/images/posts/apple-homeview-price-release-date-features/siri-ai.webp" alt="Render of the Apple HomeView playing music on a kitchen counter by a window" width="1376" height="768" loading="lazy" decoding="async">
+        <figcaption>Render based on Apple’s announced design, not a photograph.</figcaption>
+      </figure>
+
+      <h2>Faces</h2>
+      <p>HomeView offers several screen faces, including Photos, Flow and a Snoopy face.</p>
+      <figure>
+        <img src="/images/posts/apple-homeview-price-release-date-features/faces.webp" alt="Render of five HomeView screens: weather, FaceTime, Photos, home controls, video" width="1376" height="768" loading="lazy" decoding="async">
+        <figcaption>Render based on Apple’s announced design, not a photograph.</figcaption>
+      </figure>
+
+      <h2>Smart Home Features</h2>
+      <p>HomeView supports Matter and AirPlay, and it can sync across rooms. The Home Camera face can show up to nine live video feeds at once. Apple also announced an Apple Home Collection of accessories made with LG and Schneider. Earlier reports said the LG products would take at least a few months to arrive, and we have not confirmed their prices or dates, so check each product before planning a setup around it.</p>
+
+      <h2>Not Available in the EU</h2>
+      <p>HomeView will not launch in the European Union at first, because Siri AI is not available there. Availability elsewhere starts in select markets.</p>
+
+      <h2>Who Should Buy Apple HomeView?</h2>
+      <h3>It suits you if</h3>
+      <ul>
+        <li>Your household already uses Apple devices and the Home app.</li>
+        <li>You want one shared screen for cameras and home controls instead of reaching for your phone.</li>
+        <li>You want a kitchen or bedside display for FaceTime and music.</li>
+      </ul>
+      <h3>Consider waiting if</h3>
+      <ul>
+        <li>You live in the EU.</li>
+        <li>You want to wall-mount it and have not counted the cost of the mount.</li>
+        <li>You want the LG accessories, which arrive later.</li>
+        <li>You need specific third-party apps. Earlier reports said HomeView would run Apple apps without an App Store, so confirm what it supports on Apple's page.</li>
+        <li>You are in Bangladesh and need an official warranty: there is no official launch yet.</li>
+      </ul>
+    `,
+    faqs: [
+      {
+        question: 'How much does Apple HomeView cost?',
+        answer:
+          'It starts at $299 for both the tabletop and wall-mounted versions. Wall mounts are sold separately, from $59.95.',
+      },
+      {
+        question: 'When does Apple HomeView come out?',
+        answer:
+          'Pre-orders are open now and deliveries begin on November 13, 2026.',
+      },
+      {
+        question: 'Will Apple HomeView be available in Bangladesh?',
+        answer:
+          'Apple has not announced a Bangladesh release date or price. Availability starts in select markets. A unit sold in Bangladesh before an official launch would be an unofficial import, which can mean no Apple warranty.',
+      },
+      {
+        question: 'How big is the Apple HomeView screen?',
+        answer:
+          'It has a 7-inch square Liquid Retina display. Some early rumors said 6 inches, but the announced size is 7 inches.',
+      },
+      {
+        question: 'What colors does Apple HomeView come in?',
+        answer:
+          'The tabletop version comes in silver, starlight, rose pink and space gray. The wall-mounted version comes in space gray and silver.',
+      },
+      {
+        question: 'Is Apple HomeView available in Europe?',
+        answer:
+          'Not at launch, because Siri AI is not available in the EU.',
+      },
+      {
+        question: 'Does HomeView work with Matter devices?',
+        answer:
+          'Yes. Matter is supported, along with AirPlay and multi-room sync.',
+      },
+      {
+        question: 'Do I need an iPhone to use Siri AI on HomeView?',
+        answer:
+          'To get personal context you need an iPhone or iPad that supports Apple Intelligence. Without one, Siri AI is limited to world knowledge and music discovery.',
+      },
+    ],
+  },
+
+  {
     id: 10,
     title: 'HONOR WIN 2 Gaming Phone: Dual Fans, Chip and Launch Date',
     slug: 'honor-win-2-dual-fans-chip-launch-date',
