@@ -1709,7 +1709,7 @@ const guides: Record<string, QuickLookGuide> = {
     productName: 'AULA F75 Pro',
     heading: 'AULA F75 Pro Price in Bangladesh: Wireless Mechanical Keyboard Guide',
     lead:
-      'The AULA F75 Pro is a 75% gasket-mounted mechanical keyboard with hot-swappable switches, PBT keycaps and tri-mode connectivity (Bluetooth, 2.4GHz and USB-C) — current price ৳5,200 in Bangladesh, down from ৳5,800.',
+      'The AULA F75 Pro is a 75% gasket-mounted mechanical keyboard with hot-swappable switches, PBT keycaps and tri-mode connectivity (Bluetooth, 2.4GHz and USB-C) — current price ৳5,200 in Bangladesh.',
     overview: [
       'The F75 Pro packs features that were flagship-only two years ago into a ৳5,200 keyboard: a 75% layout that keeps the arrow keys and adds a media knob, a gasket-mounted plate for a softer typing feel, PBT keycaps that resist the shine that wears into cheaper ABS caps, and hot-swap sockets so you can change switches without soldering. It connects three ways — Bluetooth 5.0 with three-device memory, an included 2.4GHz USB-A receiver, and USB-C wired — powered by a built-in rechargeable battery.',
       'This guide explains what each of those features actually changes about daily use, how the media knob and south-facing RGB work in practice, and how to buy the right switch variant locally, since Bangladesh stock spans roughly ৳5,199 to ৳6,200 depending on which switches are fitted.',
@@ -1717,12 +1717,12 @@ const guides: Record<string, QuickLookGuide> = {
     priceSection: {
       heading: 'AULA F75 Pro price in Bangladesh',
       paragraphs: [
-        'The F75 Pro lists at ৳5,200, down from a ৳5,800 regular price, and that is typical Bangladesh retail — Creatus and other local retailers sit in the same range. The important thing to understand is that the F75 and F75 Pro line spans roughly ৳5,199 to ৳6,200 across switch variants, so two shops selling "an F75 Pro" can be selling meaningfully different keyboards at different prices.',
+        'The F75 Pro lists at ৳5,200, and that is typical Bangladesh retail — Creatus and other local retailers sit in the same range. The important thing to understand is that the F75 and F75 Pro line spans roughly ৳5,199 to ৳6,200 across switch variants, so two shops selling "an F75 Pro" can be selling meaningfully different keyboards at different prices.',
         'Because the switches are the main variable, compare the exact switch model in each offer rather than the product name. The keyboard is available in Black and White; it is a single configuration otherwise, so there is no storage-ladder decision to make — just confirm the switch type and that the 2.4GHz receiver is included in the box.',
       ],
     },
     keyFacts: [
-      { term: 'Current price', detail: '৳5,200 (regular ৳5,800)' },
+      { term: 'Current price', detail: '৳5,200' },
       { term: 'Layout', detail: '75% compact with media knob' },
       { term: 'Connectivity', detail: 'Bluetooth 5.0, 2.4GHz receiver, USB-C wired' },
       { term: 'Switches', detail: 'Hot-swappable, 3-pin and 5-pin mechanical' },
@@ -1776,7 +1776,7 @@ const guides: Record<string, QuickLookGuide> = {
         'Gasket-mounted plate for a softer, more cushioned typing feel',
         'PBT keycaps that resist shine and wear',
         'Compact 75% layout with arrow keys and a media knob',
-        'On-deal at ৳5,200 against a ৳5,800 regular price',
+        '৳5,200 for a 75% hot-swap mechanical board',
       ],
       cons: [
         'Media knob is not remappable (listed limitation)',
@@ -1789,7 +1789,7 @@ const guides: Record<string, QuickLookGuide> = {
     buyingTips: {
       heading: 'Buying the AULA F75 Pro in Bangladesh: what to know',
       paragraphs: [
-        'At ৳5,200 with a ৳5,800 regular price, this is a value purchase where the switch variant is the thing to negotiate rather than the price in isolation. Ask the seller which switch model is fitted and what type it is — linear, tactile or clicky — because the F75 line ranges from about ৳5,199 to ৳6,200 specifically on switch differences, and "F75 Pro" alone does not tell you what you are getting. Buy from a retailer that offers a replacement window, since a dead hot-swap socket or a failing battery shows up quickly.',
+        'At ৳5,200, this is a value purchase where the switch variant is the thing to negotiate rather than the price in isolation. Ask the seller which switch model is fitted and what type it is — linear, tactile or clicky — because the F75 line ranges from about ৳5,199 to ৳6,200 specifically on switch differences, and "F75 Pro" alone does not tell you what you are getting. Buy from a retailer that offers a replacement window, since a dead hot-swap socket or a failing battery shows up quickly.',
         'There is no IMEI or PTA check on a keyboard. Instead, verify at the counter: press a dozen keys to check for chatter or dead switches, plug in the 2.4GHz receiver and confirm it connects without the USB-C cable attached, cycle through the three Bluetooth device slots, turn the media knob, and confirm the 2.4GHz receiver, keycap puller and cable are in the box. RGB behaviour is worth a look too — a quick sweep through colours catches a bad LED row before you leave the shop.',
       ],
     },
@@ -1797,7 +1797,7 @@ const guides: Record<string, QuickLookGuide> = {
       {
         question: 'What is the AULA F75 Pro price in Bangladesh?',
         answer:
-          'It lists at ৳5,200, down from a ৳5,800 regular price. The wider F75/F75 Pro line runs roughly ৳5,199 to ৳6,200 depending on which switch variant is fitted.',
+          'It lists at ৳5,200. The wider F75/F75 Pro line runs roughly ৳5,199 to ৳6,200 depending on which switch variant is fitted.',
       },
       {
         question: 'Can I change the switches on the AULA F75 Pro?',
@@ -2438,7 +2438,7 @@ const guides: Record<string, QuickLookGuide> = {
     priceSection: {
       heading: 'Xiaomi Redmi Watch 5 price in Bangladesh',
       paragraphs: [
-        'The official Bangladesh price is ৳13,999 with Bluetooth calling, and all three colours — Obsidian Black, Silver Gray and Lavender Purple — carry the same price, so colour is a free choice here rather than a premium. Our listing rounds this to ৳14,000, which is the same product at effectively the same price.',
+        'The official Bangladesh price is ৳13,999 with Bluetooth calling, and all three colours — Obsidian Black, Silver Gray and Lavender Purple — carry the same price, so colour is a free choice here rather than a premium.',
         'It is a single configuration, so there is no variant ladder to weigh and no reason to pay more than the official figure. If a retailer quotes noticeably above ৳13,999 without bundling an extra strap or screen protector, it is worth asking why — in this segment the official price is well known and should be the reference point for any negotiation.',
       ],
     },

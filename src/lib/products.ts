@@ -1124,10 +1124,12 @@ export const products: Product[] = [
     ],
     views: 1200,
     dateAdded: '2024-06-01',
-    isDeal: true,
+    // No deal: the price note describes ordinary Bangladesh retail pricing,
+    // so there is no regular price to discount from. Cards and /deals read
+    // this flag + oldPrice, so both surfaces show the plain ৳5,200 price.
     price: 5200,
     priceStatus: 'retail',
-    oldPrice: 5800,
+    oldPrice: null,
     priceEstimated: false,
     status: 'available',
     priceNote:
@@ -1549,7 +1551,9 @@ export const products: Product[] = [
     ],
     views: 1700,
     dateAdded: '2025-01-15',
-    price: 14000,
+    // ৳13,999 matches the official price in the note below — the old ৳14,000
+    // was a rounding that made the listing disagree with its own source.
+    price: 13999,
     priceStatus: 'official',
     oldPrice: null,
     priceEstimated: false,
