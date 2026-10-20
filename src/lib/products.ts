@@ -1386,7 +1386,8 @@ export const products: Product[] = [
     oldPrice: null,
     priceEstimated: false,
     status: 'available',
-    priceNote: 'Star Tech lists the Core i3-1215U / 8GB / 512GB X1504VA at ৳61,000-62,000 (official BD warranty).',
+    priceNote:
+      'Retail listings for the X1504VA show the Core i3-1315U / 8GB / 512GB configuration at ৳62,000 (official BD warranty).',
     specSheet: {
       basicInfo: {
         model: 'Vivobook 15 X1504VA',
@@ -1401,8 +1402,8 @@ export const products: Product[] = [
         protection: 'N/A',
       },
       performance: {
-        processor: 'Intel Core i5-1335U (13th Gen)',
-        ram: '8GB/16GB DDR4',
+        processor: 'Intel Core i3-1315U (13th Gen)',
+        ram: '8GB DDR4',
         storage: '512GB NVMe SSD',
         os: 'Windows 11 Home',
       },

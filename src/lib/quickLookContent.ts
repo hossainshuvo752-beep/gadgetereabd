@@ -2142,22 +2142,22 @@ const guides: Record<string, QuickLookGuide> = {
     productName: 'ASUS Vivobook 15 (X1504VA)',
     heading: 'ASUS Vivobook 15 (X1504VA) Price in Bangladesh: Full Guide',
     lead:
-      'The ASUS Vivobook 15 (X1504VA) is a 15.6-inch everyday Windows laptop with a 13th-gen Intel processor, 8GB or 16GB of DDR4 RAM and a 512GB NVMe SSD — listed at ৳62,000 in Bangladesh with official local warranty. Most shops list it without the brackets, as the ASUS Vivobook 15 X1504VA.',
+      'The ASUS Vivobook 15 (X1504VA) is a 15.6-inch everyday Windows laptop with an Intel Core i3-1315U (13th Gen), 8GB of DDR4 RAM and a 512GB NVMe SSD — listed at ৳62,000 in Bangladesh with official local warranty. Most shops list it without the brackets, as the ASUS Vivobook 15 X1504VA.',
     overview: [
       'The Vivobook 15 X1504VA is the practical end of the laptop market: a 15.6-inch anti-glare Full HD IPS display, a 13th-generation Intel processor, a 512GB NVMe SSD, a backlit keyboard and a set of ports that outnumbers what most modern ultrabooks offer — USB-C, two USB-A, HDMI, a 3.5mm combo jack and a microSD reader. It runs Windows 11 Home out of the box and weighs 1.7kg.',
-      'This guide explains which configuration is actually being sold locally (the processor in the spec sheet and the one in the retailer listing differ, and that matters), how the 42Wh battery and 60Hz panel should shape expectations, and what to verify before paying for a laptop at this price in Bangladesh.',
+      'This guide explains what the ৳62,000 configuration actually includes, how the 42Wh battery and 60Hz panel should shape expectations, and what to verify before paying for a laptop at this price in Bangladesh.',
     ],
     priceSection: {
       heading: 'ASUS Vivobook 15 X1504VA price in Bangladesh',
       paragraphs: [
         'Star Tech lists the Vivobook 15 X1504VA at ৳61,000–৳62,000 with official Bangladesh warranty, and our listing sits at ৳62,000. That price band is consistent with its hardware class, and shopping the two ends of it is more about bundle details than about the machine itself.',
-        'Before you buy, settle one thing: the configuration. Our spec sheet lists an Intel Core i5-1335U (13th Gen), while the retailer price note references the Core i3-1215U / 8GB / 512GB listing — and ASUS sells the X1504VA with both, plus 8GB and 16GB RAM options. Ask the seller to confirm in writing which processor and how much RAM the unit has, because the same model number can be two meaningfully different laptops at the same shelf price. RAM is also partially soldered depending on SKU, so treat upgradability as something to verify rather than assume.',
+        'Before you buy, match the configuration printed on the box and the invoice: this listing is the Intel Core i3-1315U (13th Gen) with 8GB of DDR4 RAM and a 512GB NVMe SSD. ASUS ships the Vivobook 15 with more than one processor and memory combination, and a Core i5 or 16GB unit is a different, more expensive laptop — compare the processor line before you compare prices. RAM is partially soldered on some builds, so if you plan to upgrade later, confirm that on the unit you are buying rather than assuming it.',
       ],
     },
     keyFacts: [
       { term: 'Price', detail: '৳62,000 (Star Tech lists ৳61,000–৳62,000)' },
-      { term: 'Processor (listed)', detail: 'Intel Core i5-1335U — confirm i3-1215U variants' },
-      { term: 'Memory and storage', detail: '8GB/16GB DDR4 with a 512GB NVMe SSD' },
+      { term: 'Processor', detail: 'Intel Core i3-1315U (13th Gen)' },
+      { term: 'Memory and storage', detail: '8GB DDR4 with a 512GB NVMe SSD' },
       { term: 'Weight', detail: '1.7kg, 15.6-inch anti-glare IPS display' },
     ],
     features: [
@@ -2165,13 +2165,13 @@ const guides: Record<string, QuickLookGuide> = {
         heading: 'Key features explained',
         title: 'A 13th-gen Intel chip built for everyday work',
         body:
-          'The listed Core i5-1335U is a 13th-generation low-power part suited to the work this laptop is for: documents and spreadsheets, dozens of browser tabs, video calls, streaming and light photo editing. It is not a gaming or video-rendering machine, and the lack of a dedicated GPU — a confirmed limitation — rules heavy creative work out. Buyers who see an i3-1215U variant at a lower price should expect a correspondingly smaller performance margin, not a broken promise.',
+          'The Core i3-1315U is a 13th-generation low-power part suited to the work this laptop is for: documents and spreadsheets, dozens of browser tabs, video calls, streaming and light photo editing. It is not a gaming or video-rendering machine, and the lack of a dedicated GPU — a confirmed limitation — rules heavy creative work out. Expect it to feel comfortable rather than quick on demanding tasks, and check the processor line before paying if a listing quotes a lower price.',
       },
       {
         heading: 'Key features explained',
         title: 'Storage, memory and the upgrade question',
         body:
-          'A 512GB NVMe SSD is the right headline spec for this class — it makes Windows and applications load quickly and leaves practical room for files, and it is a genuine step up from the 256GB drives common in budget laptops. RAM decisions need more care: the machine ships with 8GB or 16GB of DDR4, and ASUS notes RAM is partially soldered depending on SKU, so a future memory upgrade may be limited or impossible on the unit you buy. If you plan to keep this laptop for years, aim for the 16GB configuration now.',
+          'A 512GB NVMe SSD is the right headline spec for this class — it makes Windows and applications load quickly and leaves practical room for files, and it is a genuine step up from the 256GB drives common in budget laptops. The 8GB of DDR4 covers documents, browsing and video calls; if you expect to run virtual machines or keep dozens of heavy browser tabs open, check whether the memory slot on your unit is accessible before buying, because ASUS notes RAM is partially soldered depending on the build.',
       },
       {
         heading: 'Key features explained',
@@ -2216,13 +2216,13 @@ const guides: Record<string, QuickLookGuide> = {
         'No dedicated GPU (listed limitation)',
         'RAM partially soldered depending on SKU (listed limitation)',
         '42Wh battery is small for the screen size',
-        'Processor and RAM vary by SKU — the spec sheet lists an i5 while the local listing has referenced an i3 configuration',
+        'Core i3-1315U is an entry-level 13th-gen part — comfortable for office work, not for heavy creative apps',
       ],
     },
     buyingTips: {
       heading: 'Buying the Vivobook 15 in Bangladesh: what to know',
       paragraphs: [
-        'For a laptop at ৳62,000, the warranty and the exact configuration matter more than a thousand taka of movement on price. Buy from a retailer with ASUS Bangladesh warranty support — Star Tech\'s listing is the reference here — and get the invoice to state the full model number, processor, RAM amount and storage capacity. This is the single most important step with a Vivobook, because the X1504VA name covers both i3 and i5 processors and 8GB or 16GB of memory, so what is on the shelf is not necessarily what the spec sheet describes.',
+        'For a laptop at ৳62,000, the warranty and the exact configuration matter more than a thousand taka of movement on price. Buy from a retailer with ASUS Bangladesh warranty support — Star Tech\'s listing is the reference here — and get the invoice to state the full model number, processor, RAM amount and storage capacity. For this listing that means the Intel Core i3-1315U, 8GB of DDR4 and a 512GB SSD; the X1504VA name is also used for other processor and memory combinations, so what is on the shelf is not automatically the configuration described here.',
         'At the counter, check the obvious physical points first: open and close the lid to feel the hinge, press every keyboard key including the backlight levels, and test both USB-A ports, the HDMI output on a nearby monitor and the microSD reader. Run the display on a plain background looking for backlight bleed or dead pixels, confirm the battery reports a healthy design capacity rather than a worn one, and make sure the 45W USB-C adapter is included. Also confirm whether the RAM is soldered on your specific unit if you intend to upgrade later — that answer cannot be changed after purchase.',
       ],
     },
@@ -2235,12 +2235,12 @@ const guides: Record<string, QuickLookGuide> = {
       {
         question: 'Which processor does the Vivobook 15 X1504VA have?',
         answer:
-          'The spec sheet lists an Intel Core i5-1335U (13th Gen), while the local retailer listing has referenced a Core i3-1215U / 8GB / 512GB configuration. ASUS sells both under the X1504VA name, so confirm the exact SKU before paying.',
+          'This listing is the Intel Core i3-1315U (13th Gen) with 8GB of DDR4 RAM and a 512GB NVMe SSD. ASUS sells the Vivobook 15 with other processor and memory combinations under the same model name, so check the invoice matches this configuration before paying.',
       },
       {
         question: 'Can I upgrade the RAM in the Vivobook 15 X1504VA?',
         answer:
-          'It depends on the SKU — ASUS lists RAM as partially soldered on some configurations, so upgradeability is not guaranteed. Check your specific unit or buy the 16GB model if you plan to keep it long term.',
+          'Upgradeability is not guaranteed — ASUS lists RAM as partially soldered on some Vivobook 15 builds. This listing has 8GB, so check whether the memory slot on your specific unit is accessible before buying.',
       },
       {
         question: 'How long does the Vivobook 15 battery last?',

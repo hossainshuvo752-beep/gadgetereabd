@@ -106,7 +106,7 @@ const seoCopy: Record<string, ProductSeoCopy> = {
   },
   'asus-vivobook-15-x1504va': {
     shopSpecs: 'Reliable performance, everyday computing',
-    quickLookSpecs: '15.6-inch IPS display, Core i5-1335U',
+    quickLookSpecs: '15.6-inch IPS display, Core i3-1315U',
   },
   'lenovo-ideacentre-aio-27': {
     shopSpecs: 'display, processor',
