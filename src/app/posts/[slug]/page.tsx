@@ -77,10 +77,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return { title: 'Post Not Found — Jupiter BD' };
   const url = postHref(post);
   return {
-    // Posts keep the layout's " | Jupiter BD" template EXCEPT where the
-    // owner fixed a full-length title (metaTitleAbsolute): that one is
-    // rendered absolute so the suffix cannot push it past its budget.
-    title: post.metaTitleAbsolute ? { absolute: post.metaTitle } : post.metaTitle,
+    // EVERY post title is rendered ABSOLUTE (standing rule, 2026-10-20): the
+    // meta titles are written to fit the 60-character budget on their own,
+    // so the layout's " | Jupiter BD" suffix would push them over. The
+    // Post.metaTitleAbsolute flag is retained for older data, but absolute
+    // is now the default for all posts.
+    title: { absolute: post.metaTitle },
     description: post.metaDescription,
     // Meta keywords: Google ignores them, but some engines/tools still read
     // them — derived from category + FAQ questions when no explicit list.

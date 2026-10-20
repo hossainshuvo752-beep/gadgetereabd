@@ -1,6 +1,12 @@
 export interface Product {
   id: number;
   title: string;
+  /** OPTIONAL short product name people actually search ("PS5 Slim Disc",
+   *  "Soundcore R50i", "Lenovo IdeaCentre AIO 27"). Used ONLY in the
+   *  Quick Look meta title/description and the search-facing FAQ entries —
+   *  never in the visible H1 or product name, which stay `title`. Absent =
+   *  the SEO builders fall back to `title`. */
+  seoName?: string;
   category: string;
   /** Top-level Shop filter category — must match a node in the tree in
    *  src/lib/categories.ts (Mobile, Tablet, PC, ...). */
@@ -175,6 +181,7 @@ export const products: Product[] = [
   {
     id: 1,
     title: 'HONOR Robot Phone',
+    seoName: 'HONOR Robot Phone',
     category: 'Smartphones',
     topCategory: 'Mobile',
     subCategory: 'HONOR',
@@ -269,6 +276,7 @@ export const products: Product[] = [
   {
     id: 2,
     title: 'Samsung Galaxy S26 Ultra',
+    seoName: 'Samsung Galaxy S26 Ultra',
     category: 'Smartphones',
     topCategory: 'Mobile',
     subCategory: 'Samsung',
@@ -363,6 +371,7 @@ export const products: Product[] = [
   {
     id: 3,
     title: 'Apple iPhone 17 Pro Max',
+    seoName: 'iPhone 17 Pro Max',
     category: 'Smartphones',
     topCategory: 'Mobile',
     subCategory: 'Apple',
@@ -457,6 +466,7 @@ export const products: Product[] = [
   {
     id: 4,
     title: 'Vivo X300 Pro',
+    seoName: 'Vivo X300 Pro',
     category: 'Smartphones',
     topCategory: 'Mobile',
     subCategory: 'Vivo',
@@ -548,6 +558,7 @@ export const products: Product[] = [
   {
     id: 5,
     title: 'Tecno Camon 40 Pro',
+    seoName: 'Tecno Camon 40 Pro',
     category: 'Smartphones',
     topCategory: 'Mobile',
     subCategory: 'Tecno',
@@ -639,6 +650,7 @@ export const products: Product[] = [
   {
     id: 6,
     title: 'Infinix Note 60 Pro',
+    seoName: 'Infinix Note 60 Pro',
     category: 'Smartphones',
     topCategory: 'Mobile',
     subCategory: 'Infinix',
@@ -734,6 +746,7 @@ export const products: Product[] = [
   {
     id: 7,
     title: 'Samsung Galaxy Z Fold7 256GB',
+    seoName: 'Samsung Galaxy Z Fold7',
     category: 'Smartphones',
     topCategory: 'Mobile',
     subCategory: 'Samsung',
@@ -825,6 +838,7 @@ export const products: Product[] = [
   {
     id: 8,
     title: 'Sony WH-1000XM5 Wireless Headphones',
+    seoName: 'Sony WH-1000XM5',
     category: 'Accessories',
     topCategory: 'Gadget Accessories',
     subCategory: 'Sound',
@@ -904,6 +918,7 @@ export const products: Product[] = [
   {
     id: 9,
     title: 'PlayStation 5 Slim Disc Console',
+    seoName: 'PS5 Slim Disc',
     category: 'Gaming',
     topCategory: 'Gadget Accessories',
     subCategory: 'Other',
@@ -987,6 +1002,7 @@ export const products: Product[] = [
   {
     id: 10,
     title: 'UGREEN USB-C Hub 5-in-1',
+    seoName: 'UGREEN USB-C Hub 5-in-1',
     category: 'Accessories',
     topCategory: 'Gadget Accessories',
     subCategory: 'Cables & Adapters',
@@ -1064,6 +1080,7 @@ export const products: Product[] = [
   {
     id: 11,
     title: 'AULA F75 Pro Wireless Mechanical Keyboard',
+    seoName: 'AULA F75 Pro',
     category: 'Gaming',
     topCategory: 'Gadget Accessories',
     subCategory: 'Computer Accessories',
@@ -1142,6 +1159,7 @@ export const products: Product[] = [
   {
     id: 12,
     title: 'Samsung Galaxy Tab S10 Ultra',
+    seoName: 'Galaxy Tab S10 Ultra',
     category: 'Tablets',
     topCategory: 'Tablet',
     subCategory: 'Samsung',
@@ -1221,6 +1239,7 @@ export const products: Product[] = [
   {
     id: 13,
     title: 'Apple iPad Air 11 (M3)',
+    seoName: 'iPad Air 11 (M3)',
     category: 'Tablets',
     topCategory: 'Tablet',
     subCategory: 'Apple',
@@ -1307,6 +1326,7 @@ export const products: Product[] = [
   {
     id: 14,
     title: 'ASUS Vivobook 15 (X1504VA)',
+    seoName: 'ASUS Vivobook 15 X1504VA',
     category: 'Laptops',
     topCategory: 'PC',
     subCategory: 'Laptop',
@@ -1392,6 +1412,7 @@ export const products: Product[] = [
   {
     id: 15,
     title: 'Lenovo IdeaCentre AIO 27\u2033',
+    seoName: 'Lenovo IdeaCentre AIO 27',
     category: 'Desktops',
     topCategory: 'PC',
     subCategory: 'Desktop',
@@ -1476,6 +1497,7 @@ export const products: Product[] = [
   {
     id: 16,
     title: 'Xiaomi Redmi Watch 5',
+    seoName: 'Xiaomi Redmi Watch 5',
     category: 'Wearables',
     topCategory: 'Smart Watch',
     subCategory: 'Xiaomi',
@@ -1552,6 +1574,7 @@ export const products: Product[] = [
   {
     id: 17,
     title: 'Apple AirPods Pro 3',
+    seoName: 'AirPods Pro 3',
     category: 'Audio',
     topCategory: 'Earbuds',
     subCategory: 'AirPods',
@@ -1629,6 +1652,7 @@ export const products: Product[] = [
   {
     id: 18,
     title: 'Anker Soundcore R50i Earbuds',
+    seoName: 'Soundcore R50i',
     category: 'Audio',
     topCategory: 'Earbuds',
     subCategory: 'Bluetooth Earbuds',
@@ -1708,6 +1732,7 @@ export const products: Product[] = [
   {
     id: 19,
     title: 'DJI Osmo Action 5 Pro',
+    seoName: 'DJI Osmo Action 5 Pro',
     category: 'Cameras',
     topCategory: 'Camera',
     subCategory: 'Action Camera',
@@ -1795,6 +1820,7 @@ export const products: Product[] = [
   {
     id: 20,
     title: 'Anker PowerCore 20000 Power Bank',
+    seoName: 'Anker PowerCore 20000',
     category: 'Accessories',
     topCategory: 'Gadget Accessories',
     subCategory: 'Charging',
@@ -1866,6 +1892,7 @@ export const products: Product[] = [
   {
     id: 21,
     title: 'Xiaomi Robot Vacuum S10',
+    seoName: 'Xiaomi Robot Vacuum S10',
     category: 'Smart Home',
     topCategory: 'Home Accessories',
     subCategory: 'Cleaning Robot',
@@ -1946,6 +1973,7 @@ export const products: Product[] = [
   {
     id: 22,
     title: 'Xiaomi Smart TV X Pro 55',
+    seoName: 'Xiaomi X Pro 55 TV',
     category: 'Appliances',
     topCategory: 'Home Appliances',
     subCategory: 'Smart TV',
@@ -2023,6 +2051,7 @@ export const products: Product[] = [
   {
     id: 23,
     title: 'Apple HomeView Smart Display',
+    seoName: 'Apple HomeView',
     category: 'Smart Home',
     topCategory: 'Home Accessories',
     subCategory: 'Smart Home Devices',

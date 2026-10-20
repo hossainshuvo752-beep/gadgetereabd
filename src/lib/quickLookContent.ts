@@ -810,6 +810,11 @@ const guides: Record<string, QuickLookGuide> = {
         answer:
           'If long zoom, battery and charging matter most, yes: 200MP APO periscope, 6510mAh and 90W at ৳50,000 less. The S26 Ultra counters with QHD+ display, seven years of updates and a bigger service network.',
       },
+      {
+        question: 'What is the Vivo X300 Pro price in Bangladesh, official and unofficial?',
+        answer:
+          'The official vivo Bangladesh price is ৳149,999 for 16GB/512GB plus VAT. Unofficial 12GB/256GB imports run around ৳110,000, without an official warranty.',
+      },
     ],
     links: [
       {
@@ -1415,7 +1420,7 @@ const guides: Record<string, QuickLookGuide> = {
     productName: 'PlayStation 5 Slim Disc',
     heading: 'PlayStation 5 Slim Disc Console Price in Bangladesh: Full Guide',
     lead:
-      'The PlayStation 5 Slim Disc edition is the 1TB console with a detachable UHD Blu-ray drive and a 10.28 TFLOP RDNA 2 GPU — currently priced at ৳100,000 in Bangladesh, down from a ৳105,000 regular price.',
+      'The PlayStation 5 Slim Disc edition is the 1TB console with a detachable UHD Blu-ray drive and a 10.28 TFLOP RDNA 2 GPU — currently priced at ৳100,000 in Bangladesh, down from a ৳105,000 regular price. Shoppers also search for it as the PS5 Slim Disc.',
     overview: [
       'The PS5 Slim is Sony\'s revised PS5: the same performance silicon — an 8-core AMD Zen 2 CPU with an RDNA 2 GPU rated at 10.28 TFLOPs, paired with 16GB of GDDR6 memory — in a smaller two-tone chassis, with the disc drive now detachable. This is the Disc Edition with 1TB of custom NVMe storage, so it plays physical UHD Blu-ray games as well as downloads, and the M.2 slot lets you add more storage later.',
       'For buyers in Bangladesh the practical questions are about the disc drive, whether 1TB is enough, what display you need to see 4K at 120Hz, and how to tell a genuine local unit from an imported one. This guide covers each, using only the console\'s own listed specifications.',
@@ -1525,6 +1530,11 @@ const guides: Record<string, QuickLookGuide> = {
         question: 'How heavy and how big is the PS5 Slim with the disc drive?',
         answer:
           'Approximately 358 x 96 x 216 mm when standing vertically with the disc drive attached, and around 3.2kg — plan for ventilation space and a stable stand.',
+      },
+      {
+        question: 'What is the PS5 Slim 1TB price in BD?',
+        answer:
+          'The 1TB disc edition is ৳100,000 in Bangladesh at Star Tech, down from a ৳105,000 regular price.',
       },
     ],
     links: [
@@ -1809,6 +1819,11 @@ const guides: Record<string, QuickLookGuide> = {
         answer:
           'No. It uses a 75% layout, which keeps arrow keys, the function row and a media knob, but omits the number pad to save desk space.',
       },
+      {
+        question: 'How much does the AULA F75 Pro weigh?',
+        answer:
+          'Approximately 950g, according to its listed specifications.',
+      },
     ],
     links: [
       {
@@ -1953,6 +1968,11 @@ const guides: Record<string, QuickLookGuide> = {
         question: 'What processor does the Galaxy Tab S10 Ultra use?',
         answer:
           'A MediaTek Dimensity 9300+ with 12GB of RAM, running Android 14 with One UI 6.1 and Galaxy AI features such as Note Assist and Sketch to Image.',
+      },
+      {
+        question: 'What is the Galaxy Tab S10 Ultra price in BD?',
+        answer:
+          'The Wi-Fi 256GB model is officially ৳119,999 in Bangladesh. The 5G 512GB tier is an estimated ৳145,999.',
       },
     ],
     links: [
@@ -2122,7 +2142,7 @@ const guides: Record<string, QuickLookGuide> = {
     productName: 'ASUS Vivobook 15 (X1504VA)',
     heading: 'ASUS Vivobook 15 (X1504VA) Price in Bangladesh: Full Guide',
     lead:
-      'The ASUS Vivobook 15 (X1504VA) is a 15.6-inch everyday Windows laptop with a 13th-gen Intel processor, 8GB or 16GB of DDR4 RAM and a 512GB NVMe SSD — listed at ৳62,000 in Bangladesh with official local warranty.',
+      'The ASUS Vivobook 15 (X1504VA) is a 15.6-inch everyday Windows laptop with a 13th-gen Intel processor, 8GB or 16GB of DDR4 RAM and a 512GB NVMe SSD — listed at ৳62,000 in Bangladesh with official local warranty. Most shops list it without the brackets, as the ASUS Vivobook 15 X1504VA.',
     overview: [
       'The Vivobook 15 X1504VA is the practical end of the laptop market: a 15.6-inch anti-glare Full HD IPS display, a 13th-generation Intel processor, a 512GB NVMe SSD, a backlit keyboard and a set of ports that outnumbers what most modern ultrabooks offer — USB-C, two USB-A, HDMI, a 3.5mm combo jack and a microSD reader. It runs Windows 11 Home out of the box and weighs 1.7kg.',
       'This guide explains which configuration is actually being sold locally (the processor in the spec sheet and the one in the retailer listing differ, and that matters), how the 42Wh battery and 60Hz panel should shape expectations, and what to verify before paying for a laptop at this price in Bangladesh.',
@@ -2658,6 +2678,11 @@ const guides: Record<string, QuickLookGuide> = {
         question: 'Are the AirPods Pro 3 water resistant?',
         answer:
           'Yes — both the buds and the case carry an IP57 rating for sweat and water resistance, which covers workouts and rain.',
+      },
+      {
+        question: 'What is the AirPods Pro 3 price in BD?',
+        answer:
+          '৳33,500 in Bangladesh at Gadget & Gear, an official Apple reseller; AppleGadgetsBD lists it at ৳35,000–৳36,000.',
       },
     ],
     links: [
@@ -3250,7 +3275,7 @@ const guides: Record<string, QuickLookGuide> = {
     productName: 'Xiaomi Smart TV X Pro 55',
     heading: 'Xiaomi Smart TV X Pro 55 Price in Bangladesh: Full Guide',
     lead:
-      'The Xiaomi Smart TV X Pro 55 is a 55-inch QLED 4K television with a 120Hz panel, Google TV, Dolby Vision IQ and HDMI 2.1 — estimated at around ৳85,000 in Bangladesh, since this exact model has no active local listing yet.',
+      'The Xiaomi Smart TV X Pro 55 is a 55-inch QLED 4K television with a 120Hz panel, Google TV, Dolby Vision IQ and HDMI 2.1 — estimated at around ৳85,000 in Bangladesh, since this exact model has no active local listing yet. It is also listed as the Xiaomi X Pro 55 TV.',
     overview: [
       'The Smart TV X Pro 55 pairs a 55-inch QLED panel at 3840 x 2160 with a 120Hz refresh rate, runs Google TV on a quad-core media processor with 2GB of RAM and 32GB of storage, and supports Dolby Vision IQ, Google Assistant, Chromecast built-in and HDMI 2.1 with eARC and ALLM. It stands on a metal stand in a slim-bezel black frame, weighs around 12kg with the stand, and offers dual-band Wi-Fi, Ethernet and an optical audio output.',
       'The pricing status matters here more than the specs: there is no active Bangladesh listing for this exact model, so the ~৳85,000 figure is an estimate anchored to its official sibling, the Xiaomi TV A Pro 55-inch QLED 2026 at ৳74,999. This guide explains that estimate, what the panel and Google TV platform deliver, where the speakers and HDMI port count fall short, and how to buy safely in a television market full of mislabelled panels.',
@@ -3359,6 +3384,11 @@ const guides: Record<string, QuickLookGuide> = {
         question: 'How good are the speakers on the Xiaomi Smart TV X Pro 55?',
         answer:
           'The 30W speaker system is average, which Xiaomi lists as a limitation. HDMI eARC and an optical audio output make adding a soundbar straightforward.',
+      },
+      {
+        question: 'What is the Xiaomi X Pro 55 TV price in Bangladesh?',
+        answer:
+          'There is no active Bangladesh listing for this exact model. Our approximately ৳85,000 figure is an estimate, not a store quote.',
       },
     ],
     links: [

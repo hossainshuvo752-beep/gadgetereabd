@@ -1,9 +1,8 @@
 import type { Product } from './products';
 import { BRAND_NAME } from './brand';
-import { productSpecDescription } from './productDescription';
 
 /**
- * Hand-tuned SEO metadata for the 22 product detail pages.
+ * Hand-tuned SEO metadata for the 23 product detail pages.
  *
  * Both product routes (/quick-look/[slug] and /shop/[slug]) render the SAME
  * product catalog, so per-product SEO copy is declared here once and consumed
@@ -11,6 +10,11 @@ import { productSpecDescription } from './productDescription';
  * answers "what's the price/specs?" (lookup intent), Shop answers "where do
  * I buy?" (buying intent) — with per-product descriptions that match the
  * visible page (deal prices, estimated prices, pre-order status).
+ *
+ * Quick Look titles follow "{seoName} Price in Bangladesh 2026 & Specs" and
+ * are rendered ABSOLUTE; descriptions follow "{seoName} price in Bangladesh
+ * (BD): {price with status}. {two specs}. {availability}." — see
+ * quickLookSeoTitle / quickLookSeoDescription below.
  *
  * All copy is derived from real product data: prices, old prices, and
  * estimated/upcoming flags come straight from products.ts. Metadata renders
@@ -21,7 +25,9 @@ import { productSpecDescription } from './productDescription';
 interface ProductSeoCopy {
   /** Shop description spec phrase, e.g. "Flagship camera, S Pen, premium display". */
   shopSpecs: string;
-  /** Quick Look description spec phrase, e.g. "camera, display, and performance details". */
+  /** TWO data-backed spec highlights for the Quick Look description, e.g.
+   *  "6.9-inch Dynamic AMOLED 2X, Snapdragon 8 Elite". Every value is read
+   *  from that product's own spec sheet — never a marketing claim. */
   quickLookSpecs: string;
   /** Exact <title> when the generated template cannot fit the 60-char
    *  budget (the template adds " | Jupiter BD"). Rendered as an ABSOLUTE
@@ -48,91 +54,91 @@ const seoCopy: Record<string, ProductSeoCopy> = {
   },
   'honor-robot-phone': {
     shopSpecs: 'Innovative design',
-    quickLookSpecs: 'release status, and buying guide',
+    quickLookSpecs: '6.31-inch LTPO OLED, Snapdragon 8 Elite Gen 5',
   },
   'samsung-galaxy-s26-ultra': {
     shopSpecs: 'Flagship camera, S Pen, premium display',
-    quickLookSpecs: 'camera, display, and performance details',
+    quickLookSpecs: '6.9-inch Dynamic AMOLED 2X, Snapdragon 8 Elite',
   },
   'apple-iphone-17-pro-max': {
     shopSpecs: 'Latest A-series chip, pro camera system, premium build',
-    quickLookSpecs: 'camera system, chip performance, and availability',
+    quickLookSpecs: '6.9-inch Super Retina XDR, A19 Pro chip',
   },
   'vivo-x300-pro': {
     shopSpecs: 'Advanced camera system, flagship performance',
-    quickLookSpecs: 'camera setup, and display details',
+    quickLookSpecs: '6.78-inch LTPO AMOLED, Dimensity 9500',
   },
   'tecno-camon-40-pro': {
     shopSpecs: 'Strong camera performance, reliable battery',
-    quickLookSpecs: 'camera, battery, and performance',
+    quickLookSpecs: '6.78-inch AMOLED, Dimensity 7300',
   },
   'infinix-note-60-pro': {
     shopSpecs: 'great value performance',
-    quickLookSpecs: 'current deal',
+    quickLookSpecs: '6.78-inch AMOLED, Snapdragon 7s Gen 4',
   },
   'samsung-galaxy-z-fold7-256gb': {
     shopSpecs: 'Foldable display, flagship performance',
-    quickLookSpecs: 'foldable display specs, camera, and performance',
+    quickLookSpecs: '8.0-inch foldable AMOLED, Snapdragon 8 Elite',
   },
   'sony-wh-1000xm5-wireless-headphones': {
     shopSpecs: 'industry-leading noise cancellation',
-    quickLookSpecs: 'noise cancellation, battery life, and sound quality',
+    quickLookSpecs: 'V1 and QN1 noise cancelling, 30-hour battery',
   },
   'playstation-5-slim-disc-console': {
     shopSpecs: 'limited-time offer',
-    quickLookSpecs: 'storage options, gaming features, and current deal',
+    quickLookSpecs: 'RDNA 2 GPU at 10.28 TFLOPs, 1TB SSD',
   },
   'ugreen-usb-c-hub-5-in-1': {
     shopSpecs: 'Multi-port connectivity, compact design',
-    quickLookSpecs: 'ports and compatibility',
+    quickLookSpecs: 'HDMI 4K 60Hz, 100W USB-C pass-through',
   },
   'aula-f75-pro-wireless-mechanical-keyboard': {
     shopSpecs: 'premium typing experience',
-    quickLookSpecs: 'switch type, connectivity, and current deal',
+    quickLookSpecs: '75% hot-swap layout, tri-mode wireless',
   },
   'samsung-galaxy-tab-s10-ultra': {
     shopSpecs: 'Large display, S Pen support, flagship performance',
-    quickLookSpecs: 'display, performance, and S Pen support',
+    quickLookSpecs: '14.6-inch Dynamic AMOLED 2X, Dimensity 9300+',
   },
   'apple-ipad-air-11-m3': {
     shopSpecs: 'M3 chip performance, stunning display',
-    quickLookSpecs: 'M3 chip performance, display, and storage options',
+    quickLookSpecs: '11-inch Liquid Retina, Apple M3',
   },
   'asus-vivobook-15-x1504va': {
     shopSpecs: 'Reliable performance, everyday computing',
-    quickLookSpecs: 'processor, RAM, storage, and display specs',
+    quickLookSpecs: '15.6-inch IPS display, Core i5-1335U',
   },
   'lenovo-ideacentre-aio-27': {
     shopSpecs: 'display, processor',
-    quickLookSpecs: 'display, and processor',
+    quickLookSpecs: '27-inch IPS all-in-one, Core i5-13420H',
   },
   'xiaomi-redmi-watch-5': {
     shopSpecs: 'Long battery life, health tracking',
-    quickLookSpecs: 'battery life, display, and health tracking features',
+    quickLookSpecs: '2.07-inch AMOLED, up to 24 days battery',
   },
   'apple-airpods-pro-3': {
     shopSpecs: 'Active noise cancellation, premium sound',
-    quickLookSpecs: 'noise cancellation, battery life, and features',
+    quickLookSpecs: 'H2 chip, up to 8 hours ANC battery',
   },
   'anker-soundcore-r50i-earbuds': {
     shopSpecs: 'Clear sound, long battery life',
-    quickLookSpecs: 'battery life, sound quality, and features',
+    quickLookSpecs: '42-hour total battery, IPX5',
   },
   'dji-osmo-action-5-pro': {
     shopSpecs: 'High-resolution video, strong stabilization',
-    quickLookSpecs: 'video resolution, stabilization, and battery life',
+    quickLookSpecs: 'Dual OLED touchscreens, 47GB built-in storage',
   },
   'anker-powercore-20000-power-bank': {
     shopSpecs: 'Reliable capacity, fast charging',
-    quickLookSpecs: 'capacity, charging speed, and port options',
+    quickLookSpecs: '20,000mAh cell, 22.5W USB-C PD',
   },
   'xiaomi-robot-vacuum-s10': {
     shopSpecs: 'Smart mapping, strong suction power',
-    quickLookSpecs: 'suction power, mapping, and battery life',
+    quickLookSpecs: 'LDS laser mapping, 5200mAh battery',
   },
   'xiaomi-smart-tv-x-pro-55': {
     shopSpecs: 'display resolution',
-    quickLookSpecs: 'display resolution and smart features',
+    quickLookSpecs: '55-inch QLED 4K at 120Hz, Google TV',
   },
 };
 
@@ -149,69 +155,55 @@ export function quickLookSeoTitleOverride(product: Product): string | null {
   return seoCopy[slugOf(product)]?.titleOverride ?? null;
 }
 
-/** Quick Look title template: "{Product} Price in Bangladesh — Specs & Review | Jupiter BD" */
-export function quickLookSeoTitle(product: Product): string {
-  const override = quickLookSeoTitleOverride(product);
-  if (override) return override;
-  return `${product.title} Price in Bangladesh — Specs & Review | ${BRAND_NAME}`;
+/** The short name people search: Product.seoName when set, else the title. */
+export function quickLookSeoName(product: Product): string {
+  return product.seoName ?? product.title;
 }
 
 /**
- * Quick Look description. Matches the SEO brief per product state:
- * - deal: "{Product} price in Bangladesh: ৳X (was ৳Y). Check … In stock."
- * - regular: "{Product} price in Bangladesh: ৳X. Check … In stock now."
- * - estimated+available: "{Product} estimated price in Bangladesh: ৳X. Check … Coming soon."
- * - upcoming (pre-order): "{Product} estimated price in Bangladesh: ৳X. Check … Pre-order available."
+ * Quick Look title template, rendered ABSOLUTE (no " | Jupiter BD" suffix):
+ *   "{seoName} Price in Bangladesh 2026 & Specs"
+ * If that exceeds the 60-character budget the "& Specs" tail is dropped,
+ * then the year — the seoName itself is never mangled.
+ */
+export function quickLookSeoTitle(product: Product): string {
+  const override = quickLookSeoTitleOverride(product);
+  if (override) return override;
+  const name = quickLookSeoName(product);
+  const withSpecs = `${name} Price in Bangladesh 2026 & Specs`;
+  if (withSpecs.length <= 60) return withSpecs;
+  const withoutSpecs = `${name} Price in Bangladesh 2026`;
+  if (withoutSpecs.length <= 60) return withoutSpecs;
+  return `${name} Price in Bangladesh`;
+}
+
+/**
+ * Quick Look description — the search-snippet shape the owner asked for:
+ *   "{seoName} price in Bangladesh (BD): {price with status}. {two specs}.
+ *    {availability}."
+ * Every part comes from the product's own data, and the price status always
+ * matches it: "official" only for a confirmed price, "estimated" whenever
+ * priceEstimated is set (the word is never dropped), "on sale" for a
+ * genuine discount (current price only), and "estimated, pre-order" for an
+ * upcoming product. No long spec lists, no placeholders, 155 chars max.
  */
 export function quickLookSeoDescription(product: Product): string {
   const copy = seoCopy[slugOf(product)];
   if (copy?.descriptionOverride) return copy.descriptionOverride;
-  const specs = copy?.quickLookSpecs ?? 'full specifications';
-
-  let pricePart: string;
-  if (product.price === null) {
-    pricePart = `${product.title} price in Bangladesh: coming soon.`;
-  } else if (product.oldPrice !== null && !product.priceEstimated) {
-    pricePart = `${product.title} price in Bangladesh: ${taka(product.price)} (was ${taka(product.oldPrice)}).`;
-  } else if (product.priceEstimated) {
-    pricePart = `${product.title} estimated price in Bangladesh: ${taka(product.price)}.`;
-  } else {
-    pricePart = `${product.title} price in Bangladesh: ${taka(product.price)}.`;
-  }
-
-  const availability = productStatusTail(product);
-  // Spec attributes from the SHARED filtered builder — the same source the
-  // Product JSON-LD description uses, so meta/og/twitter and schema stay
-  // consistent. The builder's filter guarantees no "N/A", "None", "TBD",
-  // or double-space residue can ever appear here. Sentence:
-  // "… price in Bangladesh: ৳X. 250g, USB-C charging. Pre-order available."
-  const specClause = specClauseOf(product);
-  const specPart = specClause ? ` ${specClause}.` : '';
-  return `${pricePart}${specPart} Check full specifications, ${specs}. ${availability}`;
+  const name = quickLookSeoName(product);
+  const specs = copy?.quickLookSpecs ?? 'full specifications and Bangladesh price';
+  return `${name} price in Bangladesh (BD): ${priceWithStatus(product)}. ${specs}. ${availabilityTail(product)}`;
 }
 
-/**
- * Comma-joined list of the product's usable spec values (display size
- * + type, processor, storage, weight) — built by the shared filtered
- * builder, with the brand-model lead and closing tail stripped. Empty
- * when nothing usable (then the generic "Check full specifications"
- * fallback above applies).
- */
-function specClauseOf(product: Product): string {
-  const { specSheet: spec } = product;
-  const brandModel = spec.basicInfo.model
-    .toLowerCase()
-    .startsWith(spec.basicInfo.brand.toLowerCase())
-    ? spec.basicInfo.model
-    : `${spec.basicInfo.brand} ${spec.basicInfo.model}`;
-  const full = productSpecDescription(product, brandModel);
-  // Shape: "<brandModel>: <clauses>. Full specs and Bangladesh price on
-  // Jupiter BD." — take only the clause segment between the two.
-  const start = full.indexOf(': ');
-  const end = full.lastIndexOf('. Full specs');
-  if (start === -1 || end === -1 || end <= start) return '';
-  const clause = full.slice(start + 2, end).trim();
-  return clause.length > 0 ? clause : '';
+/** Price plus the status word that matches the data — never both guesses. */
+function priceWithStatus(product: Product): string {
+  if (product.price === null) return 'not announced yet';
+  if (product.priceEstimated && product.status === 'upcoming') {
+    return `${taka(product.price)} estimated, pre-order`;
+  }
+  if (product.priceEstimated) return `${taka(product.price)} estimated`;
+  if (product.isDeal) return `${taka(product.price)} on sale`;
+  return `${taka(product.price)} official`;
 }
 
 /** Shop title template: "{Product} — Buy Online in Bangladesh | Jupiter BD" */
@@ -263,9 +255,9 @@ function slugOf(product: Product): string {
     .replace(/(^-|-$)/g, '');
 }
 
-function productStatusTail(product: Product): string {
+/** Closing availability sentence — one per data state, nothing invented. */
+function availabilityTail(product: Product): string {
   if (product.status === 'upcoming') return 'Pre-order available.';
   if (product.priceEstimated) return 'Coming soon.';
-  if (product.oldPrice !== null) return 'In stock.';
   return 'In stock now.';
 }

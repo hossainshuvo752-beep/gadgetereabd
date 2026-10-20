@@ -4,24 +4,32 @@ import { DEFAULT_OG_IMAGE } from '@/lib/siteOgImage';
 
 /**
  * Listing-page metadata for /quick-look. Worded to cover the WHOLE catalog
- * (phones, laptops, audio, accessories, appliances) rather than phones * only — the route serves every product type. Title/description mirror to * og:/twitter: exactly as the Home page does so a shared link renders * identically. */
+ * (phones, laptops, audio, accessories, appliances) rather than phones only,
+ * and to match how these pages are actually searched: the price-lookup
+ * phrase carries the year and the catalogue name. Title/description mirror
+ * to og:/twitter: exactly as the Home page does so a shared link renders
+ * identically.
+ */
+const LISTING_TITLE = 'Phone & Gadget Prices in Bangladesh 2026: Quick Look';
+const LISTING_DESCRIPTION =
+  'Prices, specs and buying guides for phones, laptops, audio and smart-home gadgets in Bangladesh, with official and estimated prices.';
+
 export const metadata: Metadata = {
-  title: 'Quick Look — Gadget Specs & Prices in Bangladesh',
-  description:
-    'Spec sheets and prices for phones, laptops, audio, wearables and smart-home gadgets in Bangladesh.',
+  // Absolute: the 52-char title would break the 60-char budget once the
+  // root layout appended " | Jupiter BD".
+  title: { absolute: LISTING_TITLE },
+  description: LISTING_DESCRIPTION,
   alternates: { canonical: `${SITE_URL}/quick-look` },
   openGraph: {
-    title: 'Quick Look — Gadget Specs & Prices in Bangladesh',
-    description:
-      'Spec sheets and prices for phones, laptops, audio, wearables and smart-home gadgets in Bangladesh.',
+    title: LISTING_TITLE,
+    description: LISTING_DESCRIPTION,
     url: `${SITE_URL}/quick-look`,
     images: [{ ...DEFAULT_OG_IMAGE }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Quick Look — Gadget Specs & Prices in Bangladesh',
-    description:
-      'Spec sheets and prices for phones, laptops, audio, wearables and smart-home gadgets in Bangladesh.',
+    title: LISTING_TITLE,
+    description: LISTING_DESCRIPTION,
     images: [DEFAULT_OG_IMAGE.url],
   },
 };

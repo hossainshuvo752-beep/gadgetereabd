@@ -7,7 +7,6 @@ import JsonLd from '@/components/JsonLd';
 import { productSchema, faqSchema } from '@/lib/schema';
 import {
   quickLookSeoTitle,
-  quickLookSeoTitleOverride,
   quickLookSeoDescription,
 } from '@/lib/productSeo';
 import { getQuickLookContent } from '@/lib/quickLookContent';
@@ -34,22 +33,22 @@ export async function generateMetadata({
 
   // Price-lookup/spec intent metadata, generated from real product data
   // only (shared builder in lib/productSeo.ts — same copy basis as the
-  // Shop route; hand-tuned per-product description phrases included).
-  // A product may carry an exact title (titleOverride) when the generated
-  // template would exceed 60 characters. It is rendered ABSOLUTE so the
-  // root layout's "%s | Jupiter BD" template cannot push it back over 60.
-  const titleOverride = quickLookSeoTitleOverride(product);
+  // Shop route; per-product seoName + spec highlights included).
+  // The title is rendered ABSOLUTE on purpose: the shared template is
+  // "{seoName} Price in Bangladesh 2026 & Specs" and already sits inside
+  // the 60-char budget, so the root layout's "%s | Jupiter BD" suffix
+  // would push it over. A product may still carry an exact titleOverride.
   const title = quickLookSeoTitle(product);
   const description = quickLookSeoDescription(product);
   // Social card: a product with its own 1200x630 card (ogImage) uses it
-  // instead of the square hero, and then also sets twitter explicitly so
-  // og: and twitter: carry the SAME text and image (the layout's twitter
-  // block would otherwise keep the listing page's copy).
+  // instead of the square hero. twitter is ALWAYS set explicitly (same
+  // text and image as og) — without it the page inherited the Quick Look
+  // LISTING copy from the layout, which is what Search Console flagged.
   const shareImage = product.ogImage ?? product.heroImage;
   const social = shareImage ? [{ url: shareImage }] : undefined;
 
   return {
-    title: titleOverride ? { absolute: titleOverride } : title,
+    title: { absolute: title },
     description,
     alternates: { canonical: `/quick-look/${slugify(product.title)}` },
     openGraph: {
@@ -57,16 +56,12 @@ export async function generateMetadata({
       description,
       ...(social ? { images: social } : {}),
     },
-    ...(product.ogImage
-      ? {
-          twitter: {
-            card: 'summary_large_image' as const,
-            title,
-            description,
-            images: [product.ogImage],
-          },
-        }
-      : {}),
+    twitter: {
+      card: 'summary_large_image' as const,
+      title,
+      description,
+      ...(shareImage ? { images: [shareImage] } : {}),
+    },
   };
 }
 

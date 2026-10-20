@@ -180,11 +180,14 @@ const TVXPRO55 = 'xiaomi-smart-tv-x-pro-55';
 export const posts: Post[] = [
   {
     id: 1,
-    title: 'iPhone Duo: Apple\'s First Foldable — Price, Specs & Release',
+    title: 'iPhone Duo in Bangladesh: Price, Specs & Release Date',
     slug: 'iphone-duo-foldable-price-specs-release',
-    metaTitle: 'iPhone Duo: Price, Specs & Release Date (First Foldable)',
+    // Same text as the H1 and rendered ABSOLUTE: the title is fixed at 53
+    // chars, so " | Jupiter BD" would push it over 60.
+    metaTitle: 'iPhone Duo in Bangladesh: Price, Specs & Release Date',
+    metaTitleAbsolute: true,
     metaDescription:
-      'iPhone Duo — Apple\'s first foldable: 7.6-inch inner display, A20 Pro, titanium hinge, $1,999. Announced Sept 9, on sale Oct 23, 2026. Full confirmed specs.',
+      'The iPhone Duo is Apple\'s first foldable: 7.6-inch inner display, A20 Pro, $1,999. Confirmed specs, price and what it means for buyers in Bangladesh.',
     metaKeywords:
       'iphone duo, apple foldable iphone, iphone 18 fold, iphone duo price, iphone duo specs, iphone duo release date, iphone duo bangladesh, foldable iphone 2026',
     excerpt:
@@ -265,15 +268,17 @@ export const posts: Post[] = [
 
   {
     id: 11,
-    title: 'Apple HomeView: Price, Release Date, Specs & Features',
+    // Retitled 2026-10-20 for the query people actually type ("Apple
+    // HomeView Bangladesh"). The slug never changes. Still absolute at 58
+    // chars, and the post keeps its own Bangladesh section.
+    title: 'Apple HomeView: US Price, Release Date & Bangladesh Status',
     slug: 'apple-homeview-price-release-date-features',
     // Same text as the H1 on purpose: the owner fixed this title at its full
-    // length (53 chars), so metaTitleAbsolute renders it WITHOUT
-    // " | Jupiter BD", which would push it past 60.
-    metaTitle: 'Apple HomeView: Price, Release Date, Specs & Features',
+    // length, so metaTitleAbsolute renders it WITHOUT " | Jupiter BD".
+    metaTitle: 'Apple HomeView: US Price, Release Date & Bangladesh Status',
     metaTitleAbsolute: true,
     metaDescription:
-      'Apple HomeView is a $299 smart display with a 7-inch screen and Siri AI, shipping November 13. See specs, colors, wall mounts and who should buy.',
+      'Apple HomeView is a $299 smart display with a 7-inch screen and Siri AI, shipping November 13. Specs, colors, mounts and Bangladesh status.',
     metaKeywords:
       'apple homeview, apple homeview price, apple homeview release date, apple homeview bangladesh, apple smart display, siri ai, apple home',
     excerpt:
@@ -435,14 +440,19 @@ export const posts: Post[] = [
 
   {
     id: 10,
-    title: 'HONOR WIN 2 Gaming Phone: Dual Fans, Chip and Launch Date',
+    // Retitled 2026-10-20: the post's own Bangladesh section (unofficial
+    // imports, the original WIN's local prices) is what searchers want, so
+    // the title now leads with it.
+    title: 'HONOR WIN 2 in Bangladesh: Dual Fans, Chip, Launch Date',
     slug: 'honor-win-2-dual-fans-chip-launch-date',
     // Same text as the H1 on purpose: the owner fixed this title at its full
     // length, so metaTitleAbsolute renders it WITHOUT " | Jupiter BD".
-    metaTitle: 'HONOR WIN 2 Gaming Phone: Dual Fans, Chip and Launch Date',
+    metaTitle: 'HONOR WIN 2 in Bangladesh: Dual Fans, Chip, Launch Date',
     metaTitleAbsolute: true,
+    metaKeywords:
+      'honor win 2, honor win 2 price, honor win 2 bangladesh, honor win 2 launch date, honor win 2 dual fans, gaming phone bangladesh',
     metaDescription:
-      'HONOR WIN 2 launches in China on October 21 with dual-fan cooling. See what is confirmed, what is leaked and whether it will reach Bangladesh.',
+      'HONOR WIN 2 launches in China on October 21 with dual-fan cooling. What is confirmed, and how the phone would reach buyers in Bangladesh.',
     excerpt:
       "HONOR's dual-fan gaming phone launches in China on October 21. Here is what is confirmed, what is only reported, and what it means for Bangladesh.",
     category: 'News',
@@ -581,11 +591,16 @@ export const posts: Post[] = [
 
   {
     id: 2,
+    // TITLE DELIBERATELY UNCHANGED (2026-10-20): the body has no Bangladesh
+    // section (its only mention is a link label), so a "Bangladesh" title
+    // would be unbacked. Description shortened to the 155-char budget with
+    // no new local claim. Listed in the SEO guard's exceptions.
     title: 'iOS 27 Is Here: Top Features, Release Date and Compatible iPhones',
     slug: 'ios-27-features-release-date',
     metaTitle: 'iOS 27: New Features, Release Date & Compatible iPhones',
+    metaTitleAbsolute: true,
     metaDescription:
-      'iOS 27 shipped September 14, 2026: generative-AI Siri, auto-extending Lock Screen wallpaper, Spatial Reframing. Everything new plus the full compatible-iPhones list.',
+      'iOS 27 shipped September 14, 2026: generative-AI Siri, auto-extending Lock Screen wallpaper, Spatial Reframing. Every feature and supported iPhone.',
     metaKeywords:
       'ios 27, ios 27 features, ios 27 release date, ios 27 compatible iphones, siri ai, apple intelligence, ios 27 bangladesh, siri gemini',
     excerpt:
@@ -654,11 +669,12 @@ export const posts: Post[] = [
 
   {
     id: 3,
-    title: 'Dyson CameraJet: The $500 Toothbrush With a Camera — Worth It?',
+    title: 'Dyson CameraJet Price in Bangladesh: Is It Worth It?',
     slug: 'dyson-camerajet-toothbrush-worth-it',
-    metaTitle: 'Dyson CameraJet Toothbrush: $500 Price, Specs — Worth It?',
+    metaTitle: 'Dyson CameraJet Price in Bangladesh: Is It Worth It?',
+    metaTitleAbsolute: true,
     metaDescription:
-      'Dyson\'s $499 CameraJet has a 1mm camera in the brush head and auto-flosses what it spots. Launched Sept 1, 2026 — here\'s what it does and who should actually buy it.',
+      'Dyson\'s $499 CameraJet puts a 1mm camera in the brush head and auto-flosses gaps. What it does, who should buy it, and Bangladesh availability.',
     metaKeywords:
       'dyson camerajet, dyson toothbrush, dyson camerajet price, camera toothbrush, dyson camerajet review, gap optical targeting, dyson toothbrush bangladesh',
     excerpt:
@@ -709,11 +725,12 @@ export const posts: Post[] = [
 
   {
     id: 4,
-    title: 'Best Bladeless Tower Fans of 2026: Dreo vs Dreame vs Dyson Compared',
+    title: 'Dreame MF10 vs Dyson vs Dreo: Best Tower Fan in Bangladesh',
     slug: 'best-bladeless-tower-fan-2026',
-    metaTitle: 'Bladeless Tower Fans 2026: Dreo vs Dreame vs Dyson Compared',
+    metaTitle: 'Dreame MF10 vs Dyson vs Dreo: Best Tower Fan in Bangladesh',
+    metaTitleAbsolute: true,
     metaDescription:
-      'Dreo Pilot Max S ($130) vs Dreame MF10 ($300) vs Dyson AM07 ($300): real specs — airflow, oscillation, noise, smart features — to find the best bladeless fan in 2026.',
+      'Dreo Pilot Max S vs Dreame MF10 vs Dyson AM07: airflow, oscillation, noise and smart features, plus warranty notes for buying in Bangladesh.',
     metaKeywords:
       'bladeless tower fan, dreo pilot max s, dreame mf10, dyson am07, best tower fan 2026, bladeless fan bangladesh, dreo vs dyson, dreame fan',
     excerpt:
@@ -783,11 +800,12 @@ export const posts: Post[] = [
 
   {
     id: 5,
-    title: 'Best Faucet Extender for Kitchen Sink 2026: Hibbent 1080° Review',
+    title: 'Best Faucet Extender in Bangladesh 2026: Hibbent 1080°',
     slug: 'best-faucet-extender-hibbent-1080',
-    metaTitle: 'Hibbent 1080° Faucet Extender Review: Best of 2026',
+    metaTitle: 'Best Faucet Extender in Bangladesh 2026: Hibbent 1080°',
+    metaTitleAbsolute: true,
     metaDescription:
-      'The Hibbent 1080° swivel faucet extender reviewed: metal build, 3-joint robotic arm, dual spray modes, ~$23 price. Why it\'s the best faucet extender for kitchen sinks in 2026.',
+      'Hibbent 1080° faucet extender reviewed: metal 3-joint arm, dual spray modes, ~$23. What it does well and how it reaches buyers in Bangladesh.',
     metaKeywords:
       'hibbent 1080 faucet extender, faucet extender review, best faucet aerator 2026, swivel faucet extender, kitchen sink faucet attachment, hibbent bangladesh',
     excerpt:
@@ -849,11 +867,12 @@ export const posts: Post[] = [
 
   {
     id: 6,
-    title: 'Overhead Camera Mount Review: JINRAIKO\'s 360° Arm for Content Creators',
+    title: 'Overhead Camera Mount in Bangladesh: JINRAIKO Review',
     slug: 'overhead-camera-mount-jinraiko-review',
-    metaTitle: 'JINRAIKO Overhead Camera Mount Review: 360° Arm Tested',
+    metaTitle: 'Overhead Camera Mount in Bangladesh: JINRAIKO Review',
+    metaTitleAbsolute: true,
     metaDescription:
-      'JINRAIKO\'s 360° overhead camera mount reviewed: hydraulic floating arm, desk clamp, phone holder, ~$43 price. The budget pick for overhead filming, art and streaming in 2026.',
+      'JINRAIKO\'s 360° overhead camera mount reviewed: hydraulic arm, desk clamp, ~$43. The budget pick for overhead filming, and landing it in Bangladesh.',
     metaKeywords:
       'jinraiko camera mount, overhead camera mount review, camera arm for filming, overhead phone mount, content creator gear, top down camera stand bangladesh',
     excerpt:
@@ -912,11 +931,12 @@ export const posts: Post[] = [
 
   {
     id: 7,
-    title: 'Windows vs Mac: Which Laptop OS Should You Choose in 2026?',
+    title: 'Windows vs Mac in Bangladesh 2026: Which Laptop to Buy?',
     slug: 'windows-vs-mac-which-laptop-os-to-choose',
-    metaTitle: 'Windows vs Mac: Which Laptop OS to Choose in 2026?',
+    metaTitle: 'Windows vs Mac in Bangladesh 2026: Which Laptop to Buy?',
+    metaTitleAbsolute: true,
     metaDescription:
-      'Windows or Mac for your next laptop? Compare performance, price, software compatibility, and battery life to find the right OS for your needs in 2026.',
+      'Windows or Mac for your next laptop in Bangladesh? Compare performance, local prices, software and battery life to pick the right OS in 2026.',
     metaKeywords:
       'windows vs mac, windows or mac for students, laptop os comparison, macos vs windows 2026, macbook bangladesh, windows laptop bangladesh, which laptop os',
     excerpt:
@@ -1009,9 +1029,10 @@ export const posts: Post[] = [
   },
   {
     id: 8,
-    title: 'Best Laptop Under ৳50,000 in Bangladesh (2026 Buying Guide)',
+    title: 'Best Laptop Under ৳50,000 in Bangladesh (2026 Guide)',
     slug: 'best-laptop-under-50000-in-bangladesh',
     metaTitle: 'Best Laptop Under ৳50,000 in Bangladesh (2026 Guide)',
+    metaTitleAbsolute: true,
     metaDescription:
       'Discover the top 5 laptops under ৳50,000 in Bangladesh for 2026 — HP, Lenovo, Dell, ASUS & Acer compared on specs, performance, and value.',
     metaKeywords:
@@ -1109,11 +1130,17 @@ export const posts: Post[] = [
   },
   {
     id: 9,
+    // TITLE DELIBERATELY UNCHANGED (2026-10-20): the only Bangladesh mention
+    // is an FAQ question whose answer names no local price, warranty or
+    // availability, so a "Bangladesh" title would be unbacked. Description
+    // shortened to the 155-char budget with no new local claim. Listed in
+    // the SEO guard's exceptions.
     title: 'Best Laptop for Programming Students in 2026',
     slug: 'best-laptop-for-programming-students',
     metaTitle: 'Best Laptop for Programming Students in 2026',
+    metaTitleAbsolute: true,
     metaDescription:
-      'Find the best laptop for programming students in 2026 — top picks across budgets from Lenovo, ASUS, HP, Acer, and Apple, compared on RAM, processor, and value.',
+      'The best laptops for programming students in 2026 — Lenovo, ASUS, HP, Acer and Apple picks compared on RAM, processor and value.',
     metaKeywords:
       'best laptop for programming students, programming laptop bangladesh, Lenovo ThinkPad E14, ASUS Vivobook Go 15, HP Pavilion 15, Acer Aspire Go 15, MacBook Air M-series, coding laptop',
     excerpt:
