@@ -181,11 +181,11 @@ export function quickLookSeoTitle(product: Product): string {
  * Quick Look description — the search-snippet shape the owner asked for:
  *   "{seoName} price in Bangladesh (BD): {price with status}. {two specs}.
  *    {availability}."
- * Every part comes from the product's own data, and the price status always
- * matches it: "official" only for a confirmed price, "estimated" whenever
- * priceEstimated is set (the word is never dropped), "on sale" for a
- * genuine discount (current price only), and "estimated, pre-order" for an
- * upcoming product. No long spec lists, no placeholders, 155 chars max.
+ * Every part comes from the product's own data. The status word comes from
+ * the product's explicit `priceStatus` (official / unofficial / retail /
+ * on-sale / estimated / not-launched) — it is never assumed, so a grey-channel
+ * price can never be described as official. No status field means no status
+ * word at all. No long spec lists, no placeholders, 155 chars max.
  */
 export function quickLookSeoDescription(product: Product): string {
   const copy = seoCopy[slugOf(product)];
@@ -195,15 +195,35 @@ export function quickLookSeoDescription(product: Product): string {
   return `${name} price in Bangladesh (BD): ${priceWithStatus(product)}. ${specs}. ${availabilityTail(product)}`;
 }
 
-/** Price plus the status word that matches the data — never both guesses. */
+/**
+ * Price plus the status word — read from the product's EXPLICIT
+ * `priceStatus`, never inferred. The old default assumed "official", which
+ * overclaimed for grey-channel and plain-retail listings (the Galaxy Z Fold7
+ * is sold unofficially with no Samsung warranty, for example). When a
+ * product declares no status the number prints on its own, with no claim
+ * attached, so a missing field can never produce a false "official".
+ */
 function priceWithStatus(product: Product): string {
   if (product.price === null) return 'not announced yet';
-  if (product.priceEstimated && product.status === 'upcoming') {
-    return `${taka(product.price)} estimated, pre-order`;
+  const price = taka(product.price);
+  switch (product.priceStatus) {
+    case 'official':
+      return `${price} official`;
+    case 'unofficial':
+      return `${price} unofficial`;
+    case 'retail':
+      return `${price} retail`;
+    case 'on-sale':
+      return `${price} on sale`;
+    case 'estimated':
+      return product.status === 'upcoming'
+        ? `${price} estimated, pre-order`
+        : `${price} estimated`;
+    case 'not-launched':
+      return 'not announced yet';
+    default:
+      return price;
   }
-  if (product.priceEstimated) return `${taka(product.price)} estimated`;
-  if (product.isDeal) return `${taka(product.price)} on sale`;
-  return `${taka(product.price)} official`;
 }
 
 /** Shop title template: "{Product} — Buy Online in Bangladesh | Jupiter BD" */

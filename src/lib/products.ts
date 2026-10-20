@@ -68,6 +68,22 @@ export interface Product {
    *  standard wording would mislead; the price NUMBER still comes from
    *  PriceTag. Absent = the existing wording (unchanged for every product). */
   priceDisplayNote?: string;
+  /** How the price number may be DESCRIBED in metadata (Quick Look
+   *  description). Declared per product because "official" must never be
+   *  assumed: the price note decides. 'official' = the brand's own Bangladesh
+   *  price or an official reseller/distributor listing, 'unofficial' = grey
+   *  channel with no brand warranty, 'retail' = a normal shop price with no
+   *  official-channel claim, 'on-sale' = a genuine discount below the regular
+   *  price, 'estimated' = our own figure, 'not-launched' = no Bangladesh
+   *  price exists. Absent = the description prints the number with no status
+   *  word at all. */
+  priceStatus?:
+    | 'official'
+    | 'unofficial'
+    | 'retail'
+    | 'estimated'
+    | 'on-sale'
+    | 'not-launched';
   /** Emit NO Product JSON-LD for this product. Product pages still emit the
    *  other schema they carry (FAQPage). Set only when the product has no
    *  offers, rating or review to mark up, so the Product node cannot trigger
@@ -200,6 +216,7 @@ export const products: Product[] = [
     views: 5200,
     dateAdded: '2026-08-15',
     price: 179999,
+    priceStatus: 'estimated',
     oldPrice: null,
     priceEstimated: true,
     status: 'upcoming',
@@ -296,6 +313,7 @@ export const products: Product[] = [
     views: 4800,
     dateAdded: '2026-02-20',
     price: 199999,
+    priceStatus: 'official',
     oldPrice: null,
     priceEstimated: false,
     status: 'available',
@@ -393,6 +411,7 @@ export const products: Product[] = [
     views: 6100,
     dateAdded: '2025-09-19',
     price: 209900,
+    priceStatus: 'official',
     oldPrice: null,
     priceEstimated: false,
     status: 'available',
@@ -485,6 +504,7 @@ export const products: Product[] = [
     views: 2200,
     dateAdded: '2025-10-30',
     price: 149999,
+    priceStatus: 'official',
     oldPrice: null,
     priceEstimated: false,
     status: 'available',
@@ -580,6 +600,7 @@ export const products: Product[] = [
     views: 1500,
     dateAdded: '2025-05-28',
     price: 27999,
+    priceStatus: 'official',
     oldPrice: null,
     priceEstimated: false,
     status: 'available',
@@ -677,6 +698,7 @@ export const products: Product[] = [
     dateAdded: '2026-02-10',
     isDeal: true,
     price: 45499,
+    priceStatus: 'on-sale',
     oldPrice: 49999,
     priceEstimated: false,
     status: 'available',
@@ -765,6 +787,7 @@ export const products: Product[] = [
     views: 2600,
     dateAdded: '2025-07-25',
     price: 154999,
+    priceStatus: 'unofficial',
     oldPrice: null,
     priceEstimated: false,
     status: 'available',
@@ -858,6 +881,7 @@ export const products: Product[] = [
     dateAdded: '2022-05-20',
     isDeal: true,
     price: 29990,
+    priceStatus: 'on-sale',
     oldPrice: 32990,
     priceEstimated: false,
     status: 'available',
@@ -941,6 +965,7 @@ export const products: Product[] = [
     dateAdded: '2023-11-10',
     isDeal: true,
     price: 100000,
+    priceStatus: 'on-sale',
     oldPrice: 105000,
     priceEstimated: false,
     status: 'available',
@@ -1020,6 +1045,7 @@ export const products: Product[] = [
     views: 800,
     dateAdded: '2024-03-15',
     price: 3000,
+    priceStatus: 'retail',
     oldPrice: null,
     priceEstimated: false,
     status: 'available',
@@ -1100,6 +1126,7 @@ export const products: Product[] = [
     dateAdded: '2024-06-01',
     isDeal: true,
     price: 5200,
+    priceStatus: 'retail',
     oldPrice: 5800,
     priceEstimated: false,
     status: 'available',
@@ -1177,6 +1204,7 @@ export const products: Product[] = [
     views: 1400,
     dateAdded: '2024-10-05',
     price: 119999,
+    priceStatus: 'official',
     oldPrice: null,
     priceEstimated: false,
     status: 'available',
@@ -1263,6 +1291,7 @@ export const products: Product[] = [
     views: 2000,
     dateAdded: '2025-03-12',
     price: 89999,
+    priceStatus: 'official',
     oldPrice: null,
     priceEstimated: false,
     status: 'available',
@@ -1351,6 +1380,7 @@ export const products: Product[] = [
     views: 900,
     dateAdded: '2023-06-15',
     price: 62000,
+    priceStatus: 'official',
     oldPrice: null,
     priceEstimated: false,
     status: 'available',
@@ -1436,6 +1466,7 @@ export const products: Product[] = [
     views: 600,
     dateAdded: '2024-01-20',
     price: 82000,
+    priceStatus: 'estimated',
     oldPrice: null,
     priceEstimated: true,
     status: 'available',
@@ -1519,6 +1550,7 @@ export const products: Product[] = [
     views: 1700,
     dateAdded: '2025-01-15',
     price: 14000,
+    priceStatus: 'official',
     oldPrice: null,
     priceEstimated: false,
     status: 'available',
@@ -1592,6 +1624,7 @@ export const products: Product[] = [
     views: 3600,
     dateAdded: '2025-09-24',
     price: 33500,
+    priceStatus: 'official',
     oldPrice: null,
     priceEstimated: false,
     status: 'available',
@@ -1677,6 +1710,7 @@ export const products: Product[] = [
     views: 950,
     dateAdded: '2023-08-10',
     price: 2590,
+    priceStatus: 'official',
     oldPrice: null,
     priceEstimated: false,
     status: 'available',
@@ -1753,6 +1787,7 @@ export const products: Product[] = [
     views: 1100,
     dateAdded: '2024-09-18',
     price: 36500,
+    priceStatus: 'official',
     oldPrice: null,
     priceEstimated: false,
     status: 'available',
@@ -1837,6 +1872,7 @@ export const products: Product[] = [
     views: 1300,
     dateAdded: '2023-02-01',
     price: 4400,
+    priceStatus: 'official',
     oldPrice: null,
     priceEstimated: false,
     status: 'available',
@@ -1914,6 +1950,7 @@ export const products: Product[] = [
     views: 1000,
     dateAdded: '2022-08-20',
     price: 28500,
+    priceStatus: 'official',
     oldPrice: null,
     priceEstimated: false,
     status: 'available',
@@ -1991,6 +2028,7 @@ export const products: Product[] = [
     views: 1500,
     dateAdded: '2023-04-18',
     price: 85000,
+    priceStatus: 'estimated',
     oldPrice: null,
     priceEstimated: true,
     status: 'available',
@@ -2116,6 +2154,7 @@ export const products: Product[] = [
     views: 1200,
     dateAdded: '2026-10-18',
     price: null,
+    priceStatus: 'not-launched',
     oldPrice: null,
     /** No Bangladesh price exists — deliberately NOT set to a converted US
      *  figure. purchaseMode 'free-order' keeps the page to a single Free
