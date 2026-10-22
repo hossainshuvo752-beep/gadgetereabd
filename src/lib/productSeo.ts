@@ -203,8 +203,13 @@ export function quickLookSeoTitle(product: Product): string {
 
 /**
  * Quick Look description — the search-snippet shape the owner asked for:
- *   "{seoName} price in Bangladesh (BD): {price with status}. {two specs}.
- *    {availability}."
+ *   "{seoName}{ (model)} price in Bangladesh (BD): {price with status[, what
+ *    it buys]}. {two specs}. {closing sentence}"
+ * The closing sentence is the generated availability tail unless the product
+ * declares `descriptionTail` (a fact the template cannot build, such as a
+ * sibling model's price — which also removes an availability claim the data
+ * does not support). `quickLookModelLabel` names the exact model when one
+ * name covers two phones; `quickLookPriceQualifier` says what the price buys.
  * Every part comes from the product's own data. The status word comes from
  * the product's explicit `priceStatus` (official / unofficial / retail /
  * on-sale / estimated / not-launched) — it is never assumed, so a grey-channel
