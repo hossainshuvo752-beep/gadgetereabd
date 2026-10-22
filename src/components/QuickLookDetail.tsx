@@ -117,7 +117,24 @@ function SectionCard({ title, children }: { title: string; children: React.React
   );
 }
 
+/** ISO date (YYYY-MM-DD) → "22 October 2026" for the visible provenance line.
+ *  Parsed by hand rather than through Date, so a UTC build host and a local
+ *  one print the same day (the ISO date is already the checked day). */
+const MONTH_NAMES = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
+];
+function formatCheckedDate(iso: string): string {
+  const [year, month, day] = iso.split('-').map(Number);
+  if (!year || !month || !day || !MONTH_NAMES[month - 1]) return iso;
+  return `${day} ${MONTH_NAMES[month - 1]} ${year}`;
+}
+
 function KeyValue({ label, value }: { label: string; value: string }) {
+  // A field the manufacturer does not publish is left as an empty string in
+  // the data and the ROW IS OMITTED here — that is how a spec we cannot
+  // verify stays off the page instead of printing "TBD" or "N/A".
+  if (!value || !value.trim()) return null;
   // Two-column CSS GRID row (not flex): the label owns a fixed-width left
   // column (min 90px, max 35%), the value owns the rest — a long value can
   // only ever wrap WITHIN its own column, never below/into the label space
@@ -616,6 +633,14 @@ const QuickLookDetail: React.FC<{
                   <div className="flex items-center gap-1.5 text-xs text-text-body mt-3">
                     <Info className="w-3.5 h-3.5" />
                     Prices may vary by store and variant
+                  </div>
+                )}
+                {/* Freshness: only products whose price was re-checked against
+                    named sources carry `priceCheckedAt`; every other product
+                    renders nothing here (no invented date, no empty label). */}
+                {product.priceCheckedAt && (
+                  <div className="text-xs text-text-body mt-1.5">
+                    Prices checked: {formatCheckedDate(product.priceCheckedAt)}
                   </div>
                 )}
               </div>

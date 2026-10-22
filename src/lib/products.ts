@@ -132,6 +132,11 @@ export interface Product {
   status: 'available' | 'upcoming';
   /** Price source/context — tooltip everywhere, visible text on detail pages. */
   priceNote?: string;
+  /** ISO date (YYYY-MM-DD) on which this product's price was last checked
+   *  against its sources. When set, the Quick Look page renders one visible
+   *  "Prices checked: <date>" line beside the price; products without the
+   *  field render nothing (no placeholder, no invented date). */
+  priceCheckedAt?: string;
   specSheet: {
     basicInfo: {
       model: string;
@@ -604,67 +609,84 @@ export const products: Product[] = [
     oldPrice: null,
     priceEstimated: false,
     status: 'available',
-    priceNote: 'Official TECNO Bangladesh price for 8GB/256GB (VAT applicable).',
+    /** TWO sources minimum, one an official channel; verified 22 Oct 2026.
+     *  TECNO's own Bangladesh product page returned no readable price, but
+     *  Sumash Tech lists this exact model as "Official" at ৳27,999 with a
+     *  1-year warranty, and Gadget & Gear and MRP both list ৳27,999 too.
+     *  The ৳27,999 is the 4G model's price — the 5G model is ৳34,999. */
+    priceNote:
+      'Official TECNO Bangladesh price for the 8GB/256GB 4G model: ৳27,999 (Sumash Tech "Official", Gadget & Gear, MRP — checked 22 Oct 2026). Tecno\'s listed price; confirm VAT with the seller.',
+    priceCheckedAt: '2026-10-22',
+    /** 4G model only. Every value below was read on TECNO's own spec sheet
+     *  (camon-40-pro) on 22 Oct 2026, except the weight, which TECNO does not
+     *  publish and three Bangladesh retailers list as 178g. The 5G model is a
+     *  DIFFERENT phone (Dimensity 7300 Ultimate, 144Hz) and gets its own page
+     *  — none of its values belong here. TECNO's spec sheet lists no glass
+     *  protection or Bluetooth version for the 4G model, so those rows are
+     *  left empty (rendered omitted) rather than filled from the 5G sheet. */
     specSheet: {
       basicInfo: {
-        model: 'Camon 40 Pro',
+        model: 'Camon 40 Pro (4G)',
         brand: 'Tecno',
         releaseDate: 'May 2025',
       },
       display: {
-        type: 'AMOLED',
+        type: 'AMOLED, curved',
         size: '6.78 inches',
         resolution: '1080 x 2436 pixels',
-        refreshRate: '144Hz',
-        protection: 'Gorilla Glass 7i',
+        refreshRate: '120Hz',
+        protection: '',
       },
       performance: {
-        processor: 'MediaTek Dimensity 7300 (4nm)',
-        ram: '8GB/12GB',
+        processor: 'MediaTek Helio G100 Ultimate',
+        ram: '8GB + 8GB extended',
         storage: '256GB',
-        os: 'Android 15, HiOS 15',
+        os: 'Android 15',
       },
       cameraSystem: {
-        rear: '50MP (main, OIS) + 8MP (ultra-wide)',
-        front: '50MP',
+        rear: '50MP Sony LYT-700C (main, OIS) + 8MP ultra-wide',
+        front: '50MP autofocus',
         features: [
-          'OIS',
-          '4K video recording',
-          'AI portrait modes',
+          'OIS on the main camera',
+          'Dual flash and flicker sensor',
+          'One-Tap FlashSnap',
+          'AutoSnap',
+          'AI Eraser 2.0',
         ],
       },
       batteryCharging: {
         capacity: '5200mAh',
-        charging: '45W wired',
+        charging: '45W Super Charge',
       },
       buildDesign: {
-        dimensions: 'TBD',
-        weight: 'TBD',
-        materials: 'Gorilla Glass 7i front, plastic back and frame, IP68/IP69',
+        dimensions: '164.44 x 74.32 x 7.31 mm',
+        weight: '178g (Bangladesh retailer listings)',
+        materials: 'IP68/IP69 dust and water resistance',
         colors: ['Emerald Lake Green', 'Galaxy Black', 'Sandy Titanium'],
       },
       connectivity: {
-        network: '5G, 4G LTE',
-        bluetooth: '5.4',
-        ports: ['USB-C'],
+        network: '4G LTE (2G/3G/4G — no 5G)',
+        bluetooth: '',
+        ports: ['USB-C', 'OTG'],
       },
       sensors: [
-        'Fingerprint (under display)',
-        'Accelerometer',
-        'Gyroscope',
-        'Proximity',
-        'Compass',
+        'Geomagnetic sensor',
+        'Accelerometer and gyroscope (A+G)',
+        'Ambient light and distance sensor',
+        'Infrared remote control',
+        'Electronic compass',
       ],
       aiFeatures: [
-        'Ask AI assistant',
-        'AI Eraser',
-        'AI Portrait',
-        'AI Auto Snapshot',
+        'Ask Ella assistant',
+        'AI Eraser 2.0',
+        'AI Image Extender',
+        'AI Perfect Face',
+        'AI Call Translation and Summary',
       ],
       notableLimitations: [
-        'Plastic back and frame',
-        'No wireless charging',
-        'HiOS ships with bloatware',
+        '4G only — the 5G model has a faster Dimensity 7300 chip',
+        'No telephoto camera — the second lens is an 8MP ultra-wide',
+        'Single memory option: 8GB (+8GB extended) with 256GB',
       ],
     },
   },

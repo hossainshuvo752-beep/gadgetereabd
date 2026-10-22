@@ -17,13 +17,6 @@ import {
   Eye,
   LogOut,
 } from 'lucide-react';
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaWhatsapp,
-  FaYoutube,
-  FaPinterest,
-} from 'react-icons/fa';
 import { posts, postHref } from '@/lib/posts';
 import NavLink from '@/components/NavLink';
 import { products, slugify } from '@/lib/products';
@@ -57,16 +50,6 @@ const MOBILE_MENU_ITEMS = [
 const MOBILE_COMPANY_ITEMS = [
   { href: '/about', label: 'About', icon: Info },
   { href: '/contact', label: 'Contact', icon: Phone },
-] as const;
-
-// Placeholder hrefs for now — same as the Footer's social icons
-// (real profile URLs get added at launch).
-const SOCIAL_LINKS = [
-  { label: 'Facebook', icon: FaFacebookF },
-  { label: 'Instagram', icon: FaInstagram },
-  { label: 'WhatsApp', icon: FaWhatsapp },
-  { label: 'YouTube', icon: FaYoutube },
-  { label: 'Pinterest', icon: FaPinterest },
 ] as const;
 
 // No-match fallback for search: the first few catalog products (newest
@@ -526,20 +509,10 @@ const Header: React.FC = () => {
             </nav>
           </div>
 
-          {/* Bottom block: socials + full-width Login/Register */}
+          {/* Bottom block: full-width Login/Register. The social icons that
+              sat above it were href="#" dead links and were removed
+              (2026-10-22) until real profile URLs exist. */}
           <div className="px-4 pb-6 pt-2">
-            <div className="flex justify-center gap-3 mb-4">
-              {SOCIAL_LINKS.map(({ label, icon: Icon }) => (
-                <a
-                  key={label}
-                  href="#"
-                  aria-label={label}
-                  className="flex items-center justify-center w-9 h-9 rounded-full bg-bg-dark-secondary hover:bg-bg-dark-secondary/70"
-                >
-                  <Icon className="w-4 h-4 text-text-on-dark" />
-                </a>
-              ))}
-            </div>
             {session ? (
               <div className="flex items-center justify-between gap-3 w-full px-4 py-3 border border-text-heading/10 rounded-md">
                 <span className="text-sm text-text-heading truncate">

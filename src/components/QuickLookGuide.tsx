@@ -62,6 +62,16 @@ export default function QuickLookGuideSection({
         <p className="mt-4 text-lg font-medium text-text-heading leading-relaxed">
           {guide.lead}
         </p>
+        {/* Bengali summary — the same verified facts as the lead, for
+            Bengali-language queries. Rendered only when the guide sets it. */}
+        {guide.summaryBn && (
+          <p
+            lang="bn"
+            className="mt-3 text-text-article leading-relaxed border-l-2 border-accent/40 pl-3"
+          >
+            {guide.summaryBn}
+          </p>
+        )}
         {guide.overview.map((p) => (
           <p key={p.slice(0, 40)} className="mt-4 text-text-article leading-relaxed">
             {p}
@@ -93,6 +103,64 @@ export default function QuickLookGuideSection({
         )}
       </div>
 
+      {/* Optional two-model comparison table (4G vs 5G), placed right after
+          the price facts because the price is what it decides. */}
+      {guide.comparison && (
+        <div className="mt-10">
+          <h3 className="text-xl md:text-2xl font-bold text-text-heading">
+            {guide.comparison.heading}
+          </h3>
+          <div className="mt-4 bg-bg-light border border-text-heading/10 rounded-lg overflow-x-auto">
+            <table className="w-full min-w-[560px] text-sm">
+              <thead className="border-b border-text-heading/10">
+                <tr>
+                  <th
+                    scope="col"
+                    className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-text-body"
+                  >
+                    Specification
+                  </th>
+                  {guide.comparison.columns.map((col) => (
+                    <th
+                      key={col}
+                      scope="col"
+                      className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-text-body"
+                    >
+                      {col}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-text-heading/5">
+                {guide.comparison.rows.map((row) => (
+                  <tr key={row.label}>
+                    <th
+                      scope="row"
+                      className="px-4 py-3 text-left font-medium text-text-heading align-top break-words"
+                    >
+                      {row.label}
+                    </th>
+                    <td className="px-4 py-3 text-text-article align-top">
+                      {row.left}
+                    </td>
+                    <td className="px-4 py-3 text-text-article align-top">
+                      {row.right}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="mt-4 space-y-4">
+            {guide.comparison.paragraphs.map((p, i) => (
+              <p key={i} className="text-text-article leading-relaxed">
+                {p}
+              </p>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Optional setup-cost table — configurations with verified overseas
           prices (set only where a Bangladesh price does not exist). */}
       {guide.setupCosts && (
@@ -108,7 +176,7 @@ export default function QuickLookGuideSection({
                     Configuration
                   </th>
                   <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-text-body">
-                    Price (US)
+                    {guide.setupCosts.priceHeader ?? 'Price (US)'}
                   </th>
                   <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-text-body">
                     Notes

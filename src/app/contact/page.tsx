@@ -6,16 +6,6 @@ import { products, slugify } from '@/lib/products';
 import { isPurchaseSurface } from '@/components/ProductActions';
 import { supabase } from '@/lib/supabase';
 import { track } from '@/lib/tracking';
-import { FaFacebookF, FaInstagram, FaWhatsapp, FaYoutube, FaPinterest } from 'react-icons/fa';
-
-// Same icon set and styling as the Footer.
-const SOCIALS = [
-  { label: 'Facebook', icon: FaFacebookF },
-  { label: 'Instagram', icon: FaInstagram },
-  { label: 'WhatsApp', icon: FaWhatsapp },
-  { label: 'YouTube', icon: FaYoutube },
-  { label: 'Pinterest', icon: FaPinterest },
-];
 
 type FormState = {
   name: string;
@@ -252,24 +242,9 @@ function ContactInner() {
               </p>
             </div>
 
-            <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-5">
-              <h2 className="text-base font-semibold text-text-heading mb-3">Follow us</h2>
-              <div className="flex flex-wrap gap-3">
-                {SOCIALS.map(({ label, icon: Icon }) => (
-                  <a
-                    key={label}
-                    href="#"
-                    aria-label={label}
-                    className="flex items-center justify-center w-8 h-8 rounded-full bg-bg-dark-secondary hover:bg-bg-dark-secondary/70"
-                  >
-                    <Icon className="h-5 w-5 text-text-on-dark" />
-                  </a>
-                ))}
-              </div>
-              <p className="text-xs text-text-body mt-3">
-                Deal alerts, review updates and behind-the-scenes from our testing bench.
-              </p>
-            </div>
+            {/* The "Follow us" social block was removed on 2026-10-22: every
+                icon was an href="#" dead link and no real profile URL exists
+                yet. Restore it with real URLs, not placeholders. */}
 
           </div>
         </div>

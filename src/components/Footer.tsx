@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import { FaFacebookF, FaInstagram, FaWhatsapp, FaYoutube, FaPinterest } from 'react-icons/fa';
 import NavLink from '@/components/NavLink';
 
 const Footer: React.FC = () => {
@@ -24,23 +23,9 @@ const Footer: React.FC = () => {
             <p className="text-text-on-dark/70">
               Real reviews, real trust — no sponsorships, no bias.
             </p>
-            <div className="flex space-x-4 mt-2">
-              <a href="#" aria-label="Facebook" className="flex items-center justify-center w-8 h-8 rounded-full bg-bg-dark-secondary hover:bg-bg-dark-secondary/70">
-                <FaFacebookF className="h-5 w-5 text-text-on-dark" />
-              </a>
-              <a href="#" aria-label="Instagram" className="flex items-center justify-center w-8 h-8 rounded-full bg-bg-dark-secondary hover:bg-bg-dark-secondary/70">
-                <FaInstagram className="h-5 w-5 text-text-on-dark" />
-              </a>
-              <a href="#" aria-label="WhatsApp" className="flex items-center justify-center w-8 h-8 rounded-full bg-bg-dark-secondary hover:bg-bg-dark-secondary/70">
-                <FaWhatsapp className="h-5 w-5 text-text-on-dark" />
-              </a>
-              <a href="#" aria-label="YouTube" className="flex items-center justify-center w-8 h-8 rounded-full bg-bg-dark-secondary hover:bg-bg-dark-secondary/70">
-                <FaYoutube className="h-5 w-5 text-text-on-dark" />
-              </a>
-              <a href="#" aria-label="Pinterest" className="flex items-center justify-center w-8 h-8 rounded-full bg-bg-dark-secondary hover:bg-bg-dark-secondary/70">
-                <FaPinterest className="h-5 w-5 text-text-on-dark" />
-              </a>
-            </div>
+            {/* Social icons were removed on 2026-10-22: every one of them was
+                an href="#" dead link and no real profile URL exists yet.
+                Put them back WITH real URLs (not placeholders). */}
           </div>
 
           {/* Shop — MOBILE: slightly smaller header + tighter link rhythm

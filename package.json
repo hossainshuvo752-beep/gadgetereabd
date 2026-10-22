@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --webpack",
-    "build": "node scripts/check-crosslinks.js && node scripts/check-sitemap-routes.js && node scripts/check-product-actions.js && next build && node scripts/check-image-alts.js && node scripts/check-seo-metadata.js",
+    "build": "node scripts/check-crosslinks.js && node scripts/check-sitemap-routes.js && node scripts/check-product-actions.js && node scripts/check-cjk-placeholders.js && next build && node scripts/check-image-alts.js && node scripts/check-seo-metadata.js",
     "start": "next start",
     "lint": "eslint"
   },

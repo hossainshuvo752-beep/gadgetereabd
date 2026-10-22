@@ -37,6 +37,19 @@ interface ProductSeoCopy {
    *  something the data cannot support (e.g. a Bangladesh price that does
    *  not exist). Used by BOTH product routes. */
   descriptionOverride?: string;
+  /** Appended to the price in the Quick Look description, e.g. "8GB/256GB".
+   *  Derived from that product's own spec sheet — for a phone, the storage
+   *  and RAM that the headline price buys. */
+  quickLookPriceQualifier?: string;
+  /** Printed in parentheses right after the seoName in the Quick Look
+   *  description, e.g. "(4G)". For products whose model name covers TWO
+   *  different phones, so the snippet itself says which one this page is. */
+  quickLookModelLabel?: string;
+  /** Replaces the generated closing availability sentence in the Quick Look
+   *  description. Used where the closing sentence must carry a fact the
+   *  shared template cannot build (the Camon 40 Pro 5G's price), or where an
+   *  availability claim is not supported by the data. */
+  descriptionTail?: string;
 }
 
 const seoCopy: Record<string, ProductSeoCopy> = {
@@ -68,9 +81,20 @@ const seoCopy: Record<string, ProductSeoCopy> = {
     shopSpecs: 'Advanced camera system, flagship performance',
     quickLookSpecs: '6.78-inch LTPO AMOLED, Dimensity 9500',
   },
+  /** Titles four models at once otherwise: TECNO sells a Camon 40 Pro (4G,
+   *  Helio G100 Ultimate, 120Hz) and a Camon 40 Pro 5G (Dimensity 7300,
+   *  144Hz) as two different phones. THIS page is the 4G model — the title
+   *  says "4G & 5G" because buyers search both, and the description names
+   *  the 4G model and the 5G model's price. Both figures were read on
+   *  retailer listings (Sumash Tech "Official" / Gadget & Gear / MRP) that
+   *  TECNO's own unreadable BD pages do not contradict; see priceNote. */
   'tecno-camon-40-pro': {
-    shopSpecs: 'Strong camera performance, reliable battery',
-    quickLookSpecs: '6.78-inch AMOLED, Dimensity 7300',
+    shopSpecs: '120Hz AMOLED, 50MP OIS camera',
+    quickLookSpecs: '120Hz AMOLED, 50MP OIS',
+    quickLookPriceQualifier: '8GB/256GB',
+    quickLookModelLabel: '4G',
+    titleOverride: 'Tecno Camon 40 Pro Price in Bangladesh 2026: 4G & 5G',
+    descriptionTail: 'The 5G model costs ৳34,999 official.',
   },
   'infinix-note-60-pro': {
     shopSpecs: 'great value performance',
@@ -191,8 +215,13 @@ export function quickLookSeoDescription(product: Product): string {
   const copy = seoCopy[slugOf(product)];
   if (copy?.descriptionOverride) return copy.descriptionOverride;
   const name = quickLookSeoName(product);
+  const model = copy?.quickLookModelLabel ? ` (${copy.quickLookModelLabel})` : '';
   const specs = copy?.quickLookSpecs ?? 'full specifications and Bangladesh price';
-  return `${name} price in Bangladesh (BD): ${priceWithStatus(product)}. ${specs}. ${availabilityTail(product)}`;
+  const price = copy?.quickLookPriceQualifier
+    ? `${priceWithStatus(product)}, ${copy.quickLookPriceQualifier}`
+    : priceWithStatus(product);
+  const tail = copy?.descriptionTail ?? availabilityTail(product);
+  return `${name}${model} price in Bangladesh (BD): ${price}. ${specs}. ${tail}`;
 }
 
 /**

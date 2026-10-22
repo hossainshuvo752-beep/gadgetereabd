@@ -31,7 +31,24 @@ export type QuickLookGuide = {
   heading: string;
   /** Direct-answer lead: what it is, its (estimated) BD price, who it's for. */
   lead: string;
+  /** Optional 2–3 sentence Bengali summary, rendered straight after the lead
+   *  so Bengali-language queries are answered with the same verified facts.
+   *  Every figure in it must already exist in this guide (no new claims).
+   *  Absent = nothing rendered. */
+  summaryBn?: string;
   overview: string[];
+  /** Optional side-by-side comparison of two MODELS of the same product
+   *  (for example 4G vs 5G), rendered as a full-width table directly after
+   *  the price section, followed by its paragraphs. Every cell is a verified
+   *  value for that model — no "see above" and no invented figure. Absent =
+   *  nothing rendered. */
+  comparison?: {
+    heading: string;
+    /** Column headers for the two models, left then right. */
+    columns: [string, string];
+    rows: { label: string; left: string; right: string }[];
+    paragraphs: string[];
+  };
   priceSection: { heading: string; paragraphs: string[] };
   features: { heading: string; title: string; body: string }[];
   buyers: { heading: string; should: string[]; skip: string[] };
@@ -47,6 +64,9 @@ export type QuickLookGuide = {
    *  and no Bangladesh price exists. Absent = no table rendered. */
   setupCosts?: {
     heading: string;
+    /** Header for the price column — defaults to "Price (US)" for the
+     *  overseas-price use case; a Bangladesh variant table sets its own. */
+    priceHeader?: string;
     rows: { configuration: string; price: string; note?: string }[];
     footer?: string;
   };
@@ -845,132 +865,202 @@ const guides: Record<string, QuickLookGuide> = {
 
   'tecno-camon-40-pro': {
     productName: 'Tecno Camon 40 Pro',
-    heading: 'Tecno Camon 40 Pro Price in Bangladesh: Full Guide',
+    heading: 'Tecno Camon 40 Pro Price in Bangladesh: 4G Model Full Guide',
     lead:
-      'The Tecno Camon 40 Pro is a mid-range camera phone — a 50MP OIS main camera, 144Hz AMOLED display and 5200mAh battery at ৳27,999, making it one of the most complete official TECNO offers for photography-focused buyers on a budget.',
+      'The Tecno Camon 40 Pro on this page is the 4G model: a 6.78-inch 120Hz curved AMOLED phone with a 50MP Sony LYT-700C main camera with OIS, 8GB of RAM and 256GB of storage, listed at ৳27,999 in Bangladesh. TECNO also sells a separate Camon 40 Pro 5G with a faster Dimensity chip and a 144Hz screen, listed at ৳34,999. This page covers the 4G model only and compares the two below.',
+    summaryBn:
+      'টেকনো ক্যামন ৪০ প্রো (৪জি) মডেলের দাম ৳27,999 — ৮জিবি র‍্যাম ও ২৫৬জিবি স্টোরেজসহ। এটি ৪জি ফোন; আলাদা ৫জি ভার্সনের দাম ৳34,999। এতে ৬.৭৮ ইঞ্চি ১২০Hz কার্ভড AMOLED ডিসপ্লে এবং ৫০ মেগাপিক্সেল OIS ক্যামেরা আছে।',
     overview: [
-      'The Camon 40 Pro is TECNO\'s camera-first midranger: a 6.78-inch 144Hz AMOLED display, a 50MP main camera with OIS paired to a 50MP selfie camera, a 5200mAh battery with 45W charging, and a 4nm Dimensity 7300 under the hood — starting at an official ৳27,999 for 8GB/256GB. It launched in May 2025 and is officially available in Bangladesh.',
-      'This guide explains what the price includes, where the phone genuinely rivals more expensive devices (camera optics, display refresh rate) and where its compromises show (plastic build, HiOS software), plus what to check before paying at a Bangladesh counter.',
+      'This is a 4G phone, and TECNO\'s own spec sheet says so plainly: the network list is 2G, 3G and 4G with no 5G entry, and the chip is the MediaTek Helio G100 Ultimate, which TECNO describes as "an ideal choice for a 4G flagship" — an octa-core A76/A55 CPU with a Mali-G57 MC2 GPU. Everything else on the sheet is the same as the 5G model: a 6.78-inch AMOLED at 1080 x 2436, the 50MP Sony LYT-700C main sensor with OIS plus an 8MP ultra-wide, a 50MP autofocus selfie camera, a 5200mAh battery with 45W Super Charge, Android 15, dual speakers with Dolby Atmos, and IP68/IP69 dust and water resistance.',
+      'The difference between the two Camon 40 Pro models is narrow on paper but real at the counter: the 5G model swaps in the Dimensity 7300 Ultimate, lifts the panel to 144Hz and adds 5G, for ৳7,000 more. The camera hardware, battery, charging speed and water resistance are identical, so the choice comes down to the chip, the refresh rate and whether 5G matters where you live. The comparison table below lays out both from the manufacturer\'s own spec sheets.',
     ],
     priceSection: {
-      heading: 'Tecno Camon 40 Pro price in Bangladesh',
+      heading: 'Tecno Camon 40 Pro 4G price in Bangladesh',
       paragraphs: [
-        'The official TECNO Bangladesh price is ৳27,999 for 8GB/256GB (VAT applicable) — a single configuration, with no storage ladder to consider. That price positions it against other budget camera phones; if your budget doubles, the Vivo X300 Pro or Samsung Galaxy S26 Ultra aren\'t its class.',
-        'One thing to verify: TECNO\'s spec sheet lists a 12GB RAM option alongside the base 8GB — the local official stock is the 8GB/256GB variant, so confirm which configuration you\'re buying if a shop advertises differently. Colors are Emerald Lake Green, Galaxy Black and Sandy Titanium.',
+        'The 4G model is listed at ৳27,999 for 8GB of RAM and 256GB of storage — Sumash Tech lists it as "Official" with a 1-year warranty, and Gadget & Gear and MRP both show ৳27,999 for the same 8GB/256GB configuration (checked 22 October 2026). Star Tech shows ৳26,650 on an official listing with 13 months warranty, so a few hundred taka of movement between authorized shops is normal.',
+        'This is Tecno\'s listed price; confirm VAT with the seller. TECNO\'s Bangladesh price pages did not display a readable price when checked, so treat the retailer figures above — not a TECNO page — as the current official-channel reference. Memory is 8GB with 8GB of virtual extension, and there is no storage choice: every 4G unit is 256GB.',
       ],
     },
     keyFacts: [
-      { term: 'Official price (8GB/256GB)', detail: '৳27,999 + VAT' },
-      { term: 'Display', detail: '6.78-inch AMOLED, 144Hz' },
-      { term: 'Battery', detail: '5200mAh, 45W wired' },
-      { term: 'Chip', detail: 'MediaTek Dimensity 7300 (4nm)' },
+      { term: 'Official price (8GB/256GB, 4G)', detail: '৳27,999' },
+      { term: 'Display', detail: '6.78-inch curved AMOLED, 120Hz' },
+      { term: 'Camera', detail: '50MP Sony LYT-700C with OIS + 8MP ultra-wide' },
+      { term: 'Battery', detail: '5200mAh, 45W Super Charge' },
+      { term: 'Chip', detail: 'MediaTek Helio G100 Ultimate (4G)' },
     ],
+    comparison: {
+      heading: 'Tecno Camon 40 Pro 4G vs 5G: which one to buy',
+      columns: ['Camon 40 Pro (4G)', 'Camon 40 Pro 5G'],
+      rows: [
+        { label: 'Network', left: '4G LTE (2G/3G/4G)', right: '5G (2G/3G/4G/5G)' },
+        {
+          label: 'Chipset',
+          left: 'MediaTek Helio G100 Ultimate',
+          right: 'MediaTek Dimensity 7300 Ultimate',
+        },
+        {
+          label: 'Display',
+          left: '6.78-inch curved AMOLED, 120Hz',
+          right: '6.78-inch AMOLED, 144Hz',
+        },
+        {
+          label: 'Charging and battery',
+          left: '5200mAh, 45W Super Charge',
+          right: '5200mAh, 45W Super Charge',
+        },
+        {
+          label: 'Bangladesh price (8GB/256GB)',
+          left: '৳27,999 official',
+          right: '৳34,999 official',
+        },
+        {
+          label: 'Practical difference',
+          left: 'The same camera and battery, 4G data only',
+          right: 'Faster chip, 144Hz panel and 5G where there is coverage',
+        },
+      ],
+      paragraphs: [
+        'Both phones come from TECNO\'s own spec sheets, not from marketing summaries: the 4G model lists 2G/3G/4G, the Helio G100 Ultimate and a 120Hz AMOLED, while the 5G model lists 5G, the Dimensity 7300 Ultimate and a 144Hz AMOLED. Camera, battery, charging, water resistance and software are identical between them, which is why the ৳7,000 gap buys exactly three things — the faster chip, the higher refresh rate and 5G.',
+        'If 5G coverage where you live is patchy or you mostly use Wi-Fi, the 4G model at ৳27,999 is the better-value buy: you keep the 50MP OIS camera and the 5200mAh battery and lose only the extra refresh rate. Pay the ৳34,999 for the 5G model if you game or want the highest refresh rate at this size and expect to use a 5G SIM. Official listings for the 5G model sit at ৳34,999 (Gadget & Gear, MRP) with Star Tech at ৳33,800, checked on 22 October 2026.',
+      ],
+    },
     features: [
       {
         heading: 'Key features explained',
-        title: '50MP OIS main camera + 50MP selfie',
+        title: '50MP Sony LYT-700C with OIS, and a 50MP autofocus selfie',
         body:
-          'The camera setup is where the Camon 40 Pro justifies its price: a 50MP main sensor with OIS (optical stabilization is rare at this budget and directly improves low-light and video steadiness), an 8MP ultra-wide, and a class-leading 50MP front camera with AI portrait modes. It records up to 4K. Family group shots, vlogs and TikTok-style framing are what this camera was engineered for — not zoom or RAW control.',
+          'The main camera is a 50MP Sony LYT-700C with a 1/1.56-inch sensor, 2.0μm fused pixels and optical stabilisation — TECNO\'s own description of the part. OIS at this price is the real story: it steadies handheld low-light shots and video, which is where budget phones usually fall apart. Beside it sits an 8MP ultra-wide with AI distortion correction, plus a dual flash and a flicker sensor. The front camera is 50MP with autofocus and eye tracking across a 91.6-degree field of view, so group selfies stay sharp corner to corner.',
       },
       {
         heading: 'Key features explained',
-        title: '144Hz AMOLED — smoother than most midrangers',
+        title: 'A 120Hz curved AMOLED, not the 144Hz 5G panel',
         body:
-          'The 6.78-inch AMOLED runs 144Hz refresh, protected by Gorilla Glass 7i — which is genuinely unusual in this price bracket; that rate is more often only seen on gaming phones or flagships. Text, animations and social-media scrolling feel noticeably more fluid than the 90Hz/120Hz panels cheaper phones use. Resolution is 1080 x 2436 — crisp enough at this size.',
+          'The 4G model uses a 6.78-inch curved AMOLED at 1080 x 2436 with a 120Hz refresh rate and a 94% screen-to-body ratio with narrow side bezels. That is the number to remember when you compare listings: 144Hz belongs to the 5G model, and any spec table that shows 144Hz next to a ৳27,999 price is describing the wrong phone. 120Hz is still a smooth, current panel — the 5G model is simply one step ahead of it.',
       },
       {
         heading: 'Key features explained',
-        title: 'Dimensity 7300 with 8GB RAM',
+        title: 'Helio G100 Ultimate: a 4G chip, and honest about it',
         body:
-          'The 4nm Dimensity 7300 handles daily apps, camera processing, 144Hz UI rendering and casual gaming well. HiOS 15 on Android 15 adds Ask AI, AI Eraser and AI Auto Snapshot — AI features that genuinely matter for a camera-first phone. RAM-turbo (dynamic allocation) helps multitasking; there\'s no expandable storage, so 256GB is the ceiling.',
+          'The Helio G100 Ultimate is an octa-core A76/A55 part with a Mali-G57 MC2 GPU, and TECNO positions it for 4G phones rather than pretending it is a flagship platform. For messaging, browsing, video, camera processing and casual games it is comfortable. TECNO pairs it with an 11-layer cooling stack and a phase-change plate above 3,195 mm², which matters more for sustained gaming than the peak benchmark number does.',
       },
       {
         heading: 'Key features explained',
-        title: '5200mAh battery with 45W wired charging',
+        title: '5200mAh, 45W Super Charge and IP68/IP69',
         body:
-          'The 5200mAh cell comfortably lasts a full day of camera-heavy use, and 45W wired charging refills it faster than most budget phones manage. There\'s no wireless charging (a listed limitation), which most buyers at this price won\'t miss. IP68/IP69 dust and water protection rounds out a spec sheet that leans hard into practicality.',
+          'The 5200mAh cell and 45W Super Charge are carried over unchanged from the 5G model, and TECNO rates the phone IP68/IP69: in SGS laboratory testing it reached IP69/IP68 under IEC 60529. TECNO is explicit that this is not a permanently effective protection and that liquid damage is not covered by warranty, so treat it as insurance against rain and splashes rather than a licence to swim with it. Dual speakers with Dolby Atmos round out the hardware.',
       },
     ],
     buyers: {
-      heading: 'Who should buy the Camon 40 Pro — and who should skip it',
+      heading: 'Who should buy the Camon 40 Pro 4G — and who should skip it',
       should: [
-        'Selfie and portrait photographers: a 50MP front camera with AI Portrait modes is genuinely rare at ৳27,999.',
-        'Display-quality seekers on a budget: the 144Hz AMOLED panel beats most rivals in its class for smoothness.',
-        'First-time smartphone upgraders: official TECNO pricing, three colorways and an easy-to-understand one-SKU lineup make choosing simple.',
-        'Battery-conscious users: 5200mAh with 45W wired and IP68/IP69 in one price bracket.',
+        'Camera-first buyers on a budget: the 50MP Sony LYT-700C sensor with OIS is the same hardware the ৳34,999 5G model uses.',
+        'Selfie and group-photo users: a 50MP autofocus front camera with a 91.6-degree field of view is rare at this price.',
+        'Buyers who do not need 5G: you keep the battery, charging, water resistance and cameras and save ৳7,000.',
+        'People who want a big AMOLED: 6.78 inches at 120Hz with a 94% screen-to-body ratio is a genuinely large canvas.',
       ],
       skip: [
-        'Build-quality purists: plastic back and frame are listed limitations — this doesn\'t feel like a phone above its class.',
-        'Raw-performance gamers: the Dimensity 7300 is good, not great; heavy titles push it hard at the 144Hz panel\'s limit.',
-        'Storage planner: no expandable storage means 256GB is your permanent ceiling.',
-        'Clean-software buyers: HiOS ships with bloatware (a listed limitation) — expect preinstalled apps you\'ll want to disable.',
+        '5G users: this model has no 5G radio at all — the Camon 40 Pro 5G is the one to look at.',
+        'Refresh-rate chasers: 144Hz is a 5G-model feature; this panel is 120Hz.',
+        'Heavy gamers: the Helio G100 Ultimate is a 4G mid-range chip, not a gaming platform.',
+        'Anyone who needs more than 256GB: there is no storage variant and TECNO lists no card slot.',
       ],
     },
     pros: {
-      heading: 'Pros and cons of the Tecno Camon 40 Pro',
+      heading: 'Pros and cons of the Tecno Camon 40 Pro (4G)',
       pros: [
-        '50MP main camera with OIS + 50MP selfie with AI Portrait',
-        '144Hz AMOLED display with Gorilla Glass 7i',
-        '5200mAh battery with 45W wired charging',
-        'IP68/IP69 water and dust resistance at a budget price',
-        '4nm Dimensity 7300 with useful AI features (Ask AI, AI Eraser)',
-        'Official TECNO warranty at ৳27,999',
+        '50MP Sony LYT-700C main camera with OIS at ৳27,999',
+        '50MP autofocus selfie camera with eye tracking',
+        '6.78-inch curved AMOLED at 120Hz with a 94% screen-to-body ratio',
+        '5200mAh with 45W Super Charge',
+        'IP68/IP69 dust and water resistance, dual speakers with Dolby Atmos',
+        'Android 15 with TECNO\'s Ask Ella assistant and AI Eraser 2.0',
       ],
       cons: [
-        'Plastic back and frame (listed limitation)',
-        'HiOS ships with bloatware (listed limitation)',
-        'No wireless charging (listed limitation)',
-        'No expandable storage — 256GB ceiling',
-        '8MP ultra-wide is basic compared to the main camera',
+        'No 5G — the 5G model is a different, more expensive phone',
+        '120Hz rather than the 5G model\'s 144Hz panel',
+        'No telephoto camera: the second rear lens is an 8MP ultra-wide',
+        'Single memory configuration (8GB + 8GB extended, 256GB)',
+        'TECNO does not publish a weight or a glass-protection spec for this model',
       ],
     },
     buyingTips: {
       heading: 'Buying the Camon 40 Pro in Bangladesh: what to know',
       paragraphs: [
-        'The ৳27,999 official price makes this an easy, low-risk buy through TECNO Bangladesh\'s authorized channels — warranty, service access and consistent configure-to-order availability are what separates it from imported rivals in the same price bracket. Confirm the SKU before paying: TECNO\'s spec sheet mentions a 12GB RAM option that isn\'t the default local official configuration, and some shops advertise the更强的 config without holding the stock to match.',
-        'In store, test three things that define the experience: the 144Hz smoothness in settings (make sure the panel isn\'t capped at 60Hz for the demo unit), a low-light portrait shot to check OIS engagement on the main camera, and 45W charging speed with the in-box adapter. For imports, the usual IMEI (*#06#) and PTA-approval checks apply; the Camon 40 Pro sold officially in Bangladesh is the global HiOS build, and grey imports running Chinese builds sometimes lack Google services — verify Play Store works before you buy.',
+        'Ask for the 4G model by name before you pay, and check two numbers on the box and the listing: the chip should read Helio G100 Ultimate, not Dimensity 7300, and the refresh rate should be 120Hz, not 144Hz. Shops sometimes advertise a stronger configuration than the unit they hand over, so match the model number and the chip on the invoice to the specs on this page. Official listings currently sit between ৳26,650 (Star Tech) and ৳27,999 (Sumash Tech, Gadget & Gear, MRP) for 8GB/256GB, and warranty terms differ — 13 months at Star Tech, 1 year at Sumash Tech.',
+        'At the counter, test what the price is actually paying for: take a low-light portrait to see OIS working, check the 120Hz setting in display options rather than trusting the demo animation, try the 50MP selfie camera in a group shot to see the 91.6-degree framing, and make sure the 45W charger is in the box. Confirm the warranty card is a TECNO Bangladesh one and not a shop warranty, and note that TECNO does not publish a weight for this model — the 178g figure comes from Bangladesh retailer listings, so it is worth weighing the unit only if that matters to you.',
       ],
     },
     faqs: [
       {
         question: 'What is the Tecno Camon 40 Pro price in Bangladesh?',
         answer:
-          'The official TECNO Bangladesh price is ৳27,999 for 8GB/256GB, VAT applicable. This is the only configuration officially stocked locally.',
+          'The 4G model is listed at ৳27,999 for 8GB/256GB (Sumash Tech as "Official" with 1-year warranty; Gadget & Gear and MRP at the same figure, checked 22 October 2026). Star Tech shows ৳26,650 on an official listing. This is Tecno\'s listed price — confirm VAT with the seller.',
+      },
+      {
+        question: 'Is the Tecno Camon 40 Pro 4G or 5G?',
+        answer:
+          'Both exist as separate phones. The Camon 40 Pro is the 4G model (Helio G100 Ultimate, 120Hz AMOLED) and is the one this page covers at ৳27,999. The Camon 40 Pro 5G uses a Dimensity 7300 Ultimate with a 144Hz panel and costs ৳34,999.',
+      },
+      {
+        question: 'What is the Tecno Camon 40 Pro 5G price in Bangladesh?',
+        answer:
+          '৳34,999 for 8GB/256GB on official listings at Gadget & Gear and MRP (checked 22 October 2026). Star Tech lists the same 5G model at ৳33,800 with 13 months warranty.',
+      },
+      {
+        question: 'How much does the Tecno Camon 40 Pro weigh?',
+        answer:
+          'About 178g — the figure Bangladesh retailers publish for this model. TECNO\'s own spec sheet does not list a weight for the 4G Camon 40 Pro, so 178g is the retailer figure rather than a manufacturer spec.',
+      },
+      {
+        question: 'Is the Tecno Camon 40 Pro waterproof?',
+        answer:
+          'TECNO rates it IP68/IP69, tested in SGS laboratories to the IP69/IP68 level under IEC 60529. TECNO states the protection is not permanently effective and can decline with daily wear, and that damage from liquid immersion is not covered by the warranty.',
+      },
+      {
+        question: 'What colors does the Tecno Camon 40 Pro come in?',
+        answer:
+          'TECNO lists Galaxy Black, Emerald Lake Green, Glacier White and Sandy Titanium. Bangladesh shops currently show Galaxy Black, Emerald Lake Green and Glacier White, so check which colors the specific shop has in stock.',
+      },
+      {
+        question: 'Does the Tecno Camon 40 Pro come with an official warranty?',
+        answer:
+          'Yes, on official-channel listings: Sumash Tech lists a 1-year warranty and Star Tech 13 months, both marked as official TECNO Bangladesh stock. Ask for the TECNO warranty card rather than a shop-only warranty.',
       },
       {
         question: 'Does the Camon 40 Pro have optical image stabilization?',
         answer:
-          'Yes — the 50MP main camera includes OIS, which is uncommon at this price and helps low-light shots and general video steadiness.',
+          'Yes — the 50MP Sony LYT-700C main camera has OIS, which is uncommon at this price and helps low-light shots and video steadiness.',
       },
       {
-        question: 'How good is the Camon 40 Pro display?',
+        question: 'What display does the 4G Camon 40 Pro have?',
         answer:
-          'It uses a 6.78-inch AMOLED at 144Hz with Gorilla Glass 7i protection — a smoother panel than most phones at this price range use.',
+          'A 6.78-inch curved AMOLED at 1080 x 2436 with a 120Hz refresh rate and a 94% screen-to-body ratio. The 144Hz panel belongs to the 5G model, not this one.',
       },
       {
         question: 'Does the Camon 40 Pro support wireless charging?',
-        answer: 'No — 45W wired charging only, which TECNO lists among the phone\'s limitations.',
+        answer:
+          'No. TECNO lists 45W Super Charge wired charging and does not list wireless charging for this model.',
       },
       {
-        question: 'Is the HiOS software worth putting up with?',
+        question: 'Tecno Camon 40 Pro এর দাম কত?',
         answer:
-          'HiOS includes preinstalled bloatware, a confirmed limitation. You can disable most of it, and the phone\'s AI features (Ask AI, AI Eraser) are genuinely useful — but buyers who prefer a clean Android experience should factor that in.',
+          '৪জি মডেলের দাম ৳27,999 (৮জিবি র‍্যাম, ২৫৬জিবি স্টোরেজ)। ৫জি মডেল আলাদা ফোন, যার দাম ৳34,999। দাম অফিসিয়াল বিক্রেতার তালিকা অনুযায়ী, তাই কেনার আগে ভ্যাটসহ মোট দাম দোকানে নিশ্চিত করুন।',
       },
     ],
     links: [
       {
         label: 'Tecno Camon 40 Pro — Shop page',
-        description: 'The full Shop listing at the official price',
+        description: 'The full Shop listing at the 4G price',
         href: '/shop/tecno-camon-40-pro',
       },
       {
         label: 'Infinix Note 60 Pro — Quick Look',
-        description: 'The step-up sub-brand sibling with faster charging',
+        description: 'The same-price-band sibling from Infinix, with its own spec sheet',
         href: '/quick-look/infinix-note-60-pro',
       },
       {
         label: 'Xiaomi Redmi Watch 5 — Quick Look',
-        description: 'A budget wearable that pairs well with an Infinix phone',
+        description: 'A budget smartwatch to pair with this phone',
         href: '/quick-look/xiaomi-redmi-watch-5',
       },
       {
@@ -978,12 +1068,9 @@ const guides: Record<string, QuickLookGuide> = {
         description: 'Budget earbuds priced to match this phone',
         href: '/quick-look/anker-soundcore-r50i-earbuds',
       },
-      {
-        label: 'Best Laptop Under ৳50,000 in Bangladesh (2026 Buying Guide)',
-        description: 'Blog: if your ৳30k budget is really deciding between laptop and phone',
-        href: '/posts/best-laptop-under-50000-in-bangladesh',
-      },
     ],
+    sourcesChecked:
+      'Specs and prices checked on 22 October 2026 against TECNO\'s official spec sheets for the Camon 40 Pro (4G) and Camon 40 Pro 5G, plus Sumash Tech, Gadget & Gear, Star Tech and MRP listings.',
   },
 
   'infinix-note-60-pro': {
@@ -1512,6 +1599,12 @@ const guides: Record<string, QuickLookGuide> = {
           'Star Tech lists the 1TB Disc Edition at ৳100,000, down from a regular price of ৳105,000.',
       },
       {
+        question:
+          'What is the PS5 Slim Disc Edition price in Bangladesh?',
+        answer:
+          'The PlayStation 5 Slim Disc Edition — the 1TB console with the detachable UHD Blu-ray drive — is ৳100,000 in Bangladesh at Star Tech, down from a regular ৳105,000. That is the price for the disc model in our data; we do not list a digital-only edition.',
+      },
+      {
         question: 'Is the disc drive on the PS5 Slim removable?',
         answer:
           'Yes — the UHD Blu-ray drive on this Slim model is detachable, so it can be serviced or replaced as a module rather than the whole console.',
@@ -1876,6 +1969,31 @@ const guides: Record<string, QuickLookGuide> = {
       { term: 'S Pen', detail: 'Included in the box' },
       { term: 'Battery', detail: '11200mAh with 45W wired charging' },
     ],
+    /** Variant prices — every figure and the word "estimated" come from this
+     *  product's own priceNote; nothing new is quoted here. */
+    setupCosts: {
+      heading: 'Samsung Galaxy Tab S10 Ultra price by storage and connectivity',
+      priceHeader: 'Price',
+      rows: [
+        {
+          configuration: 'Wi-Fi 256GB',
+          price: '৳119,999',
+          note: 'Official Bangladesh price at Riointernational — the only confirmed tier.',
+        },
+        {
+          configuration: '5G 512GB',
+          price: '~৳145,999 (estimated)',
+          note: 'Star Tech has listed this tier between ৳145,999 and ৳185,999 depending on configuration, so this is an estimated midpoint, not a quote.',
+        },
+        {
+          configuration: 'Wi-Fi 512GB',
+          price: 'estimated, about ৳26,000 above the 256GB',
+          note: 'No active Bangladesh listing — our own estimate, not a listed price.',
+        },
+      ],
+      footer:
+        'Only the Wi-Fi 256GB figure is a confirmed official price. The 512GB tiers are estimates and must be confirmed with the retailer for the exact configuration.',
+    },
     features: [
       {
         heading: 'Key features explained',
@@ -1948,6 +2066,12 @@ const guides: Record<string, QuickLookGuide> = {
         question: 'What is the Samsung Galaxy Tab S10 Ultra price in Bangladesh?',
         answer:
           'The Wi-Fi 256GB model is officially ৳119,999 at Riointernational. The 5G 512GB tier is around ৳145,999 estimated, with Star Tech listings spanning ৳145,999 to ৳185,999 by configuration.',
+      },
+      {
+        question:
+          'What is the Samsung Galaxy Tab S10 Ultra 512GB price in Bangladesh?',
+        answer:
+          'There are two 512GB tiers and neither is a confirmed official price. The 5G 512GB is around ৳145,999 estimated, with Star Tech listings from ৳145,999 to ৳185,999 depending on configuration; the Wi-Fi 512GB has no active Bangladesh listing and is estimated at roughly ৳26,000 above the ৳119,999 Wi-Fi 256GB model.',
       },
       {
         question: 'Does the Galaxy Tab S10 Ultra come with an S Pen?',
