@@ -37,16 +37,22 @@ export type QuickLookGuide = {
    *  Absent = nothing rendered. */
   summaryBn?: string;
   overview: string[];
-  /** Optional side-by-side comparison of two MODELS of the same product
-   *  (for example 4G vs 5G), rendered as a full-width table directly after
-   *  the price section, followed by its paragraphs. Every cell is a verified
-   *  value for that model — no "see above" and no invented figure. Absent =
-   *  nothing rendered. */
+  /** Optional side-by-side comparison of sibling MODELS (for example 4G vs
+   *  5G, or a phone against the model above and below it), rendered as a
+   *  full-width table directly after the price section, followed by its
+   *  paragraphs. Every cell is a verified value for that model — no "see
+   *  above" and no invented figure. Absent = nothing rendered. */
   comparison?: {
     heading: string;
-    /** Column headers for the two models, left then right. */
-    columns: [string, string];
-    rows: { label: string; left: string; right: string }[];
+    /** Heading level for the comparison block. Default 'h3' (a section inside
+     *  the guide). Set 'h2' when the comparison is a top-level section of its
+     *  own — a VERSION comparison (Global vs China) rather than a sub-part. */
+    level?: 'h2' | 'h3';
+    /** Column headers for the models: two or three. A third column is used by
+     *  the three-way comparison (Redmi Note 15 5G vs 15 Pro 5G vs 14 Pro+). */
+    columns: [string, string] | [string, string, string];
+    /** `third` is required only when `columns` has three entries. */
+    rows: { label: string; left: string; right: string; third?: string }[];
     paragraphs: string[];
   };
   priceSection: { heading: string; paragraphs: string[] };
@@ -3535,6 +3541,546 @@ const guides: Record<string, QuickLookGuide> = {
         label: 'DJI Osmo Action 5 Pro — Quick Look',
         description: 'Shoot 4K footage and then watch it back on the big screen',
         href: '/quick-look/dji-osmo-action-5-pro',
+      },
+    ],
+  },
+  /**
+   * Redmi Note 14 Pro+ 5G — TWO VERSIONS of ONE model on ONE page. Every
+   * figure was read on an opened page on 22-23 Oct 2026 (sources in
+   * sourcesChecked): the Global spec sheet is Xiaomi Global's own spec page,
+   * and the China figures come from MobileDokan.com's China listing
+   * (6200mAh, 90W, IP68/IP69K, 50MP f/1.6 main + 50MP 2.5x telephoto + 8MP
+   * ultra-wide), corroborated by Gadget Man and Xiaomi India for the same
+   * 6200mAh hardware. Prices are UNOFFICIAL — Xiaomi Bangladesh does not sell
+   * this model.
+   */
+  'redmi-note-14-pro-plus-5g': {
+    productName: 'Redmi Note 14 Pro+ 5G',
+    heading: 'Redmi Note 14 Pro+ 5G Price in Bangladesh: Global and China Versions',
+    lead:
+      'The Redmi Note 14 Pro+ 5G comes in two versions, and they are not the same phone inside. The Global version is listed at ৳37,500 for 8GB/256GB with a 200MP main camera, a 5110mAh battery and 120W charging. The China version is listed at ৳35,000 for 12GB/256GB, and it trades the 200MP sensor for a 50MP main plus a 50MP telephoto, with a bigger 6200mAh battery charging at 90W. Both prices are unofficial: Xiaomi Bangladesh does not sell this model, so every unit here is imported.',
+    summaryBn:
+      'রেডমি নোট ১৪ প্রো প্লাস ৫জি-এর গ্লোবাল ভার্সন ৮জিবি/২৫৬জিবি ৳37,500, আর চায়না ভার্সন ১২জিবি/২৫৬জিবি ৳35,000 — দুটোই আনঅফিসিয়াল, কারণ জিয়াওমি বাংলাদেশে এই মডেল অফিসিয়ালি বিক্রি করে না। গ্লোবাল ভার্সনে ২০০ মেগাপিক্সেল OIS ক্যামেরা ও ১২০W চার্জিং, চায়না ভার্সনে ৬২০০mAh ব্যাটারি, ৫০ মেগাপিক্সেল টেলিফটো ও ৯০W চার্জিং।',
+    overview: [
+      'Both versions share the same shell design and the same Qualcomm Snapdragon 7s Gen 3 chipset, and both run Xiaomi HyperOS on Android 14. The 6.67-inch 1.5K AMOLED panel at 120Hz with 3000-nit peak brightness is common to both, as is the 20MP front camera, IP68 water resistance, dual speakers with Dolby Atmos and an IR blaster. What changes between them is the rear camera hardware, the battery and the charging speed — the three things this page compares in full below.',
+      'The Global version is the one most Bangladesh shops advertise, and it is the version whose colours are pictured here as Frost Blue and Midnight Black. The China version arrives in Black, White and Green. Xiaomi does not publish a Bangladesh price for either version and no local distributor sells them, so the figures on this page come from Bangladesh retailers and price listings, not from Xiaomi.',
+    ],
+    priceSection: {
+      heading: 'Redmi Note 14 Pro+ 5G price in Bangladesh, both versions',
+      paragraphs: [
+        'The Global version starts at ৳37,500 for 8GB of RAM and 256GB of storage, rises to ৳39,500 for 12GB/256GB and ৳43,500 for 12GB/512GB. The China version is ৳35,000 for 12GB/256GB. Every figure here is a Bangladesh shop listing rather than a manufacturer price, because Xiaomi Bangladesh does not list this model at all — check the table below for the sources and dates behind each one.',
+        'Two things move the price more than the version does. The first is storage: the jump from 256GB to 512GB on the Global version costs ৳4,000, while the jump from 8GB to 12GB of RAM costs ৳2,000. The second is which version the shop is actually holding: a China unit costs about ৳4,500 less than the Global 12GB/256GB, so ask for the model number before you agree a price. Where the listings disagreed by a few percent we took the more recently updated MobileDokan figure and say so in the notes.',
+      ],
+    },
+    keyFacts: [
+      { term: 'Global version, 8GB/256GB', detail: '৳37,500 unofficial' },
+      { term: 'Global version, 12GB/256GB', detail: '৳39,500 unofficial' },
+      { term: 'Global version, 12GB/512GB', detail: '৳43,500 unofficial' },
+      { term: 'China version, 12GB/256GB', detail: '৳35,000 unofficial' },
+      { term: 'Global camera', detail: '200MP main (OIS) + 8MP ultra-wide + 2MP macro' },
+      { term: 'China camera', detail: '50MP main (OIS) + 50MP 2.5x telephoto + 8MP ultra-wide' },
+    ],
+    setupCosts: {
+      heading: 'Version x storage x price (unofficial)',
+      priceHeader: 'Price (BDT, unofficial)',
+      rows: [
+        {
+          configuration: 'Global version · 8GB/256GB',
+          price: '৳37,500',
+          note: 'MobileDokan.com, updated 27 Sep 2026; Rio International lists ৳35,999 for the same Global 8GB/256GB unit on 23 Oct 2026.',
+        },
+        {
+          configuration: 'Global version · 12GB/256GB',
+          price: '৳39,500',
+          note: 'MobileDokan.com, updated 27 Sep 2026; Rio International lists ৳39,499 on 23 Oct 2026.',
+        },
+        {
+          configuration: 'Global version · 12GB/512GB',
+          price: '৳43,500',
+          note: 'MobileDokan.com, updated 27 Sep 2026; Rio International lists ৳44,999 and MobileDokan.co listed ৳45,000 on 2 Sep 2026.',
+        },
+        {
+          configuration: 'China version · 12GB/256GB',
+          price: '৳35,000',
+          note: 'MobileDokan.com, updated 19 Oct 2026; MobileDokan.co listed ৳34,000 on 2 Sep 2026, and Rio International and RMTI list ৳34,999 and ৳34,000 on 23 Oct 2026.',
+        },
+      ],
+      footer:
+        'Prices checked 22 October 2026. Every row is an unofficial Bangladesh listing: Xiaomi has no official price for this model in Bangladesh. Only combinations with two independent sources are listed — the China 12GB/512GB variant appeared on a single listing and is deliberately left out. Prices vary by seller, by version and by the day.',
+    },
+    comparison: {
+      level: 'h2',
+      heading: 'Global vs China version: what is different',
+      columns: ['Global Version', 'China Version'],
+      rows: [
+        {
+          label: 'Main camera',
+          left: '200MP f/1.65 with OIS (Xiaomi Global spec page)',
+          right: '50MP f/1.6 with OIS (MobileDokan China listing)',
+        },
+        {
+          label: 'Second rear camera',
+          left: '8MP ultra-wide, plus a 2MP macro',
+          right: '50MP 2.5x telephoto, plus an 8MP ultra-wide',
+        },
+        { label: 'Front camera', left: '20MP', right: '20MP' },
+        { label: 'Display', left: '6.67-inch 1.5K AMOLED, 120Hz, 3000 nits', right: '6.67-inch 1.5K AMOLED, 120Hz, 3000 nits' },
+        { label: 'Chipset', left: 'Qualcomm Snapdragon 7s Gen 3 (4nm)', right: 'Qualcomm Snapdragon 7s Gen 3 (4nm)' },
+        { label: 'Battery', left: '5110mAh', right: '6200mAh' },
+        { label: 'Charging', left: '120W HyperCharge', right: '90W wired' },
+        {
+          label: 'Water resistance',
+          left: 'IP68, rated to 1.5m for 30 minutes',
+          right: 'IP68/IP69K, rated to 2m for 24 hours (MobileDokan China listing)',
+        },
+        { label: 'Body and weight', left: '162.53 x 74.67 x 8.75mm, 210g', right: '162.5 x 74.7 x 8.7mm, 210.8g' },
+        { label: 'Colours', left: 'Frost Blue, Midnight Black, Lavender Purple', right: 'Black, White, Green' },
+        {
+          label: 'Software',
+          left: 'Android 14 with HyperOS',
+          right: 'Android 14 with HyperOS; Google services not confirmed by any source we opened',
+        },
+        { label: 'Warranty in Bangladesh', left: 'Seller only, no Xiaomi Bangladesh warranty', right: 'Seller only, no Xiaomi Bangladesh warranty' },
+        { label: 'Bangladesh price', left: '৳37,500 to ৳43,500 unofficial', right: '৳35,000 unofficial' },
+      ],
+      paragraphs: [
+        'The cameras are the real fork in the road. The Global version goes all in on one huge 200MP sensor with optical stabilisation, then adds a cheap ultra-wide and a token 2MP macro — a setup that crops well and handles low light, but gives you no true close-up reach. The China version spreads the money across three useful focal lengths: a 50MP main, a 50MP 2.5x telephoto for portraits and distance, and an 8MP ultra-wide. If you photograph people, the China version is the more flexible camera; if you mostly crop and shoot at night, the Global sensor is larger.',
+        'The battery difference is the other half of the story. The China listing puts that version at 6200mAh with 90W charging; the Global version is 5110mAh with 120W — more capacity or faster top-ups, not both. The two bodies are almost the same size, 162.53 x 74.67 x 8.75mm against 162.5 x 74.7 x 8.7mm, so neither is meaningfully bigger in hand. What you gain with the China unit is 1,090mAh more capacity; what you give up is 30W of charging speed. Both are unofficial imports here, and neither carries a Xiaomi Bangladesh warranty.',
+      ],
+    },
+    availability: {
+      heading: 'Not sold officially in Bangladesh: what that means',
+      paragraphs: [
+        'Xiaomi Bangladesh does not list the Redmi Note 14 Pro+ 5G, and no authorised distributor brings it in. Every unit on sale here is an unofficial import, which has three practical consequences: there is no manufacturer warranty in Bangladesh, the price is set by the importer rather than by Xiaomi, and the box contents and charger can differ from what Xiaomi ships in other markets. The only warranty you have is the one the seller writes on the invoice, so ask for it in writing before paying.',
+        'Two checks protect you before you hand over money. First, confirm which version you are buying — ask for the model number and check whether the camera layout has the 200MP Global array or the China telephoto, because shops sometimes quote one version and hand over the other. Second, make sure the IMEI is registered and legal for use in Bangladesh, and open the box in front of the delivery person so a swapped or refurbished unit is caught immediately.',
+      ],
+    },
+    features: [
+      {
+        heading: 'Key features explained',
+        title: 'A 1.5K 120Hz AMOLED on both versions',
+        body:
+          'Both versions carry a 6.67-inch AMOLED at 2712 x 1220 pixels, a 120Hz refresh rate and 3000-nit peak brightness, protected by Gorilla Glass Victus 2. Xiaomi Global also lists Dolby Vision and HDR10+, a 480Hz touch sampling rate and 1920Hz PWM dimming. This is the part of the phone you will not have to think about when choosing a version — it is the same screen either way.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Snapdragon 7s Gen 3, and honest memory speed',
+        body:
+          'The Snapdragon 7s Gen 3 is a 4nm octa-core chip, listed as the SM7635 on the spec sheets, and it is comfortably fast for messaging, video, maps and casual games. Xiaomi pairs the Global version with LPDDR4X memory and UFS 2.2 storage rather than the faster LPDDR5X/UFS 3.1 combination some rivals use at this price, which is worth knowing before you pay flagship money for a mid-range platform.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'IP68 on both, with the small print that matters',
+        body:
+          'Both versions are rated IP68. MobileDokan\u2019s China listing adds an IP69K rating and says the unit was tested in 2 metres of water for 24 hours, while its Global listing describes submersion up to 1.5 metres for 30 minutes. Xiaomi Global is explicit that the protection is not permanent and that liquid damage beyond the tested conditions is not covered by warranty. Treat it as protection from rain and splashes, not as a licence to take the phone swimming.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Two cameras that suit different buyers',
+        body:
+          'The Global version leans on a 200MP f/1.65 main sensor (1/1.4 inch, 16-in-1 pixel binning) with OIS, an 8MP ultra-wide and a 2MP macro, recording 4K at 24 or 30fps. The China version uses a 50MP main with OIS, a 50MP 2.5x telephoto and an 8MP ultra-wide, with the same 4K recording. In practice the Global version is the better crop-and-zoom-from-one-lens camera, while the China version gives you an actual second focal length instead of a macro lens.',
+      },
+    ],
+    buyers: {
+      heading: 'Who should buy the Redmi Note 14 Pro+ 5G — and who should skip it',
+      should: [
+        'Buyers who want the largest camera sensor at this price: the Global version pairs a 200MP 1/1.4-inch sensor with OIS.',
+        'People who value fast charging: the Global version tops up at 120W, the China version at 90W.',
+        'Photographers who want a real second focal length: the China version adds a 50MP 2.5x telephoto instead of a macro lens.',
+        'Buyers who accept an unofficial import and are comfortable relying on the seller for warranty.',
+      ],
+      skip: [
+        'Anyone who needs a Xiaomi Bangladesh warranty or official after-sales service — this model has neither.',
+        'Buyers who want 5G band support they can verify locally: band lists differ by market and neither version is sold here officially.',
+        'People who expect flagship memory speeds: LPDDR4X and UFS 2.2 are below what the price suggests.',
+        'Buyers who will not check the version before paying — the two versions look alike in photos and cost different money.',
+      ],
+    },
+    pros: {
+      heading: 'Pros and cons',
+      pros: [
+        'Sharp 1.5K 120Hz AMOLED with 3000-nit peak brightness on both versions',
+        'OIS on the main camera of both versions',
+        'IP68 water and dust resistance, unusually thorough for a mid-range phone',
+        '120W charging on the Global version, 6200mAh capacity on the China version',
+        'Full-width 6.67-inch screen with thin bezels and Gorilla Glass Victus 2',
+      ],
+      cons: [
+        'Not officially sold in Bangladesh — no manufacturer warranty, no local pricing',
+        'Two versions with different cameras, batteries and prices share one name',
+        'LPDDR4X memory and UFS 2.2 storage on the Global version at this price point',
+        'The Global version has no telephoto lens, and its 2MP macro adds little',
+        'No 3.5mm headphone jack',
+      ],
+    },
+    buyingTips: {
+      heading: 'Buying notes for Bangladesh',
+      paragraphs: [
+        'Ask two questions before you pay. "Which version is this — Global or China?" and "What is the model number?" A Global unit has the 200MP camera array and a 5110mAh battery, so the box and the phone information screen should say so; a China unit has the 50MP main plus telephoto and 6200mAh. Shops mix them up more often than you would expect, and the ৳4,500 price gap between the Global 12GB/256GB and the China 12GB/256GB is exactly the sort of difference that invites a switch. Shops also label the 6200mAh unit inconsistently — MobileDokan calls it CN while Gadget Man files the same hardware under IND — so the label on the shelf is not proof of which model you are being sold.',
+        'Then treat the purchase as a grey-market purchase, because that is what it is. Check that the IMEI is registered for use in Bangladesh, confirm the box contains the charger the listing promises (Xiaomi Global ships one, but regional contents differ), and get the warranty terms on the invoice. Paying cash on delivery and opening the box in front of the courier is the simplest protection available to you.',
+      ],
+    },
+    sourcesChecked:
+      'Specs checked against Xiaomi Global\u2019s Redmi Note 14 Pro+ 5G specification page and Xiaomi India\u2019s Redmi Note 14 Pro+ 5G specification page, MobileDokan.com\u2019s Global and China listings (updated 27 September 2026 and 19 October 2026), MobileDokan.co\u2019s listing (updated 2 September 2026), and the Gadget Man, SMS Gadget, Rio International and RMTI listings, all opened on 22 and 23 October 2026. Prices are unofficial. No reviewer unit was tested for this page.',
+    faqs: [
+      {
+        question: 'What is the Redmi Note 14 Pro+ 5G price in Bangladesh?',
+        answer:
+          'The Global version is listed at ৳37,500 for 8GB/256GB, ৳39,500 for 12GB/256GB and ৳43,500 for 12GB/512GB. The China version is ৳35,000 for 12GB/256GB. All of these are unofficial Bangladesh listings checked on 22 October 2026, because Xiaomi Bangladesh does not sell this model.',
+      },
+      {
+        question: 'What is the difference between the Global and China versions?',
+        answer:
+          'The Global version has a 200MP main camera with OIS, a 5110mAh battery and 120W charging. The China version has a 50MP main camera with OIS plus a 50MP 2.5x telephoto, a 6200mAh battery and 90W charging. Colours differ too: Frost Blue, Midnight Black and Lavender Purple globally, Black, White and Green in China.',
+      },
+      {
+        question: 'Is the Redmi Note 14 Pro+ 5G official in Bangladesh?',
+        answer:
+          'No. Xiaomi Bangladesh does not list this model and no authorised distributor sells it, so every unit is an unofficial import. That means no Xiaomi Bangladesh warranty, importer-set pricing, and box contents that can differ from other markets.',
+      },
+      {
+        question: 'Which version of the Redmi Note 14 Pro+ 5G should I buy?',
+        answer:
+          'Buy the Global version if you want the largest sensor, 120W charging and the colours sold locally. Buy the China version if you want a real telephoto lens and a bigger battery for less money. Check the model number before paying, because the two versions look nearly identical in photos.',
+      },
+      {
+        question: 'Which RAM and storage version is the best value?',
+        answer:
+          'On the Global version, 12GB/256GB costs ৳2,000 more than 8GB/256GB, so it is the value pick. 12GB/512GB adds another ৳4,000 for storage you may not need. The China version is sold here as 12GB/256GB only.',
+      },
+      {
+        question: 'What battery and charging does it have?',
+        answer:
+          'The Global version uses a 5110mAh battery with 120W HyperCharge. The China version uses a 6200mAh battery with 90W wired charging. Xiaomi Global warns that no power adapter is included in every region, so confirm what is in the box.',
+      },
+      {
+        question: 'What colours is it available in?',
+        answer:
+          'The Global version comes in Frost Blue, Midnight Black and Lavender Purple. The China version comes in Black, White and Green. Our gallery pictures Frost Blue and Midnight Black for the Global version, and all three China colours.',
+      },
+      {
+        question: 'Does it come with an official warranty in Bangladesh?',
+        answer:
+          'No. Xiaomi Bangladesh does not sell this model, so there is no manufacturer warranty here. The only warranty is whatever the seller writes on your invoice — ask for it in writing before paying, and keep the box and receipt.',
+      },
+      {
+        question: 'Redmi Note 14 Pro+ এর দাম কত?',
+        answer:
+          'বাংলাদেশে আনঅফিসিয়াল দাম: গ্লোবাল ভার্সন ৮জিবি/২৫৬জিবি ৳37,500, ১২জিবি/২৫৬জিবি ৳39,500 এবং ১২জিবি/৫১২জিবি ৳43,500। চায়না ভার্সন ১২জিবি/২৫৬জিবি ৳35,000। জিয়াওমি বাংলাদেশে এই মডেল অফিসিয়ালি বিক্রি করে না, তাই দাম ও ওয়ারেন্টি বিক্রেতার উপর নির্ভর করে।',
+      },
+    ],
+    links: [
+      {
+        label: 'All Quick Look price pages',
+        description: 'Every phone and gadget we have checked, with its sources',
+        href: '/quick-look',
+      },
+      {
+        label: 'Redmi Note 14 Pro Plus 5G — Shop listing',
+        description: 'The same product in our shop catalogue, with both versions',
+        href: '/shop/redmi-note-14-pro-plus-5g',
+      },
+      {
+        label: 'Xiaomi Redmi Watch 5 — Quick Look',
+        description: 'The Xiaomi wearable we have priced for Bangladesh',
+        href: '/quick-look/xiaomi-redmi-watch-5',
+      },
+    ],
+  },
+  /**
+   * Redmi Note 15 5G — ONE model, an official Bangladesh launch (not an
+   * import-only page). Every figure was read on an opened page on 23 Oct
+   * 2026 (sources in sourcesChecked): Xiaomi Global's own spec and product
+   * pages for the hardware, Star Tech's product page for the official
+   * ৳36,999 price and the one-year Xiaomi Care warranty, MobileDokan for the
+   * same official figure (updating the Note 15 Pro 5G comparison column), and
+   * Apple Gadgets BD for the import price. Import prices are labelled as such
+   * and never mixed with the official configuration.
+   */
+  'redmi-note-15-5g': {
+    productName: 'Redmi Note 15 5G',
+    heading: 'Redmi Note 15 5G Price in Bangladesh: Official Price, Specs and Buying Guide',
+    lead:
+      'The Redmi Note 15 5G is Xiaomi\'s mid-range 5G phone for 2026, and Bangladesh gets it officially: ৳36,999 buys the 8GB/256GB configuration from an authorised retailer, with a one-year warranty claimable at Xiaomi Care. The hardware is a 6.77-inch 120Hz AMOLED screen, a 108MP main camera, a 5520mAh battery with 45W charging and an IP66 splash rating in a 178g body. Unofficial imports of the same model start at about ৳30,499, but they are not the official configuration and come without a Xiaomi Bangladesh warranty.',
+    summaryBn:
+      'রেডমি নোট ১৫ ৫জি বাংলাদেশে অফিসিয়ালি ৳36,999 দামে পাওয়া যায় (৮জিবি/২৫৬জিবি), সঙ্গে এক বছরের জিয়াওমি ওয়ারেন্টি। ফোনটিতে ৬.৭৭ ইঞ্চি ১২০Hz AMOLED ডিসপ্লে, ১০৮ মেগাপিক্সেল ক্যামেরা, ৫৫২০mAh ব্যাটারি ও ৪৫W চার্জিং রয়েছে, এবং এটি IP66 রেটেড।',
+    overview: [
+      'This page covers one phone: the Redmi Note 15 5G. Xiaomi sells several handsets under the Note 15 name, and the Note 15 Pro 5G is a different, larger device with a 6.83-inch 1.5K screen, a 200MP main camera and a 6580mAh battery — it is compared with this model below so the two never get mixed up. The 5G model is the balanced one in that family: a large high-refresh screen, a big battery, a high-resolution main sensor, and a chipset picked for efficiency rather than outright speed.',
+      'The body measures 164mm tall and 75.42mm wide, and 7.35mm thick in Black and Glacier Blue; Mist Purple is 7.40mm. Weight is 178g, light for a phone with a 5520mAh cell. Xiaomi describes the front as high-durability display glass without naming the glass brand, and MobileDokan\'s specification list describes a glass front with plastic frame and plastic back. Xiaomi\'s spec page also lists dual speakers with Dolby Atmos and Hi-Res audio, an IR blaster, an in-screen fingerprint sensor, AI face unlock and NFC — with a note that NFC availability varies by market, which is worth checking on the box in Bangladesh.',
+      'What comes in the box is part of the value calculation on this phone: Xiaomi\'s own package list is the handset, a USB Type-C cable, a SIM eject tool, a protective case, a quick start guide and a warranty card. There is no power adapter, and Xiaomi\'s spec page says so twice, recommending a 45W PD adapter or its own 45W charger. Budget for one if you do not already own a USB-C PD charger.',
+    ],
+    priceSection: {
+      heading: 'Redmi Note 15 5G price in Bangladesh',
+      paragraphs: [
+        'The official Bangladesh price is ৳36,999 for the 8GB/256GB configuration. Star Tech lists exactly that configuration at ৳36,999 with a one-year official warranty claimable at the nearest Xiaomi Care, and MobileDokan records the same official figure for the same memory size on a page last updated on 21 September 2026. Both pages were checked on 23 October 2026, which is the date printed beside the price box on this page.',
+        'Import listings are cheaper and less predictable. Apple Gadgets BD shows the same model at ৳30,499, with CN and Global units and 6GB/128GB, 8GB/128GB, 8GB/256GB and 12GB/256GB options, and MobileDokan records an unofficial ৳34,000. Those are grey imports: no Xiaomi Bangladesh warranty, no guarantee that the box matches the configuration you asked for, and regional differences in things like NFC support. If the saving matters more than the warranty, confirm the memory variant, the region and the model number before you pay.',
+      ],
+    },
+    keyFacts: [
+      { term: 'Official price, 8GB/256GB', detail: '৳36,999' },
+      { term: 'Import listings from', detail: 'about ৳30,499' },
+      { term: 'Display', detail: '6.77-inch AMOLED, 120Hz, 3200 nits peak' },
+      { term: 'Battery and charging', detail: '5520mAh, 45W turbo charging' },
+      { term: 'Main camera', detail: '108MP f/1.7 with an 8MP ultra-wide' },
+      { term: 'Water resistance', detail: 'IP66 (splash resistant)' },
+    ],
+    setupCosts: {
+      heading: 'Redmi Note 15 5G price by configuration',
+      priceHeader: 'Price (BDT)',
+      rows: [
+        {
+          configuration: '8GB/256GB · official',
+          price: '৳36,999',
+          note: 'Star Tech (authorised retailer) with a one-year official warranty, and MobileDokan\'s official figure; both checked 23 October 2026.',
+        },
+        {
+          configuration: 'Unofficial imports · 6GB/128GB to 12GB/256GB',
+          price: 'from ৳30,499',
+          note: 'Apple Gadgets BD import listing, checked 23 October 2026. No Xiaomi Bangladesh warranty; the price changes with the memory variant and the region of the unit.',
+        },
+      ],
+      footer:
+        'Prices checked 23 October 2026. Only the 8GB/256GB configuration has a verified official price, so it is the only official row. Import prices are shown separately and must not be read as the official price of this phone.',
+    },
+    comparison: {
+      heading: 'Redmi Note 15 5G vs Redmi Note 15 Pro vs the Redmi Note 14 Pro+ 5G',
+      columns: ['Redmi Note 15 5G', 'Redmi Note 15 Pro 5G', 'Redmi Note 14 Pro+ 5G'],
+      rows: [
+        {
+          label: 'Price in Bangladesh',
+          left: '৳36,999 official (8GB/256GB)',
+          right: '৳42,500 unofficial (8GB/256GB)',
+          third: '৳37,500 unofficial (Global 8GB/256GB)',
+        },
+        {
+          label: 'Chipset',
+          left: 'Snapdragon 6 Gen 3 (4nm), up to 2.4GHz',
+          right: 'Dimensity 7400-Ultra (4nm), up to 2.6GHz',
+          third: 'Snapdragon 7s Gen 3 (4nm)',
+        },
+        {
+          label: 'Display',
+          left: '6.77-inch AMOLED, 2392 x 1080, 120Hz, 3200 nits peak',
+          right: '6.83-inch AMOLED, 1.5K (2772 x 1280), 120Hz, 3200 nits peak',
+          third: '6.67-inch AMOLED, 1.5K, 120Hz',
+        },
+        {
+          label: 'Main camera',
+          left: '108MP f/1.7 + 8MP ultra-wide, 20MP front',
+          right: '200MP f/1.7 with OIS + 8MP ultra-wide, 20MP front',
+          third: '200MP with OIS + 8MP ultra-wide + 2MP macro, 20MP front',
+        },
+        {
+          label: 'Battery',
+          left: '5520mAh',
+          right: '6580mAh',
+          third: '5110mAh',
+        },
+        {
+          label: 'Charging',
+          left: '45W turbo, no adapter in the box',
+          right: '45W turbo, 45W adapter in the box',
+          third: '120W HyperCharge',
+        },
+        {
+          label: 'Water resistance',
+          left: 'IP66',
+          right: 'IP66, IP68, IP69, IP69K',
+          third: 'IP68',
+        },
+        {
+          label: 'Weight',
+          left: '178g',
+          right: '210g',
+          third: '210g',
+        },
+        {
+          label: 'Memory options',
+          left: '8GB/256GB officially in Bangladesh',
+          right: '8GB/256GB, 8GB/512GB, 12GB/256GB, 12GB/512GB',
+          third: '8GB/256GB, 12GB/256GB, 12GB/512GB',
+        },
+        {
+          label: 'Software',
+          left: 'HyperOS 2',
+          right: 'HyperOS 2',
+          third: 'Android 14 with HyperOS',
+        },
+        {
+          label: 'Bangladesh warranty',
+          left: 'One year, Xiaomi Care',
+          right: 'Seller only (unofficial import)',
+          third: 'Seller only (unofficial import)',
+        },
+      ],
+      paragraphs: [
+        'The Note 15 Pro 5G is the bigger phone of the three in every sense. Its 6.83-inch 1.5K panel and 6580mAh battery are a step up from the 6.77-inch screen and 5520mAh cell here, and its 200MP main sensor out-resolves the 108MP camera on this model. It also adds IP68 and IP69K ratings and ships with a 45W adapter. The catch is the price and the paperwork: the Pro is listed at ৳42,500 by an import seller in the listings we checked, roughly ৳5,500 above this phone\'s official price, and it comes without a Xiaomi Bangladesh warranty, whereas this one is sold officially at ৳36,999 with a year of local cover.',
+        'The Redmi Note 14 Pro+ 5G is the interesting cross-shopping case. It is last year\'s model and also an import, at ৳37,500 for the Global 8GB/256GB version — about ৳500 more than this phone\'s official price — but it brings a 200MP main camera and 120W charging, which is a large jump from 45W. What you give up is the local warranty and the newer software build, and you are buying a 5110mAh battery instead of 5520mAh. If you charge overnight and want the safety of a warranty, the Note 15 5G is the simpler purchase; if you want the fastest charging at this price and accept an import, the Note 14 Pro+ page has the full breakdown.',
+        'The honest summary of the three is about priorities rather than a winner: this phone is the official, warranty-backed, longest-battery-life-of-the-three option in the middle price band; the Pro adds screen and camera hardware at a higher import price with no local cover; the 14 Pro+ trades battery capacity and warranty for charging speed and sensor size.',
+      ],
+    },
+    availability: {
+      heading: 'Official or import: which Redmi Note 15 5G are you buying?',
+      paragraphs: [
+        'The official route in Bangladesh is the 8GB/256GB configuration sold through an authorised retailer such as Star Tech, where the listing carries a one-year warranty claimable at a Xiaomi Care point and the price is ৳36,999. That is the version this page\'s price, schema and specifications describe.',
+        'Everything else is an import. Import sellers list the same model from about ৳30,499 with CN and Global units in 6GB/128GB, 8GB/128GB, 8GB/256GB and 12GB/256GB configurations. An import is not automatically a bad buy — the hardware is the same family — but the warranty is whatever the seller writes on the invoice, the memory configuration may not be the official one, and features that vary by market (NFC in particular) should be checked on the actual unit. Ask for the model number and the region before agreeing a price.',
+      ],
+    },
+    features: [
+      {
+        heading: 'Key features explained',
+        title: 'A 6.77-inch 120Hz AMOLED with 3200-nit peak brightness',
+        body:
+          'The screen is a 6.77-inch AMOLED at 2392 x 1080 pixels with a refresh rate up to 120Hz and 240Hz touch sampling. Xiaomi rates peak brightness at 3200 nits, with 800 nits typical, 12-bit colour, an 8,000,000:1 contrast ratio and full DCI-P3 coverage, plus 3840Hz PWM dimming for people who notice flicker. One caveat worth knowing: Xiaomi\'s own spec sheet lists the panel as 6.67 inches in one line, while its product page, Star Tech and MobileDokan all publish 6.77 inches — the 6.77-inch figure is the one this page uses and the one you will see on the box.',
+      },
+      {
+        heading: 'Key features explained',
+        title: '5520mAh and 45W, with no charger in the box',
+        body:
+          'Xiaomi rates the battery at 5520mAh typical and charging at 45W turbo. That is a capacity-first setup: it is 410mAh more than the Note 14 Pro+ 5G\'s 5110mAh cell, but the 14 Pro+ charges at 120W, so this phone is the slower of the two to top up. Xiaomi\'s package list contains no adapter, and its spec page recommends a 45W PD charger — so the real cost of ownership includes one unless you already have a compatible USB-C PD brick.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'A 108MP main camera and a modest 8MP ultra-wide',
+        body:
+          'The rear setup pairs a 108MP f/1.7 main sensor (1/1.67-inch, 0.64μm pixels, 6P lens) with an 8MP f/2.2 ultra-wide. The main sensor uses 9-in-1 pixel binning to output 1.92μm images, which is the mode you will actually shoot in most of the time; the 108MP mode is there for cropping. Rear video tops out at 4K 30fps and the front camera is a 20MP f/2.2 unit recording 1080p at 30fps. There is no telephoto lens, so zoom is crop-based.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Snapdragon 6 Gen 3 with LPDDR4X and UFS 2.2',
+        body:
+          'The chip is Qualcomm\'s Snapdragon 6 Gen 3 on a 4nm process, with an octa-core CPU up to 2.4GHz and an Adreno GPU. Xiaomi pairs it with LPDDR4X memory and UFS 2.2 storage — the older, slower combination rather than the LPDDR5X and UFS 3.1 parts some rivals use at this price. In practice that is fine for messaging, video, maps and casual games, but it is not a phone to buy for heavy gaming or for the fastest possible app loading. Storage can be expanded with a microSD card up to 1TB, though the card shares the second SIM slot.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'IP66, dual speakers, an IR blaster and HyperOS 2',
+        body:
+          'The IP66 rating covers dust and splashing water — Xiaomi\'s note is explicit that it is certified under laboratory conditions and that the warranty does not cover liquid damage outside them, so treat it as rain-and-splash protection rather than something to take into a pool. Elsewhere the phone has dual speakers with Dolby Atmos and Hi-Res audio, an IR blaster for controlling TVs and air conditioners, an in-screen fingerprint sensor, AI face unlock, 5G with the band list published on Xiaomi\'s spec page, Bluetooth 5.1 and Wi-Fi 802.11ac. It runs HyperOS 2 on top of Android 15.',
+      },
+    ],
+    buyers: {
+      heading: 'Who should buy the Redmi Note 15 5G — and who should skip it',
+      should: [
+        'Buyers who want an official Bangladesh unit with a one-year warranty at a known price, rather than an import with seller-only cover.',
+        'People who care about battery endurance more than charging speed: 5520mAh is the largest cell among the three phones compared here.',
+        'Anyone who wants a large 120Hz AMOLED screen with high peak brightness for outdoor use.',
+        'Households that will actually use the IR blaster for a TV or air conditioner — it is rare on phones at this price.',
+        'Buyers who photograph in good light and want a high-resolution main sensor without paying for a telephoto.',
+      ],
+      skip: [
+        'People who need fast charging: 45W is modest next to the 120W of the Note 14 Pro+ 5G.',
+        'Buyers who want IP68 or IP69K submersion ratings; this model is IP66 only.',
+        'Heavy gamers: the Snapdragon 6 Gen 3 with LPDDR4X and UFS 2.2 is a mid-range combination.',
+        'Photographers who want a real zoom lens — there is no telephoto camera here.',
+        'Buyers who want the lowest price on this exact model and accept no local warranty; an import at about ৳30,499 is cheaper.',
+      ],
+    },
+    pros: {
+      heading: 'Pros and cons',
+      pros: [
+        'Official Bangladesh price and a one-year Xiaomi Care warranty',
+        '5520mAh battery, the largest of the three models compared on this page',
+        '6.77-inch 120Hz AMOLED with 3200-nit peak brightness',
+        '108MP main camera with 9-in-1 pixel binning',
+        'IP66, dual speakers with Dolby Atmos, IR blaster and NFC',
+        '178g and 7.35mm thin — light for its battery size',
+      ],
+      cons: [
+        'No power adapter in the box',
+        '45W charging is slower than the 120W of the Note 14 Pro+ 5G',
+        'IP66 only, not rated for submersion',
+        'No telephoto camera; the 8MP ultra-wide is basic',
+        'LPDDR4X memory and UFS 2.2 storage at a mid-range price',
+        'Only the 8GB/256GB configuration is official in Bangladesh',
+      ],
+    },
+    buyingTips: {
+      heading: 'Buying notes for Bangladesh',
+      paragraphs: [
+        'Start by deciding which channel you are buying from. An authorised retailer gives you the 8GB/256GB configuration at ৳36,999 with a one-year warranty claimable at a Xiaomi Care point; an import seller can be about ৳6,500 cheaper but the warranty is theirs alone, and the box may hold a 6GB/128GB or 12GB/256GB unit. Ask for the memory size and the region in writing, and compare the model number on the box with the one on the phone\'s about screen.',
+        'Check the box contents before you leave the shop, because this model ships without a charger: the handset, USB Type-C cable, SIM eject tool, protective case, quick start guide and warranty card are what Xiaomi lists, and Xiaomi\'s page also warns that package contents differ by region. If the seller is including a 45W adapter, confirm it is a PD unit rather than a generic brick.',
+        'For any unit, check the IMEI with *#06# against the box and the invoice, and confirm it is registered for use on Bangladesh networks. Test the screen at low brightness for PWM flicker if you are sensitive to it, try the fingerprint sensor and both speakers, and check that NFC actually appears in the settings on the unit you are buying — Xiaomi notes that NFC availability varies between markets, so an import may not have it.',
+      ],
+    },
+    sourcesChecked:
+      'Specs checked against Xiaomi Global\'s Redmi Note 15 5G spec page and product page, and its Redmi Note 15 Pro 5G spec page; Star Tech\'s Redmi Note 15 5G product page for the specification table, the one-year warranty and the ৳36,999 price; MobileDokan\'s Redmi Note 15 5G listing (updated 21 September 2026) and Redmi Note 15 Pro 5G listing (updated 17 September 2026); and Apple Gadgets BD\'s import listing. All pages opened on 23 October 2026. No reviewer unit was tested for this page.',
+    faqs: [
+      {
+        question: 'What is the Redmi Note 15 5G price in Bangladesh?',
+        answer:
+          'The official price in Bangladesh (BD) is ৳36,999 for the 8GB/256GB configuration, checked on 23 October 2026. Unofficial imports of the same model are listed from about ৳30,499, without a Xiaomi Bangladesh warranty.',
+      },
+      {
+        question: 'Is the Redmi Note 15 5G available in Bangladesh officially?',
+        answer:
+          'Yes. Authorised retailers list the 8GB/256GB configuration at ৳36,999 with a one-year official warranty claimable at Xiaomi Care, and MobileDokan records the same official price. Import units of other memory sizes are also widely sold, but those are not the official configuration.',
+      },
+      {
+        question: 'What is the difference between the Redmi Note 15 5G and the Note 15 Pro 5G?',
+        answer:
+          'The Pro has a larger 6.83-inch 1.5K screen, a 6580mAh battery, a 200MP main camera, IP66/IP68/IP69/IP69K ratings and an adapter in the box. This model has a 6.77-inch 2392 x 1080 screen, a 5520mAh battery, a 108MP main camera and IP66. The Pro is listed at ৳42,500 by an import seller; this one is ৳36,999 officially with a local warranty.',
+      },
+      {
+        question: 'How good is the camera on the Redmi Note 15 5G?',
+        answer:
+          'The rear setup is a 108MP f/1.7 main camera with a 1/1.67-inch sensor and 9-in-1 pixel binning, plus an 8MP ultra-wide. Video tops out at 4K 30fps and the front camera is 20MP. There is no telephoto lens, so zooming is crop-based.',
+      },
+      {
+        question: 'What battery and charging does the Redmi Note 15 5G have?',
+        answer:
+          'It has a 5520mAh battery with 45W turbo charging. Xiaomi does not include a power adapter in the box and recommends a 45W PD charger.',
+      },
+      {
+        question: 'Does the Redmi Note 15 5G come with a charger in the box?',
+        answer:
+          'No. Xiaomi\'s package list for this model is the phone, a USB Type-C cable, a SIM eject tool, a protective case, a quick start guide and a warranty card. Budget for a 45W PD adapter if you do not already own one.',
+      },
+      {
+        question: 'What display does the Redmi Note 15 5G have?',
+        answer:
+          'A 6.77-inch AMOLED at 2392 x 1080 pixels with a 120Hz refresh rate, 3200 nits peak brightness, 12-bit colour, DCI-P3 coverage and 3840Hz PWM dimming. One line on Xiaomi\'s spec sheet says 6.67 inches, but the product page and both Bangladesh retailers publish 6.77 inches.',
+      },
+      {
+        question: 'What colours does the Redmi Note 15 5G come in?',
+        answer:
+          'Three: Glacier Blue, Mist Purple and Black. The gallery on this page shows all three, each with five images.',
+      },
+      {
+        question: 'Is the Redmi Note 15 5G water resistant?',
+        answer:
+          'It is rated IP66, which covers dust and splashing water. Xiaomi notes that the certification applies to laboratory conditions and that the warranty does not cover liquid damage beyond them, so it is not a phone for swimming or submerging.',
+      },
+      {
+        question: 'What warranty do I get on the Redmi Note 15 5G in Bangladesh?',
+        answer:
+          'The official 8GB/256GB unit carries a one-year warranty claimable at the nearest Xiaomi Care point. Import units carry only whatever warranty the seller gives you, so ask for it in writing on the invoice.',
+      },
+      {
+        question: 'Redmi Note 15 5G এর দাম কত?',
+        answer:
+          'বাংলাদেশে রেডমি নোট ১৫ ৫জি-এর অফিসিয়াল দাম ৳36,999 (৮জিবি/২৫৬জিবি), সঙ্গে এক বছরের জিয়াওমি ওয়ারেন্টি। আনঅফিসিয়াল ইমপোর্ট প্রায় ৳30,499 থেকে শুরু, কিন্তু সেগুলোতে জিয়াওমি বাংলাদেশের ওয়ারেন্টি থাকে না। ফোনটিতে ৬.৭৭ ইঞ্চি ১২০Hz AMOLED ডিসপ্লে, ১০৮ মেগাপিক্সেল ক্যামেরা ও ৫৫২০mAh ব্যাটারি আছে।',
+      },
+    ],
+    links: [
+      {
+        label: 'Redmi Note 14 Pro+ 5G — Quick Look',
+        description: 'The 200MP model with 120W charging, priced from ৳37,500 as an import',
+        href: '/quick-look/redmi-note-14-pro-plus-5g',
+      },
+      {
+        label: 'Tecno Camon 40 Pro — Quick Look',
+        description: 'A ৳27,999 alternative with a 120Hz AMOLED and a 50MP OIS camera',
+        href: '/quick-look/tecno-camon-40-pro',
+      },
+      {
+        label: 'Redmi Note 15 5G — Shop listing',
+        description: 'The same phone in our shop catalogue, with its price and specifications',
+        href: '/shop/redmi-note-15-5g',
+      },
+      {
+        label: 'All Quick Look price pages',
+        description: 'Every phone and gadget we have checked, with its sources',
+        href: '/quick-look',
       },
     ],
   },

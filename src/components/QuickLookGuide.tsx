@@ -107,9 +107,19 @@ export default function QuickLookGuideSection({
           the price facts because the price is what it decides. */}
       {guide.comparison && (
         <div className="mt-10">
-          <h3 className="text-xl md:text-2xl font-bold text-text-heading">
-            {guide.comparison.heading}
-          </h3>
+          {/* Default H3, same as every sibling section. A guide that sets
+              level:'h2' (the Global vs China VERSION comparison) renders the
+              same visual size as an H2 section without changing any other
+              page's markup. */}
+          {guide.comparison.level === 'h2' ? (
+            <h2 className="text-xl md:text-2xl font-bold text-text-heading">
+              {guide.comparison.heading}
+            </h2>
+          ) : (
+            <h3 className="text-xl md:text-2xl font-bold text-text-heading">
+              {guide.comparison.heading}
+            </h3>
+          )}
           <div className="mt-4 bg-bg-light border border-text-heading/10 rounded-lg overflow-x-auto">
             <table className="w-full min-w-[560px] text-sm">
               <thead className="border-b border-text-heading/10">
@@ -146,6 +156,13 @@ export default function QuickLookGuideSection({
                     <td className="px-4 py-3 text-text-article align-top">
                       {row.right}
                     </td>
+                    {/* Third model column — rendered only for a three-way
+                        comparison (the two-model tables are unchanged). */}
+                    {guide.comparison?.columns.length === 3 && (
+                      <td className="px-4 py-3 text-text-article align-top">
+                        {row.third ?? '—'}
+                      </td>
+                    )}
                   </tr>
                 ))}
               </tbody>

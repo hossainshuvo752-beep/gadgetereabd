@@ -27,6 +27,11 @@ import { track } from '@/lib/tracking';
  *                       Pre-Order, no Coming Soon, no Notify Me), so card
  *                       height/layout never change;
  *                       detail: Free Order + Notify Me.
+ * - mode 'notify'     → ONE Notify Me button on both card and detail (no
+ *                       cart, no Buy Now, no Free Order): for products sold
+ *                       only through unofficial channels, where taking an
+ *                       order would promise stock and warranty we cannot
+ *                       confirm.
  * - Buy Now and Free Order can NEVER render together: the two blocks are
  *   selected by one ternary on purchaseModeOf() below (the build guard
  *   scripts/check-product-actions.js verifies the marked blocks).
@@ -107,12 +112,30 @@ const ProductActions: React.FC<ProductActionsProps> = ({
       className={
         layout === 'card'
           ? 'mt-auto flex flex-col gap-1.5 md:gap-2 md:flex-row'
-          : mode === 'free-order'
+          : mode === 'free-order' || mode === 'notify'
             ? 'grid gap-3 sm:grid-cols-2'
             : 'grid gap-3 sm:grid-cols-3'
       }
     >
-      {mode === 'free-order' ? (
+      {mode === 'notify' ? (
+        /* data-purchase-block: notify — a stock-alert request ONLY. No
+           purchase action may render inside this block. */
+        <div data-purchase-block="notify" className="contents">
+          <Link
+            href={notifyHref}
+            onClick={() =>
+              track('notify_click', { product_id: product.id, surface })
+            }
+            className={
+              layout === 'card'
+                ? 'tactile flex-1 px-3 py-2 bg-bg-dark text-text-on-dark font-medium rounded-md hover:bg-bg-dark-secondary transition-colors text-sm text-center'
+                : 'tactile flex items-center justify-center px-5 py-3 bg-bg-dark text-text-on-dark font-medium rounded-lg hover:bg-bg-dark-secondary transition-colors'
+            }
+          >
+            Notify Me
+          </Link>
+        </div>
+      ) : mode === 'free-order' ? (
         /* data-purchase-block: free-order — exactly ONE button, and it must
            never sit next to Buy Now / Add to Cart / Pre-Order / Coming Soon. */
         <div data-purchase-block="free-order" className="contents">
@@ -183,9 +206,10 @@ const ProductActions: React.FC<ProductActionsProps> = ({
         </div>
       )}
 
-      {/* Notify Me — detail pages only, in BOTH modes. Cards never show it,
-          so card height and the 4-column grid stay exactly as they are. */}
-      {layout === 'detail' && (
+      {/* Notify Me — detail pages only, in buy and free-order modes. Cards
+          never show it, so card height and the 4-column grid stay exactly as
+          they are; 'notify' products already render it as their only button. */}
+      {layout === 'detail' && mode !== 'notify' && (
         <Link
           href={notifyHref}
           onClick={() =>

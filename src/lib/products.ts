@@ -89,6 +89,10 @@ export interface Product {
    *  offers, rating or review to mark up, so the Product node cannot trigger
    *  a Search Console error. Absent = Product schema exactly as today. */
   noProductSchema?: boolean;
+  /** Omit the Offer's `availability` value while keeping the offer itself.
+   *  For products sold only through unofficial channels, where no source
+   *  confirms stock. Absent = availability InStock, exactly as today. */
+  omitSchemaAvailability?: boolean;
   /** Social-share (OG/Twitter) image URL for this product's pages when the
    *  square hero is the wrong card shape. Absent = heroImage, as today. */
   ogImage?: string;
@@ -99,6 +103,50 @@ export interface Product {
    *  the detail page renders NO color selector at all (nothing meaningful
    *  to switch), and the flat gallery/heroImage is used for every color. */
   colorImages?: { color: string; images: string[] }[];
+  /** VERSIONS of the SAME model (Global / China) — a THIRD variant
+   *  dimension that sits ABOVE color and storage. One product page still
+   *  covers exactly one model; the versions live inside it. Selecting a
+   *  version swaps its gallery, its colors, its priced storage options and
+   *  the spec values that differ (through specOverrides). Products without
+   *  this field render no Version row and behave exactly as before.
+   *  The BASE fields (gallery, colorImages, specSheet, price) always describe
+   *  the DEFAULT version, so every non-version-aware consumer (cards, Shop,
+   *  JSON-LD, search) keeps showing the default version unchanged. */
+  versions?: {
+    /** Stable id used in the data and by spec overrides, e.g. 'global'. */
+    id: string;
+    /** Button label, e.g. "Global Version". */
+    label: string;
+    /** Short label used in variant/cart strings, e.g. "Global". */
+    shortLabel: string;
+    /** Color→images for THIS version (same rules as colorImages). */
+    colorImages: { color: string; images: string[] }[];
+    /** Priced RAM/storage options for THIS version — a label here is the
+     *  only way that option can be selected, so an unpriced combination is
+     *  never shown. */
+    variants: {
+      label: string;
+      price: number;
+      oldPrice?: number;
+      priceEstimated?: boolean;
+    }[];
+    /** Spec fields that DIFFER for this version, merged over specSheet by
+     *  specSheetOf(). Omitted fields keep the base (default-version) value. */
+    specOverrides?: {
+      basicInfo?: Partial<Product['specSheet']['basicInfo']>;
+      display?: Partial<Product['specSheet']['display']>;
+      performance?: Partial<Product['specSheet']['performance']>;
+      cameraSystem?: Partial<Product['specSheet']['cameraSystem']>;
+      batteryCharging?: Partial<Product['specSheet']['batteryCharging']>;
+      buildDesign?: Partial<Product['specSheet']['buildDesign']>;
+      connectivity?: Partial<Product['specSheet']['connectivity']>;
+      sensors?: string[];
+      notableLimitations?: string[];
+    };
+  }[];
+  /** id of the version that renders by default (server-rendered state, the
+   *  price above, JSON-LD and metadata all describe it). */
+  defaultVersion?: string;
   /** SIMULATED popularity metric — dummy values, NOT real analytics.
    *  Replace with real view-tracking data when a backend exists. Drives
    *  the default most-viewed-first sort on the Homepage grid and the
@@ -2261,6 +2309,442 @@ export const products: Product[] = [
       ],
     },
   },
+  {
+    id: 24,
+    title: 'Redmi Note 14 Pro Plus 5G',
+    seoName: 'Redmi Note 14 Pro+ 5G',
+    category: 'Smartphones',
+    topCategory: 'Mobile',
+    subCategory: 'Xiaomi',
+    imageAlt: 'Redmi Note 14 Pro+ 5G',
+    /** Base image = the DEFAULT version's first color (Global, Frost Blue).
+     *  Every non-version-aware surface (cards, Shop, JSON-LD) shows this. */
+    heroImage: '/images/products/redmi-note-14-pro-plus-5g/global/frost-blue/1.webp',
+    gallery: [
+            "/images/products/redmi-note-14-pro-plus-5g/global/frost-blue/1.webp",
+            "/images/products/redmi-note-14-pro-plus-5g/global/frost-blue/2.webp",
+            "/images/products/redmi-note-14-pro-plus-5g/global/frost-blue/3.webp",
+            "/images/products/redmi-note-14-pro-plus-5g/global/frost-blue/4.webp",
+            "/images/products/redmi-note-14-pro-plus-5g/global/frost-blue/5.webp"
+    ],
+    /** Default-version colors (Global). The detail page reads the SELECTED
+     *  version's own colorImages, so its swatches swap with the version. */
+    colorImages: [
+      {
+        color: 'Frost Blue',
+        images: [
+          '/images/products/redmi-note-14-pro-plus-5g/global/frost-blue/1.webp',
+          '/images/products/redmi-note-14-pro-plus-5g/global/frost-blue/2.webp',
+          '/images/products/redmi-note-14-pro-plus-5g/global/frost-blue/3.webp',
+          '/images/products/redmi-note-14-pro-plus-5g/global/frost-blue/4.webp',
+          '/images/products/redmi-note-14-pro-plus-5g/global/frost-blue/5.webp',
+        ],
+      },
+      {
+        color: 'Midnight Black',
+        images: [
+          '/images/products/redmi-note-14-pro-plus-5g/global/midnight-black/1.webp',
+          '/images/products/redmi-note-14-pro-plus-5g/global/midnight-black/2.webp',
+          '/images/products/redmi-note-14-pro-plus-5g/global/midnight-black/3.webp',
+          '/images/products/redmi-note-14-pro-plus-5g/global/midnight-black/4.webp',
+          '/images/products/redmi-note-14-pro-plus-5g/global/midnight-black/5.webp',
+        ],
+      },
+    ],
+    /** These are renders, not photographs of a retail unit — said on the page
+     *  because the supplied files are generated product images. */
+    galleryNote:
+      'Images are AI-generated renders based on the published Xiaomi design, not photographs of a retail unit.',
+    views: 900,
+    dateAdded: '2026-10-22',
+    price: 37500,
+    priceStatus: 'unofficial',
+    oldPrice: null,
+    priceEstimated: false,
+    /**
+     * NOTIFY-ONLY on every surface: no Add to Cart, no Buy Now, no Free Order
+     * (the owner left the button choice open, so the page asks for a stock
+     * alert instead of taking orders for an unofficially imported phone).
+     */
+    purchaseMode: 'notify',
+    status: 'available',
+    /** No source confirms stock, so the Product schema carries the offer but
+     *  no availability value. */
+    omitSchemaAvailability: true,
+    /** TWO sources per priced variant, both opened 22 October 2026. Xiaomi's
+     *  own Bangladesh site does not sell this model, so every figure below is
+     *  UNOFFICIAL — there is no Xiaomi Bangladesh price to quote. */
+    priceNote:
+      'Unofficial Bangladesh price (no Xiaomi Bangladesh listing exists for this model). Global version: 8GB/256GB ৳37,500 and 12GB/512GB ৳43,500 (MobileDokan.com, updated 27 Sep 2026; Rio International lists ৳35,999 and ৳44,999 on 23 Oct 2026), 12GB/256GB ৳39,500 (MobileDokan.com 27 Sep 2026; Rio International ৳39,499 on 23 Oct 2026). China version: 12GB/256GB ৳35,000 (MobileDokan.com, updated 19 Oct 2026; MobileDokan.co ৳34,000 on 2 Sep 2026, Rio International ৳34,999 and RMTI ৳34,000 on 23 Oct 2026). Prices vary by seller and by version — ask which model number you are being sold.',
+    priceCheckedAt: '2026-10-22',
+    priceDisplayNote:
+      '(Unofficial price in Bangladesh — imported unit, not a Xiaomi Bangladesh price)',
+    /**
+     * Global version = the base spec sheet: Xiaomi Global's own spec page
+     * (mi.com/global/product/redmi-note-14-pro-plus-5g/specs/, opened
+     * 22 Oct 2026) — 6.67-inch 1.5K 120Hz AMOLED, Snapdragon 7s Gen 3,
+     * 200MP OIS + 8MP ultra-wide + 2MP macro, 20MP front, 5110mAh/120W,
+     * IP68. The China version's differences live in `versions` below.
+     */
+    specSheet: {
+      basicInfo: {
+        model: 'Redmi Note 14 Pro+ 5G (Global)',
+        brand: 'Xiaomi',
+        releaseDate: 'January 2025',
+      },
+      display: {
+        type: 'CrystalRes AMOLED, Dolby Vision',
+        size: '6.67 inches',
+        resolution: '2712 x 1220 pixels (1.5K)',
+        refreshRate: '120Hz',
+        protection: 'Corning Gorilla Glass Victus 2',
+      },
+      performance: {
+        processor: 'Qualcomm Snapdragon 7s Gen 3 (4nm)',
+        ram: '8GB/12GB',
+        storage: '256GB/512GB',
+        os: 'Android 14, HyperOS',
+      },
+      cameraSystem: {
+        rear: '200MP main (OIS) + 8MP ultra-wide + 2MP macro',
+        front: '20MP',
+        features: [
+          'OIS on the 200MP main camera',
+          '4K video at 24/30fps, 1080p slow motion at 120fps',
+          'Motion tracking focus and Lightning Burst',
+          'Dual speakers with Dolby Atmos',
+        ],
+      },
+      batteryCharging: {
+        capacity: '5110mAh',
+        charging: '120W HyperCharge',
+      },
+      buildDesign: {
+        dimensions: '162.53 x 74.67 x 8.75 mm',
+        weight: '210g',
+        materials: 'Glass front (Gorilla Glass Victus 2) and glass back, IP68',
+        colors: ['Frost Blue', 'Midnight Black', 'Lavender Purple'],
+      },
+      connectivity: {
+        network: '5G (2G/3G/4G/5G)',
+        bluetooth: 'Bluetooth 5.4',
+        ports: ['USB Type-C 2.0'],
+      },
+      sensors: [
+        'In-screen fingerprint sensor',
+        'AI Face Unlock',
+        'IR blaster',
+        'Gyroscope and electronic compass',
+        'X-axis linear motor',
+      ],
+      aiFeatures: [
+        'Circle to Search with Google',
+        'Google Gemini',
+        'AI Interpreter and AI Subtitles',
+        'AI Notes and AI Recorder',
+        'AI image editing',
+      ],
+      notableLimitations: [
+        'Not sold officially in Bangladesh — no Xiaomi Bangladesh price and no manufacturer warranty here',
+        'Unofficial import: the seller, not Xiaomi, is your only warranty route',
+        'The Global version uses LPDDR4X memory and UFS 2.2 storage, slow for the money in 2026',
+        'No 3.5mm headphone jack',
+        'The 8GB/128GB listing some shops show is not a Xiaomi Global configuration (Global lists 8GB/256GB, 12GB/256GB and 12GB/512GB)',
+      ],
+    },
+    /**
+     * TWO VERSIONS of ONE model. Verified 22 Oct 2026: Xiaomi Global's spec
+     * page for the Global figures; the China figures come from
+     * MobileDokan.com's China listing (updated 19 Oct 2026: 6200mAh, 90W,
+     * IP68/IP69K, 50MP f/1.6 main + 50MP 2.5x telephoto + 8MP ultra-wide),
+     * corroborated by Gadget Man's 6200mAh/90W entry and Xiaomi India's page
+     * for the same hardware.
+     *
+     * PRICING RULE APPLIED: a storage option appears only when two sources
+     * listed it. China 12GB/512GB (৳36,500 on MobileDokan.com, 26 Aug 2026)
+     * had ONE source and is therefore NOT offered here.
+     */
+    versions: [
+      {
+        id: 'global',
+        label: 'Global Version',
+        shortLabel: 'Global',
+        colorImages: [
+          {
+            color: 'Frost Blue',
+            images: [
+              '/images/products/redmi-note-14-pro-plus-5g/global/frost-blue/1.webp',
+              '/images/products/redmi-note-14-pro-plus-5g/global/frost-blue/2.webp',
+              '/images/products/redmi-note-14-pro-plus-5g/global/frost-blue/3.webp',
+              '/images/products/redmi-note-14-pro-plus-5g/global/frost-blue/4.webp',
+              '/images/products/redmi-note-14-pro-plus-5g/global/frost-blue/5.webp',
+            ],
+          },
+          {
+            color: 'Midnight Black',
+            images: [
+              '/images/products/redmi-note-14-pro-plus-5g/global/midnight-black/1.webp',
+              '/images/products/redmi-note-14-pro-plus-5g/global/midnight-black/2.webp',
+              '/images/products/redmi-note-14-pro-plus-5g/global/midnight-black/3.webp',
+              '/images/products/redmi-note-14-pro-plus-5g/global/midnight-black/4.webp',
+              '/images/products/redmi-note-14-pro-plus-5g/global/midnight-black/5.webp',
+            ],
+          },
+        ],
+        /** MobileDokan.com Global listing (updated 27 Sep 2026), each
+         *  cross-checked against a second Bangladesh listing: Rio
+         *  International's variant matrix (23 Oct 2026) for 8/256 and
+         *  12/512, Rio International for 12/256. Where the two differed by
+         *  under 5% the more recently updated MobileDokan figure is used, as
+         *  the price rule asks. */
+        variants: [
+          { label: '8GB/256GB', price: 37500 },
+          { label: '12GB/256GB', price: 39500 },
+          { label: '12GB/512GB', price: 43500 },
+        ],
+      },
+      {
+        id: 'china',
+        label: 'China Version',
+        shortLabel: 'China',
+        colorImages: [
+          {
+            color: 'Black',
+            images: [
+              '/images/products/redmi-note-14-pro-plus-5g/china/black/1.webp',
+              '/images/products/redmi-note-14-pro-plus-5g/china/black/2.webp',
+              '/images/products/redmi-note-14-pro-plus-5g/china/black/3.webp',
+              '/images/products/redmi-note-14-pro-plus-5g/china/black/4.webp',
+              '/images/products/redmi-note-14-pro-plus-5g/china/black/5.webp',
+            ],
+          },
+          {
+            color: 'White',
+            images: [
+              '/images/products/redmi-note-14-pro-plus-5g/china/white/1.webp',
+              '/images/products/redmi-note-14-pro-plus-5g/china/white/2.webp',
+              '/images/products/redmi-note-14-pro-plus-5g/china/white/3.webp',
+              '/images/products/redmi-note-14-pro-plus-5g/china/white/4.webp',
+              '/images/products/redmi-note-14-pro-plus-5g/china/white/5.webp',
+            ],
+          },
+          {
+            color: 'Green',
+            images: [
+              '/images/products/redmi-note-14-pro-plus-5g/china/green/1.webp',
+              '/images/products/redmi-note-14-pro-plus-5g/china/green/2.webp',
+              '/images/products/redmi-note-14-pro-plus-5g/china/green/3.webp',
+              '/images/products/redmi-note-14-pro-plus-5g/china/green/4.webp',
+              '/images/products/redmi-note-14-pro-plus-5g/china/green/5.webp',
+            ],
+          },
+        ],
+        /** MobileDokan.com China listing (updated 19 Oct 2026) ৳35,000,
+         *  confirmed by MobileDokan.co (৳34,000, 2 Sep 2026), Rio
+         *  International (৳34,999) and RMTI (৳34,000) on 23 Oct 2026. The
+         *  China 12GB/512GB figure (৳36,500) appeared on one listing only,
+         *  so it is NOT offered here. */
+        variants: [{ label: '12GB/256GB', price: 35000 }],
+        specOverrides: {
+          basicInfo: {
+            model: 'Redmi Note 14 Pro+ 5G (China)',
+          },
+          performance: {
+            ram: '12GB',
+            storage: '256GB',
+          },
+          cameraSystem: {
+            rear: '50MP main (f/1.6, OIS) + 50MP 2.5x telephoto + 8MP ultra-wide',
+            front: '20MP',
+            features: [
+              'OIS on the 50MP main camera',
+              '50MP 2.5x telephoto, rated for 5x lossless zoom',
+              '4K video at 24/30fps, 1080p slow motion at 120fps',
+              'Dual speakers with Dolby Atmos',
+            ],
+          },
+          batteryCharging: {
+            capacity: '6200mAh',
+            charging: '90W wired',
+          },
+          buildDesign: {
+            dimensions: '162.5 x 74.7 x 8.7 mm',
+            weight: '210.8g',
+            materials: 'Glass front (Gorilla Glass Victus 2) and glass back, IP68',
+            colors: ['Black', 'White', 'Green'],
+          },
+          notableLimitations: [
+            'Not sold officially in Bangladesh — no Xiaomi Bangladesh price and no manufacturer warranty here',
+            'Unofficial import: the seller, not Xiaomi, is your only warranty route',
+            'Google Mobile Services on the China version was not confirmed by any source we opened — ask the seller before buying',
+            'No 3.5mm headphone jack',
+            'Only one storage option (12GB/256GB) had two independent Bangladesh price sources, so it is the only one shown',
+          ],
+        },
+      },
+    ],
+    defaultVersion: 'global',
+  },
+  {
+    id: 25,
+    title: 'Redmi Note 15 5G',
+    seoName: 'Redmi Note 15 5G',
+    category: 'Smartphones',
+    topCategory: 'Mobile',
+    subCategory: 'Xiaomi',
+    imageAlt: 'Redmi Note 15 5G',
+    /** Hero = the default colour's front-and-back view (Glacier Blue), the
+     *  same convention the other colour-mapped phones use. */
+    heroImage: '/images/products/redmi-note-15-5g/glacier-blue/1.webp',
+    gallery: [
+      '/images/products/redmi-note-15-5g/glacier-blue/1.webp',
+      '/images/products/redmi-note-15-5g/glacier-blue/2.webp',
+      '/images/products/redmi-note-15-5g/glacier-blue/3.webp',
+      '/images/products/redmi-note-15-5g/glacier-blue/4.webp',
+      '/images/products/redmi-note-15-5g/glacier-blue/5.webp',
+    ],
+    /** Three official colours, each with its own five-image set:
+     *  1 front and back with the screen on, 2 rear-camera close-up,
+     *  3 top and bottom edges, 4 water-splash shot, 5 pocket shot. */
+    colorImages: [
+      {
+        color: 'Glacier Blue',
+        images: [
+          '/images/products/redmi-note-15-5g/glacier-blue/1.webp',
+          '/images/products/redmi-note-15-5g/glacier-blue/2.webp',
+          '/images/products/redmi-note-15-5g/glacier-blue/3.webp',
+          '/images/products/redmi-note-15-5g/glacier-blue/4.webp',
+          '/images/products/redmi-note-15-5g/glacier-blue/5.webp',
+        ],
+      },
+      {
+        color: 'Mist Purple',
+        images: [
+          '/images/products/redmi-note-15-5g/mist-purple/1.webp',
+          '/images/products/redmi-note-15-5g/mist-purple/2.webp',
+          '/images/products/redmi-note-15-5g/mist-purple/3.webp',
+          '/images/products/redmi-note-15-5g/mist-purple/4.webp',
+          '/images/products/redmi-note-15-5g/mist-purple/5.webp',
+        ],
+      },
+      {
+        color: 'Black',
+        images: [
+          '/images/products/redmi-note-15-5g/black/1.webp',
+          '/images/products/redmi-note-15-5g/black/2.webp',
+          '/images/products/redmi-note-15-5g/black/3.webp',
+          '/images/products/redmi-note-15-5g/black/4.webp',
+          '/images/products/redmi-note-15-5g/black/5.webp',
+        ],
+      },
+    ],
+    /** One hand-written alt per supplied image, describing only what that
+     *  file shows (official Xiaomi product images, so no render wording).
+     *  All different, all under 100 characters — the shared helper uses these
+     *  instead of its generic "photo N of M" text. */
+    galleryAlts: [
+      { src: '/images/products/redmi-note-15-5g/glacier-blue/1.webp', alt: 'Redmi Note 15 5G in Glacier Blue, front and back with the screen on' },
+      { src: '/images/products/redmi-note-15-5g/glacier-blue/2.webp', alt: 'Redmi Note 15 5G in Glacier Blue, close-up of the rear camera deco' },
+      { src: '/images/products/redmi-note-15-5g/glacier-blue/3.webp', alt: 'Redmi Note 15 5G in Glacier Blue, top and bottom edges side by side' },
+      { src: '/images/products/redmi-note-15-5g/glacier-blue/4.webp', alt: 'Redmi Note 15 5G in Glacier Blue with water splashing across the frame' },
+      { src: '/images/products/redmi-note-15-5g/glacier-blue/5.webp', alt: 'Redmi Note 15 5G in Glacier Blue sliding into a denim pocket' },
+      { src: '/images/products/redmi-note-15-5g/mist-purple/1.webp', alt: 'Redmi Note 15 5G in Mist Purple, front and back with the screen on' },
+      { src: '/images/products/redmi-note-15-5g/mist-purple/2.webp', alt: 'Redmi Note 15 5G in Mist Purple, close-up of the rear camera deco' },
+      { src: '/images/products/redmi-note-15-5g/mist-purple/3.webp', alt: 'Redmi Note 15 5G in Mist Purple, top and bottom edges side by side' },
+      { src: '/images/products/redmi-note-15-5g/mist-purple/4.webp', alt: 'Redmi Note 15 5G in Mist Purple with water splashing across the frame' },
+      { src: '/images/products/redmi-note-15-5g/mist-purple/5.webp', alt: 'Redmi Note 15 5G in Mist Purple sliding into a denim pocket' },
+      { src: '/images/products/redmi-note-15-5g/black/1.webp', alt: 'Redmi Note 15 5G in Black, front and back with the screen on' },
+      { src: '/images/products/redmi-note-15-5g/black/2.webp', alt: 'Redmi Note 15 5G in Black, close-up of the rear camera deco' },
+      { src: '/images/products/redmi-note-15-5g/black/3.webp', alt: 'Redmi Note 15 5G in Black, top and bottom edges side by side' },
+      { src: '/images/products/redmi-note-15-5g/black/4.webp', alt: 'Redmi Note 15 5G in Black with water splashing across the frame' },
+      { src: '/images/products/redmi-note-15-5g/black/5.webp', alt: 'Redmi Note 15 5G in Black sliding into a denim pocket' },
+    ],
+    views: 760,
+    dateAdded: '2026-10-23',
+    price: 36999,
+    /** Official: Star Tech (authorised Bangladesh retailer) lists the
+     *  8GB/256GB unit at ৳36,999, and MobileDokan records the same official
+     *  figure for the same configuration. */
+    priceStatus: 'official',
+    oldPrice: null,
+    priceEstimated: false,
+    purchaseMode: 'buy',
+    status: 'available',
+    priceNote:
+      'Official Bangladesh price: ৳36,999 for 8GB/256GB (Star Tech product listing and MobileDokan official price, both checked 23 October 2026; MobileDokan page updated 21 September 2026). Unofficial imports of the same model, including 6GB/128GB and 12GB/256GB units, are listed from about ৳30,499 at Apple Gadgets BD (checked 23 October 2026) — those are not the official configuration and carry no Xiaomi Bangladesh warranty. Only 8GB/256GB has a verified official price, so it is the only variant listed here.',
+    priceCheckedAt: '2026-10-23',
+    /**
+     * Verified on Xiaomi Global's own Redmi Note 15 5G spec page (opened
+     * 23 Oct 2026) and cross-checked against Star Tech's specification table
+     * and MobileDokan's listing. Rows Xiaomi does not publish (glass brand,
+     * Bluetooth profiles) are left out rather than filled in.
+     */
+    specSheet: {
+      basicInfo: {
+        model: 'Redmi Note 15 5G',
+        brand: 'Xiaomi',
+        releaseDate: 'January 2026',
+      },
+      display: {
+        type: 'AMOLED, 120Hz, 3200 nits peak',
+        size: '6.77 inches',
+        resolution: '2392 x 1080 (FHD+)',
+        refreshRate: '120Hz',
+        protection: 'High-durability display glass',
+      },
+      performance: {
+        processor: 'Qualcomm Snapdragon 6 Gen 3 (4nm)',
+        ram: '8GB',
+        storage: '256GB',
+        os: 'Android 15, HyperOS 2',
+      },
+      cameraSystem: {
+        rear: '108MP main (f/1.7, 1/1.67-inch) + 8MP ultra-wide (f/2.2)',
+        front: '20MP (f/2.2)',
+        features: [
+          '108MP main sensor with 9-in-1 pixel binning, 1.92μm output',
+          '8MP ultra-wide with a 16mm-equivalent field of view',
+          '4K video at 30fps from the rear camera',
+          '1080p video at 30fps from the front camera',
+        ],
+      },
+      batteryCharging: {
+        capacity: '5520mAh',
+        charging: '45W turbo charging',
+      },
+      buildDesign: {
+        dimensions: '164 x 75.42 x 7.35mm',
+        weight: '178g',
+        materials: 'Glass front, plastic frame and plastic back (MobileDokan)',
+        colors: ['Glacier Blue', 'Mist Purple', 'Black'],
+      },
+      connectivity: {
+        network: '5G (2G/3G/4G/5G)',
+        bluetooth: 'Bluetooth 5.1',
+        ports: ['USB Type-C', 'microSD up to 1TB (shared SIM slot)'],
+      },
+      sensors: [
+        'In-screen fingerprint sensor',
+        'AI face unlock',
+        'IR blaster',
+        'Gyroscope and electronic compass',
+        'Virtual proximity sensor',
+      ],
+      /** Read on Xiaomi's own product page (opened 23 Oct 2026), which lists
+       *  these tools by name. Nothing here is inferred from other models. */
+      aiFeatures: [
+        'AI Erase, which removes unwanted objects and fills in the background',
+        'AI image editing tools for photos',
+        'Google Gemini with Gemini Live and the Gemini overlay',
+      ],
+      notableLimitations: [
+        'No power adapter in the box — Xiaomi states none is included',
+        'IP66 only: splash and dust resistant, not rated for submersion',
+        'LPDDR4X memory and UFS 2.2 storage',
+        'The official Bangladesh configuration is 8GB/256GB only; other memory sizes come through imports',
+      ],
+    },
+  },
 ];
 
 /** URL slug for a product title, e.g. 'HONOR Robot Phone' -> 'honor-robot-phone' */
@@ -2278,7 +2762,50 @@ export function slugify(title: string): string {
  * The shared ProductActions component is the only place these buttons are
  * rendered; see scripts/check-product-actions.js for the build guard.
  */
-export type PurchaseMode = 'buy' | 'free-order';
+export type PurchaseMode = 'buy' | 'free-order' | 'notify';
+
+/**
+ * A version of a product (Global / China), resolved by its id, its short
+ * label ("Global") or its button label ("Global Version"). Case-insensitive,
+ * so a cart string or a URL query can carry either form.
+ */
+export function versionOf(p: Product, label: string | null | undefined) {
+  if (!p.versions?.length || !label) return undefined;
+  const t = label.trim().toLowerCase();
+  return p.versions.find(
+    (v) => v.id.toLowerCase() === t || v.shortLabel.toLowerCase() === t || v.label.toLowerCase() === t
+  );
+}
+
+/** The version a product renders by default (defaultVersion, else the first). */
+export function defaultVersionOf(p: Product) {
+  if (!p.versions?.length) return undefined;
+  return p.versions.find((v) => v.id === p.defaultVersion) ?? p.versions[0];
+}
+
+/**
+ * THE spec resolver for a version: the base spec sheet with that version's
+ * specOverrides merged in. Products without versions (or an unknown id)
+ * return the base sheet object unchanged.
+ */
+export function specSheetOf(p: Product, versionId?: string): Product['specSheet'] {
+  const base = p.specSheet;
+  const version = versionId ? p.versions?.find((v) => v.id === versionId) : undefined;
+  const o = version?.specOverrides;
+  if (!o) return base;
+  return {
+    basicInfo: { ...base.basicInfo, ...o.basicInfo },
+    display: { ...base.display, ...o.display },
+    performance: { ...base.performance, ...o.performance },
+    cameraSystem: { ...base.cameraSystem, ...o.cameraSystem },
+    batteryCharging: { ...base.batteryCharging, ...o.batteryCharging },
+    buildDesign: { ...base.buildDesign, ...o.buildDesign },
+    connectivity: { ...base.connectivity, ...o.connectivity },
+    sensors: o.sensors ?? base.sensors,
+    aiFeatures: base.aiFeatures,
+    notableLimitations: o.notableLimitations ?? base.notableLimitations,
+  };
+}
 
 /**
  * The ONE resolver for a product's purchase mode. An explicit
@@ -2333,8 +2860,28 @@ function flatPrice(p: Product): ResolvedPrice {
  * Resolve the price for a selected storage/variant option. Falls back to
  * the product's flat price fields when no per-variant entry matches (or
  * when the product has none), so callers never need a null branch.
+ *
+ * `versionId` (optional) scopes the lookup to ONE version's priced options —
+ * a Global 12GB/256GB and a China 12GB/256GB are different prices. Without
+ * it (every product that has no versions, and any legacy call site) the
+ * lookup is exactly the old flat/variants one.
  */
-export function variantPrice(p: Product, optionLabel: string | null): ResolvedPrice {
+export function variantPrice(
+  p: Product,
+  optionLabel: string | null,
+  versionId?: string
+): ResolvedPrice {
+  if (optionLabel && versionId && p.versions?.length) {
+    const ver = p.versions.find((v) => v.id === versionId);
+    const hit = ver?.variants.find((x) => x.label === optionLabel);
+    if (hit) {
+      return {
+        price: hit.price,
+        oldPrice: hit.oldPrice ?? null,
+        priceEstimated: hit.priceEstimated ?? false,
+      };
+    }
+  }
   if (!optionLabel) return flatPrice(p);
   const v = p.variants?.find((x) => x.label === optionLabel);
   if (!v) return flatPrice(p);
@@ -2347,22 +2894,56 @@ export function variantPrice(p: Product, optionLabel: string | null): ResolvedPr
 
 /**
  * Resolve the price for a CART/CHECKOUT variant string ("Titanium Black /
- * 512GB", "512GB", "Standard", …). Checks each '/'-segment from the right
- * (storage comes after color) against the product's variants labels, then
- * falls back to the flat price. This is what makes cart lines and Buy Now
- * checkout charge the SELECTED variant's price, not the base one.
+ * 512GB", "Global / Frost Blue / 12GB/256GB", "512GB", "Standard", …).
+ * Checks each '/'-segment from the right (storage comes after color) against
+ * the product's variants labels, then falls back to the flat price. This is
+ * what makes cart lines and Buy Now checkout charge the SELECTED variant's
+ * price, not the base one.
+ *
+ * VERSIONS: when the product has versions, the version part of the string is
+ * resolved FIRST ("Global" / "Global Version" / the version id), and the
+ * storage label is then matched inside that version only — so the same
+ * "12GB/256GB" costs different money on the Global and China versions.
+ * Storage labels contain a '/' themselves ("12GB/256GB"), so matching uses
+ * `includes`, never a segment equal to the label. Any product without
+ * versions takes the identical old path, and an unparseable string still
+ * falls back to the flat price.
  */
 export function priceForCartVariant(p: Product, variant: string): ResolvedPrice {
-  if (p.variants?.length && variant && variant !== 'Standard') {
-    const segs = variant.split('/').map((s) => s.trim());
-    for (let i = segs.length - 1; i >= 0; i--) {
-      const v = p.variants.find((x) => x.label === segs[i]);
-      if (v) {
-        return {
-          price: v.price,
-          oldPrice: v.oldPrice ?? null,
-          priceEstimated: v.priceEstimated ?? false,
-        };
+  if (variant && variant !== 'Standard') {
+    if (p.versions?.length) {
+      const lower = variant.toLowerCase();
+      const ver =
+        p.versions.find(
+          (v) =>
+            lower.startsWith(`${v.shortLabel.toLowerCase()} /`) ||
+            lower.startsWith(`${v.label.toLowerCase()} /`)
+        ) ?? p.versions.find((v) => lower.includes(v.shortLabel.toLowerCase()));
+      const pools = ver ? [ver] : p.versions;
+      for (const v of pools) {
+        const hit = [...v.variants]
+          .sort((a, b) => b.label.length - a.label.length)
+          .find((x) => variant.includes(x.label));
+        if (hit) {
+          return {
+            price: hit.price,
+            oldPrice: hit.oldPrice ?? null,
+            priceEstimated: hit.priceEstimated ?? false,
+          };
+        }
+      }
+    }
+    if (p.variants?.length) {
+      const segs = variant.split('/').map((s) => s.trim());
+      for (let i = segs.length - 1; i >= 0; i--) {
+        const v = p.variants.find((x) => x.label === segs[i]);
+        if (v) {
+          return {
+            price: v.price,
+            oldPrice: v.oldPrice ?? null,
+            priceEstimated: v.priceEstimated ?? false,
+          };
+        }
       }
     }
   }

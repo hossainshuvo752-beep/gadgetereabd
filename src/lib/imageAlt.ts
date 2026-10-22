@@ -131,12 +131,19 @@ export function productMainAlt(product: Product): string {
  * Alt text for the Quick Look page's MAIN image: same as card alt plus
  * "price in Bangladesh" — exactly once per page, only on Quick Look.
  * e.g. "Samsung Galaxy S26 Ultra smartphone price in Bangladesh".
+ *
+ * `variantLabel` (optional) names the colour/VERSION the main image is
+ * currently showing — a product with versions (Global / China) passes
+ * "Global version in Frost Blue" so its alts name the version too. Omitted
+ * everywhere else, so every other page's main alt is unchanged.
  */
-export function productQuickLookMainAlt(product: Product): string {
+export function productQuickLookMainAlt(product: Product, variantLabel?: string): string {
   const base = productMainAlt(product);
   // Defensive: don't stack the phrase if the data override already says it.
   if (/price in bangladesh/i.test(base)) return base;
-  return cap(`${base} price in Bangladesh`);
+  const withPrice = `${base} price in Bangladesh`;
+  const variant = variantLabel?.trim();
+  return cap(variant ? `${withPrice} — ${variant}` : withPrice);
 }
 
 /**

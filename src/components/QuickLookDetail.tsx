@@ -7,7 +7,15 @@ import { track } from '@/lib/tracking';
 import PriceTag from '@/components/PriceTag';
 import LightboxGallery from '@/components/LightboxGallery';
 import ProductActions, { type PurchaseSurface } from '@/components/ProductActions';
-import { isUpcoming, storageOptionsOf, variantPrice, type ResolvedPrice } from '@/lib/products';
+import {
+  isUpcoming,
+  storageOptionsOf,
+  specSheetOf,
+  variantPrice,
+  defaultVersionOf,
+  versionOf,
+  type ResolvedPrice,
+} from '@/lib/products';
 import {
   productQuickLookMainAlt,
   productGalleryAlt,
@@ -239,22 +247,52 @@ const QuickLookDetail: React.FC<{
       : product.heroImage
         ? [product.heroImage]
         : [];
-  // Color→image sets. Absent/empty = the product has no color-specific
-  // photos → NO color selector is rendered at all (nothing meaningful to
-  // select) and the flat gallery shows for every storage option.
-  const colorImages = product.colorImages ?? [];
+  // VERSIONS (Global / China) — the optional dimension ABOVE color. Products
+  // without `versions` never render the Version row and keep the exact gallery,
+  // color, storage and spec behavior they had before.
+  const versions = product.versions ?? [];
+  const hasVersions = versions.length > 0;
+  const defaultVersion = defaultVersionOf(product);
+  const [activeVersionId, setActiveVersionId] = useState(defaultVersion?.id ?? '');
+  const version = versions.find((v) => v.id === activeVersionId) ?? defaultVersion;
+  // Color→image sets for the SELECTED version. Absent/empty = the product has
+  // no color-specific photos → NO color selector is rendered at all (nothing
+  // meaningful to select) and the flat gallery shows instead.
+  const colorImages = (version ? version.colorImages : product.colorImages) ?? [];
   const showColorSwatches = colorImages.length > 0;
   const [activeColor, setActiveColor] = useState(0);
   const [activeStorage, setActiveStorage] = useState(0);
+  // Deep link: /quick-look/<slug>?version=china opens on that version. Read on
+  // the client (window.location) so the route stays statically rendered and
+  // the server-rendered default / canonical URL stay version-free.
+  useEffect(() => {
+    if (!hasVersions) return;
+    const requested = versionOf(product, new URLSearchParams(window.location.search).get('version'));
+    if (requested && requested.id !== activeVersionId) {
+      setActiveVersionId(requested.id);
+      setActiveColor(0);
+      setActiveStorage(0);
+      setActiveImage(0);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   // While a color is selected, that color's images REPLACE the flat gallery.
   const activeGallery: string[] =
     showColorSwatches ? colorImages[activeColor]?.images ?? galleryImages : galleryImages;
   // Keeps prev/next + display consistent even if state ever overshoots.
   const activeIdx = activeGallery.length > 0 ? activeImage % activeGallery.length : 0;
 
+  // The spec sheet for the SELECTED version: the base sheet with that
+  // version's overrides merged (cameras, battery, charging, body…).
+  const spec = specSheetOf(product, version?.id);
+
   // Storage/variant options (e.g. "256GB/512GB UFS 4.0" -> ["256GB", "512GB UFS 4.0"])
-  // — the same split every surface uses via storageOptionsOf().
-  const storageOptions: string[] = storageOptionsOf(product);
+  // — the same split every surface uses via storageOptionsOf(). A version
+  // product lists exactly its PRICED options instead, so an unpriced
+  // combination can never be selected.
+  const storageOptions: string[] = version
+    ? version.variants.map((v) => v.label)
+    : storageOptionsOf(product);
 
   // Selected-variant pricing — the displayed price follows the chosen option.
   // Package options (purchaseOptions) take priority when present; otherwise
@@ -265,12 +303,30 @@ const QuickLookDetail: React.FC<{
     purchaseOptions.length > 0
       ? purchaseOptions[Math.min(activePurchase, purchaseOptions.length - 1)]
       : storageOptions[activeStorage] ?? null;
-  const resolvedPrice: ResolvedPrice = variantPrice(product, selectedOptionLabel);
+  const resolvedPrice: ResolvedPrice = variantPrice(product, selectedOptionLabel, version?.id);
+
+  // One click on a version button swaps EVERYTHING that belongs to it: its
+  // gallery (back to the first image), its colors (first preselected), its
+  // priced storage options and, through `spec` above, its differing specs.
+  const switchVersion = (id: string) => {
+    setActiveVersionId(id);
+    setActiveColor(0);
+    setActiveStorage(0);
+    setActivePurchase(0);
+    setActiveImage(0);
+  };
 
   // Keep the color selection inside bounds (defensive; no render-phase setState).
   const safeActiveColor = showColorSwatches
     ? Math.min(activeColor, colorImages.length - 1)
     : 0;
+  // Alt label for a gallery image: the colour, plus the VERSION when this
+  // product has versions, so every gallery/thumbnail/lightbox alt names both
+  // ("Frost Blue (Global version)"). Products without versions pass the
+  // colour alone — byte-identical alt text to before this change.
+  const galleryVariantLabel = (color?: string) =>
+    color ? `${color}${version ? ` (${version.shortLabel} version)` : ''}` : undefined;
+  const activeColorName = showColorSwatches ? colorImages[safeActiveColor]?.color : undefined;
   // Amazon-style "see all" lightbox for galleries with more than MAX_THUMBS images.
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const MAX_THUMBS = 3;
@@ -284,13 +340,16 @@ const QuickLookDetail: React.FC<{
   // Storage variants (see storageOptions above)
 
   // Deterministic pseudo "Spec Score": share of filled key spec fields, not invented data.
+  // Computed from the SELECTED version's spec sheet — the same formula every
+  // other product uses, so the badge is per-version and deterministic (the
+  // Global sheet is the base, China's overrides are merged in).
   const filled = [
-    product.specSheet.display.type !== 'None',
-    product.specSheet.performance.processor !== 'N/A',
-    product.specSheet.cameraSystem.rear !== 'None',
-    product.specSheet.batteryCharging.capacity !== 'N/A',
-    product.specSheet.connectivity.network !== 'N/A',
-    product.specSheet.aiFeatures.length > 0,
+    spec.display.type !== 'None',
+    spec.performance.processor !== 'N/A',
+    spec.cameraSystem.rear !== 'None',
+    spec.batteryCharging.capacity !== 'N/A',
+    spec.connectivity.network !== 'N/A',
+    spec.aiFeatures.length > 0,
   ].filter(Boolean).length;
   const specScore = Math.round((filled / 6) * 100);
 
@@ -311,8 +370,9 @@ const QuickLookDetail: React.FC<{
     const chosenStorage = storageOptions[activeStorage] ?? '';
     const chosenPackage = purchaseOptions[activePurchase] ?? '';
     return (
-      [chosenPackage || chosenColor, chosenStorage].filter(Boolean).join(' / ') ||
-      'Standard'
+      [version?.shortLabel, chosenPackage || chosenColor, chosenStorage]
+        .filter(Boolean)
+        .join(' / ') || 'Standard'
     );
   })();
 
@@ -324,7 +384,7 @@ const QuickLookDetail: React.FC<{
           <div>
             <div className="flex items-center gap-2 text-sm text-text-body mb-1">
               <Smartphone className="w-4 h-4" />
-              <span className="font-semibold text-text-heading">{product.specSheet.basicInfo.brand}</span>
+              <span className="font-semibold text-text-heading">{spec.basicInfo.brand}</span>
             </div>
             <h1 className="text-3xl font-bold text-text-heading">{product.title}</h1>
           </div>
@@ -347,7 +407,7 @@ const QuickLookDetail: React.FC<{
               Official Warranty
             </span>
             <span className="inline-flex items-center gap-1 min-w-0 truncate px-2 py-0.5 text-[11px] md:px-3 md:py-1 md:text-xs rounded-full font-semibold bg-bg-dark-secondary/10 text-text-heading border border-text-heading/10">
-              Released {product.specSheet.basicInfo.releaseDate}
+              Released {spec.basicInfo.releaseDate}
             </span>
           </div>
         )}
@@ -355,11 +415,11 @@ const QuickLookDetail: React.FC<{
         {/* ===== Highlight strip ===== */}
         <div className="hidden lg:grid grid-cols-5 gap-4 mb-8">
           {[
-            { icon: Cpu, value: product.specSheet.performance.processor, label: 'Processor' },
-            { icon: Camera, value: product.specSheet.cameraSystem.rear.split('+')[0].trim(), label: 'Main Camera' },
-            { icon: Monitor, value: product.specSheet.display.size, label: 'Display' },
-            { icon: BatteryCharging, value: product.specSheet.batteryCharging.capacity, label: 'Battery' },
-            { icon: AppWindow, value: product.specSheet.performance.os, label: 'OS' },
+            { icon: Cpu, value: spec.performance.processor, label: 'Processor' },
+            { icon: Camera, value: spec.cameraSystem.rear.split('+')[0].trim(), label: 'Main Camera' },
+            { icon: Monitor, value: spec.display.size, label: 'Display' },
+            { icon: BatteryCharging, value: spec.batteryCharging.capacity, label: 'Battery' },
+            { icon: AppWindow, value: spec.performance.os, label: 'OS' },
           ].map((h, i) => (
             <div key={i} className="flex items-center gap-3 bg-text-on-dark border border-text-heading/10 rounded-lg p-3">
               <h.icon className="w-6 h-6 text-accent shrink-0" />
@@ -408,7 +468,7 @@ const QuickLookDetail: React.FC<{
                       >
                         <Image
                           src={img}
-                          alt={productGalleryAlt(product, i, activeGallery.length, showColorSwatches ? colorImages[safeActiveColor]?.color : undefined, img)}
+                          alt={productGalleryAlt(product, i, activeGallery.length, galleryVariantLabel(colorImages[safeActiveColor]?.color), img)}
                           fill
                           sizes="80px"
                           className="object-contain p-0.5"
@@ -479,7 +539,12 @@ const QuickLookDetail: React.FC<{
                         alt={
                           galleryAltOverride(product, activeGallery[activeIdx])
                             ? `${galleryAltOverride(product, activeGallery[activeIdx])} — main product image`
-                            : productQuickLookMainAlt(product)
+                            : version && activeColorName
+                              ? productQuickLookMainAlt(
+                                  product,
+                                  `${version.shortLabel} version in ${activeColorName}`
+                                )
+                              : productQuickLookMainAlt(product)
                         }
                         fill
                         sizes="(max-width: 1024px) 100vw, 380px"
@@ -541,6 +606,27 @@ const QuickLookDetail: React.FC<{
               <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-3.5 md:p-5">
                 <h2 className="text-base font-semibold text-text-heading mb-3 md:mb-4">Choose Variant</h2>
                 <div className="space-y-3 md:space-y-4">
+                  {/* Version — first, because it decides the gallery, the
+                      colors, the priced storage options and the specs below.
+                      Rendered ONLY for products that declare versions. */}
+                  {hasVersions && version && (
+                    <div>
+                      <div className="text-sm font-medium text-text-body mb-2">
+                        Version: <span className="text-text-heading">{version.label}</span>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {versions.map((v) => (
+                          <VariantButton
+                            key={v.id}
+                            selected={v.id === version.id}
+                            onClick={() => switchVersion(v.id)}
+                          >
+                            {v.label}
+                          </VariantButton>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                   {/* Color swatches — rendered ONLY when the product has
                       color-specific photos (colorImages). No color images =
                       no selector, per the catalog rule. */}
@@ -650,13 +736,13 @@ const QuickLookDetail: React.FC<{
             <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-5">
               <h2 className="text-base font-semibold text-text-heading mb-4">Key Specifications</h2>
               <div className="space-y-1">
-                <KeyValue label="Display" value={`${product.specSheet.display.size}, ${product.specSheet.display.type}, ${product.specSheet.display.refreshRate}`} />
-                <KeyValue label="Processor" value={product.specSheet.performance.processor} />
-                <KeyValue label="RAM" value={product.specSheet.performance.ram} />
-                <KeyValue label="Storage" value={product.specSheet.performance.storage} />
-                <KeyValue label="Main Camera" value={product.specSheet.cameraSystem.rear} />
-                <KeyValue label="Battery" value={`${product.specSheet.batteryCharging.capacity}, ${product.specSheet.batteryCharging.charging}`} />
-                <KeyValue label="OS" value={product.specSheet.performance.os} />
+                <KeyValue label="Display" value={`${spec.display.size}, ${spec.display.type}, ${spec.display.refreshRate}`} />
+                <KeyValue label="Processor" value={spec.performance.processor} />
+                <KeyValue label="RAM" value={spec.performance.ram} />
+                <KeyValue label="Storage" value={spec.performance.storage} />
+                <KeyValue label="Main Camera" value={spec.cameraSystem.rear} />
+                <KeyValue label="Battery" value={`${spec.batteryCharging.capacity}, ${spec.batteryCharging.charging}`} />
+                <KeyValue label="OS" value={spec.performance.os} />
               </div>
             </div>
 
@@ -664,12 +750,12 @@ const QuickLookDetail: React.FC<{
             <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-5">
               <h2 className="text-base font-semibold text-text-heading mb-4">Additional Info</h2>
               <div className="space-y-1">
-                <KeyValue label="Brand" value={product.specSheet.basicInfo.brand} />
-                <KeyValue label="Model" value={product.specSheet.basicInfo.model} />
-                <KeyValue label="Released" value={product.specSheet.basicInfo.releaseDate} />
-                <KeyValue label="Weight" value={product.specSheet.buildDesign.weight} />
-                <KeyValue label="Network" value={product.specSheet.connectivity.network} />
-                <KeyValue label="Bluetooth" value={product.specSheet.connectivity.bluetooth} />
+                <KeyValue label="Brand" value={spec.basicInfo.brand} />
+                <KeyValue label="Model" value={spec.basicInfo.model} />
+                <KeyValue label="Released" value={spec.basicInfo.releaseDate} />
+                <KeyValue label="Weight" value={spec.buildDesign.weight} />
+                <KeyValue label="Network" value={spec.connectivity.network} />
+                <KeyValue label="Bluetooth" value={spec.connectivity.bluetooth} />
               </div>
             </div>
 
@@ -691,76 +777,76 @@ const QuickLookDetail: React.FC<{
         <h2 className="text-2xl font-bold text-text-heading mb-5">Specifications</h2>
         <div className="grid gap-5 md:grid-cols-2 mb-12">
           <SectionCard title="Basic Info">
-            <KeyValue label="Model" value={product.specSheet.basicInfo.model} />
-            <KeyValue label="Brand" value={product.specSheet.basicInfo.brand} />
-            <KeyValue label="Release Date" value={product.specSheet.basicInfo.releaseDate} />
+            <KeyValue label="Model" value={spec.basicInfo.model} />
+            <KeyValue label="Brand" value={spec.basicInfo.brand} />
+            <KeyValue label="Release Date" value={spec.basicInfo.releaseDate} />
           </SectionCard>
 
           <SectionCard title="Display">
-            <KeyValue label="Type" value={product.specSheet.display.type} />
-            <KeyValue label="Size" value={product.specSheet.display.size} />
-            <KeyValue label="Resolution" value={product.specSheet.display.resolution} />
-            <KeyValue label="Refresh Rate" value={product.specSheet.display.refreshRate} />
-            <KeyValue label="Protection" value={product.specSheet.display.protection} />
+            <KeyValue label="Type" value={spec.display.type} />
+            <KeyValue label="Size" value={spec.display.size} />
+            <KeyValue label="Resolution" value={spec.display.resolution} />
+            <KeyValue label="Refresh Rate" value={spec.display.refreshRate} />
+            <KeyValue label="Protection" value={spec.display.protection} />
           </SectionCard>
 
           <SectionCard title="Performance">
-            <KeyValue label="Processor" value={product.specSheet.performance.processor} />
-            <KeyValue label="RAM" value={product.specSheet.performance.ram} />
-            <KeyValue label="Storage" value={product.specSheet.performance.storage} />
-            <KeyValue label="OS" value={product.specSheet.performance.os} />
+            <KeyValue label="Processor" value={spec.performance.processor} />
+            <KeyValue label="RAM" value={spec.performance.ram} />
+            <KeyValue label="Storage" value={spec.performance.storage} />
+            <KeyValue label="OS" value={spec.performance.os} />
           </SectionCard>
 
           <SectionCard title="Camera System">
             <div className="space-y-3 text-sm">
               <div>
                 <span className="font-medium text-text-body">Rear: </span>
-                <span className="text-text-heading">{product.specSheet.cameraSystem.rear}</span>
+                <span className="text-text-heading">{spec.cameraSystem.rear}</span>
               </div>
               <div>
                 <span className="font-medium text-text-body">Front: </span>
-                <span className="text-text-heading">{product.specSheet.cameraSystem.front}</span>
+                <span className="text-text-heading">{spec.cameraSystem.front}</span>
               </div>
               <div>
                 <span className="font-medium text-text-body">Features:</span>
-                <IconList items={product.specSheet.cameraSystem.features} />
+                <IconList items={spec.cameraSystem.features} />
               </div>
             </div>
           </SectionCard>
 
           <SectionCard title="Battery & Charging">
-            <KeyValue label="Capacity" value={product.specSheet.batteryCharging.capacity} />
-            <KeyValue label="Charging" value={product.specSheet.batteryCharging.charging} />
+            <KeyValue label="Capacity" value={spec.batteryCharging.capacity} />
+            <KeyValue label="Charging" value={spec.batteryCharging.charging} />
           </SectionCard>
 
           <SectionCard title="Build & Design">
-            <KeyValue label="Dimensions" value={product.specSheet.buildDesign.dimensions} />
-            <KeyValue label="Weight" value={product.specSheet.buildDesign.weight} />
-            <KeyValue label="Materials" value={product.specSheet.buildDesign.materials} />
-            <KeyValue label="Colors" value={product.specSheet.buildDesign.colors.join(', ')} />
+            <KeyValue label="Dimensions" value={spec.buildDesign.dimensions} />
+            <KeyValue label="Weight" value={spec.buildDesign.weight} />
+            <KeyValue label="Materials" value={spec.buildDesign.materials} />
+            <KeyValue label="Colors" value={spec.buildDesign.colors.join(', ')} />
           </SectionCard>
 
           <SectionCard title="Connectivity">
-            <KeyValue label="Network" value={product.specSheet.connectivity.network} />
-            <KeyValue label="Bluetooth" value={product.specSheet.connectivity.bluetooth} />
+            <KeyValue label="Network" value={spec.connectivity.network} />
+            <KeyValue label="Bluetooth" value={spec.connectivity.bluetooth} />
             <div className="grid grid-cols-[minmax(90px,35%)_1fr] items-start gap-x-4 py-1.5">
               <span className="text-sm font-medium text-text-body">Ports</span>
               <span className="text-sm text-text-heading text-right min-w-0 break-words">
-                {product.specSheet.connectivity.ports.join(', ')}
+                {spec.connectivity.ports.join(', ')}
               </span>
             </div>
           </SectionCard>
 
           <SectionCard title="Sensors">
-            <IconList items={product.specSheet.sensors} />
+            <IconList items={spec.sensors} />
           </SectionCard>
 
           <SectionCard title="AI Features">
-            <IconList items={product.specSheet.aiFeatures} />
+            <IconList items={spec.aiFeatures} />
           </SectionCard>
 
           <SectionCard title="Notable Limitations">
-            <IconList items={product.specSheet.notableLimitations} />
+            <IconList items={spec.notableLimitations} />
           </SectionCard>
         </div>
         </>
@@ -771,7 +857,7 @@ const QuickLookDetail: React.FC<{
       {lightboxOpen && activeGallery.length > 0 && (
         <LightboxGallery
           images={activeGallery}
-          alts={activeGallery.map((img, i) => productGalleryAlt(product, i, activeGallery.length, showColorSwatches ? colorImages[safeActiveColor]?.color : undefined, img))}
+          alts={activeGallery.map((img, i) => productGalleryAlt(product, i, activeGallery.length, galleryVariantLabel(colorImages[safeActiveColor]?.color), img))}
           ariaLabelBase={product.title}
           initialIndex={activeIdx}
           onClose={() => setLightboxOpen(false)}

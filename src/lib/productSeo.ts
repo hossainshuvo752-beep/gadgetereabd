@@ -50,6 +50,11 @@ interface ProductSeoCopy {
    *  shared template cannot build (the Camon 40 Pro 5G's price), or where an
    *  availability claim is not supported by the data. */
   descriptionTail?: string;
+  /** Exact Shop-route description. Needed only for a product whose shared
+   *  Shop template would add a claim its data cannot support — the template
+   *  ends "In stock, fast delivery", which an unofficial-import product with
+   *  no confirmed stock must not say. Absent = the generated Shop copy. */
+  shopDescriptionOverride?: string;
 }
 
 const seoCopy: Record<string, ProductSeoCopy> = {
@@ -95,6 +100,30 @@ const seoCopy: Record<string, ProductSeoCopy> = {
     quickLookModelLabel: '4G',
     titleOverride: 'Tecno Camon 40 Pro Price in Bangladesh 2026: 4G & 5G',
     descriptionTail: 'The 5G model costs ৳34,999 official.',
+  },
+  /** Redmi Note 14 Pro+ 5G — ONE page, TWO versions (Global / China), and
+   *  Xiaomi Bangladesh does not sell it, so every price is UNOFFICIAL. The
+   *  title is the plain model + "Price in Bangladesh" (no year), the
+   *  description quotes the default variant of each version, and the Shop
+   *  copy drops the shared "In stock, fast delivery" tail. */
+  'redmi-note-14-pro-plus-5g': {
+    shopSpecs: 'Global and China versions, 6.67-inch 1.5K 120Hz AMOLED',
+    quickLookSpecs: 'Global and China versions',
+    titleOverride: 'Redmi Note 14 Pro Plus 5G Price in Bangladesh',
+    descriptionOverride:
+      'Redmi Note 14 Pro+ 5G price in Bangladesh (BD): Global from ৳37,500, China from ৳35,000, unofficial. Specs, versions and colors.',
+    shopDescriptionOverride:
+      'Redmi Note 14 Pro+ 5G in Bangladesh: Global ৳37,500 and China ৳35,000, unofficial imports. 200MP OIS, 5110mAh and 120W on the Global version.',
+  },
+  /** Redmi Note 15 5G — an OFFICIAL Bangladesh launch, so the generated
+   *  description prints the authorised-channel price and status. The title is
+   *  the model plus "Price in Bangladesh" (36 chars, absolute) and the
+   *  qualifier says which memory size that money buys. */
+  'redmi-note-15-5g': {
+    shopSpecs: '108MP camera, 120Hz AMOLED, 5520mAh battery',
+    quickLookSpecs: '6.77-inch 120Hz AMOLED, 108MP camera',
+    quickLookPriceQualifier: '8GB/256GB',
+    titleOverride: 'Redmi Note 15 5G Price in Bangladesh',
   },
   'infinix-note-60-pro': {
     shopSpecs: 'great value performance',
@@ -274,6 +303,7 @@ export function shopSeoTitle(product: Product): string {
  */
 export function shopSeoDescription(product: Product): string {
   const copy = seoCopy[slugOf(product)];
+  if (copy?.shopDescriptionOverride) return copy.shopDescriptionOverride;
   if (copy?.descriptionOverride) return copy.descriptionOverride;
   const specs = copy?.shopSpecs ?? 'solid specs';
 

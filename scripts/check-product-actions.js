@@ -8,6 +8,7 @@
  *
  *   mode 'buy'        → Add to Cart + Buy Now (Pre-Order / Coming Soon)
  *   mode 'free-order' → ONE Free Order button
+ *   mode 'notify'     → ONE Notify Me button (no purchase action at all)
  *
  * The checks below fail the build when:
  *   1. a product surface stops delegating to ProductActions (it imports the
@@ -15,7 +16,9 @@
  *   2. a product surface starts rendering its own purchase CTA text again, or
  *   3. ProductActions loses the purchaseModeOf() switch, or
  *   4. the free-order block can render a buy action / the buy block can
- *      render Free Order (i.e. Buy Now and Free Order together), or
+ *      render Free Order (i.e. Buy Now and Free Order together), or the
+ *      notify block renders either (a notify-only product must never take
+ *      an order), or
  *   5. a DEAL — any product flagged isDeal, i.e. anything /deals can list — is
  *      in 'free-order' mode or only has an estimated price. /deals shows a
  *      Buy Now + Add to Cart price offer, so a product nobody may actually
@@ -54,6 +57,7 @@ const DIRECT_RENDERERS = [
 const CTA_WORDS = />\s*(Buy Now|Add to Cart|Pre-Order|Coming Soon|Free Order)\s*</;
 const FREE_ORDER_BLOCK = /data-purchase-block="free-order"/;
 const BUY_BLOCK = /data-purchase-block="buy"/;
+const NOTIFY_BLOCK = /data-purchase-block="notify"/;
 const BUY_ACTIONS = /(\bBuy Now\b|\bAdd to Cart\b|\bPre-Order\b|\bComing Soon\b)/;
 const FREE_ACTION = /\bFree Order\b/;
 
@@ -137,15 +141,24 @@ const actionsCode = stripComments(fs.readFileSync(actionsAbs, 'utf8'));
 if (!/purchaseModeOf\s*\(/.test(actionsCode)) {
   problems.push(`${ACTIONS_FILE} must derive its mode with purchaseModeOf(product).`);
 }
-if (!FREE_ORDER_BLOCK.test(actionsCode) || !BUY_BLOCK.test(actionsCode)) {
+if (
+  !FREE_ORDER_BLOCK.test(actionsCode) ||
+  !BUY_BLOCK.test(actionsCode) ||
+  !NOTIFY_BLOCK.test(actionsCode)
+) {
   problems.push(
-    `${ACTIONS_FILE} must keep the data-purchase-block="free-order" and "buy" markers (the guard needs them to prove the actions never mix).`
+    `${ACTIONS_FILE} must keep the data-purchase-block="free-order", "buy" and "notify" markers (the guard needs them to prove the actions never mix).`
   );
 } else {
+  const notifyStart = actionsCode.search(NOTIFY_BLOCK);
   const freeStart = actionsCode.search(FREE_ORDER_BLOCK);
   const buyStart = actionsCode.search(BUY_BLOCK);
   const freeBlock = actionsCode.slice(freeStart, buyStart > freeStart ? buyStart : undefined);
   const buyBlock = actionsCode.slice(buyStart);
+  const notifyBlock = actionsCode.slice(
+    notifyStart,
+    freeStart > notifyStart ? freeStart : buyStart
+  );
 
   const clashInFree = freeBlock.match(BUY_ACTIONS);
   if (clashInFree) {
@@ -156,6 +169,12 @@ if (!FREE_ORDER_BLOCK.test(actionsCode) || !BUY_BLOCK.test(actionsCode)) {
   if (FREE_ACTION.test(buyBlock)) {
     problems.push(
       `${ACTIONS_FILE}: the buy block can render Free Order — a product must have exactly one purchase mode.`
+    );
+  }
+  const clashInNotify = notifyBlock.match(BUY_ACTIONS) || notifyBlock.match(FREE_ACTION);
+  if (clashInNotify) {
+    problems.push(
+      `${ACTIONS_FILE}: the notify block renders "${clashInNotify[0]}" — a notify-only product must not offer any purchase action.`
     );
   }
   // Exactly one visible label per action across the whole component (the

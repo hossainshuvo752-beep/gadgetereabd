@@ -163,7 +163,12 @@ export function productSchema(
       priceCurrency: 'BDT',
       price: product.price,
       itemCondition: 'https://schema.org/NewCondition',
-      availability: 'https://schema.org/InStock',
+      // Only products whose stock a source confirms claim InStock;
+      // omitSchemaAvailability leaves the offer itself intact without an
+      // availability value (unofficial-import products).
+      ...(product.omitSchemaAvailability
+        ? {}
+        : { availability: 'https://schema.org/InStock' }),
       url: productUrl,
     };
   }
