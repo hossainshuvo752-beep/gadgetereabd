@@ -3812,7 +3812,7 @@ const guides: Record<string, QuickLookGuide> = {
     priceSection: {
       heading: 'Redmi Note 15 5G price in Bangladesh',
       paragraphs: [
-        'The official Bangladesh price is ৳36,999 for the 8GB/256GB configuration. Star Tech lists exactly that configuration at ৳36,999 with a one-year official warranty claimable at the nearest Xiaomi Care, and MobileDokan records the same official figure for the same memory size on a page last updated on 21 September 2026. Both pages were checked on 23 October 2026, which is the date printed beside the price box on this page.',
+        'The official Bangladesh price is ৳36,999 for the 8GB/256GB configuration. Star Tech lists exactly that configuration at ৳36,999 with a one-year official warranty claimable at the nearest Xiaomi Care, and MobileDokan records the same official figure for the same memory size on a page last updated on 21 September 2026. Both pages were checked on 23 October 2026, which is the date printed beside the price box on this page. Neither listing states whether VAT is included, so treat ৳36,999 as the listed price and confirm VAT with the seller before you pay.',
         'Import listings are cheaper and less predictable. Apple Gadgets BD shows the same model at ৳30,499, with CN and Global units and 6GB/128GB, 8GB/128GB, 8GB/256GB and 12GB/256GB options, and MobileDokan records an unofficial ৳34,000. Those are grey imports: no Xiaomi Bangladesh warranty, no guarantee that the box matches the configuration you asked for, and regional differences in things like NFC support. If the saving matters more than the warranty, confirm the memory variant, the region and the model number before you pay.',
       ],
     },
