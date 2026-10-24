@@ -2879,6 +2879,178 @@ export const products: Product[] = [
     ],
     defaultVersion: 'official',
   },
+  {
+    id: 26,
+    title: 'Redmi Note 15 Pro Plus 5G',
+    seoName: 'Redmi Note 15 Pro+ 5G',
+    category: 'Smartphones',
+    topCategory: 'Mobile',
+    subCategory: 'Xiaomi',
+    imageAlt: 'Redmi Note 15 Pro+ 5G',
+    /** Hero = the default colour's back-and-front view (Glacier Blue), the
+     *  same convention the other colour-mapped phones use. */
+    heroImage: '/images/products/redmi-note-15-pro-plus-5g/glacier-blue/1.webp',
+    gallery: [
+      '/images/products/redmi-note-15-pro-plus-5g/glacier-blue/1.webp',
+      '/images/products/redmi-note-15-pro-plus-5g/glacier-blue/2.webp',
+      '/images/products/redmi-note-15-pro-plus-5g/glacier-blue/3.webp',
+      '/images/products/redmi-note-15-pro-plus-5g/glacier-blue/4.webp',
+    ],
+    /** Three colour sets, each four real product photos. The file names in
+     *  the supplied folder are the colour names, so the data matches them
+     *  exactly (Xiaomi's own wording for the black one is plain "Black"). */
+    colorImages: [
+      {
+        color: 'Glacier Blue',
+        images: [
+          '/images/products/redmi-note-15-pro-plus-5g/glacier-blue/1.webp',
+          '/images/products/redmi-note-15-pro-plus-5g/glacier-blue/2.webp',
+          '/images/products/redmi-note-15-pro-plus-5g/glacier-blue/3.webp',
+          '/images/products/redmi-note-15-pro-plus-5g/glacier-blue/4.webp',
+        ],
+      },
+      {
+        color: 'Matte Black',
+        images: [
+          '/images/products/redmi-note-15-pro-plus-5g/matte-black/1.webp',
+          '/images/products/redmi-note-15-pro-plus-5g/matte-black/2.webp',
+          '/images/products/redmi-note-15-pro-plus-5g/matte-black/3.webp',
+          '/images/products/redmi-note-15-pro-plus-5g/matte-black/4.webp',
+        ],
+      },
+      {
+        color: 'Mocha Brown',
+        images: [
+          '/images/products/redmi-note-15-pro-plus-5g/mocha-brown/1.webp',
+          '/images/products/redmi-note-15-pro-plus-5g/mocha-brown/2.webp',
+          '/images/products/redmi-note-15-pro-plus-5g/mocha-brown/3.webp',
+          '/images/products/redmi-note-15-pro-plus-5g/mocha-brown/4.webp',
+        ],
+      },
+    ],
+    /** One alt per supplied photo, describing only what that file shows. */
+    galleryAlts: [
+      { src: '/images/products/redmi-note-15-pro-plus-5g/glacier-blue/1.webp', alt: 'Redmi Note 15 Pro+ 5G in Glacier Blue, back and front side by side on a marble table' },
+      { src: '/images/products/redmi-note-15-pro-plus-5g/glacier-blue/2.webp', alt: 'Redmi Note 15 Pro+ 5G in Glacier Blue standing beside its retail box' },
+      { src: '/images/products/redmi-note-15-pro-plus-5g/glacier-blue/3.webp', alt: 'Redmi Note 15 Pro+ 5G in Glacier Blue held in one hand against orange panels' },
+      { src: '/images/products/redmi-note-15-pro-plus-5g/glacier-blue/4.webp', alt: 'Redmi Note 15 Pro+ 5G in Glacier Blue held sideways, rear camera facing the camera' },
+      { src: '/images/products/redmi-note-15-pro-plus-5g/matte-black/1.webp', alt: 'Redmi Note 15 Pro+ 5G in Matte Black, back and front side by side on a wooden table' },
+      { src: '/images/products/redmi-note-15-pro-plus-5g/matte-black/2.webp', alt: 'Redmi Note 15 Pro+ 5G in Matte Black standing beside its retail box' },
+      { src: '/images/products/redmi-note-15-pro-plus-5g/matte-black/3.webp', alt: 'Redmi Note 15 Pro+ 5G in Matte Black held in one hand against orange panels' },
+      { src: '/images/products/redmi-note-15-pro-plus-5g/matte-black/4.webp', alt: 'Redmi Note 15 Pro+ 5G in Matte Black held sideways, rear camera facing the camera' },
+      { src: '/images/products/redmi-note-15-pro-plus-5g/mocha-brown/1.webp', alt: 'Redmi Note 15 Pro+ 5G in Mocha Brown, back and front side by side on a marble table' },
+      { src: '/images/products/redmi-note-15-pro-plus-5g/mocha-brown/2.webp', alt: 'Redmi Note 15 Pro+ 5G in Mocha Brown standing beside its retail box' },
+      { src: '/images/products/redmi-note-15-pro-plus-5g/mocha-brown/3.webp', alt: 'Redmi Note 15 Pro+ 5G in Mocha Brown held in one hand against orange panels' },
+      { src: '/images/products/redmi-note-15-pro-plus-5g/mocha-brown/4.webp', alt: 'Redmi Note 15 Pro+ 5G in Mocha Brown held sideways, rear camera facing the camera' },
+    ],
+    views: 720,
+    dateAdded: '2026-10-24',
+    price: 46999,
+    /** OFFICIAL: Xiaomi Bangladesh lists ৳46,999 for 8GB/256GB and ৳59,999
+     *  for 12GB/512GB on its own product page, and MobileDokan records the
+     *  same two official figures. */
+    priceStatus: 'official',
+    oldPrice: null,
+    priceEstimated: false,
+    purchaseMode: 'buy',
+    status: 'available',
+    priceNote:
+      'Official Bangladesh prices: ৳46,999 for 8GB/256GB and ৳59,999 for 12GB/512GB (Xiaomi Bangladesh product page, opened 24 October 2026; MobileDokan.com official listing, page updated 27 September 2026). Star Tech lists the 12GB/512GB unit in stock at ৳59,999 with a one-year warranty at Xiaomi Care, and Gadget & Gear lists the 8GB/256GB at ৳46,999 while showing it out of stock (both opened 24 October 2026). Xiaomi also lists a 12GB/256GB configuration, but no Bangladesh price was published for it. China version (unofficial import): 12GB/256GB ৳40,000 on MobileDokan.co (page updated 27 August 2026) and ৳41,500 at Diamu, whose listing states the price excludes VAT (opened 24 October 2026); MobileDokan.co also lists a China 12GB/512GB at ৳46,000, a single-source figure that is not quoted as a price here. Import prices vary by seller. VAT: MobileDokan marks its official figures +VAT and Xiaomi does not state whether VAT is included, so confirm the final total with the seller.',
+    priceCheckedAt: '2026-10-24',
+    priceDisplayNote:
+      '(Official price in Bangladesh — 8GB/256GB ৳46,999, 12GB/512GB ৳59,999, one-year Xiaomi Care warranty)',
+    /**
+     * Verified on Xiaomi Bangladesh's own Redmi Note 15 Pro+ 5G page (opened
+     * 24 October 2026) and cross-checked against Star Tech's and Gadget &
+     * Gear's specification tables. Xiaomi's page contradicts itself on the
+     * charger (see notableLimitations), so the box contents are stated as
+     * the page states them rather than reconciled silently.
+     */
+    specSheet: {
+      basicInfo: {
+        model: 'Redmi Note 15 Pro+ 5G',
+        brand: 'Xiaomi',
+        releaseDate: 'January 2026',
+      },
+      display: {
+        type: 'CrystalRes AMOLED, 120Hz, HDR10+ and Dolby Vision',
+        size: '6.83 inches',
+        resolution: '2772 x 1280 pixels (1.5K)',
+        refreshRate: '120Hz',
+        protection: 'Corning Gorilla Glass Victus 2',
+      },
+      performance: {
+        processor: 'Qualcomm Snapdragon 7s Gen 4 (4nm)',
+        ram: '8GB/12GB (LPDDR4X)',
+        storage: '256GB/512GB',
+        os: 'Android 15, Xiaomi HyperOS 2',
+      },
+      cameraSystem: {
+        rear: '200MP main (f/1.7, 1/1.4-inch, OIS) + 8MP ultra-wide (f/2.2)',
+        front: '32MP (f/2.2)',
+        features: [
+          'OIS on the 200MP main camera, with a 1/1.4-inch sensor',
+          'Up to 4x optical-level zoom from the 200MP sensor and its AI engine',
+          '4K video at 30fps, 1080p at 30/60/120fps with gyro-EIS',
+          'AI Image Enhancement, AI Remove Reflection and an AI film camera mode',
+        ],
+      },
+      batteryCharging: {
+        capacity: '6500mAh silicon-carbon',
+        charging: '100W HyperCharge wired, 22.5W reverse wired',
+      },
+      buildDesign: {
+        dimensions:
+          '163.34 x 78.31 x 8.19mm (Black, Glacier Blue); 8.47mm (Mocha Brown)',
+        weight: '207.1g (Black, Glacier Blue); 208.0g (Mocha Brown)',
+        materials:
+          'Gorilla Glass Victus 2 front; fiberglass back on Black and Glacier Blue, eco-leather back on Mocha Brown',
+        colors: ['Glacier Blue', 'Matte Black', 'Mocha Brown'],
+      },
+      connectivity: {
+        network: '5G (2G/3G/4G/5G), dual nano-SIM or nano-SIM + eSIM',
+        bluetooth: 'Bluetooth 5.4',
+        ports: ['USB Type-C 2.0', 'No microSD slot'],
+      },
+      sensors: [
+        'In-screen fingerprint sensor',
+        'AI face unlock',
+        'IR blaster',
+        'Gyroscope and electronic compass',
+        'Ambient light and proximity sensors',
+      ],
+      aiFeatures: [
+        'Google Gemini with Gemini Live and the Gemini overlay',
+        'AI Writing and AI Speech Recognition',
+        'AI Interpreter for offline face-to-face translation',
+        'AI Image Enhancement and AI Remove Reflection',
+      ],
+      notableLimitations: [
+        'No power adapter in the box according to one Xiaomi Bangladesh footnote, although the same page lists a 100W in-box charger and an adapter in its package contents — check the box with the seller',
+        'LPDDR4X memory and UFS 2.2 storage, older than the LPDDR5X and UFS 3.1 parts some rivals use at this price',
+        'No microSD card slot',
+        'No 3.5mm headphone jack',
+        'The China version sold by importers has a different camera setup, battery and colour list',
+      ],
+    },
+    /**
+     * NO versions: the supplied folder holds ONE image set (three colours of
+     * the official handset), while the China unit is sold in five differently
+     * named colours and has a different rear camera array. Showing these
+     * photos under a China version would be untruthful, so the China import
+     * is covered in the price table, the comparison table and the guide text
+     * only — see the guide in quickLookContent.ts.
+     *
+     * PRICING RULE APPLIED: the official 8GB/256GB and 12GB/512GB both have a
+     * Xiaomi Bangladesh price plus a MobileDokan official price, so both are
+     * offered. The 12GB/256GB configuration is listed by Xiaomi but priced
+     * nowhere, so it is not offered.
+     */
+    variants: [
+      { label: '256GB', price: 46999 },
+      { label: '512GB', price: 59999 },
+    ],
+  },
 ];
 
 /** URL slug for a product title, e.g. 'HONOR Robot Phone' -> 'honor-robot-phone' */

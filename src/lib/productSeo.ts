@@ -125,6 +125,21 @@ const seoCopy: Record<string, ProductSeoCopy> = {
     quickLookPriceQualifier: '8GB/256GB',
     titleOverride: 'Redmi Note 15 5G Price in Bangladesh',
   },
+  /** Redmi Note 15 Pro+ 5G — an OFFICIAL Bangladesh launch (Xiaomi's own
+   *  Bangladesh page lists both prices), with a China import sold alongside
+   *  it. The title is the plain model + "Price in Bangladesh" with no year
+   *  (45 chars, absolute); the description quotes the official 8GB/256GB
+   *  price and the import floor, and the Shop copy keeps the official
+   *  price and warranty. */
+  'redmi-note-15-pro-plus-5g': {
+    shopSpecs: '200MP OIS camera, 6500mAh battery, 100W charging',
+    quickLookSpecs: '200MP OIS, 6500mAh, 100W',
+    titleOverride: 'Redmi Note 15 Pro Plus 5G Price in Bangladesh',
+    descriptionOverride:
+      'Redmi Note 15 Pro+ 5G price in Bangladesh (BD): ৳46,999 official, 8GB/256GB. 200MP OIS, 6500mAh, 100W. China import ৳40,000 unofficial.',
+    shopDescriptionOverride:
+      'Buy the Redmi Note 15 Pro+ 5G in Bangladesh: ৳46,999 official (8GB/256GB) with a one-year Xiaomi Care warranty. 200MP OIS, 6500mAh, 100W.',
+  },
   'infinix-note-60-pro': {
     shopSpecs: 'great value performance',
     quickLookSpecs: '6.78-inch AMOLED, Snapdragon 7s Gen 4',

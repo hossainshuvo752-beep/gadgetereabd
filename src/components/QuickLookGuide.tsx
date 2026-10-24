@@ -178,6 +178,61 @@ export default function QuickLookGuideSection({
         </div>
       )}
 
+      {/* Optional THREE-MODEL comparison — for a guide that already uses
+          `comparison` for its version table. Same verified-data rules. */}
+      {guide.modelComparison && (
+        <div className="mt-10">
+          <h3 className="text-xl md:text-2xl font-bold text-text-heading">
+            {guide.modelComparison.heading}
+          </h3>
+          <div className="mt-4 bg-bg-light border border-text-heading/10 rounded-lg overflow-x-auto">
+            <table className="w-full min-w-[560px] text-sm">
+              <thead className="border-b border-text-heading/10">
+                <tr>
+                  <th
+                    scope="col"
+                    className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-text-body"
+                  >
+                    Specification
+                  </th>
+                  {guide.modelComparison.columns.map((col) => (
+                    <th
+                      key={col}
+                      scope="col"
+                      className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-text-body"
+                    >
+                      {col}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-text-heading/5">
+                {guide.modelComparison.rows.map((row) => (
+                  <tr key={row.label}>
+                    <th
+                      scope="row"
+                      className="px-4 py-3 text-left font-medium text-text-heading align-top break-words"
+                    >
+                      {row.label}
+                    </th>
+                    <td className="px-4 py-3 text-text-article align-top">{row.left}</td>
+                    <td className="px-4 py-3 text-text-article align-top">{row.right}</td>
+                    <td className="px-4 py-3 text-text-article align-top">{row.third}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="mt-4 space-y-4">
+            {guide.modelComparison.paragraphs.map((p, i) => (
+              <p key={i} className="text-text-article leading-relaxed">
+                {p}
+              </p>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Optional setup-cost table — configurations with verified overseas
           prices (set only where a Bangladesh price does not exist). */}
       {guide.setupCosts && (

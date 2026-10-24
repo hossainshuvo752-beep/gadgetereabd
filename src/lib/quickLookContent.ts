@@ -55,6 +55,15 @@ export type QuickLookGuide = {
     rows: { label: string; left: string; right: string; third?: string }[];
     paragraphs: string[];
   };
+  /** Optional SECOND comparison table for a page that needs both its
+   *  version table (in `comparison`) and a three-model table. Same
+   *  verified-data rules; always three columns. Absent = nothing rendered. */
+  modelComparison?: {
+    heading: string;
+    columns: [string, string, string];
+    rows: { label: string; left: string; right: string; third: string }[];
+    paragraphs: string[];
+  };
   priceSection: { heading: string; paragraphs: string[] };
   features: { heading: string; title: string; body: string }[];
   buyers: { heading: string; should: string[]; skip: string[] };
@@ -4093,6 +4102,365 @@ const guides: Record<string, QuickLookGuide> = {
         label: 'Redmi Note 15 5G — Shop listing',
         description: 'The same phone in our shop catalogue, with its price and specifications',
         href: '/shop/redmi-note-15-5g',
+      },
+      {
+        label: 'All Quick Look price pages',
+        description: 'Every phone and gadget we have checked, with its sources',
+        href: '/quick-look',
+      },
+    ],
+  },
+  'redmi-note-15-pro-plus-5g': {
+    productName: 'Redmi Note 15 Pro+ 5G',
+    heading:
+      'Redmi Note 15 Pro+ 5G Price in Bangladesh: Official Price, China Import and Specs',
+    lead:
+      'The Redmi Note 15 Pro+ 5G is the top phone in Xiaomi’s Note 15 family, and Bangladesh gets it officially: ৳46,999 buys the 8GB/256GB unit and ৳59,999 the 12GB/512GB one, both with a one-year warranty claimable at Xiaomi Care. The hardware is a 6.83-inch 1.5K 120Hz AMOLED screen, a 200MP main camera with OIS on a 1/1.4-inch sensor, a 6500mAh silicon-carbon battery with 100W charging, and IP66/IP68/IP69/IP69K dust and water resistance. A China version is sold unofficially from ৳40,000 for 12GB/256GB, but it is a different specification — a 7000mAh battery, 90W charging and a 50MP triple camera — and it carries no Xiaomi Bangladesh warranty.',
+    summaryBn:
+      'রেডমি নোট ১৫ প্রো প্লাস ৫জি বাংলাদেশে অফিসিয়ালি ৳46,999 (৮জিবি/২৫৬জিবি) এবং ৳59,999 (১২জিবি/৫১২জিবি) দামে পাওয়া যায়, সঙ্গে এক বছরের জিয়াওমি কেয়ার ওয়ারেন্টি। ফোনটিতে ৬.৮৩ ইঞ্চি ১.৫কে ১২০Hz AMOLED ডিসপ্লে, ২০০ মেগাপিক্সেল ওআইএস ক্যামেরা, ৬৫০০mAh ব্যাটারি ও ১০০W চার্জিং আছে। চায়না ভার্সন (আনঅফিসিয়াল) ১২জিবি/২৫৬জিবি ৳40,000 থেকে শুরু, তবে সেটিতে জিয়াওমি বাংলাদেশের ওয়ারেন্টি নেই এবং ক্যামেরা ও ব্যাটারি ভিন্ন।',
+    overview: [
+      'This page covers one phone: the Redmi Note 15 Pro+ 5G. It is not the Redmi Note 15 5G — a smaller 6.77-inch phone with a Snapdragon 6 Gen 3 and a 5520mAh battery — and it is not the Redmi Note 15 Pro 5G, which is another model again. The Pro+ is the largest and most expensive of the three, and the only one Xiaomi Bangladesh prices itself: MobileDokan records a Bangladesh launch on 15 January 2026, and Xiaomi’s own Bangladesh page lists the official prices used throughout this page.',
+      'The body measures 163.34mm tall, 78.31mm wide and 8.19mm thick in Black and Glacier Blue; Mocha Brown is 8.47mm. Weight is 207.1g, or 208.0g for Mocha Brown. Xiaomi fits Gorilla Glass Victus 2 on the front and a fiberglass back on Black and Glacier Blue, with an eco-leather finish on Mocha Brown, and certifies the phone to IP66, IP68, IP69 and IP69K — including a TÜV SÜD test of submersion in up to 2 metres of fresh water for up to 24 hours and SGS certification for 2.5-metre drops. The footnote matters more than the badge: the warranty does not cover liquid damage outside those laboratory conditions, and water resistance degrades with wear.',
+      'Xiaomi’s Bangladesh page is contradictory about the charger. Its specification table lists a 100W in-box charger and its package contents list an adapter, while a footnote on the same page says no power adapter is included and recommends a 100W PD charger instead. Check the box before you pay, and budget for an adapter if the retail unit turns out not to include one. Elsewhere the phone uses LPDDR4X memory and UFS 2.2 storage — older, slower parts than the LPDDR5X and UFS 3.1 combinations some rivals use at this price — has no microSD slot and no 3.5mm headphone jack, and Xiaomi promises six years of security updates.',
+    ],
+    priceSection: {
+      heading: 'Redmi Note 15 Pro+ 5G price in Bangladesh: official and China import',
+      paragraphs: [
+        'The official Bangladesh price is ৳46,999 for 8GB/256GB and ৳59,999 for 12GB/512GB. Both figures are on Xiaomi Bangladesh’s own product page, and MobileDokan records the same two official prices on a page last updated on 27 September 2026. Star Tech lists the 12GB/512GB unit in stock at ৳59,999 with a one-year warranty claimable at the nearest Xiaomi Care, and Gadget & Gear lists the 8GB/256GB at ৳46,999 while showing it out of stock. Those pages were opened on 24 October 2026, the date printed beside the price box on this page.',
+        'The China version is the cheaper route and a different phone in two important places. MobileDokan.co prices the China 12GB/256GB unit at ৳40,000 on a page updated on 27 August 2026, and Diamu lists a China-specification unit at ৳41,500 with VAT excluded, checked on 24 October 2026. MobileDokan.co also lists a China 12GB/512GB at ৳46,000, but that is a single listing, so this page does not quote it as a price. Import prices move with the seller, and the China unit is not the same hardware: the import listings describe a 7000mAh battery with 90W charging and a 50MP main camera paired with a 50MP telephoto and an 8MP ultra-wide, where the official Bangladesh unit has 6500mAh, 100W and a 200MP main camera with an 8MP ultra-wide.',
+        'One configuration is deliberately not offered. Xiaomi lists 8GB/256GB, 12GB/256GB and 12GB/512GB for this model, but no Bangladesh seller we opened publishes a price for 12GB/256GB, so it is left out rather than shown on the strength of a guess. On VAT: MobileDokan marks its official figures as plus VAT, Diamu states that its import price excludes VAT, and Xiaomi does not say either way — so treat every figure here as the listed price and ask the seller for the VAT-inclusive total before you pay.',
+      ],
+    },
+    keyFacts: [
+      { term: 'Official price, 8GB/256GB', detail: '৳46,999' },
+      { term: 'Official price, 12GB/512GB', detail: '৳59,999' },
+      { term: 'China import, 12GB/256GB', detail: '৳40,000–৳41,500 unofficial' },
+      { term: 'Display', detail: '6.83-inch 1.5K CrystalRes AMOLED, 120Hz' },
+      { term: 'Battery and charging', detail: '6500mAh, 100W HyperCharge' },
+      { term: 'Main camera', detail: '200MP f/1.7 with OIS and a 1/1.4-inch sensor' },
+      { term: 'Water resistance', detail: 'IP66/IP68/IP69/IP69K' },
+      { term: 'Warranty', detail: 'One year at Xiaomi Care on the official unit' },
+    ],
+    setupCosts: {
+      heading: 'Redmi Note 15 Pro+ 5G price by version and configuration',
+      priceHeader: 'Price (BDT)',
+      rows: [
+        {
+          configuration: 'Official (Bangladesh) · 8GB/256GB',
+          price: '৳46,999',
+          note: 'Xiaomi Bangladesh product page, opened 24 October 2026, and MobileDokan’s official figure (page updated 27 September 2026); Gadget & Gear lists the same price and shows it out of stock.',
+        },
+        {
+          configuration: 'Official (Bangladesh) · 12GB/512GB',
+          price: '৳59,999',
+          note: 'Xiaomi Bangladesh product page, opened 24 October 2026; Star Tech lists it in stock with a one-year warranty at Xiaomi Care (opened 24 October 2026); MobileDokan’s official figure (page updated 27 September 2026).',
+        },
+        {
+          configuration: 'China version (unofficial) · 12GB/256GB',
+          price: '৳40,000–৳41,500',
+          note: 'MobileDokan.co China listing, page updated 27 August 2026 (৳40,000), and Diamu at ৳41,500 with VAT excluded (opened 24 October 2026). No Xiaomi Bangladesh warranty.',
+        },
+      ],
+      footer:
+        'Prices checked 24 October 2026. Only configurations with a MobileDokan or Xiaomi Bangladesh price plus a second Bangladesh listing are shown. Xiaomi also lists a 12GB/256GB configuration, but no Bangladesh price is published for it, so it is not offered. MobileDokan.co quotes a China 12GB/512GB at ৳46,000, a single-source figure that is not shown as a price. The China unit is a different hardware specification from the official one.',
+    },
+    comparison: {
+      level: 'h2',
+      heading: 'Official Bangladesh unit vs the China version',
+      columns: ['Official (Bangladesh)', 'China version (unofficial)'],
+      rows: [
+        {
+          label: 'Price in Bangladesh',
+          left: '৳46,999 (8GB/256GB) and ৳59,999 (12GB/512GB)',
+          right: '৳40,000–৳41,500 (12GB/256GB)',
+        },
+        {
+          label: 'Battery',
+          left: '6500mAh silicon-carbon',
+          right: '7000mAh',
+        },
+        {
+          label: 'Charging',
+          left: '100W HyperCharge wired, 22.5W reverse',
+          right: '90W wired, 22.5W reverse',
+        },
+        {
+          label: 'Rear cameras',
+          left: '200MP f/1.7 with OIS + 8MP ultra-wide',
+          right: '50MP main + 50MP telephoto + 8MP ultra-wide',
+        },
+        {
+          label: 'Front camera',
+          left: '32MP',
+          right: '32MP',
+        },
+        {
+          label: 'Chipset',
+          left: 'Snapdragon 7s Gen 4 (4nm)',
+          right: 'Snapdragon 7s Gen 4 (4nm)',
+        },
+        {
+          label: '5G bands',
+          left: 'n1/2/3/5/7/8/12/20/26/28/38/40/41/48/66/77/78',
+          right: 'Not published on the China listings we opened',
+        },
+        {
+          label: 'Software',
+          left: 'Android 15, Xiaomi HyperOS 2',
+          right: 'Android 15, Xiaomi HyperOS 2',
+        },
+        {
+          label: 'Water resistance',
+          left: 'IP66/IP68/IP69/IP69K',
+          right: 'IP68/IP69K',
+        },
+        {
+          label: 'Colours',
+          left: 'Glacier Blue, Black, Mocha Brown',
+          right: 'Mocha Brown, Midnight Black, Smoky Purple, Sky Blue, Cedar White',
+        },
+        {
+          label: 'Weight',
+          left: '207.1g (208.0g Mocha Brown)',
+          right: '211g',
+        },
+        {
+          label: 'Bangladesh warranty',
+          left: 'One year, Xiaomi Care',
+          right: 'Seller only, no Xiaomi Bangladesh warranty',
+        },
+      ],
+      paragraphs: [
+        'The two listings describe phones that look similar and are not the same purchase. The official unit’s 200MP main camera uses a 1/1.4-inch sensor with OIS and pairs it with an 8MP ultra-wide; the China unit is listed with two 50MP cameras — a main and a telephoto — plus an 8MP ultra-wide, so its zoom is optical rather than cropped from a high-resolution sensor. The battery difference runs the other way: 7000mAh on the China unit against 6500mAh here, but China charges at 90W where this one charges at 100W.',
+        'The colour lists do not fully overlap either. Xiaomi Bangladesh sells Glacier Blue, Black and Mocha Brown, and those are the three phones photographed on this page. The China listing adds Smoky Purple, Sky Blue and Cedar White, which is part of why this page keeps the China version in the tables and text instead of offering a gallery for both: these photographs would misrepresent three of its five colours and its different rear camera array.',
+        'What the import does not come with is the warranty. A Xiaomi Care claim needs an official Bangladesh unit, and an import is covered only by whatever the seller writes on the invoice. If the price gap matters more than that, an import at ৳40,000–৳41,500 saves roughly ৳5,500–৳7,000 against the official 8GB/256GB unit, and leaves you relying on the seller for service.',
+      ],
+    },
+    modelComparison: {
+      heading: 'Redmi Note 15 Pro+ 5G vs Redmi Note 15 5G vs Redmi Note 14 Pro+ 5G',
+      columns: ['Redmi Note 15 Pro+ 5G', 'Redmi Note 15 5G', 'Redmi Note 14 Pro+ 5G'],
+      rows: [
+        {
+          label: 'Price in Bangladesh',
+          left: '৳46,999 and ৳59,999 official; China import ৳40,000–৳41,500 unofficial',
+          right: '৳36,999 official (8GB/256GB); imports ৳24,000–৳31,000 unofficial',
+          third: '৳37,500 unofficial (Global 8GB/256GB)',
+        },
+        {
+          label: 'Chipset',
+          left: 'Snapdragon 7s Gen 4 (4nm)',
+          right: 'Snapdragon 6 Gen 3 (4nm)',
+          third: 'Snapdragon 7s Gen 3 (4nm)',
+        },
+        {
+          label: 'Display',
+          left: '6.83-inch 1.5K AMOLED, 120Hz, 3200 nits peak',
+          right: '6.77-inch AMOLED, 2392 x 1080, 120Hz, 3200 nits peak',
+          third: '6.67-inch 1.5K AMOLED, 120Hz',
+        },
+        {
+          label: 'Main camera',
+          left: '200MP f/1.7 OIS (1/1.4-inch) + 8MP ultra-wide, 32MP front',
+          right: '108MP f/1.7 + 8MP ultra-wide, 20MP front',
+          third: '200MP with OIS + 8MP ultra-wide + 2MP macro, 20MP front',
+        },
+        {
+          label: 'Battery',
+          left: '6500mAh',
+          right: '5520mAh',
+          third: '5110mAh',
+        },
+        {
+          label: 'Charging',
+          left: '100W HyperCharge',
+          right: '45W turbo, no adapter in the box',
+          third: '120W HyperCharge',
+        },
+        {
+          label: 'Water resistance',
+          left: 'IP66, IP68, IP69, IP69K',
+          right: 'IP66',
+          third: 'IP68',
+        },
+        {
+          label: 'Weight',
+          left: '207.1g (208.0g Mocha Brown)',
+          right: '178g',
+          third: '210g',
+        },
+        {
+          label: 'Memory options',
+          left: '8GB/256GB and 12GB/512GB official; China import 12GB/256GB',
+          right: '8GB/256GB officially; imports also 6GB/128GB',
+          third: '8GB/256GB, 12GB/256GB, 12GB/512GB',
+        },
+        {
+          label: 'Software',
+          left: 'Android 15, HyperOS 2',
+          right: 'Android 15, HyperOS 2',
+          third: 'Android 14, HyperOS',
+        },
+        {
+          label: 'Bangladesh warranty',
+          left: 'One year, Xiaomi Care',
+          right: 'One year, Xiaomi Care',
+          third: 'Seller only (unofficial import)',
+        },
+      ],
+      paragraphs: [
+        'The Note 15 Pro+ is the biggest of the three in every sense: a 6.83-inch 1.5K panel against 6.77 inches at 2392 x 1080 on the Note 15 5G, a 6500mAh battery against 5520mAh, and a 200MP main camera on a larger 1/1.4-inch sensor with a 32MP front camera instead of 20MP. It also charges at 100W and carries the full IP66/IP68/IP69/IP69K set, where the Note 15 5G stops at 45W and IP66. That is what the ৳10,000 difference between the two official prices buys.',
+        'Against the Redmi Note 14 Pro+ 5G the comparison is closer and turns on warranty. The 14 Pro+ is an import at ৳37,500 for the Global 8GB/256GB unit, roughly ৳9,500 below this phone’s official 8GB/256GB price, and it brings 120W charging and a 200MP camera of its own. In exchange it has a smaller 6.67-inch screen, an older Snapdragon 7s Gen 3, a 5110mAh battery and no Xiaomi Bangladesh warranty, since Xiaomi does not sell it here officially.',
+        'For anyone who wants an official unit with local service, the Note 15 Pro+ and the Note 15 5G are the two real options, and the Pro+ is the one to pick if the camera, screen size and charging speed are worth the extra money. The 14 Pro+ makes sense only if you want the fastest charging of the three and accept an import with seller-only cover.',
+      ],
+    },
+    availability: {
+      heading: 'Official or China import: which Redmi Note 15 Pro+ 5G are you buying?',
+      paragraphs: [
+        'The official route is Xiaomi Bangladesh’s own listing: 8GB/256GB at ৳46,999 and 12GB/512GB at ৳59,999, sold through authorised retailers such as Star Tech, where the unit carries a one-year warranty claimable at a Xiaomi Care point. That is the version this page’s price, schema and specifications describe by default, and the version the gallery shows.',
+        'Everything else is an import. The China unit is listed at ৳40,000–৳41,500 for 12GB/256GB, with a 7000mAh battery, 90W charging and a 50MP triple camera, and it comes in five colours. Two things to settle before you pay for one: no source we opened confirms Google Mobile Services on the China unit, and the model number on the box should match the listing. Ask the seller for both in writing rather than assuming the import is the same phone in a different box.',
+        'This page has no version switcher for one practical reason: the supplied photographs are of the official three-colour unit with its 200MP dual-camera rear, and the China unit is sold in five differently named colours with a different rear camera array. Showing those photographs under a China version label would describe hardware they do not show, so the China version is covered with its own prices and specification differences in the tables and text instead.',
+      ],
+    },
+    features: [
+      {
+        heading: 'Key features explained',
+        title: 'A 6.83-inch 1.5K AMOLED with 3200-nit peak brightness',
+        body:
+          'The screen is a 6.83-inch CrystalRes AMOLED at 2772 x 1280 pixels with a refresh rate up to 120Hz. Xiaomi rates peak brightness at 3200 nits, with 12-bit colour, 480Hz touch sampling (2560Hz instantaneous in game mode), 3840Hz PWM dimming and TÜV Rheinland low-blue-light, circadian-friendly and flicker-free certifications. Gorilla Glass Victus 2 covers it, and the phone is listed with HDR10+ and Dolby Vision support. The 6.83-inch size is the main practical difference from the 6.77-inch Note 15 5G: more screen, a slightly wider body at 78.31mm.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'A 200MP main camera with OIS on a 1/1.4-inch sensor',
+        body:
+          'The rear setup pairs a 200MP f/1.7 main camera — 1/1.4-inch sensor, 0.56μm pixels, multi-directional PDAF and OIS — with an 8MP f/2.2 ultra-wide. Xiaomi’s 200MP AI Engine drives up to 4x optical-level zoom from that sensor, with 1x, 1.2x, 1.5x and 2x steps plus a 92mm-equivalent crop, so zoom is software-assisted rather than a separate telephoto lens. Rear video tops out at 4K 30fps with gyro-EIS and OIS, while the 32MP f/2.2 front camera records 1080p at 30 or 60fps. The China version is where a physical telephoto appears — see the comparison above — so check which camera array you are being sold.',
+      },
+      {
+        heading: 'Key features explained',
+        title: '6500mAh silicon-carbon battery with 100W charging',
+        body:
+          'Xiaomi rates the battery at 6500mAh typical with a 10% silicon-carbon content, and claims up to two days of use, 25 hours of video playback and 47 hours of calling, plus 1600 charge cycles before capacity drops below 80%. Charging is 100W HyperCharge, measured by Xiaomi at 40 minutes to 100% under boost mode, with 22.5W reverse wired charging for other devices. Whether a charger is in the box depends on which part of Xiaomi’s own page you read, so confirm it with the seller; the page recommends a 100W PD adapter if none is included.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Snapdragon 7s Gen 4 with LPDDR4X and UFS 2.2',
+        body:
+          'The chip is Qualcomm’s Snapdragon 7s Gen 4 on a 4nm process, an octa-core CPU up to 2.7GHz with an Adreno GPU. Xiaomi pairs it with LPDDR4X memory and UFS 2.2 storage — the older, slower combination rather than the LPDDR5X and UFS 3.1 parts some rivals use at this price — and the 12GB version can borrow up to 12GB more from storage as extended RAM. In practice that is fine for messaging, video, maps and mainstream games; it is not the phone to buy for the fastest possible app loading. Storage cannot be expanded, because there is no microSD slot.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'IP69K durability, six years of updates and Gemini',
+        body:
+          'The IP ratings go further than most phones at this price: IP66, IP68, IP69 and IP69K, backed by a TÜV SÜD water-resistance endurance certificate and an SGS 2.5-metre drop certification, with Xiaomi describing an aluminium-alloy reinforced frame and a fiberglass or eco-leather back. Xiaomi also promises six years of security updates and ships HyperOS 2 on Android 15, with Google Gemini, Gemini Live, AI Writing, AI Speech Recognition, AI Interpreter and AI image editing. Elsewhere there are dual speakers with Dolby Atmos and Hi-Res audio, an IR blaster, NFC — which Xiaomi notes varies by market — an in-screen fingerprint sensor and Bluetooth 5.4.',
+      },
+    ],
+    buyers: {
+      heading: 'Who should buy the Redmi Note 15 Pro+ 5G — and who should skip it',
+      should: [
+        'Buyers who want an official Bangladesh unit with a one-year Xiaomi Care warranty, rather than an import with seller-only cover.',
+        'People who want the largest screen in the Note 15 family: 6.83 inches at 1.5K with 3200-nit peak brightness.',
+        'Anyone who wants a 200MP main camera with OIS and a large 1/1.4-inch sensor without paying flagship money.',
+        'Buyers who value durability ratings: IP66, IP68, IP69 and IP69K, plus SGS drop and TÜV SÜD water-resistance certification.',
+        'People who want 100W charging and a 6500mAh battery in the same phone — the combination the cheaper Note 15 5G does not offer.',
+      ],
+      skip: [
+        'Buyers who want the fastest charging at this price: the imported Note 14 Pro+ 5G charges at 120W.',
+        'People who need a real telephoto lens; on the official unit zoom is cropped from the 200MP sensor.',
+        'Heavy gamers who want LPDDR5X and UFS 3.1 — this phone uses LPDDR4X and UFS 2.2.',
+        'Buyers who want expandable storage: there is no microSD slot.',
+        'Anyone who needs the lowest price on this model and accepts no local warranty — the China import starts at ৳40,000 but is a different specification.',
+      ],
+    },
+    pros: {
+      heading: 'Pros and cons',
+      pros: [
+        'Official Bangladesh price and a one-year Xiaomi Care warranty',
+        '6.83-inch 1.5K AMOLED at 120Hz with 3200-nit peak brightness',
+        '200MP main camera with OIS on a 1/1.4-inch sensor',
+        '6500mAh battery with 100W HyperCharge and 22.5W reverse charging',
+        'IP66, IP68, IP69 and IP69K ratings with SGS and TÜV SÜD certification',
+        'Six years of security updates promised by Xiaomi',
+      ],
+      cons: [
+        'LPDDR4X memory and UFS 2.2 storage at a near-flagship price',
+        'No microSD slot and no 3.5mm headphone jack',
+        'No telephoto camera on the official unit',
+        'Xiaomi’s own page contradicts itself on whether a charger is included',
+        'Heavier than the Note 15 5G at 207.1g',
+        'The China import is a different specification and carries no Xiaomi Bangladesh warranty',
+      ],
+    },
+    buyingTips: {
+      heading: 'Buying notes for Bangladesh',
+      paragraphs: [
+        'Decide which version you are buying before you compare prices. The official 8GB/256GB unit is ৳46,999 and the 12GB/512GB is ৳59,999, both with a one-year Xiaomi Care warranty; the China import is ৳40,000–৳41,500 for 12GB/256GB, with a different camera, a bigger battery and seller-only cover. Ask the seller to write the version, the RAM and storage, and the warranty on the invoice, and check that the model number on the box matches the phone’s about screen.',
+        'Check the box contents in the shop, because Xiaomi’s own page disagrees with itself on the charger: one footnote says none is included, while the specification table and package list include a 100W adapter. If the adapter is not in the box, a 100W USB-C PD charger is what Xiaomi recommends. Also check that the unit is a Bangladesh unit rather than an import presented as official — the price alone will not tell you, since both are sold at the same shops.',
+        'For any handset, dial *#06# and match the IMEI against the box and the invoice, and confirm the phone is registered for use on Bangladesh networks. Test the screen at low brightness if PWM flicker bothers you, try the in-screen fingerprint sensor and both speakers, and check that NFC appears in settings on the actual unit — Xiaomi notes that NFC availability varies by market. If you are buying the China import specifically for its telephoto camera, confirm that camera is present before you pay, because the official unit does not have one.',
+      ],
+    },
+    sourcesChecked:
+      'Specs checked against Xiaomi Bangladesh’s Redmi Note 15 Pro+ 5G product page, Star Tech’s Redmi Note 15 Pro Plus 5G specification table and Gadget & Gear’s 8GB/256GB specification table, all opened on 24 October 2026. Prices checked on the same day against Xiaomi Bangladesh’s product page, MobileDokan.com’s Redmi Note 15 Pro Plus listing (updated 27 September 2026), MobileDokan.co’s Redmi Note 15 Pro+ China listing (updated 27 August 2026), Star Tech’s 12GB/512GB listing, Gadget & Gear’s 8GB/256GB listing and Diamu’s listing. No reviewer unit was tested for this page.',
+    faqs: [
+      {
+        question: 'What is the Redmi Note 15 Pro+ 5G price in Bangladesh?',
+        answer:
+          'The official price in Bangladesh (BD) is ৳46,999 for the 8GB/256GB unit and ৳59,999 for 12GB/512GB, checked on 24 October 2026. The China version sold by importers starts at ৳40,000 for 12GB/256GB, without a Xiaomi Bangladesh warranty.',
+      },
+      {
+        question: 'What is the official price of each Redmi Note 15 Pro+ 5G variant?',
+        answer:
+          '8GB/256GB is ৳46,999 and 12GB/512GB is ৳59,999 on Xiaomi Bangladesh’s own page, checked on 24 October 2026, and MobileDokan records the same two official figures on a page updated 27 September 2026. Xiaomi also lists a 12GB/256GB configuration, but no Bangladesh price has been published for it.',
+      },
+      {
+        question: 'What is the unofficial China version price?',
+        answer:
+          'MobileDokan.co prices the China 12GB/256GB unit at ৳40,000 on a page updated 27 August 2026, and Diamu lists a China-specification unit at ৳41,500 with VAT excluded, checked on 24 October 2026. MobileDokan.co also lists a China 12GB/512GB at ৳46,000, but that figure comes from a single listing, so it is not quoted as a price here. Import prices vary by seller.',
+      },
+      {
+        question: 'What is the difference between the official and China versions?',
+        answer:
+          'The official Bangladesh unit has a 6500mAh battery with 100W charging, a 200MP main camera plus an 8MP ultra-wide, and three colours: Glacier Blue, Black and Mocha Brown. The China unit is listed with a 7000mAh battery and 90W charging, a 50MP main camera plus a 50MP telephoto and an 8MP ultra-wide, and five colours including Smoky Purple, Sky Blue and Cedar White. Only the official unit carries a Xiaomi Bangladesh warranty.',
+      },
+      {
+        question: 'Is the Redmi Note 15 Pro+ 5G available officially in Bangladesh, and with what warranty?',
+        answer:
+          'Yes. Xiaomi Bangladesh lists it with Bangladesh prices, and Star Tech sells the 12GB/512GB unit in stock with a one-year warranty claimable at the nearest Xiaomi Care. Xiaomi’s page also carries a two-year quality-assurance footnote with one free battery replacement within 48 months, but the dates on that footnote are left blank as opened, so confirm the warranty term on the invoice.',
+      },
+      {
+        question: 'Which RAM and storage should I buy?',
+        answer:
+          'The 8GB/256GB unit at ৳46,999 is the sensible default: it has the same chipset, screen and cameras as the 12GB/512GB model. Choose 12GB/512GB at ৳59,999 only if you keep many large games and videos on the phone, since there is no microSD slot. The China import is 12GB/256GB at ৳40,000–৳41,500, but it has different cameras and a different battery, and no local warranty.',
+      },
+      {
+        question: 'What battery and charging does the Redmi Note 15 Pro+ 5G have?',
+        answer:
+          'A 6500mAh silicon-carbon battery with 100W HyperCharge, measured by Xiaomi at 40 minutes to 100%, plus 22.5W reverse wired charging. Xiaomi’s Bangladesh page says in one footnote that no power adapter is included, while its package list on the same page includes an adapter — check the box before you pay.',
+      },
+      {
+        question: 'What colours does the Redmi Note 15 Pro+ 5G come in?',
+        answer:
+          'Glacier Blue, Black and Mocha Brown on the official Bangladesh unit, and the gallery on this page shows all three with four photos each. The China version is listed separately in five colours, including Smoky Purple, Sky Blue and Cedar White.',
+      },
+      {
+        question: 'Redmi Note 15 Pro+ এর দাম কত?',
+        answer:
+          'বাংলাদেশে রেডমি নোট ১৫ প্রো প্লাস ৫জি-এর অফিসিয়াল দাম ৳46,999 (৮জিবি/২৫৬জিবি) এবং ৳59,999 (১২জিবি/৫১২জিবি), সঙ্গে এক বছরের জিয়াওমি কেয়ার ওয়ারেন্টি। আনঅফিসিয়াল চায়না ভার্সন ১২জিবি/২৫৬জিবি ৳40,000–৳41,500, তবে সেখানে জিয়াওমি বাংলাদেশের ওয়ারেন্টি নেই। ফোনটিতে ৬.৮৩ ইঞ্চি ১.৫কে ১২০Hz AMOLED ডিসপ্লে, ২০০ মেগাপিক্সেল ওআইএস ক্যামেরা, ৬৫০০mAh ব্যাটারি ও ১০০W চার্জিং আছে।',
+      },
+    ],
+    links: [
+      {
+        label: 'Redmi Note 15 5G — Quick Look',
+        description: 'The ৳36,999 official model with a 6.77-inch AMOLED and a 5520mAh battery',
+        href: '/quick-look/redmi-note-15-5g',
+      },
+      {
+        label: 'Redmi Note 14 Pro+ 5G — Quick Look',
+        description: 'The import with 120W charging and a 200MP camera, from ৳37,500',
+        href: '/quick-look/redmi-note-14-pro-plus-5g',
+      },
+      {
+        label: 'Redmi Note 15 Pro+ 5G — Shop listing',
+        description: 'The same phone in our shop catalogue, with its official price and specifications',
+        href: '/shop/redmi-note-15-pro-plus-5g',
       },
       {
         label: 'All Quick Look price pages',
