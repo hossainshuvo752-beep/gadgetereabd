@@ -3569,7 +3569,7 @@ const guides: Record<string, QuickLookGuide> = {
     lead:
       'The Redmi Note 14 Pro+ 5G comes in two versions, and they are not the same phone inside. The Global version is listed at ৳37,500 for 8GB/256GB with a 200MP main camera, a 5110mAh battery and 120W charging. The China version is listed at ৳35,000 for 12GB/256GB, and it trades the 200MP sensor for a 50MP main plus a 50MP telephoto, with a bigger 6200mAh battery charging at 90W. Both prices are unofficial: Xiaomi Bangladesh does not sell this model, so every unit here is imported.',
     summaryBn:
-      'রেডমি নোট ১৪ প্রো প্লাস ৫জি-এর গ্লোবাল ভার্সন ৮জিবি/২৫৬জিবি ৳37,500, আর চায়না ভার্সন ১২জিবি/২৫৬জিবি ৳35,000 — দুটোই আনঅফিসিয়াল, কারণ জিয়াওমি বাংলাদেশে এই মডেল অফিসিয়ালি বিক্রি করে না। গ্লোবাল ভার্সনে ২০০ মেগাপিক্সেল OIS ক্যামেরা ও ১২০W চার্জিং, চায়না ভার্সনে ৬২০০mAh ব্যাটারি, ৫০ মেগাপিক্সেল টেলিফটো ও ৯০W চার্জিং।',
+      'রেডমি নোট ১৪ প্রো প্লাস ৫জি-এর গ্লোবাল ভার্সন ৮জিবি/২৫৬জিবি ৳37,500, আর চায়না ভার্সন ১২জিবি/২৫৬জিবি ৳35,000 — দুটোই আনঅফিসিয়াল, কারণ শাওমি বাংলাদেশে এই মডেল অফিসিয়ালি বিক্রি করে না। গ্লোবাল ভার্সনে ২০০ মেগাপিক্সেল OIS ক্যামেরা ও ১২০W চার্জিং, চায়না ভার্সনে ৬২০০mAh ব্যাটারি, ৫০ মেগাপিক্সেল টেলিফটো ও ৯০W চার্জিং।',
     overview: [
       'Both versions share the same shell design and the same Qualcomm Snapdragon 7s Gen 3 chipset, and both run Xiaomi HyperOS on Android 14. The 6.67-inch 1.5K AMOLED panel at 120Hz with 3000-nit peak brightness is common to both, as is the 20MP front camera, IP68 water resistance, dual speakers with Dolby Atmos and an IR blaster. What changes between them is the rear camera hardware, the battery and the charging speed — the three things this page compares in full below.',
       'The Global version is the one most Bangladesh shops advertise, and it is the version whose colours are pictured here as Frost Blue, Midnight Black and Lavender Purple. The China version arrives in Black, White and Green. Xiaomi does not publish a Bangladesh price for either version and no local distributor sells them, so the figures on this page come from Bangladesh retailers and price listings, not from Xiaomi.',
@@ -3775,7 +3775,7 @@ const guides: Record<string, QuickLookGuide> = {
       {
         question: 'Redmi Note 14 Pro+ এর দাম কত?',
         answer:
-          'বাংলাদেশে আনঅফিসিয়াল দাম: গ্লোবাল ভার্সন ৮জিবি/২৫৬জিবি ৳37,500, ১২জিবি/২৫৬জিবি ৳39,500 এবং ১২জিবি/৫১২জিবি ৳43,500। চায়না ভার্সন ১২জিবি/২৫৬জিবি ৳35,000। জিয়াওমি বাংলাদেশে এই মডেল অফিসিয়ালি বিক্রি করে না, তাই দাম ও ওয়ারেন্টি বিক্রেতার উপর নির্ভর করে।',
+          'বাংলাদেশে আনঅফিসিয়াল দাম: গ্লোবাল ভার্সন ৮জিবি/২৫৬জিবি ৳37,500, ১২জিবি/২৫৬জিবি ৳39,500 এবং ১২জিবি/৫১২জিবি ৳43,500। চায়না ভার্সন ১২জিবি/২৫৬জিবি ৳35,000। শাওমি বাংলাদেশে এই মডেল অফিসিয়ালি বিক্রি করে না, তাই দাম ও ওয়ারেন্টি বিক্রেতার উপর নির্ভর করে।',
       },
     ],
     links: [
@@ -3812,7 +3812,7 @@ const guides: Record<string, QuickLookGuide> = {
     lead:
       'The Redmi Note 15 5G is Xiaomi\'s mid-range 5G phone for 2026, and Bangladesh gets it officially: ৳36,999 buys the 8GB/256GB configuration from an authorised retailer, with a one-year warranty claimable at Xiaomi Care. The hardware is a 6.77-inch 120Hz AMOLED screen, a 108MP main camera, a 5520mAh battery with 45W charging and an IP66 splash rating in a 178g body. Unofficial imports of the same model start at ৳24,000 for 6GB/128GB, but they are not the official configuration and come without a Xiaomi Bangladesh warranty.',
     summaryBn:
-      'রেডমি নোট ১৫ ৫জি বাংলাদেশে অফিসিয়ালি ৳36,999 দামে পাওয়া যায় (৮জিবি/২৫৬জিবি), সঙ্গে এক বছরের জিয়াওমি ওয়ারেন্টি। ফোনটিতে ৬.৭৭ ইঞ্চি ১২০Hz AMOLED ডিসপ্লে, ১০৮ মেগাপিক্সেল ক্যামেরা, ৫৫২০mAh ব্যাটারি ও ৪৫W চার্জিং রয়েছে, এবং এটি IP66 রেটেড।',
+      'রেডমি নোট ১৫ ৫জি বাংলাদেশে অফিসিয়ালি ৳36,999 দামে পাওয়া যায় (৮জিবি/২৫৬জিবি), সঙ্গে এক বছরের শাওমি ওয়ারেন্টি। ফোনটিতে ৬.৭৭ ইঞ্চি ১২০Hz AMOLED ডিসপ্লে, ১০৮ মেগাপিক্সেল ক্যামেরা, ৫৫২০mAh ব্যাটারি ও ৪৫W চার্জিং রয়েছে, এবং এটি IP66 রেটেড।',
     overview: [
       'This page covers one phone: the Redmi Note 15 5G. Xiaomi sells several handsets under the Note 15 name, and the Note 15 Pro 5G is a different, larger device with a 6.83-inch 1.5K screen, a 200MP main camera and a 6580mAh battery — it is compared with this model below so the two never get mixed up. The 5G model is the balanced one in that family: a large high-refresh screen, a big battery, a high-resolution main sensor, and a chipset picked for efficiency rather than outright speed.',
       'The body measures 164mm tall and 75.42mm wide, and 7.35mm thick in Black and Glacier Blue; Mist Purple is 7.40mm. Weight is 178g, light for a phone with a 5520mAh cell. Xiaomi describes the front as high-durability display glass without naming the glass brand, and MobileDokan\'s specification list describes a glass front with plastic frame and plastic back. Xiaomi\'s spec page also lists dual speakers with Dolby Atmos and Hi-Res audio, an IR blaster, an in-screen fingerprint sensor, AI face unlock and NFC — with a note that NFC availability varies by market, which is worth checking on the box in Bangladesh.',
@@ -4084,7 +4084,7 @@ const guides: Record<string, QuickLookGuide> = {
       {
         question: 'Redmi Note 15 5G এর দাম কত?',
         answer:
-          'বাংলাদেশে রেডমি নোট ১৫ ৫জি-এর অফিসিয়াল দাম ৳36,999 (৮জিবি/২৫৬জিবি), সঙ্গে এক বছরের জিয়াওমি ওয়ারেন্টি। আনঅফিসিয়াল ইমপোর্ট ৬জিবি/১২৮জিবি ৳24,000 এবং ৮জিবি/২৫৬জিবি ৳31,000, কিন্তু সেগুলোতে জিয়াওমি বাংলাদেশের ওয়ারেন্টি থাকে না। ফোনটিতে ৬.৭৭ ইঞ্চি ১২০Hz AMOLED ডিসপ্লে, ১০৮ মেগাপিক্সেল ক্যামেরা ও ৫৫২০mAh ব্যাটারি আছে।',
+          'বাংলাদেশে রেডমি নোট ১৫ ৫জি-এর অফিসিয়াল দাম ৳36,999 (৮জিবি/২৫৬জিবি), সঙ্গে এক বছরের শাওমি ওয়ারেন্টি। আনঅফিসিয়াল ইমপোর্ট ৬জিবি/১২৮জিবি ৳24,000 এবং ৮জিবি/২৫৬জিবি ৳31,000, কিন্তু সেগুলোতে শাওমি বাংলাদেশের ওয়ারেন্টি থাকে না। ফোনটিতে ৬.৭৭ ইঞ্চি ১২০Hz AMOLED ডিসপ্লে, ১০৮ মেগাপিক্সেল ক্যামেরা ও ৫৫২০mAh ব্যাটারি আছে।',
       },
     ],
     links: [
@@ -4117,7 +4117,7 @@ const guides: Record<string, QuickLookGuide> = {
     lead:
       'The Redmi Note 15 Pro+ 5G is the top phone in Xiaomi’s Note 15 family, and Bangladesh gets it officially: ৳46,999 buys the 8GB/256GB unit and ৳59,999 the 12GB/512GB one, both with a one-year warranty claimable at Xiaomi Care. The hardware is a 6.83-inch 1.5K 120Hz AMOLED screen, a 200MP main camera with OIS on a 1/1.4-inch sensor, a 6500mAh silicon-carbon battery with 100W charging, and IP66/IP68/IP69/IP69K dust and water resistance. A China version is sold unofficially from ৳40,000 for 12GB/256GB, but it is a different specification — a 7000mAh battery, 90W charging and a 50MP triple camera — and it carries no Xiaomi Bangladesh warranty.',
     summaryBn:
-      'রেডমি নোট ১৫ প্রো প্লাস ৫জি বাংলাদেশে অফিসিয়ালি ৳46,999 (৮জিবি/২৫৬জিবি) এবং ৳59,999 (১২জিবি/৫১২জিবি) দামে পাওয়া যায়, সঙ্গে এক বছরের জিয়াওমি কেয়ার ওয়ারেন্টি। ফোনটিতে ৬.৮৩ ইঞ্চি ১.৫কে ১২০Hz AMOLED ডিসপ্লে, ২০০ মেগাপিক্সেল ওআইএস ক্যামেরা, ৬৫০০mAh ব্যাটারি ও ১০০W চার্জিং আছে। চায়না ভার্সন (আনঅফিসিয়াল) ১২জিবি/২৫৬জিবি ৳40,000 থেকে শুরু, তবে সেটিতে জিয়াওমি বাংলাদেশের ওয়ারেন্টি নেই এবং ক্যামেরা ও ব্যাটারি ভিন্ন।',
+      'রেডমি নোট ১৫ প্রো প্লাস ৫জি বাংলাদেশে অফিসিয়ালি ৳46,999 (৮জিবি/২৫৬জিবি) এবং ৳59,999 (১২জিবি/৫১২জিবি) দামে পাওয়া যায়, সঙ্গে এক বছরের শাওমি কেয়ার ওয়ারেন্টি। ফোনটিতে ৬.৮৩ ইঞ্চি ১.৫কে ১২০Hz AMOLED ডিসপ্লে, ২০০ মেগাপিক্সেল ওআইএস ক্যামেরা, ৬৫০০mAh ব্যাটারি ও ১০০W চার্জিং আছে। চায়না ভার্সন (আনঅফিসিয়াল) ১২জিবি/২৫৬জিবি ৳40,000 থেকে শুরু, তবে সেটিতে শাওমি বাংলাদেশের ওয়ারেন্টি নেই এবং ক্যামেরা ও ব্যাটারি ভিন্ন।',
     overview: [
       'This page covers one phone: the Redmi Note 15 Pro+ 5G. It is not the Redmi Note 15 5G — a smaller 6.77-inch phone with a Snapdragon 6 Gen 3 and a 5520mAh battery — and it is not the Redmi Note 15 Pro 5G, which is another model again. The Pro+ is the largest and most expensive of the three, and the only one Xiaomi Bangladesh prices itself: MobileDokan records a Bangladesh launch on 15 January 2026, and Xiaomi’s own Bangladesh page lists the official prices used throughout this page.',
       'The body measures 163.34mm tall, 78.31mm wide and 8.19mm thick in Black and Glacier Blue; Mocha Brown is 8.47mm. Weight is 207.1g, or 208.0g for Mocha Brown. Xiaomi fits Gorilla Glass Victus 2 on the front and a fiberglass back on Black and Glacier Blue, with an eco-leather finish on Mocha Brown, and certifies the phone to IP66, IP68, IP69 and IP69K — including a TÜV SÜD test of submersion in up to 2 metres of fresh water for up to 24 hours and SGS certification for 2.5-metre drops. The footnote matters more than the badge: the warranty does not cover liquid damage outside those laboratory conditions, and water resistance degrades with wear.',
@@ -4443,7 +4443,7 @@ const guides: Record<string, QuickLookGuide> = {
       {
         question: 'Redmi Note 15 Pro+ এর দাম কত?',
         answer:
-          'বাংলাদেশে রেডমি নোট ১৫ প্রো প্লাস ৫জি-এর অফিসিয়াল দাম ৳46,999 (৮জিবি/২৫৬জিবি) এবং ৳59,999 (১২জিবি/৫১২জিবি), সঙ্গে এক বছরের জিয়াওমি কেয়ার ওয়ারেন্টি। আনঅফিসিয়াল চায়না ভার্সন ১২জিবি/২৫৬জিবি ৳40,000–৳41,500, তবে সেখানে জিয়াওমি বাংলাদেশের ওয়ারেন্টি নেই। ফোনটিতে ৬.৮৩ ইঞ্চি ১.৫কে ১২০Hz AMOLED ডিসপ্লে, ২০০ মেগাপিক্সেল ওআইএস ক্যামেরা, ৬৫০০mAh ব্যাটারি ও ১০০W চার্জিং আছে।',
+          'বাংলাদেশে রেডমি নোট ১৫ প্রো প্লাস ৫জি-এর অফিসিয়াল দাম ৳46,999 (৮জিবি/২৫৬জিবি) এবং ৳59,999 (১২জিবি/৫১২জিবি), সঙ্গে এক বছরের শাওমি কেয়ার ওয়ারেন্টি। আনঅফিসিয়াল চায়না ভার্সন ১২জিবি/২৫৬জিবি ৳40,000–৳41,500, তবে সেখানে শাওমি বাংলাদেশের ওয়ারেন্টি নেই। ফোনটিতে ৬.৮৩ ইঞ্চি ১.৫কে ১২০Hz AMOLED ডিসপ্লে, ২০০ মেগাপিক্সেল ওআইএস ক্যামেরা, ৬৫০০mAh ব্যাটারি ও ১০০W চার্জিং আছে।',
       },
     ],
     links: [
