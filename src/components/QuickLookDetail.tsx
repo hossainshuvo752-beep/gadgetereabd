@@ -705,11 +705,16 @@ const QuickLookDetail: React.FC<{
                   <PriceTag product={product} detailed resolved={resolvedPrice} />
                 </div>
                 <div className="text-sm text-text-body mt-1">
-                  {product.priceDisplayNote
-                    ? product.priceDisplayNote
-                    : resolvedPrice.priceEstimated
-                      ? 'Estimated market reference — not an official Bangladesh price'
-                      : '(Official Price in Bangladesh)'}
+                  {/* A version can be sold on a different channel than the
+                      one above it (official Bangladesh unit vs grey import),
+                      so its own status line wins while it is selected. */}
+                  {version?.priceDisplayNote
+                    ? version.priceDisplayNote
+                    : product.priceDisplayNote
+                      ? product.priceDisplayNote
+                      : resolvedPrice.priceEstimated
+                        ? 'Estimated market reference — not an official Bangladesh price'
+                        : '(Official Price in Bangladesh)'}
                 </div>
                 {/* Only meaningful when a price is actually shown — a product
                     with no price at all (the Apple HomeView) would otherwise

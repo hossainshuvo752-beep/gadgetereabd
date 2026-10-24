@@ -130,6 +130,11 @@ export interface Product {
       oldPrice?: number;
       priceEstimated?: boolean;
     }[];
+    /** Replaces the price box's status line while THIS version is selected —
+     *  for a page whose versions are sold on DIFFERENT channels (an official
+     *  Bangladesh unit and a grey import). Absent = the product-level
+     *  priceDisplayNote, then the standard wording, exactly as before. */
+    priceDisplayNote?: string;
     /** Spec fields that DIFFER for this version, merged over specSheet by
      *  specSheetOf(). Omitted fields keep the base (default-version) value. */
     specOverrides?: {
@@ -2350,11 +2355,17 @@ export const products: Product[] = [
           '/images/products/redmi-note-14-pro-plus-5g/global/midnight-black/5.webp',
         ],
       },
+      {
+        color: 'Lavender Purple',
+        images: [
+          '/images/products/redmi-note-14-pro-plus-5g/global/lavender-purple/1.webp',
+          '/images/products/redmi-note-14-pro-plus-5g/global/lavender-purple/2.webp',
+          '/images/products/redmi-note-14-pro-plus-5g/global/lavender-purple/3.webp',
+          '/images/products/redmi-note-14-pro-plus-5g/global/lavender-purple/4.webp',
+          '/images/products/redmi-note-14-pro-plus-5g/global/lavender-purple/5.webp',
+        ],
+      },
     ],
-    /** These are renders, not photographs of a retail unit — said on the page
-     *  because the supplied files are generated product images. */
-    galleryNote:
-      'Images are AI-generated renders based on the published Xiaomi design, not photographs of a retail unit.',
     views: 900,
     dateAdded: '2026-10-22',
     price: 37500,
@@ -2371,12 +2382,13 @@ export const products: Product[] = [
     /** No source confirms stock, so the Product schema carries the offer but
      *  no availability value. */
     omitSchemaAvailability: true,
-    /** TWO sources per priced variant, both opened 22 October 2026. Xiaomi's
-     *  own Bangladesh site does not sell this model, so every figure below is
-     *  UNOFFICIAL — there is no Xiaomi Bangladesh price to quote. */
+    /** TWO sources per priced variant, every one of them re-opened on
+     *  22-23 October 2026 (the most recent, Rio International, on 23 Oct).
+     *  Xiaomi's own Bangladesh site does not sell this model, so every figure
+     *  below is UNOFFICIAL — there is no Xiaomi Bangladesh price to quote. */
     priceNote:
       'Unofficial Bangladesh price (no Xiaomi Bangladesh listing exists for this model). Global version: 8GB/256GB ৳37,500 and 12GB/512GB ৳43,500 (MobileDokan.com, updated 27 Sep 2026; Rio International lists ৳35,999 and ৳44,999 on 23 Oct 2026), 12GB/256GB ৳39,500 (MobileDokan.com 27 Sep 2026; Rio International ৳39,499 on 23 Oct 2026). China version: 12GB/256GB ৳35,000 (MobileDokan.com, updated 19 Oct 2026; MobileDokan.co ৳34,000 on 2 Sep 2026, Rio International ৳34,999 and RMTI ৳34,000 on 23 Oct 2026). Prices vary by seller and by version — ask which model number you are being sold.',
-    priceCheckedAt: '2026-10-22',
+    priceCheckedAt: '2026-10-23',
     priceDisplayNote:
       '(Unofficial price in Bangladesh — imported unit, not a Xiaomi Bangladesh price)',
     /**
@@ -2488,6 +2500,16 @@ export const products: Product[] = [
               '/images/products/redmi-note-14-pro-plus-5g/global/midnight-black/3.webp',
               '/images/products/redmi-note-14-pro-plus-5g/global/midnight-black/4.webp',
               '/images/products/redmi-note-14-pro-plus-5g/global/midnight-black/5.webp',
+            ],
+          },
+          {
+            color: 'Lavender Purple',
+            images: [
+              '/images/products/redmi-note-14-pro-plus-5g/global/lavender-purple/1.webp',
+              '/images/products/redmi-note-14-pro-plus-5g/global/lavender-purple/2.webp',
+              '/images/products/redmi-note-14-pro-plus-5g/global/lavender-purple/3.webp',
+              '/images/products/redmi-note-14-pro-plus-5g/global/lavender-purple/4.webp',
+              '/images/products/redmi-note-14-pro-plus-5g/global/lavender-purple/5.webp',
             ],
           },
         ],
@@ -2671,8 +2693,8 @@ export const products: Product[] = [
     purchaseMode: 'buy',
     status: 'available',
     priceNote:
-      'Official Bangladesh price: ৳36,999 for 8GB/256GB (Star Tech product listing and MobileDokan official price, both checked 23 October 2026; MobileDokan page updated 21 September 2026). Unofficial imports of the same model, including 6GB/128GB and 12GB/256GB units, are listed from about ৳30,499 at Apple Gadgets BD (checked 23 October 2026) — those are not the official configuration and carry no Xiaomi Bangladesh warranty. Only 8GB/256GB has a verified official price, so it is the only variant listed here.',
-    priceCheckedAt: '2026-10-23',
+      'Official Bangladesh price: ৳36,999 for 8GB/256GB (Star Tech product listing and MobileDokan official price, both checked 24 October 2026; the MobileDokan page was updated 21 September 2026). Unofficial imports: 6GB/128GB ৳24,000 and 8GB/256GB ৳31,000 (MobileDokan.co, page updated 24 October 2026; Apple Gadgets BD lists 6GB/128GB at ৳30,499 and 8GB/256GB at ৳29,499, Rio International lists both within ৳25,499–৳34,499, all checked 24 October 2026), while MobileDokan.com lists the 8GB/256GB import at ৳34,000 (page updated 21 September 2026). Only import sizes with a MobileDokan price and a second Bangladesh retailer are offered. Imports carry no Xiaomi Bangladesh warranty.',
+    priceCheckedAt: '2026-10-24',
     /**
      * Verified on Xiaomi Global's own Redmi Note 15 5G spec page (opened
      * 23 Oct 2026) and cross-checked against Star Tech's specification table
@@ -2744,6 +2766,118 @@ export const products: Product[] = [
         'The official Bangladesh configuration is 8GB/256GB only; other memory sizes come through imports',
       ],
     },
+    /**
+     * TWO VERSIONS of ONE model, because the same phone reaches Bangladesh on
+     * two different channels: an official unit at a fixed price with Xiaomi
+     * Care cover, and grey imports in memory sizes Xiaomi does not sell here.
+     *
+     * PRICING RULE APPLIED: an import variant is offered only when it has a
+     * MobileDokan price AND a second Bangladesh retailer price. 6GB/128GB and
+     * 8GB/256GB both qualify (MobileDokan.co updated 24 Oct 2026; Apple
+     * Gadgets BD and Rio International checked the same day). 8GB/128GB and
+     * 12GB/256GB are listed by retailers but carry no MobileDokan price, so
+     * they are NOT offered.
+     */
+    versions: [
+      {
+        id: 'official',
+        label: 'Official (Bangladesh)',
+        shortLabel: 'Official',
+        colorImages: [
+          {
+            color: 'Glacier Blue',
+            images: [
+              '/images/products/redmi-note-15-5g/glacier-blue/1.webp',
+              '/images/products/redmi-note-15-5g/glacier-blue/2.webp',
+              '/images/products/redmi-note-15-5g/glacier-blue/3.webp',
+              '/images/products/redmi-note-15-5g/glacier-blue/4.webp',
+              '/images/products/redmi-note-15-5g/glacier-blue/5.webp',
+            ],
+          },
+          {
+            color: 'Mist Purple',
+            images: [
+              '/images/products/redmi-note-15-5g/mist-purple/1.webp',
+              '/images/products/redmi-note-15-5g/mist-purple/2.webp',
+              '/images/products/redmi-note-15-5g/mist-purple/3.webp',
+              '/images/products/redmi-note-15-5g/mist-purple/4.webp',
+              '/images/products/redmi-note-15-5g/mist-purple/5.webp',
+            ],
+          },
+          {
+            color: 'Black',
+            images: [
+              '/images/products/redmi-note-15-5g/black/1.webp',
+              '/images/products/redmi-note-15-5g/black/2.webp',
+              '/images/products/redmi-note-15-5g/black/3.webp',
+              '/images/products/redmi-note-15-5g/black/4.webp',
+              '/images/products/redmi-note-15-5g/black/5.webp',
+            ],
+          },
+        ],
+        variants: [{ label: '8GB/256GB', price: 36999 }],
+        priceDisplayNote:
+          '(Official price in Bangladesh — 8GB/256GB, one-year warranty at Xiaomi Care)',
+      },
+      {
+        id: 'import',
+        label: 'Unofficial import',
+        shortLabel: 'Import',
+        /** Same three colours, same image files — the import units are the
+         *  same handset, so nothing is duplicated on disk. */
+        colorImages: [
+          {
+            color: 'Glacier Blue',
+            images: [
+              '/images/products/redmi-note-15-5g/glacier-blue/1.webp',
+              '/images/products/redmi-note-15-5g/glacier-blue/2.webp',
+              '/images/products/redmi-note-15-5g/glacier-blue/3.webp',
+              '/images/products/redmi-note-15-5g/glacier-blue/4.webp',
+              '/images/products/redmi-note-15-5g/glacier-blue/5.webp',
+            ],
+          },
+          {
+            color: 'Mist Purple',
+            images: [
+              '/images/products/redmi-note-15-5g/mist-purple/1.webp',
+              '/images/products/redmi-note-15-5g/mist-purple/2.webp',
+              '/images/products/redmi-note-15-5g/mist-purple/3.webp',
+              '/images/products/redmi-note-15-5g/mist-purple/4.webp',
+              '/images/products/redmi-note-15-5g/mist-purple/5.webp',
+            ],
+          },
+          {
+            color: 'Black',
+            images: [
+              '/images/products/redmi-note-15-5g/black/1.webp',
+              '/images/products/redmi-note-15-5g/black/2.webp',
+              '/images/products/redmi-note-15-5g/black/3.webp',
+              '/images/products/redmi-note-15-5g/black/4.webp',
+              '/images/products/redmi-note-15-5g/black/5.webp',
+            ],
+          },
+        ],
+        variants: [
+          { label: '6GB/128GB', price: 24000 },
+          { label: '8GB/256GB', price: 31000 },
+        ],
+        priceDisplayNote:
+          '(Unofficial import price — no Xiaomi Bangladesh warranty, seller cover only)',
+        specOverrides: {
+          basicInfo: { model: 'Redmi Note 15 5G (import unit)' },
+          performance: {
+            ram: '6GB/8GB',
+            storage: '128GB/256GB',
+          },
+          notableLimitations: [
+            'Import units carry no Xiaomi Bangladesh warranty — the seller’s cover is the only warranty',
+            'China and International stock are sold side by side: Rio International lists the China unit with a 50MP main camera and the International unit with the 108MP one, so check the region on the box',
+            'The official Bangladesh unit is 8GB/256GB only; imports are also sold as 6GB/128GB',
+          ],
+        },
+      },
+    ],
+    defaultVersion: 'official',
   },
 ];
 
