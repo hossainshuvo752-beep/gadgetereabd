@@ -62,12 +62,25 @@ export interface Product {
    *  used by the HomeView renders to say so on the page. Absent = nothing
    *  rendered (default for every other product). */
   galleryNote?: string;
-  /** Replaces the price box's standard subtitle on the detail page (the
-   *  "(Official Price in Bangladesh)" / "Estimated market reference…"
-   *  line). Set only for products with no Bangladesh price at all, where the
-   *  standard wording would mislead; the price NUMBER still comes from
-   *  PriceTag. Absent = the existing wording (unchanged for every product). */
+  /** The detail page's price-box line for a product with NO Bangladesh price
+   *  (status 'not-launched', e.g. the Apple HomeView) — rendered verbatim by
+   *  priceChannelLine(). Every other product's line is built from
+   *  `priceChannel` + brand + the selected variant + `priceWarranty`, so this
+   *  field no longer affects priced products. */
   priceDisplayNote?: string;
+  /** Which channel sold the price in `price` — the ONLY input for the price
+   *  box's channel line. 'official' = the brand's own Bangladesh price or an
+   *  official distributor listing; 'unofficial' = grey import with no brand
+   *  warranty. Declared, never inferred from the number: products whose
+   *  priceStatus is 'on-sale' or 'retail' (discount/shop states, not channels)
+   *  need it set explicitly, and a product without it shows NO channel line.
+   *  'estimated' and 'not-launched' prices bypass it (they keep their honest
+   *  wording). Absent = no channel line. */
+  priceChannel?: 'official' | 'unofficial';
+  /** Verified warranty wording for the price box's official line, e.g.
+   *  'one-year warranty at Xiaomi Care'. Only text confirmed from a named
+   *  source belongs here. Absent = the line carries the variant alone. */
+  priceWarranty?: string;
   /** How the price number may be DESCRIBED in metadata (Quick Look
    *  description). Declared per product because "official" must never be
    *  assumed: the price note decides. 'official' = the brand's own Bangladesh
@@ -130,11 +143,10 @@ export interface Product {
       oldPrice?: number;
       priceEstimated?: boolean;
     }[];
-    /** Replaces the price box's status line while THIS version is selected —
-     *  for a page whose versions are sold on DIFFERENT channels (an official
-     *  Bangladesh unit and a grey import). Absent = the product-level
-     *  priceDisplayNote, then the standard wording, exactly as before. */
-    priceDisplayNote?: string;
+    /** This version's sales channel when it differs from the product's (an
+     *  official Bangladesh unit next to a grey import). Absent = the
+     *  product-level `priceChannel`. */
+    priceChannel?: 'official' | 'unofficial';
     /** Spec fields that DIFFER for this version, merged over specSheet by
      *  specSheetOf(). Omitted fields keep the base (default-version) value. */
     specOverrides?: {
@@ -186,9 +198,9 @@ export interface Product {
   /** Price source/context — tooltip everywhere, visible text on detail pages. */
   priceNote?: string;
   /** ISO date (YYYY-MM-DD) on which this product's price was last checked
-   *  against its sources. When set, the Quick Look page renders one visible
-   *  "Prices checked: <date>" line beside the price; products without the
-   *  field render nothing (no placeholder, no invented date). */
+   *  against its sources. Maintenance data: the detail price box does NOT
+   *  render it (the guide's price section states the date in its own words).
+   *  Absent = no date recorded (never an invented one). */
   priceCheckedAt?: string;
   specSheet: {
     basicInfo: {
@@ -774,6 +786,9 @@ export const products: Product[] = [
     isDeal: true,
     price: 45499,
     priceStatus: 'on-sale',
+    /** Pickaboo's promo on the official Infinix Bangladesh price — the same
+     *  official channel, at a discount. */
+    priceChannel: 'official',
     oldPrice: 49999,
     priceEstimated: false,
     status: 'available',
@@ -2389,8 +2404,6 @@ export const products: Product[] = [
     priceNote:
       'Unofficial Bangladesh price (no Xiaomi Bangladesh listing exists for this model). Global version: 8GB/256GB ৳37,500 and 12GB/512GB ৳43,500 (MobileDokan.com, updated 27 Sep 2026; Rio International lists ৳35,999 and ৳44,999 on 23 Oct 2026), 12GB/256GB ৳39,500 (MobileDokan.com 27 Sep 2026; Rio International ৳39,499 on 23 Oct 2026). China version: 12GB/256GB ৳35,000 (MobileDokan.com, updated 19 Oct 2026; MobileDokan.co ৳34,000 on 2 Sep 2026, Rio International ৳34,999 and RMTI ৳34,000 on 23 Oct 2026). Prices vary by seller and by version — ask which model number you are being sold.',
     priceCheckedAt: '2026-10-23',
-    priceDisplayNote:
-      '(Unofficial price in Bangladesh — imported unit, not a Xiaomi Bangladesh price)',
     /**
      * Global version = the base spec sheet: Xiaomi Global's own spec page
      * (mi.com/global/product/redmi-note-14-pro-plus-5g/specs/, opened
@@ -2783,6 +2796,7 @@ export const products: Product[] = [
         id: 'official',
         label: 'Official (Bangladesh)',
         shortLabel: 'Official',
+        priceChannel: 'official',
         colorImages: [
           {
             color: 'Glacier Blue',
@@ -2816,13 +2830,12 @@ export const products: Product[] = [
           },
         ],
         variants: [{ label: '8GB/256GB', price: 36999 }],
-        priceDisplayNote:
-          '(Official price in Bangladesh — 8GB/256GB, one-year warranty at Xiaomi Care)',
       },
       {
         id: 'import',
         label: 'Unofficial import',
         shortLabel: 'Import',
+        priceChannel: 'unofficial',
         /** Same three colours, same image files — the import units are the
          *  same handset, so nothing is duplicated on disk. */
         colorImages: [
@@ -2861,8 +2874,6 @@ export const products: Product[] = [
           { label: '6GB/128GB', price: 24000 },
           { label: '8GB/256GB', price: 31000 },
         ],
-        priceDisplayNote:
-          '(Unofficial import price — no Xiaomi Bangladesh warranty, seller cover only)',
         specOverrides: {
           basicInfo: { model: 'Redmi Note 15 5G (import unit)' },
           performance: {
@@ -2957,8 +2968,6 @@ export const products: Product[] = [
     priceNote:
       'Official Bangladesh prices: ৳46,999 for 8GB/256GB and ৳59,999 for 12GB/512GB (Xiaomi Bangladesh product page, opened 24 October 2026; MobileDokan.com official listing, page updated 27 September 2026). Star Tech lists the 12GB/512GB unit in stock at ৳59,999 with a one-year warranty at Xiaomi Care, and Gadget & Gear lists the 8GB/256GB at ৳46,999 while showing it out of stock (both opened 24 October 2026). Xiaomi also lists a 12GB/256GB configuration, but no Bangladesh price was published for it. China version (unofficial import): 12GB/256GB ৳40,000 on MobileDokan.co (page updated 27 August 2026) and ৳41,500 at Diamu, whose listing states the price excludes VAT (opened 24 October 2026); MobileDokan.co also lists a China 12GB/512GB at ৳46,000, a single-source figure that is not quoted as a price here. Import prices vary by seller. VAT: MobileDokan marks its official figures +VAT and Xiaomi does not state whether VAT is included, so confirm the final total with the seller.',
     priceCheckedAt: '2026-10-24',
-    priceDisplayNote:
-      '(Official price in Bangladesh — 8GB/256GB ৳46,999, 12GB/512GB ৳59,999, one-year Xiaomi Care warranty)',
     /**
      * Verified on Xiaomi Bangladesh's own Redmi Note 15 Pro+ 5G page (opened
      * 24 October 2026) and cross-checked against Star Tech's and Gadget &

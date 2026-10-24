@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import type { Product } from '@/lib/products';
 import { track } from '@/lib/tracking';
-import PriceTag from '@/components/PriceTag';
+import PriceTag, { priceChannelLine } from '@/components/PriceTag';
 import LightboxGallery from '@/components/LightboxGallery';
 import ProductActions, { type PurchaseSurface } from '@/components/ProductActions';
 import {
@@ -123,19 +123,6 @@ function SectionCard({ title, children }: { title: string; children: React.React
       {children}
     </div>
   );
-}
-
-/** ISO date (YYYY-MM-DD) → "22 October 2026" for the visible provenance line.
- *  Parsed by hand rather than through Date, so a UTC build host and a local
- *  one print the same day (the ISO date is already the checked day). */
-const MONTH_NAMES = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December',
-];
-function formatCheckedDate(iso: string): string {
-  const [year, month, day] = iso.split('-').map(Number);
-  if (!year || !month || !day || !MONTH_NAMES[month - 1]) return iso;
-  return `${day} ${MONTH_NAMES[month - 1]} ${year}`;
 }
 
 function KeyValue({ label, value }: { label: string; value: string }) {
@@ -304,6 +291,13 @@ const QuickLookDetail: React.FC<{
       ? purchaseOptions[Math.min(activePurchase, purchaseOptions.length - 1)]
       : storageOptions[activeStorage] ?? null;
   const resolvedPrice: ResolvedPrice = variantPrice(product, selectedOptionLabel, version?.id);
+  // The price box's ONE channel line — built by the shared price component
+  // from priceChannel + brand + this selection, so Quick Look and Shop always
+  // print the same sentence. null = no line (channel not recorded).
+  const channelLine = priceChannelLine(product, {
+    variantLabel: selectedOptionLabel,
+    version: version ?? null,
+  });
 
   // One click on a version button swaps EVERYTHING that belongs to it: its
   // gallery (back to the first image), its colors (first preselected), its
@@ -700,39 +694,15 @@ const QuickLookDetail: React.FC<{
                   Shows the SELECTED VARIANT's price (variantPrice) — updates
                   immediately when storage changes. */}
               <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-3.5 md:p-5 flex flex-col justify-center">
-                {/* Confirmed vs estimated price + source note (detailed). */}
+                {/* Confirmed vs estimated price. */}
                 <div className="text-3xl font-bold">
-                  <PriceTag product={product} detailed resolved={resolvedPrice} />
+                  <PriceTag product={product} resolved={resolvedPrice} />
                 </div>
-                <div className="text-sm text-text-body mt-1">
-                  {/* A version can be sold on a different channel than the
-                      one above it (official Bangladesh unit vs grey import),
-                      so its own status line wins while it is selected. */}
-                  {version?.priceDisplayNote
-                    ? version.priceDisplayNote
-                    : product.priceDisplayNote
-                      ? product.priceDisplayNote
-                      : resolvedPrice.priceEstimated
-                        ? 'Estimated market reference — not an official Bangladesh price'
-                        : '(Official Price in Bangladesh)'}
-                </div>
-                {/* Only meaningful when a price is actually shown — a product
-                    with no price at all (the Apple HomeView) would otherwise
-                    invite comparison shopping for a figure that does not
-                    exist yet. */}
-                {product.price !== null && (
-                  <div className="flex items-center gap-1.5 text-xs text-text-body mt-3">
-                    <Info className="w-3.5 h-3.5" />
-                    Prices may vary by store and variant
-                  </div>
-                )}
-                {/* Freshness: only products whose price was re-checked against
-                    named sources carry `priceCheckedAt`; every other product
-                    renders nothing here (no invented date, no empty label). */}
-                {product.priceCheckedAt && (
-                  <div className="text-xs text-text-body mt-1.5">
-                    Prices checked: {formatCheckedDate(product.priceCheckedAt)}
-                  </div>
+                {/* ONE channel line under the price. It follows the selected
+                    variant and version, and disappears entirely when the
+                    product's channel is not recorded. */}
+                {channelLine && (
+                  <div className="text-sm text-text-body mt-1">{channelLine}</div>
                 )}
               </div>
             </div>
