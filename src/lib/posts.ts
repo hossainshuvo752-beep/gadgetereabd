@@ -343,13 +343,13 @@ export const posts: Post[] = [
       <h2>Camera: 50MP Main Sensor, Modest Expectations</h2>
       <figure class="my-6">
         <img src="/images/posts/realme-c85-pro-review-worth-it-bangladesh/rear-camera-module.webp" alt="Render of the Realme C85 Pro rear camera module" class="rounded-lg w-full" loading="lazy" />
-        <figcaption class="mt-2 text-xs text-text-body">Render of the rear camera module — a realme marketing image, not a photograph.</figcaption>
       </figure>
+      <p>The rear camera is a single 50MP sensor, and the front camera is 8MP. In this price range, expect good results in daylight and weaker results in dim light, where budget sensors and processors struggle with noise and detail. We haven't tested the camera, so treat this as a general expectation rather than a verdict on its image quality.</p>
       <figure class="my-6">
         <img src="/images/posts/realme-c85-pro-review-worth-it-bangladesh/camera-in-use.webp" alt="Hands holding a phone to photograph paragliders above a rocky coast" class="rounded-lg w-full" loading="lazy" />
         <figcaption class="mt-2 text-xs text-text-body">Illustration of a phone camera in use — not a photo taken with the C85 Pro.</figcaption>
       </figure>
-      <p>The rear camera is a single 50MP sensor, and the front camera is 8MP. In this price range, expect good results in daylight and weaker results in dim light, where budget sensors and processors struggle with noise and detail. We haven't tested the camera, so treat this as a general expectation rather than a verdict on its image quality.</p>
+      <p>Where a phone in this price range tends to show its limits is tricky lighting. Outdoors in daylight, a 50MP main sensor usually captures enough detail for social media and family photos. Indoors in the evening, pictures get softer and noisier. If you shoot a lot at night or record a lot of video, try the camera in the shop before you buy and check which photo and video resolutions the camera app offers, so you know what you are getting.</p>
 
       <h2>Performance: Snapdragon 685 Is the Weak Spot</h2>
       <h3>Everyday Use</h3>
