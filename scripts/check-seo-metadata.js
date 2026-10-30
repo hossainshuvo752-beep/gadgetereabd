@@ -54,6 +54,8 @@ const TITLE_BANGLADESH_EXCEPTIONS = {
 const TITLE_SUFFIX_EXCEPTIONS = {
   'quick-look/realme-c85-pro':
     'owner-supplied exact title ("Realme C85 Pro Price in Bangladesh | Jupiter BD", 47 chars)',
+  'posts/realme-c85-pro-review-worth-it-bangladesh':
+    'owner-supplied exact title ("Realme C85 Pro Review: Worth It in Bangladesh? | Jupiter BD", 59 chars)',
 };
 
 const MAX_TITLE = 60;

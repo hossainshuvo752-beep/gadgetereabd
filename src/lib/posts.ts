@@ -70,10 +70,11 @@ export type Post = {
    *  heroBannerImage when the banner wants a different crop/composition
    *  than the 16:9 card/detail thumbnail. */
   heroBannerImage?: string;
-  /** Products MENTIONED in the article (name/brand only, exactly as
-   *  stated). Emits minimal Product JSON-LD — never offers/ratings/reviews,
-   *  because an article mention confirms nothing beyond name + brand. */
-  mentions?: { name: string; brand: string }[];
+  /** Products MENTIONED in the article (name/brand, plus an optional
+   *  image that is actually visible on the page). Emits minimal Product
+   *  JSON-LD — never offers/ratings/reviews, because an article mention
+   *  confirms nothing beyond name, brand and the picture the page shows. */
+  mentions?: { name: string; brand: string; image?: string }[];
   /** Cross-linking source of truth (rule 6): slugs of products the article
    *  GENUINELY covers (dedicated section or a real evaluation — a passing
    *  name-drop does not count). Read this field and you get BOTH
@@ -262,6 +263,150 @@ export const posts: Post[] = [
       {
         question: 'Does the iPhone Duo have Face ID?',
         answer: 'No — Apple swapped Face ID for Touch ID in the power button, a space-saving trade-off shared by every book-style foldable on the market.',
+      },
+    ],
+  },
+
+  {
+    id: 12,
+    title: 'Realme C85 Pro Review: Is It Worth ৳20,999 in Bangladesh?',
+    slug: 'realme-c85-pro-review-worth-it-bangladesh',
+    // Owner-specified exact meta title, including the brand suffix — the
+    // only post allowed to end in " | Jupiter BD" (see the documented
+    // TITLE_SUFFIX_EXCEPTIONS entry in scripts/check-seo-metadata.js).
+    metaTitle: 'Realme C85 Pro Review: Worth It in Bangladesh? | Jupiter BD',
+    metaDescription:
+      'Realme C85 Pro review for Bangladesh: AMOLED 120Hz display, 7,000mAh battery and IP rating from the official ৳20,999. Pros, cons and verdict.',
+    metaKeywords:
+      'realme c85 pro review, realme c85 pro price in bangladesh, realme c85 pro specs, realme c85 pro battery, realme c85 pro vs c85, realme c85 pro worth it',
+    excerpt:
+      'AMOLED display, a 7,000mAh battery and an IP rating from ৳20,999. Here are the pros, cons and who should buy it.',
+    category: 'Review',
+    author: 'Jupiter BD Team',
+    date: 'Oct 30, 2026',
+    readTime: '7 min read',
+    views: 600,
+    imageAlt:
+      'Render of the Realme C85 Pro in Peacock Green and Parrot Purple, rear view',
+    heroImage: '/images/posts/realme-c85-pro-review-worth-it-bangladesh/hero.webp',
+    heroCaption:
+      'Render of the Realme C85 Pro in Peacock Green and Parrot Purple — a realme marketing image, not a photograph.',
+    // The Quick Look page exists, so this field gives BOTH directions: the
+    // post's "Products mentioned" cards and the Quick Look page's
+    // "From our blog" link back to this review.
+    relatedProducts: ['realme-c85-pro'],
+    // Product JSON-LD for the phone this review covers: name, brand and the
+    // hero image only — no offer, no rating, no review (an article does not
+    // verify a price or a score).
+    mentions: [
+      {
+        name: 'Realme C85 Pro',
+        brand: 'Realme',
+        image: '/images/posts/realme-c85-pro-review-worth-it-bangladesh/hero.webp',
+      },
+    ],
+    content: `
+      <p>The <strong>Realme C85 Pro</strong> is one of the more interesting phones in Bangladesh's sub-৳25,000 segment. For an official starting price of ৳20,999, it offers a 6.8-inch AMOLED screen with a 120Hz refresh rate, a 7,000mAh battery and water and dust resistance ratings that many phones at this price skip. The catches are an entry-level Snapdragon 685 chip and no 5G.</p>
+
+      <p>We haven't run benchmarks or long-term tests on this phone. This review is based on Realme's official specifications and the Bangladesh launch details, so our comments on performance describe what the hardware suggests on paper.</p>
+
+      <h2>Realme C85 Pro Price and Variants in Bangladesh</h2>
+      <p>Realme launched the C85 Pro in Bangladesh in three variants. These are the official launch prices:</p>
+      <ul>
+        <li>6GB RAM + 128GB storage: <strong>৳20,999</strong></li>
+        <li>8GB RAM + 128GB storage: <strong>৳22,999</strong></li>
+        <li>8GB RAM + 256GB storage: <strong>৳24,999</strong></li>
+      </ul>
+      <p>Shop prices can differ slightly from the launch prices, so confirm the current price with the seller. The phone comes in two colors, Parrot Purple and Peacock Green. For the full spec sheet, colors and variants in one place, see our <a href="/quick-look/realme-c85-pro">Realme C85 Pro price in Bangladesh</a> page.</p>
+
+      <h2>Display: AMOLED at This Price Is the Highlight</h2>
+      <p>The C85 Pro has a 6.8-inch AMOLED display with a 1080 x 2344 resolution and a 120Hz refresh rate. AMOLED panels offer deeper blacks and stronger contrast than the LCD screens often found on budget phones, and 120Hz makes scrolling and animations look smoother than the usual 60Hz. At ৳20,999, this screen is the main reason to consider the phone.</p>
+      <p>For comparison, Realme's 5G model in this family uses a lower-resolution HD+ LCD with a 144Hz refresh rate, so the Pro has the sharper panel of the two.</p>
+
+      <h2>Design, Colors and Ports</h2>
+      <figure class="my-6">
+        <img src="/images/posts/realme-c85-pro-review-worth-it-bangladesh/side-and-bottom-edges.webp" alt="Render of the C85 Pro's side and bottom edges, SIM tray and USB-C port" class="rounded-lg w-full" loading="lazy" />
+        <figcaption class="mt-2 text-xs text-text-body">Render of the C85 Pro's side and bottom edges — a realme marketing image, not a photograph.</figcaption>
+      </figure>
+      <p>The phone measures 164.4 x 78 x 8.1 mm and weighs 205g, which is reasonable for a phone with a 7,000mAh battery. It comes in Parrot Purple and Peacock Green. The bottom edge has a USB-C port, a speaker grille and the SIM tray, and the power and volume buttons sit on the side.</p>
+
+      <h2>Battery, Charging and Durability</h2>
+      <figure class="my-6">
+        <img src="/images/posts/realme-c85-pro-review-worth-it-bangladesh/battery-water-splash.webp" alt="Render of Realme C85 Pro phones with a 7000mAh graphic and water splash" class="rounded-lg w-full" loading="lazy" />
+        <figcaption class="mt-2 text-xs text-text-body">Render illustrating the 7,000mAh battery and water resistance — a realme marketing image, not a photograph.</figcaption>
+      </figure>
+      <h3>7,000mAh Battery and 45W Charging</h3>
+      <p>The 7,000mAh battery is well above the 5,000mAh that is common in this price range, so on paper it should last a full day or more of normal use. Charging is 45W wired. We haven't timed a full charge, so we can't give you a number. Larger batteries take longer to fill, so expect it to take noticeably longer than a phone with a smaller battery at the same wattage.</p>
+      <h3>IP66, IP68, IP69 and IP69K Water Resistance</h3>
+      <p>Realme rates the phone IP66, IP68, IP69 and IP69K for dust and water protection, and markets the combination as "IP69 Pro". These ratings are less common at this price and are handy during the monsoon and for accidental splashes. They don't make the phone invincible: ratings apply to specific lab conditions, and liquid damage is often excluded from warranties, so read the warranty terms before testing it in water.</p>
+
+      <h2>Camera: 50MP Main Sensor, Modest Expectations</h2>
+      <figure class="my-6">
+        <img src="/images/posts/realme-c85-pro-review-worth-it-bangladesh/rear-camera-module.webp" alt="Render of the Realme C85 Pro rear camera module" class="rounded-lg w-full" loading="lazy" />
+        <figcaption class="mt-2 text-xs text-text-body">Render of the rear camera module — a realme marketing image, not a photograph.</figcaption>
+      </figure>
+      <figure class="my-6">
+        <img src="/images/posts/realme-c85-pro-review-worth-it-bangladesh/camera-in-use.webp" alt="Hands holding a phone to photograph paragliders above a rocky coast" class="rounded-lg w-full" loading="lazy" />
+        <figcaption class="mt-2 text-xs text-text-body">Illustration of a phone camera in use — not a photo taken with the C85 Pro.</figcaption>
+      </figure>
+      <p>The rear camera is a single 50MP sensor, and the front camera is 8MP. In this price range, expect good results in daylight and weaker results in dim light, where budget sensors and processors struggle with noise and detail. We haven't tested the camera, so treat this as a general expectation rather than a verdict on its image quality.</p>
+
+      <h2>Performance: Snapdragon 685 Is the Weak Spot</h2>
+      <h3>Everyday Use</h3>
+      <p>The phone runs on a Snapdragon 685 (6nm) with 6GB or 8GB of RAM, and Android 15 with Realme UI 6.0. On paper that is enough for social media, messaging, video streaming, calls and web browsing. Realme also offers Dynamic RAM, which borrows part of the storage as extra memory and advertises up to 24GB in total. That can help keep more apps open in the background, but it is not real RAM and it is slower, so don't treat it as a performance upgrade.</p>
+      <h3>Gaming and Heavy Apps</h3>
+      <p>The Snapdragon 685 is a budget-class chip. Expect to run demanding games at low to medium settings, and don't count on smooth heavy multitasking with large games. If gaming is your priority, look at phones with a stronger chip, even if they have a plainer screen.</p>
+
+      <h2>No 5G: Realme C85 Pro vs Realme C85</h2>
+      <p>The C85 Pro is a 4G phone. The 5G model in the same family is the Realme C85 5G, and it has a lower-resolution HD+ LCD screen with a 144Hz refresh rate. A separate Realme C85 4G also exists, with the same kind of LCD. So you are choosing between the Pro's sharper AMOLED display and the other models' 5G support. If 5G matters to you, check the Realme C85 5G instead.</p>
+
+      <h2>Pros and Cons</h2>
+      <h3>What We Like</h3>
+      <ul>
+        <li>6.8-inch AMOLED screen with a 120Hz refresh rate</li>
+        <li>7,000mAh battery with 45W wired charging</li>
+        <li>IP66, IP68, IP69 and IP69K dust and water ratings</li>
+        <li>Three variants from ৳20,999, including a 256GB option</li>
+        <li>12-month official warranty</li>
+      </ul>
+      <h3>What Could Be Better</h3>
+      <ul>
+        <li>The entry-level Snapdragon 685 limits heavy gaming</li>
+        <li>4G only, no 5G</li>
+        <li>Dynamic RAM is not a substitute for real RAM</li>
+        <li>Low-light camera performance is likely to be a weak point at this price</li>
+      </ul>
+
+      <h2>Warranty and Where to Buy</h2>
+      <p>The phone carries a 12-month official warranty in Bangladesh. Buy from an authorized Realme seller, keep the invoice and warranty card, and check that the box, IMEI and warranty details match before you leave the shop. Prices at stores can change, so compare the seller's price with the official launch prices above.</p>
+
+      <h2>Is the Realme C85 Pro Worth It in Bangladesh?</h2>
+      <p>Yes, if you want a bright, smooth screen, a very large battery and water resistance for under ৳25,000, and you don't need 5G or heavy gaming. The ৳20,999 6GB + 128GB variant is the value entry point. If you keep many apps installed, the extra ৳2,000 for 8GB RAM is a sensible step up, and the 256GB variant makes sense mainly if you record a lot of video or store many photos and files. If you play demanding games or want 5G, skip it and look at other options in the same budget. Check the full <a href="/quick-look/realme-c85-pro">specs, colors and variants</a> before you buy.</p>
+    `,
+    faqs: [
+      {
+        question: 'What is the price of the Realme C85 Pro in Bangladesh?',
+        answer:
+          'The official launch prices are ৳20,999 for 6GB + 128GB, ৳22,999 for 8GB + 128GB and ৳24,999 for 8GB + 256GB. Shop prices can vary slightly.',
+      },
+      {
+        question: 'Does the Realme C85 Pro support 5G?',
+        answer:
+          'No. The Realme C85 Pro is a 4G phone. The 5G model in the same family is the Realme C85 5G, a separate handset with an LCD screen.',
+      },
+      {
+        question: 'Is the Realme C85 Pro waterproof?',
+        answer:
+          'It has IP66, IP68, IP69 and IP69K ratings for dust and water resistance, which realme markets as "IP69 Pro". The ratings apply to specific lab conditions, and liquid damage may not be covered by the warranty, so check the warranty terms.',
+      },
+      {
+        question: 'What colors does the Realme C85 Pro come in?',
+        answer: 'It comes in Parrot Purple and Peacock Green.',
+      },
+      {
+        question: 'How big is the Realme C85 Pro battery and how fast does it charge?',
+        answer:
+          'It has a 7,000mAh battery with 45W wired charging, plus 10W reverse wired charging.',
       },
     ],
   },

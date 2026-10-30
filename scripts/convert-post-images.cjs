@@ -104,6 +104,20 @@ const JOBS = [
     },
   },
   {
+    // Owner supplied one hero plus four in-body images, numbered by placement.
+    // Supplied under the newer image root, so this job declares its own.
+    root: 'D:/website bd/blog image',
+    folder: 'Realme C85 Pro Review Is It Worth ৳20,999 in Bangladesh',
+    outDir: 'realme-c85-pro-review-worth-it-bangladesh',
+    files: {
+      'hero image.jfif': 'hero.webp',
+      'image 5.jfif': 'side-and-bottom-edges.webp',
+      'image 2.jfif': 'battery-water-splash.webp',
+      'image 3.jfif': 'rear-camera-module.webp',
+      'image 4.jfif': 'camera-in-use.webp',
+    },
+  },
+  {
     // No dedicated hero file — img1 doubles as the hero.
     folder: "Overhead Camera Mount Review — JINRAIKO's 360° Arm for Content Creators",
     outDir: 'overhead-camera-mount-jinraiko-review',
@@ -146,7 +160,7 @@ async function convert(src, out) {
   let totalIn = 0;
   let totalOut = 0;
   for (const job of JOBS_TO_RUN) {
-    const srcDir = path.join(SRC_ROOT, job.folder);
+    const srcDir = path.join(job.root ?? SRC_ROOT, job.folder);
     const outDir = path.join(OUT_ROOT, job.outDir);
     fs.mkdirSync(outDir, { recursive: true });
     console.log(`\n=== ${job.folder} -> public/images/posts/${job.outDir}/ ===`);

@@ -107,15 +107,18 @@ export function articleSchema(post: Post) {
 }
 
 /** Product schema for a product MENTIONED inside an article (e.g. a
- *  buying-guide roundup). Deliberately minimal: name + brand ONLY — the
- *  two things an article mention actually confirms. No offers (an article
- *  does not verify a store price), no ratings/reviews (none exist). */
-export function mentionsSchema(mention: { name: string; brand: string }) {
+ *  buying-guide roundup). Deliberately minimal: name + brand, plus the
+ *  article's own image of the product when the data carries one (it is
+ *  visible on the page, so it is not an invented field). No offers (an
+ *  article does not verify a store price), no ratings/reviews (none
+ *  exist). */
+export function mentionsSchema(mention: { name: string; brand: string; image?: string }) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: mention.name,
     brand: { '@type': 'Brand', name: mention.brand },
+    ...(mention.image ? { image: `${SITE_URL}${mention.image}` } : {}),
   };
 }
 
