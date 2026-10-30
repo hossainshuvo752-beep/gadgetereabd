@@ -4469,6 +4469,269 @@ const guides: Record<string, QuickLookGuide> = {
       },
     ],
   },
+  'realme-c85-pro': {
+    productName: 'Realme C85 Pro',
+    heading:
+      'Realme C85 Pro Price in Bangladesh: Official Prices, Specs and Colours',
+    lead:
+      'The Realme C85 Pro is realme’s 4G phone for buyers who want a large screen and a long-running battery rather than a 5G modem. Bangladesh gets it officially in three configurations: ৳20,999 for 6GB/128GB, ৳22,999 for 8GB/128GB and ৳24,999 for 8GB/256GB, each with a one-year official warranty. The hardware is a 6.8-inch AMOLED screen at 1080 x 2344 with a 120Hz refresh rate, a 7000mAh silicon-carbon battery charged at 45W, a single 50MP rear camera, an 8MP front camera and IP66/IP68/IP69/IP69K dust and water resistance, running realme UI 6.0 on Android 15.',
+    summaryBn:
+      'বাংলাদেশে রিয়েলমি সি৮৫ প্রো-এর অফিসিয়াল দাম ৳20,999 (৬জিবি/১২৮জিবি), ৳22,999 (৮জিবি/১২৮জিবি) এবং ৳24,999 (৮জিবি/২৫৬জিবি), সঙ্গে এক বছরের অফিসিয়াল ওয়ারেন্টি। ফোনটিতে ৬.৮ ইঞ্চি ১২০Hz AMOLED ডিসপ্লে, ৫০ মেগাপিক্সেল ক্যামেরা, ৭০০০mAh ব্যাটারি ও ৪৫W চার্জিং আছে। এটি ৪জি ফোন — ৫জি নেই, এবং বাংলাদেশের ইউনিটে NFC নেই।',
+    overview: [
+      'This page covers one phone: the Realme C85 Pro, model number RMX5555. It is not the Realme C85 5G — a different handset with an LCD screen, a MediaTek chip and a 5G modem — and it is not the later Realme C85 4G, which shares the Snapdragon 685 but keeps an LCD panel. The AMOLED display is what separates the Pro from both of them. realme launched it in Bangladesh in the first week of November 2025 in two colours, Parrot Purple and Peacock Green.',
+      'The body measures 164.40mm tall, 77.99mm wide and 8.09mm thick, and it weighs about 205g — heavy for a 6.8-inch phone, and most of that weight is the 7000mAh cell. The screen is rated at 4000 nits peak brightness with 1200 nits in high-brightness mode, covers 100% of DCI-P3 and samples touch at 180Hz. realme certifies the phone to IP66, IP68, IP69 and IP69K and to MIL-STD-810H for shock, and markets the combination as “IP69 Pro”. Those are laboratory ratings: the warranty does not cover liquid damage, and water resistance weakens as the phone ages.',
+      'Three omissions matter more than any single feature. There is no 5G, because the Snapdragon 685 is a 4G-only chip; there is no ultra-wide, macro or telephoto camera, only the one 50MP rear lens; and the Bangladesh unit carries no NFC, which realme’s own Bangladesh specification page lists as unsupported even though its marketing page mentions NFC. realme also publishes no memory-card slot for this model, while GSMArena and some Bangladesh retailers describe a hybrid tray shared with the second SIM — so treat expandable storage as something to confirm on the unit. Bluetooth is 5.0 and Wi-Fi is 802.11ac.',
+    ],
+    priceSection: {
+      heading: 'Realme C85 Pro price in Bangladesh: three official configurations',
+      paragraphs: [
+        'realme Bangladesh prices the phone at ৳20,999 for 6GB/128GB, ৳22,999 for 8GB/128GB and ৳24,999 for 8GB/256GB. These are the launch prices, and the same three figures appear in the Bangladesh launch coverage published in the first week of November 2025. The extra ৳2,000 from 6GB/128GB to 8GB/128GB buys 2GB more memory; the next ৳2,000 doubles storage from 128GB to 256GB. The chip, screen, cameras and battery are identical in all three.',
+        'All three are official-channel prices, so every configuration carries the one-year warranty that realme’s Bangladesh retailers describe as claimable at a realme service centre. That warranty is the practical difference between this phone and an imported unit, and it is why this page quotes official figures only.',
+        'The prices were checked on 30 October 2026. Prices move with promotions and from seller to seller, so treat these as the listed official prices and confirm the final amount at the counter. Both colours are offered across the range: nothing in realme’s Bangladesh material ties Parrot Purple or Peacock Green to a single memory size, so the selector on this page allows either colour with any configuration.',
+      ],
+    },
+    keyFacts: [
+      { term: '6GB/128GB', detail: '৳20,999' },
+      { term: '8GB/128GB', detail: '৳22,999' },
+      { term: '8GB/256GB', detail: '৳24,999' },
+      { term: 'Display', detail: '6.8-inch AMOLED, 1080 x 2344, 120Hz' },
+      { term: 'Battery and charging', detail: '7000mAh, 45W wired' },
+      { term: 'Main camera', detail: '50MP f/1.8, one rear camera' },
+      { term: 'Chipset', detail: 'Qualcomm Snapdragon 685, 4G only' },
+      { term: 'Water resistance', detail: 'IP66/IP68/IP69/IP69K, MIL-STD-810H' },
+      { term: 'Warranty', detail: 'One year on the official Bangladesh unit' },
+    ],
+    setupCosts: {
+      heading: 'Realme C85 Pro price by configuration',
+      priceHeader: 'Price (BDT)',
+      rows: [
+        {
+          configuration: '6GB RAM / 128GB storage',
+          price: '৳20,999',
+          note: 'Entry configuration. Same Snapdragon 685, 6.8-inch 120Hz AMOLED, 50MP rear camera and 7000mAh battery as the two above it.',
+        },
+        {
+          configuration: '8GB RAM / 128GB storage',
+          price: '৳22,999',
+          note: '2GB more memory than the entry model; storage stays at 128GB.',
+        },
+        {
+          configuration: '8GB RAM / 256GB storage',
+          price: '৳24,999',
+          note: 'The only configuration with 256GB of storage.',
+        },
+      ],
+      footer:
+        'Official Bangladesh launch prices, checked 30 October 2026. Both colours — Parrot Purple and Peacock Green — are offered on all three configurations. Prices vary with seller promotions; confirm the final figure before you pay.',
+    },
+    comparison: {
+      heading: 'Realme C85 Pro vs Realme C85 5G',
+      columns: ['Realme C85 Pro', 'Realme C85 5G'],
+      rows: [
+        {
+          label: 'Price in Bangladesh',
+          left: '৳20,999–৳24,999 official',
+          right: 'Priced separately as its own model',
+        },
+        {
+          label: 'Network',
+          left: '4G LTE only',
+          right: '5G',
+        },
+        {
+          label: 'Chipset',
+          left: 'Qualcomm Snapdragon 685 (6nm)',
+          right: 'MediaTek Dimensity 6300 (6nm)',
+        },
+        {
+          label: 'Display',
+          left: '6.8-inch AMOLED, 1080 x 2344, 120Hz',
+          right: '6.8-inch IPS LCD, 720 x 1570, 144Hz',
+        },
+        {
+          label: 'Rear cameras',
+          left: '50MP f/1.8, single camera',
+          right: '50MP main + 8MP',
+        },
+        {
+          label: 'Front camera',
+          left: '8MP',
+          right: '8MP',
+        },
+        {
+          label: 'Battery and charging',
+          left: '7000mAh, 45W',
+          right: '7000mAh, 45W',
+        },
+        {
+          label: 'Water resistance',
+          left: 'IP66/IP68/IP69/IP69K, MIL-STD-810H',
+          right: 'IP68/IP69K, MIL-STD-810H',
+        },
+        {
+          label: 'Bluetooth',
+          left: 'Bluetooth 5.0',
+          right: 'Bluetooth 5.3',
+        },
+        {
+          label: 'Dimensions and weight',
+          left: '164.40 x 77.99 x 8.09mm, 205g',
+          right: '166.1 x 77.9 x 8.4mm, 215g',
+        },
+      ],
+      paragraphs: [
+        'The two phones are close relatives with one decisive difference: the screen. The C85 Pro is the only one in the family with an AMOLED panel, and it is also the sharper of the two at 1080 x 2344 rather than 720 x 1570. The C85 5G trades that panel for a faster-refreshing LCD and, more importantly, for 5G — which this phone does not have at all.',
+        'Everything else is a small step either way. Both carry a 7000mAh battery charged at 45W and share the same 50MP main camera and 8MP front camera, and the C85 5G adds a second rear camera plus Bluetooth 5.3. The Pro is the lighter of the two at 205g and the shorter at 8.09mm, while the 5G model carries the newer Bluetooth standard. If 5G matters where you use the phone, that is the model to look at; if the screen is what you look at all day, this is the one.',
+      ],
+    },
+    features: [
+      {
+        heading: 'Key features explained',
+        title: 'A 6.8-inch AMOLED with a 120Hz refresh rate',
+        body:
+          'The display is the reason to pick the Pro over the other C85 models. It is a 6.8-inch AMOLED at 1080 x 2344 pixels with 60Hz and 120Hz modes, 180Hz touch sampling, full DCI-P3 coverage and a peak brightness rating of 4000 nits, with 1200 nits available in high-brightness mode. realme does not publish the glass brand or the frame and back materials, so this page leaves those rows out rather than guessing. In practice the AMOLED panel is what gives the phone its contrast and its always-on-style blacks compared with the LCD panels on the C85 5G and C85 4G.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'A 7000mAh silicon-carbon battery with 45W charging',
+        body:
+          'The battery is rated at 7000mAh typical and uses a silicon-carbon chemistry, which is how realme fits that capacity into an 8.09mm body. Wired charging tops out at 45W, there is 10W reverse wired charging for accessories, and realme lists bypass charging for use while plugged in. A cell this size is the phone’s real selling point: it is larger than what most handsets at this price carry, and it is the same capacity as the C85 5G. The trade-off is weight — the phone comes in at about 205g.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'One 50MP rear camera — and what that means',
+        body:
+          'There is a single rear camera: a 50MP sensor with an f/1.8 lens, a 75-degree field of view, a 5P lens element and autofocus. There is no ultra-wide, no macro lens and no depth sensor, so wide shots and close-up shots come from the main camera and its software. Video is capped at 1080p 30fps from the rear camera, with 720p slow motion at 120fps, and the 8MP f/2.0 front camera records 1080p at 30fps. GSMArena’s launch coverage names a Sony IMX852 sensor, but realme’s own specification page for this model does not, so this page does not claim a sensor model.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Snapdragon 685, 6GB or 8GB of RAM and dynamic RAM',
+        body:
+          'The chip is Qualcomm’s Snapdragon 685 on a 6nm process: four Cortex-A73 cores up to 2.8GHz, four Cortex-A53 cores at 1.9GHz and Adreno 610 graphics. It is a 4G-only part from 2023, so it is built for messaging, video, maps and everyday apps rather than for 5G or for the heaviest games. realme pairs it with 6GB or 8GB of physical memory and advertises “up to 24GB dynamic RAM” — that figure is physical memory plus a virtual allocation borrowed from storage, not 24GB of RAM chips, so judge the phone by the 6GB or 8GB it actually ships with.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'IP69 Pro durability, realme UI 6.0 and what is missing',
+        body:
+          'realme certifies the phone to IP66, IP68, IP69 and IP69K and to MIL-STD-810H for shock, and sells the combination under the “IP69 Pro” name — realme’s own footnote defines that as compliance with IPX6, IPX8, IPX9 and IPX9K together. The warranty still excludes liquid damage. Software is realme UI 6.0 on Android 15, and realme’s Bangladesh specification page for this model names no specific AI tool, so none is claimed here. Missing items worth knowing before you buy: no NFC on the Bangladesh unit, no 3.5mm headphone jack, one loudspeaker rather than a stereo pair, and Bluetooth 5.0 instead of the newer standard.',
+      },
+    ],
+    buyers: {
+      heading: 'Who should buy the Realme C85 Pro — and who should skip it',
+      should: [
+        'Buyers who want a 6.8-inch AMOLED screen at a starting price of ৳20,999.',
+        'People who want the longest possible runtime: a 7000mAh cell is bigger than most phones at this price carry.',
+        'Buyers who care about durability ratings — IP66, IP68, IP69 and IP69K plus MIL-STD-810H.',
+        'Anyone who wants an official Bangladesh unit with a one-year warranty rather than an import.',
+        'Buyers who do not need 5G and would rather put the money into screen and battery.',
+      ],
+      skip: [
+        'Anyone who needs 5G — this phone is 4G only, and the C85 5G is the model for that.',
+        'Photographers who want an ultra-wide or telephoto lens; there is a single rear camera.',
+        'Buyers who use tap-to-pay or transit cards: the Bangladesh unit has no NFC.',
+        'People who want a light phone — 205g is noticeable in one hand.',
+        'Buyers who need newer wireless standards than Bluetooth 5.0 and Wi-Fi 5.',
+      ],
+    },
+    pros: {
+      heading: 'Pros and cons',
+      pros: [
+        '6.8-inch AMOLED at 1080 x 2344 with a 120Hz refresh rate',
+        '7000mAh silicon-carbon battery with 45W wired charging',
+        'IP66, IP68, IP69 and IP69K ratings plus MIL-STD-810H shock compliance',
+        'Three official configurations, all with the same chip, screen, cameras and battery',
+        'A one-year official Bangladesh warranty on every configuration',
+        '4000-nit peak brightness rating and 180Hz touch sampling',
+      ],
+      cons: [
+        'No 5G: the Snapdragon 685 is a 4G-only chip',
+        'A single rear camera, with no ultra-wide, macro or telephoto lens',
+        'No NFC on the Bangladesh unit',
+        'Bluetooth 5.0 and Wi-Fi 5 only',
+        '205g and 8.09mm thick',
+        'realme publishes no memory-card slot, so expandable storage is unconfirmed',
+      ],
+    },
+    buyingTips: {
+      heading: 'Buying notes for Bangladesh',
+      paragraphs: [
+        'Choose the configuration by memory, because that is the only thing that changes. The 6GB/128GB unit costs ৳20,999, the 8GB/128GB costs ৳22,999 and the 8GB/256GB costs ৳24,999, and all three share the Snapdragon 685, the 6.8-inch 120Hz AMOLED screen, the 50MP rear camera and the 7000mAh battery. If you keep games and video on the phone, the 256GB unit is the one that will last; if the phone is for calls, messaging and streaming, the entry model does the same job.',
+        'Check that you are buying the official Bangladesh unit. The model number for the C85 Pro is RMX5555, and the one-year warranty is claimed at a realme service centre rather than through the shop, so ask for the warranty card and an invoice that names the exact configuration and colour. Both colours, Parrot Purple and Peacock Green, are sold in all three memory sizes.',
+        'Confirm the things this phone does not have before you pay: no 5G, no NFC, no 3.5mm headphone jack and no second rear camera. Try the side-mounted fingerprint sensor on the unit itself, since realme’s specification page does not list a fingerprint type, and check the SIM tray if you were planning to add a memory card — realme publishes no card slot for this model while GSMArena describes a hybrid tray. As with any handset, dial *#06# and match the IMEI against the box and the invoice.',
+      ],
+    },
+    sourcesChecked:
+      'Specs checked against realme Bangladesh’s Realme C85 Pro specification page and marketing page, GSMArena’s Realme C85 Pro page, gsmarena.com.bd’s Bangladesh listing and the Bangladesh launch coverage, all opened on 30 October 2026, with Star Tech’s and MobileDokan’s specification tables used as a third check on the display, battery and dimensions. Prices checked the same day against the same sources. No reviewer unit was tested for this page.',
+    faqs: [
+      {
+        question: 'What is the Realme C85 Pro price in Bangladesh?',
+        answer:
+          '৳20,999 for 6GB/128GB, ৳22,999 for 8GB/128GB and ৳24,999 for 8GB/256GB — the official Bangladesh launch prices, checked on 30 October 2026. Each configuration comes with a one-year official warranty.',
+      },
+      {
+        question: 'What do the three memory variants cost, and what changes between them?',
+        answer:
+          'The 6GB/128GB unit is ৳20,999, the 8GB/128GB is ৳22,999 and the 8GB/256GB is ৳24,999. Only memory and storage change: the Snapdragon 685 chip, the 6.8-inch 120Hz AMOLED screen, the 50MP rear camera, the 8MP front camera and the 7000mAh battery are the same in all three.',
+      },
+      {
+        question: 'Is the Realme C85 Pro a 5G phone?',
+        answer:
+          'No. It is 4G LTE only, with dual nano-SIM support and no 5G bands, because the Snapdragon 685 is a 4G chip. realme’s 5G handset in this family is the Realme C85 5G, a separate model with a MediaTek Dimensity 6300 and an LCD screen.',
+      },
+      {
+        question: 'What is the difference between the Realme C85 Pro and the Realme C85 5G?',
+        answer:
+          'The Pro has a 6.8-inch AMOLED at 1080 x 2344 with a 120Hz refresh rate and runs on the 4G Snapdragon 685; the C85 5G has a 6.8-inch LCD at 720 x 1570 with a 144Hz refresh rate and runs on the Dimensity 6300 with 5G. Both use a 7000mAh battery with 45W charging and a 50MP main camera, and the C85 5G adds a second rear camera and Bluetooth 5.3.',
+      },
+      {
+        question: 'What are the Realme C85 Pro display, chipset and battery specifications?',
+        answer:
+          'A 6.8-inch AMOLED at 1080 x 2344 with a 120Hz refresh rate and a 4000-nit peak brightness rating; a Qualcomm Snapdragon 685 on a 6nm process, with four Cortex-A73 cores up to 2.8GHz, four Cortex-A53 cores and Adreno 610 graphics; and a 7000mAh silicon-carbon battery with 45W wired charging, 10W reverse wired charging and bypass charging.',
+      },
+      {
+        question: 'Does the Realme C85 Pro have a microSD card slot?',
+        answer:
+          'realme’s Bangladesh specification page lists no memory-card slot for this model, while GSMArena and some Bangladesh retailers describe a hybrid slot shared with the second SIM. The sources disagree, so treat expandable storage as unconfirmed and check the SIM tray on the unit before you buy.',
+      },
+      {
+        question: 'Is the Realme C85 Pro water resistant?',
+        answer:
+          'realme rates it IP66, IP68, IP69 and IP69K and markets the combination as “IP69 Pro”, with MIL-STD-810H shock compliance. Those are laboratory ratings: the warranty does not cover liquid damage, and the seals weaken with use, drops and age.',
+      },
+      {
+        question: 'What colours does the Realme C85 Pro come in?',
+        answer:
+          'Parrot Purple and Peacock Green. Both colours are listed across the three memory configurations, and the gallery on this page shows three photos of each.',
+      },
+      {
+        question: 'রিয়েলমি সি৮৫ প্রো-এর দাম কত?',
+        answer:
+          'বাংলাদেশে রিয়েলমি সি৮৫ প্রো-এর অফিসিয়াল দাম ৳20,999 (৬জিবি/১২৮জিবি), ৳22,999 (৮জিবি/১২৮জিবি) এবং ৳24,999 (৮জিবি/২৫৬জিবি), সঙ্গে এক বছরের অফিসিয়াল ওয়ারেন্টি। ফোনটিতে ৬.৮ ইঞ্চি ১২০Hz AMOLED ডিসপ্লে, ৫০ মেগাপিক্সেল ক্যামেরা, ৭০০০mAh ব্যাটারি ও ৪৫W চার্জিং আছে। এটি ৪জি ফোন, ৫জি নেই, এবং বাংলাদেশের ইউনিটে NFC নেই।',
+      },
+    ],
+    links: [
+      {
+        label: 'Realme C85 Pro — Shop listing',
+        description: 'The same phone in our shop catalogue, with its price and specifications',
+        href: '/shop/realme-c85-pro',
+      },
+      {
+        label: 'Redmi Note 15 5G — Quick Look',
+        description: 'An official Bangladesh launch with a 6.77-inch AMOLED and 5G',
+        href: '/quick-look/redmi-note-15-5g',
+      },
+      {
+        label: 'Tecno Camon 40 Pro — Quick Look',
+        description: 'A 4G alternative with a 120Hz AMOLED and a 50MP OIS camera',
+        href: '/quick-look/tecno-camon-40-pro',
+      },
+      {
+        label: 'All Quick Look price pages',
+        description: 'Every phone and gadget we have checked, with its sources',
+        href: '/quick-look',
+      },
+    ],
+  },
 };
 /** Long-form guide for a product slug, or undefined when none is written yet. */
 export function getQuickLookContent(slug: string): QuickLookGuide | undefined {

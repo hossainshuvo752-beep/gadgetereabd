@@ -9,7 +9,9 @@
  *
  *   1. <title> longer than 60 characters, or carrying the " | Jupiter BD"
  *      brand suffix (every one of these titles is an absolute title that
- *      already contains what the searcher typed);
+ *      already contains what the searcher typed) — except the documented
+ *      per-route exceptions below, where the owner supplied the exact
+ *      string including the brand;
  *   2. meta description longer than 155 characters;
  *   3. no "Bangladesh" in the title — except the explicit, documented
  *      exceptions below, whose posts have no visible Bangladesh section and
@@ -40,6 +42,18 @@ const TITLE_BANGLADESH_EXCEPTIONS = {
     'no Bangladesh section in the body — only a link label mentions it',
   'posts/best-laptop-for-programming-students':
     'only an FAQ question mentions Bangladesh; no local price, warranty or availability',
+};
+
+/**
+ * Pages whose <title> is ALLOWED to end in " | Jupiter BD" because the owner
+ * supplied that exact string. The suffix is normally banned only because the
+ * root layout would otherwise append it a second time; these entries are
+ * explicit, short enough for the 60-char budget, and documented here on
+ * purpose. Adding a route needs the reason, not just the key.
+ */
+const TITLE_SUFFIX_EXCEPTIONS = {
+  'quick-look/realme-c85-pro':
+    'owner-supplied exact title ("Realme C85 Pro Price in Bangladesh | Jupiter BD", 47 chars)',
 };
 
 const MAX_TITLE = 60;
@@ -124,7 +138,7 @@ for (const file of pages) {
     if (title.length > MAX_TITLE) {
       fail(`title is ${title.length} chars (max ${MAX_TITLE}) — "${title}"`);
     }
-    if (/\|\s*Jupiter BD\s*$/i.test(title)) {
+    if (/\|\s*Jupiter BD\s*$/i.test(title) && !TITLE_SUFFIX_EXCEPTIONS[route]) {
       fail(`title carries the " | Jupiter BD" suffix — render it absolute: "${title}"`);
     }
     if (!/bangladesh/i.test(title) && !TITLE_BANGLADESH_EXCEPTIONS[route]) {
@@ -179,7 +193,9 @@ if (problems.length > 0) {
 }
 
 console.log(
-  `check-seo-metadata: OK — ${checked} Quick Look / blog page(s): titles ≤ ${MAX_TITLE} chars and absolute, descriptions ≤ ${MAX_DESCRIPTION} chars, Bangladesh in every title outside the ${Object.keys(
+  `check-seo-metadata: OK — ${checked} Quick Look / blog page(s): titles ≤ ${MAX_TITLE} chars, no brand suffix outside the ${Object.keys(
+    TITLE_SUFFIX_EXCEPTIONS
+  ).length} documented exception(s), descriptions ≤ ${MAX_DESCRIPTION} chars, Bangladesh in every title outside the ${Object.keys(
     TITLE_BANGLADESH_EXCEPTIONS
-  ).length} documented exception(s), twitter tags mirror og.`
+  ).length} documented title exception(s), twitter tags mirror og.`
 );

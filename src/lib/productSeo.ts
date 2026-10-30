@@ -50,6 +50,12 @@ interface ProductSeoCopy {
    *  shared template cannot build (the Camon 40 Pro 5G's price), or where an
    *  availability claim is not supported by the data. */
   descriptionTail?: string;
+  /** Builds the Quick Look description's price phrase from the product's own
+   *  PRICED VARIANTS (one taka figure per configuration) instead of from the
+   *  flat `price` — so the snippet lists every configuration and can never
+   *  disagree with the selector. Pair it with `descriptionTail` for the
+   *  closing sentence. Absent = the usual single-price sentence. */
+  descriptionFromVariantPrices?: boolean;
   /** Exact Shop-route description. Needed only for a product whose shared
    *  Shop template would add a claim its data cannot support — the template
    *  ends "In stock, fast delivery", which an unofficial-import product with
@@ -139,6 +145,20 @@ const seoCopy: Record<string, ProductSeoCopy> = {
       'Redmi Note 15 Pro+ 5G price in Bangladesh (BD): ৳46,999 official, 8GB/256GB. 200MP OIS, 6500mAh, 100W. China import ৳40,000 unofficial.',
     shopDescriptionOverride:
       'Buy the Redmi Note 15 Pro+ 5G in Bangladesh: ৳46,999 official (8GB/256GB) with a one-year Xiaomi Care warranty. 200MP OIS, 6500mAh, 100W.',
+  },
+  /** Realme C85 Pro — an official Bangladesh launch sold in three memory
+   *  configurations, so the description lists all three from the data (a
+   *  single headline figure would misdescribe the launch). The Shop copy
+   *  drops the shared "In stock, fast delivery" tail because no retailer we
+   *  opened confirms current stock for this handset. */
+  'realme-c85-pro': {
+    shopSpecs: '6.8-inch 120Hz AMOLED, 7000mAh battery, 45W charging',
+    quickLookSpecs: '6.8-inch 120Hz AMOLED, 7000mAh battery',
+    titleOverride: 'Realme C85 Pro Price in Bangladesh | Jupiter BD',
+    descriptionFromVariantPrices: true,
+    descriptionTail: 'Colors, full specs and warranty.',
+    shopDescriptionOverride:
+      'Buy the Realme C85 Pro in Bangladesh: ৳20,999 for 6GB/128GB, ৳22,999 for 8GB/128GB and ৳24,999 for 8GB/256GB at official launch prices. 6.8-inch 120Hz AMOLED, 7000mAh.',
   },
   'infinix-note-60-pro': {
     shopSpecs: 'great value performance',
@@ -264,6 +284,13 @@ export function quickLookSeoDescription(product: Product): string {
   const copy = seoCopy[slugOf(product)];
   if (copy?.descriptionOverride) return copy.descriptionOverride;
   const name = quickLookSeoName(product);
+  // Products whose launch price list is the point of the page: every
+  // configured price is printed, read from the data itself.
+  if (copy?.descriptionFromVariantPrices) {
+    return `${name} price in Bangladesh: ${variantPriceList(product)}. ${
+      copy.descriptionTail ?? availabilityTail(product)
+    }`;
+  }
   const model = copy?.quickLookModelLabel ? ` (${copy.quickLookModelLabel})` : '';
   const specs = copy?.quickLookSpecs ?? 'full specifications and Bangladesh price';
   const price = copy?.quickLookPriceQualifier
@@ -271,6 +298,23 @@ export function quickLookSeoDescription(product: Product): string {
     : priceWithStatus(product);
   const tail = copy?.descriptionTail ?? availabilityTail(product);
   return `${name}${model} price in Bangladesh (BD): ${price}. ${specs}. ${tail}`;
+}
+
+/**
+ * "৳20,999 for 6/128GB, ৳22,999 for 8/128GB and ৳24,999 for 8/256GB" — built
+ * from the DEFAULT version's priced variants (falling back to the product's
+ * own `variants`). A RAM/storage label loses its second unit so the phrase
+ * stays short ("6GB/128GB" → "6/128GB"); the numbers themselves are never
+ * typed, so the snippet and the selector cannot disagree.
+ */
+function variantPriceList(product: Product): string {
+  const version =
+    product.versions?.find((v) => v.id === product.defaultVersion) ?? product.versions?.[0];
+  const priced = version?.variants ?? product.variants ?? [];
+  const parts = priced.map((v) => `${taka(v.price)} for ${v.label.replace(/GB\//g, '/')}`);
+  if (parts.length === 0) return priceWithStatus(product);
+  if (parts.length === 1) return parts[0];
+  return `${parts.slice(0, -1).join(', ')} and ${parts[parts.length - 1]}`;
 }
 
 /**

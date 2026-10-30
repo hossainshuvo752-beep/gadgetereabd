@@ -380,7 +380,14 @@ const QuickLookDetail: React.FC<{
               <Smartphone className="w-4 h-4" />
               <span className="font-semibold text-text-heading">{spec.basicInfo.brand}</span>
             </div>
-            <h1 className="text-3xl font-bold text-text-heading">{product.title}</h1>
+            <h1 className="text-3xl font-bold text-text-heading">{product.h1 ?? product.title}</h1>
+            {/* Optional per-product subtitle (muted H2 right under the H1).
+                Only products whose data sets `h1Subtitle` render it. */}
+            {product.h1Subtitle && (
+              <h2 className="mt-1 text-base md:text-lg font-normal text-text-body">
+                {product.h1Subtitle}
+              </h2>
+            )}
           </div>
         </div>
 

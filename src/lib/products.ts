@@ -7,6 +7,15 @@ export interface Product {
    *  never in the visible H1 or product name, which stay `title`. Absent =
    *  the SEO builders fall back to `title`. */
   seoName?: string;
+  /** OPTIONAL visible H1 override for this product's detail page. Use ONLY
+   *  when the owner specifies an exact H1 that is not the bare product name
+   *  (the Realme C85 Pro's "<name> Price in Bangladesh"). Absent = the shared
+   *  template renders `title`, exactly as every other product does. */
+  h1?: string;
+  /** OPTIONAL muted H2 rendered directly under the H1 (a one-line subtitle
+   *  such as "Official price, specs, colors & variants in BDT"). Absent =
+   *  nothing rendered, so every other product's title block is unchanged. */
+  h1Subtitle?: string;
   category: string;
   /** Top-level Shop filter category — must match a node in the tree in
    *  src/lib/categories.ts (Mobile, Tablet, PC, ...). */
@@ -3059,6 +3068,197 @@ export const products: Product[] = [
       { label: '256GB', price: 46999 },
       { label: '512GB', price: 59999 },
     ],
+  },
+  {
+    id: 27,
+    title: 'Realme C85 Pro',
+    seoName: 'Realme C85 Pro',
+    /** Owner-specified title block: the page's H1 is the price phrase, not
+     *  the bare product name, with the one-line subtitle under it. Both
+     *  fields are per-product, so no other page's title block changes. */
+    h1: 'Realme C85 Pro Price in Bangladesh',
+    h1Subtitle: 'Official price, specs, colors & variants in BDT',
+    category: 'Smartphones',
+    topCategory: 'Mobile',
+    subCategory: 'Realme',
+    imageAlt: 'Realme C85 Pro',
+    /** Hero = the default colour's first photo (Parrot Purple), the same
+     *  convention the other colour-mapped phones use. */
+    heroImage: '/images/products/realme-c85-pro/parrot-purple/1.webp',
+    gallery: [
+      '/images/products/realme-c85-pro/parrot-purple/1.webp',
+      '/images/products/realme-c85-pro/parrot-purple/2.webp',
+      '/images/products/realme-c85-pro/parrot-purple/3.webp',
+    ],
+    /** Two colour sets, three supplied photos each. The file names in the
+     *  supplied folder are the colour names, so the data matches them
+     *  exactly. Both colours are offered for every memory variant — no
+     *  source ties a colour to one configuration. */
+    colorImages: [
+      {
+        color: 'Parrot Purple',
+        images: [
+          '/images/products/realme-c85-pro/parrot-purple/1.webp',
+          '/images/products/realme-c85-pro/parrot-purple/2.webp',
+          '/images/products/realme-c85-pro/parrot-purple/3.webp',
+        ],
+      },
+      {
+        color: 'Peacock Green',
+        images: [
+          '/images/products/realme-c85-pro/peacock-green/1.webp',
+          '/images/products/realme-c85-pro/peacock-green/2.webp',
+          '/images/products/realme-c85-pro/peacock-green/3.webp',
+        ],
+      },
+    ],
+    /** One alt per supplied photo, describing only what that file shows. */
+    galleryAlts: [
+      { src: '/images/products/realme-c85-pro/parrot-purple/1.webp', alt: 'Realme C85 Pro in Parrot Purple, front and back side by side' },
+      { src: '/images/products/realme-c85-pro/parrot-purple/2.webp', alt: 'Realme C85 Pro in Parrot Purple, rear panel resting on white feathers' },
+      { src: '/images/products/realme-c85-pro/parrot-purple/3.webp', alt: 'Realme C85 Pro in Parrot Purple standing upright, screen turned toward the viewer' },
+      { src: '/images/products/realme-c85-pro/peacock-green/1.webp', alt: 'Realme C85 Pro in Peacock Green, front and back side by side' },
+      { src: '/images/products/realme-c85-pro/peacock-green/2.webp', alt: 'Realme C85 Pro in Peacock Green, rear panel resting on white feathers' },
+      { src: '/images/products/realme-c85-pro/peacock-green/3.webp', alt: 'Realme C85 Pro in Peacock Green standing upright, screen facing forward' },
+    ],
+    views: 300,
+    dateAdded: '2026-10-30',
+    price: 20999,
+    /** OFFICIAL: realme Bangladesh's own C85 Pro pages list the three launch
+     *  prices, and the Bangladesh launch coverage records the same three
+     *  figures. */
+    priceStatus: 'official',
+    oldPrice: null,
+    priceEstimated: false,
+    purchaseMode: 'buy',
+    status: 'available',
+    /** No retailer we opened confirms current stock for this handset, so the
+     *  offer keeps its price but claims no availability value. */
+    omitSchemaAvailability: true,
+    priceChannel: 'official',
+    /** Verified warranty wording: Bangladesh retailers list the unit with a
+     *  one-year official warranty claimed at a realme service centre, which
+     *  matches realme's 12-month handset term. */
+    priceWarranty: 'one-year official warranty at a realme service centre',
+    priceNote:
+      'Official launch prices in Bangladesh. Retail prices may vary slightly by seller.',
+    priceCheckedAt: '2026-10-30',
+    /**
+     * Verified on realme Bangladesh's own Realme C85 Pro specification page
+     * and cross-checked against GSMArena, gsmarena.com.bd and the Bangladesh
+     * launch coverage — every value below appears on at least two of them.
+     * Fields no source publishes (glass protection, frame and back material,
+     * card slot) are left empty rather than guessed, and KeyValue omits an
+     * empty row instead of printing TBD.
+     */
+    specSheet: {
+      basicInfo: {
+        model: 'Realme C85 Pro',
+        brand: 'Realme',
+        releaseDate: 'November 2025',
+      },
+      display: {
+        type: 'AMOLED, 120Hz, 4000 nits peak',
+        size: '6.8 inches',
+        resolution: '1080 x 2344 pixels (FHD+)',
+        refreshRate: '120Hz (60Hz and 120Hz modes, 180Hz touch sampling)',
+        protection: '',
+      },
+      performance: {
+        processor: 'Qualcomm Snapdragon 685 (6nm)',
+        ram: '6GB/8GB (up to 24GB dynamic RAM advertised)',
+        storage: '128GB/256GB',
+        os: 'Android 15, realme UI 6.0',
+      },
+      cameraSystem: {
+        rear: '50MP main (f/1.8, 75° field of view, autofocus)',
+        front: '8MP (f/2.0, 80° field of view)',
+        features: [
+          'One rear camera only — no ultra-wide, macro or depth sensor',
+          'Rear video up to 1080p at 30fps, with 720p slow motion at 120fps',
+          'Front camera records 1080p video at 30fps',
+          '5P lens on the rear camera and 4P on the front',
+        ],
+      },
+      batteryCharging: {
+        capacity: '7000mAh silicon-carbon (typical)',
+        charging: '45W wired (maximum), 10W reverse wired, bypass charging',
+      },
+      buildDesign: {
+        dimensions: '164.40 x 77.99 x 8.09mm',
+        weight: '205g',
+        materials: '',
+        colors: ['Parrot Purple', 'Peacock Green'],
+      },
+      connectivity: {
+        network: '4G LTE (2G/3G/4G), dual nano-SIM, no 5G',
+        bluetooth: 'Bluetooth 5.0',
+        ports: [
+          'USB Type-C 2.0 with OTG',
+          'Wi-Fi 5 (802.11 a/b/g/n/ac), dual-band',
+          'No 3.5mm headphone jack',
+          'No NFC on the Bangladesh unit (realme Bangladesh lists it as unsupported)',
+        ],
+      },
+      sensors: [
+        'Side-mounted fingerprint sensor on the power button (Bangladesh retailer listings)',
+        'Accelerometer, proximity sensor, ambient light sensor and e-compass',
+        'RGB pulse-light notification on the back',
+        'One loudspeaker (realme lists “Loudspeaker: yes”; stereo is not confirmed)',
+      ],
+      /** realme Bangladesh's specification page names no AI tool for this
+       *  model, so nothing is claimed here — the card says exactly that. */
+      aiFeatures: [
+        'No AI feature is named on realme Bangladesh’s specification page for this phone',
+      ],
+      notableLimitations: [
+        'No 5G: the Snapdragon 685 is a 4G-only chip, and realme sells the 5G sibling separately as the C85 5G',
+        'One rear camera — there is no ultra-wide, macro or telephoto lens',
+        'No NFC on the Bangladesh unit, and no 3.5mm headphone jack',
+        'Bluetooth 5.0 and Wi-Fi 5 only, older than the Bluetooth 5.3 of the C85 5G',
+        'realme does not publish a memory-card slot for this model; GSMArena and some retailers say a hybrid SIM slot takes one — confirm with the seller',
+        '205g and 8.09mm thick, heavier than most phones at this price',
+      ],
+    },
+    /**
+     * ONE version, because a plain product's storage selector can only split
+     * specSheet.performance.storage (128GB/256GB), which cannot tell the
+     * 6GB/128GB and 8GB/128GB prices apart. RAM+storage labels live in the
+     * versions structure elsewhere in this catalog, so the single official
+     * channel is declared here — no new data shape, no template change.
+     */
+    versions: [
+      {
+        id: 'official',
+        label: 'Official (Bangladesh)',
+        shortLabel: 'Official',
+        priceChannel: 'official',
+        colorImages: [
+          {
+            color: 'Parrot Purple',
+            images: [
+              '/images/products/realme-c85-pro/parrot-purple/1.webp',
+              '/images/products/realme-c85-pro/parrot-purple/2.webp',
+              '/images/products/realme-c85-pro/parrot-purple/3.webp',
+            ],
+          },
+          {
+            color: 'Peacock Green',
+            images: [
+              '/images/products/realme-c85-pro/peacock-green/1.webp',
+              '/images/products/realme-c85-pro/peacock-green/2.webp',
+              '/images/products/realme-c85-pro/peacock-green/3.webp',
+            ],
+          },
+        ],
+        variants: [
+          { label: '6GB/128GB', price: 20999 },
+          { label: '8GB/128GB', price: 22999 },
+          { label: '8GB/256GB', price: 24999 },
+        ],
+      },
+    ],
+    defaultVersion: 'official',
   },
 ];
 
