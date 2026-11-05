@@ -156,6 +156,12 @@ export interface Product {
      *  official Bangladesh unit next to a grey import). Absent = the
      *  product-level `priceChannel`. */
     priceChannel?: 'official' | 'unofficial';
+    /** How THIS version is sold, when it differs from the product's. Absent =
+     *  the product-level mode from purchaseModeOf(). Used by the Xiaomi Redmi
+     *  Note 17 Pro, where the official unit is buyable but the China unit is
+     *  INFORMATION ONLY: its prices are approximate import figures, so it
+     *  renders Notify Me instead of Add to Cart / Buy Now. */
+    purchaseMode?: PurchaseMode;
     /** Spec fields that DIFFER for this version, merged over specSheet by
      *  specSheetOf(). Omitted fields keep the base (default-version) value. */
     specOverrides?: {
@@ -3259,6 +3265,334 @@ export const products: Product[] = [
       },
     ],
     defaultVersion: 'official',
+  },
+  {
+    id: 28,
+    title: 'Xiaomi Redmi Note 17 Pro',
+    seoName: 'Xiaomi Redmi Note 17 Pro',
+    /** Owner-specified exact H1 (the shared template would print the title). */
+    h1: 'Xiaomi Redmi Note 17 Pro Price in Bangladesh',
+    /** Owner-specified muted H2 rendered directly under that H1. */
+    h1Subtitle: 'Official and China version prices, specs and colors',
+    category: 'Smartphones',
+    topCategory: 'Mobile',
+    subCategory: 'Xiaomi',
+    imageAlt: 'Xiaomi Redmi Note 17 Pro',
+    /** Hero = the default colour's rear view, because the global photo set
+     *  has no combined front-and-back frame — the rear is the only angle that
+     *  shows the phone's own design and colour.
+     *  Paths follow the same version/colour/angle layout as the Redmi Note 14
+     *  Pro+ 5G page: <slug>/<global|china>/<colour>/<n>.webp */
+    heroImage: '/images/products/xiaomi-redmi-note-17-pro/global/sky-blue/2.webp',
+    gallery: [
+      '/images/products/xiaomi-redmi-note-17-pro/global/sky-blue/2.webp',
+      '/images/products/xiaomi-redmi-note-17-pro/global/sky-blue/1.webp',
+      '/images/products/xiaomi-redmi-note-17-pro/global/sky-blue/3.webp',
+      '/images/products/xiaomi-redmi-note-17-pro/global/sky-blue/4.webp',
+    ],
+    /** Four colours per version, each with four angles, mapped from the
+     *  supplied files: global 1 = front, 2 = rear, 3 = side edges,
+     *  4 = top and bottom edges; China 1 = rear and front side by side,
+     *  2 = rear, 3 = side edges, 4 = top and bottom edges. */
+    colorImages: [
+      {
+        color: 'Sky Blue',
+        images: [
+          '/images/products/xiaomi-redmi-note-17-pro/global/sky-blue/1.webp',
+          '/images/products/xiaomi-redmi-note-17-pro/global/sky-blue/2.webp',
+          '/images/products/xiaomi-redmi-note-17-pro/global/sky-blue/3.webp',
+          '/images/products/xiaomi-redmi-note-17-pro/global/sky-blue/4.webp',
+        ],
+      },
+      {
+        color: 'Satin Orange',
+        images: [
+          '/images/products/xiaomi-redmi-note-17-pro/global/satin-orange/1.webp',
+          '/images/products/xiaomi-redmi-note-17-pro/global/satin-orange/2.webp',
+          '/images/products/xiaomi-redmi-note-17-pro/global/satin-orange/3.webp',
+          '/images/products/xiaomi-redmi-note-17-pro/global/satin-orange/4.webp',
+        ],
+      },
+      {
+        color: 'Purple',
+        images: [
+          '/images/products/xiaomi-redmi-note-17-pro/global/purple/1.webp',
+          '/images/products/xiaomi-redmi-note-17-pro/global/purple/2.webp',
+          '/images/products/xiaomi-redmi-note-17-pro/global/purple/3.webp',
+          '/images/products/xiaomi-redmi-note-17-pro/global/purple/4.webp',
+        ],
+      },
+      {
+        color: 'Black',
+        images: [
+          '/images/products/xiaomi-redmi-note-17-pro/global/black/1.webp',
+          '/images/products/xiaomi-redmi-note-17-pro/global/black/2.webp',
+          '/images/products/xiaomi-redmi-note-17-pro/global/black/3.webp',
+          '/images/products/xiaomi-redmi-note-17-pro/global/black/4.webp',
+        ],
+      },
+    ],
+    /** One hand-written alt per image, describing only what that file shows
+     *  and naming its version and colour. No image carries a caption. */
+    galleryAlts: [
+      { src: '/images/products/xiaomi-redmi-note-17-pro/global/sky-blue/1.webp', alt: 'Xiaomi Redmi Note 17 Pro global version in Sky Blue, front view with blue wallpaper' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/global/sky-blue/2.webp', alt: 'Xiaomi Redmi Note 17 Pro global version in Sky Blue, rear view showing the camera' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/global/sky-blue/3.webp', alt: 'Xiaomi Redmi Note 17 Pro global version in Sky Blue, side edges and buttons' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/global/sky-blue/4.webp', alt: 'Xiaomi Redmi Note 17 Pro global version in Sky Blue, top and bottom edges' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/global/satin-orange/1.webp', alt: 'Xiaomi Redmi Note 17 Pro global version in Satin Orange, front view with the screen on' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/global/satin-orange/2.webp', alt: 'Xiaomi Redmi Note 17 Pro global version in Satin Orange, rear view with a wavy texture' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/global/satin-orange/3.webp', alt: 'Xiaomi Redmi Note 17 Pro global version in Satin Orange, side edges showing the buttons' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/global/satin-orange/4.webp', alt: 'Xiaomi Redmi Note 17 Pro global version in Satin Orange, top and bottom edges' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/global/purple/1.webp', alt: 'Xiaomi Redmi Note 17 Pro global version in Purple, front view with the screen on' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/global/purple/2.webp', alt: 'Xiaomi Redmi Note 17 Pro global version in Purple, rear view with the REDMI logo' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/global/purple/3.webp', alt: 'Xiaomi Redmi Note 17 Pro global version in Purple, side edges showing the button layout' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/global/purple/4.webp', alt: 'Xiaomi Redmi Note 17 Pro global version in Purple, top and bottom edges' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/global/black/1.webp', alt: 'Xiaomi Redmi Note 17 Pro global version in Black, front view with the screen on' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/global/black/2.webp', alt: 'Xiaomi Redmi Note 17 Pro global version in Black, rear view showing the camera island' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/global/black/3.webp', alt: 'Xiaomi Redmi Note 17 Pro global version in Black, side edges showing the buttons' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/global/black/4.webp', alt: 'Xiaomi Redmi Note 17 Pro global version in Black, top and bottom edges' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/china/black/1.webp', alt: 'Xiaomi Redmi Note 17 Pro China version in Black, rear and front side by side' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/china/black/2.webp', alt: 'Xiaomi Redmi Note 17 Pro China version in Black, rear view showing the camera island' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/china/black/3.webp', alt: 'Xiaomi Redmi Note 17 Pro China version in Black, side edges showing the buttons' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/china/black/4.webp', alt: 'Xiaomi Redmi Note 17 Pro China version in Black, top and bottom edges' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/china/purple/1.webp', alt: 'Xiaomi Redmi Note 17 Pro China version in Purple, rear and front side by side' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/china/purple/2.webp', alt: 'Xiaomi Redmi Note 17 Pro China version in Purple, rear view with the REDMI logo' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/china/purple/3.webp', alt: 'Xiaomi Redmi Note 17 Pro China version in Purple, side edges showing the buttons' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/china/purple/4.webp', alt: 'Xiaomi Redmi Note 17 Pro China version in Purple, top and bottom edges' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/china/blue/1.webp', alt: 'Xiaomi Redmi Note 17 Pro China version in Blue, rear and front side by side' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/china/blue/2.webp', alt: 'Xiaomi Redmi Note 17 Pro China version in Blue, rear view showing the camera island' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/china/blue/3.webp', alt: 'Xiaomi Redmi Note 17 Pro China version in Blue, side edges showing the buttons' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/china/blue/4.webp', alt: 'Xiaomi Redmi Note 17 Pro China version in Blue, top and bottom edges' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/china/white/1.webp', alt: 'Xiaomi Redmi Note 17 Pro China version in White, rear and front side by side' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/china/white/2.webp', alt: 'Xiaomi Redmi Note 17 Pro China version in White, rear view showing the camera island' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/china/white/3.webp', alt: 'Xiaomi Redmi Note 17 Pro China version in White, side edges showing the buttons' },
+      { src: '/images/products/xiaomi-redmi-note-17-pro/china/white/4.webp', alt: 'Xiaomi Redmi Note 17 Pro China version in White, top and bottom edges' },
+    ],
+    views: 900,
+    dateAdded: '2026-11-05',
+    price: 54999,
+    oldPrice: null,
+    priceEstimated: false,
+    /** The official Bangladesh variant is bought through the normal cart and
+     *  checkout; the China version carries its own 'notify' mode below. */
+    purchaseMode: 'buy',
+    status: 'available',
+    priceStatus: 'official',
+    priceChannel: 'official',
+    priceNote:
+      'The Official/Global version price is the official Bangladesh launch price for the 8GB + 256GB variant. China-version prices are approximate unofficial market prices as of early October 2026 and vary by seller.',
+    priceCheckedAt: '2026-11-05',
+    specSheet: {
+      basicInfo: {
+        model: 'Redmi Note 17 Pro',
+        brand: 'Xiaomi',
+        releaseDate: 'September 2026 (Bangladesh)',
+      },
+      display: {
+        type: 'AMOLED, 120Hz, 3,500 nits peak',
+        size: '6.83 inches',
+        resolution: '1280 x 2772 (1.5K)',
+        refreshRate: '120Hz',
+        protection: 'Gorilla Glass Victus 2',
+      },
+      performance: {
+        processor: 'Qualcomm Snapdragon 6s Gen 4 (4nm)',
+        ram: '8GB',
+        storage: '256GB',
+        os: 'Android 16, HyperOS 3',
+      },
+      cameraSystem: {
+        rear: '50MP main (f/1.8, OIS) + 8MP ultra-wide',
+        front: '16MP',
+        features: [
+          'Optical image stabilisation on the 50MP main camera',
+          '8MP 120° ultra-wide, with no telephoto lens',
+          'Video recording up to 1080p at 30fps',
+        ],
+      },
+      batteryCharging: {
+        capacity: '8,340mAh',
+        charging: '67W wired, 22.5W reverse wired',
+      },
+      buildDesign: {
+        dimensions: '163.5 x 78.3 x 8.6 mm',
+        weight: '223g',
+        materials: 'Glass front (Gorilla Glass Victus 2), plastic back and frame',
+        colors: ['Sky Blue', 'Satin Orange', 'Purple', 'Black'],
+      },
+      connectivity: {
+        network: '5G (2G/3G/4G/5G), nano-SIM + nano-SIM or nano-SIM + eSIM',
+        bluetooth: 'Bluetooth 5.1',
+        ports: [
+          'USB Type-C 2.0 with OTG',
+          'Wi-Fi 5 (802.11 a/b/g/n/ac), dual-band',
+          'No microSD card slot',
+          'No 3.5mm headphone jack',
+        ],
+      },
+      sensors: [
+        'Under-display optical fingerprint sensor',
+        'Accelerometer, gyro, compass and ultrasonic proximity sensor',
+      ],
+      /** Xiaomi does not name an AI feature for this model on the spec pages
+       *  we checked, so nothing is claimed here. */
+      aiFeatures: [
+        'No AI feature is named for this model on the specification pages we checked',
+      ],
+      notableLimitations: [
+        'The Snapdragon 6s Gen 4 is an entry-level chip — not a gaming phone',
+        'Only one official variant in Bangladesh: 8GB RAM + 256GB',
+        'No microSD slot, so storage is fixed at purchase',
+        'Video recording tops out at 1080p at 30fps',
+      ],
+    },
+    /**
+     * TWO versions of the same model. The official Bangladesh unit is the
+     * base (defaultVersion) and the only one that can be bought; the China
+     * unit is information only — approximate import prices, its own colours,
+     * its own battery/weight/thickness, and Notify Me instead of Add to Cart.
+     */
+    versions: [
+      {
+        id: 'global',
+        label: 'Official / Global',
+        shortLabel: 'Global',
+        priceChannel: 'official',
+        colorImages: [
+          {
+            color: 'Sky Blue',
+            images: [
+              '/images/products/xiaomi-redmi-note-17-pro/global/sky-blue/1.webp',
+              '/images/products/xiaomi-redmi-note-17-pro/global/sky-blue/2.webp',
+              '/images/products/xiaomi-redmi-note-17-pro/global/sky-blue/3.webp',
+              '/images/products/xiaomi-redmi-note-17-pro/global/sky-blue/4.webp',
+            ],
+          },
+          {
+            color: 'Satin Orange',
+            images: [
+              '/images/products/xiaomi-redmi-note-17-pro/global/satin-orange/1.webp',
+              '/images/products/xiaomi-redmi-note-17-pro/global/satin-orange/2.webp',
+              '/images/products/xiaomi-redmi-note-17-pro/global/satin-orange/3.webp',
+              '/images/products/xiaomi-redmi-note-17-pro/global/satin-orange/4.webp',
+            ],
+          },
+          {
+            color: 'Purple',
+            images: [
+              '/images/products/xiaomi-redmi-note-17-pro/global/purple/1.webp',
+              '/images/products/xiaomi-redmi-note-17-pro/global/purple/2.webp',
+              '/images/products/xiaomi-redmi-note-17-pro/global/purple/3.webp',
+              '/images/products/xiaomi-redmi-note-17-pro/global/purple/4.webp',
+            ],
+          },
+          {
+            color: 'Black',
+            images: [
+              '/images/products/xiaomi-redmi-note-17-pro/global/black/1.webp',
+              '/images/products/xiaomi-redmi-note-17-pro/global/black/2.webp',
+              '/images/products/xiaomi-redmi-note-17-pro/global/black/3.webp',
+              '/images/products/xiaomi-redmi-note-17-pro/global/black/4.webp',
+            ],
+          },
+        ],
+        /** Owner-supplied official Bangladesh launch price — one variant. */
+        variants: [{ label: '8GB/256GB', price: 54999 }],
+      },
+      {
+        id: 'china',
+        label: 'China (unofficial)',
+        shortLabel: 'China',
+        priceChannel: 'unofficial',
+        /** INFORMATION ONLY: no cart, no Buy Now, no order. Approximate
+         *  import prices are shown by Notify Me being the only action. */
+        purchaseMode: 'notify',
+        colorImages: [
+          {
+            color: 'Black',
+            images: [
+              '/images/products/xiaomi-redmi-note-17-pro/china/black/1.webp',
+              '/images/products/xiaomi-redmi-note-17-pro/china/black/2.webp',
+              '/images/products/xiaomi-redmi-note-17-pro/china/black/3.webp',
+              '/images/products/xiaomi-redmi-note-17-pro/china/black/4.webp',
+            ],
+          },
+          {
+            color: 'Purple',
+            images: [
+              '/images/products/xiaomi-redmi-note-17-pro/china/purple/1.webp',
+              '/images/products/xiaomi-redmi-note-17-pro/china/purple/2.webp',
+              '/images/products/xiaomi-redmi-note-17-pro/china/purple/3.webp',
+              '/images/products/xiaomi-redmi-note-17-pro/china/purple/4.webp',
+            ],
+          },
+          {
+            color: 'Blue',
+            images: [
+              '/images/products/xiaomi-redmi-note-17-pro/china/blue/1.webp',
+              '/images/products/xiaomi-redmi-note-17-pro/china/blue/2.webp',
+              '/images/products/xiaomi-redmi-note-17-pro/china/blue/3.webp',
+              '/images/products/xiaomi-redmi-note-17-pro/china/blue/4.webp',
+            ],
+          },
+          {
+            color: 'White',
+            images: [
+              '/images/products/xiaomi-redmi-note-17-pro/china/white/1.webp',
+              '/images/products/xiaomi-redmi-note-17-pro/china/white/2.webp',
+              '/images/products/xiaomi-redmi-note-17-pro/china/white/3.webp',
+              '/images/products/xiaomi-redmi-note-17-pro/china/white/4.webp',
+            ],
+          },
+        ],
+        /** Owner-supplied approximate unofficial prices, early Oct 2026. */
+        variants: [
+          { label: '8GB/128GB', price: 32000, priceEstimated: true },
+          { label: '8GB/256GB', price: 35000, priceEstimated: true },
+          { label: '12GB/256GB', price: 39000, priceEstimated: true },
+        ],
+        specOverrides: {
+          basicInfo: {
+            model: 'Redmi Note 17 Pro (China)',
+            releaseDate: 'July 2026 (China)',
+          },
+          performance: {
+            ram: '8GB or 12GB',
+            storage: '128GB / 256GB',
+          },
+          /** The China unit's second rear lens is a 2MP depth camera, not the
+           *  global 8MP ultra-wide, and its selfie camera is 8MP. */
+          cameraSystem: {
+            rear: '50MP main + 2MP depth',
+            front: '8MP',
+            features: [
+              '50MP main camera with a 2MP depth sensor beside it',
+              'No ultra-wide lens on the China version',
+              'Video recording up to 1080p at 30fps',
+            ],
+          },
+          batteryCharging: {
+            capacity: '9,000mAh',
+            charging: '67W wired, 22.5W reverse wired',
+          },
+          buildDesign: {
+            dimensions: '163.45 x 78.27 x 8.5 mm',
+            weight: 'about 226g',
+            colors: ['Black', 'Purple', 'Blue', 'White'],
+          },
+          connectivity: {
+            network: '5G (2G/3G/4G/5G), dual nano-SIM',
+          },
+          notableLimitations: [
+            'Not sold officially in Bangladesh — no Xiaomi Bangladesh warranty',
+            'Approximate import prices only, and they vary by seller',
+            '50MP + 2MP depth rear camera: no ultra-wide, and the selfie camera is 8MP',
+            'Ships with China-market software — check Google services and the IMEI status with the seller before paying',
+          ],
+        },
+      },
+    ],
+    defaultVersion: 'global',
   },
 ];
 

@@ -4732,6 +4732,192 @@ const guides: Record<string, QuickLookGuide> = {
       },
     ],
   },
+  /**
+   * Xiaomi Redmi Note 17 Pro — ONE model, TWO versions: the official
+   * Bangladesh unit (launched 9 September 2026, ৳54,999 for 8GB/256GB) and the
+   * China unit sold by importers at approximate prices. Every figure here
+   * comes from the product data or from pages opened on 5 November 2026; the
+   * China prices are labelled as estimates everywhere, and no retailer or
+   * aggregator is named or linked. The four colours per version are the ones
+   * the supplied image sets actually show.
+   */
+  'xiaomi-redmi-note-17-pro': {
+    productName: 'Xiaomi Redmi Note 17 Pro',
+    heading:
+      'Xiaomi Redmi Note 17 Pro Price in Bangladesh: Official and China Versions',
+    lead:
+      'The Xiaomi Redmi Note 17 Pro is sold in Bangladesh in two forms. The official version launched here on 9 September 2026 at ৳54,999 for 8GB RAM and 256GB of storage, with a 6.83-inch 1.5K 120Hz AMOLED screen, a 50MP stabilised main camera and an 8,340mAh battery. The China version is brought in by importers at roughly ৳32,000 to ৳39,000 depending on memory, and it has a larger 9,000mAh battery, its own colours and a 2MP depth camera instead of an ultra-wide. The official price is Xiaomi\'s own Bangladesh launch price; the China prices are approximate unofficial market figures.',
+    summaryBn:
+      'শাওমি রেডমি নোট ১৭ প্রো বাংলাদেশে অফিসিয়ালি ৳54,999-এ পাওয়া যায় (৮জিবি/২৫৬জিবি), আর চায়না ভার্সন আনঅফিসিয়ালি প্রায় ৳32,000 থেকে ৳39,000। অফিসিয়াল ভার্সনে ৮,৩৪০mAh ব্যাটারি ও ৫০ মেগাপিক্সেল OIS ক্যামেরা, চায়না ভার্সনে ৯,০০০mAh ব্যাটারি। দুটোতেই ৬.৮৩ ইঞ্চি ১.৫K ১২০Hz AMOLED ডিসপ্লে, স্ন্যাপড্রাগন ৬এস জেন ৪ চিপসেট এবং ৬৭W চার্জিং আছে।',
+    overview: [
+      'Both versions share the same core hardware: a 6.83-inch AMOLED panel at 1280 x 2772 (1.5K) with a 120Hz refresh rate and a 3,500-nit peak brightness rating, protected by Gorilla Glass Victus 2; a Qualcomm Snapdragon 6s Gen 4 on a 4nm process; Android 16 with HyperOS 3; 67W wired charging with 22.5W reverse wired charging; and no memory-card slot. That shared base is why the two versions look identical in photos and why the differences below are the ones worth checking before you pay.',
+      'What changes between them is the battery, the body, the camera set and the colour list. The official unit carries 8,340mAh, measures 8.6mm and weighs 223g, and pairs a 50MP stabilised main camera with an 8MP ultra-wide and a 16MP selfie camera. The China unit carries 9,000mAh, is a little heavier at about 226g and a little thinner at about 8.5mm, and its second rear lens is a 2MP depth sensor rather than an ultra-wide, with an 8MP selfie camera. Neither version has a telephoto lens.',
+    ],
+    priceSection: {
+      heading: 'Xiaomi Redmi Note 17 Pro price in Bangladesh, both versions',
+      paragraphs: [
+        'The official version is sold here in a single configuration: 8GB RAM with 256GB of storage for ৳54,999, the price Xiaomi announced at the Bangladesh launch on 9 September 2026. That is the figure on the listing card, in this page\'s price box and in the product data behind both.',
+        'China-version units are sold by importers rather than by Xiaomi Bangladesh, and their prices move with the seller and the week. As of early October 2026 they were around ৳32,000 for 8GB + 128GB, ৳35,000 for 8GB + 256GB and ৳39,000 for 12GB + 256GB. Treat those as a guide only: they are not official prices, they carry no Xiaomi Bangladesh warranty, and the same 8GB + 256GB configuration costs about ৳20,000 less as an import than as an official unit.',
+      ],
+    },
+    keyFacts: [
+      { term: 'Official version, 8GB + 256GB', detail: '৳54,999 official launch price' },
+      { term: 'China version, 8GB + 128GB', detail: 'about ৳32,000 unofficial' },
+      { term: 'China version, 8GB + 256GB', detail: 'about ৳35,000 unofficial' },
+      { term: 'China version, 12GB + 256GB', detail: 'about ৳39,000 unofficial' },
+      { term: 'Battery', detail: '8,340mAh official, 9,000mAh China' },
+      { term: 'Charging', detail: '67W wired, 22.5W reverse wired on both' },
+    ],
+    comparison: {
+      level: 'h2',
+      heading: 'Version differences: Official / Global vs China',
+      columns: ['Official / Global', 'China (unofficial)'],
+      rows: [
+        { label: 'Battery', left: '8,340mAh', right: '9,000mAh' },
+        { label: 'Charging', left: '67W wired, 22.5W reverse wired', right: '67W wired, 22.5W reverse wired' },
+        { label: 'Weight', left: '223g', right: 'about 226g' },
+        { label: 'Thickness', left: '8.6mm', right: 'about 8.5mm' },
+        { label: 'Display', left: '6.83-inch 1.5K AMOLED, 120Hz, 3,500 nits peak', right: '6.83-inch 1.5K AMOLED, 120Hz, 3,500 nits peak' },
+        { label: 'Chipset', left: 'Snapdragon 6s Gen 4 (4nm)', right: 'Snapdragon 6s Gen 4 (4nm)' },
+        { label: 'Rear cameras', left: '50MP main (OIS) + 8MP ultra-wide', right: '50MP main + 2MP depth' },
+        { label: 'Front camera', left: '16MP', right: '8MP' },
+        { label: 'Colours', left: 'Sky Blue, Satin Orange, Purple, Black', right: 'Black, Purple, Blue, White' },
+        { label: 'Storage in Bangladesh', left: '8GB + 256GB only', right: '8GB + 128GB, 8GB + 256GB, 12GB + 256GB' },
+        { label: 'Price', left: '৳54,999 official', right: 'about ৳32,000 to ৳39,000 unofficial' },
+        { label: 'Warranty', left: 'Xiaomi Bangladesh warranty through the official channel', right: 'Seller warranty only' },
+        { label: 'IMEI', left: 'Registered through the official channel', right: 'Depends on the seller' },
+      ],
+      paragraphs: [
+        'The battery is the only place where the China version is plainly ahead on paper: 9,000mAh against 8,340mAh, roughly 8 percent more capacity. Charging is identical at 67W wired with 22.5W reverse wired charging, so the bigger battery is the slower one to fill in proportion. We have not run battery tests on either unit, and real endurance depends on software, signal and how you use the phone, so the extra capacity may not show up as an equally large gain in daily use.',
+        'The cameras are the real fork. The official unit pairs its 50MP main sensor with an 8MP ultra-wide, which is useful for group shots and rooms. The China unit replaces that ultra-wide with a 2MP depth sensor, which mostly helps portrait blur and adds nothing to the field of view, and its selfie camera is 8MP instead of 16MP. If you take wide shots or selfies, the official camera set is the more useful one. The body difference is small in hand: about 3g heavier and a tenth of a millimetre thinner on the China unit.',
+        'The colour lists are separate too, and the names differ between them. The official version is pictured here in Sky Blue, Satin Orange, Purple and Black, and the China version in Black, Purple, Blue and White. Xiaomi\'s colour names vary by market, so judge the swatches by the photos rather than the words, and confirm the actual colour in the shop.',
+      ],
+    },
+    features: [
+      {
+        heading: 'Key features explained',
+        title: 'A 1.5K AMOLED screen at 120Hz',
+        body:
+          'The 6.83-inch panel runs at 1280 x 2772, which is sharper than the 1080p screens common at this price, and its 120Hz refresh rate makes scrolling and animations smoother than 60Hz. AMOLED gives deeper blacks and stronger contrast than LCD, and the 3,500-nit peak rating is a brightness figure for small highlights in bright conditions rather than a number you will see across the whole screen. Gorilla Glass Victus 2 covers it. Both versions use the same panel.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Snapdragon 6s Gen 4 and HyperOS 3',
+        body:
+          'The Snapdragon 6s Gen 4 is a 4nm entry-level chip with four Cortex-A78 cores up to 2.4GHz and four Cortex-A55 cores, paired with 8GB or 12GB of RAM. That is comfortable for messaging, video, maps and browsing, and it supports 5G, but it is not a gaming platform: expect demanding games at low to medium settings. The software is Android 16 with HyperOS 3 on both versions, though the China unit ships with China-market software, which is a separate question covered in the buying notes below.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Battery, charging and the IP rating',
+        body:
+          'The official unit\'s 8,340mAh cell is well above the 5,000mAh typical at this price, and the China unit\'s 9,000mAh is larger still; both use silicon-carbon battery technology and charge at 67W wired. Xiaomi\'s specification notes rate the phone IP66, IP68, IP69 and IP69K for dust and water resistance, and independent specification databases list IP68/IP69K for the international unit. Those are laboratory ratings under specific conditions: the warranty does not cover liquid damage, and the seals weaken with age, drops and repairs, so treat the rating as protection from rain and splashes.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Cameras that differ by version',
+        body:
+          'On the official version the 50MP main camera has optical image stabilisation, which helps in dim light and with video shake, and it is joined by an 8MP 120-degree ultra-wide. The China version keeps the 50MP main sensor but pairs it with a 2MP depth camera. Video recording reaches 1080p at 30fps on both, which is modest for 2026, and there is no telephoto lens on either version, so zoom is digital. We have not tested either camera, so treat image-quality comments as expectations rather than results.',
+      },
+    ],
+    buyers: {
+      heading: 'Who should buy the Redmi Note 17 Pro — and which version',
+      should: [
+        'Buyers who want a sharp 1.5K AMOLED screen and a very large battery under ৳55,000.',
+        'People who keep a phone for years and want a local warranty: the official unit is the only one with Xiaomi Bangladesh backing.',
+        'Buyers who take wide shots or selfies regularly: the official version has the 8MP ultra-wide and 16MP front camera.',
+        'Import-savvy buyers who accept the warranty and IMEI risk and want the 9,000mAh battery for about ৳20,000 less.',
+      ],
+      skip: [
+        'Gamers: the Snapdragon 6s Gen 4 is an entry-level chip, and demanding games will need low settings.',
+        'Anyone who records a lot of video: capture stops at 1080p at 30fps.',
+        'Buyers who need expandable storage: there is no microSD slot on either version.',
+        'People who want the simplest possible purchase: an unofficial import adds IMEI, warranty and software questions to the deal.',
+      ],
+    },
+    pros: {
+      heading: 'Pros and cons',
+      pros: [
+        '6.83-inch 1.5K AMOLED at 120Hz with a 3,500-nit peak rating and Gorilla Glass Victus 2',
+        'Very large battery: 8,340mAh official, 9,000mAh on the China version',
+        '67W wired charging with 22.5W reverse wired charging on both versions',
+        'IP66, IP68, IP69 and IP69K ratings in Xiaomi\'s specification notes',
+        'Optical stabilisation on the 50MP main camera of the official version',
+        'The official unit comes with Xiaomi Bangladesh warranty support',
+      ],
+      cons: [
+        'The official ৳54,999 price is high for a Snapdragon 6s Gen 4 phone',
+        'Only one official configuration in Bangladesh: 8GB + 256GB',
+        'Video recording stops at 1080p at 30fps',
+        'No telephoto lens and no microSD slot on either version',
+        'The China version loses the ultra-wide and the 16MP selfie camera, and has no local warranty',
+      ],
+    },
+    buyingTips: {
+      heading: 'Buying notes for Bangladesh',
+      paragraphs: [
+        'Ask which version you are being sold before you pay, and check it on the phone rather than on the box label. The quickest tells are the battery figure in the settings and the camera app, where the China unit shows a depth sensor instead of an ultra-wide. Prices and import rules change, so confirm the current position with the seller and with BTRC rather than relying on any page, including this one.',
+        'For an official unit, buy from the authorised channel and keep the invoice and warranty card: Xiaomi announced a two-year warranty with a year of screen protection for the Redmi Note 17 series in Bangladesh, while some retailer listings still print a one-year term, so ask which applies to the unit in front of you. For a China unit the only warranty is the seller\'s, and it should be written on the invoice.',
+        'IMEI registration matters just as much. Bangladesh\'s National Equipment Identity Register (NEIR) checks imported handsets, and a phone whose IMEI is not registered can be blocked from local mobile networks after a grace period. Dial *#06# to read the IMEI, check its status on neir.btrc.gov.bd, and ask the seller for proof that it is registered before you pay.',
+        'Finally, ask about software. A China-market unit ships with China software, and Google services such as the Play Store, Gmail and Maps may not be present or may have been added by the seller. Check which software is installed, whether Google services work, which languages are available and how updates will arrive. Network support is worth a check too: both versions are 5G phones, but the band lists differ by market, so confirm the bands your operator uses are covered.',
+      ],
+    },
+    sourcesChecked:
+      'Specs checked on 5 November 2026 against Xiaomi\'s Redmi Note 17 Pro specification pages for the global and China models, Xiaomi Bangladesh\'s launch coverage, and independent specification databases for the display, chipset, cameras, battery, body, colours and connectivity. Prices: the official ৳54,999 is Xiaomi\'s Bangladesh launch price for 8GB + 256GB; the China figures are approximate unofficial market prices as of early October 2026. Warranty terms are Xiaomi Bangladesh\'s announced terms for the series; some retailer listings print a different duration, so confirm with the seller. No review unit was tested for this page.',
+    faqs: [
+      {
+        question: 'What is the Xiaomi Redmi Note 17 Pro price in Bangladesh?',
+        answer:
+          'The official version costs ৳54,999 for 8GB RAM and 256GB of storage, the price Xiaomi announced at its Bangladesh launch on 9 September 2026. China-version units sold by importers were around ৳32,000 for 8GB + 128GB, ৳35,000 for 8GB + 256GB and ৳39,000 for 12GB + 256GB in early October 2026. Those import prices are approximate and vary by seller.',
+      },
+      {
+        question: 'What is the difference between the official and China versions?',
+        answer:
+          'The official version has an 8,340mAh battery, an 8MP ultra-wide behind its 50MP main camera, a 16MP selfie camera, and Xiaomi Bangladesh warranty support. The China version has a 9,000mAh battery, a 2MP depth camera instead of the ultra-wide, an 8MP selfie camera, its own colour list and no local warranty. Charging, screen and chipset are the same on both.',
+      },
+      {
+        question: 'Does the Xiaomi Redmi Note 17 Pro have 5G?',
+        answer:
+          'Yes. Both the official and the China version are 5G phones on the Snapdragon 6s Gen 4, and neither has a memory-card slot.',
+      },
+      {
+        question: 'Which version has the bigger battery?',
+        answer:
+          'The China version, at 9,000mAh against 8,340mAh in the official version — about 8 percent more capacity. Both charge at 67W wired and support 22.5W reverse wired charging.',
+      },
+      {
+        question: 'Can a China-version Redmi Note 17 Pro be blocked in Bangladesh?',
+        answer:
+          'It can, if its IMEI is not registered. Bangladesh\'s NEIR system checks imported handsets and an unregistered IMEI can be blocked from local networks after a grace period. Dial *#06# to get the IMEI, check it on neir.btrc.gov.bd, and ask the seller for proof of registration before paying.',
+      },
+      {
+        question: 'What colours does the Xiaomi Redmi Note 17 Pro come in?',
+        answer:
+          'The official version is pictured here in Sky Blue, Satin Orange, Purple and Black, and the China version in Black, Purple, Blue and White. Colour names differ by market, and Xiaomi Bangladesh may not sell every colour, so confirm the colour with the seller.',
+      },
+      {
+        question: 'স਼াওমি রেডমি নোট ১৭ প্রো-এর দাম কত?',
+        answer:
+          'বাংলাদেশে অফিসিয়াল ভার্সনের দাম ৳54,999 (৮জিবি/২৫৬জিবি)। চায়না ভার্সন আনঅফিসিয়ালি প্রায় ৳32,000 (৮জিবি/১২৮জিবি), ৳35,000 (৮জিবি/২৫৬জিবি) এবং ৳39,000 (১২জিবি/২৫৬জিবি); এই দাম বিক্রেতা অনুযায়ী বদলায়। অফিসিয়াল ভার্সনে ৮,৩৪০mAh ব্যাটারি, চায়না ভার্সনে ৯,০০০mAh।',
+      },
+    ],
+    links: [
+      {
+        label: 'Xiaomi Redmi Note 17 Pro — Shop listing',
+        description: 'The same phone in our shop catalogue, with both versions',
+        href: '/shop/xiaomi-redmi-note-17-pro',
+      },
+      {
+        label: 'Redmi Note 15 Pro+ 5G — Quick Look',
+        description: 'The previous Redmi Note Pro, with official and China prices',
+        href: '/quick-look/redmi-note-15-pro-plus-5g',
+      },
+      {
+        label: 'All Quick Look price pages',
+        description: 'Every phone and gadget we have checked, with its sources',
+        href: '/quick-look',
+      },
+    ],
+  },
 };
 /** Long-form guide for a product slug, or undefined when none is written yet. */
 export function getQuickLookContent(slug: string): QuickLookGuide | undefined {

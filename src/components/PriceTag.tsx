@@ -28,6 +28,11 @@ export function priceChannelLine(
     variantLabel?: string | null;
     /** Selected version, whose channel may differ from the product's. */
     version?: { priceChannel?: 'official' | 'unofficial' } | null;
+    /** Estimated price for the CURRENT selection. Only the detail page passes
+     *  it (and only when a version is selected), so a version whose prices are
+     *  approximate import figures prints the estimated wording while every
+     *  other page keeps the product-level behaviour byte for byte. */
+    priceEstimated?: boolean;
   }
 ): string | null {
   // No Bangladesh price at all (the Apple HomeView): keep the product's own
@@ -36,7 +41,12 @@ export function priceChannelLine(
     return product.priceDisplayNote ?? null;
   }
 
-  // An estimate is never dressed up as a channel price.
+  // An estimate is never dressed up as a channel price. A version whose own
+  // prices are approximate (an unofficial import) is sold here, so it says so
+  // instead of implying the phone is not available in Bangladesh at all.
+  if (selection?.priceEstimated) {
+    return '(Estimated price — approximate unofficial market price, varies by seller)';
+  }
   if (product.priceEstimated || product.priceStatus === 'estimated') {
     return '(Estimated price — not yet sold in Bangladesh)';
   }

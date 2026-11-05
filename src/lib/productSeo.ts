@@ -56,6 +56,13 @@ interface ProductSeoCopy {
    *  disagree with the selector. Pair it with `descriptionTail` for the
    *  closing sentence. Absent = the usual single-price sentence. */
   descriptionFromVariantPrices?: boolean;
+  /** Builds the Quick Look description's price phrase from EACH VERSION's
+   *  cheapest priced variant — the default version first, then the others as
+   *  "{shortLabel} version from about ৳X". Used by a page whose whole point is
+   *  the gap between an official price and a cheaper import, so both figures
+   *  are read from the data and can never disagree with the selector. Pair it
+   *  with `descriptionTail`. Absent = the usual single-price sentence. */
+  descriptionFromVersionPrices?: boolean;
   /** Exact Shop-route description. Needed only for a product whose shared
    *  Shop template would add a claim its data cannot support — the template
    *  ends "In stock, fast delivery", which an unofficial-import product with
@@ -151,6 +158,21 @@ const seoCopy: Record<string, ProductSeoCopy> = {
    *  single headline figure would misdescribe the launch). The Shop copy
    *  drops the shared "In stock, fast delivery" tail because no retailer we
    *  opened confirms current stock for this handset. */
+  /** Xiaomi Redmi Note 17 Pro — one model sold as an official Bangladesh
+   *  unit and a cheaper China import, so the description quotes each
+   *  version's cheapest priced configuration from the data (the official
+   *  ৳54,999 and the import floor). The owner supplied the exact title,
+   *  including the brand suffix — see TITLE_SUFFIX_EXCEPTIONS in
+   *  scripts/check-seo-metadata.js. */
+  'xiaomi-redmi-note-17-pro': {
+    shopSpecs: '6.83-inch 1.5K 120Hz AMOLED, 8,340mAh battery, 50MP OIS camera',
+    quickLookSpecs: '6.83-inch 1.5K 120Hz AMOLED, 8,340mAh',
+    titleOverride: 'Xiaomi Redmi Note 17 Pro Price in Bangladesh | Jupiter BD',
+    descriptionFromVersionPrices: true,
+    descriptionTail: 'Colors, specs and warranty.',
+    shopDescriptionOverride:
+      'Buy the Xiaomi Redmi Note 17 Pro in Bangladesh: ৳54,999 official (8GB+256GB), or the China version from about ৳32,000 unofficially. 6.83-inch 1.5K 120Hz AMOLED, 8,340mAh.',
+  },
   'realme-c85-pro': {
     shopSpecs: '6.8-inch 120Hz AMOLED, 7000mAh battery, 45W charging',
     quickLookSpecs: '6.8-inch 120Hz AMOLED, 7000mAh battery',
@@ -291,6 +313,11 @@ export function quickLookSeoDescription(product: Product): string {
       copy.descriptionTail ?? availabilityTail(product)
     }`;
   }
+  if (copy?.descriptionFromVersionPrices) {
+    return `${name} price in Bangladesh: ${versionPricePhrase(product)}. ${
+      copy.descriptionTail ?? availabilityTail(product)
+    }`;
+  }
   const model = copy?.quickLookModelLabel ? ` (${copy.quickLookModelLabel})` : '';
   const specs = copy?.quickLookSpecs ?? 'full specifications and Bangladesh price';
   const price = copy?.quickLookPriceQualifier
@@ -307,6 +334,35 @@ export function quickLookSeoDescription(product: Product): string {
  * stays short ("6GB/128GB" → "6/128GB"); the numbers themselves are never
  * typed, so the snippet and the selector cannot disagree.
  */
+function versionPricePhrase(product: Product): string {
+  const versions = product.versions ?? [];
+  const def = versions.find((v) => v.id === product.defaultVersion) ?? versions[0];
+  if (!def) return priceWithStatus(product);
+
+  const lowest = (v: NonNullable<Product['versions']>[number]) => {
+    const prices = (v.variants ?? []).map((x) => x.price).filter((n) => typeof n === 'number');
+    return prices.length ? Math.min(...prices) : null;
+  };
+
+  // The default version in the product's own wording ("৳54,999 official")
+  // plus the memory size that money buys, e.g. "(8GB+256GB)".
+  const defPrice = lowest(def);
+  const defLabel =
+    def.variants.find((v) => v.price === defPrice)?.label.replace(/\//g, '+') ?? '';
+  const parts = [
+    `${priceWithStatus(product)}${defLabel ? ` (${defLabel})` : ''}`,
+  ];
+
+  for (const version of versions) {
+    if (version.id === def.id) continue;
+    const price = lowest(version);
+    if (price === null) continue;
+    parts.push(`${version.shortLabel} version from about ${taka(price)}`);
+  }
+
+  return parts.join('. ');
+}
+
 function variantPriceList(product: Product): string {
   const version =
     product.versions?.find((v) => v.id === product.defaultVersion) ?? product.versions?.[0];

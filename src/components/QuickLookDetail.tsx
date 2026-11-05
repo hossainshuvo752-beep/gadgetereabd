@@ -297,6 +297,9 @@ const QuickLookDetail: React.FC<{
   const channelLine = priceChannelLine(product, {
     variantLabel: selectedOptionLabel,
     version: version ?? null,
+    // Only a versioned product passes this, so an approximate import price is
+    // labelled as such while every other page keeps its product-level wording.
+    priceEstimated: version ? resolvedPrice.priceEstimated : undefined,
   });
 
   // One click on a version button swaps EVERYTHING that belongs to it: its
@@ -749,6 +752,10 @@ const QuickLookDetail: React.FC<{
               surface={surface}
               layout="detail"
               variant={selectedVariant}
+              /* A version may have its own purchase mode: the Redmi Note 17
+                 Pro's official unit buys normally, its China unit is
+                 information only (Notify Me). Absent = product mode. */
+              purchaseMode={version?.purchaseMode}
             />
           </div>
         </div>

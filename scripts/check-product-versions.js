@@ -15,6 +15,9 @@
  *   4. an image path a version points at does not exist in public/ (a typo
  *      here is a broken gallery on a live page);
  *   5. `defaultVersion` does not name one of the versions;
+ *   5b. a version's optional `purchaseMode` is not buy / free-order / notify,
+ *       or it says "buy" while every one of its prices is an estimate (a
+ *       version customers can order at a guessed price);
  *   6. the product's flat `price` is not the default version's lowest priced
  *      variant — the cards, JSON-LD and metadata all read that flat price,
  *      so it must be what the page shows when it opens.
@@ -74,6 +77,22 @@ for (const product of products) {
     if (!version.shortLabel || !version.shortLabel.trim()) problems.push(`${vWhere}: missing shortLabel`);
     if (ids.has(version.id)) problems.push(`${vWhere}: duplicate version id`);
     ids.add(version.id);
+
+    // A version may carry its own purchase mode (an official unit next to an
+    // information-only import). Only the three known modes are allowed, and a
+    // buyable version must have at least one confirmed price.
+    if (version.purchaseMode && !['buy', 'free-order', 'notify'].includes(version.purchaseMode)) {
+      problems.push(
+        `${vWhere}: purchaseMode "${version.purchaseMode}" is not buy / free-order / notify`
+      );
+    }
+    if (
+      version.purchaseMode === 'buy' &&
+      (version.variants ?? []).length > 0 &&
+      version.variants.every((v) => v.priceEstimated === true)
+    ) {
+      problems.push(`${vWhere}: purchaseMode "buy" but every variant price is an estimate`);
+    }
 
     const colors = version.colorImages ?? [];
     if (colors.length === 0) {

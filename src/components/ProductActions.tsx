@@ -66,6 +66,10 @@ type ProductActionsProps = {
   layout?: 'card' | 'detail';
   /** Variant label chosen on a detail page (color/storage). Cards use Standard. */
   variant?: string;
+  /** Purchase mode for the SELECTED version, when a product's versions differ
+   *  (the Redmi Note 17 Pro's official unit is buyable, its China unit is
+   *  information only). Absent = the product-level mode, exactly as before. */
+  purchaseMode?: Product['purchaseMode'];
 };
 
 const ProductActions: React.FC<ProductActionsProps> = ({
@@ -73,13 +77,15 @@ const ProductActions: React.FC<ProductActionsProps> = ({
   surface,
   layout = 'card',
   variant = 'Standard',
+  purchaseMode,
 }) => {
   const { addToCart, notify } = useCart();
   const [preOrdered, setPreOrdered] = useState(false);
 
   // One resolver, one ternary — the only source of truth for which actions
-  // this product may show.
-  const mode = purchaseModeOf(product);
+  // this product may show. A version-scoped mode (passed by the detail page)
+  // wins over the product's own mode; every other surface passes neither.
+  const mode = purchaseMode ?? purchaseModeOf(product);
   const slug = slugify(product.title);
   const freeOrderHref = `/free-order?id=${product.id}&surface=${surface}&variant=${encodeURIComponent(variant)}`;
   const notifyHref = `/contact?topic=notify&product=${encodeURIComponent(slug)}&surface=${surface}`;
