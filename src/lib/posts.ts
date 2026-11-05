@@ -268,6 +268,173 @@ export const posts: Post[] = [
   },
 
   {
+    id: 13,
+    title: 'Redmi Note 17 Pro: Official vs China Version in Bangladesh',
+    slug: 'redmi-note-17-pro-official-vs-china-version-bangladesh',
+    // Owner-supplied exact meta title, including the brand suffix — a
+    // documented TITLE_SUFFIX_EXCEPTIONS entry in scripts/check-seo-metadata.js.
+    metaTitle: 'Redmi Note 17 Pro: Official vs China Version | Jupiter BD',
+    metaTitleAbsolute: true,
+    metaDescription:
+      'Redmi Note 17 Pro official (৳54,999) vs China version in Bangladesh: battery, colors, warranty and which one to buy. Prices and specs compared.',
+    metaKeywords:
+      'redmi note 17 pro official vs china version, redmi note 17 pro china version price in bangladesh, redmi note 17 pro global version, redmi note 17 pro unofficial, redmi note 17 pro battery, redmi note 17 pro official price in bangladesh',
+    excerpt: 'Price gap, battery, warranty and which one to buy',
+    category: 'Explainer',
+    author: 'Jupiter BD Team',
+    date: 'Nov 6, 2026',
+    readTime: '8 min read',
+    views: 700,
+    imageAlt: 'Redmi Note 17 Pro in blue and dark gray, rear view',
+    heroImage:
+      '/images/posts/redmi-note-17-pro-official-vs-china-version-bangladesh/hero.webp',
+    // The Quick Look page exists, so this field links BOTH ways: the post's
+    // "Products mentioned" block and that page's back-link to this article.
+    relatedProducts: ['xiaomi-redmi-note-17-pro'],
+    // Product JSON-LD for the phone this article compares: name, brand and the
+    // hero image only — no offer, rating or review.
+    mentions: [
+      {
+        name: 'Redmi Note 17 Pro',
+        brand: 'Xiaomi',
+        image:
+          '/images/posts/redmi-note-17-pro-official-vs-china-version-bangladesh/hero.webp',
+      },
+    ],
+    content: `
+      <p>The <strong>Redmi Note 17 Pro</strong> is sold in Bangladesh in two forms: the official version that Xiaomi launched on 9 September 2026 for ৳54,999, and the China version that shops bring in unofficially at a much lower price. They look almost the same, but the battery, colors, warranty, software and legal status are not the same. This guide explains the differences so you can decide which one to buy.</p>
+
+      <p>We haven't tested either version. This article is based on official specifications, launch coverage and market listings, so our comments on performance describe what the hardware suggests on paper.</p>
+
+      <h2>Redmi Note 17 Pro Official vs China Version at a Glance</h2>
+      <ul>
+        <li><strong>Battery:</strong> official 8,340mAh, China 9,000mAh</li>
+        <li><strong>Charging:</strong> both 67W wired, with 22.5W reverse wired charging</li>
+        <li><strong>Weight and thickness:</strong> official about 223g and 8.6mm, China about 226g and 8.5mm</li>
+        <li><strong>Colors:</strong> official (global) Sky Blue, Satin Orange, Purple and Black; China Black, Purple, Blue and White (names vary by source)</li>
+        <li><strong>Storage in Bangladesh:</strong> official 8GB RAM + 256GB only; China 8GB + 128GB, 8GB + 256GB and 12GB + 256GB</li>
+        <li><strong>Price:</strong> official ৳54,999; China about ৳32,000 to ৳39,000</li>
+        <li><strong>Warranty and IMEI:</strong> official has a local warranty and a registered IMEI; for the China version it depends on the seller</li>
+      </ul>
+      <p>For the spec sheet and prices of each version in one place, see our <a href="/quick-look/xiaomi-redmi-note-17-pro">Redmi Note 17 Pro price in Bangladesh</a> page. The exact colors sold in Bangladesh can be fewer than the list above, so confirm with the seller.</p>
+
+      <h2>Price: Official ৳54,999 vs China Version</h2>
+      <p>Xiaomi launched the Redmi Note 17 Pro in Bangladesh on 9 September 2026 in a single variant: 8GB RAM + 256GB storage for ৳54,999.</p>
+      <p>China-version units are sold by unofficial importers. As of early October 2026, we found approximate prices of ৳32,000 for 8GB + 128GB, ৳35,000 for 8GB + 256GB and ৳39,000 for 12GB + 256GB. These prices vary by seller and change often, so treat them as a guide and confirm with the shop.</p>
+
+      <h3>Why Is the China Version So Much Cheaper?</h3>
+      <p>For the same 8GB + 256GB variant, the gap is about ৳20,000. Part of it usually comes from taxes and costs that the official channel carries. Part of it is what you don't get with an unofficial unit: a local manufacturer warranty, official service and a guaranteed registered IMEI. The lower price is only a real saving if the phone keeps working on Bangladeshi networks for years, so read the warranty and IMEI sections below before you decide.</p>
+
+      <h2>Display, Design and Ports</h2>
+      <p>Both versions use the same screen and the same chip.</p>
+
+      <h3>Display</h3>
+      <p>The Redmi Note 17 Pro has a 6.83-inch 1.5K AMOLED display (1280 x 2772) with a 120Hz refresh rate, a peak brightness of up to 3,500 nits and Gorilla Glass Victus 2 protection. AMOLED panels offer deeper blacks and stronger contrast than LCD screens, and high peak brightness helps visibility outdoors in strong sunlight.</p>
+      <figure class="my-6">
+        <img src="/images/posts/redmi-note-17-pro-official-vs-china-version-bangladesh/display.webp" alt="Front of a Redmi Note 17 Pro with colorful abstract wallpaper on the screen" class="rounded-lg w-full" loading="lazy" />
+      </figure>
+
+      <h3>Design, Buttons and Ports</h3>
+      <p>The phone has a USB-C port and speaker grille on the bottom edge, a SIM tray, and the power and volume buttons on the side. There is no microSD slot, so choose your storage carefully. Xiaomi lists IP66, IP68, IP69 and IP69K ratings for dust and water resistance. Those ratings apply to specific lab conditions, and liquid damage is often not covered by the warranty, so check the warranty terms before you test it in water.</p>
+      <figure class="my-6">
+        <img src="/images/posts/redmi-note-17-pro-official-vs-china-version-bangladesh/edges-ports.webp" alt="Side and bottom edges of a purple Redmi phone showing buttons, USB-C port, speaker holes and SIM tray" class="rounded-lg w-full" loading="lazy" />
+      </figure>
+
+      <h2>Battery and Charging</h2>
+      <h3>8,340mAh vs 9,000mAh</h3>
+      <p>The China version has the larger battery on paper: 9,000mAh against 8,340mAh in the official version, about 8% more. We haven't run battery tests, and real-world battery life depends on software, usage and network, so the extra capacity may not translate into a proportional difference in daily use.</p>
+
+      <h3>Charging Speed</h3>
+      <p>Both versions support 67W wired charging and 22.5W reverse wired charging, which lets the phone charge small devices through a cable.</p>
+
+      <h2>Camera</h2>
+      <figure class="my-6">
+        <img src="/images/posts/redmi-note-17-pro-official-vs-china-version-bangladesh/rear-camera.webp" alt="Close-up of a purple Redmi phone's dual rear camera and flash" class="rounded-lg w-full" loading="lazy" />
+      </figure>
+      <p>The official version's rear camera pairs a 50MP main sensor with an 8MP ultrawide, and its front camera is 16MP. The China version swaps the ultrawide for a 2MP depth camera and has an 8MP front camera. In this price class, expect good results in daylight and weaker results in dim light. We haven't tested the camera, so treat this as a general expectation rather than a verdict on its image quality.</p>
+
+      <h2>Performance: Snapdragon 6s Gen 4</h2>
+      <p>Both versions run on the Snapdragon 6s Gen 4 (4nm) with Android 16 and HyperOS 3. On paper this is enough for social media, streaming, calls and everyday multitasking, and it supports 5G. It is an entry-level chip, so expect demanding games at low to medium settings, and don't treat it as a performance phone.</p>
+
+      <h2>Warranty, Box and IMEI: Official vs Unofficial</h2>
+      <figure class="my-6">
+        <img src="/images/posts/redmi-note-17-pro-official-vs-china-version-bangladesh/boxes-warranty.webp" alt="Redmi Note 17 Pro global and China version boxes with warranty card and quick start guide side by side" class="rounded-lg w-full" loading="lazy" />
+      </figure>
+
+      <h3>Warranty and Service</h3>
+      <p>The official version comes with a warranty through Xiaomi's authorized channel in Bangladesh. Check the duration and terms on the warranty card. With a China version, any warranty usually comes from the shop, not from Xiaomi, and official service centers generally focus on official units. Ask the seller in writing what is covered and for how long.</p>
+
+      <h3>IMEI Registration (NEIR)</h3>
+      <p>Bangladesh's National Equipment Identity Register (NEIR) was prepared for a full rollout on 1 January 2026, but its blocking features were held back to avoid disrupting existing users. BTRC has since announced a two-phase relaunch from 1 January 2027 that will register handsets already on mobile networks and the unsold stock of authorised importers and manufacturers, and will identify and block illegally produced or imported phones. Official phones have their IMEIs registered through the official channel; an unofficial phone's IMEI may not be. Before you pay for a China version, dial *#06# to get the IMEI, check its status on neir.btrc.gov.bd or by sending KYD followed by the IMEI to 16002, and ask the seller to show proof that the IMEI is registered. These rules have changed more than once, so check the latest BTRC notice before you buy.</p>
+
+      <h3>Software and Google Services</h3>
+      <p>Phones made for the China market can ship with a different software setup. Ask the seller which software is installed, whether Google services such as the Play Store, Gmail and Maps work, which languages are available and how updates are handled.</p>
+
+      <h2>Which Version Should You Buy?</h2>
+      <h3>Choose the Official Version If...</h3>
+      <ul>
+        <li>You want a local warranty and official service</li>
+        <li>You don't want to risk IMEI or network-blocking problems</li>
+        <li>You keep phones for several years or plan to resell</li>
+        <li>You take wide shots or selfies: it has the 8MP ultrawide and the 16MP front camera</li>
+        <li>৳54,999 fits your budget</li>
+      </ul>
+
+      <h3>Consider the China Version If...</h3>
+      <ul>
+        <li>The price gap matters more to you than the official warranty</li>
+        <li>The seller shows proof that the IMEI is registered and gives you a written shop warranty</li>
+        <li>You are comfortable checking software and Google services before you buy</li>
+        <li>You want the larger 9,000mAh battery</li>
+      </ul>
+
+      <p>If you can afford it, the official version is the safer choice, because it removes the warranty, IMEI and software questions. The China version can make sense only if you accept those risks and buy from a seller who puts the key details in writing. Before you decide, check the <a href="/quick-look/xiaomi-redmi-note-17-pro">specs, colors and prices of each version</a>.</p>
+
+      <h2>Pros and Cons</h2>
+      <h3>What We Like</h3>
+      <ul>
+        <li>6.83-inch 1.5K AMOLED screen with 120Hz and up to 3,500 nits</li>
+        <li>Large battery (8,340mAh official, 9,000mAh China) with 67W charging</li>
+        <li>IP66, IP68, IP69 and IP69K ratings</li>
+        <li>5G with a Snapdragon 6s Gen 4 chip</li>
+      </ul>
+      <h3>What Could Be Better</h3>
+      <ul>
+        <li>The official price is high for a phone with a Snapdragon 6s Gen 4 chip, so the screen, battery and durability have to matter to you</li>
+        <li>Only one official variant in Bangladesh (8GB + 256GB)</li>
+        <li>No microSD slot</li>
+        <li>The China version carries warranty, IMEI and software risks</li>
+      </ul>
+    `,
+    faqs: [
+      {
+        question: 'What is the price of the Redmi Note 17 Pro in Bangladesh?',
+        answer:
+          'The official price is ৳54,999 for the 8GB + 256GB variant. China-version units sold unofficially were around ৳32,000 to ৳39,000 in early October 2026, depending on the variant and seller.',
+      },
+      {
+        question: 'What is the difference between the official and China versions?',
+        answer:
+          'The official version has an 8,340mAh battery and comes with a local warranty and a registered IMEI. The China version has a 9,000mAh battery, different colors and a lower price, but its warranty, IMEI status and software depend on the seller.',
+      },
+      {
+        question: 'Which version has the bigger battery?',
+        answer:
+          'The China version has a 9,000mAh battery, compared with 8,340mAh in the official version. Both support 67W wired charging.',
+      },
+      {
+        question: 'Can an unofficial Redmi Note 17 Pro be blocked in Bangladesh?',
+        answer:
+          'NEIR was prepared for a full rollout on 1 January 2026, but its blocking features were held back. BTRC has announced a two-phase relaunch from 1 January 2027 that will register handsets already on mobile networks and block illegally imported phones. Check the IMEI by dialing *#06#, verify its status on neir.btrc.gov.bd or by sending KYD and the IMEI to 16002, and ask the seller for proof of registration.',
+      },
+      {
+        question: 'Does the Redmi Note 17 Pro have 5G and a memory card slot?',
+        answer: 'It supports 5G. It has no microSD slot.',
+      },
+    ],
+  },
+
+  {
     id: 12,
     title: 'Realme C85 Pro Review: Is It Worth ৳20,999 in Bangladesh?',
     slug: 'realme-c85-pro-review-worth-it-bangladesh',

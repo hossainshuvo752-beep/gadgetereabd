@@ -4902,6 +4902,11 @@ const guides: Record<string, QuickLookGuide> = {
     ],
     links: [
       {
+        label: 'Official vs China version: which one to buy',
+        description: 'The full comparison of prices, battery, warranty and IMEI',
+        href: '/posts/redmi-note-17-pro-official-vs-china-version-bangladesh',
+      },
+      {
         label: 'Xiaomi Redmi Note 17 Pro — Shop listing',
         description: 'The same phone in our shop catalogue, with both versions',
         href: '/shop/xiaomi-redmi-note-17-pro',

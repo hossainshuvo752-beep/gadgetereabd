@@ -3381,7 +3381,7 @@ export const products: Product[] = [
     priceChannel: 'official',
     priceNote:
       'The Official/Global version price is the official Bangladesh launch price for the 8GB + 256GB variant. China-version prices are approximate unofficial market prices as of early October 2026 and vary by seller.',
-    priceCheckedAt: '2026-11-05',
+    priceCheckedAt: '2026-11-06',
     specSheet: {
       basicInfo: {
         model: 'Redmi Note 17 Pro',

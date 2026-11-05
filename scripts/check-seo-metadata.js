@@ -42,6 +42,8 @@ const TITLE_BANGLADESH_EXCEPTIONS = {
     'no Bangladesh section in the body — only a link label mentions it',
   'posts/best-laptop-for-programming-students':
     'only an FAQ question mentions Bangladesh; no local price, warranty or availability',
+  'posts/redmi-note-17-pro-official-vs-china-version-bangladesh':
+    'owner-supplied exact title ("Redmi Note 17 Pro: Official vs China Version | Jupiter BD"); the body does cover Bangladesh prices, warranty and IMEI, but the title omits the word by instruction and is already 57 chars',
 };
 
 /**
@@ -58,6 +60,8 @@ const TITLE_SUFFIX_EXCEPTIONS = {
     'owner-supplied exact title ("Realme C85 Pro Review: Worth It in Bangladesh? | Jupiter BD", 59 chars)',
   'quick-look/xiaomi-redmi-note-17-pro':
     'owner-supplied exact title ("Xiaomi Redmi Note 17 Pro Price in Bangladesh | Jupiter BD", 55 chars)',
+  'posts/redmi-note-17-pro-official-vs-china-version-bangladesh':
+    'owner-supplied exact title ("Redmi Note 17 Pro: Official vs China Version | Jupiter BD", 57 chars)',
 };
 
 const MAX_TITLE = 60;
