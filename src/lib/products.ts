@@ -203,10 +203,19 @@ export interface Product {
    *  Add to Cart; Pre-Order while upcoming). 'free-order' = an order REQUEST
    *  with no payment and no cart (a single Free Order button) — used for
    *  products whose price is only an estimate, because nobody should be
-   *  charged a guess. Optional: purchaseModeOf() derives it from
-   *  priceEstimated when unset, so estimated-price products are free-order
-   *  automatically. Set it explicitly only to override that default. */
+   *  charged a guess. 'info' = no action of any kind (see PurchaseMode).
+   *  Optional: purchaseModeOf() derives it from priceEstimated when unset, so
+   *  estimated-price products are free-order automatically. Set it explicitly
+   *  only to override that default. */
   purchaseMode?: PurchaseMode;
+  /** INFORMATION-ONLY page: the product is documented on Quick Look but is
+   *  not sold on this site. Excludes it from every buying surface — the /shop
+   *  listing, /new-arrivals, /deals, the homepage "Trending Picks" row, the
+   *  header search results and the /shop/<slug> twin page (which 404s), and
+   *  keeps only its /quick-look/<slug> URL in sitemap.xml. It still appears in
+   *  the Quick Look listing (that page is a spec sheet, not a shop).
+   *  Pair it with `purchaseMode: 'info'` so the page carries no buttons. */
+  quickLookOnly?: boolean;
   /** 'available' = officially released/available in Bangladesh; 'upcoming' =
    *  announced but not yet officially available (pre-order stage). */
   status: 'available' | 'upcoming';
@@ -3594,6 +3603,207 @@ export const products: Product[] = [
     ],
     defaultVersion: 'global',
   },
+
+  /**
+   * Realme Neo 8 — a China-market phone we do NOT sell. There is no official
+   * realme Bangladesh launch, so this entry is INFORMATION ONLY:
+   *   - `quickLookOnly` keeps it off /shop, /new-arrivals, /deals, the homepage
+   *     "Trending Picks" row, the header search results and the /shop/<slug>
+   *     twin page (which 404s); only its /quick-look URL is in sitemap.xml.
+   *   - `purchaseMode: 'info'` removes every action button, including Notify
+   *     Me: nobody can take an order or promise stock for a phone we cannot
+   *     supply.
+   * The ৳55,000 is the owner's approximate unofficial market figure for the
+   * 12GB/256GB China configuration (October 2026), marked as an estimate so
+   * nothing treats it as a confirmed price. The other China configurations
+   * (16GB/256GB, 12GB/512GB, 16GB/512GB, 16GB/1TB) exist but have no
+   * Bangladesh availability or price, so they are never offered here.
+   */
+  {
+    id: 29,
+    title: 'Realme Neo 8',
+    seoName: 'Realme Neo 8',
+    /** Owner-specified title block: price phrase as H1, one-line subtitle. */
+    h1: 'Realme Neo 8 Price in Bangladesh',
+    h1Subtitle: 'Unofficial price, specs, colors & variants in BDT',
+    category: 'Smartphones',
+    topCategory: 'Mobile',
+    subCategory: 'Realme',
+    imageAlt: 'Realme Neo 8 smartphone',
+    /** Hero = the default colour's first photo (Cyber Purple), the same
+     *  convention the other colour-mapped phones use. */
+    heroImage: '/images/products/realme-neo-8/cyber-purple/1.webp',
+    gallery: [
+      '/images/products/realme-neo-8/cyber-purple/1.webp',
+      '/images/products/realme-neo-8/cyber-purple/2.webp',
+      '/images/products/realme-neo-8/cyber-purple/3.webp',
+      '/images/products/realme-neo-8/cyber-purple/4.webp',
+    ],
+    /** Three supplied colour sets, four studio photos each (the file names in
+     *  the supplied folder are the colour names, so the data matches them).
+     *  Every colour is offered for the priced configuration — no source ties
+     *  a colour to one memory size. */
+    colorImages: [
+      {
+        color: 'Cyber Purple',
+        images: [
+          '/images/products/realme-neo-8/cyber-purple/1.webp',
+          '/images/products/realme-neo-8/cyber-purple/2.webp',
+          '/images/products/realme-neo-8/cyber-purple/3.webp',
+          '/images/products/realme-neo-8/cyber-purple/4.webp',
+        ],
+      },
+      {
+        color: 'Mecha Gray',
+        images: [
+          '/images/products/realme-neo-8/mecha-gray/1.webp',
+          '/images/products/realme-neo-8/mecha-gray/2.webp',
+          '/images/products/realme-neo-8/mecha-gray/3.webp',
+          '/images/products/realme-neo-8/mecha-gray/4.webp',
+        ],
+      },
+      {
+        color: 'Origin White',
+        images: [
+          '/images/products/realme-neo-8/origin-white/1.webp',
+          '/images/products/realme-neo-8/origin-white/2.webp',
+          '/images/products/realme-neo-8/origin-white/3.webp',
+          '/images/products/realme-neo-8/origin-white/4.webp',
+        ],
+      },
+    ],
+    /** Unique alt per image, naming the colour and only what the file shows.
+     *  Images 2 in every set are the angled front with the purple "8"
+     *  wallpaper; images 1/3/4 show that colour's own body. */
+    galleryAlts: [
+      {
+        src: '/images/products/realme-neo-8/cyber-purple/1.webp',
+        alt: 'Realme Neo 8 in Cyber Purple, rear and front side by side',
+      },
+      {
+        src: '/images/products/realme-neo-8/cyber-purple/2.webp',
+        alt: 'Realme Neo 8 in Cyber Purple, angled front view with purple wallpaper',
+      },
+      {
+        src: '/images/products/realme-neo-8/cyber-purple/3.webp',
+        alt: 'Realme Neo 8 in Cyber Purple, rear panel with triple camera module',
+      },
+      {
+        src: '/images/products/realme-neo-8/cyber-purple/4.webp',
+        alt: 'Realme Neo 8 in Cyber Purple, front edge and rear camera angles',
+      },
+      {
+        src: '/images/products/realme-neo-8/mecha-gray/1.webp',
+        alt: 'Realme Neo 8 in Mecha Gray, rear and front side by side',
+      },
+      {
+        src: '/images/products/realme-neo-8/mecha-gray/2.webp',
+        alt: 'Realme Neo 8 in Mecha Gray, angled front view with purple wallpaper',
+      },
+      {
+        src: '/images/products/realme-neo-8/mecha-gray/3.webp',
+        alt: 'Realme Neo 8 in Mecha Gray, rear panel with gold camera accents',
+      },
+      {
+        src: '/images/products/realme-neo-8/mecha-gray/4.webp',
+        alt: 'Realme Neo 8 in Mecha Gray, front edge and rear camera angles',
+      },
+      {
+        src: '/images/products/realme-neo-8/origin-white/1.webp',
+        alt: 'Realme Neo 8 in Origin White, rear and front side by side',
+      },
+      {
+        src: '/images/products/realme-neo-8/origin-white/2.webp',
+        alt: 'Realme Neo 8 in Origin White, angled front view with purple wallpaper',
+      },
+      {
+        src: '/images/products/realme-neo-8/origin-white/3.webp',
+        alt: 'Realme Neo 8 in Origin White, rear panel with 120X camera label',
+      },
+      {
+        src: '/images/products/realme-neo-8/origin-white/4.webp',
+        alt: 'Realme Neo 8 in Origin White, front edge and rear camera angles',
+      },
+    ],
+    views: 700,
+    dateAdded: '2026-11-09',
+    price: 55000,
+    oldPrice: null,
+    /** An approximate unofficial market figure, never a confirmed price — so
+     *  no Offer is emitted in the Product JSON-LD (see lib/schema.ts). */
+    priceEstimated: true,
+    purchaseMode: 'info',
+    /** Documented on Quick Look only: not sold on this site. */
+    quickLookOnly: true,
+    /** Stocked by nobody we can vouch for; the page never claims stock. */
+    status: 'available',
+    priceStatus: 'estimated',
+    /** Declared so the price box prints the unofficial-estimate wording
+     *  instead of "not yet sold in Bangladesh" (it IS sold here, unofficially). */
+    priceChannel: 'unofficial',
+    priceNote:
+      'The price is an approximate unofficial market price for the China version as of October 2026 and varies by seller. We found no official Realme Bangladesh launch of the Neo 8.',
+    specSheet: {
+      basicInfo: {
+        model: 'Neo 8',
+        brand: 'Realme',
+        releaseDate: 'January 2026 (China)',
+      },
+      display: {
+        type: 'AMOLED (Samsung M14 panel), up to 165Hz',
+        size: '6.78 inches',
+        resolution: '1272 x 2772 (1.5K, 450ppi)',
+        refreshRate: '165Hz maximum (120Hz default)',
+        protection: '',
+      },
+      performance: {
+        processor: 'Qualcomm Snapdragon 8 Gen 5 (3nm)',
+        ram: '12GB LPDDR5X',
+        storage: '256GB UFS 4.1',
+        os: 'Android 16, realme UI 7.0',
+      },
+      cameraSystem: {
+        rear: '50MP main (f/1.8, OIS) + 50MP periscope telephoto (f/2.8, 3.5x, OIS) + 8MP ultra-wide (f/2.2, 112°)',
+        front: '16MP (f/2.4)',
+        features: [
+          '3.5x optical zoom and up to 120x digital zoom',
+          'Optical image stabilisation on the main and telephoto cameras',
+          'Rear video up to 4K at 60fps',
+        ],
+      },
+      batteryCharging: {
+        capacity: '8,000mAh (silicon-carbon, 7,750mAh rated)',
+        charging: '80W wired SuperVOOC, with bypass charging',
+      },
+      buildDesign: {
+        dimensions: '162.0 x 77.07 x 8.3 mm',
+        weight: 'about 215g',
+        materials: 'Glass front and back, metal frame',
+        colors: ['Cyber Purple', 'Mecha Gray', 'Origin White'],
+      },
+      connectivity: {
+        network: '5G (2G/3G/4G/5G), dual nano-SIM',
+        bluetooth: 'Bluetooth 6.0',
+        ports: ['USB Type-C', 'No 3.5mm headphone jack'],
+      },
+      sensors: [
+        'Ultrasonic in-display fingerprint sensor',
+        'Accelerometer, gyroscope, proximity sensor, compass',
+        'Colour temperature sensor',
+        'Infrared remote control',
+      ],
+      aiFeatures: [
+        'Realme markets AI writing tools on the China software build; they were not verified on a Bangladesh unit',
+      ],
+      notableLimitations: [
+        'Not sold officially in Bangladesh — no Realme Bangladesh warranty on any unit',
+        'Ships with China-market software: check Google services on the exact handset',
+        'Only the 12GB/256GB configuration is priced here; other China memory sizes are not confirmed in Bangladesh',
+        'No memory card slot',
+        'No 3.5mm headphone jack',
+      ],
+    },
+  },
 ];
 
 /** URL slug for a product title, e.g. 'HONOR Robot Phone' -> 'honor-robot-phone' */
@@ -3608,10 +3818,15 @@ export function slugify(title: string): string {
  * How a product is sold, on EVERY surface that renders a purchase action:
  * - 'buy'        → Add to Cart + Buy Now (Pre-Order while upcoming)
  * - 'free-order' → ONE Free Order button (order request, no payment/cart)
+ * - 'notify'     → ONE Notify Me button (a stock alert, never an order)
+ * - 'info'       → NO action at all: an information-only page for a product
+ *   we do not sell (the Realme Neo 8 — a China-market phone with no official
+ *   Bangladesh launch, stocked by nobody we can vouch for). Always paired
+ *   with `quickLookOnly` so it never turns into a Shop listing.
  * The shared ProductActions component is the only place these buttons are
  * rendered; see scripts/check-product-actions.js for the build guard.
  */
-export type PurchaseMode = 'buy' | 'free-order' | 'notify';
+export type PurchaseMode = 'buy' | 'free-order' | 'notify' | 'info';
 
 /**
  * A version of a product (Global / China), resolved by its id, its short

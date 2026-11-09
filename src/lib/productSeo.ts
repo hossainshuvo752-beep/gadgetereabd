@@ -63,6 +63,13 @@ interface ProductSeoCopy {
    *  are read from the data and can never disagree with the selector. Pair it
    *  with `descriptionTail`. Absent = the usual single-price sentence. */
   descriptionFromVersionPrices?: boolean;
+  /** Builds the Quick Look description for a product sold ONLY as an
+   *  unofficial China import at an estimated price:
+   *  "{seoName} price in Bangladesh: about ৳X for the {RAM}+{storage} China
+   *  version (unofficial). {tail}" — the figure comes from the product's
+   *  price and the configuration from its own spec sheet, so the snippet can
+   *  never disagree with either. Pair it with `descriptionTail`. */
+  descriptionFromChinaImport?: boolean;
   /** Exact Shop-route description. Needed only for a product whose shared
    *  Shop template would add a claim its data cannot support — the template
    *  ends "In stock, fast delivery", which an unofficial-import product with
@@ -181,6 +188,21 @@ const seoCopy: Record<string, ProductSeoCopy> = {
     descriptionTail: 'Colors, full specs and warranty.',
     shopDescriptionOverride:
       'Buy the Realme C85 Pro in Bangladesh: ৳20,999 for 6GB/128GB, ৳22,999 for 8GB/128GB and ৳24,999 for 8GB/256GB at official launch prices. 6.8-inch 120Hz AMOLED, 7000mAh.',
+  },
+  /** Realme Neo 8 — a China-market phone with no official Bangladesh launch,
+   *  documented on Quick Look only (quickLookOnly + purchaseMode 'info'). The
+   *  description states the owner's approximate unofficial figure with the
+   *  configuration read from the spec sheet; the title is the owner's exact
+   *  string including the brand suffix (see TITLE_SUFFIX_EXCEPTIONS in
+   *  scripts/check-seo-metadata.js). */
+  'realme-neo-8': {
+    shopSpecs: 'China import, no official Bangladesh launch',
+    quickLookSpecs: '6.78-inch 165Hz AMOLED, Snapdragon 8 Gen 5',
+    titleOverride: 'Realme Neo 8 Price in Bangladesh | Jupiter BD',
+    descriptionFromChinaImport: true,
+    descriptionTail: 'Colors, specs, variants and warranty notes.',
+    shopDescriptionOverride:
+      'Realme Neo 8: a China-market phone with no official Bangladesh launch. Approximate unofficial price, specs and what to check before buying an import.',
   },
   'infinix-note-60-pro': {
     shopSpecs: 'great value performance',
@@ -315,6 +337,20 @@ export function quickLookSeoDescription(product: Product): string {
   }
   if (copy?.descriptionFromVersionPrices) {
     return `${name} price in Bangladesh: ${versionPricePhrase(product)}. ${
+      copy.descriptionTail ?? availabilityTail(product)
+    }`;
+  }
+  // Information-only China import: the price is an estimate and the memory
+  // configuration is read from the spec sheet (never typed into the copy).
+  if (copy?.descriptionFromChinaImport) {
+    // "12GB LPDDR5X" → "12GB", "256GB UFS 4.1" → "256GB": the snippet
+    // names the configuration, not the memory technology.
+    const ram = product.specSheet.performance.ram.trim().split(/\s+/)[0];
+    const storage = product.specSheet.performance.storage.trim().split(/\s+/)[0];
+    const config = [ram, storage].filter(Boolean).join('+');
+    const price =
+      product.price !== null ? `about ${taka(product.price)}` : 'not announced yet';
+    return `${name} price in Bangladesh: ${price} for the ${config} China version (unofficial). ${
       copy.descriptionTail ?? availabilityTail(product)
     }`;
   }

@@ -9,9 +9,11 @@ import ViewAllButton from './ViewAllButton';
 // Trending Picks = most-viewed first (views are simulated for now; replace
 // with real view-tracking data when a backend exists). Computed once at
 // module level; copied so the shared products array is never mutated.
-const trendingProducts: Product[] = [...products].sort(
-  (a, b) => b.views - a.views
-);
+// Information-only entries (quickLookOnly — the Realme Neo 8) are excluded:
+// this row is a shopping teaser with Add to Cart cards.
+const trendingProducts: Product[] = [...products]
+  .filter((p) => !p.quickLookOnly)
+  .sort((a, b) => b.views - a.views);
 
 /**
  * Homepage "Trending Picks" — renders the SAME ProductCard component used by

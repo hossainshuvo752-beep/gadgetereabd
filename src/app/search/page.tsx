@@ -98,10 +98,16 @@ function SearchResults() {
             <section className="mb-10">
               <h2 className="text-xl font-bold text-text-heading mb-4">Products</h2>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {/* Information-only entries (quickLookOnly) have no Shop
+                    page, so they link to their Quick Look spec sheet. */}
                 {matchedProducts.map((product) => (
                   <Link
                     key={product.id}
-                    href={`/shop/${slugify(product.title)}`}
+                    href={
+                      product.quickLookOnly
+                        ? `/quick-look/${slugify(product.title)}`
+                        : `/shop/${slugify(product.title)}`
+                    }
                     className="bg-text-on-dark border border-text-heading/10 rounded-lg p-4 hover:shadow-md transition-shadow duration-300"
                   >
                     <span className="inline-flex items-center px-2 py-0.5 text-xs font-semibold bg-accent/10 text-accent-hover rounded-full mb-2">

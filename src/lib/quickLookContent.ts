@@ -4923,6 +4923,209 @@ const guides: Record<string, QuickLookGuide> = {
       },
     ],
   },
+
+  /**
+   * Realme Neo 8 — a China-market phone with NO official Bangladesh launch.
+   * Every number below was read on realme's own China specification page and
+   * cross-checked on GSMArena (which also carries the 22 January 2026 China
+   * launch), with the launch-day coverage on GSMArena News and Pandaily used
+   * for the panel, charging and IP claims. The Bangladesh buying section
+   * cites The Daily Star, BSS, The Business Standard and bdnews24 for the
+   * NEIR status and the country's 5G rollout. Facts that only one source
+   * carried (model code, glass branding, per-site 5G bands) are deliberately
+   * absent. No China launch price is repeated anywhere, per instruction.
+   */
+  'realme-neo-8': {
+    productName: 'Realme Neo 8',
+    heading: 'Realme Neo 8 Price in Bangladesh: Unofficial Guide, Specs and Buying Checks',
+    lead:
+      'The Realme Neo 8 is a China-market phone that realme launched on 22 January 2026, and realme has not launched it in Bangladesh. Units sold here are imports, so the number to budget for is the unofficial 12GB/256GB figure of about ৳55,000, and that price moves with the seller. This page is information only: we do not sell the phone, so there is nothing to add to a cart and no stock to promise.',
+    summaryBn:
+      'রিয়েলমি নিও ৮ চীনের বাজারের ফোন, বাংলাদেশে রিয়েলমির অফিসিয়াল লঞ্চ নেই। এখানে যেসব ইউনিট পাওয়া যায় সেগুলো আমদানি করা, ১২জিবি/২৫৬জিবি ভার্সনের আনঅফিসিয়াল দাম প্রায় ৳৫৫,০০০ (অক্টোবর ২০২৬), বিক্রেতা অনুযায়ী প্রায় ৳৪৭,৯০০ থেকে ৳৬৩,০০০ পর্যন্ত দেখা গেছে। রিয়েলমি বাংলাদেশের ওয়ারেন্টি নেই, তাই কেনার আগে ওয়ারেন্টি, আইএমইআই ও গুগল সার্ভিস নিজে যাচাই করে নিন।',
+    overview: [
+      'The Neo 8 is a performance phone first. Its 6.78-inch AMOLED uses Samsung\'s M14 material and runs at up to 165Hz, with a 1272 x 2772 resolution that works out to 450 pixels per inch, 10-bit colour and a 360Hz touch sampling rate. Realme\'s own spec table lists 1,000 nits at typical global brightness and 1,800 nits at peak global brightness, while its launch materials and GSMArena both quote a 6,500-nit peak for local highlights — the second figure is a marketing peak, not something you will see across the whole screen, so treat the 1,000-nit number as the realistic everyday level.',
+      'Inside is Qualcomm\'s Snapdragon 8 Gen 5, the non-Elite 3nm part, paired with LPDDR5X memory and UFS 4.1 storage and cooled by a vapour chamber. Realme sells it in five memory configurations in China: 12GB/256GB, 16GB/256GB, 12GB/512GB, 16GB/512GB and 16GB/1TB. There is no memory-card slot. The battery is the headline: an 8,000mAh silicon-carbon cell (7,750mAh rated) with 80W SuperVOOC wired charging and bypass charging, which lets the phone run from the charger instead of the battery during long gaming sessions. Realme lists 80W UFCS, 55W PPS and 13.5W PD/QC compatibility for third-party chargers.',
+      'The camera stack is more ambitious than most phones at this price. Behind the transparent rear panel sit a 50MP main camera with optical stabilisation, a 50MP periscope telephoto with 3.5x optical zoom and optical stabilisation, and an 8MP ultra-wide; the selfie camera is 16MP. Rear video records up to 4K at 60fps. The body is 8.3mm thick and weighs about 215g, with a glass front and back around a metal frame, stereo speakers, an X-axis haptic motor, an infrared remote, NFC and an ultrasonic in-display fingerprint reader. Realme rates it IP66, IP68 and IP69, the same combined set it markets on its other recent phones, and says the phone will get three Android version upgrades and four years of system maintenance.',
+    ],
+    availability: {
+      heading: 'Not officially sold in Bangladesh',
+      paragraphs: [
+        'Realme Bangladesh has not launched the Neo 8, and the handset does not appear in the brand\'s local line-up. Every unit on sale here is an import, which is why the price is a market figure rather than a launch price, why no local warranty applies, and why the software on the phone may be the China build rather than a Bangladesh one. We do not stock or sell it, and this page takes no order for it.',
+        'That also means the usual things you rely on when buying locally — a fixed price, a service centre that will accept the phone, and a model that matches the local network configuration — are not guaranteed. The checks further down are the ones that matter most for this particular phone.',
+      ],
+    },
+    priceSection: {
+      heading: 'Realme Neo 8 price in Bangladesh',
+      paragraphs: [
+        'The price we quote is ৳55,000 for the 12GB/256GB China version, marked as an estimate because it is a market observation rather than a published Bangladesh price. The price is an approximate unofficial market price for the China version as of October 2026 and varies by seller. We found no official Realme Bangladesh launch of the Neo 8.',
+        'For context, the listings we checked in October 2026 ranged from about ৳47,900 to ৳63,000, and the spread is largely about the seller, the memory configuration and how long the unit has been in the country. A 16GB/256GB or 512GB unit should cost more than the 12GB/256GB phone, but we could not confirm local prices for those configurations, so this page gives them no figure at all. Realme\'s China launch prices are deliberately not repeated here: they are not what you will pay in Dhaka, and converting them would invent a number.',
+        'Because the phone is an import, expect the seller — not realme — to set the price, the warranty terms and the included accessories. Ask what is in the box before you compare two quotes: a China retail box normally includes an 80W charger, a case and a USB-C cable, and a missing charger changes the value of the deal.',
+      ],
+    },
+    keyFacts: [
+      { term: 'Unofficial price (12GB/256GB)', detail: 'about ৳55,000' },
+      { term: 'Prices seen in October 2026', detail: 'about ৳47,900 to ৳63,000, depending on seller' },
+      { term: 'Official Bangladesh launch', detail: 'None found — imports only' },
+      { term: 'China launch', detail: '22 January 2026' },
+      { term: 'Chipset', detail: 'Snapdragon 8 Gen 5 (3nm), LPDDR5X, UFS 4.1' },
+      { term: 'Display', detail: '6.78-inch AMOLED, 1272 x 2772, up to 165Hz' },
+      { term: 'Battery and charging', detail: '8,000mAh, 80W wired, bypass charging' },
+      { term: 'Cameras', detail: '50MP main, 50MP periscope (3.5x), 8MP ultra-wide; 16MP front' },
+      { term: 'Software', detail: 'Android 16 with realme UI 7.0 (China build)' },
+    ],
+    features: [
+      {
+        heading: 'What the phone offers',
+        title: 'A 165Hz Samsung panel',
+        body:
+          'The 6.78-inch AMOLED can run at 60, 90, 120, 144 or 165Hz, defaults to 120Hz, and supports a 360Hz touch sampling rate. Realme says more than 30 games run at a native 165fps. Samsung\'s M14 material is the same generation used on flagship panels, and the resolution is sharp enough that text and menus look clean at normal viewing distance. The catch is that 165Hz costs battery, so most owners will leave it on the adaptive default.',
+      },
+      {
+        heading: 'What the phone offers',
+        title: 'Flagship-class chip, sustained by a vapour chamber',
+        body:
+          'Snapdragon 8 Gen 5 is the standard version of Qualcomm\'s 2026 flagship chip rather than the Elite variant, and in a body this size it is still far more performance than everyday apps need. The vapour chamber and graphite cooling are there for long gaming sessions, where the phone holds frame rates better than a thin phone without them. Storage is UFS 4.1, which keeps app installs and large game downloads quick.',
+      },
+      {
+        heading: 'What the phone offers',
+        title: '8,000mAh with 80W and bypass charging',
+        body:
+          'The silicon-carbon battery is the reason the phone is 8.3mm thick without weighing over 230g. Realme rates it for 80W wired charging and lists compatibility with 80W UFCS, 55W PPS and 13.5W PD/QC chargers, so a good third-party brick will still charge it quickly. Bypass charging is the feature gamers will use most: plugged in, the phone can run directly from the adapter and keep the cell cooler.',
+      },
+      {
+        heading: 'What the phone offers',
+        title: 'A real telephoto camera',
+        body:
+          'A 50MP periscope telephoto with 3.5x optical zoom and optical stabilisation is unusual at this price, and it is the main reason the camera module is as large as it is. The 50MP main camera also has stabilisation, and the 8MP ultra-wide covers the wide end at a 112-degree field of view. The zoom is the part that separates this phone from cheaper imports; the ultra-wide is the weakest of the three, as it usually is on phones in this class.',
+      },
+      {
+        heading: 'What the phone offers',
+        title: 'Durability and the small extras',
+        body:
+          'Realme rates the phone IP66, IP68 and IP69, and says it passed a 2-metre, 72-hour immersion test in its own lab. In practice that means rain, splashes and accidental dunks are survivable, not that you should take it swimming. The ultrasonic fingerprint reader works with wet fingers better than an optical one, and the phone also carries stereo speakers, an infrared blaster, NFC and a linear haptic motor.',
+      },
+    ],
+    buyers: {
+      heading: 'Who should buy it',
+      should: [
+        'You want flagship-chip gaming performance and a 165Hz screen without paying flagship money.',
+        'Battery life matters more to you than a slim, light body — 8,000mAh is genuinely a two-day cell for most people.',
+        'You want a periscope telephoto with 3.5x optical zoom at an import price.',
+        'You are comfortable buying an import, checking the IMEI yourself and living without a local warranty.',
+      ],
+      skip: [
+        'You need a realme Bangladesh warranty, a local service centre or an official invoice.',
+        'You want Google apps to work out of the box without checking the software on the unit.',
+        'You prefer a light phone — 215g is noticeable in one hand for long stretches.',
+        'You want a memory card slot, wireless charging or a 3.5mm headphone jack; this phone has none of them.',
+        'You need confirmed local 5G on a specific operator today, rather than 4G that works everywhere.',
+      ],
+    },
+    pros: {
+      heading: 'Pros and cons',
+      pros: [
+        'Snapdragon 8 Gen 5 with LPDDR5X and UFS 4.1 — flagship-tier performance for the money.',
+        'A 6.78-inch 165Hz Samsung M14 AMOLED with a sharp 1.5K resolution.',
+        '8,000mAh silicon-carbon battery, 80W wired charging and bypass charging for gaming.',
+        'A 50MP periscope telephoto with 3.5x optical zoom and stabilisation, which most imports at this price lack.',
+        'IP66, IP68 and IP69 ratings, stereo speakers, NFC, infrared and an ultrasonic fingerprint reader.',
+        'Three Android version upgrades and four years of maintenance, according to realme.',
+      ],
+      cons: [
+        'Not launched in Bangladesh, so there is no local price, no local warranty and no local service route.',
+        'The China software build may not include Google Play services, and a seller-installed global ROM is not the same as official global firmware.',
+        'About 215g and 8.3mm thick — heavy compared with the 180-190g phones around this price.',
+        'No memory card slot, no 3.5mm jack and no wireless charging.',
+        'The 8MP ultra-wide is the weak camera, and low-light video is not this phone\'s strength.',
+        'Import prices swing widely — from about ৳47,900 to ৳63,000 in the listings we saw — so negotiating matters.',
+      ],
+    },
+    buyingTips: {
+      heading: 'Buying an imported Realme Neo 8 in Bangladesh: what to check',
+      paragraphs: [
+        'Warranty is the first thing to settle. The Neo 8 is not covered by a realme Bangladesh warranty, so any cover comes from the seller. Realme\'s local service centres will treat the phone as an out-of-warranty import, which means parts and labour are chargeable even inside whatever period the shop promises. Get the warranty length, what it covers and where the repair happens in writing, and be sceptical of a verbal "one year warranty" on a grey import.',
+        'Next, the IMEI. Bangladesh\'s NEIR system went live on 1 January 2026, but its blocking function was held back: as of late October 2026, reports said imported phones were still working on local networks, and the telecom regulator had proposed a fresh activation for 1 January 2027 while waiting for government approval. The announced process for a phone bought abroad is a Special Registration after an SMS prompt, with the IMEI and supporting documents submitted online, and the rules and deadlines can change. Dial *#06# to read the IMEI, check it on neir.btrc.gov.bd, and the portal also describes an SMS check that sends "KYD" plus the 15-digit IMEI to 16002. We could not confirm a registration fee, so do not pay one without a receipt that names the service.',
+        'Software is the third check. China-market realme phones ship with the China build of realme UI, and it is not safe to assume Google Play services are present. Importers sometimes install a global ROM, which is not the same as official global firmware: it can affect updates, banking apps and Google certification. Ask the seller to open Play Store and sign in with a Google account on the exact handset you are buying, and check that the phone has the apps you need before you pay.',
+        'Finally, the network. Realme\'s published China band list includes the 4G bands Bangladeshi operators use (B1 2100, B3 1800, B8 900 and B40 2300) and 5G band n78, and GSMArena\'s listing shows the same set, so 4G should work on any local SIM. 5G in Bangladesh is still a limited commercial rollout that began in September 2025, with spectrum in the 2.3GHz and 2.6GHz ranges and 3.5GHz planned for later, and we could not confirm which 5G band each operator uses at each site. Do not buy this phone expecting guaranteed 5G everywhere; test your own SIM in it if 5G matters to you.',
+      ],
+    },
+    sourcesChecked:
+      'Specs checked on 9 November 2026 against realme\'s China Neo 8 specification page, GSMArena\'s Realme Neo8 listing (released 22 January 2026), GSMArena\'s launch coverage and Pandaily\'s launch report. Bangladesh buying checks: The Daily Star (NEIR launch and the proposed January 2027 relaunch), The Business Standard and bdnews24 (NEIR status in October 2026), BSS (Special Registration process) and The Daily Star (the September 2025 5G launch).',
+    faqs: [
+      {
+        question: 'What is the Realme Neo 8 price in Bangladesh?',
+        answer:
+          'About ৳55,000 for the 12GB/256GB China version, based on the unofficial market in October 2026. Listings we checked ranged from about ৳47,900 to ৳63,000 depending on the seller and configuration. There is no official Bangladesh price because realme has not launched the phone here.',
+      },
+      {
+        question: 'Is the Realme Neo 8 officially available in Bangladesh?',
+        answer:
+          'No. Realme launched the Neo 8 in China on 22 January 2026 and has not announced a Bangladesh launch, so every unit sold here is an import. That is why there is no local price, no realme Bangladesh warranty and no local service support for it.',
+      },
+      {
+        question: 'Does the Realme Neo 8 have a warranty in Bangladesh?',
+        answer:
+          'Not a realme Bangladesh warranty. Any cover comes from the seller, so the terms depend entirely on the shop. Realme\'s service centres treat the phone as an out-of-warranty import, which means you may pay for parts and labour even during the period the seller promised, so ask for the warranty terms in writing.',
+      },
+      {
+        question: 'Can an imported Realme Neo 8 be blocked in Bangladesh?',
+        answer:
+          'It can be, in principle, if its IMEI is not registered with NEIR. NEIR went live on 1 January 2026, but its blocking function was withheld and imported phones were still working on local networks as of late October 2026; the regulator has proposed a January 2027 activation and was awaiting government approval. Dial *#06# for the IMEI, check it on neir.btrc.gov.bd, or text "KYD" plus the IMEI to 16002. Rules and deadlines can change.',
+      },
+      {
+        question: 'Does the China version have Google Play services?',
+        answer:
+          'Do not assume it does. China-market realme phones ship with the China build of realme UI, and Google services are often absent. Some importers install a global ROM, which is not official global firmware and can affect updates and app compatibility. Ask the seller to show Play Store working on the exact handset before you pay.',
+      },
+      {
+        question: 'Will the China version work on Bangladeshi mobile networks?',
+        answer:
+          'Yes for 4G. Realme\'s published band list includes B1 2100, B3 1800, B8 900 and B40 2300, which are the bands local operators use, and GSMArena lists the same set. For 5G it also lists n78, but Bangladesh\'s 5G service is a limited rollout on 2.3GHz and 2.6GHz spectrum, with 3.5GHz planned later, so 5G availability depends on your operator and location.',
+      },
+      {
+        question: 'What are the Realme Neo 8 specs?',
+        answer:
+          'A 6.78-inch AMOLED at 1272 x 2772 with up to 165Hz, Snapdragon 8 Gen 5 with LPDDR5X RAM and UFS 4.1 storage, an 8,000mAh silicon-carbon battery with 80W charging and bypass charging, a 50MP main camera, a 50MP periscope telephoto with 3.5x optical zoom, an 8MP ultra-wide and a 16MP front camera. It runs Android 16 with realme UI 7.0 and weighs about 215g at 8.3mm thick.',
+      },
+      {
+        question: 'Which memory configurations does the Realme Neo 8 come in?',
+        answer:
+          'Realme lists five China configurations: 12GB/256GB, 16GB/256GB, 12GB/512GB, 16GB/512GB and 16GB/1TB. Only the 12GB/256GB phone has an unofficial Bangladesh price we could stand behind, so the other sizes are not priced on this page and their local availability is unconfirmed.',
+      },
+      {
+        question: 'What colours does the Realme Neo 8 come in?',
+        answer:
+          'Cyber Purple, Mecha Gray and Origin White. The photos on this page show all three, and the colour selector switches between them. Colour availability in Bangladesh depends on what each importer has in stock.',
+      },
+      {
+        question: 'রিয়েলমি নিও ৮-এর দাম কত?',
+        answer:
+          'বাংলাদেশে অফিসিয়াল দাম নেই, কারণ রিয়েলমি এই ফোনটি এখানে লঞ্চ করেনি। আমদানি করা ১২জিবি/২৫৬জিবি চায়না ভার্সনের আনঅফিসিয়াল দাম প্রায় ৳৫৫,০০০ (অক্টোবর ২০২৬), বিক্রেতা অনুযায়ী প্রায় ৳৪৭,৯০০ থেকে ৳৬৩,০০০ পর্যন্ত দেখা গেছে। রিয়েলমি বাংলাদেশের ওয়ারেন্টি নেই এবং আইএমইআই ও গুগল সার্ভিস নিজে যাচাই করা জরুরি।',
+      },
+    ],
+    links: [
+      {
+        label: 'Realme C85 Pro — Quick Look',
+        description: 'An official Bangladesh Realme with a local warranty and three prices',
+        href: '/quick-look/realme-c85-pro',
+      },
+      {
+        label: 'Xiaomi Redmi Note 17 Pro — Quick Look',
+        description: 'Another phone sold here as an official unit next to a China import',
+        href: '/quick-look/xiaomi-redmi-note-17-pro',
+      },
+      {
+        label: 'Official vs China version: which one to buy',
+        description: 'What the warranty and IMEI differences mean in practice',
+        href: '/posts/redmi-note-17-pro-official-vs-china-version-bangladesh',
+      },
+      {
+        label: 'All Quick Look price pages',
+        description: 'Every phone and gadget we have checked, with its sources',
+        href: '/quick-look',
+      },
+    ],
+  },
 };
 /** Long-form guide for a product slug, or undefined when none is written yet. */
 export function getQuickLookContent(slug: string): QuickLookGuide | undefined {

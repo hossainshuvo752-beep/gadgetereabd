@@ -30,12 +30,17 @@ export default function ShopPage() {
   const sortViewsDesc = (list: Product[]) =>
     [...list].sort((a, b) => b.views - a.views);
 
+  // Information-only catalog entries (quickLookOnly — the Realme Neo 8) are
+  // documented on Quick Look but are not sold here, so they never appear as a
+  // Shop card.
+  const listed = products.filter((p) => !p.quickLookOnly);
+
   const filtered = sortViewsDesc(
     selectedTop === null
-      ? products
+      ? listed
       : selectedSub === null
-        ? products.filter((p) => p.topCategory === selectedTop)
-        : products.filter(
+        ? listed.filter((p) => p.topCategory === selectedTop)
+        : listed.filter(
             (p) => p.topCategory === selectedTop && p.subCategory === selectedSub,
           ),
   );

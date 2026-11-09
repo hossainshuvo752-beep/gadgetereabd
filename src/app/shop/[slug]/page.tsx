@@ -21,7 +21,11 @@ import {
  * sitemap has been updated to the slug URLs.
  */
 export function generateStaticParams() {
-  return products.map((product) => ({ slug: slugify(product.title) }));
+  // Information-only entries have no Shop page at all (their Quick Look page
+  // is the only URL) — see Product.quickLookOnly.
+  return products
+    .filter((product) => !product.quickLookOnly)
+    .map((product) => ({ slug: slugify(product.title) }));
 }
 
 export async function generateMetadata({
@@ -63,7 +67,9 @@ export default async function ProductDetailPage({
   const { slug } = await params;
   const product = products.find((p) => slugify(p.title) === slug);
 
-  if (!product) {
+  // A quickLookOnly product is documented on Quick Look only: there is no
+  // Shop page to buy it from, so this URL is a real 404.
+  if (!product || product.quickLookOnly) {
     notFound();
   }
 

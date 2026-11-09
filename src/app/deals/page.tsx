@@ -21,8 +21,9 @@ export default function DealsPage() {
     setSelectedSub(sub);
   };
 
-  // The deals subset, straight from the shared data (single source of truth)
-  const dealPool = products.filter((p) => p.isDeal === true);
+  // The deals subset, straight from the shared data (single source of truth).
+  // Information-only entries (quickLookOnly) are never deals.
+  const dealPool = products.filter((p) => p.isDeal === true && !p.quickLookOnly);
 
   const filtered =
     selectedTop === null

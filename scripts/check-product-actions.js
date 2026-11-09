@@ -9,6 +9,7 @@
  *   mode 'buy'        → Add to Cart + Buy Now (Pre-Order / Coming Soon)
  *   mode 'free-order' → ONE Free Order button
  *   mode 'notify'     → ONE Notify Me button (no purchase action at all)
+ *   mode 'info'       → NOTHING (an information-only page: no button at all)
  *
  * The checks below fail the build when:
  *   1. a product surface stops delegating to ProductActions (it imports the
@@ -23,6 +24,10 @@
  *      in 'free-order' mode or only has an estimated price. /deals shows a
  *      Buy Now + Add to Cart price offer, so a product nobody may actually
  *      buy at a confirmed price must never appear there.
+ *   6. the information-only mode drifts: a quickLookOnly product without
+ *      purchaseMode 'info' (would still render a button), an 'info' product
+ *      that is not quickLookOnly (a Shop page nobody can act on), or a
+ *      quickLookOnly product flagged as a deal.
  *
  * Copy that is not a CTA (checkout/cart/terms/faq/confirmation pages) is not
  * scanned — only the surfaces that render product cards / detail CTAs.
@@ -141,6 +146,13 @@ const actionsCode = stripComments(fs.readFileSync(actionsAbs, 'utf8'));
 if (!/purchaseModeOf\s*\(/.test(actionsCode)) {
   problems.push(`${ACTIONS_FILE} must derive its mode with purchaseModeOf(product).`);
 }
+// Information-only products render no button at all, so the component must
+// bail out before the action rows.
+if (!/mode === 'info'\)\s*return null/.test(actionsCode)) {
+  problems.push(
+    `${ACTIONS_FILE} must render NO actions for purchaseMode 'info' (a quickLookOnly product).`
+  );
+}
 if (
   !FREE_ORDER_BLOCK.test(actionsCode) ||
   !BUY_BLOCK.test(actionsCode) ||
@@ -199,8 +211,35 @@ if (!/isDeal/.test(dealsCode)) {
 }
 
 const { products, purchaseModeOf } = loadCatalog();
+
+// ---- Information-only pairing -------------------------------------------------
+const infoWithoutFlag = products.filter(
+  (p) => purchaseModeOf(p) === 'info' && p.quickLookOnly !== true
+);
+if (infoWithoutFlag.length > 0) {
+  problems.push(
+    `${infoWithoutFlag.length} product(s) in 'info' mode are not quickLookOnly: ` +
+      infoWithoutFlag.map((p) => `"${p.title}"`).join(', ') +
+      ' — add quickLookOnly: true or give the product a real purchase mode.'
+  );
+}
+const flagWithoutInfo = products.filter(
+  (p) => p.quickLookOnly === true && purchaseModeOf(p) !== 'info'
+);
+if (flagWithoutInfo.length > 0) {
+  problems.push(
+    `${flagWithoutInfo.length} quickLookOnly product(s) still render a purchase action: ` +
+      flagWithoutInfo.map((p) => `"${p.title}" (${purchaseModeOf(p)})`).join(', ') +
+      ' — set purchaseMode: "info".'
+  );
+}
+
 const forbiddenDeals = products.filter(
-  (p) => p.isDeal === true && (purchaseModeOf(p) === 'free-order' || p.priceEstimated === true)
+  (p) =>
+    p.isDeal === true &&
+    (purchaseModeOf(p) === 'free-order' ||
+      p.priceEstimated === true ||
+      p.quickLookOnly === true)
 );
 if (forbiddenDeals.length > 0) {
   problems.push(
@@ -219,5 +258,7 @@ if (problems.length > 0) {
 console.log(
   `check-product-actions: OK — ${SURFACES.length} product surface(s) delegate to ProductActions; ` +
     'free-order and buy blocks are mutually exclusive; ' +
-    `${products.filter((p) => p.isDeal === true).length} deal(s) all in buy mode.`
+    `${products.filter((p) => p.isDeal === true).length} deal(s) all in buy mode; ` +
+    `${products.filter((p) => p.quickLookOnly === true).length} information-only ` +
+    'product(s) rendered without actions.'
 );

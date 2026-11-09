@@ -12,7 +12,10 @@ import type { Product, ResolvedPrice } from '@/lib/products';
  *                 variant nor a warranty: "(Official price in Bangladesh)"
  *   unofficial  → "(Unofficial price in Bangladesh — imported unit, not a
  *                 Xiaomi Bangladesh price)"
- *   estimated   → "(Estimated price — not yet sold in Bangladesh)"
+ *   estimated   → "(Estimated price — not yet sold in Bangladesh)", or
+ *                 "(Estimated price — approximate unofficial market price,
+ *                 varies by seller)" when priceChannel is 'unofficial' (an
+ *                 import that is sold here, at an unconfirmed price)
  *   not launched→ the product's own `priceDisplayNote`, kept verbatim
  *   unknown     → null (no line at all, never an assumed "official")
  *
@@ -48,7 +51,12 @@ export function priceChannelLine(
     return '(Estimated price — approximate unofficial market price, varies by seller)';
   }
   if (product.priceEstimated || product.priceStatus === 'estimated') {
-    return '(Estimated price — not yet sold in Bangladesh)';
+    // An estimate on an IMPORTED unit that IS sold here (the Realme Neo 8)
+    // must not claim the phone is absent from Bangladesh: priceChannel
+    // 'unofficial' prints the same wording the version branch uses.
+    return product.priceChannel === 'unofficial'
+      ? '(Estimated price — approximate unofficial market price, varies by seller)'
+      : '(Estimated price — not yet sold in Bangladesh)';
   }
 
   const channel =

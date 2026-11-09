@@ -60,6 +60,8 @@ const TITLE_SUFFIX_EXCEPTIONS = {
     'owner-supplied exact title ("Realme C85 Pro Review: Worth It in Bangladesh? | Jupiter BD", 59 chars)',
   'quick-look/xiaomi-redmi-note-17-pro':
     'owner-supplied exact title ("Xiaomi Redmi Note 17 Pro Price in Bangladesh | Jupiter BD", 55 chars)',
+  'quick-look/realme-neo-8':
+    'owner-supplied exact title ("Realme Neo 8 Price in Bangladesh | Jupiter BD", 45 chars)',
   'posts/redmi-note-17-pro-official-vs-china-version-bangladesh':
     'owner-supplied exact title ("Redmi Note 17 Pro: Official vs China Version | Jupiter BD", 57 chars)',
 };

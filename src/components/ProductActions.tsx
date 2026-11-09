@@ -32,6 +32,9 @@ import { track } from '@/lib/tracking';
  *                       only through unofficial channels, where taking an
  *                       order would promise stock and warranty we cannot
  *                       confirm.
+ * - mode 'info'       → NOTHING: an information-only page (the Realme Neo 8)
+ *                       renders no button at all, not even Notify Me, because
+ *                       we do not sell the product and cannot promise stock.
  * - Buy Now and Free Order can NEVER render together: the two blocks are
  *   selected by one ternary on purchaseModeOf() below (the build guard
  *   scripts/check-product-actions.js verifies the marked blocks).
@@ -87,6 +90,10 @@ const ProductActions: React.FC<ProductActionsProps> = ({
   // wins over the product's own mode; every other surface passes neither.
   const mode = purchaseMode ?? purchaseModeOf(product);
   const slug = slugify(product.title);
+
+  // Information-only products (quickLookOnly) render no action row at all —
+  // no Add to Cart, Buy Now, Pre-Order, Free Order or Notify Me.
+  if (mode === 'info') return null;
   const freeOrderHref = `/free-order?id=${product.id}&surface=${surface}&variant=${encodeURIComponent(variant)}`;
   const notifyHref = `/contact?topic=notify&product=${encodeURIComponent(slug)}&surface=${surface}`;
 

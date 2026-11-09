@@ -26,10 +26,12 @@ export default function NewArrivalsPage() {
     setSelectedSub(sub);
   };
 
-  // Newest first, straight from the shared data (ISO dates sort as strings)
-  const sorted = [...products].sort((a, b) =>
-    b.dateAdded.localeCompare(a.dateAdded)
-  );
+  // Newest first, straight from the shared data (ISO dates sort as strings).
+  // Information-only entries (quickLookOnly — the Realme Neo 8) are not sold
+  // here, so they never surface as a New Arrival.
+  const sorted = [...products]
+    .filter((p) => !p.quickLookOnly)
+    .sort((a, b) => b.dateAdded.localeCompare(a.dateAdded));
 
   const filtered =
     selectedTop === null

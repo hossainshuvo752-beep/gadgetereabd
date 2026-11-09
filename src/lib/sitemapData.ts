@@ -103,6 +103,15 @@ export function buildSitemapEntries(): MetadataRoute.Sitemap {
   const productRoutes: MetadataRoute.Sitemap = products.flatMap((product) => {
     const added = new Date(product.dateAdded);
     const lastModified = Number.isNaN(added.getTime()) ? new Date() : added;
+    const quickLook = {
+      url: `${SITE_URL}/quick-look/${slugify(product.title)}`,
+      lastModified,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    };
+    // Information-only products (quickLookOnly) have no Shop URL — that route
+    // 404s — so only their Quick Look page belongs in the sitemap.
+    if (product.quickLookOnly) return [quickLook];
     return [
       {
         url: `${SITE_URL}/shop/${slugify(product.title)}`,
@@ -110,12 +119,7 @@ export function buildSitemapEntries(): MetadataRoute.Sitemap {
         changeFrequency: 'weekly' as const,
         priority: 0.8,
       },
-      {
-        url: `${SITE_URL}/quick-look/${slugify(product.title)}`,
-        lastModified,
-        changeFrequency: 'weekly' as const,
-        priority: 0.8,
-      },
+      quickLook,
     ];
   });
 
