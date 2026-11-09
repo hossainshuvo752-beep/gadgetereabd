@@ -4941,7 +4941,7 @@ const guides: Record<string, QuickLookGuide> = {
     lead:
       'The Realme Neo 8 is a China-market phone that realme launched on 22 January 2026, and realme has not launched it in Bangladesh. Units sold here are imports, so the number to budget for is the unofficial 12GB/256GB figure of about ৳55,000, and that price moves with the seller. This page is information only: we do not sell the phone, so there is nothing to add to a cart and no stock to promise.',
     summaryBn:
-      'রিয়েলমি নিও ৮ চীনের বাজারের ফোন, বাংলাদেশে রিয়েলমির অফিসিয়াল লঞ্চ নেই। এখানে যেসব ইউনিট পাওয়া যায় সেগুলো আমদানি করা, ১২জিবি/২৫৬জিবি ভার্সনের আনঅফিসিয়াল দাম প্রায় ৳৫৫,০০০ (অক্টোবর ২০২৬), বিক্রেতা অনুযায়ী প্রায় ৳৪৭,৯০০ থেকে ৳৬৩,০০০ পর্যন্ত দেখা গেছে। রিয়েলমি বাংলাদেশের ওয়ারেন্টি নেই, তাই কেনার আগে ওয়ারেন্টি, আইএমইআই ও গুগল সার্ভিস নিজে যাচাই করে নিন।',
+      'রিয়েলমি নিও ৮ চীনের বাজারের ফোন, বাংলাদেশে রিয়েলমির অফিসিয়াল লঞ্চ নেই। এখানে যেসব ইউনিট পাওয়া যায় সেগুলো আমদানি করা, ১২জিবি/২৫৬জিবি ভার্সনের আনঅফিসিয়াল দাম প্রায় ৳৫৫,০০০ (অক্টোবর ২০২৬)। রিয়েলমি বাংলাদেশের ওয়ারেন্টি নেই, তাই কেনার আগে ওয়ারেন্টি, আইএমইআই ও গুগল সার্ভিস নিজে যাচাই করে নিন।',
     overview: [
       'The Neo 8 is a performance phone first. Its 6.78-inch AMOLED uses Samsung\'s M14 material and runs at up to 165Hz, with a 1272 x 2772 resolution that works out to 450 pixels per inch, 10-bit colour and a 360Hz touch sampling rate. Realme\'s own spec table lists 1,000 nits at typical global brightness and 1,800 nits at peak global brightness, while its launch materials and GSMArena both quote a 6,500-nit peak for local highlights — the second figure is a marketing peak, not something you will see across the whole screen, so treat the 1,000-nit number as the realistic everyday level.',
       'Inside is Qualcomm\'s Snapdragon 8 Gen 5, the non-Elite 3nm part, paired with LPDDR5X memory and UFS 4.1 storage and cooled by a vapour chamber. Realme sells it in five memory configurations in China: 12GB/256GB, 16GB/256GB, 12GB/512GB, 16GB/512GB and 16GB/1TB. There is no memory-card slot. The battery is the headline: an 8,000mAh silicon-carbon cell (7,750mAh rated) with 80W SuperVOOC wired charging and bypass charging, which lets the phone run from the charger instead of the battery during long gaming sessions. Realme lists 80W UFCS, 55W PPS and 13.5W PD/QC compatibility for third-party chargers.',
@@ -4958,13 +4958,12 @@ const guides: Record<string, QuickLookGuide> = {
       heading: 'Realme Neo 8 price in Bangladesh',
       paragraphs: [
         'The price we quote is ৳55,000 for the 12GB/256GB China version, marked as an estimate because it is a market observation rather than a published Bangladesh price. The price is an approximate unofficial market price for the China version as of October 2026 and varies by seller. We found no official Realme Bangladesh launch of the Neo 8.',
-        'For context, the listings we checked in October 2026 ranged from about ৳47,900 to ৳63,000, and the spread is largely about the seller, the memory configuration and how long the unit has been in the country. A 16GB/256GB or 512GB unit should cost more than the 12GB/256GB phone, but we could not confirm local prices for those configurations, so this page gives them no figure at all. Realme\'s China launch prices are deliberately not repeated here: they are not what you will pay in Dhaka, and converting them would invent a number.',
+        'For context, the figure is what sellers were asking in October 2026, and the spread between quotes is largely about the seller, the memory configuration and how long the unit has been in the country. A 16GB/256GB or 512GB unit should cost more than the 12GB/256GB phone, but we could not confirm local prices for those configurations, so this page gives them no figure at all. Realme\'s China launch prices are deliberately not repeated here: they are not what you will pay in Dhaka, and converting them would invent a number.',
         'Because the phone is an import, expect the seller — not realme — to set the price, the warranty terms and the included accessories. Ask what is in the box before you compare two quotes: a China retail box normally includes an 80W charger, a case and a USB-C cable, and a missing charger changes the value of the deal.',
       ],
     },
     keyFacts: [
       { term: 'Unofficial price (12GB/256GB)', detail: 'about ৳55,000' },
-      { term: 'Prices seen in October 2026', detail: 'about ৳47,900 to ৳63,000, depending on seller' },
       { term: 'Official Bangladesh launch', detail: 'None found — imports only' },
       { term: 'China launch', detail: '22 January 2026' },
       { term: 'Chipset', detail: 'Snapdragon 8 Gen 5 (3nm), LPDDR5X, UFS 4.1' },
@@ -5037,7 +5036,7 @@ const guides: Record<string, QuickLookGuide> = {
         'About 215g and 8.3mm thick — heavy compared with the 180-190g phones around this price.',
         'No memory card slot, no 3.5mm jack and no wireless charging.',
         'The 8MP ultra-wide is the weak camera, and low-light video is not this phone\'s strength.',
-        'Import prices swing widely — from about ৳47,900 to ৳63,000 in the listings we saw — so negotiating matters.',
+        'Import prices swing widely — the same phone can carry a very different quote from one seller to the next — so negotiating matters.',
       ],
     },
     buyingTips: {
@@ -5055,7 +5054,7 @@ const guides: Record<string, QuickLookGuide> = {
       {
         question: 'What is the Realme Neo 8 price in Bangladesh?',
         answer:
-          'About ৳55,000 for the 12GB/256GB China version, based on the unofficial market in October 2026. Listings we checked ranged from about ৳47,900 to ৳63,000 depending on the seller and configuration. There is no official Bangladesh price because realme has not launched the phone here.',
+          'About ৳55,000 for the 12GB/256GB China version, based on the unofficial market in October 2026. The seller sets that figure, so it moves between shops. There is no official Bangladesh price because realme has not launched the phone here.',
       },
       {
         question: 'Is the Realme Neo 8 officially available in Bangladesh?',
@@ -5100,7 +5099,7 @@ const guides: Record<string, QuickLookGuide> = {
       {
         question: 'রিয়েলমি নিও ৮-এর দাম কত?',
         answer:
-          'বাংলাদেশে অফিসিয়াল দাম নেই, কারণ রিয়েলমি এই ফোনটি এখানে লঞ্চ করেনি। আমদানি করা ১২জিবি/২৫৬জিবি চায়না ভার্সনের আনঅফিসিয়াল দাম প্রায় ৳৫৫,০০০ (অক্টোবর ২০২৬), বিক্রেতা অনুযায়ী প্রায় ৳৪৭,৯০০ থেকে ৳৬৩,০০০ পর্যন্ত দেখা গেছে। রিয়েলমি বাংলাদেশের ওয়ারেন্টি নেই এবং আইএমইআই ও গুগল সার্ভিস নিজে যাচাই করা জরুরি।',
+          'বাংলাদেশে অফিসিয়াল দাম নেই, কারণ রিয়েলমি এই ফোনটি এখানে লঞ্চ করেনি। আমদানি করা ১২জিবি/২৫৬জিবি চায়না ভার্সনের আনঅফিসিয়াল দাম প্রায় ৳৫৫,০০০ (অক্টোবর ২০২৬), বিক্রেতা অনুযায়ী এই দাম কিছুটা বদলায়। রিয়েলমি বাংলাদেশের ওয়ারেন্টি নেই এবং আইএমইআই ও গুগল সার্ভিস নিজে যাচাই করা জরুরি।',
       },
     ],
     links: [
