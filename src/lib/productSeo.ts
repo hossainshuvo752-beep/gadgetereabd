@@ -79,16 +79,18 @@ interface ProductSeoCopy {
 
 const seoCopy: Record<string, ProductSeoCopy> = {
   /** Apple launched HomeView on November 13, 2026 with US and UK pricing —
-   *  there is still no Bangladesh price or release date, so both the title
-   *  (49 chars, forced absolute) and the description state only what Apple
-   *  has published. Figures come from the Apple pages listed in the guide's
-   *  "sources checked" line. */
+   *  there is still no Bangladesh price and no Bangladesh sale. The rule for
+   *  this page is that neither title nor description may say "Price in
+   *  Bangladesh", because that price does not exist: the title (52 chars,
+   *  forced absolute) and the 153-char description state the launch price,
+   *  the key specs and the Bangladesh availability only. Figures come from
+   *  the Apple pages listed in the guide's "sources checked" line. */
   'apple-homeview-smart-display': {
     shopSpecs: 'US and UK price, setup costs, and availability',
     quickLookSpecs: 'US and UK price, setup costs, and Bangladesh availability',
-    titleOverride: 'Apple HomeView Price in Bangladesh & Release Date',
+    titleOverride: 'Apple HomeView: Price, Specs & Bangladesh Availability',
     descriptionOverride:
-      'Apple HomeView launched on 13 Nov 2026 at $299, or £299 in the UK. 7-inch screen, Siri AI, four colors. Still no official Bangladesh sale.',
+      'Apple HomeView launched on 13 November 2026 at $299 in the US and £299 in the UK: 7-inch screen, Siri AI, no App Store, and no official Bangladesh sale.',
   },
   'honor-robot-phone': {
     shopSpecs: 'Innovative design',

@@ -583,18 +583,20 @@ export const posts: Post[] = [
     // Retitled 2026-10-20 for the query people actually type ("Apple
     // HomeView Bangladesh"). The slug never changes. Still absolute at 58
     // chars, and the post keeps its own Bangladesh section.
-    title: 'Apple HomeView: US Price, Release Date & Bangladesh Status',
+    // Retitled 2026-11-14 for the launch (was "US Price, Release Date &
+    // Bangladesh Status"): "release date" is now history, and the post is the
+    // launch explainer while the Quick Look page owns the price/spec lookup.
+    // The slug NEVER changes. 56 chars, rendered absolute (no brand suffix).
+    title: 'Apple HomeView Launch: Price, Apps and Bangladesh Status',
     slug: 'apple-homeview-price-release-date-features',
-    // Same text as the H1 on purpose: the owner fixed this title at its full
-    // length, so metaTitleAbsolute renders it WITHOUT " | Jupiter BD".
-    metaTitle: 'Apple HomeView: US Price, Release Date & Bangladesh Status',
+    metaTitle: 'Apple HomeView Launch: Price, Apps and Bangladesh Status',
     metaTitleAbsolute: true,
     metaDescription:
-      'Apple HomeView went on sale on 13 November at $299. What it does, what it cannot do yet, and why Bangladesh still has no official price.',
+      'Apple HomeView is on sale from 13 November at $299. What the launch reviews say, what the missing App Store blocks, and why Bangladesh still waits.',
     metaKeywords:
-      'apple homeview, apple homeview price, apple homeview release date, apple homeview bangladesh, apple smart display, siri ai, apple home',
+      'apple homeview, apple homeview launch, apple homeview price, apple homeview app store, apple homeview bangladesh, apple smart display, siri ai, apple home',
     excerpt:
-      "Apple's first smart home display went on sale on 13 November at $299. Here are the price, colors, wall mounts, launch limits and where Bangladesh stands.",
+      "Apple HomeView is on sale from 13 November at $299 — but not in Bangladesh and not in the EU. Here is the launch price, what the reviews say and who should wait.",
     category: 'Explainer',
     author: 'Jupiter BD Team',
     date: 'Oct 19, 2026',

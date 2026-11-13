@@ -2218,6 +2218,10 @@ export const products: Product[] = [
     topCategory: 'Home Accessories',
     subCategory: 'Smart Home Devices',
     imageAlt: 'Apple HomeView Smart Display',
+    /** Muted H2 under the H1 (rendered only when set). States the launch
+     *  status plainly, because the H1 is the product name and the page has
+     *  no Bangladesh price to put in a "price in Bangladesh" wrapper. */
+    h1Subtitle: 'Launched 13 November 2026 — not sold in Bangladesh',
     /** AI-generated renders supplied for this product — the only product
      *  images on the site that are not photographs. They are declared as
      *  renders three ways: this note (visible under the gallery), every alt

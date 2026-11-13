@@ -99,7 +99,7 @@ export type QuickLookGuide = {
 const guides: Record<string, QuickLookGuide> = {
   'apple-homeview-smart-display': {
     productName: 'Apple HomeView',
-    heading: 'Apple HomeView Price in Bangladesh and Release Date: Full Guide',
+    heading: 'Apple HomeView: launch price, specs and Bangladesh availability',
     lead:
       'Apple HomeView is a 7-inch smart display that went on sale on 13 November 2026 in two versions — a tabletop model on a domed speaker base and a separate wall-mounted panel — both at $299 in the US and £299 in the UK. Apple sells it in eight markets and has never announced a Bangladesh price, release date or warranty, so this page shows Apple\'s own overseas figures only.',
     overview: [
