@@ -204,6 +204,21 @@ const seoCopy: Record<string, ProductSeoCopy> = {
     shopDescriptionOverride:
       'Realme Neo 8: a China-market phone with no official Bangladesh launch. Approximate unofficial price, specs and what to check before buying an import.',
   },
+  /** Vivo V80 — an official Bangladesh launch with two configurations, so the
+   *  description lists both figures from the data (the taka amounts and their
+   *  RAM/storage labels are never typed here). The Shop copy drops the shared
+   *  "In stock, fast delivery" tail: the page makes no stock claim. The owner
+   *  supplied the exact title, including the brand suffix — see
+   *  TITLE_SUFFIX_EXCEPTIONS in scripts/check-seo-metadata.js. */
+  'vivo-v80': {
+    shopSpecs: '6.59-inch 144Hz AMOLED, 7,200mAh battery, ZEISS cameras',
+    quickLookSpecs: '6.59-inch 144Hz AMOLED, Snapdragon 7 Gen 4',
+    titleOverride: 'Vivo V80 Price in Bangladesh | Jupiter BD',
+    descriptionFromVariantPrices: true,
+    descriptionTail: 'Colors, specs, 50MP ZEISS telephoto camera and 7,200mAh battery.',
+    shopDescriptionOverride:
+      'Buy the Vivo V80 in Bangladesh: ৳79,999 for 8GB/128GB and ৳89,999 for 8GB/256GB at official launch prices. 6.59-inch 144Hz AMOLED, ZEISS cameras, 7,200mAh.',
+  },
   'infinix-note-60-pro': {
     shopSpecs: 'great value performance',
     quickLookSpecs: '6.78-inch AMOLED, Snapdragon 7s Gen 4',

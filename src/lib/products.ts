@@ -3804,6 +3804,229 @@ export const products: Product[] = [
       ],
     },
   },
+
+  /**
+   * Vivo V80 — an OFFICIAL Bangladesh launch (9 November 2026), sold by vivo
+   * through its brand shops and authorised retailers. Two configurations only:
+   * 8GB/128GB and 8GB/256GB. A plain product's storage selector can only
+   * split specSheet.performance.storage (128GB/256GB), which cannot print the
+   * "8GB/128GB" label the price box must carry, so the two priced RAM+storage
+   * labels live in the same ONE-version structure the Realme C85 Pro uses —
+   * no new data shape and no template change.
+   * This page is the V80, NOT the Vivo V80 Lite 5G, which vivo Bangladesh also
+   * lists as a separate, cheaper handset with a different chip and battery.
+   * No warranty term is stored: vivo's Bangladesh V80 page publishes none.
+   */
+  {
+    id: 30,
+    title: 'Vivo V80',
+    seoName: 'Vivo V80',
+    /** Owner-specified title block: price phrase as H1, one-line subtitle. */
+    h1: 'Vivo V80 Price in Bangladesh',
+    h1Subtitle: 'Official price, specs, colors & variants in BDT',
+    category: 'Smartphones',
+    topCategory: 'Mobile',
+    subCategory: 'Vivo',
+    imageAlt: 'Vivo V80 smartphone',
+    /** Hero = the default colour's first photo (Rise Orange), the same
+     *  convention the other colour-mapped phones use. */
+    heroImage: '/images/products/vivo-v80/rise-orange/1.webp',
+    gallery: [
+      '/images/products/vivo-v80/rise-orange/1.webp',
+      '/images/products/vivo-v80/rise-orange/2.webp',
+      '/images/products/vivo-v80/rise-orange/3.webp',
+      '/images/products/vivo-v80/rise-orange/4.webp',
+    ],
+    /** Three supplied colour sets, four studio photos each. The supplied file
+     *  names are the Bangladesh colour names, so the data matches them
+     *  exactly: 1 = front, 2 = rear, 3 = both side edges, 4 = top and bottom
+     *  edges. Nothing ties a colour to one storage size, so all three colours
+     *  are offered with both configurations. */
+    colorImages: [
+      {
+        color: 'Rise Orange',
+        images: [
+          '/images/products/vivo-v80/rise-orange/1.webp',
+          '/images/products/vivo-v80/rise-orange/2.webp',
+          '/images/products/vivo-v80/rise-orange/3.webp',
+          '/images/products/vivo-v80/rise-orange/4.webp',
+        ],
+      },
+      {
+        color: 'Vision Green',
+        images: [
+          '/images/products/vivo-v80/vision-green/1.webp',
+          '/images/products/vivo-v80/vision-green/2.webp',
+          '/images/products/vivo-v80/vision-green/3.webp',
+          '/images/products/vivo-v80/vision-green/4.webp',
+        ],
+      },
+      {
+        color: 'Prime Gray',
+        images: [
+          '/images/products/vivo-v80/prime-gray/1.webp',
+          '/images/products/vivo-v80/prime-gray/2.webp',
+          '/images/products/vivo-v80/prime-gray/3.webp',
+          '/images/products/vivo-v80/prime-gray/4.webp',
+        ],
+      },
+    ],
+    /** One hand-written alt per image, describing only what that file shows
+     *  and naming its colour. No image carries a caption. */
+    galleryAlts: [
+      { src: '/images/products/vivo-v80/rise-orange/1.webp', alt: 'Vivo V80 in Rise Orange, front view with gold swirl wallpaper' },
+      { src: '/images/products/vivo-v80/rise-orange/2.webp', alt: 'Vivo V80 in Rise Orange, rear panel with the large camera module' },
+      { src: '/images/products/vivo-v80/rise-orange/3.webp', alt: 'Vivo V80 in Rise Orange, both side edges showing the buttons' },
+      { src: '/images/products/vivo-v80/rise-orange/4.webp', alt: 'Vivo V80 in Rise Orange, top and bottom edges with USB-C port' },
+      { src: '/images/products/vivo-v80/vision-green/1.webp', alt: 'Vivo V80 in Vision Green, front view with green swirl wallpaper' },
+      { src: '/images/products/vivo-v80/vision-green/2.webp', alt: 'Vivo V80 in Vision Green, rear panel with the floating camera module' },
+      { src: '/images/products/vivo-v80/vision-green/3.webp', alt: 'Vivo V80 in Vision Green, both side edges showing the buttons' },
+      { src: '/images/products/vivo-v80/vision-green/4.webp', alt: 'Vivo V80 in Vision Green, top and bottom edges with USB-C port' },
+      { src: '/images/products/vivo-v80/prime-gray/1.webp', alt: 'Vivo V80 in Prime Gray, front view with blue swirl wallpaper' },
+      { src: '/images/products/vivo-v80/prime-gray/2.webp', alt: 'Vivo V80 in Prime Gray, rear panel with the floating camera module' },
+      { src: '/images/products/vivo-v80/prime-gray/3.webp', alt: 'Vivo V80 in Prime Gray, both side edges showing the buttons' },
+      { src: '/images/products/vivo-v80/prime-gray/4.webp', alt: 'Vivo V80 in Prime Gray, bottom edge with USB-C port and speaker' },
+    ],
+    views: 800,
+    dateAdded: '2026-11-14',
+    price: 79999,
+    oldPrice: null,
+    priceEstimated: false,
+    /** Official, released product: the normal cart/checkout flow applies. */
+    purchaseMode: 'buy',
+    status: 'available',
+    priceStatus: 'official',
+    priceChannel: 'official',
+    /** Data only — never rendered (see the price-box rule in memory.md). */
+    priceNote:
+      'Official launch prices in Bangladesh. Retail prices may vary slightly by seller.',
+    priceCheckedAt: '2026-11-14',
+    /** No stock claim is made on the page, so the Offer carries a price but no
+     *  availability value. */
+    omitSchemaAvailability: true,
+    /**
+     * Verified on vivo Bangladesh's own V80 product page and its footnotes,
+     * GSMArena's V80 specification page and launch coverage, 91mobiles' V80
+     * specification sheet and UL Solutions' benchmark listing, each value
+     * appearing on at least two of them. NFC, Wi-Fi and Bluetooth versions,
+     * glass protection, charger contents and the warranty term are NOT
+     * published for the Bangladesh unit, so those fields stay empty rather
+     * than guessed.
+     */
+    specSheet: {
+      basicInfo: {
+        model: 'V80',
+        brand: 'Vivo',
+        releaseDate: 'November 2026 (Bangladesh)',
+      },
+      display: {
+        type: 'AMOLED, 1.07 billion colours',
+        size: '6.59 inches',
+        resolution: '1260 x 2750 pixels (1.5K, about 459 ppi)',
+        refreshRate: '144Hz maximum',
+        protection: '',
+      },
+      performance: {
+        processor: 'Qualcomm Snapdragon 7 Gen 4 (4nm)',
+        ram: '8GB, plus up to 16GB extended RAM (software-based, borrowed from storage)',
+        storage: '128GB (UFS 3.1) / 256GB (UFS 4.1)',
+        os: 'Android 17, OriginOS 7',
+      },
+      cameraSystem: {
+        rear: '50MP main (Sony LYTIA 700V, 1/1.56", OIS) + 50MP ZEISS super telephoto (Sony IMX882, OIS, 3x optical zoom) + 8MP ultra-wide',
+        front: '50MP wide-angle (92°, autofocus)',
+        features: [
+          'Rear and front cameras both record 4K video at 60fps',
+          'Optical image stabilisation on the main and the telephoto camera',
+          '3x optical zoom, up to 100x digital zoom',
+          'ZEISS 85mm and 100mm portrait modes, plus vivo’s AI Creative Camera tools',
+        ],
+      },
+      batteryCharging: {
+        capacity: '7,200mAh typical (7,015mAh rated)',
+        charging: '90W wired FlashCharge, with bypass charging',
+      },
+      buildDesign: {
+        dimensions: '157.5 x 74.3 x 7.69 mm',
+        weight: 'about 203g',
+        materials: 'Glass front and back (vivo’s “cold-carved glass”), metal frame',
+        colors: ['Rise Orange', 'Vision Green', 'Prime Gray'],
+      },
+      connectivity: {
+        network: '5G (2G/3G/4G/5G), dual SIM with built-in eSIM support',
+        bluetooth: '',
+        ports: [
+          'USB Type-C',
+          'No memory card slot',
+          'No 3.5mm headphone jack (digital USB-C or Bluetooth earphones only)',
+        ],
+      },
+      sensors: [
+        '3D ultrasonic in-display fingerprint scanner, which vivo says unlocks with wet or oily hands',
+      ],
+      /** Every item below is named on vivo Bangladesh’s V80 page. */
+      aiFeatures: [
+        'AI Creative Camera lighting styles (Top Lighting, Fireworks, Sunlight, Glow)',
+        'AI Best Face for group portraits, plus AI Erase, AI Magic Move and AI Image Expander',
+        'Capture to Note and AI Recorder for turning photos and recordings into editable text',
+        'Security Shield for blocking scams across calls, apps and networks',
+      ],
+      notableLimitations: [
+        'Only 8GB of physical RAM — vivo’s 24GB figure is 8GB plus 16GB of extended RAM taken from storage',
+        'vivo Bangladesh lists just two configurations, 8GB/128GB and 8GB/256GB',
+        'No memory card slot, so storage is fixed at purchase',
+        'No 3.5mm headphone jack',
+        '203g and 7.69mm thick, with glass on both sides',
+      ],
+    },
+    /**
+     * ONE version, the official Bangladesh channel, carrying both priced
+     * RAM+storage labels — the price box therefore prints "8GB/128GB" / 
+     * "8GB/256GB" and follows the selection, exactly like the C85 Pro page.
+     */
+    versions: [
+      {
+        id: 'official',
+        label: 'Official (Bangladesh)',
+        shortLabel: 'Official',
+        priceChannel: 'official',
+        colorImages: [
+          {
+            color: 'Rise Orange',
+            images: [
+              '/images/products/vivo-v80/rise-orange/1.webp',
+              '/images/products/vivo-v80/rise-orange/2.webp',
+              '/images/products/vivo-v80/rise-orange/3.webp',
+              '/images/products/vivo-v80/rise-orange/4.webp',
+            ],
+          },
+          {
+            color: 'Vision Green',
+            images: [
+              '/images/products/vivo-v80/vision-green/1.webp',
+              '/images/products/vivo-v80/vision-green/2.webp',
+              '/images/products/vivo-v80/vision-green/3.webp',
+              '/images/products/vivo-v80/vision-green/4.webp',
+            ],
+          },
+          {
+            color: 'Prime Gray',
+            images: [
+              '/images/products/vivo-v80/prime-gray/1.webp',
+              '/images/products/vivo-v80/prime-gray/2.webp',
+              '/images/products/vivo-v80/prime-gray/3.webp',
+              '/images/products/vivo-v80/prime-gray/4.webp',
+            ],
+          },
+        ],
+        variants: [
+          { label: '8GB/128GB', price: 79999 },
+          { label: '8GB/256GB', price: 89999 },
+        ],
+      },
+    ],
+    defaultVersion: 'official',
+  },
 ];
 
 /** URL slug for a product title, e.g. 'HONOR Robot Phone' -> 'honor-robot-phone' */

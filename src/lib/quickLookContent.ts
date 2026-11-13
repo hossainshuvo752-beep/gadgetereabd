@@ -5125,6 +5125,217 @@ const guides: Record<string, QuickLookGuide> = {
       },
     ],
   },
+  /**
+   * Vivo V80 — an OFFICIAL Bangladesh launch (9 November 2026) with two
+   * configurations. Every figure comes from the product data or from pages
+   * opened on 14 November 2026; the two taka amounts are the owner’s, and
+   * live in the data so the guide cannot drift from the selector. This is the
+   * V80 only — the V80 Lite 5G is a different handset and nothing here
+   * describes it.
+   */
+  'vivo-v80': {
+    productName: 'Vivo V80',
+    heading:
+      'Vivo V80 Price in Bangladesh: Official Prices, Specs and Colours',
+    lead:
+      'The Vivo V80 is vivo’s V-series phone for 2026 and it launched in Bangladesh on 9 November 2026 at ৳79,999 for 8GB of RAM and 128GB of storage, or ৳89,999 for 8GB and 256GB. Both are official vivo Bangladesh prices, sold through vivo’s brand shops and authorised retailers. The hardware is a 6.59-inch 1.5K AMOLED screen at up to 144Hz, Qualcomm’s Snapdragon 7 Gen 4 on a 4nm process, a 7,200mAh battery charged at 90W, and a ZEISS-branded three-camera rear setup built around two 50MP sensors and a 3x telephoto camera, running OriginOS 7 on Android 17.',
+    summaryBn:
+      'বাংলাদেশে ভিভো ভি৮০ অফিসিয়ালি পাওয়া যায় ৳79,999 (৮জিবি/১২৮জিবি) এবং ৳89,999 (৮জিবি/২৫৬জিবি) দামে। ফোনটিতে ৬.৫৯ ইঞ্চি ১.৫K ১৪৪Hz AMOLED ডিসপ্লে, স্ন্যাপড্রাগন ৭ জেন ৪ চিপসেট, ৭,২০০mAh ব্যাটারি ও ৯০W চার্জিং, এবং ৫০ মেগাপিক্সেল মেইন + ৫০ মেগাপিক্সেল ৩x টেলিফটো + ৮ মেগাপিক্সেল আল্ট্রা-ওয়াইড ক্যামেরা আছে। ফ্রন্ট ক্যামেরা ৫০ মেগাপিক্সেল এবং বডি IP68 ও IP69 রেটেড।',
+    overview: [
+      'This page covers one phone: the Vivo V80, model number V2648. It is not the Vivo V80 Lite 5G, which vivo Bangladesh lists as a separate, cheaper handset with a different chip and battery and its own price — nothing below describes that model. What separates the V80 from the mid-range pack is the camera hardware and the battery: two 50MP sensors on the back with optical stabilisation on both, a 3x telephoto that ZEISS co-engineered, and a cell rated at 7,200mAh typical with 90W charging. The screen is a 1.5K AMOLED with a 144Hz maximum refresh rate, and the software is vivo’s OriginOS 7 on Android 17.',
+      'The body is the slimmest part of the pitch: 157.5mm tall, 74.3mm wide and 7.69mm thick, at about 203g. vivo builds it from what it calls cold-carved glass on both faces around a metal frame, and the camera island is raised out of the glass rather than bolted on. The screen unlocks through a 3D ultrasonic fingerprint scanner that vivo says reads wet or oily fingers, audio comes from a stereo pair of speakers, and haptics come from an X-axis linear motor. Dust and water protection is rated IP68 and IP69 under IEC 60529, and vivo publishes the test conditions: 1.5 metres of static fresh water for up to 30 minutes for IP68, and a rotating high-temperature, high-pressure jet for IP69. vivo also states plainly that the protection is not permanent and that liquid damage is not covered by warranty.',
+      'The display is a 6.59-inch AMOLED at 1260 x 2750 pixels — about 459 pixels per inch — with a 1.07-billion-colour panel, 1.25mm bezels and 5,000 nits of local peak brightness. Note the word local: that figure is the brightest part of the panel in a high-brightness scene, not a uniform full-screen reading, and vivo pairs it with a 1-nit minimum for night reading. Memory is 8GB of physical RAM in both configurations, with up to 16GB of extended RAM that the software borrows from storage; storage is 128GB on the base phone and 256GB on the other, and vivo promises four major Android updates plus six years of security updates from the model’s global launch.',
+    ],
+    priceSection: {
+      heading: 'Vivo V80 price in Bangladesh: two official configurations',
+      paragraphs: [
+        'vivo Bangladesh prices the V80 at ৳79,999 for 8GB RAM and 128GB of storage, and ৳89,999 for 8GB and 256GB. The ৳10,000 step buys double the storage — and a faster grade of it, since the 128GB phone uses UFS 3.1 while the 256GB phone uses UFS 4.1. RAM stays at 8GB, and the chip, screen, cameras and battery are identical in both. India also gets an 8GB/512GB version, but that is not one of the two configurations vivo sells here.',
+        'Both figures are official-channel prices, and this page quotes no other number — no retailer discount, no import price. vivo announced the phone for Bangladesh on 9 November 2026 and opened pre-orders through vivo-authorised channels ahead of that date. We have not confirmed current stock at any shop, so treat availability as something to check with the seller rather than something this page promises.',
+        'One detail worth knowing before you compare prices: vivo’s Bangladesh product page prints both figures with “+VAT” beside them, exactly as it does for every phone on that site. The amount you actually pay at a counter is the number to confirm with the seller, and the prices here were checked on 14 November 2026.',
+      ],
+    },
+    keyFacts: [
+      { term: '8GB/128GB', detail: '৳79,999' },
+      { term: '8GB/256GB', detail: '৳89,999' },
+      { term: 'Display', detail: '6.59-inch AMOLED, 1260 x 2750, 144Hz' },
+      { term: 'Chipset', detail: 'Qualcomm Snapdragon 7 Gen 4 (4nm)' },
+      { term: 'Battery and charging', detail: '7,200mAh (7,015mAh rated), 90W wired' },
+      { term: 'Rear cameras', detail: '50MP main + 50MP 3x telephoto + 8MP ultra-wide' },
+      { term: 'Front camera', detail: '50MP with autofocus, 4K60 video' },
+      { term: 'Water resistance', detail: 'IP68 and IP69 to IEC 60529' },
+      { term: 'Software', detail: 'Android 17, OriginOS 7, four OS updates' },
+    ],
+    setupCosts: {
+      heading: 'Vivo V80 price by configuration',
+      priceHeader: 'Price (BDT)',
+      rows: [
+        {
+          configuration: '8GB RAM / 128GB storage',
+          price: '৳79,999',
+          note: 'Entry configuration. Same chip, screen, cameras and battery as the 256GB phone; storage is UFS 3.1 here.',
+        },
+        {
+          configuration: '8GB RAM / 256GB storage',
+          price: '৳89,999',
+          note: 'Double the storage and the faster UFS 4.1 memory. RAM stays at 8GB.',
+        },
+      ],
+      footer:
+        'Official Bangladesh launch prices, checked 14 November 2026. All three colours — Rise Orange, Vision Green and Prime Gray — are offered with both configurations; nothing in vivo’s Bangladesh material ties a colour to one storage size.',
+    },
+    features: [
+      {
+        heading: 'Key features explained',
+        title: 'A 6.59-inch 1.5K AMOLED with a 144Hz refresh rate',
+        body:
+          'The panel measures 6.59 inches diagonally at 1260 x 2750 pixels, which vivo markets as 1.5K, and it refreshes at up to 144Hz. vivo rates it for 5,000 nits of local peak brightness, covers 1.07 billion colours, and trims the bezels to 1.25mm. The number that matters day to day is the opposite end of the scale: the display drops to 1 nit at night, which is dimmer than most phones manage and the reason it stays readable in the dark without glare. vivo does not name the glass brand on its Bangladesh page for this model, so this page does not claim one.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'A 7,200mAh battery with 90W charging and bypass charging',
+        body:
+          'The cell is rated at 7,200mAh typical and 7,015mAh minimum, which is large for a body this thin — vivo calls the chemistry BlueVolt and credits the energy density. Charging is 90W over USB-C, and vivo’s own figure is 50% in 30 minutes in fast-charging mode, with the power pulled back dynamically depending on heat and load. Bypass charging is included: with the phone plugged in, the board can run from the charger instead of the battery, so a long gaming session adds less heat. vivo also quotes 39-plus hours of local video playback from its own laboratory test, which is a lab figure rather than an everyday promise.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Two 50MP cameras, a 3x telephoto and an 8MP ultra-wide',
+        body:
+          'There are three cameras on the back. The main one is a 50MP sensor — Sony’s LYTIA 700V, 1/1.56 inches — behind a stabilised lens that vivo rates to CIPA 4.5. The second is another 50MP sensor, Sony’s IMX882 at 1/1.95 inches, in a ZEISS super telephoto with optical stabilisation, 3x optical zoom and up to 100x digital zoom. The third is an 8MP ultra-wide. vivo publishes focal-length portrait modes at 85mm and 100mm, which is the kind of framing most phones fake with cropping, and both the rear and 50MP front camera record 4K at 60fps. The software side is a set of AI tools — relighting styles, AI Best Face for group shots, AI Erase and AI Image Expander — all named on vivo’s own product page.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Snapdragon 7 Gen 4, and what 24GB of RAM actually means',
+        body:
+          'The chip is Qualcomm’s Snapdragon 7 Gen 4 on a 4nm process: one Cortex-A720 core up to 2.8GHz, four more A720 cores at 2.4GHz, three A520 cores at 1.8GHz and Adreno 722 graphics. It is a mid-range part, so expect smooth everyday use and steady frame rates in popular games rather than flagship numbers. vivo advertises 24GB of memory, and it spells out in its own footnote what that is: 8GB of physical RAM plus 16GB of extended RAM realised in software from storage. Only the 8GB is memory chips, so judge the phone on 8GB.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'IP68 and IP69, an ultrasonic reader and OriginOS 7',
+        body:
+          'Dust and water protection is rated IP68 and IP69 to IEC 60529, and vivo publishes the tests behind both: submersion in 1.5 metres of static fresh water for up to 30 minutes, and a high-pressure jet at 80°C from four angles. Those are laboratory conditions, the seals degrade with drops and age, and vivo excludes liquid damage from warranty. Elsewhere the phone has a 3D ultrasonic fingerprint reader under the display, stereo speakers, an X-axis haptic motor and built-in eSIM support alongside the physical SIM. What it does not have is a memory card slot or a 3.5mm headphone jack — vivo states the phone works with digital USB-C or Bluetooth earphones only.',
+      },
+    ],
+    buyers: {
+      heading: 'Who should buy the Vivo V80 — and who should skip it',
+      should: [
+        'Portrait and zoom shooters: a stabilised 3x telephoto at this price is rare, and the 85mm and 100mm portrait modes use it properly.',
+        'People who want a genuinely large battery — 7,200mAh is bigger than most phones in this segment carry.',
+        'Buyers who want both IP68 and IP69 ratings rather than just one.',
+        'Anyone who wants an official Bangladesh unit with vivo’s own channel behind it instead of an import.',
+        'Buyers who prefer a 6.59-inch screen to the 6.7- and 6.8-inch slabs around it.',
+      ],
+      skip: [
+        'Gamers who want flagship silicon: the Snapdragon 7 Gen 4 is a mid-range chip.',
+        'Anyone who needs more than 8GB of physical RAM — no 12GB version is sold in Bangladesh.',
+        'People who keep a large local library: there is no memory card slot and the base phone is 128GB.',
+        'Buyers who still use wired 3.5mm headphones; there is no jack.',
+        'Anyone who wants the lightest phone available — 203g with glass on both sides is not light.',
+      ],
+    },
+    pros: {
+      heading: 'Pros and cons',
+      pros: [
+        'Two 50MP rear cameras with OIS, including a 3x ZEISS telephoto',
+        '7,200mAh battery with 90W wired charging and bypass charging',
+        '6.59-inch 1.5K AMOLED at 144Hz with 5,000 nits of local peak brightness',
+        'IP68 and IP69 ratings, with vivo publishing the test conditions',
+        'Four major Android updates and six years of security updates promised',
+        'Official Bangladesh prices, so no import, IMEI or grey-market guesswork',
+      ],
+      cons: [
+        '8GB of physical RAM in both configurations, with no 12GB option',
+        'Mid-range Snapdragon 7 Gen 4 rather than a flagship chip',
+        'No memory card slot and no 3.5mm headphone jack',
+        '203g, with glass on the front and the back',
+        'The ৳10,000 step to 256GB is steep when RAM does not change',
+        'vivo Bangladesh publishes no warranty term for this model, so the seller’s terms are what you get',
+      ],
+    },
+    buyingTips: {
+      heading: 'Buying notes for Bangladesh',
+      paragraphs: [
+        'Buy from vivo’s own channel — a vivo brand shop or an authorised retailer — rather than a marketplace listing that only borrows vivo’s photos. Ask for an invoice that names the model, the exact configuration and the colour, and keep the box. vivo’s Bangladesh page for the V80 does not publish a warranty term, so ask the seller what the warranty is, who honours it and for how long, and get that in writing on the invoice rather than relying on what a listing implies.',
+        'Check the IMEI before you pay and again after you set the phone up. Dial *#06# to read it on the handset, compare it with the number printed on the box and the invoice, and check its status on BTRC’s National Equipment Identity Register at neir.btrc.gov.bd. Registration rules and deadlines for handsets have changed more than once, so follow the portal’s current instructions rather than an old forum post.',
+        'Three practical checks on the unit itself: confirm there is no memory card slot if you were planning to expand storage, since the 128GB model fills up quickly with video; confirm that your operator supports eSIM if you intend to use the built-in eSIM alongside a physical SIM; and remember that the listed prices carry “+VAT” on vivo’s page, so agree the final amount with the seller before you hand over money. Try the ultrasonic fingerprint reader and the stereo speakers on the demo unit while you are there.',
+      ],
+    },
+    sourcesChecked:
+      'Specs checked against vivo Bangladesh’s Vivo V80 product page and its published footnotes, GSMArena’s Vivo V80 specification page and its launch coverage, 91mobiles’ Vivo V80 specification sheet and UL Solutions’ benchmark listing, all opened on 14 November 2026, with MobileDokan’s Bangladesh launch coverage used as a check on the 9 November launch date, the colour names and the two configuration prices. Prices checked the same day on vivo Bangladesh’s product page. No review unit was tested for this page.',
+    faqs: [
+      {
+        question: 'What is the Vivo V80 price in Bangladesh?',
+        answer:
+          '৳79,999 for 8GB/128GB and ৳89,999 for 8GB/256GB — the official Bangladesh launch prices, checked on 14 November 2026. vivo’s product page lists both with “+VAT” beside them, the way it lists every phone on that site, so confirm the final amount with the seller.',
+      },
+      {
+        question: 'What is the difference between the two Vivo V80 configurations?',
+        answer:
+          'Storage only: 128GB of UFS 3.1 in the ৳79,999 phone, or 256GB of UFS 4.1 in the ৳89,999 one. Both have 8GB of RAM, the Snapdragon 7 Gen 4, the 6.59-inch 144Hz AMOLED screen, the same three rear cameras and the same 7,200mAh battery.',
+      },
+      {
+        question: 'Is the Vivo V80 the same phone as the Vivo V80 Lite 5G?',
+        answer:
+          'No. vivo Bangladesh sells the Vivo V80 Lite 5G as a separate, cheaper handset with a different chip and battery, and it carries its own price. This page describes the Vivo V80 only, and none of its specifications apply to the Lite.',
+      },
+      {
+        question: 'Is the Vivo V80 a 5G phone?',
+        answer:
+          'Yes. It supports 5G alongside 2G, 3G and 4G, with dual SIM and a built-in eSIM in addition to the physical SIM slot.',
+      },
+      {
+        question: 'What are the Vivo V80 display, chipset and battery specifications?',
+        answer:
+          'A 6.59-inch AMOLED at 1260 x 2750 pixels with a 144Hz maximum refresh rate and 5,000 nits of local peak brightness; a Qualcomm Snapdragon 7 Gen 4 built on a 4nm process with Adreno 722 graphics and 8GB of RAM; and a 7,200mAh typical battery (7,015mAh rated) charged at 90W wired, with bypass charging.',
+      },
+      {
+        question: 'What cameras does the Vivo V80 have?',
+        answer:
+          'Three on the back: a 50MP main camera on a Sony LYTIA 700V sensor with OIS, a 50MP ZEISS super telephoto on a Sony IMX882 sensor with OIS and 3x optical zoom, and an 8MP ultra-wide. The front camera is 50MP with autofocus and a 92-degree field of view, and both sides record 4K video at 60fps.',
+      },
+      {
+        question: 'Is the Vivo V80 water resistant?',
+        answer:
+          'vivo rates it IP68 and IP69 under IEC 60529. The IP68 test is 1.5 metres of static fresh water for up to 30 minutes; the IP69 test is a high-temperature, high-pressure water jet. vivo states the protection is not permanent and that liquid damage is not covered by warranty, so the ratings are a safety margin rather than permission to take the phone swimming.',
+      },
+      {
+        question: 'Does the Vivo V80 have a memory card slot or a headphone jack?',
+        answer:
+          'Neither. Storage is fixed at purchase — 128GB or 256GB — and there is no 3.5mm jack. vivo says the phone supports Bluetooth and digital USB-C earphones only, so wired 3.5mm headphones need a USB-C adapter with its own digital-to-analog converter.',
+      },
+      {
+        question: 'How much RAM does the Vivo V80 have?',
+        answer:
+          '8GB of physical RAM in both configurations. vivo advertises 24GB, which its own footnote explains as 8GB of RAM plus 16GB of extended RAM that the software borrows from storage; the extended part is not memory chips and does not speed up the phone the way real RAM does.',
+      },
+      {
+        question: 'ভিভো ভি৮০-এর দাম কত?',
+        answer:
+          'বাংলাদেশে ভিভো ভি৮০-এর অফিসিয়াল দাম ৳79,999 (৮জিবি/১২৮জিবি) এবং ৳89,999 (৮জিবি/২৫৬জিবি)। ফোনটিতে ৬.৫৯ ইঞ্চি ১.৫K ১৪৪Hz AMOLED ডিসপ্লে, স্ন্যাপড্রাগন ৭ জেন ৪ চিপসেট, ৭,২০০mAh ব্যাটারি ও ৯০W চার্জিং, ৫০ মেগাপিক্সেল মেইন + ৫০ মেগাপিক্সেল ৩x টেলিফটো + ৮ মেগাপিক্সেল আল্ট্রা-ওয়াইড ক্যামেরা এবং ৫০ মেগাপিক্সেল ফ্রন্ট ক্যামেরা আছে।',
+      },
+    ],
+    links: [
+      {
+        label: 'Vivo V80 — Shop listing',
+        description: 'The same phone in our shop catalogue, with both official prices',
+        href: '/shop/vivo-v80',
+      },
+      {
+        label: 'Vivo X300 Pro — Quick Look',
+        description: 'vivo’s camera flagship, if the imaging system is what matters most',
+        href: '/quick-look/vivo-x300-pro',
+      },
+      {
+        label: 'Xiaomi Redmi Note 17 Pro — Quick Look',
+        description: 'Another 2026 launch with a big battery and a 1.5K screen',
+        href: '/quick-look/xiaomi-redmi-note-17-pro',
+      },
+      {
+        label: 'All Quick Look price pages',
+        description: 'Every phone and gadget we have checked, with its sources',
+        href: '/quick-look',
+      },
+    ],
+  },
 };
 /** Long-form guide for a product slug, or undefined when none is written yet. */
 export function getQuickLookContent(slug: string): QuickLookGuide | undefined {
