@@ -590,15 +590,15 @@ export const posts: Post[] = [
     metaTitle: 'Apple HomeView: US Price, Release Date & Bangladesh Status',
     metaTitleAbsolute: true,
     metaDescription:
-      'Apple HomeView is a $299 smart display with a 7-inch screen and Siri AI, shipping November 13. Specs, colors, mounts and Bangladesh status.',
+      'Apple HomeView went on sale on 13 November at $299. What it does, what it cannot do yet, and why Bangladesh still has no official price.',
     metaKeywords:
       'apple homeview, apple homeview price, apple homeview release date, apple homeview bangladesh, apple smart display, siri ai, apple home',
     excerpt:
-      "Apple's first smart home display starts at $299 and ships from November 13. Here are the price, colors, wall mounts and what we know about Bangladesh.",
+      "Apple's first smart home display went on sale on 13 November at $299. Here are the price, colors, wall mounts, launch limits and where Bangladesh stands.",
     category: 'Explainer',
     author: 'Jupiter BD Team',
     date: 'Oct 19, 2026',
-    updated: 'Oct 19, 2026',
+    updated: 'Nov 14, 2026',
     readTime: '6 min read',
     views: 1100,
     imageAlt: 'Render of the Apple HomeView on a sideboard and mounted on a wall',
@@ -632,13 +632,15 @@ export const posts: Post[] = [
       },
     ],
     content: `
-      <p>Apple HomeView is Apple's first dedicated smart home display. It has a 7-inch square screen, starts at $299 and begins arriving on November 13, 2026. It is built around Siri AI and works as a control screen for your home, a video-call screen and a music speaker. Apple announced it on October 13 at its &ldquo;Welcome Home&rdquo; event, and pre-orders opened the same day.</p>
+      <p><strong>Updated 14 November 2026:</strong> Apple HomeView went on sale on 13 November 2026, a month after pre-orders opened. The first reviews landed the day before launch, and the device is now shipping in eight markets — but not in Bangladesh, and not in the EU.</p>
+
+      <p>Apple HomeView is Apple's first dedicated smart home display. It has a 7-inch square screen, costs $299 in the US and £299 in the UK, and is built around Siri AI as a control screen for your home, a video-call screen and a music speaker. Apple announced it on October 13 at its &ldquo;Welcome Home&rdquo; event, and pre-orders opened the same day.</p>
 
       <h2>What Is Apple HomeView?</h2>
       <p>HomeView is a smart display with a 7-inch Liquid Retina screen. It comes in two versions: a tabletop version with a built-in speaker base, and a wall-mounted version. Apple presents it as a hub for controlling the home, making FaceTime calls and playing media. It was announced together with a new Apple TV 4K and HomePod mini 2, so it is one part of a wider smart home push. Pricing and dates for those two products are not covered here, so check Apple's site for them.</p>
 
       <h2>Apple HomeView Price and Release Date</h2>
-      <p>Both versions start at $299. Pre-orders are open now and the first deliveries begin on November 13. Apple says availability starts in select markets. These are US dollar prices from Apple's announcement; prices in other countries will differ.</p>
+      <p>Both versions cost $299 in the US and £299 in the UK, and both went on sale on 13 November 2026. Prices are before tax. Apple's stores in the other launch markets list their own local prices — India at ₹39,900 and Singapore at S$399, for example — so a dollar figure from this article will not match a receipt in those countries.</p>
       <h3>Wall Mount Cost</h3>
       <p>The wall-mounted version needs a separate mount from Schneider Home:</p>
       <ul>
@@ -652,11 +654,11 @@ export const posts: Post[] = [
         <figcaption>Render based on Apple’s announced design, not a photograph.</figcaption>
       </figure>
 
-      <h2>Is Apple HomeView Coming to Bangladesh?</h2>
-      <p>Apple has not announced a Bangladesh release date or price, and Bangladesh has not been named as a launch market. Availability starts in select markets only. Any unit sold in Bangladesh before an official launch would be an unofficial import, which can mean no Apple warranty or local support, and a US-market power adapter would need checking for plug and voltage compatibility. We will update this post when Apple announces more. We do not convert the US prices into taka, because import costs and shop margins would change the real price.</p>
+      <h2>Is Apple HomeView Available in Bangladesh?</h2>
+      <p>No. HomeView went on sale on 13 November 2026 in eight markets, and Bangladesh is not one of them. Apple has never announced a local price, release date or warranty for it. Any unit sold here is an unofficial import, which can mean no Apple warranty or local support, and a unit sourced from the US, Australia or the UK may arrive with a plug this country does not use. We will update this post if Apple announces a Bangladesh launch. We do not convert the US price into taka, because import costs and shop margins would change the real price.</p>
 
       <h2>Colors</h2>
-      <p>The tabletop version comes in silver, starlight, rose pink and space gray. The wall-mounted version comes in space gray and silver only. Apple lists no price difference between colors in the announcement we read, so confirm on the Apple Store page before ordering.</p>
+      <p>The tabletop version comes in silver, starlight, rose pink and space gray. The wall-mounted version comes in space gray and silver only. Apple lists no price difference between colors, so the finish you want should not cost more than another.</p>
       <figure>
         <img src="/images/posts/apple-homeview-price-release-date-features/colors.webp" alt="Render of four Apple HomeView units in silver, starlight, rose pink and space gray" width="1376" height="768" loading="lazy" decoding="async">
         <figcaption>Render based on Apple’s announced design, not a photograph.</figcaption>
@@ -687,8 +689,12 @@ export const posts: Post[] = [
       <h2>Smart Home Features</h2>
       <p>HomeView supports Matter and AirPlay, and it can sync across rooms. The Home Camera face can show up to nine live video feeds at once. Apple also announced an Apple Home Collection of accessories made with LG and Schneider. Earlier reports said the LG products would take at least a few months to arrive, and we have not confirmed their prices or dates, so check each product before planning a setup around it.</p>
 
+      <h2>What HomeView Still Cannot Do</h2>
+      <p>Launch reviews agree on the hardware and disagree about the software. There is no App Store, so you cannot install anything on the display. The apps you get are a fixed set of Apple ones — Home, Music, Safari, FaceTime, Calendar, Podcasts, Messages, Intercom, Weather, Find My, Reminders, Timers, Alarms, World Clock, Audiobooks, News, TV and Settings — plus third-party audio and video apps that already support CarPlay, such as Spotify and the Apple TV app.</p>
+      <p>The gaps are the services people ask about first. Netflix, YouTube and Disney+ had no native app at launch, so Safari is the only route to them, and Safari on a square 7-inch screen is a compromise rather than a replacement for a tablet. Siri AI also shipped in beta in HomeView software version 27.2, and Apple says some server-side Apple Intelligence features carry daily usage limits, with paid expanded access planned for the future.</p>
+
       <h2>Not Available in the EU</h2>
-      <p>HomeView will not launch in the European Union at first, because Siri AI is not available there. Availability elsewhere starts in select markets.</p>
+      <p>HomeView is not sold in the European Union, and it did not launch there on 13 November. Apple blames Siri AI: it says the assistant is currently unavailable in iOS in the EU and that it is working with the EU to find a path forward. No EU date has been given.</p>
 
       <h2>Who Should Buy Apple HomeView?</h2>
       <h3>It suits you if</h3>
@@ -702,25 +708,26 @@ export const posts: Post[] = [
         <li>You live in the EU.</li>
         <li>You want to wall-mount it and have not counted the cost of the mount.</li>
         <li>You want the LG accessories, which arrive later.</li>
-        <li>You need specific third-party apps. Earlier reports said HomeView would run Apple apps without an App Store, so confirm what it supports on Apple's page.</li>
-        <li>You are in Bangladesh and need an official warranty: there is no official launch yet.</li>
+        <li>You need Netflix, YouTube, Disney+ or any other service without a CarPlay app: there is no App Store, and Safari is the fallback.</li>
+        <li>You want a finished assistant: Siri AI on HomeView is still a beta, with usage limits on the server-side features.</li>
+        <li>You are in Bangladesh: Apple sells HomeView in eight markets, and none of them is this one.</li>
       </ul>
     `,
     faqs: [
       {
         question: 'How much does Apple HomeView cost?',
         answer:
-          'It starts at $299 for both the tabletop and wall-mounted versions. Wall mounts are sold separately, from $59.95.',
+          'Both versions cost $299 in the US and £299 in the UK. Wall mounts are sold separately, from $59.95.',
       },
       {
         question: 'When does Apple HomeView come out?',
         answer:
-          'Pre-orders are open now and deliveries begin on November 13, 2026.',
+          'It is out. Apple opened pre-orders on 13 October 2026 and HomeView went on sale on 13 November 2026 in the US, UK, Australia, Canada, India, New Zealand, Singapore and, through Apple Authorized Resellers, South Africa.',
       },
       {
         question: 'Will Apple HomeView be available in Bangladesh?',
         answer:
-          'Apple has not announced a Bangladesh release date or price. Availability starts in select markets. A unit sold in Bangladesh before an official launch would be an unofficial import, which can mean no Apple warranty.',
+          'No Bangladesh launch has been announced. Apple sells HomeView in eight markets and Bangladesh is not one of them, and it has never published a local price or release date. A unit sold here is an unofficial import, which can mean no Apple warranty.',
       },
       {
         question: 'How big is the Apple HomeView screen?',
@@ -735,7 +742,7 @@ export const posts: Post[] = [
       {
         question: 'Is Apple HomeView available in Europe?',
         answer:
-          'Not at launch, because Siri AI is not available in the EU.',
+          'No. It did not launch in the EU on 13 November, because Siri AI is not available there, and Apple has given no European date.',
       },
       {
         question: 'Does HomeView work with Matter devices?',
@@ -745,7 +752,12 @@ export const posts: Post[] = [
       {
         question: 'Do I need an iPhone to use Siri AI on HomeView?',
         answer:
-          'To get personal context you need an iPhone or iPad that supports Apple Intelligence. Without one, Siri AI is limited to world knowledge and music discovery.',
+          'You need one for setup: HomeView setup and multiuser support require a compatible iPhone or iPad running iOS or iPadOS 27.2 or later. Personal context also needs an Apple Intelligence-capable device; without one, Siri AI is limited to world knowledge and music discovery.',
+      },
+      {
+        question: 'Does Apple HomeView have an App Store?',
+        answer:
+          'No. There is no App Store on HomeView, so nothing can be installed on it. Apps are a fixed set of Apple apps plus third-party audio and video apps that support CarPlay; Netflix, YouTube and Disney+ had no native app at launch.',
       },
     ],
   },

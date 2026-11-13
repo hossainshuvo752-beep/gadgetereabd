@@ -89,9 +89,10 @@ export function buildSitemapEntries(): MetadataRoute.Sitemap {
   });
 
   const postRoutes: MetadataRoute.Sitemap = posts.map((post) => {
-    // post.date is a display string like "Sep 27, 2026" — parse it for
-    // lastModified; fall back to today if it ever fails to parse.
-    const parsed = new Date(post.date);
+    // post.updated (when the post has been materially revised) is the real
+    // last change; otherwise the published date. Both are display strings
+    // like "Sep 27, 2026" — parse, and fall back to today if parsing fails.
+    const parsed = new Date(post.updated ?? post.date);
     return {
       url: `${SITE_URL}${postHref(post)}`,
       lastModified: Number.isNaN(parsed.getTime()) ? new Date() : parsed,
@@ -101,7 +102,9 @@ export function buildSitemapEntries(): MetadataRoute.Sitemap {
   });
 
   const productRoutes: MetadataRoute.Sitemap = products.flatMap((product) => {
-    const added = new Date(product.dateAdded);
+    // A substantive data revision moves lastmod even though dateAdded stays
+    // put (dateAdded also sorts New Arrivals, so it must not be rewritten).
+    const added = new Date(product.updatedAt ?? product.dateAdded);
     const lastModified = Number.isNaN(added.getTime()) ? new Date() : added;
     const quickLook = {
       url: `${SITE_URL}/quick-look/${slugify(product.title)}`,

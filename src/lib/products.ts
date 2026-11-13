@@ -189,6 +189,11 @@ export interface Product {
    *  the New Arrivals page sorts on this automatically (newest first).
    *  No manual "add to new arrivals" step exists or should exist. */
   dateAdded: string;
+  /** OPTIONAL last material-update date (ISO YYYY-MM-DD). dateAdded stays
+   *  the New Arrivals sort key; this only moves the page's sitemap lastmod
+   *  when an existing product's data is substantively revised (the Apple
+   *  HomeView launch update, for example). Absent = dateAdded, as today. */
+  updatedAt?: string;
   /** True only for products with a genuine current discount
    *  (price < oldPrice). The Deals page reads this flag from the shared
    *  data — it keeps no product list of its own. Optional; omitted means
@@ -2262,7 +2267,7 @@ export const products: Product[] = [
     galleryNote:
       'Images are renders based on Apple\'s announced design, not photographs.',
     priceDisplayNote:
-      'No Bangladesh price yet — Apple lists a US launch price of $299 for both versions (announced October 13, 2026, before tax and shipping).',
+      'No Bangladesh price yet — HomeView launched on 13 November 2026; Apple\'s US price is $299 for both versions, before tax and shipping.',
     /** No offers, rating or review exist for this product, so a Product node
      *  would be incomplete — opt out and keep the page's FAQPage only. */
     noProductSchema: true,
@@ -2272,6 +2277,7 @@ export const products: Product[] = [
     ogImage: '/og/apple-homeview-smart-display-20261018.png',
     views: 1200,
     dateAdded: '2026-10-18',
+    updatedAt: '2026-11-14',
     price: null,
     priceStatus: 'not-launched',
     oldPrice: null,
@@ -2282,12 +2288,12 @@ export const products: Product[] = [
     purchaseMode: 'free-order',
     status: 'upcoming',
     priceNote:
-      'Apple has not announced a Bangladesh price or release date. Apple announced a US launch price of $299 for both versions on October 13, 2026, with pre-orders open and availability from November 13, 2026 in the US, Australia, Canada, India, New Zealand, Singapore, South Africa and the UK.',
+      'No Bangladesh price exists: Apple has never announced one, and Bangladesh is not in HomeView\'s market list or Apple\'s Siri AI language list. HomeView launched on 13 November 2026 at $299 in the US and £299 in the UK for both versions (Apple Newsroom, 13 Nov 2026); the other launch markets are Australia, Canada, India, New Zealand, Singapore and, through Apple Authorized Resellers, South Africa.',
     specSheet: {
       basicInfo: {
         model: 'HomeView',
         brand: 'Apple',
-        releaseDate: 'Nov 2026',
+        releaseDate: 'Nov 13, 2026',
       },
       display: {
         type: 'Liquid Retina (LED-backlit IPS, square)',
@@ -2300,7 +2306,7 @@ export const products: Product[] = [
         processor: 'A18 chip',
         ram: 'Not listed by Apple',
         storage: 'Not listed by Apple',
-        os: 'Not named by Apple — requires iOS 27.2 or iPadOS 27.2 or later on a paired iPhone or iPad',
+        os: 'HomeView software (version 27.2 at launch) — setup needs a paired iPhone or iPad on iOS or iPadOS 27.2 or later',
       },
       cameraSystem: {
         // A smart display has no rear camera — 'None' is the catalog's
@@ -2342,10 +2348,13 @@ export const products: Product[] = [
         'Siri AI music discovery',
         'Faces including Photos, Flow and Snoopy',
         'Home Camera face showing up to nine video feeds at once',
+        'Siri AI shipped in beta in HomeView software version 27.2',
       ],
       notableLimitations: [
-        'Not announced for Bangladesh — no local price, release date or launch market',
+        'Not sold in Bangladesh — Apple lists no local price, date or warranty, so every unit here is an import',
+        'No App Store: third-party apps are limited to CarPlay-based audio and video apps, and the major streaming services had no native app at launch',
         'Not available for sale in the European Union, because Siri AI is unavailable in iOS there',
+        'Server-side Apple Intelligence features are subject to daily usage limits, with paid expanded access announced for the future',
         'Wall-mounted version ships without a mount, USB-C cable or power adapter',
         'Personal context needs an Apple Intelligence-enabled iPhone or iPad — without one, Siri AI is limited to world knowledge and music discovery',
         'Power Mount PoE Wired arrives only in early 2027',
