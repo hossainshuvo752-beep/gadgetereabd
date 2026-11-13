@@ -75,6 +75,10 @@ interface ProductSeoCopy {
    *  ends "In stock, fast delivery", which an unofficial-import product with
    *  no confirmed stock must not say. Absent = the generated Shop copy. */
   shopDescriptionOverride?: string;
+  /** Exact Shop-route <title> (brand suffix included) for a product whose
+   *  shared title would claim "Buy Online in Bangladesh" while it is not
+   *  sold here — the Apple HomeView. Absent = the shared template. */
+  shopTitleOverride?: string;
 }
 
 const seoCopy: Record<string, ProductSeoCopy> = {
@@ -87,6 +91,7 @@ const seoCopy: Record<string, ProductSeoCopy> = {
    *  the Apple pages listed in the guide's "sources checked" line. */
   'apple-homeview-smart-display': {
     shopSpecs: 'US and UK price, setup costs, and availability',
+    shopTitleOverride: 'Apple HomeView: Price, Specs & Availability | Jupiter BD',
     quickLookSpecs: 'US and UK price, setup costs, and Bangladesh availability',
     titleOverride: 'Apple HomeView: Price, Specs & Bangladesh Availability',
     descriptionOverride:
@@ -457,8 +462,12 @@ function priceWithStatus(product: Product): string {
   }
 }
 
-/** Shop title template: "{Product} — Buy Online in Bangladesh | Jupiter BD" */
+/** Shop title template: "{Product} — Buy Online in Bangladesh | Jupiter BD".
+ *  A product nobody can buy in Bangladesh (the Apple HomeView) must not use
+ *  that claim, so a per-product exact title can replace it. */
 export function shopSeoTitle(product: Product): string {
+  const copy = seoCopy[slugOf(product)];
+  if (copy?.shopTitleOverride) return copy.shopTitleOverride;
   return `${product.title} — Buy Online in Bangladesh | ${BRAND_NAME}`;
 }
 
