@@ -87,6 +87,20 @@ export type Post = {
   relatedProducts?: string[];
 };
 
+/**
+ * ISO calendar date (YYYY-MM-DD) from a parsed display date, using the LOCAL
+ * date parts. `toISOString()` on a date parsed from "Nov 20, 2026" returns
+ * Nov 19 when the build machine sits at a positive UTC offset (Bangladesh is
+ * UTC+6) — which is how schema/sitemap dates silently shifted a day. This
+ * keeps the date the post actually shows, on every build machine.
+ */
+export function isoCalendarDate(date: Date): string {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(
+    2,
+    '0'
+  )}-${String(date.getDate()).padStart(2, '0')}`;
+}
+
 /** Canonical href builder for a post — slug when available, numeric id for
  *  legacy posts. ALL internal links + sitemap + schema go through this. */
 export function postHref(post: Pick<Post, 'id' | 'slug'>): string {
@@ -1556,6 +1570,224 @@ export const posts: Post[] = [
       {
         question: "What's the best budget laptop for programming students in Bangladesh?",
         answer: 'The ASUS Vivobook Go 15 and Lenovo ThinkPad E14 are strong budget-friendly picks that handle typical coursework, web development, and scripting comfortably.',
+      },
+    ],
+  },
+
+  {
+    // FIRST post in the new 'Cars' category (added 2026-11-20 with its badge
+    // token + blog chip). Appended at the END of the array on purpose: the
+    // array's first item is the homepage Hero feature and no other page's
+    // featured slot is changed by a new post. It still reaches the Home
+    // Latest Posts grid (top 8 by the simulated views metric) and the /blog
+    // grid (most-viewed sort).
+    //
+    // Comparison, NOT a review: nobody drove these cars, and the body says
+    // so. No relatedProducts / mentions: the four car Quick Look pages do
+    // not exist yet, so a product link here would 404 (see memory.md
+    // pending note). No prices in schema: the figures are approximate
+    // dealer ranges, not confirmed store offers.
+    id: 14,
+    title:
+      'From Aqua to Land Cruiser V8: Four Toyotas Compared for Bangladeshi Buyers',
+    slug: 'four-toyotas-compared-aqua-to-land-cruiser-v8-bangladesh',
+    // Owner-supplied exact meta title (62 chars, including the brand).
+    // Documented in check-seo-metadata.js: it is a comparison-query title,
+    // so it carries neither the automatic " | Jupiter BD" suffix (rendered
+    // absolute) nor the word "Bangladesh".
+    metaTitle: 'Aqua vs Corolla Cross vs Prado vs Land Cruiser V8 | Jupiter BD',
+    metaTitleAbsolute: true,
+    metaDescription:
+      'Toyota Aqua, Corolla Cross, Land Cruiser Prado and Land Cruiser V8 compared for Bangladeshi buyers: price ranges, pros, cons and who should buy each.',
+    metaKeywords:
+      'toyota aqua vs corolla cross, land cruiser prado vs land cruiser v8, toyota price in bangladesh, toyota aqua price in bangladesh, toyota corolla cross price in bangladesh, land cruiser prado price in bangladesh, land cruiser v8 price in bangladesh, best toyota to buy in bangladesh',
+    excerpt:
+      'Four Toyotas, four budgets: from a hybrid hatchback to a full-size V8 SUV. Here are the price ranges, pros, cons and who each one suits.',
+    category: 'Cars',
+    author: 'Jupiter BD Team',
+    date: 'Nov 20, 2026',
+    // Published and last modified on the same day; the post page renders the
+    // "Last updated" line from this field and the Article schema emits
+    // dateModified from it (both ISO-derived).
+    updated: 'Nov 20, 2026',
+    readTime: '7 min read',
+    // Simulated popularity metric (the same dummy metric every post carries).
+    views: 1200,
+    imageAlt:
+      'Four Toyotas: red Aqua, gold Prado, red Corolla Cross and black Land Cruiser',
+    heroImage:
+      '/images/posts/four-toyotas-compared-aqua-to-land-cruiser-v8-bangladesh/hero.webp',
+    inlineAltOverrides: [
+      {
+        src: 'four-toyotas-compared-aqua-to-land-cruiser-v8-bangladesh/toyota-aqua.webp',
+        alt: 'Red Toyota Aqua hatchback parked beside a calm bay',
+      },
+      {
+        src: 'four-toyotas-compared-aqua-to-land-cruiser-v8-bangladesh/toyota-corolla-cross.webp',
+        alt: 'Red Toyota Corolla Cross SUV with black wheels on a residential street',
+      },
+      {
+        src: 'four-toyotas-compared-aqua-to-land-cruiser-v8-bangladesh/toyota-land-cruiser-prado.webp',
+        alt: 'Gold Toyota Land Cruiser Prado on rocky terrain with sandstone cliffs',
+      },
+      {
+        src: 'four-toyotas-compared-aqua-to-land-cruiser-v8-bangladesh/toyota-land-cruiser-v8.webp',
+        alt: 'Black Toyota Land Cruiser V8 on a gravel road with mountains behind',
+      },
+    ],
+    content: `
+      <p>Toyota is the most popular car brand on Bangladeshi roads, and it covers almost every budget. BRTA data reported in October 2025 showed that Toyota had topped SUV registrations since 2020, with more than 23,000 units. In this guide we compare four Toyotas that sit at four very different price points: the Toyota Aqua, the Toyota Corolla Cross, the Toyota Land Cruiser Prado and the Toyota Land Cruiser V8. Together they span roughly ৳10 lakh to about ৳1.9 crore.</p>
+
+      <p>We have not driven these cars. This comparison is based on dealer price listings, published specifications and Bangladesh market reports, so our comments describe what the numbers suggest, not our own road tests. Prices are approximate ranges from dealer listings checked in November 2026, and they change with model year, grade, mileage and taxes.</p>
+
+      <p>The photos in this guide are for illustration. The Prado pictured is the latest-generation model, while the Prado prices below are for 2015–2021 units, which look different.</p>
+
+      <h2>Toyota Aqua vs Corolla Cross vs Prado vs Land Cruiser V8: Price Overview</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Car</th><th>Typical price in Bangladesh</th><th>Engine and fuel</th><th>Seats</th><th>Best for</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Toyota Aqua</td><td>About ৳9–16 lakh for older units; ৳19–28 lakh for 2021–2022 reconditioned cars</td><td>1.5L full hybrid</td><td>5</td><td>First-time buyers, city commuting</td></tr>
+            <tr><td>Toyota Corolla Cross</td><td>About ৳41–50 lakh (2021–2023 reconditioned hybrid)</td><td>1.8L hybrid</td><td>5</td><td>Small families who want an SUV</td></tr>
+            <tr><td>Toyota Land Cruiser Prado</td><td>About ৳1–1.45 crore (2015–2021 units; TX L asks more)</td><td>2.7L petrol; 2.8L diesel is rare</td><td>5 or 7</td><td>Large families, rough roads</td></tr>
+            <tr><td>Toyota Land Cruiser V8</td><td>About ৳1.5–1.9 crore (2015–2016 used units)</td><td>4.5L V8 diesel</td><td>7–8</td><td>Maximum size, comfort and presence</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Prices are rounded ranges from dealer listings checked in November 2026. Older cars cost less and newer or better-equipped cars cost more, so treat each range as a guide and confirm the price with the seller.</p>
+
+      <h2>Toyota Aqua: The Budget Hybrid for City Driving</h2>
+      <figure>
+        <img src="/images/posts/four-toyotas-compared-aqua-to-land-cruiser-v8-bangladesh/toyota-aqua.webp" alt="Red Toyota Aqua hatchback parked beside a calm bay" width="1376" height="768" loading="lazy" decoding="async">
+      </figure>
+      <p>The Aqua is a compact full-hybrid hatchback with a 1.5-litre petrol engine. Dealers quote real-world fuel economy of roughly 20–25 km/l, which is why it is popular with ride-share drivers and city commuters. Parts are easy to find and running costs are low.</p>
+      <p>Price is the catch, because sources disagree. Listings start around ৳9 lakh for 2012–2015 cars; 2017–2018 units sit around ৳15–16.5 lakh, and a 2021–2022 reconditioned Aqua is listed at ৳19–28 lakh. Ground clearance is low — about 140 mm for the two-wheel-drive version, according to Toyota's dimensions — so the Aqua suits city roads better than broken rural ones.</p>
+
+      <h3>Toyota Aqua pros and cons</h3>
+      <p><strong>Pros</strong></p>
+      <ul>
+        <li>Excellent fuel economy for the price</li>
+        <li>Low running and maintenance costs</li>
+        <li>Easy to park and drive in Dhaka traffic</li>
+        <li>The cheapest way into a Toyota hybrid</li>
+      </ul>
+      <p><strong>Cons</strong></p>
+      <ul>
+        <li>Limited rear and boot space for large families</li>
+        <li>Low ground clearance</li>
+        <li>Older units may have an ageing hybrid battery, so ask for a battery health check</li>
+        <li>Prices vary widely between sellers</li>
+      </ul>
+
+      <h2>Toyota Corolla Cross: The Popular Family Hybrid SUV</h2>
+      <figure>
+        <img src="/images/posts/four-toyotas-compared-aqua-to-land-cruiser-v8-bangladesh/toyota-corolla-cross.webp" alt="Red Toyota Corolla Cross SUV with black wheels on a residential street" width="1376" height="768" loading="lazy" decoding="async">
+      </figure>
+      <p>The Corolla Cross is a compact SUV with a 1.8-litre hybrid powertrain. A dealer executive told Prothom Alo in October 2025 that it is the top seller among reconditioned cars, with nearly half the market share. Units from 2021 to 2023 are listed at roughly ৳41–50 lakh; a 2025 model asks more than ৳54 lakh.</p>
+      <p>The closest rival is the Honda Vezel Hybrid, with 2021–2022 e:HEV listings mostly in the low-to-mid ৳40 lakhs and higher trims asking ৳45–48 lakh. It is worth comparing both before you decide.</p>
+
+      <h3>Toyota Corolla Cross pros and cons</h3>
+      <p><strong>Pros</strong></p>
+      <ul>
+        <li>Hybrid fuel efficiency in an SUV body</li>
+        <li>Higher seating position and easier entry than a hatchback</li>
+        <li>Toyota parts and service support are easy to find locally</li>
+        <li>Five seats with a usable boot for a small family</li>
+      </ul>
+      <p><strong>Cons</strong></p>
+      <ul>
+        <li>Priced far above hatchbacks like the Aqua</li>
+        <li>A compact five-seater, not a family hauler for seven</li>
+        <li>Prices have been rising with import costs</li>
+        <li>Older units need a hybrid battery check</li>
+      </ul>
+
+      <h2>Toyota Land Cruiser Prado: The Seven-Seat Go-Anywhere SUV</h2>
+      <figure>
+        <img src="/images/posts/four-toyotas-compared-aqua-to-land-cruiser-v8-bangladesh/toyota-land-cruiser-prado.webp" alt="Gold Toyota Land Cruiser Prado on rocky terrain with sandstone cliffs" width="1376" height="768" loading="lazy" decoding="async">
+      </figure>
+      <p>The Prado is a large, rugged ladder-frame SUV. Most cars listed in Bangladesh are the 2.7-litre petrol TX L Package, which seats seven. The 2.8-litre diesel is rare here because it attracts higher duty, and the TX grade is often a five-seater. An owner review of a 2018 diesel manual reported 6–7 km/l in the city and 8–9 km/l on the highway; the petrol version is thirstier.</p>
+      <p>Reconditioned 2018–2020 TX units are typically listed at ৳1.15–1.45 crore. A 2015–2017 150-series car can be found around ৳1 crore, and older 120-series Prados sit at roughly ৳55–85 lakh.</p>
+      <p>Buyers choose the Prado for its balance of capability, status and local parts support. It is smaller and cheaper than the Land Cruiser V8, but still expensive to buy and run.</p>
+
+      <h3>Toyota Land Cruiser Prado pros and cons</h3>
+      <p><strong>Pros</strong></p>
+      <ul>
+        <li>Seven seats in the TX L Package</li>
+        <li>Capable on rough and flooded roads</li>
+        <li>Strong road presence and brand reputation</li>
+        <li>Good parts and service support</li>
+      </ul>
+      <p><strong>Cons</strong></p>
+      <ul>
+        <li>High purchase price and high running costs</li>
+        <li>Big for narrow city roads and tight parking</li>
+        <li>Heavy fuel use compared with the Aqua and Corolla Cross</li>
+      </ul>
+
+      <h2>Toyota Land Cruiser V8: The Full-Size Flagship</h2>
+      <figure>
+        <img src="/images/posts/four-toyotas-compared-aqua-to-land-cruiser-v8-bangladesh/toyota-land-cruiser-v8.webp" alt="Black Toyota Land Cruiser V8 on a gravel road with mountains behind" width="1376" height="768" loading="lazy" decoding="async">
+      </figure>
+      <p>The Land Cruiser V8 is bigger, heavier and more luxurious than the Prado. The version usually listed in Bangladesh is the 4.5-litre V8 diesel, and a 5.7-litre petrol V8 also exists. Used 2015–2016 units are listed at about ৳1.5–1.9 crore, and a 2016 VXR can ask the top of that band, so the spread across listings is wide.</p>
+      <p>Import duty is a major part of the price: BARVIDA president Abdul Haque said in 2023 that the duty on a high-end reconditioned car such as the Land Cruiser or Pajero exceeds ৳1 crore. Do not confuse the V8 with the Prado: they are different models with different sizes and prices.</p>
+
+      <h3>Toyota Land Cruiser V8 pros and cons</h3>
+      <p><strong>Pros</strong></p>
+      <ul>
+        <li>Spacious, comfortable and high-set</li>
+        <li>Strong brand reputation and long-standing demand</li>
+        <li>A true flagship for buyers who want the biggest Land Cruiser</li>
+      </ul>
+      <p><strong>Cons</strong></p>
+      <ul>
+        <li>Very high price, and a wide gap between sellers</li>
+        <li>Expect high fuel and maintenance costs; we have no verified mileage figure for this model</li>
+        <li>Too large for many city roads and car parks</li>
+      </ul>
+
+      <h2>Running Costs, Tax and Ownership: What Changes from Aqua to V8</h2>
+      <p>In Bangladesh, engine capacity drives import duty, registration fees and annual tax, so ownership costs climb steeply as you move up the range. BRTA's registration fee for a private car up to 1,500cc is ৳25,000; with advance income tax, VAT and the first year's tax token, the first-year total is commonly estimated at ৳73,000–85,000 before insurance and dealer charges.</p>
+      <p>Tax rules changed in 2026. The FY2026-27 budget raised the total tax incidence on 1,200–1,600cc petrol and diesel cars from 132.36% to 155.88% — about 23.5 percentage points — and the Finance Act 2026 kept the increase, effective 1 July 2026. BARVIDA estimated it would add about ৳2.5 lakh to a Toyota Axio and ৳3 lakh to a Premio. Confirm the current rates before you buy.</p>
+      <p>Reconditioned imports face an age limit of five years (importers have asked for eight), so older cars such as a 2015 V8 are usually locally used units that were registered earlier. Whichever car you choose, inspect it in person, check the BRTA registration papers and fitness certificate, ask for the service history, and for a reconditioned car ask to see the auction sheet. For any hybrid, have the battery checked.</p>
+
+      <h2>Which Toyota Should You Buy?</h2>
+      <ul>
+        <li><strong>Choose the Aqua</strong> if you want the lowest running cost for city commuting and your budget is around ৳10–16 lakh; a newer reconditioned one costs ৳19–28 lakh.</li>
+        <li><strong>Choose the Corolla Cross</strong> if you want a hybrid SUV for a small family at around ৳41–50 lakh.</li>
+        <li><strong>Choose the Prado</strong> if you need seven seats and a car for rough roads, with a budget of about ৳1–1.45 crore.</li>
+        <li><strong>Choose the Land Cruiser V8</strong> if size, comfort and presence matter most and you can afford the ownership costs at ৳1.5 crore and above.</li>
+      </ul>
+      <p>No single car is best for everyone, so compare listings, inspect the car, and confirm the final price and paperwork with the seller.</p>
+    `,
+    faqs: [
+      {
+        question: 'Which of these four Toyotas is cheapest to run in Bangladesh?',
+        answer:
+          "The Aqua. It is a 1.5-litre full hybrid and dealers quote roughly 20–25 km/l. The Prado's diesel is quoted at about 6–7 km/l in the city, and the V8 is heavier still.",
+      },
+      {
+        question:
+          'What is the difference between the Land Cruiser Prado and the Land Cruiser V8?',
+        answer:
+          'They are different models. The Prado is smaller, seats seven in the TX L Package (the TX is often a five-seater) and uses a 2.7-litre petrol or 2.8-litre diesel engine. The V8 is the larger full-size Land Cruiser, commonly listed with a 4.5-litre V8 diesel engine, and it usually costs more.',
+      },
+      {
+        question: 'What is the price of the Toyota Corolla Cross in Bangladesh?',
+        answer:
+          'Reconditioned 2021–2023 hybrid units are listed at about ৳41–50 lakh, and a 2025 model asks more than ৳54 lakh. Prices change by year, grade and seller, so confirm with the seller.',
+      },
+      {
+        question: 'Can I buy a Toyota Aqua for around ৳10 lakh?',
+        answer:
+          'Only an older car. Listings start around ৳9 lakh for 2012–2015 units, a 2017–2018 car is about ৳15–16.5 lakh, and a 2021–2022 reconditioned Aqua is ৳19–28 lakh. Check the model year, condition and hybrid battery before you pay.',
+      },
+      {
+        question: 'Are these prices official?',
+        answer:
+          'No. They are rounded ranges from dealer listings checked in November 2026. Used and reconditioned car prices vary by seller, and tax changes can move them.',
       },
     ],
   },

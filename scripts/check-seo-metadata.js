@@ -38,6 +38,8 @@ const APP_DIR = path.join(process.cwd(), '.next', 'server', 'app');
  * two are exempt until the owner supplies a verified Bangladesh section.
  */
 const TITLE_BANGLADESH_EXCEPTIONS = {
+  'posts/four-toyotas-compared-aqua-to-land-cruiser-v8-bangladesh':
+    'owner-supplied exact comparison title names the four models; the body carries the full Bangladesh price, tax and availability section',
   'posts/ios-27-features-release-date':
     'no Bangladesh section in the body — only a link label mentions it',
   'posts/best-laptop-for-programming-students':
@@ -66,6 +68,18 @@ const TITLE_SUFFIX_EXCEPTIONS = {
     'owner-supplied exact title ("Vivo V80 Price in Bangladesh | Jupiter BD", 38 chars)',
   'posts/redmi-note-17-pro-official-vs-china-version-bangladesh':
     'owner-supplied exact title ("Redmi Note 17 Pro: Official vs China Version | Jupiter BD", 57 chars)',
+  'posts/four-toyotas-compared-aqua-to-land-cruiser-v8-bangladesh':
+    'owner-supplied exact comparison title ("Aqua vs Corolla Cross vs Prado vs Land Cruiser V8 | Jupiter BD", 62 chars)',
+};
+
+/**
+ * Pages whose <title> is ALLOWED to exceed the 60-char budget because the
+ * owner supplied that exact string, brand suffix included. Same policy as
+ * TITLE_SUFFIX_EXCEPTIONS: an entry needs the reason, not just the key.
+ */
+const TITLE_LENGTH_EXCEPTIONS = {
+  'posts/four-toyotas-compared-aqua-to-land-cruiser-v8-bangladesh':
+    'owner-supplied exact comparison title ("Aqua vs Corolla Cross vs Prado vs Land Cruiser V8 | Jupiter BD", 62 chars)',
 };
 
 const MAX_TITLE = 60;
@@ -147,7 +161,7 @@ for (const file of pages) {
   if (!title) {
     fail('no <title> tag');
   } else {
-    if (title.length > MAX_TITLE) {
+    if (title.length > MAX_TITLE && !TITLE_LENGTH_EXCEPTIONS[route]) {
       fail(`title is ${title.length} chars (max ${MAX_TITLE}) — "${title}"`);
     }
     if (/\|\s*Jupiter BD\s*$/i.test(title) && !TITLE_SUFFIX_EXCEPTIONS[route]) {
@@ -205,7 +219,9 @@ if (problems.length > 0) {
 }
 
 console.log(
-  `check-seo-metadata: OK — ${checked} Quick Look / blog page(s): titles ≤ ${MAX_TITLE} chars, no brand suffix outside the ${Object.keys(
+  `check-seo-metadata: OK — ${checked} Quick Look / blog page(s): titles ≤ ${MAX_TITLE} chars (${Object.keys(
+    TITLE_LENGTH_EXCEPTIONS
+  ).length} documented length exception(s)), no brand suffix outside the ${Object.keys(
     TITLE_SUFFIX_EXCEPTIONS
   ).length} documented exception(s), descriptions ≤ ${MAX_DESCRIPTION} chars, Bangladesh in every title outside the ${Object.keys(
     TITLE_BANGLADESH_EXCEPTIONS

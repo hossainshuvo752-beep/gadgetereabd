@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { posts, postHref, type Post } from '@/lib/posts';
+import { posts, postHref, isoCalendarDate, type Post } from '@/lib/posts';
 import { postHeroAlt } from '@/lib/imageAlt';
 import NewsletterPopup from '@/components/NewsletterPopup';
 import PostFaqAccordion from '@/components/PostFaqAccordion';
@@ -76,6 +76,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = findPost(slug);
   if (!post) return { title: 'Post Not Found — Jupiter BD' };
   const url = postHref(post);
+  // article:* tags. Same rules as the Article schema: emit only what the
+  // data actually says, never a guessed date.
+  const published = new Date(post.date);
+  const modified = post.updated ? new Date(post.updated) : null;
   return {
     // EVERY post title is rendered ABSOLUTE (standing rule, 2026-10-20): the
     // meta titles are written to fit the 60-character budget on their own,
@@ -98,6 +102,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: post.metaTitle,
       description: post.metaDescription,
       url,
+      section: post.category,
+      // Stable Bangladesh-time midnight: the display date is a BD calendar
+      // date, and a full ISO instant keeps this identical whatever the
+      // build machine's timezone is.
+      ...(Number.isNaN(published.getTime())
+        ? {}
+        : { publishedTime: `${isoCalendarDate(published)}T00:00:00+06:00` }),
+      ...(modified && !Number.isNaN(modified.getTime())
+        ? { modifiedTime: `${isoCalendarDate(modified)}T00:00:00+06:00` }
+        : {}),
       ...(post.heroImage
         ? {
             images: [

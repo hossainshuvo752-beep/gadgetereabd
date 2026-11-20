@@ -1,6 +1,6 @@
 import type { Post } from './posts';
 import { slugify, type Product } from './products';
-import { postHref } from './posts';
+import { postHref, isoCalendarDate } from './posts';
 import { BRAND_NAME } from './brand';
 import { SITE_URL } from './siteUrl';
 import { LOGO_IMAGE_URL } from './siteOgImage';
@@ -90,9 +90,9 @@ export function articleSchema(post: Post) {
     // guess if it ever fails to parse.
     ...(Number.isNaN(published.getTime())
       ? {}
-      : { datePublished: published.toISOString().slice(0, 10) }),
+      : { datePublished: isoCalendarDate(published) }),
     ...(modified && !Number.isNaN(modified.getTime())
-      ? { dateModified: modified.toISOString().slice(0, 10) }
+      ? { dateModified: isoCalendarDate(modified) }
       : {}),
     ...(post.heroImage ? { image: `${SITE_URL}${post.heroImage}` } : {}),
     author: { '@type': 'Organization', name: post.author },
@@ -102,6 +102,9 @@ export function articleSchema(post: Post) {
       '@id': `${SITE_URL}${postHref(post)}`,
     },
     articleSection: post.category,
+    // The post's own meta keywords (a comma-separated string, which is the
+    // form schema.org accepts); omitted when the data has none.
+    ...(post.metaKeywords ? { keywords: post.metaKeywords } : {}),
     inLanguage: 'en',
   };
 }

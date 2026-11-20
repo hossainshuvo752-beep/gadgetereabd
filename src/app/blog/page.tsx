@@ -19,10 +19,13 @@ const Blog: React.FC = () => {
     })
     .sort((a, b) => b.views - a.views);
 
-  // Fixed site taxonomy — the chips must always show exactly these six.
-  // (Empty categories keep their chip + a friendly empty-state grid instead
-  // of the chip disappearing, as happened with the old derived list.)
-  const filterOptions = ['All', 'Review', 'Guide', 'News', 'Explainer', 'Roundup'];
+  // Fixed site taxonomy — the chips always show exactly this list.
+  // 'Cars' was added 2026-11-20 with the first car post; it is a plain data
+  // entry (badge token in globals.css + CATEGORY_BADGE_COLORS in
+  // ArticleCard), not a derived list. (Empty categories keep their chip + a
+  // friendly empty-state grid instead of the chip disappearing, as happened
+  // with the old derived list.)
+  const filterOptions = ['All', 'Review', 'Guide', 'News', 'Explainer', 'Roundup', 'Cars'];
 
   return (
     <>

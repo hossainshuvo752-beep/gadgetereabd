@@ -21,6 +21,7 @@ export const CATEGORY_BADGE_COLORS: Record<string, string> = {
   Explainer: 'bg-badge-explainer',
   Review: 'bg-badge-review',
   Guide: 'bg-badge-guide',
+  Cars: 'bg-badge-cars',
 };
 
 const ArticleCard: React.FC<{

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { posts, postHref } from '@/lib/posts';
+import { posts, postHref, isoCalendarDate } from '@/lib/posts';
 import { products, slugify } from '@/lib/products';
 import { SITE_URL } from '@/lib/siteUrl';
 
@@ -93,9 +93,15 @@ export function buildSitemapEntries(): MetadataRoute.Sitemap {
     // last change; otherwise the published date. Both are display strings
     // like "Sep 27, 2026" — parse, and fall back to today if parsing fails.
     const parsed = new Date(post.updated ?? post.date);
+    // Calendar date at UTC midnight — the displayed date is a Bangladesh
+    // calendar date, so a local-midnight Date would serialize as the
+    // previous day when the build machine is at UTC+6.
+    const lastModified = Number.isNaN(parsed.getTime())
+      ? new Date()
+      : new Date(`${isoCalendarDate(parsed)}T00:00:00.000Z`);
     return {
       url: `${SITE_URL}${postHref(post)}`,
-      lastModified: Number.isNaN(parsed.getTime()) ? new Date() : parsed,
+      lastModified,
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     };
@@ -105,7 +111,9 @@ export function buildSitemapEntries(): MetadataRoute.Sitemap {
     // A substantive data revision moves lastmod even though dateAdded stays
     // put (dateAdded also sorts New Arrivals, so it must not be rewritten).
     const added = new Date(product.updatedAt ?? product.dateAdded);
-    const lastModified = Number.isNaN(added.getTime()) ? new Date() : added;
+    const lastModified = Number.isNaN(added.getTime())
+      ? new Date()
+      : new Date(`${isoCalendarDate(added)}T00:00:00.000Z`);
     const quickLook = {
       url: `${SITE_URL}/quick-look/${slugify(product.title)}`,
       lastModified,
@@ -136,12 +144,14 @@ export function buildSitemapEntries(): MetadataRoute.Sitemap {
     // changes when a new post lands in it) — not the build time.
     const newest = posts
       .filter((post) => post.category.toLowerCase() === category)
-      .map((post) => new Date(post.date).getTime())
-      .filter((t) => !Number.isNaN(t))
-      .sort((a, b) => b - a)[0];
+      .map((post) => new Date(post.date))
+      .filter((d) => !Number.isNaN(d.getTime()))
+      .sort((a, b) => b.getTime() - a.getTime())[0];
     return {
       url: `${SITE_URL}/category/${category}`,
-      lastModified: newest ? new Date(newest) : new Date(),
+      lastModified: newest
+        ? new Date(`${isoCalendarDate(newest)}T00:00:00.000Z`)
+        : new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.6,
     };

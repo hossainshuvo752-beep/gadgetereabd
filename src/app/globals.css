@@ -52,6 +52,7 @@
   --color-badge-explainer: #3b82f6; /* blue — Explainer */
   --color-badge-review: #ec4899; /* pink — Review */
   --color-badge-guide: #8b5cf6; /* violet — Guide */
+  --color-badge-cars: #b91c1c; /* deep red — Cars (added 2026-11-20) */
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, Arial, sans-serif;

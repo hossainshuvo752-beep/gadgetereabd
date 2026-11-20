@@ -118,6 +118,21 @@ const JOBS = [
     },
   },
   {
+    // Owner supplied one studio hero plus four per-car photos, named by
+    // subject. The four car files are natively 1376x768; the hero is
+    // 1672x941 and downsizes to 1600x900 (the same 16:9 ratio).
+    root: 'D:/website bd/blog image',
+    folder: 'From Aqua to Land Cruiser V8 Four Toyotas Compared for Bangladeshi Buyers',
+    outDir: 'four-toyotas-compared-aqua-to-land-cruiser-v8-bangladesh',
+    files: {
+      'hero image.png': 'hero.webp',
+      'Toyota Aqua.jfif': 'toyota-aqua.webp',
+      'Toyota Corolla Cross.jfif': 'toyota-corolla-cross.webp',
+      'Toyota Land Cruiser Prado.jfif': 'toyota-land-cruiser-prado.webp',
+      'Toyota Land Cruiser V8.jfif': 'toyota-land-cruiser-v8.webp',
+    },
+  },
+  {
     // No dedicated hero file — img1 doubles as the hero.
     folder: "Overhead Camera Mount Review — JINRAIKO's 360° Arm for Content Creators",
     outDir: 'overhead-camera-mount-jinraiko-review',
