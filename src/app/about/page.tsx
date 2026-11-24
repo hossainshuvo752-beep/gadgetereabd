@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   title: 'About Us — Who We Are & Why You Can Trust Us',
   description:
     'Jupiter BD is Bangladesh\u2019s honest source for gadget reviews, guides, and buying advice \u2014 hands-on testing, no paid bias, in Bangla and English.',
+  alternates: { canonical: '/about' },
 };
 
 export default function AboutPage() {

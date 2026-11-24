@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Terms & Conditions',
   description: 'The terms that govern your use of the Jupiter BD website.',
+  alternates: { canonical: '/terms' },
 };
 
 /**

@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: 'Shop — Gadgets, Laptops & Accessories in Bangladesh',
   description:
     "Browse Jupiter BD's curated selection of phones, laptops, accessories, and smart home tech with transparent Bangladesh pricing.",
+  alternates: { canonical: '/shop' },
 };
 
 export default function ShopLayout({ children }: { children: React.ReactNode }) {

@@ -14,6 +14,9 @@ export async function generateMetadata({
   return {
     title: `${name} Articles — Blog`,
     description: `Jupiter BD articles in the ${name} category — reviews, guides, news, and explainers for Bangladesh.`,
+    // Self-referencing canonical on the lowercase form: /category/Cars and
+    // /category/cars both render, so the uppercase variant consolidates here.
+    alternates: { canonical: `/category/${category.toLowerCase()}` },
   };
 }
 

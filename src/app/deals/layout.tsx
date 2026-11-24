@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: 'Deals — Current Tech Discounts in Bangladesh',
   description:
     'Products currently on deal at Jupiter BD, pulled live from the shared catalog.',
+  alternates: { canonical: '/deals' },
 };
 
 export default function DealsLayout({ children }: { children: React.ReactNode }) {

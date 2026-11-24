@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: 'FAQ — Frequently Asked Questions',
   description:
     'Answers to common questions about Jupiter BD: reviews, testing, ordering, payments, and delivery in Bangladesh.',
+  alternates: { canonical: '/faq' },
 };
 
 export default function FaqLayout({ children }: { children: React.ReactNode }) {

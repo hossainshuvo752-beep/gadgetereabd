@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: 'New Arrivals — Latest Gadgets at Jupiter BD',
   description:
     'The newest products in the Jupiter BD catalog, listed automatically as they are added.',
+  alternates: { canonical: '/new-arrivals' },
 };
 
 export default function NewArrivalsLayout({ children }: { children: React.ReactNode }) {
