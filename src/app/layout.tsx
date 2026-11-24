@@ -44,6 +44,16 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
+      {/* Google AdSense site script — exact loader snippet, present in the
+          server-rendered <head> of every route (root layout). No ad units
+          are declared here; this only loads the AdSense library. */}
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8171069652108687"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className="min-h-full flex flex-col">
         {/* Cart store wraps the whole app (Header badge, cards, /cart, checkout) */}
         <AuthProvider>
