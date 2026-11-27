@@ -1488,3 +1488,6 @@ Price box: visitors see only the price and one line derived from priceChannel: '
 - Verified: `npx tsc --noEmit` 0; `npm run build` 0 (crosslinks, sitemap, product-actions, versions, CJK, image-alts 94 pages, seo-metadata 46 pages); built HTML has one H1, BlogPosting (2026-11-20) + FAQPage (5), table, 5 lazy images with alts, /blog + Home + sitemap include the post.
 
 Pending: when the car Quick Look pages (Aqua, Corolla Cross, Prado, Land Cruiser V8) exist, add two-way internal links with the post four-toyotas-compared-aqua-to-land-cruiser-v8-bangladesh and set updatedAt on both.
+
+Cars (Quick Look): one post at a time, wait for 'next'. Use all provided images unedited, in filename order. Prices are estimated ranges labeled by condition, never one seller's price. Notify Me only, no cart or buy buttons. Specs must match the generation shown in the images. No test claims.
+Cars: audi-q7 published 2026-11-27.

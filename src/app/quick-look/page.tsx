@@ -31,10 +31,10 @@ export default function QuickLookPage() {
   const headerBlock = (
     <div className="mb-4 max-w-3xl">
       <h1 className="text-xl sm:text-2xl font-bold text-text-heading leading-tight">
-        Gadget Quick Look: Specs &amp; Prices in Bangladesh
+        Quick Look: Specs &amp; Prices in Bangladesh
       </h1>
       <h2 className="mt-1 text-sm font-normal text-text-body">
-        Phones, laptops, audio and more, with prices in BDT
+        Phones, laptops, cars and more, with prices in BDT
       </h2>
     </div>
   );

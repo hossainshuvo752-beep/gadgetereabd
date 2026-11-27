@@ -63,6 +63,12 @@ interface ProductSeoCopy {
    *  are read from the data and can never disagree with the selector. Pair it
    *  with `descriptionTail`. Absent = the usual single-price sentence. */
   descriptionFromVersionPrices?: boolean;
+  /** Builds the Quick Look description from the product's VERIFIED price
+   *  range (Product.priceRange) — "estimated ৳X–৳Y by year and condition" —
+   *  so a used-car snippet's two figures are read from data, never typed into
+   *  the copy. Pair it with `descriptionTail`. Absent = the usual single-price
+   *  sentence. */
+  descriptionFromPriceRange?: boolean;
   /** Builds the Quick Look description for a product sold ONLY as an
    *  unofficial China import at an estimated price:
    *  "{seoName} price in Bangladesh: about ৳X for the {RAM}+{storage} China
@@ -226,6 +232,22 @@ const seoCopy: Record<string, ProductSeoCopy> = {
     shopDescriptionOverride:
       'Buy the Vivo V80 in Bangladesh: ৳79,999 for 8GB/128GB and ৳89,999 for 8GB/256GB at official launch prices. 6.59-inch 144Hz AMOLED, ZEISS cameras, 7,200mAh.',
   },
+  /** Audi Q7 — first car page. Used-market prices are estimates (৳85 lakh–
+   *  ৳99 lakh, base price ৳92 lakh); the description is generated from
+   *  Product.priceRange so its two figures cannot drift from the data. The
+   *  owner supplied the exact Quick Look title including the brand suffix —
+   *  see TITLE_SUFFIX_EXCEPTIONS in scripts/check-seo-metadata.js. The Shop
+   *  title deliberately does NOT say "Buy Online": we do not sell cars. */
+  'audi-q7': {
+    shopSpecs: '2.0 TFSI or 3.0 TFSI V6, 8-speed automatic, quattro',
+    shopTitleOverride: 'Audi Q7: Price, Specs & Buying Guide',
+    shopDescriptionOverride:
+      'Audi Q7 (4M, 2015–2019) in Bangladesh: used prices, engines, specs and buying notes. Notify Me only — we do not sell cars.',
+    quickLookSpecs: '2.0 TFSI or 3.0 TFSI V6, quattro',
+    titleOverride: 'Audi Q7 Price in Bangladesh | Jupiter BD',
+    descriptionFromPriceRange: true,
+    descriptionTail: 'Specs, engine, seats, pros, cons and buying notes.',
+  },
   'infinix-note-60-pro': {
     shopSpecs: 'great value performance',
     quickLookSpecs: '6.78-inch AMOLED, Snapdragon 7s Gen 4',
@@ -360,6 +382,11 @@ export function quickLookSeoDescription(product: Product): string {
   if (copy?.descriptionFromVersionPrices) {
     return `${name} price in Bangladesh: ${versionPricePhrase(product)}. ${
       copy.descriptionTail ?? availabilityTail(product)
+    }`;
+  }
+  if (copy?.descriptionFromPriceRange && product.priceRange) {
+    return `${name} price in Bangladesh: estimated ${taka(product.priceRange.low)}–${taka(product.priceRange.high)} by year and condition. ${
+      copy.descriptionTail ?? 'Specs, engine, seats, pros, cons and buying notes.'
     }`;
   }
   // Information-only China import: the price is an estimate and the memory

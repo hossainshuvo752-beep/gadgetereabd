@@ -66,6 +66,19 @@ export function productSpecDescription(
 ): string {
   const { specSheet: spec } = product;
 
+  // CARS: the phone/PC clause builder has no meaning for a car, so build a
+  // short, data-backed sentence from the car block instead. Every field is
+  // from the verified CarSpecs object; absent fields are simply skipped.
+  if (product.carSpecs) {
+    const car = product.carSpecs;
+    const parts = [
+        car.engine.split(' — ')[0],
+        car.transmission,
+        car.drivetrain.split(' (')[0],
+      ].filter((part) => part && part.trim());
+      return `${product.title}${parts.length ? `: ${parts.join(', ')}` : ''}. ${car.generation}. Used-market price and full specs on ${BRAND_NAME}.`;
+  }
+
   const clauses: string[] = [];
 
   // Display: "size type" ONLY when both are usable ("6.31 inches LTPO

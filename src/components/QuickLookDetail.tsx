@@ -33,6 +33,7 @@ import {
   Sparkles,
   AlertTriangle,
   AppWindow,
+  Car,
   Smartphone,
 } from 'lucide-react';
 
@@ -108,6 +109,13 @@ const SECTION_ICON: Record<string, React.ComponentType<{ className?: string }>> 
   'Sensors': Fingerprint,
   'AI Features': Sparkles,
   'Notable Limitations': AlertTriangle,
+  // Car-only section titles (present only when Product.carSpecs is set).
+  'Engine & Performance': Cpu,
+  'Fuel & Transmission': BatteryCharging,
+  'Dimensions & Weight': Box,
+  'Seats & Practicality': AppWindow,
+  Safety: Fingerprint,
+  Features: Sparkles,
 };
 
 function SectionCard({ title, children }: { title: string; children: React.ReactNode }) {
@@ -272,6 +280,10 @@ const QuickLookDetail: React.FC<{
   // The spec sheet for the SELECTED version: the base sheet with that
   // version's overrides merged (cameras, battery, charging, body…).
   const spec = specSheetOf(product, version?.id);
+  // CAR-ONLY switch: when the product carries carSpecs the shared template
+  // renders car labels/sections; every other product follows the unchanged
+  // phone/PC path below.
+  const car = product.carSpecs;
 
   // Storage/variant options (e.g. "256GB/512GB UFS 4.0" -> ["256GB", "512GB UFS 4.0"])
   // — the same split every surface uses via storageOptionsOf(). A version
@@ -380,7 +392,7 @@ const QuickLookDetail: React.FC<{
         <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
           <div>
             <div className="flex items-center gap-2 text-sm text-text-body mb-1">
-              <Smartphone className="w-4 h-4" />
+              {car ? <Car className="w-4 h-4" /> : <Smartphone className="w-4 h-4" />}
               <span className="font-semibold text-text-heading">{spec.basicInfo.brand}</span>
             </div>
             <h1 className="text-3xl font-bold text-text-heading">{product.h1 ?? product.title}</h1>
@@ -418,13 +430,22 @@ const QuickLookDetail: React.FC<{
 
         {/* ===== Highlight strip ===== */}
         <div className="hidden lg:grid grid-cols-5 gap-4 mb-8">
-          {[
-            { icon: Cpu, value: spec.performance.processor, label: 'Processor' },
-            { icon: Camera, value: spec.cameraSystem.rear.split('+')[0].trim(), label: 'Main Camera' },
-            { icon: Monitor, value: spec.display.size, label: 'Display' },
-            { icon: BatteryCharging, value: spec.batteryCharging.capacity, label: 'Battery' },
-            { icon: AppWindow, value: spec.performance.os, label: 'OS' },
-          ].map((h, i) => (
+          {(car
+            ? [
+                { icon: Cpu, value: car.engine.split(' — ')[0], label: 'Engine' },
+                { icon: BatteryCharging, value: car.fuel.split(' or ')[0], label: 'Fuel' },
+                { icon: Signal, value: car.transmission, label: 'Transmission' },
+                { icon: AppWindow, value: car.seats.split(';')[0], label: 'Seats' },
+                { icon: Box, value: car.drivetrain.split(' (')[0], label: 'Drive' },
+              ]
+            : [
+                { icon: Cpu, value: spec.performance.processor, label: 'Processor' },
+                { icon: Camera, value: spec.cameraSystem.rear.split('+')[0].trim(), label: 'Main Camera' },
+                { icon: Monitor, value: spec.display.size, label: 'Display' },
+                { icon: BatteryCharging, value: spec.batteryCharging.capacity, label: 'Battery' },
+                { icon: AppWindow, value: spec.performance.os, label: 'OS' },
+              ]
+          ).map((h, i) => (
             <div key={i} className="flex items-center gap-3 bg-text-on-dark border border-text-heading/10 rounded-lg p-3">
               <h.icon className="w-6 h-6 text-accent shrink-0" />
               <div className="min-w-0">
@@ -524,11 +545,14 @@ const QuickLookDetail: React.FC<{
                 {/* main image — Spec Score badge and prev/next arrows ride
                     on the image box itself (correct in both layouts) */}
                 <div className="relative aspect-square w-full bg-bg-dark-secondary/10 flex items-center justify-center rounded-md overflow-hidden">
-                  {/* Spec Score badge overlay */}
-                  <div className="absolute top-3 left-3 z-10 bg-bg-dark text-text-on-dark rounded-lg px-3 py-2 shadow-md">
-                    <div className="text-[10px] uppercase tracking-wide text-text-on-dark/70">Spec Score</div>
-                    <div className="text-lg font-bold text-accent leading-none">{specScore}%</div>
-                  </div>
+                  {/* Spec Score badge overlay — phone/PC pages only. A car
+                      spec sheet is not graded by the phone-field formula. */}
+                  {!car && (
+                    <div className="absolute top-3 left-3 z-10 bg-bg-dark text-text-on-dark rounded-lg px-3 py-2 shadow-md">
+                      <div className="text-[10px] uppercase tracking-wide text-text-on-dark/70">Spec Score</div>
+                      <div className="text-lg font-bold text-accent leading-none">{specScore}%</div>
+                    </div>
+                  )}
                   {activeGallery.length > 0 ? (
                     <>
                       {/* Quick Look main image carries the price-keyword alt
@@ -721,13 +745,27 @@ const QuickLookDetail: React.FC<{
             <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-5">
               <h2 className="text-base font-semibold text-text-heading mb-4">Key Specifications</h2>
               <div className="space-y-1">
-                <KeyValue label="Display" value={`${spec.display.size}, ${spec.display.type}, ${spec.display.refreshRate}`} />
-                <KeyValue label="Processor" value={spec.performance.processor} />
-                <KeyValue label="RAM" value={spec.performance.ram} />
-                <KeyValue label="Storage" value={spec.performance.storage} />
-                <KeyValue label="Main Camera" value={spec.cameraSystem.rear} />
-                <KeyValue label="Battery" value={`${spec.batteryCharging.capacity}, ${spec.batteryCharging.charging}`} />
-                <KeyValue label="OS" value={spec.performance.os} />
+                {car ? (
+                  <>
+                    <KeyValue label="Engine" value={car.engine} />
+                    <KeyValue label="Power" value={car.power} />
+                    <KeyValue label="Fuel" value={car.fuel} />
+                    <KeyValue label="Transmission" value={car.transmission} />
+                    <KeyValue label="Drive" value={car.drivetrain} />
+                    <KeyValue label="Seats" value={car.seats} />
+                    <KeyValue label="Dimensions" value={car.dimensions} />
+                  </>
+                ) : (
+                  <>
+                    <KeyValue label="Display" value={`${spec.display.size}, ${spec.display.type}, ${spec.display.refreshRate}`} />
+                    <KeyValue label="Processor" value={spec.performance.processor} />
+                    <KeyValue label="RAM" value={spec.performance.ram} />
+                    <KeyValue label="Storage" value={spec.performance.storage} />
+                    <KeyValue label="Main Camera" value={spec.cameraSystem.rear} />
+                    <KeyValue label="Battery" value={`${spec.batteryCharging.capacity}, ${spec.batteryCharging.charging}`} />
+                    <KeyValue label="OS" value={spec.performance.os} />
+                  </>
+                )}
               </div>
             </div>
 
@@ -735,12 +773,25 @@ const QuickLookDetail: React.FC<{
             <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-5">
               <h2 className="text-base font-semibold text-text-heading mb-4">Additional Info</h2>
               <div className="space-y-1">
-                <KeyValue label="Brand" value={spec.basicInfo.brand} />
-                <KeyValue label="Model" value={spec.basicInfo.model} />
-                <KeyValue label="Released" value={spec.basicInfo.releaseDate} />
-                <KeyValue label="Weight" value={spec.buildDesign.weight} />
-                <KeyValue label="Network" value={spec.connectivity.network} />
-                <KeyValue label="Bluetooth" value={spec.connectivity.bluetooth} />
+                {car ? (
+                  <>
+                    <KeyValue label="Brand" value={spec.basicInfo.brand} />
+                    <KeyValue label="Model" value={spec.basicInfo.model} />
+                    <KeyValue label="Generation" value={car.generation} />
+                    <KeyValue label="Body type" value={car.bodyType} />
+                    <KeyValue label="Weight" value={car.weight} />
+                    <KeyValue label="Fuel tank" value={car.fuelTank} />
+                  </>
+                ) : (
+                  <>
+                    <KeyValue label="Brand" value={spec.basicInfo.brand} />
+                    <KeyValue label="Model" value={spec.basicInfo.model} />
+                    <KeyValue label="Released" value={spec.basicInfo.releaseDate} />
+                    <KeyValue label="Weight" value={spec.buildDesign.weight} />
+                    <KeyValue label="Network" value={spec.connectivity.network} />
+                    <KeyValue label="Bluetooth" value={spec.connectivity.bluetooth} />
+                  </>
+                )}
               </div>
             </div>
 
@@ -765,78 +816,131 @@ const QuickLookDetail: React.FC<{
         {/* ===== Full-width sectioned specifications ===== */}
         <h2 className="text-2xl font-bold text-text-heading mb-5">Specifications</h2>
         <div className="grid gap-5 md:grid-cols-2 mb-12">
-          <SectionCard title="Basic Info">
-            <KeyValue label="Model" value={spec.basicInfo.model} />
-            <KeyValue label="Brand" value={spec.basicInfo.brand} />
-            <KeyValue label="Release Date" value={spec.basicInfo.releaseDate} />
-          </SectionCard>
+          {car ? (
+            <>
+              <SectionCard title="Basic Info">
+                <KeyValue label="Model" value={spec.basicInfo.model} />
+                <KeyValue label="Brand" value={spec.basicInfo.brand} />
+                <KeyValue label="Generation" value={car.generation} />
+                <KeyValue label="Body type" value={car.bodyType} />
+              </SectionCard>
 
-          <SectionCard title="Display">
-            <KeyValue label="Type" value={spec.display.type} />
-            <KeyValue label="Size" value={spec.display.size} />
-            <KeyValue label="Resolution" value={spec.display.resolution} />
-            <KeyValue label="Refresh Rate" value={spec.display.refreshRate} />
-            <KeyValue label="Protection" value={spec.display.protection} />
-          </SectionCard>
+              <SectionCard title="Engine & Performance">
+                <KeyValue label="Engine" value={car.engine} />
+                <KeyValue label="Power" value={car.power} />
+                <KeyValue label="Torque" value={car.torque} />
+                <KeyValue label="0–100 km/h" value={car.acceleration} />
+                <KeyValue label="Top speed" value={car.topSpeed} />
+                <KeyValue label="Fuel economy" value={car.fuelEconomy} />
+              </SectionCard>
 
-          <SectionCard title="Performance">
-            <KeyValue label="Processor" value={spec.performance.processor} />
-            <KeyValue label="RAM" value={spec.performance.ram} />
-            <KeyValue label="Storage" value={spec.performance.storage} />
-            <KeyValue label="OS" value={spec.performance.os} />
-          </SectionCard>
+              <SectionCard title="Fuel & Transmission">
+                <KeyValue label="Fuel" value={car.fuel} />
+                <KeyValue label="Transmission" value={car.transmission} />
+                <KeyValue label="Drive" value={car.drivetrain} />
+                <KeyValue label="Fuel tank" value={car.fuelTank} />
+              </SectionCard>
 
-          <SectionCard title="Camera System">
-            <div className="space-y-3 text-sm">
-              <div>
-                <span className="font-medium text-text-body">Rear: </span>
-                <span className="text-text-heading">{spec.cameraSystem.rear}</span>
-              </div>
-              <div>
-                <span className="font-medium text-text-body">Front: </span>
-                <span className="text-text-heading">{spec.cameraSystem.front}</span>
-              </div>
-              <div>
-                <span className="font-medium text-text-body">Features:</span>
-                <IconList items={spec.cameraSystem.features} />
-              </div>
-            </div>
-          </SectionCard>
+              <SectionCard title="Dimensions & Weight">
+                <KeyValue label="Dimensions" value={car.dimensions} />
+                <KeyValue label="Wheelbase" value={car.wheelbase} />
+                <KeyValue label="Weight" value={car.weight} />
+                <KeyValue label="Ground clearance" value={car.groundClearance} />
+              </SectionCard>
 
-          <SectionCard title="Battery & Charging">
-            <KeyValue label="Capacity" value={spec.batteryCharging.capacity} />
-            <KeyValue label="Charging" value={spec.batteryCharging.charging} />
-          </SectionCard>
+              <SectionCard title="Seats & Practicality">
+                <KeyValue label="Seats" value={car.seats} />
+                <KeyValue label="Boot space" value={car.bootSpace} />
+              </SectionCard>
 
-          <SectionCard title="Build & Design">
-            <KeyValue label="Dimensions" value={spec.buildDesign.dimensions} />
-            <KeyValue label="Weight" value={spec.buildDesign.weight} />
-            <KeyValue label="Materials" value={spec.buildDesign.materials} />
-            <KeyValue label="Colors" value={spec.buildDesign.colors.join(', ')} />
-          </SectionCard>
+              <SectionCard title="Safety">
+                <IconList items={car.safety} />
+              </SectionCard>
 
-          <SectionCard title="Connectivity">
-            <KeyValue label="Network" value={spec.connectivity.network} />
-            <KeyValue label="Bluetooth" value={spec.connectivity.bluetooth} />
-            <div className="grid grid-cols-[minmax(90px,35%)_1fr] items-start gap-x-4 py-1.5">
-              <span className="text-sm font-medium text-text-body">Ports</span>
-              <span className="text-sm text-text-heading text-right min-w-0 break-words">
-                {spec.connectivity.ports.join(', ')}
-              </span>
-            </div>
-          </SectionCard>
+              <SectionCard title="Features">
+                <IconList items={car.features} />
+              </SectionCard>
 
-          <SectionCard title="Sensors">
-            <IconList items={spec.sensors} />
-          </SectionCard>
+              <SectionCard title="Notable Limitations">
+                <IconList items={car.limitations} />
+              </SectionCard>
+            </>
+          ) : (
+            <>
+              <SectionCard title="Basic Info">
+                <KeyValue label="Model" value={spec.basicInfo.model} />
+                <KeyValue label="Brand" value={spec.basicInfo.brand} />
+                <KeyValue label="Release Date" value={spec.basicInfo.releaseDate} />
+              </SectionCard>
 
-          <SectionCard title="AI Features">
-            <IconList items={spec.aiFeatures} />
-          </SectionCard>
+              <SectionCard title="Display">
+                <KeyValue label="Type" value={spec.display.type} />
+                <KeyValue label="Size" value={spec.display.size} />
+                <KeyValue label="Resolution" value={spec.display.resolution} />
+                <KeyValue label="Refresh Rate" value={spec.display.refreshRate} />
+                <KeyValue label="Protection" value={spec.display.protection} />
+              </SectionCard>
 
-          <SectionCard title="Notable Limitations">
-            <IconList items={spec.notableLimitations} />
-          </SectionCard>
+              <SectionCard title="Performance">
+                <KeyValue label="Processor" value={spec.performance.processor} />
+                <KeyValue label="RAM" value={spec.performance.ram} />
+                <KeyValue label="Storage" value={spec.performance.storage} />
+                <KeyValue label="OS" value={spec.performance.os} />
+              </SectionCard>
+
+              <SectionCard title="Camera System">
+                <div className="space-y-3 text-sm">
+                  <div>
+                    <span className="font-medium text-text-body">Rear: </span>
+                    <span className="text-text-heading">{spec.cameraSystem.rear}</span>
+                  </div>
+                  <div>
+                    <span className="font-medium text-text-body">Front: </span>
+                    <span className="text-text-heading">{spec.cameraSystem.front}</span>
+                  </div>
+                  <div>
+                    <span className="font-medium text-text-body">Features:</span>
+                    <IconList items={spec.cameraSystem.features} />
+                  </div>
+                </div>
+              </SectionCard>
+
+              <SectionCard title="Battery & Charging">
+                <KeyValue label="Capacity" value={spec.batteryCharging.capacity} />
+                <KeyValue label="Charging" value={spec.batteryCharging.charging} />
+              </SectionCard>
+
+              <SectionCard title="Build & Design">
+                <KeyValue label="Dimensions" value={spec.buildDesign.dimensions} />
+                <KeyValue label="Weight" value={spec.buildDesign.weight} />
+                <KeyValue label="Materials" value={spec.buildDesign.materials} />
+                <KeyValue label="Colors" value={spec.buildDesign.colors.join(', ')} />
+              </SectionCard>
+
+              <SectionCard title="Connectivity">
+                <KeyValue label="Network" value={spec.connectivity.network} />
+                <KeyValue label="Bluetooth" value={spec.connectivity.bluetooth} />
+                <div className="grid grid-cols-[minmax(90px,35%)_1fr] items-start gap-x-4 py-1.5">
+                  <span className="text-sm font-medium text-text-body">Ports</span>
+                  <span className="text-sm text-text-heading text-right min-w-0 break-words">
+                    {spec.connectivity.ports.join(', ')}
+                  </span>
+                </div>
+              </SectionCard>
+
+              <SectionCard title="Sensors">
+                <IconList items={spec.sensors} />
+              </SectionCard>
+
+              <SectionCard title="AI Features">
+                <IconList items={spec.aiFeatures} />
+              </SectionCard>
+
+              <SectionCard title="Notable Limitations">
+                <IconList items={spec.notableLimitations} />
+              </SectionCard>
+            </>
+          )}
         </div>
         </>
         )}

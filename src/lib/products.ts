@@ -1,3 +1,39 @@
+/**
+ * CAR-ONLY specification block. Present only on Cars entries; its presence
+ * switches the shared Quick Look detail template to car labels and sections
+ * (engine, fuel, transmission, seats, drive, dimensions, safety). Every other
+ * product has no `carSpecs` and renders the phone/PC template byte for byte.
+ *
+ * Values are verified facts for the generation named in `generation` — not a
+ * claim about the exact used car in the photos. Empty strings omit a row.
+ */
+export interface CarSpecs {
+  /** Generation and model years the images show, e.g. "4M pre-facelift, 2015–2019". */
+  generation: string;
+  bodyType: 'SUV' | 'Sedan' | 'MPV';
+  /** Engine(s) offered in this generation; the common Bangladesh unit first. */
+  engine: string;
+  power: string;
+  torque: string;
+  fuel: string;
+  transmission: string;
+  drivetrain: string;
+  seats: string;
+  dimensions: string;
+  wheelbase: string;
+  weight: string;
+  groundClearance: string;
+  bootSpace: string;
+  fuelTank: string;
+  /** Manufacturer figures only; empty when sources disagree or none exist. */
+  fuelEconomy: string;
+  acceleration: string;
+  topSpeed: string;
+  safety: string[];
+  features: string[];
+  limitations: string[];
+}
+
 export interface Product {
   id: number;
   title: string;
@@ -204,6 +240,14 @@ export interface Product {
   oldPrice: number | null;
   /** True when `price` is an estimate (no confirmed Bangladesh price found). */
   priceEstimated: boolean;
+  /** VERIFIED range behind an estimated market price (cars). Used by the
+   *  generated Quick Look meta description so the snippet's two figures come
+   *  from data, never typed into the copy. Absent = no range. */
+  priceRange?: { low: number; high: number };
+  /** Exact price-box line for an estimated MARKET price (used cars). Only
+   *  rendered when `priceEstimated` / 'estimated' is true; absent = the
+   *  shared estimated wording as before. */
+  priceEstimateLine?: string;
   /** How this product is sold. 'buy' = normal cart/checkout flow (Buy Now +
    *  Add to Cart; Pre-Order while upcoming). 'free-order' = an order REQUEST
    *  with no payment and no cart (a single Free Order button) — used for
@@ -231,6 +275,9 @@ export interface Product {
    *  render it (the guide's price section states the date in its own words).
    *  Absent = no date recorded (never an invented one). */
   priceCheckedAt?: string;
+  /** CAR-ONLY: present = the shared detail template renders car labels and
+   *  sections; absent = the existing phone/PC template, unchanged. */
+  carSpecs?: CarSpecs;
   specSheet: {
     basicInfo: {
       model: string;
@@ -4039,6 +4086,185 @@ export const products: Product[] = [
       },
     ],
     defaultVersion: 'official',
+  },
+
+  /**
+   * Audi Q7 — the FIRST car Quick Look page. The supplied photos show the
+   * second-generation Q7 (model code 4M) in PRE-FACELIFT form: horizontal
+   * grille bars, the "double arrow" LED signature and, inside, the
+   * free-standing 8.3-inch screen with a rotary MMI controller. The 2020
+   * facelift has vertical grille slats and two touchscreens, so it is a
+   * different car and is not covered by this page.
+   *
+   * NOT SOLD BY US: purchaseMode 'notify' renders Notify Me as the only
+   * action, and the price is an ESTIMATED used-market figure — not a
+   * quotation from any seller. priceRange is the verified asking range; the
+   * base `price` is the mid-market figure the page displays and marks up.
+   */
+  {
+    id: 31,
+    title: 'Audi Q7',
+    seoName: 'Audi Q7',
+    h1: 'Audi Q7 Price in Bangladesh',
+    h1Subtitle: 'Estimated price, specs and variants in BDT',
+    category: 'Cars',
+    topCategory: 'Cars',
+    subCategory: 'SUV',
+    imageAlt: 'Audi Q7 SUV',
+    altOverride: 'White Audi Q7 SUV, front three-quarter view',
+    /** Seven supplied photos, in filename order; the first is the main image. */
+    heroImage: '/images/products/audi-q7/1.webp',
+    gallery: [
+      '/images/products/audi-q7/1.webp',
+      '/images/products/audi-q7/2.webp',
+      '/images/products/audi-q7/3.webp',
+      '/images/products/audi-q7/4.webp',
+      '/images/products/audi-q7/5.webp',
+      '/images/products/audi-q7/6.webp',
+      '/images/products/audi-q7/7.webp',
+    ],
+    /** One unique, visible-only description per supplied file. */
+    galleryAlts: [
+      {
+        src: '/images/products/audi-q7/1.webp',
+        alt: 'White Audi Q7 SUV, front three-quarter view on a tree-lined road',
+      },
+      {
+        src: '/images/products/audi-q7/2.webp',
+        alt: 'White Audi Q7 SUV, front three-quarter view from the other side',
+      },
+      {
+        src: '/images/products/audi-q7/3.webp',
+        alt: 'White Audi Q7 SUV, rear three-quarter view with Q7 badge',
+      },
+      {
+        src: '/images/products/audi-q7/4.webp',
+        alt: 'White Audi Q7 SUV, rear three-quarter view from the left side',
+      },
+      {
+        src: '/images/products/audi-q7/5.webp',
+        alt: 'Audi Q7 black leather dashboard and front seats, interior view',
+      },
+      {
+        src: '/images/products/audi-q7/6.webp',
+        alt: 'Audi Q7 front cabin, steering wheel and centre console, interior view',
+      },
+      {
+        src: '/images/products/audi-q7/7.webp',
+        alt: 'Audi Q7 black leather rear bench and door panel, interior view',
+      },
+    ],
+    views: 300,
+    dateAdded: '2026-11-27',
+    price: 9200000,
+    priceStatus: 'estimated',
+    oldPrice: null,
+    priceEstimated: true,
+    /** Verified used-market asking range, 27 November 2026. */
+    priceRange: { low: 8500000, high: 9900000 },
+    priceEstimateLine:
+      '(Estimated price — varies by year, grade and condition)',
+    /** Cars are not sold directly: Notify Me is the only action. */
+    purchaseMode: 'notify',
+    status: 'available',
+    priceCheckedAt: '2026-11-27',
+    priceNote:
+      'Estimated from used-car asking prices in Dhaka checked on 27 November 2026: about ৳85 lakh to ৳99 lakh for 2016–2018 cars, with clean 2017–2018 40 TFSI examples at ৳92–95 lakh. Asking prices, not transaction prices; they vary by year, mileage, grade and condition.',
+    /** Car block — drives car labels/sections in the shared detail template. */
+    carSpecs: {
+      generation: 'Second generation (4M), pre-facelift, 2015–2019',
+      bodyType: 'SUV',
+      engine:
+        '2.0 TFSI inline-4 (252 hp) — also offered: 3.0 TFSI V6 (333 hp) and 3.0 TDI V6 (272 hp)',
+      power: '252 hp (2.0 TFSI); 333 hp (3.0 TFSI); 272 hp (3.0 TDI)',
+      torque: '370 Nm (2.0 TFSI); 440 Nm (3.0 TFSI); 600 Nm (3.0 TDI)',
+      fuel: 'Petrol (2.0 TFSI, 3.0 TFSI) or diesel (3.0 TDI)',
+      transmission: '8-speed tiptronic automatic',
+      drivetrain: 'quattro permanent all-wheel drive (40:60 default split)',
+      seats: '5 standard; optional third row makes 7',
+      dimensions: '5,052 x 1,968 x 1,741 mm (L x W x H)',
+      wheelbase: '2,994 mm',
+      /** Kerb weight was not consistent across the sources used, so it is
+       *  omitted rather than guessed. */
+      weight: '',
+      groundClearance:
+        '210 mm on steel suspension; up to 245 mm with air suspension',
+      bootSpace:
+        '890 L behind the second row, 2,075 L folded (5-seat); 7-seat: 295–1,955 L',
+      fuelTank: '75 L (2.0 TFSI and 3.0 TDI); 85 L (3.0 TFSI)',
+      fuelEconomy:
+        '7.3 L/100 km (2.0 TFSI); 7.7 L/100 km (3.0 TFSI, 5 seats); 5.7 L/100 km (3.0 TDI, 5 seats)',
+      acceleration:
+        '7.1 s (2.0 TFSI); 6.1 s (3.0 TFSI, 5 seats); 6.3 s (3.0 TDI)',
+      topSpeed:
+        '233 km/h (2.0 TFSI); 250 km/h limited (3.0 TFSI); 234 km/h (3.0 TDI)',
+      safety: [
+        'Euro NCAP 5-star rating from the 2015 test of the 4M Q7',
+        'Audi pre sense city with autonomous emergency braking',
+        'Front, front-side and full-length curtain airbags; rear side airbags optional',
+        'ISOFIX child-seat anchors',
+        'Electronic stabilisation control (ESC)',
+      ],
+      features: [
+        'MMI navigation plus with an 8.3-inch electrically retractable screen',
+        '12.3-inch Audi Virtual Cockpit (standard or optional by market and trim)',
+        'Apple CarPlay and Android Auto through the Audi smartphone interface (verify on the individual car)',
+        'Optional adaptive air suspension with adjustable ride height',
+        'Optional third row and a 35:30:35 split second row',
+        '890 L boot behind the second row in the five-seat layout',
+      ],
+      limitations: [
+        'The 4M is a heavy SUV: about two tonnes before passengers and luggage',
+        'Pre-facelift MMI uses a rotary controller and an 8.3-inch screen, not the 2020 facelift dual touchscreens',
+        'Air suspension and electrical repairs can be expensive; a pre-purchase inspection is essential',
+        'No reconditioned-import route: the 4M is older than the five-year age limit',
+        'No current official new price for this generation in Bangladesh',
+      ],
+    },
+    /** Phone/PC spec fields are left empty so the car block is the only sheet. */
+    specSheet: {
+      basicInfo: {
+        model: 'Q7 (4M, pre-facelift)',
+        brand: 'Audi',
+        releaseDate: '2015–2019',
+      },
+      display: {
+        type: '',
+        size: '',
+        resolution: '',
+        refreshRate: '',
+        protection: '',
+      },
+      performance: {
+        processor: '',
+        ram: '',
+        storage: '',
+        os: '',
+      },
+      cameraSystem: {
+        rear: '',
+        front: '',
+        features: [],
+      },
+      batteryCharging: {
+        capacity: '',
+        charging: '',
+      },
+      buildDesign: {
+        dimensions: '',
+        weight: '',
+        materials: '',
+        colors: [],
+      },
+      connectivity: {
+        network: '',
+        bluetooth: '',
+        ports: [],
+      },
+      sensors: [],
+      aiFeatures: [],
+      notableLimitations: [],
+    },
   },
 ];
 

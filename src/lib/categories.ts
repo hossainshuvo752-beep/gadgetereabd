@@ -83,6 +83,12 @@ export const categoryTree: CategoryNode[] = [
     name: 'Home Appliances',
     subs: ['Smart TV', 'Refrigerator', 'AC', 'Washing Machine'],
   },
+  {
+    // Added 2026-11-27 with the first car Quick Look page. Body-type subs
+    // (not brands) keep the 14-car list filterable by what buyers shop for.
+    name: 'Cars',
+    subs: ['SUV', 'Sedan', 'MPV'],
+  },
 ];
 
 /** Top-level category names in sidebar order. */

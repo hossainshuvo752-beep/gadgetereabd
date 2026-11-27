@@ -66,6 +66,8 @@ const TITLE_SUFFIX_EXCEPTIONS = {
     'owner-supplied exact title ("Realme Neo 8 Price in Bangladesh | Jupiter BD", 45 chars)',
   'quick-look/vivo-v80':
     'owner-supplied exact title ("Vivo V80 Price in Bangladesh | Jupiter BD", 38 chars)',
+  'quick-look/audi-q7':
+    'owner-supplied exact title ("Audi Q7 Price in Bangladesh | Jupiter BD", 40 chars)',
   'posts/redmi-note-17-pro-official-vs-china-version-bangladesh':
     'owner-supplied exact title ("Redmi Note 17 Pro: Official vs China Version | Jupiter BD", 57 chars)',
   'posts/four-toyotas-compared-aqua-to-land-cruiser-v8-bangladesh':

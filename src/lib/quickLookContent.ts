@@ -5359,6 +5359,232 @@ const guides: Record<string, QuickLookGuide> = {
       },
     ],
   },
+
+  /**
+   * Audi Q7 — first car page. The 4M pre-facelift (2015–2019) is the car in
+   * the supplied photos; the 2020 facelift is a different generation and is
+   * not covered here. Prices are used-market ASKING prices checked on
+   * 27 November 2026, separated by condition; no seller or listing site is
+   * named on the page. Every spec below is stated for the generation, not
+   * claimed as a measurement of the exact used car in the photos.
+   */
+  'audi-q7': {
+    productName: 'Audi Q7',
+    heading: 'Audi Q7 price in Bangladesh: 2015–2019 (4M) used guide',
+    lead:
+      'The Audi Q7 on this page is the second-generation 4M in pre-facelift form (2015–2019). Used asking prices in Bangladesh in November 2026 ran from about ৳85 lakh to ৳99 lakh, with clean 2017–2018 40 TFSI cars typically at ৳92–95 lakh. This page covers the generation\'s 2.0 TFSI, 3.0 TFSI and 3.0 TDI engines, the five- and seven-seat layouts, and what to check before buying a used one.',
+    overview: [
+      'The 4M is the second generation of the Q7, built on the Volkswagen Group\'s MLB evo platform. It is 5,052 mm long on a 2,994 mm wheelbase, with five seats as standard and an optional third row that turns it into a seven-seater. The five-seat boot is 890 litres behind the second row, or 2,075 litres with that row folded. Those numbers are what make it a practical family SUV rather than a style statement: it is a large car, but the space is real.',
+      'The photos supplied for this page show the pre-facelift car: horizontal grille bars, the double-arrow LED daytime running light signature, and a cabin with a free-standing 8.3-inch screen and a rotary MMI controller. The 2020 facelift moved to vertical grille slats and two touchscreens, so it is a different car and is not covered here. If you are shopping, check which one you are looking at before comparing prices.',
+      'In Bangladesh the 4M Q7 is a used-car purchase. Every pre-facelift Q7 in the Bangladesh listings we checked was a 40 TFSI 2.0-litre petrol car; no 3.0 TFSI or 3.0 TDI example of this generation appeared in them. Audi\'s authorised distributor lists the Q7, but it is a later generation and publishes no current price. No car was tested for this page, and every specification below describes the generation, not the condition of one particular vehicle.',
+    ],
+    priceSection: {
+      heading: 'Audi Q7 price in Bangladesh: what the used market asks',
+      paragraphs: [
+        'Asking prices for 2016–2018 Q7s in Dhaka in November 2026 ran from about ৳85 lakh to ৳99 lakh. The core of the market — clean 2017–2018 40 TFSI cars with ordinary mileage — sat at ৳92–95 lakh, and the median of the cars we checked was about ৳92 lakh.',
+        'These are asking prices, not transaction prices. Most are described as negotiable, and the figure moves with model year, mileage, grade, service history and condition. A 2016 car with higher mileage is at the bottom; a 2018 car with a documented history and low mileage is at the top. Do not treat any single advert as the market price.',
+        'We found no reconditioned Q7 listings in this generation. A reconditioned import normally has to be within five years of its original registration, and the 4M is older than that, so the cars here are used vehicles already in the country. The authorised Audi distributor still lists a new Q7, but it is a later generation and publishes no current price; the last published new-Q7 prices we found were ৳1.58 crore at the October 2020 facelift launch and ৳1.85 crore for the 2022 model, reported in February 2023. Neither is this car.',
+      ],
+    },
+    keyFacts: [
+      { term: 'Generation', detail: 'Second-generation 4M, pre-facelift (2015–2019)' },
+      { term: 'Body and seats', detail: 'Five-door SUV; 5 seats standard, optional third row (7)' },
+      { term: 'Engines', detail: '2.0 TFSI 252 hp; 3.0 TFSI V6 333 hp; 3.0 TDI V6 272 hp' },
+      { term: 'Transmission and drive', detail: '8-speed tiptronic automatic; quattro all-wheel drive' },
+      { term: 'Size', detail: '5,052 x 1,968 x 1,741 mm; 2,994 mm wheelbase' },
+      { term: 'Boot', detail: '890 L behind row two, 2,075 L folded (5-seat)' },
+      { term: 'Used asking range', detail: '৳85 lakh–৳99 lakh (November 2026)' },
+      { term: 'Typical mid-market', detail: 'About ৳92 lakh' },
+    ],
+    setupCosts: {
+      heading: 'Audi Q7 price by condition in Bangladesh',
+      priceHeader: 'Price (BDT)',
+      rows: [
+        {
+          configuration: 'Used 2016–2018 (asking)',
+          price: '৳85 lakh–৳99 lakh',
+          note: 'Dealer and classified asking prices checked on 27 November 2026. Clean 2017–2018 40 TFSI cars: ৳92–95 lakh; median about ৳92 lakh.',
+        },
+        {
+          configuration: 'Reconditioned import',
+          price: 'None found',
+          note: 'The 4M is older than the five-year reconditioned-import limit. No listing in this generation was labelled reconditioned.',
+        },
+        {
+          configuration: 'New from authorised distributor',
+          price: 'Not published',
+          note: 'The distributor still lists a Q7 but publishes no current price. Last published prices: ৳1.58 crore at the October 2020 facelift launch; ৳1.85 crore for the 2022 model, reported February 2023.',
+        },
+      ],
+      footer:
+        'All used figures are asking prices, not transaction prices, and vary by year, mileage, grade and condition. The new-Q7 figures are launch and 2023 media quotes for later generations and are not current quotations.',
+    },
+    availability: {
+      heading: 'Availability and condition in Bangladesh',
+      paragraphs: [
+        'The 4M Q7 reached Bangladesh through official and private imports, and the cars on sale now are used. The listings we checked were concentrated on 2016–2018 model years; we found no 2015 or 2019 examples in the local ads. A 2017 or 2018 car is the practical starting point if you want the widest choice.',
+        'Condition labels matter. Dealers and classified ads in Bangladesh describe these cars as used or locally used; none of the Q7 ads we checked used the word reconditioned. Ask for the import documents and the auction sheet if the car was brought in used, and check the registration history rather than relying on the label in the advert.',
+      ],
+    },
+    features: [
+      {
+        heading: 'Key features explained',
+        title: 'Quattro all-wheel drive and the 8-speed automatic',
+        body:
+          'Every 4M Q7 in this generation uses Audi\'s quattro permanent all-wheel drive with a 40:60 default front-to-rear torque split, and an 8-speed tiptronic torque-converter automatic. The gearbox and centre differential share one housing, which is part of why the car is quieter and lighter than the first-generation Q7. For Bangladesh, the practical benefit is traction in rain and on broken roads; the cost is more drivetrain hardware to maintain than a two-wheel-drive SUV.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Three engines, two fuel types',
+        body:
+          'The 2.0 TFSI inline-four makes 252 hp and 370 Nm, and it was the only engine in the pre-facelift Q7s we found in Bangladesh listings. The 3.0 TFSI V6 raises that to 333 hp and 440 Nm, and the 3.0 TDI V6 diesel makes 272 hp and 600 Nm. All three use the same 8-speed automatic and quattro. Audi\'s combined figures are 7.3 L/100 km for the 2.0 TFSI, 7.7 for the 3.0 TFSI and 5.7 for the 3.0 TDI. The 2.0 TFSI reaches 100 km/h in 7.1 s, the 3.0 TFSI in 6.1 s and the 3.0 TDI in 6.3 s. The diesel has the strongest low-speed pull, but diesel maintenance and the current tax treatment of diesel cars are worth checking before you choose one. The exact engine in any used car should be confirmed from its documents, not from the badge on the boot.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Five seats, or seven with the optional third row',
+        body:
+          'The standard layout is five seats, with a 35:30:35 split second row. A third row of two individual seats was optional in this generation and turns the Q7 into a seven-seater; it was standard in some markets and optional in others, so check the individual car. With five seats up, the boot is 890 litres, expanding to 2,075 litres with the second row folded. The seven-seat car drops to 295 litres with all rows up, or 770 litres with the third row folded.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Air suspension and ground clearance',
+        body:
+          'Steel suspension gives 210 mm of ground clearance. The optional adaptive air suspension can raise the body to about 245 mm in its lift setting and lower it at speed, and it also improves the ride on rough roads. It is the option to look for if you regularly deal with speed humps and broken surfaces, but it is also the system to have inspected: air springs, compressors and height sensors are expensive to replace. Drive the car through its height settings and listen for the compressor before you buy.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'MMI, Virtual Cockpit and the pre-facelift cabin',
+        body:
+          'The pre-facelift Q7 uses MMI navigation plus with an 8.3-inch screen that electrically rises from the dashboard, controlled by a rotary dial and a touchpad. The 12.3-inch Virtual Cockpit digital instrument cluster was standard or optional depending on market and trim. Apple CarPlay and Android Auto were offered through the Audi smartphone interface, but availability was option-dependent, so test the exact car with your phone. This is the clearest visual difference from the 2020 facelift, which replaced the rotary controller with two touchscreens.',
+      },
+      {
+        heading: 'Key features explained',
+        title: 'Safety equipment and the Euro NCAP result',
+        body:
+          'Euro NCAP tested the 4M Q7 in 2015 and awarded five stars, with 94% for adult occupant protection, 88% for child occupant protection, 70% for pedestrian protection and 76% for safety assist. Audi pre sense city, which includes autonomous emergency braking at city speeds, was standard. Front, front-side and full-length curtain airbags were fitted, with rear side airbags optional, and the car has ISOFIX anchors. Adaptive cruise control, active lane assist and blind-spot monitoring were optional or market-dependent, so do not assume a used car has them.',
+      },
+    ],
+    buyers: {
+      heading: 'Who should buy the Audi Q7 — and who should skip it',
+      should: [
+        'Families who need a large, quiet SUV with five seats and an 890-litre boot, or seven seats with the optional third row.',
+        'Buyers who want quattro all-wheel drive and an 8-speed automatic for wet-season roads and long highway runs.',
+        'Shoppers who want a premium SUV at used prices: the 2017–2018 40 TFSI cars sit around ৳92–95 lakh, far below the later-generation new-Q7 prices.',
+        'Buyers who will have the car inspected and can budget for air suspension, electronics and routine premium-brand maintenance.',
+        'Drivers who value the 2015 five-star Euro NCAP result and standard autonomous emergency braking.',
+      ],
+      skip: [
+        'First-time premium buyers on a tight budget: parts and repairs are priced like a premium SUV, not a mass-market one.',
+        'Buyers who want a new car with a manufacturer warranty: the 4M is a used-only purchase here, and this generation is no longer sold new.',
+        'Anyone expecting low fuel costs in Dhaka traffic: the Q7 is a heavy SUV, and the 3.0 petrol is thirstier than the 2.0.',
+        'Buyers who want the latest cabin technology: the pre-facelift MMI has a rotary controller and an 8.3-inch screen, not the 2020 dual touchscreens.',
+        'Buyers who cannot verify service history or registration papers: a cheap Q7 with gaps in its history is the most expensive kind.',
+      ],
+    },
+    pros: {
+      heading: 'Pros and cons of the Audi Q7 (4M)',
+      pros: [
+        'Five-star Euro NCAP rating from the 2015 test, with autonomous emergency braking standard',
+        'quattro all-wheel drive and an 8-speed tiptronic automatic across the range',
+        '890 L boot behind the second row, or an optional third row for seven seats',
+        'Optional air suspension with up to about 245 mm of ground clearance',
+        '2.0 TFSI at 252 hp is the common Bangladesh car; 3.0 TFSI and 3.0 TDI are available for more power',
+        'Used asking prices start around ৳85 lakh, with clean 2017–2018 cars around ৳92–95 lakh',
+      ],
+      cons: [
+        'Heavy (about two tonnes) and thirsty in city traffic, especially the 3.0 petrol',
+        'Pre-facelift MMI is older than the 2020 facelift and was option-dependent on CarPlay',
+        'Air suspension, electronics and premium-brand parts can be expensive to repair',
+        'No reconditioned-import route: the 4M is older than the five-year age limit',
+        'The used market is wide: ৳85 lakh to ৳99 lakh for cars that look similar in photos',
+        'No current official new price for this generation, so there is no dealer price to anchor against',
+      ],
+    },
+    buyingTips: {
+      heading: 'Buying notes for Bangladesh',
+      paragraphs: [
+        'Inspect the car in person, in daylight, and take it to a specialist who knows Audi. Check panel gaps and paint match on every panel, look under the car for accident repairs, and scan the paint with a meter if you can. Start the engine from cold and listen for timing-chain rattle on the 2.0 TFSI and 3.0 TFSI. On the road, drive slowly over speed humps and listen for suspension knocks, then cycle the air suspension through its height settings and check that the compressor runs without labouring.',
+        'Ask for the BRTA registration certificate, the fitness certificate, the tax token and the ownership-transfer papers, and match the chassis and engine numbers to the car. A used Q7 may have changed hands several times; the registration history tells you more than the seller\'s description. Ask for the service history and any records from an authorised workshop or a known Audi specialist. If the car was imported used, ask for the auction sheet, the import documents and the customs papers, and check that the declared grade and mileage match the car.',
+        'The 4M Q7 is not a hybrid in its 2.0 TFSI, 3.0 TFSI or 3.0 TDI forms, so there is no hybrid battery to check on those cars. The Q7 e-tron is the plug-in hybrid of this generation; if you are looking at one, have the high-voltage battery, charging system and its cooling checked by a specialist, because a replacement is a major cost. Import duty and registration depend on engine capacity, and the FY2026-27 budget changed the tax treatment of petrol and diesel cars. Check the current BRTA and Customs rates for the exact engine before you commit, rather than relying on an old quote.',
+      ],
+    },
+    sourcesChecked:
+      'Specs checked on 27 November 2026 against Audi\'s launch and technical material, Euro NCAP and independent specification databases; prices checked on 27 November 2026 against dealer and classified listings. No test vehicle was used for this page.',
+    faqs: [
+      {
+        question: 'What is the price of an Audi Q7 in Bangladesh?',
+        answer:
+          'Used 2016–2018 Q7s were asking about ৳85 lakh to ৳99 lakh in November 2026, with clean 2017–2018 40 TFSI cars typically at ৳92–95 lakh. These are asking prices, not transaction prices, and they vary by year, mileage, grade and condition.',
+      },
+      {
+        question: 'Which Audi Q7 generation is this page about?',
+        answer:
+          'The second-generation 4M in pre-facelift form, sold globally from 2015 to 2019. The photos show the pre-facelift cabin with the free-standing 8.3-inch screen and rotary MMI controller; the 2020 facelift is a different car with vertical grille slats and two touchscreens.',
+      },
+      {
+        question: 'Is the Audi Q7 available new in Bangladesh?',
+        answer:
+          'The authorised Audi distributor still lists the Q7, but it is a later generation and publishes no current price. The last published prices we found were ৳1.58 crore at the October 2020 facelift launch and ৳1.85 crore for the 2022 model, reported in February 2023. This page covers the used 4M, not those cars.',
+      },
+      {
+        question: 'How many seats does the Audi Q7 have?',
+        answer:
+          'Five seats are standard. A third row of two individual seats was optional in this generation and makes it a seven-seater; it was standard in some markets, so check the individual car rather than assuming.',
+      },
+      {
+        question: 'What engines did the 2015–2019 Q7 have?',
+        answer:
+          'The 2.0 TFSI inline-four with 252 hp and 370 Nm, the 3.0 TFSI V6 with 333 hp and 440 Nm, and the 3.0 TDI V6 with 272 hp and 600 Nm. All use an 8-speed tiptronic automatic and quattro all-wheel drive. Every pre-facelift Q7 we found in Bangladesh listings used the 2.0 TFSI.',
+      },
+      {
+        question: 'What is the Audi Q7\'s fuel economy?',
+        answer:
+          'Audi\'s combined figures are 7.3 L/100 km for the 2.0 TFSI, 7.7 for the 3.0 TFSI and 5.7 for the 3.0 TDI, all for five-seat cars. Real-world Dhaka traffic will be higher than these figures.',
+      },
+      {
+        question: 'Can I import a reconditioned Audi Q7?',
+        answer:
+          'Not this generation. A reconditioned import normally has to be within five years of its original registration, and the 4M is older than that. We found no reconditioned Q7 listings; the cars here are used vehicles already in Bangladesh.',
+      },
+      {
+        question: 'What should I check before buying a used Audi Q7?',
+        answer:
+          'Inspect it in person with an Audi specialist. Check the BRTA registration, fitness certificate, tax token and ownership papers; ask for service history; check the air suspension, electronics and cold-start engine noise; and ask for the auction sheet and import documents if it was imported used.',
+      },
+      {
+        question: 'Does the Audi Q7 have Apple CarPlay?',
+        answer:
+          'The 4M offered Apple CarPlay and Android Auto through the Audi smartphone interface, but it was option-dependent in some markets and trims. Test the exact car with your phone before buying.',
+      },
+      {
+        question: 'How big is the Audi Q7\'s boot?',
+        answer:
+          'In the five-seat layout it is 890 litres behind the second row, or 2,075 litres with the row folded. The seven-seat version has 295 litres with all rows up, 770 litres with the third row folded, and 1,955 litres to the roof.',
+      },
+    ],
+    links: [
+      {
+        label: 'All Quick Look price pages',
+        description: 'Every phone, gadget and car we have checked, with its sources',
+        href: '/quick-look',
+      },
+      {
+        label: 'About Jupiter BD',
+        description: 'Who writes these price and spec pages, and how we check them',
+        href: '/about',
+      },
+      {
+        label: 'Blog buying guides',
+        description: 'Practical guides for buying tech and cars in Bangladesh',
+        href: '/blog',
+      },
+      {
+        label: 'Ask a question',
+        description: 'Send us a correction or a question about this page',
+        href: '/contact',
+      },
+    ],
+  },
 };
 /** Long-form guide for a product slug, or undefined when none is written yet. */
 export function getQuickLookContent(slug: string): QuickLookGuide | undefined {

@@ -33,7 +33,7 @@ import { SITE_URL } from '@/lib/siteUrl';
 export const STATIC_ROUTES: { path: string; lastChanged: string }[] = [
   { path: '', lastChanged: '2026-10-11' }, // Home — hero copy + sections
   { path: '/blog', lastChanged: '2026-09-27' }, // Blog listing
-  { path: '/quick-look', lastChanged: '2026-10-10' }, // Quick Look listing
+  { path: '/quick-look', lastChanged: '2026-11-27' }, // Quick Look listing — Cars category added
   { path: '/shop', lastChanged: '2026-10-10' }, // Shop listing
   { path: '/new-arrivals', lastChanged: '2024-10-05' }, // derived grid; changes only with new products
   { path: '/deals', lastChanged: '2026-09-20' }, // derived grid; changes only with new deals

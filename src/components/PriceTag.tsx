@@ -51,6 +51,10 @@ export function priceChannelLine(
     return '(Estimated price — approximate unofficial market price, varies by seller)';
   }
   if (product.priceEstimated || product.priceStatus === 'estimated') {
+    // A product may supply the exact one-line wording for its own estimated
+    // MARKET price (used cars: "varies by year, grade and condition").
+    // Absent = the shared wording below, byte for byte.
+    if (product.priceEstimateLine) return product.priceEstimateLine;
     // An estimate on an IMPORTED unit that IS sold here (the Realme Neo 8)
     // must not claim the phone is absent from Bangladesh: priceChannel
     // 'unofficial' prints the same wording the version branch uses.
