@@ -1,3 +1,5 @@
+import { carProducts } from './carProducts';
+
 /**
  * CAR-ONLY specification block. Present only on Cars entries; its presence
  * switches the shared Quick Look detail template to car labels and sections
@@ -32,6 +34,27 @@ export interface CarSpecs {
   safety: string[];
   features: string[];
   limitations: string[];
+}
+
+/**
+ * A CAR variant (engine/grade) shown in the shared "Choose Variant" card.
+ * Only products with `carVariants` render the car selector; selecting one
+ * swaps the price and any spec fields that differ. `price: null` means no
+ * reliable Bangladesh figure was found — the price box says "Price
+ * unavailable" instead of inventing one.
+ */
+export interface CarVariant {
+  id: string;
+  /** Button label, e.g. "40 TFSI" or "3.0 TDI V6". */
+  label: string;
+  /** One line under the selector, e.g. "2.0 TFSI 252 hp, 8-speed automatic". */
+  summary: string;
+  /** Estimated Bangladesh market price; null = not reliably verified. */
+  price: number | null;
+  /** Default TRUE for a priced car variant (used-market figure). */
+  priceEstimated?: boolean;
+  /** Spec fields that differ for this variant, merged over `carSpecs`. */
+  specs?: Partial<CarSpecs>;
 }
 
 export interface Product {
@@ -278,6 +301,9 @@ export interface Product {
   /** CAR-ONLY: present = the shared detail template renders car labels and
    *  sections; absent = the existing phone/PC template, unchanged. */
   carSpecs?: CarSpecs;
+  /** CAR-ONLY: priced engine/grade options for the variant selector. Absent
+   *  or a single entry = no selector (the base price and specs are shown). */
+  carVariants?: CarVariant[];
   specSheet: {
     basicInfo: {
       model: string;
@@ -4221,6 +4247,61 @@ export const products: Product[] = [
         'No current official new price for this generation in Bangladesh',
       ],
     },
+    /**
+     * Engine variants. Only the 2.0 TFSI has verified Bangladesh asking prices
+     * (all the pre-facelift Q7s in the listings checked were 40 TFSI cars), so
+     * the two 3.0 variants explicitly carry `price: null` rather than a guess.
+     */
+    carVariants: [
+      {
+        id: '40-tfsi',
+        label: '40 TFSI',
+        summary: '2.0 TFSI 252 hp, 8-speed tiptronic, quattro; the model in the Bangladesh listings',
+        price: 9200000,
+        specs: {
+          engine: '2.0 TFSI inline-4 (252 hp)',
+          power: '252 hp',
+          torque: '370 Nm',
+          fuel: 'Petrol (2.0 TFSI)',
+          acceleration: '7.1 s',
+          topSpeed: '233 km/h',
+          fuelEconomy: '7.3 L/100 km',
+          fuelTank: '75 L',
+        },
+      },
+      {
+        id: '30-tfsi',
+        label: '3.0 TFSI V6',
+        summary: '3.0 TFSI V6 333 hp, 8-speed tiptronic, quattro',
+        price: null,
+        specs: {
+          engine: '3.0 TFSI V6 (333 hp)',
+          power: '333 hp',
+          torque: '440 Nm',
+          fuel: 'Petrol (3.0 TFSI)',
+          acceleration: '6.1 s (5 seats)',
+          topSpeed: '250 km/h limited',
+          fuelEconomy: '7.7 L/100 km (5 seats)',
+          fuelTank: '85 L',
+        },
+      },
+      {
+        id: '30-tdi',
+        label: '3.0 TDI V6',
+        summary: '3.0 TDI V6 272 hp, 8-speed tiptronic, quattro',
+        price: null,
+        specs: {
+          engine: '3.0 TDI V6 (272 hp)',
+          power: '272 hp',
+          torque: '600 Nm',
+          fuel: 'Diesel (3.0 TDI)',
+          acceleration: '6.3 s',
+          topSpeed: '234 km/h',
+          fuelEconomy: '5.7 L/100 km (5 seats)',
+          fuelTank: '75 L',
+        },
+      },
+    ],
     /** Phone/PC spec fields are left empty so the car block is the only sheet. */
     specSheet: {
       basicInfo: {
@@ -4266,6 +4347,11 @@ export const products: Product[] = [
       notableLimitations: [],
     },
   },
+
+  // Every other car page lives in its own module so this catalog stays
+  // readable; the objects are ordinary Product entries and behave exactly
+  // like the Audi Q7 above everywhere (shop, cards, sitemap, schema).
+  ...carProducts,
 ];
 
 /** URL slug for a product title, e.g. 'HONOR Robot Phone' -> 'honor-robot-phone' */

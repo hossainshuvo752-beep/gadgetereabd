@@ -283,7 +283,18 @@ const QuickLookDetail: React.FC<{
   // CAR-ONLY switch: when the product carries carSpecs the shared template
   // renders car labels/sections; every other product follows the unchanged
   // phone/PC path below.
-  const car = product.carSpecs;
+  const baseCar = product.carSpecs;
+  // CAR variants (engine/grade) — the shared "Choose Variant" card renders a
+  // Variant row for these, and the selection drives BOTH the price and the
+  // spec rows below. Absent = the single-spec page exactly as before.
+  const carVariants = product.carVariants ?? [];
+  const [activeCarVariant, setActiveCarVariant] = useState(0);
+  const carVariant = carVariants.length
+    ? carVariants[Math.min(activeCarVariant, carVariants.length - 1)]
+    : undefined;
+  const car = baseCar
+    ? { ...baseCar, ...(carVariant?.specs ?? {}) }
+    : undefined;
 
   // Storage/variant options (e.g. "256GB/512GB UFS 4.0" -> ["256GB", "512GB UFS 4.0"])
   // — the same split every surface uses via storageOptionsOf(). A version
@@ -302,17 +313,33 @@ const QuickLookDetail: React.FC<{
     purchaseOptions.length > 0
       ? purchaseOptions[Math.min(activePurchase, purchaseOptions.length - 1)]
       : storageOptions[activeStorage] ?? null;
-  const resolvedPrice: ResolvedPrice = variantPrice(product, selectedOptionLabel, version?.id);
+  // A SELECTED car variant owns the price box; cars without variants and
+  // every other product keep the existing variantPrice path byte for byte.
+  const resolvedPrice: ResolvedPrice =
+    car && carVariant
+      ? {
+          price: carVariant.price,
+          oldPrice: null,
+          priceEstimated:
+            carVariant.price !== null && carVariant.priceEstimated !== false,
+        }
+      : variantPrice(product, selectedOptionLabel, version?.id);
   // The price box's ONE channel line — built by the shared price component
   // from priceChannel + brand + this selection, so Quick Look and Shop always
   // print the same sentence. null = no line (channel not recorded).
-  const channelLine = priceChannelLine(product, {
-    variantLabel: selectedOptionLabel,
-    version: version ?? null,
-    // Only a versioned product passes this, so an approximate import price is
-    // labelled as such while every other page keeps its product-level wording.
-    priceEstimated: version ? resolvedPrice.priceEstimated : undefined,
-  });
+  const channelLine =
+    car && carVariant
+      ? carVariant.price === null
+        ? '(Price not published for this variant — no verified Bangladesh figure)'
+        : product.priceEstimateLine ?? null
+      : priceChannelLine(product, {
+          variantLabel: selectedOptionLabel,
+          version: version ?? null,
+          // Only a versioned product passes this, so an approximate import
+          // price is labelled as such while every other page keeps its
+          // product-level wording.
+          priceEstimated: version ? resolvedPrice.priceEstimated : undefined,
+        });
 
   // One click on a version button swaps EVERYTHING that belongs to it: its
   // gallery (back to the first image), its colors (first preselected), its
@@ -370,7 +397,10 @@ const QuickLookDetail: React.FC<{
   // (the HomeView) render no variant card, and the price card then takes
   // the full row instead of leaving an empty half-width box.
   const hasVariantChoices =
-    showColorSwatches || storageOptions.length > 0 || purchaseOptions.length > 0;
+    showColorSwatches ||
+    storageOptions.length > 0 ||
+    purchaseOptions.length > 0 ||
+    carVariants.length > 1;
 
   const selectedVariant = (() => {
     const chosenColor = showColorSwatches
@@ -634,6 +664,77 @@ const QuickLookDetail: React.FC<{
               <div className="bg-text-on-dark border border-text-heading/10 rounded-lg p-3.5 md:p-5">
                 <h2 className="text-base font-semibold text-text-heading mb-3 md:mb-4">Choose Variant</h2>
                 <div className="space-y-3 md:space-y-4">
+                  {/* CAR variant — engine/grade selector. A vertical radio list
+                      (the reference's variant panel) so the label, the price
+                      and the estimated/unavailable state are readable at a
+                      glance; selecting one swaps the price box and the car
+                      spec rows. The rest of the page (gallery, guide, CTA)
+                      is intentionally unchanged. */}
+                  {carVariants.length > 1 && carVariant && (
+                    <div>
+                      <div className="text-sm font-medium text-text-body mb-2">
+                        Variant: <span className="text-text-heading">{carVariant.label}</span>
+                      </div>
+                      <div role="radiogroup" aria-label="Vehicle variant" className="space-y-2">
+                        {carVariants.map((v, i) => {
+                          const selected = v.id === carVariant.id;
+                          const variantPrice = {
+                            price: v.price,
+                            oldPrice: null,
+                            priceEstimated:
+                              v.price !== null && v.priceEstimated !== false,
+                          } as ResolvedPrice;
+                          return (
+                            <button
+                              key={v.id}
+                              type="button"
+                              role="radio"
+                              aria-checked={selected}
+                              onClick={() => {
+                                setActiveCarVariant(i);
+                                setActiveImage(0);
+                              }}
+                              className={`tactile w-full flex items-center justify-between gap-3 rounded-md border px-3 py-2.5 text-left ${
+                                selected
+                                  ? 'border-accent bg-accent/10'
+                                  : 'border-text-heading/10 bg-text-on-dark hover:border-accent/50'
+                              }`}
+                            >
+                              <span className="flex items-center gap-2.5 min-w-0">
+                                <span
+                                  aria-hidden="true"
+                                  className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full border ${
+                                    selected ? 'border-accent' : 'border-text-heading/30'
+                                  }`}
+                                >
+                                  {selected && (
+                                    <span className="h-2 w-2 rounded-full bg-accent" />
+                                  )}
+                                </span>
+                                <span
+                                  className={`truncate text-sm ${
+                                    selected
+                                      ? 'font-semibold text-accent-hover'
+                                      : 'font-medium text-text-heading'
+                                  }`}
+                                >
+                                  {v.label}
+                                </span>
+                              </span>
+                              <PriceTag
+                                product={product}
+                                resolved={variantPrice}
+                                className="shrink-0 text-xs md:text-sm"
+                              />
+                            </button>
+                          );
+                        })}
+                      </div>
+                      <p className="mt-2 text-xs text-text-body leading-relaxed">
+                        {carVariant.summary}
+                      </p>
+                    </div>
+                  )}
                   {/* Version — first, because it decides the gallery, the
                       colors, the priced storage options and the specs below.
                       Rendered ONLY for products that declare versions. */}
